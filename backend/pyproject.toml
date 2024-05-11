@@ -10,7 +10,7 @@ package-mode = false
 python = "^3.11"
 Django = "^5.0.4"
 djangorestframework = "^3.15.1"
-psycopg = "^3.1.18"
+psycopg = {extras = ["binary"], version = "^3.1.19"}
 
 [tool.poetry.group.dev.dependencies]
 django-filter = "^24.2"
