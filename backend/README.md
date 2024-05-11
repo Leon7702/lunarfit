@@ -41,6 +41,12 @@ If you change dependencies in the `pyproject.toml` (or with `poetry add/remove/u
 poetry export --output requirements.txt
 ```
 
+### Database setup - PostgreSQL
+
+You can install and set up a local PostgreSQL instance: [Installations Instructions](https://www.postgresql.org/download/).
+
+It should be simpler to use the provided `docker-compose.yml` as described in the top-level read-me.
+
 ## Starting the Django dev server
 
 Don't forget to [activate the python virtual environment](https://packaging.python.org/en/latest/guides/installing-using-pip-and-virtual-environments/). When using `poetry` you can use `poetry shell` instead to enter the environment or prepend `poetry run COMMAND` to execute `COMMAND` in the environment.
