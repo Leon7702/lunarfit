@@ -1,1 +1,33 @@
 version: '3'
+
+services:
+  db:
+    image: postgres:16-alpine
+    restart: always
+    volumes:
+      - postgres_data:/var/lib/postgresql/data
+    environment:
+      POSTGRES_PASSWORD: lunarfit
+      # POSTGRES_USER: lunarfit
+      # POSTGRES_DB: lunarfit
+    healthcheck: # from https://dev.to/kiranparajuli589/how-to-dockerize-your-django-vuejs-application-2347
+      test: [ "CMD", "pg_isready" , "-U" , "postgres"]
+      interval: 5s
+      timeout: 5s
+      retries: 5
+    ports:
+      - "5432:5432"
+
+  backend:
+    build:
+      context: ./backend
+    volumes:
+      - ./backend:/app
+    ports:
+      - "8000:8000"
+    depends_on:
+      db:
+        condition: service_healthy
+
+volumes:
+  postgres_data: # database persistence managed my docker
