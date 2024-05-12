@@ -18,12 +18,17 @@ docker compose up -d --build
 
 You can stop and remove the containers using `docker compose down`. There are also `start` `stop` and `restart` commands, which will keep the containers state. You probably don't need these here. In case the containers are running the `up` command takes care of removing and rebuilding them.
 
+The frontend is accessible at port 5173 (standard vite dev port).
+
 The backend is accessible at port 8000. You can access the API endpoint documentation at <localhost:8000>. For more information look at the backend `Readme` and `Dockerfile`.
+
+The containers start in detached mode. If you need to monitor their output you can ommit the `d` flag, attach to the containers output using `docker attach [CONTAINERNAME]` or use Docker Desktop to inspect them. If you use VSCode there is an extension that can interact with containers as well.
+
+You can limit the services that run by specifying `frontend` or `backend`. Note that `backend` will start `db` as well. This way you can use a local frontend dev server, but still have a working backend.
 
 ### First run - Database setup
 
 The first time you run this will take a while, because it downloads and installs all the images and dependencies.
-You can limit the services that run by specifying `frontend` or `backend`. Note that `backend` will start `db` as well.
 
 After that you need to initialize the backend database with. Also necessery if you change backend models.
 

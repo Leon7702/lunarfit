@@ -45,7 +45,7 @@ poetry export --output requirements.txt
 
 You can install and set up a local PostgreSQL instance: [Installations Instructions](https://www.postgresql.org/download/).
 
-It should be simpler to use the provided `docker-compose.yml` as described in the top-level read-me.
+It should be simpler to use the provided `docker-compose.yml` as described in the top-level read-me. This will also start the Django dev server.
 
 ## Starting the Django dev server
 
@@ -55,3 +55,5 @@ Don't forget to [activate the python virtual environment](https://packaging.pyth
 
 `django-rest-framework` provides a browsable API, listing all available endpoints.
 You can create a superuser to browse the API webinterface using `python3 manage.py createsuperuser`.
+
+You can start the dev server using the Dockerfile, or the top-level docker compose backend instead.

@@ -23,11 +23,20 @@ services:
       context: ./backend
     volumes:
       - ./backend:/app
+      - ./backend/logs:/app/logs
     ports:
       - "8000:8000"
     depends_on:
       db:
         condition: service_healthy
+
+  frontend:
+    build:
+      context: ./frontend
+    ports:
+      - "5173:5173"
+    volumes:
+      - ./frontend:/app
 
 volumes:
   postgres_data: # database persistence managed my docker

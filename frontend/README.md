@@ -1,9 +1,11 @@
 # Lunarfit (Working Title?) Webapp
 
 This is what you get when following
-https://vuejs.org/guide/quick-start.html using node, with the options
-ESLint and Prettier. Feel free to replace it with the frontend setup you
-actually use.
+https://vuejs.org/guide/quick-start.html using `npm`, with the options
+ESLint and Prettier. Feel free to replace it with the frontend setup and package manager you
+actually use (but keep the `Dockerfile`).
+
+You can also start the frontend dev server using the top-level `docker comopse up frontend`.
 
 ## Communicating with the backend
 
