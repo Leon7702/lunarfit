@@ -30,7 +30,7 @@ You can limit the services that run by specifying `frontend` or `backend`. Note 
 
 The first time you run this will take a while, because it downloads and installs all the images and dependencies.
 
-After that you need to initialize the backend database with. Also necessery if you change backend models.
+After that you need to initialize the backend database with. Also necessary if you change backend models.
 
 ``` sh
 docker compose exec backend python manage.py migrate
