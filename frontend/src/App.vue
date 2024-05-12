@@ -1,6 +1,15 @@
 <script setup>
   import HelloWorld from './components/HelloWorld.vue'
   import TheWelcome from './components/TheWelcome.vue'
+
+  async function backendTest() {
+    const response = await fetch("http://localhost:8000/")
+    const apiRoot = await response.json();
+    console.log(apiRoot);
+  }
+
+  backendTest();
+
 </script>
 
 <template>
