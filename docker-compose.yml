@@ -35,8 +35,8 @@ services:
       context: ./frontend
     ports:
       - "5173:5173"
-    volumes:
-      - ./frontend:/app
+    # volumes:
+    #   - ./frontend:/app
 
 volumes:
   postgres_data: # database persistence managed my docker
