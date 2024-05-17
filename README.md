@@ -10,7 +10,7 @@ keywords: []
 
 ## Local dev servers
 
-You can set up the front- and backend including the database using [Docker](https://docs.docker.com/engine/install/) and the `docker-compose.yml`.
+You can set up the backend including the database using [Docker](https://docs.docker.com/engine/install/) and the `docker-compose.yml`.
 
 ``` sh
 docker compose up -d --build
@@ -18,13 +18,18 @@ docker compose up -d --build
 
 You can stop and remove the containers using `docker compose down`. There are also `start` `stop` and `restart` commands, which will keep the containers state. You probably don't need these here. In case the containers are running the `up` command takes care of removing and rebuilding them.
 
-The frontend is accessible at port 5173 (standard vite dev port).
-
 The backend is accessible at port 8000. You can access the API endpoint documentation at <localhost:8000>. For more information look at the backend `Readme` and `Dockerfile`.
 
 The containers start in detached mode. If you need to monitor their output you can ommit the `d` flag, attach to the containers output using `docker attach [CONTAINERNAME]` or use Docker Desktop to inspect them. If you use VSCode there is an extension that can interact with containers as well.
 
-You can limit the services that run by specifying `frontend` or `backend`. Note that `backend` will start `db` as well. This way you can use a local frontend dev server, but still have a working backend.
+> 🙊 The frontend service is currently disabled, as it needs adjustments for the Quasar CLI. `docker compose up` will only start the backend
+
+>>>
+The frontend is accessible at port 5173 (standard vite dev port).
+You can limit the services that run by specifying `frontend` or `backend`.
+Note that `backend` will start `db` as well.
+This way you can use a local frontend dev server, but still have a working backend.
+>>>
 
 ### First run - Database setup
 

@@ -30,13 +30,14 @@ services:
       db:
         condition: service_healthy
 
-  frontend:
-    build:
-      context: ./frontend
-    ports:
-      - "5173:5173"
-    # volumes:
-    #   - ./frontend:/app
+  # TODO: update frontend container for Quasar frontend
+  # frontend:
+  #   build:
+  #     context: ./frontend
+  #   ports:
+  #     - "5173:5173"
+  #   volumes:
+  #     - ./frontend:/app
 
 volumes:
   postgres_data: # database persistence managed my docker
