@@ -1,65 +1,27 @@
 <template>
-  <q-layout view="lHh Lpr lFf">
-<p>das ist ein testttt {linksList.}</p>
-  </q-layout>
+  <div>
+    <!-- Verwendung des TextFormFields -->
+    <FormFieldText label="Ihr Label hier" iconName="event" :value="initialValue" />
+    
+    <!-- Verwendung der StandardButton-Komponente -->
+    <StandardButton label="Das ist ein Button" />
+  </div>
 </template>
 
-<script setup>
-import { ref } from 'vue'
-import EssentialLink from 'components/EssentialLink.vue'
+<script>
+import StandardButton from 'components/StandardButton.vue';
+import FormFieldText from 'components/FormFieldText.vue';
 
-defineOptions({
-  name: 'MainLayout'
-})
-
-const linksList = [
-  {
-    title: 'Docs',
-    caption: 'quasar.dev',
-    icon: 'school',
-    link: 'https://quasar.dev'
+export default {
+  name: 'ExamplePage',
+  components: {
+    StandardButton,
+    FormFieldText
   },
-  {
-    title: 'Github',
-    caption: 'github.com/quasarframework',
-    icon: 'code',
-    link: 'https://github.com/quasarframework'
-  },
-  {
-    title: 'Discord Chat Channel',
-    caption: 'chat.quasar.dev',
-    icon: 'chat',
-    link: 'https://chat.quasar.dev'
-  },
-  {
-    title: 'Forum',
-    caption: 'forum.quasar.dev',
-    icon: 'record_voice_over',
-    link: 'https://forum.quasar.dev'
-  },
-  {
-    title: 'Twitter',
-    caption: '@quasarframework',
-    icon: 'rss_feed',
-    link: 'https://twitter.quasar.dev'
-  },
-  {
-    title: 'Facebook',
-    caption: '@QuasarFramework',
-    icon: 'public',
-    link: 'https://facebook.quasar.dev'
-  },
-  {
-    title: 'Quasar Awesome',
-    caption: 'Community Quasar projects',
-    icon: 'favorite',
-    link: 'https://awesome.quasar.dev'
+  data() {
+    return {
+      initialValue: 'Initialer Wert hier'
+    };
   }
-]
-
-const leftDrawerOpen = ref(false)
-
-function toggleLeftDrawer () {
-  leftDrawerOpen.value = !leftDrawerOpen.value
-}
+};
 </script>
