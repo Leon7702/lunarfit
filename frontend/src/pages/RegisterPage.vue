@@ -10,28 +10,30 @@
         </q-icon>
       </template>
     </q-input>
-    <q-input color="teal" outlined v-model="password" label="Password">
+    <q-input :type="showPassword ? 'text' : 'password'" color="teal" outlined v-model="password" label="Password">
+    <template v-slot:prepend>
+      <q-icon>
+        <img src="../assets/System.svg" alt="Lock Icon" />
+      </q-icon>
+    </template>
+    <template v-slot:append>
+      <q-icon
+          @click="togglePasswordVisibility"  
+          :name="showPassword ? 'visibility_off' : 'visibility'"
+          class="cursor-pointer"> </q-icon>
+    </template>
+  </q-input>
+    <q-input :type="showPassword ? 'text' : 'password'" color="teal" outlined v-model="passwordConfirm" label="Password bestätigen">
       <template v-slot:prepend>
         <q-icon>
           <img src="../assets/System.svg" alt="Lock Icon" />
         </q-icon>
       </template>
       <template v-slot:append>
-        <q-icon>
-          <img src="../assets/EyeClosed.svg" alt="Eye closed" />
-        </q-icon>
-      </template>
-    </q-input>
-    <q-input color="teal" outlined v-model="passwordConfirm" label="Password bestätigen">
-      <template v-slot:prepend>
-        <q-icon>
-          <img src="../assets/System.svg" alt="Lock Icon" />
-        </q-icon>
-      </template>
-      <template v-slot:append>
-        <q-icon>
-          <img src="../assets/EyeClosed.svg" alt="Eye closed" />
-        </q-icon>
+        <q-icon
+          @click="togglePasswordVisibility"  
+          :name="showPassword ? 'visibility_off' : 'visibility'"
+          class="cursor-pointer"> </q-icon>
       </template>
     </q-input>
   </div>
@@ -57,7 +59,13 @@ export default {
       email: '',
       password: '',
       passwordConfirm: '',
+      showPassword: false,
     };
+  },
+  methods: {
+    togglePasswordVisibility() {
+      this.showPassword = !this.showPassword;
+    },
   },
 }
 </script>
