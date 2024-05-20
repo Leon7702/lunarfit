@@ -1,5 +1,5 @@
 # Pull base image, see https://hub.docker.com/_/python/
-FROM python:3.12-alpine
+FROM python:3.12-bookworm
 
 # Set environment variables, see https://learndjango.com/tutorials/django-docker-and-postgresql-tutorial
 ENV PIP_DISABLE_PIP_VERSION_CHECK 1
