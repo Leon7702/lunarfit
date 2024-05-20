@@ -11,18 +11,18 @@
       </template>
     </q-input>
     <q-input :type="showPassword ? 'text' : 'password'" color="teal" outlined v-model="password" label="Password">
-    <template v-slot:prepend>
-      <q-icon>
-        <img src="../assets/System.svg" alt="Lock Icon" />
-      </q-icon>
-    </template>
-    <template v-slot:append>
-      <q-icon
+      <template v-slot:prepend>
+        <q-icon>
+          <img src="../assets/System.svg" alt="Lock Icon" />
+        </q-icon>
+      </template>
+      <template v-slot:append>
+        <q-icon
           @click="togglePasswordVisibility"  
-          :name="showPassword ? 'visibility' : 'visibility_off'"
+          :name="showPassword ? 'visibility_off' : 'visibility'"
           class="cursor-pointer"> </q-icon>
-    </template>
-  </q-input>
+      </template>
+    </q-input>
     <q-input :type="showPassword ? 'text' : 'password'" color="teal" outlined v-model="passwordConfirm" label="Password bestätigen">
       <template v-slot:prepend>
         <q-icon>
@@ -32,43 +32,68 @@
       <template v-slot:append>
         <q-icon
           @click="togglePasswordVisibility"  
-          :name="showPassword ? 'visibility' : 'visibility_off'"
+          :name="showPassword ? 'visibility_off' : 'visibility'"
           class="cursor-pointer"> </q-icon>
       </template>
     </q-input>
   </div>
   <div class="q-pa-md q-gutter-sm row justify-center">
-    <q-btn no-caps rounded style="background: #50C1BA; color: white" label="Registrieren" padding="sm lg" size="16px"/>
+    <q-btn no-caps rounded style="background: #50C1BA; color: white" label="Registrieren" padding="sm lg" size="16px" @click="registerUser"/>
   </div>
   <p style="text-align: center;">
     Du hast einen Account?
-    <router-link to="/login">Jetzt anmelden</router-link>  </p>
+    <router-link to="/login">Jetzt anmelden</router-link>
+  </p>
 </template>
+
 
 <script>
 import { ref } from 'vue';
+import axios from 'axios';
 
 export default {
   setup() {
-    const text = ref('');
-    return { text };
-  },
-  data() {
-    return {
-      email: '',
-      password: '',
-      passwordConfirm: '',
-      showPassword: false,
-    };
-  },
-  methods: {
-    togglePasswordVisibility() {
-      this.showPassword = !this.showPassword;
-    },
-  },
-}
-</script>
+    const email = ref('');
+    const password = ref('');
+    const passwordConfirm = ref('');
+    const showPassword = ref(false);
 
+    const togglePasswordVisibility = () => {
+      showPassword.value = !showPassword.value;
+    };
+
+    const registerUser = async () => {
+      if (password.value !== passwordConfirm.value) {
+        alert("Passwords do not match!");
+        return;
+      }
+      
+      try {
+        const response = await axios.post('http://localhost:8000/users', {
+          email: email.value,
+          password: password.value
+        });
+        const token = response.data.token;
+        localStorage.setItem('token', token); // Store token in local storage
+        alert("Registration successful!");
+        // Redirect to login or other page
+      } catch (error) {
+        console.error("There was an error registering:", error);
+        alert("Registration failed!");
+      }
+    };
+
+    return {
+      email,
+      password,
+      passwordConfirm,
+      showPassword,
+      togglePasswordVisibility,
+      registerUser
+    };
+  }
+};
+</script>
 <style scoped>
 /* @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap');
 @import url('https://fonts.googleapis.com/css2?family=Assistant:wght@400;700&display=swap'); */
