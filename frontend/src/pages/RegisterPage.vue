@@ -19,7 +19,7 @@
     <template v-slot:append>
       <q-icon
           @click="togglePasswordVisibility"  
-          :name="showPassword ? 'visibility_off' : 'visibility'"
+          :name="showPassword ? 'visibility' : 'visibility_off'"
           class="cursor-pointer"> </q-icon>
     </template>
   </q-input>
@@ -32,7 +32,7 @@
       <template v-slot:append>
         <q-icon
           @click="togglePasswordVisibility"  
-          :name="showPassword ? 'visibility_off' : 'visibility'"
+          :name="showPassword ? 'visibility' : 'visibility_off'"
           class="cursor-pointer"> </q-icon>
       </template>
     </q-input>
@@ -42,7 +42,7 @@
   </div>
   <p style="text-align: center;">
     Du hast einen Account?
-    <router-link to="/login">Jetzt registrieren</router-link>  </p>
+    <router-link to="/login">Jetzt anmelden</router-link>  </p>
 </template>
 
 <script>
