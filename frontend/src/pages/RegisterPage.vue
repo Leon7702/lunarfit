@@ -35,7 +35,7 @@
     </q-input>
   </div>
   <div class="q-pa-md q-gutter-sm row justify-center">
-    <q-btn no-caps rounded style="background: #50C1BA; color: white" label="Registrieren" padding="xs lg" size="16px"/>
+    <q-btn no-caps rounded style="background: #50C1BA; color: white" label="Registrieren" padding="xs lg" size="16px" @click="showNotif"/>
   </div>
   <p style="text-align: center;">
     Du hast einen Account?
@@ -45,11 +45,20 @@
 
 <script>
 import { ref } from 'vue';
+import { useQuasar } from 'quasar'
+
 
 export default {
   setup() {
     const text = ref('');
-    return { text };
+    const $q = useQuasar();
+    const showNotif = () => {
+      $q.notify({
+        message: 'Registrierung erfolgreich!',
+        color: 'grey'
+      });
+    };
+    return { text, showNotif };
   },
   data() {
     return {
