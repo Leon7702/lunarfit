@@ -11,28 +11,25 @@
       </template>
     </q-input>
     <q-input :type="showPassword ? 'text' : 'password'" color="teal" outlined v-model="password" label="Password">
-    <template v-slot:prepend>
-      <q-icon>
-        <img src="../assets/System.svg" alt="Lock Icon" />
-      </q-icon>
-    </template>
-    <template v-slot:append>
-      <q-icon
-          @click="togglePasswordVisibility"  
-          :name="showPassword ? 'visibility_off' : 'visibility'"
-          class="cursor-pointer"> </q-icon>
-    </template>
-  </q-input>
-    <q-input :type="showPassword ? 'text' : 'password'" color="teal" outlined v-model="passwordConfirm" label="Password bestätigen">
       <template v-slot:prepend>
         <q-icon>
           <img src="../assets/System.svg" alt="Lock Icon" />
         </q-icon>
       </template>
       <template v-slot:append>
-        <q-icon
-          @click="togglePasswordVisibility"  
-          :name="showPassword ? 'visibility_off' : 'visibility'"
+        <q-icon @click="togglePasswordVisibility" :name="showPassword ? 'visibility' : 'visibility_off'"
+          class="cursor-pointer"> </q-icon>
+      </template>
+    </q-input>
+    <q-input :type="showConfirmPassword ? 'text' : 'password'" color="teal" outlined v-model="passwordConfirm"
+      label="Password bestätigen">
+      <template v-slot:prepend>
+        <q-icon>
+          <img src="../assets/System.svg" alt="Lock Icon" />
+        </q-icon>
+      </template>
+      <template v-slot:append>
+        <q-icon @click="toggleConfirmPasswordVisibility" :name="showConfirmPassword ? 'visibility' : 'visibility_off'"
           class="cursor-pointer"> </q-icon>
       </template>
     </q-input>
@@ -42,7 +39,7 @@
   </div>
   <p style="text-align: center;">
     Du hast einen Account?
-    <a href="/login">Jetzt anmelden</a>
+    <a href="#/login">Jetzt anmelden</a>
   </p>
 </template>
 
@@ -60,11 +57,15 @@ export default {
       password: '',
       passwordConfirm: '',
       showPassword: false,
+      showConfirmPassword: false,
     };
   },
   methods: {
     togglePasswordVisibility() {
       this.showPassword = !this.showPassword;
+    },
+    toggleConfirmPasswordVisibility() {
+      this.showConfirmPassword = !this.showConfirmPassword;
     },
   },
 }
