@@ -8,11 +8,11 @@
         </h2>
         <div class="form-group">
           <p>Wann war deine letzte Menstruation?</p>
-          <FormFieldText id="birthdate" label="tt.mm.jj" />
+          <FormFieldText id="birthdate" label="" iconName="" inputType="date" />
         </div>
         <div class="form-group">
           <p>Wie viele Tage dauert deine Menstruation im Durchschnitt?</p>
-          <FormFieldText id="height" label="" iconName="" />
+          <FormFieldText id="height" label="" iconName="" inputType="number" />
         </div>
       </div>
       <div class="button-container">
@@ -94,4 +94,3 @@
     left: 0;
   }
   </style>
-  

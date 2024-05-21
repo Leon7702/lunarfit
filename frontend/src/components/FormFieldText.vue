@@ -2,6 +2,8 @@
   <div class="q-pa-md">
     <div class="q-gutter-y-md column" style="max-width: 324px">
       <q-input
+        :type="inputType"
+        :pattern="pattern"
         color="teal"
         filled
         v-model="text"
@@ -31,12 +33,28 @@ export default {
     value: {
       type: String,
       default: ''
+    },
+    inputType: {
+      type: String,
+      default: 'text'
+    },
+    pattern: {
+      type: String,
+      default: ''
     }
   },
   data() {
     return {
       text: this.value
     };
+  },
+  watch: {
+    value(newValue) {
+      this.text = newValue;
+    },
+    text(newValue) {
+      this.$emit('input', newValue);
+    }
   }
 };
 </script>
@@ -47,9 +65,8 @@ export default {
 }
 
 .q-pa-md {
-    
-    padding-top: 5px;
-    padding-left: 5px;
-    padding-right: 5px;
+  padding-top: 5px;
+  padding-left: 5px;
+  padding-right: 5px;
 }
 </style>
