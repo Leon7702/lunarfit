@@ -18,7 +18,7 @@
       </template>
       <template v-slot:append>
         <q-icon
-          @click="togglePasswordVisibility"  
+          @click="togglePasswordVisibility"
           :name="showPassword ? 'visibility_off' : 'visibility'"
           class="cursor-pointer"> </q-icon>
       </template>
@@ -31,7 +31,7 @@
       </template>
       <template v-slot:append>
         <q-icon
-          @click="togglePasswordVisibility"  
+          @click="togglePasswordVisibility"
           :name="showPassword ? 'visibility_off' : 'visibility'"
           class="cursor-pointer"> </q-icon>
       </template>
@@ -50,6 +50,7 @@
 <script>
 import { ref } from 'vue';
 import axios from 'axios';
+import { useRouter } from 'vue-router';
 
 export default {
   setup() {
@@ -67,16 +68,16 @@ export default {
         alert("Passwords do not match!");
         return;
       }
-      
+
       try {
-        const response = await axios.post('http://localhost:8000/users', {
+        const response = await axios.post('http://localhost:8000/users/', {
           email: email.value,
           password: password.value
         });
         const token = response.data.token;
         localStorage.setItem('token', token); // Store token in local storage
         alert("Registration successful!");
-        // Redirect to login or other page
+        router.push('/login');
       } catch (error) {
         console.error("There was an error registering:", error);
         alert("Registration failed!");
