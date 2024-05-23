@@ -58,6 +58,7 @@ export default {
     const password = ref('');
     const passwordConfirm = ref('');
     const showPassword = ref(false);
+    const router = useRouter();
 
     const togglePasswordVisibility = () => {
       showPassword.value = !showPassword.value;
@@ -71,6 +72,7 @@ export default {
 
       try {
         const response = await axios.post('http://localhost:8000/users/', {
+          username: "first-user",
           email: email.value,
           password: password.value
         });
