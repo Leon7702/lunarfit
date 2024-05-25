@@ -58,6 +58,11 @@ const routes = [
     path: '/login',
     component: () => import('pages/LoginPage.vue')
   },
+  {
+    path: '/menstruation',
+    name: 'MenstruationInfo',
+    component: () => import('pages/MenstruationInfoPage.vue')
+  },
 
   // Always leave this as last one,
   // but you can also remove it
