@@ -47,6 +47,10 @@ const routes = [
     component: () => import('pages/onboarding/OnboardingEnd.vue')
   },
   {
+    path: '/home',
+    component: () => import('src/pages/DashboardPage.vue')
+  },
+  {
     path: '/register',
     component: () => import('pages/RegisterPage.vue')
   },
