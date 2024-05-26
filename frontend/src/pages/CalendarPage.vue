@@ -36,7 +36,7 @@
       <!-- Rows for each week in the month -->
       <tr v-for="(week, weekIndex) in weeksInMonth" :key="weekIndex">
         <td v-for="(day, dayIndex) in week" :key="`${weekIndex}-${dayIndex}`">
-          <div :class="['day-circle', dayColorClass(day)]">{{ day }}</div>
+          <div :class="['day-circle', dayColorClass(day)]" @click="selectDay(day)">{{ day }}</div>
         </td>
       </tr>
     </table>
@@ -67,13 +67,39 @@
       </div>
     </div>
     
-    <!-- Horizontal separator line -->
     <hr class="separator">
+
+    <!-- Display training recommendation -->
+    <div class="training-recommendation-container">
+      <div class="training-recommendation-header">
+        Trainingsempfehlungen
+        <router-link to="/r">Mehr erfahren</router-link>
+      </div>
+      <div class="training-recommendation-text">
+        Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed nonne merninisti licere mihi ista probare, quae sunt a te dicta? Atqui eorum nihil est eius generis, ut sit in fine atque extrerno bonorum. Quae cum dixisset paulumque institisset, Quid est? Duo Reges: constructio interrete. Quae cum essent dicta, discessimus. Quae cum dixisset paulumque institisset, Quid est? Duo Reges: constructio interrete. Quae cum essent dicta, discessimus.
+      </div>
+      <div class="training-recommendation-list">
+      </div>
+    </div>
+
+    <hr class="separator">
+
+    <!-- Display Symptoms and Mood using the new reusable component -->
+    <SectionContainer title="Symptome" link="/" linkText="Hinzufügen"/>
+    <hr class="separator">
+    <SectionContainer title="Stimmung" link="/" linkText="Hinzufügen"/>
+    <hr class="separator">
+    <SectionContainer title="Training Readiness Score" link="/" linkText="Hinzufügen"/>
   </div>
 </template>
 
 <script>
+import SectionContainer from 'components/SectionContainer.vue';
+
 export default {
+  components: {
+    SectionContainer
+  },
   data() {
     let date = new Date();
     return {
@@ -89,6 +115,7 @@ export default {
         2: 'follicle',
         3: 'prediction',
       },
+      selectedDay: null, // Track the currently selected day
     };
   },
   computed: {
@@ -122,7 +149,12 @@ export default {
     },
     // Format the current day for display
     currentDayFormatted() {
-      let date = new Date(this.date.year, this.date.month, this.date.day);
+      let date;
+      if (this.selectedDay !== null) {
+        date = new Date(this.date.year, this.date.month, this.selectedDay);
+      } else {
+        date = new Date(this.date.year, this.date.month, this.date.day);
+      }
       return date.toLocaleDateString('de-DE', { weekday: 'long', day: '2-digit', month: 'long' });
     }
   },
@@ -147,7 +179,14 @@ export default {
     },
     // Get the color class for a given day
     dayColorClass(day) {
+      if (this.selectedDay === day) {
+        return 'currentDate';
+      }
       return this.dayColors[day] || '';
+    },
+    // Select a day as the current date
+    selectDay(day) {
+      this.selectedDay = day;
     },
   },
 };
@@ -173,6 +212,19 @@ th, td {
 th {
   color: #6C7072;
 }
+
+a {
+    color: #50c1ba;
+    font-weight: bold;
+    font-size: 14px;
+    text-decoration: none;
+  }
+
+  p {
+    font-size: 14px;
+    margin: 20px;
+    padding-top: 10px;
+  }
 
 .header {
   display: flex;
@@ -222,6 +274,11 @@ th {
   color: #000; /* Set the text color */
 }
 
+.currentDate {
+  border: 2px solid #FF2D55; /* Set border color */
+  color: #000;
+}
+
 .legend {
   display: flex;
   justify-content: space-evenly; /* Evenly space legend items */
@@ -247,7 +304,7 @@ th {
 }
 
 .day-log-container {
-  width: 80%;
+  width: 85%;
   margin: 20px auto; /* Center container with top margin */
 }
 
@@ -276,5 +333,27 @@ th {
   width: 100%; /* Ensure the separator stretches the full width */
 }
 
-/* Add more color classes as needed */
+.training-recommendation-container {
+  width: 85%;
+  margin: 20px auto; /* Center container with top margin */
+}
+
+.training-recommendation-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  color: #000;
+  font-size: 16px;
+  font-style: normal;
+  font-weight: 600;
+  line-height: 21px; /* 150% */
+}
+
+.training-recommendation-text {
+  font-size: 14px;
+  font-style: normal;
+  font-weight: 400;
+  line-height: 18px; /* 150% */
+  padding-top: 18px;
+}
 </style>
