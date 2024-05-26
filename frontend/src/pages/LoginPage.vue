@@ -25,7 +25,7 @@
     </q-input>
     </div>
     <div class="q-pa-md q-gutter-sm row justify-center">
-      <q-btn no-caps rounded style="background: #50C1BA; color: white" label="Anmelden" padding="sm lg" size="16px"/>
+      <q-btn no-caps rounded style="background: #50C1BA; color: white" label="Anmelden" padding="sm lg" size="16px" @click="loginUser"/>
     </div>
     <p style="text-align: center;">
       Noch keinen Account?
@@ -35,26 +35,38 @@
   
   <script>
   import { ref } from 'vue';
+  import axios from 'axios';
+  import { useRouter } from 'vue-router';
   
   export default {
     setup() {
-      const text = ref('');
-      return { text };
-    },
-    data() {
-      return {
-        email: '',
-        password: '',
-        passwordConfirm: '',
-        showPassword: false,
+      const email = ref('');
+      const password = ref('');
+      const router = useRouter();
+      const showPassword = ref(false);
+  
+      const loginUser = async () => {
+        try {
+          const response = await axios.post('http://localhost:8000/users/', {
+            email: email.value,
+            password: password.value
+          });
+          const token = response.data.token;
+          localStorage.setItem('token', token); // Store token in local storage
+          alert("Login successful!");
+          router.push('/onboarding');
+        } catch (error) {
+          alert("There was an error logging in: " + error);
+        }
       };
+  
+      const togglePasswordVisibility = () => {
+        showPassword.value = !showPassword.value;
+      };
+  
+      return { email, password, loginUser, showPassword, togglePasswordVisibility };
     },
-    methods: {
-      togglePasswordVisibility() {
-        this.showPassword = !this.showPassword;
-      },
-    },
-  }
+  };
   </script>
   
   <style scoped>
