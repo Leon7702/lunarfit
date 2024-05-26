@@ -64,9 +64,19 @@ export default {
       showPassword.value = !showPassword.value;
     };
 
+    const isValidEmail = (email) => {
+      const re = /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
+      return re.test(String(email).toLowerCase());
+    };
+
     const registerUser = async () => {
       if (password.value !== passwordConfirm.value) {
         alert("Passwords do not match!");
+        return;
+      }
+
+      if (!isValidEmail(email.value)) {
+        alert("Invalid email format!");
         return;
       }
 
