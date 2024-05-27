@@ -1,6 +1,5 @@
 <template>
     <div class="welcome-container">
-      <!-- Inhalt des ersten Bildschirms hier... -->
       <img src="/src/assets/Image_OnboardingStart.svg" alt="Welcome Image" class="image" />
       <div class="welcome-text">
         <h1 class="title">Willkommen bei LunaFit.</h1>
@@ -12,7 +11,6 @@
           Deine Daten werden streng vertraulich behandelt und sicher aufbewahrt.
         </p>
       </div>
-      <!-- Verwendung der StandardButton-Komponente für den "Weiter"-Button -->
       <div class="button-container">
         <StandardButton label="Weiter" @click="navigateToOnboardingStep1" />
       </div>

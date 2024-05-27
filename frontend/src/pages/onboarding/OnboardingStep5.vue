@@ -57,13 +57,13 @@
     align-items: center;
     margin-top: 60px;
     position: relative;
-    height: 100vh; /* Ensure the container takes up the full height of the viewport */
+    height: 100vh;
   }
   
   .content {
     max-width: 324px;
-    flex: 1; /* Allow content to take up remaining space */
-    overflow-y: auto; /* Ensure content is scrollable if it overflows */
+    flex: 1; 
+    overflow-y: auto; 
   }
   
   .person-image {
@@ -82,11 +82,11 @@
   }
   
   .form-group {
-    margin-bottom: 10px; /* Space between form groups */
+    margin-bottom: 10px; 
   }
   
   .form-group p {
-    margin: 0; /* Remove margin below paragraph */
+    margin: 0;
     font-size: 16px;
     margin-left: 7px;
     margin-right: 7px;
@@ -94,7 +94,7 @@
   
   .button-container {
     position: fixed;
-    bottom: 30px; /* Adjust this value to set the distance from the bottom */
+    bottom: 30px; 
     width: 100%;
     display: flex;
     justify-content: center;

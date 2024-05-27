@@ -46,6 +46,62 @@ const routes = [
     name: 'OnboardingEnd', 
     component: () => import('pages/onboarding/OnboardingEnd.vue') 
   },
+  { 
+    path: '/log', 
+    name: 'LogHome', 
+    component: () => import('pages/log/LogHome.vue') 
+  },
+  { 
+    path: '/log-cycle', 
+    name: 'LogCycleHome', 
+    component: () => import('pages/log/LogCycleHome.vue') 
+  },
+  {
+    path: '/log-cycle-mens',
+    name: 'LogCycleMens',
+    component: () => import('pages/log/LogCycleMens.vue')
+  },
+  {
+    path: '/log-cycle-temp',
+    name: 'LogCycleTemp',
+    component: () => import('pages/log/LogCycleTemp.vue')
+  },
+  {
+    path: '/log-cycle-cerfix',
+    name: 'LogCycleCerfix',
+    component: () => import('pages/log/LogCycleCerfix.vue')
+  },
+  {
+    path: '/log-cycle-gebaermutterhals',
+    name: 'LogCycleGebaermutter',
+    component: () => import('pages/log/LogCycleGebaermutter.vue')
+  },
+  {
+    path: '/log-cycle-sex',
+    name: 'LogCycleSex',
+    component: () => import('pages/log/LogCycleSex.vue')
+  },
+  {
+    path: '/log-cycle-contraceptive',
+    name: 'LogCycleContraceptive',
+    component: () => import('pages/log/LogCycleContraceptive.vue')
+  },
+  {
+    path: '/log-cycle-medicine',
+    name: 'LogCycleMedicine',
+    component: () => import('pages/log/LogCycleMedicine.vue')
+  },
+  {
+    path: '/log-cycle-ovulation-test',
+    name: 'LogCycleOvulationTest',
+    component: () => import('pages/log/LogCycleOvulationTest.vue')
+  },
+  {
+    path: '/log-cycle-pregnancy-test',
+    name: 'LogCyclePregnancyTest',
+    component: () => import('pages/log/LogCyclePregnancyTest.vue')
+  },
+
   // Always leave this as last one,
   // but you can also remove it
   {

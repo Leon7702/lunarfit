@@ -1,0 +1,143 @@
+<template>
+    <div class="welcome-container">
+      <div class="header">
+        <q-btn flat dense round icon="arrow_back" @click="goBack" />
+        <div class="title">Geschlechtsverkehr</div>
+      </div>
+      <div class="linie"></div>
+      <p class="description">
+        Bitte zutreffendes auswählen:
+      </p>
+      <div class="icon-grid">
+        <div
+          class="icon-item"
+          v-for="(item, index) in iconItems"
+          :key="index"
+          @click="selectItem(index)"
+          :class="{ selected: selectedIndex === index }"
+        >
+          <div class="icon-wrapper">
+            <img :src="item.icon" class="icon" />
+            <div class="icon-circle" :class="{ active: selectedIndex === index }"></div>
+          </div>
+          <div class="icon-label">{{ item.label }}</div>
+        </div>
+      </div>
+    </div>
+  </template>
+  
+  <script>
+  export default {
+    data() {
+      return {
+        iconItems: [
+          {  icon: '/src/assets/log_Zyklus/cerfix_keinen.svg' },
+          {  icon: '/src/assets/log_Zyklus/Cerfix_trocken.svg' },
+          {  icon: '/src/assets/log_Zyklus/Cerfix_keinen.svg' },
+          {  icon: '/src/assets/log_Zyklus/Cerfix_keinen.svg' },
+          {  icon: '/src/assets/log_Zyklus/Cerfix_keinen.svg' }
+        ],
+        selectedIndex: null
+      };
+    },
+    methods: {
+      goBack() {
+        window.history.back();
+      },
+      selectItem(index) {
+        this.selectedIndex = index;
+      }
+    }
+  };
+  </script>
+  
+  <style scoped>
+  .welcome-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding-left: 20px;
+    padding-right: 20px;
+    height: 100vh;
+    overflow: auto;
+    margin: auto;
+  }
+  
+  .linie {
+    height: 1px;
+    background-color: rgba(0, 0, 0, 0.1);
+    width: 120%;
+    margin-top: 10px;
+  }
+  
+  .header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    width: 100%;
+    padding: 10px 0;
+    margin-top: 60px;
+  }
+  
+  .title {
+    font: 600 20px 'Inter', sans-serif;
+    color: #000;
+    text-align: center;
+    flex-grow: 1;
+    padding-right: 30px;
+  }
+  
+  .description {
+    text-align: left;
+    width: 100%;
+    margin-top: 20px;
+    font-size: 16px;
+    font-weight: 5004
+  }
+  
+  .icon-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(100px, 1fr));
+    gap: 10px;
+    width: 100%;
+    max-width: 600px;
+    margin-top: 10px;
+    justify-content: center;
+  }
+  
+  .icon-item {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin-bottom: 20px;
+  }
+    
+  .icon-wrapper {
+    position: relative;
+    width: 180px; /* 60px * 3 */
+    height: 180px; /* 60px * 3 */
+  }
+  
+  .icon {
+    width: 100%;
+    height: 100%;
+  }
+  
+  .icon-circle {
+    position: absolute;
+    bottom: 15px; /* Adjusted for larger size */
+    left: 50%;
+    transform: translateX(-50%);
+    width: 25px; /* 15px * 3 */
+    height: 25px; /* 15px * 3 */
+    border-radius: 50%;
+    background-color: lightgray;
+    transition: background-color 0.3s;
+  }
+  
+  .icon-circle.active {
+    background-color: var(--q-primary);
+  }
+  
+  </style>
+  

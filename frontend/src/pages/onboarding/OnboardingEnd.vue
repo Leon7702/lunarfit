@@ -1,6 +1,5 @@
 <template>
     <div class="welcome-container">
-      <!-- Inhalt des ersten Bildschirms hier... -->
       <img src="/src/assets/Image_OnboardingEnd.svg" alt="Welcome Image" class="image" />
       <div class="welcome-text">
         <h1 class="title">Geschafft!</h1>
@@ -11,7 +10,6 @@
           Denk daran: Je genauer du deinen Zyklus und dein Sportverhalten trackst, desto genauer werden deine Empfehlungen.
         </p>
       </div>
-      <!-- Verwendung der StandardButton-Komponente für den "Weiter"-Button -->
       <div class="button-container">
         <StandardButton label="Weiter" @click="navigateToOnboardingStep1" />
       </div>
@@ -38,10 +36,10 @@
   .welcome-container {
     display: flex;
     flex-direction: column;
-    align-items: center; /* Zentriert den Inhalt horizontal */
+    align-items: center; 
     padding-left: 20px;
     padding-right: 20px;
-    height: 100vh; /* Vollbildhöhe */
+    height: 100vh; 
     overflow: auto;
     margin: auto;
   }
@@ -55,16 +53,16 @@
   }
   
   .welcome-text {
-    text-align: left; /* Text links ausrichten */
+    text-align: left; 
   }
   
   .title {
-    font: 600 24px/129% 'Inter', sans-serif; /* Füge Inter als Schriftart hinzu */
+    font: 600 24px/129% 'Inter', sans-serif; 
     margin-top: 5vh;
   }
   
   .description {
-    font: 16px/22px 'Inter', sans-serif; /* Füge Inter als Schriftart hinzu */
+    font: 16px/22px 'Inter', sans-serif; 
     margin-top: 3vh;
   }
   

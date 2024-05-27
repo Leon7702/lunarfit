@@ -7,7 +7,7 @@
         <span class="form-step-highlight">Schritt 1:</span> Person
       </h2>
       <FormFieldText id="firstName" label="Vorname" iconName="" inputType="text" />
-      <FormFieldText id="lastName" label="Nachname" iconName="" inputType="text" />
+      <FormFieldText id="lastName" label="Nachname" iconName="" inputType="text" pattern="" />
       <FormFieldText id="birthdate" label="Geburtsdatum" iconName="" inputType="date" />
       <FormFieldText id="height" label="Größe in cm" iconName="" inputType="number" />
       <FormFieldText id="weight" label="Gewicht in kg" iconName="" inputType="number" />
@@ -47,13 +47,13 @@ export default {
   align-items: center;
   margin-top: 60px;
   position: relative;
-  height: 100vh; /* Ensure the container takes up the full height of the viewport */
+  height: 100vh; 
 }
 
 .content {
   max-width: 324px;
-  flex: 1; /* Allow content to take up remaining space */
-  overflow-y: auto; /* Ensure content is scrollable if it overflows */
+  flex: 1; 
+  overflow-y: auto; 
 }
 
 .person-image {
@@ -73,7 +73,7 @@ export default {
 
 .button-container {
   position: fixed;
-  bottom: 30px; /* Adjust this value to set the distance from the bottom */
+  bottom: 30px; 
   width: 100%;
   display: flex;
   justify-content: center;
