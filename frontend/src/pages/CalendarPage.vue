@@ -5,7 +5,7 @@
       <!-- Button to navigate to the previous month -->
       <q-btn class="leftButton" @click="prevMonth">
         <template v-slot:default>
-          <img src="assets/arrow-left.svg" alt="Left">
+          <img src="/src/assets/arrow-left.svg" alt="Left">
         </template>
       </q-btn>
 
@@ -15,7 +15,7 @@
       <!-- Button to navigate to the next month -->
       <q-btn class="rightButton" @click="nextMonth">
         <template v-slot:default>
-          <img src="assets/arrow-right.svg" alt="Right">
+          <img src="/src/assets/arrow-right.svg" alt="Right">
         </template>
       </q-btn>
     </div>
