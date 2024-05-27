@@ -5,7 +5,7 @@
       <!-- Button to navigate to the previous month -->
       <q-btn class="leftButton" @click="prevMonth">
         <template v-slot:default>
-          <img src="" alt="Left">
+          <img src="assets/arrow-left.svg" alt="Left">
         </template>
       </q-btn>
 
@@ -15,7 +15,7 @@
       <!-- Button to navigate to the next month -->
       <q-btn class="rightButton" @click="nextMonth">
         <template v-slot:default>
-          <img src="" alt="Right">
+          <img src="assets/arrow-right.svg" alt="Right">
         </template>
       </q-btn>
     </div>
@@ -49,7 +49,7 @@
       </div>
       <div class="legend-item">
         <div class="day-circle prediction"></div>
-        <span class="legend-label">Vorhergesagte Periode</span>
+        <span class="legend-label">Vorausgesagte Periode</span>
       </div>
       <div class="legend-item">
         <div class="day-circle follicle"></div>
@@ -125,7 +125,7 @@ export default {
     },
     // Compute the current month as a string
     currentMonth() {
-      return new Date(this.date.year, this.date.month, 1).toLocaleString('default', { month: 'long' });
+      return new Date(this.date.year, this.date.month, 1).toLocaleString('de-DE', { month: 'long' });
     },
     // Compute the number of days in the current month
     daysInMonth() {
