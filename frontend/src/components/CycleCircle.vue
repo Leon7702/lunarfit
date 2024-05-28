@@ -8,10 +8,8 @@
 
         <circle class="donut-segment" cx="21" cy="21" r="15.91549430918954" fill="transparent" stroke="#50C1BA"
           stroke-width="5" stroke-dasharray="20 80" stroke-dashoffset="25" @click="navigateToMenstruationPage"></circle>
-
-          <!-- <text x="20" y="5.5" text-anchor="middle" fill="#fff" dy=".3em" font-size="2"
+        <!-- <text x="20" y="5.5" text-anchor="middle" fill="#fff" dy=".3em" font-size="2"
           transform="rotate(40 21 21)">Menstruation</text> -->
-
         <circle class="donut-segment" cx="21" cy="21" r="15.91549430918954" fill="transparent" stroke="#9CD3D0"
           stroke-width="5" stroke-dasharray="30 70" stroke-dashoffset="105" @click="navigateToMenstruationPage"></circle>
 
