@@ -56,7 +56,7 @@
         } else if (label === 'Schwangerschaftstest') {
           this.$router.push({ name: 'LogCyclePregnancyTest' });
         } 
-        // Weitere Bedingungen für andere Icons können hier hinzugefügt werden
+
       },
       formatLabel(label) {
         if (label === 'Gebärmutterhals' || label === 'Geschlechtsverkehr') {
@@ -78,8 +78,7 @@
     display: flex;
     flex-direction: column;
     align-items: center;
-    padding-left: 20px;
-    padding-right: 20px;
+    width: 90%;
     height: 100vh;
     overflow: auto;
     margin: auto;
@@ -131,7 +130,7 @@
   .icon {
     width: 60px;
     height: 60px;
-    cursor: pointer; /* Zeigt an, dass das Icon klickbar ist */
+    cursor: pointer; 
   }
   
   .icon-label {

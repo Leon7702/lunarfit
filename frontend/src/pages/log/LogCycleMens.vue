@@ -5,15 +5,40 @@
         <div class="title">Menstruation</div>
       </div>
       <div class="linie"></div>
-      <!-- Inhalt -->
+      <div class="button-container">
+        <StandardButton :label="buttonLabel" @click="toggleMenstruationStatus" />
+      </div>
+      <div class="welcome-text">
+        <p class="description">{{ descriptionText }}</p>
+      </div>
     </div>
   </template>
   
   <script>
+  import StandardButton from 'components/StandardButton.vue';
+  
   export default {
+    components: {
+      StandardButton
+    },
+    data() {
+      return {
+        buttonLabel: "+  Menstruation",
+        descriptionText: "Tippe hier, wenn deine Menstruation heute begonnen hat."
+      };
+    },
     methods: {
       goBack() {
         window.history.back();
+      },
+      toggleMenstruationStatus() {
+        if (this.buttonLabel === "+  Menstruation") {
+          this.buttonLabel = "Menstruation aktiv";
+          this.descriptionText = "Tippe hier, wenn deine Menstruation vorbei ist.";
+        } else {
+          this.buttonLabel = "+  Menstruation";
+          this.descriptionText = "Tippe hier, wenn deine Menstruation heute begonnen hat.";
+        }
       }
     }
   };
@@ -23,9 +48,8 @@
   .welcome-container {
     display: flex;
     flex-direction: column;
-    align-items: center;
-    padding-left: 20px;
-    padding-right: 20px;
+    align-items: flex-start; /* Ausrichtung links */
+    width: 90%;
     height: 100vh;
     overflow: auto;
     margin: auto;
@@ -51,8 +75,19 @@
     font: 600 20px 'Inter', sans-serif;
     color: #000;
     text-align: center;
-    flex-grow: 1; /* Füllt den verbleibenden Platz in der Mitte aus */
+    flex-grow: 1;
     padding-right: 30px;
+  }
+  
+  .description {
+    font: 12px/22px 'Inter', sans-serif;
+    margin-top: 5px;
+  }
+  
+  .button-container {
+    margin-top: 20px;
+    margin-left: 0; 
+    width: 100%;
   }
   </style>
   

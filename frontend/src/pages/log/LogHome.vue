@@ -7,6 +7,7 @@
       <DateTodayPicker class="date" />
       <img src="/src/assets/log_zyklus.svg" alt="Zyklus Button" class="image" label="Weiter" @click="navigateToNextStep" />
       <img src="/src/assets/log_training.svg" alt="Training Button" class="image" />
+      <img src="/src/assets/log_notes.svg" alt="Notizen Button" class="image" />
     </div>
   </template>
   
@@ -34,15 +35,14 @@ export default {
     display: flex;
     flex-direction: column;
     align-items: center; /* Zentriert den Inhalt horizontal */
-    padding-left: 20px;
-    padding-right: 20px;
-    height: 100vh; /* Vollbildhöhe */
+    width: 90%;
+  
     overflow: auto;
     margin: auto;
   }
   
   .image {
-    aspect-ratio: 1.94;
+    margin-bottom: 5px;
     object-fit: auto;
     object-position: center;
     width: 100%;
@@ -57,12 +57,12 @@ export default {
   }
 
   .date {
-    margin-bottom: 20px;
+    margin-bottom: 10px;
   }
   
-  @media only screen and (min-width: 600px) {
+  @media only screen and (min-width: 200px) {
     .welcome-container {
-      max-width: 500px;
+      max-width: 350px;
       margin: auto;
     }
   }

@@ -5,12 +5,30 @@
         <div class="title">Medikamente</div>
       </div>
       <div class="linie"></div>
-      <!-- Inhalt -->
+      <div class="description">
+        Spezifische Medikamenteneinnahme:
+      </div>
+      <div class="form-group">
+        <DropDownSingleSelect :options="contraceptionOptions"/>
+      </div>
+      <div class="small-description">Bitte beachten Sie, dass die oben genannten Medikamente Einfluss auf Ihren Zyklus haben können.</div>
     </div>
   </template>
   
   <script>
+  
+  import DropDownSingleSelect from 'components/DropDownSingleSelect.vue';
+  
   export default {
+    components: {
+      DropDownSingleSelect
+    },
+    data() {
+      return {
+        hormonalContraception: null,
+        contraceptionOptions: ['Notfallkontrazeptiva', 'Hormonersatz', 'Opiode Schmerzmittel', 'Diclofenac/Ibuprofen']
+      }
+    },
     methods: {
       goBack() {
         window.history.back();
@@ -51,8 +69,33 @@
     font: 600 20px 'Inter', sans-serif;
     color: #000;
     text-align: center;
-    flex-grow: 1; /* Füllt den verbleibenden Platz in der Mitte aus */
+    flex-grow: 1;
     padding-right: 30px;
   }
+  
+  .description {
+    text-align: left;
+    width: 100%;
+    margin-top: 30px;
+    font-size: 16px;
+    font-weight: 500;
+    margin-bottom: 10px;
+  }
+  .form-group {
+    width: 100%;
+  }
+  
+  .form-group p {
+    margin: 0; 
+    font-size: 16px;
+    margin-left: 7px;
+    margin-right: 7px;
+  }
+  
+  .small-description {
+    font: 12px/16px 'Inter', sans-serif;
+    margin-top: 15px;
+  }
+  
   </style>
   
