@@ -1,22 +1,40 @@
 <template>
-  <main>
-    <!-- <h5>Zyklus</h5> -->
-    <CycleCircle />
-    <PhaseInformation />
-    <TrsSunburst />
-    <p>hallo</p>
+  <main class="card-container">
+    <div class="q-pa-md row items-start q-gutter-md">
+      <q-card class="my-card">
+        <q-card-section class="card-content">
+          <div class="text-h6">ZYKLUS</div>
+          <CycleCircle />
+          <div class="text-p">
+            Erfahre jetzt mehr über deinen Zyklus
+            <img class="aligned-svg" src="/src/assets/ForwardArrow.svg" alt="Weiter" />
+          </div>
+        </q-card-section>
+      </q-card>
+    </div>
+
+    <div class="q-pa-md row items-start q-gutter-md">
+      <q-card class="my-card">
+        <q-card-section class="card-content">
+          <div class="text-h6">TRAINING</div>
+          <TrsSunburst />
+          <div class="text-p">
+            Erfahre jetzt mehr über dein Training
+            <img class="aligned-svg" src="/src/assets/ForwardArrow.svg" alt="Weiter" />
+          </div>
+        </q-card-section>
+      </q-card>
+    </div>
   </main>
 </template>
 
 <script>
 import CycleCircle from 'components/CycleCircle.vue';
-import PhaseInformation from 'components/PhaseInformation.vue';
 import TrsSunburst from 'components/TrsSunburst.vue';
 
 export default {
   components: {
     CycleCircle,
-    PhaseInformation,
     TrsSunburst,
   },
   setup() {
@@ -27,3 +45,37 @@ export default {
 }
 </script>
 
+<style scoped>
+.card-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  position: relative;
+  height: 100vh;
+}
+
+.my-card {
+  /* width: 324px;
+  height: 318px; */
+  display: flex;
+  border-radius: 40px;
+  align-items: center;
+  justify-content: center;
+}
+
+.card-content {
+  width: 100%;
+  /* Setzen Sie die Breite des Inhalts auf 100% der Kartenbreite */
+  height: 100%;
+  /* Setzen Sie die Höhe des Inhalts auf 100% der Kartenhöhe */
+  display: flex;
+  /* Verwenden Sie Flexbox */
+  flex-direction: column;
+  align-items: center;
+}
+
+.aligned-svg {
+  vertical-align: middle;
+  /* Zentriert das SVG-Bild vertikal relativ zum umgebenden Text */
+}
+</style>

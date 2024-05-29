@@ -81,6 +81,11 @@
 
         <circle class="donut-segment-1" cx="21" cy="21" r="4.456338407" fill="transparent" stroke="#2D8781"
           stroke-width="1" stroke-dasharray="7 21" stroke-dashoffset="21"></circle>
+
+        <text x="21" y="21" text-anchor="middle" dominant-baseline="middle" font-size="2.5">
+          {{ Math.round(score) }} %
+        </text>
+
       </svg>
     </div>
 
