@@ -14,14 +14,13 @@
         </template>
         <q-card>
           <q-card-section>
-            {{ textErnaehrung }}
+            {{ textNutrition }}
           </q-card-section>
         </q-card>
       </q-expansion-item>
-    </q-list>
-  </div>
-  <div class="q-pa-md" style="max-width: 350px">
-    <q-list bordered class="rounded-borders">
+
+    <q-separator />
+
       <q-expansion-item>
         <template v-slot:header>
           <q-item-section avatar>
@@ -35,14 +34,13 @@
         </template>
         <q-card>
           <q-card-section>
-            {{ textSport }}
+            {{ textTraining }}
           </q-card-section>
         </q-card>
       </q-expansion-item>
-    </q-list>
-  </div>
-  <div class="q-pa-md" style="max-width: 350px">
-    <q-list bordered class="rounded-borders">
+
+    <q-separator />
+
       <q-expansion-item>
         <template v-slot:header>
           <q-item-section avatar>
@@ -56,7 +54,7 @@
         </template>
         <q-card>
           <q-card-section>
-            {{ textGesundheit }}
+            {{ textHealth }}
           </q-card-section>
         </q-card>
       </q-expansion-item>
@@ -67,6 +65,6 @@
 
 <script>
 export default {
-  props: ['textErnaehrung', 'textSport', 'textGesundheit'],
+  props: ['textNutrition', 'textTraining', 'textHealth'],
 }
 </script>
