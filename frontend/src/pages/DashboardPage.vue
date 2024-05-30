@@ -65,11 +65,8 @@ export default {
 
 .card-content {
   width: 100%;
-  /* Setzen Sie die Breite des Inhalts auf 100% der Kartenbreite */
   height: 100%;
-  /* Setzen Sie die Höhe des Inhalts auf 100% der Kartenhöhe */
   display: flex;
-  /* Verwenden Sie Flexbox */
   flex-direction: column;
   align-items: center;
 }
