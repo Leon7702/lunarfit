@@ -47,12 +47,26 @@ const routes = [
     component: () => import('pages/onboarding/OnboardingEnd.vue')
   },
   {
+    path: '/home',
+    component: () => import('src/pages/DashboardPage.vue')
+  },
+  {
     path: '/register',
     component: () => import('pages/RegisterPage.vue')
   },
   {
     path: '/login',
     component: () => import('pages/LoginPage.vue')
+  },
+  {
+    path: '/menstruation',
+    name: 'MenstruationInfo',
+    component: () => import('pages/MenstruationInfoPage.vue')
+  },
+  {
+    path: '/training',
+    name: 'TrsInfoPage',
+    component: () => import('pages/TrsInfoPage.vue')
   },
 
   { 
