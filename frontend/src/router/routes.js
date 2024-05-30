@@ -63,6 +63,11 @@ const routes = [
     name: 'MenstruationInfo',
     component: () => import('pages/MenstruationInfoPage.vue')
   },
+  {
+    path: '/training',
+    name: 'TrsInfoPage',
+    component: () => import('pages/TrsInfoPage.vue')
+  },
 
   // Always leave this as last one,
   // but you can also remove it

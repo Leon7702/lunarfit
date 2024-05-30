@@ -14,7 +14,7 @@
     </div>
 
     <div class="q-pa-md row items-start q-gutter-md">
-      <q-card class="my-card">
+      <q-card class="my-card" @click="navigateToTrainingPage">
         <q-card-section class="card-content">
           <div class="text-h6">TRAINING</div>
           <TrsSunburst />
@@ -42,6 +42,11 @@ export default {
 
     }
   },
+  methods: {
+    navigateToTrainingPage() {
+      this.$router.push({ name: 'TrsInfoPage' });
+    }
+  }
 }
 </script>
 
