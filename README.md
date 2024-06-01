@@ -1,6 +1,5 @@
 # Lunarfit (Working Title?)
 
-
 <!-- markdown-toc start - Don't edit this section. Run M-x markdown-toc-refresh-toc -->
 **Table of Contents**
 
@@ -8,6 +7,7 @@
     - [Local dev servers](#local-dev-servers)
         - [First run - Database setup](#first-run---database-setup)
         - [Create a superuser](#create-a-superuser)
+        - [Getting help](#getting-help)
     - [Browse the API-Documentation](#browse-the-api-documentation)
         - [OpenAPI 3 Schema](#openapi-3-schema)
 
@@ -30,7 +30,7 @@ In case the containers are running, `up` removes and rebuilds them as necessary.
 
 Adding the `-v` flag to `docker compose down` will remove the persistent database volume, deleting you database state, so you can start from scratch. 
 
-The backend is accessible at port 8000. You can access the API endpoint documentation at <localhost:8000>, see [Browse the API-Documentation](#browse-the-api-documentation). For more information look at the backend `Readme` and `Dockerfile`.
+The backend is accessible at port 8000. You can access the API endpoint documentation at <localhost:8000>, see [Browse the API-Documentation](#browse-the-api-documentation). For more information look at the backend `README` and `Dockerfile`.
 
 > 🙊 The frontend service is currently disabled, as it needs adjustments for the Quasar CLI. `docker compose up` will only start the backend
 
@@ -46,7 +46,7 @@ You can use a local frontend dev server, and only run the backend in a container
 
 The first time you run this will take a while, because it downloads and installs all the images and dependencies.
 
-After that you need to initialize the backend database with. Also necessary if you change backend models.
+After that you need to initialize the backend database with. This is also necessary if you change backend models.
 
 ``` sh
 docker compose exec backend python manage.py migrate
