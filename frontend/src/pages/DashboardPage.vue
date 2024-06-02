@@ -44,7 +44,7 @@ export default {
   },
   methods: {
     navigateToTrainingPage() {
-      this.$router.push({ name: 'TrsInfoPage' });
+      this.$router.push({ name: 'TrainingInfoPage' });
     }
   }
 }
