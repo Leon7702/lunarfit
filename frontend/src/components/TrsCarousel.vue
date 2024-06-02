@@ -22,20 +22,27 @@
                 <div v-html="mood"></div>
               </q-card-section>
             </q-card>
-            <p>Score today</p>
+            <div class="q-pa-md">
+              <p>Mood score today:</p>
+              <q-linear-progress size="25px" :value="progress1" color="primary">
+                <div class="absolute-full flex flex-center">
+                  <q-badge color="white" text-color="primary" :label="progressLabel1" />
+                </div>
+              </q-linear-progress>
+            </div>
             <p>Verlauf</p>
           </div>
         </q-carousel-slide>
         <q-carousel-slide name="tv" class="column no-wrap flex-center">
-  <q-icon name="live_tv" size="56px" />
-  <div class="q-mt-md text-center">
-    <q-card class="my-card bg-primary text-white">
-      <q-card-section flat bordered class="border-black">
-        <div v-html="lorem"></div>
-      </q-card-section>
-    </q-card>
-  </div>
-</q-carousel-slide>
+          <q-icon name="live_tv" size="56px" />
+          <div class="q-mt-md text-center">
+            <q-card class="my-card bg-primary text-white">
+              <q-card-section flat bordered class="border-black">
+                <div v-html="lorem"></div>
+              </q-card-section>
+            </q-card>
+          </div>
+        </q-carousel-slide>
         <q-carousel-slide name="layers" class="column no-wrap flex-center">
           <q-icon name="layers" size="56px" />
           <div class="q-mt-md text-center">
@@ -55,15 +62,19 @@
 
 
 <script>
-import { ref } from 'vue';
+import { ref, computed } from 'vue';
 import TrsSunburst from 'components/TrsSunburst.vue';
 
 export default {
   setup() {
+    const progress1 = ref(0.3);
     return {
       slide: ref('mood'),
       lorem: 'Lorem ipsum dolor, sit amet consectetur adipisicing elit. Itaque voluptatem totam, architecto cupiditate officia rerum, error dignissimos praesentium libero ab nemo.',
       mood: 'Deine Stimmung ist... <br> Durch das...<br>Kann sich deine Stimmung...',
+
+      progress1,
+      progressLabel1: computed(() => (progress1.value * 100).toFixed(2) + '%'),
     }
   },
   components: {
