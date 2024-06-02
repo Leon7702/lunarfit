@@ -98,11 +98,18 @@ import { ref } from 'vue'
 export default {
   setup() {
     return {
-      value1: ref(5),
+
     }
   },
   methods: {
 
-  }
+  },
+  props: {
+    score: {
+      type: Number,
+      default: 0,
+      // required: true,
+    },
+  },
 }
 </script>

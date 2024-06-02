@@ -2,57 +2,68 @@
   <div class="q-pa-md">
     <div class="row justify-center">
       <q-btn-toggle v-model="slide" :options="[
-        { label: 1, value: 'mood' },
-        { label: 2, value: 'tv' },
-        { label: 3, value: 'layers' },
-        { label: 4, value: 'map' }
+        { label: '1', value: 'mood' },
+        { label: '2', value: 'burden' },
+        { label: '3', value: 'layers' },
+        { label: '4', value: 'rest' }
       ]" />
     </div>
     <div class="q-gutter-md">
       <q-carousel v-model="slide" transition-prev="slide-right" transition-next="slide-left" swipeable animated
-        control-color="black" prev-icon="arrow_left" next-icon="arrow_right" navigation-icon="radio_button_unchecked"
-        navigation padding arrows height="100%" class="shadow-1 rounded-borders border-black">
+        control-color="black" navigation-icon="radio_button_unchecked" navigation padding height="100%"
+        class="shadow-1 rounded-borders border-black">
 
         <q-carousel-slide name="mood" class="column no-wrap flex-center">
-          <p>Stimmung</p>
+              <p>Stimmung</p>
+              <TrsSunburst />
+              <div class="q-mt-md text-center">
+                <q-card class="my-card bg-primary text-white">
+                  <q-card-section>
+                    <div v-html="moodtext"></div>
+                  </q-card-section>
+                </q-card>
+                <div class="q-pa-md">
+                  <p>Mood score today:</p>
+                  <q-linear-progress size="25px" :value="progress1" color="primary">
+                    <div class="absolute-full flex flex-center">
+                      <q-badge color="white" text-color="primary" :label="progressLabel1" />
+                    </div>
+                  </q-linear-progress>
+                </div>
+                <p>Verlauf</p>
+                <q-card class="my-card border-black">
+                  <q-card-section>
+                    <p>Diagram</p>
+                  </q-card-section>
+                </q-card>
+              </div>
+        </q-carousel-slide>
+
+        <q-carousel-slide name="burden" class="column no-wrap flex-center">
+          <p>Belastung</p>
           <TrsSunburst />
           <div class="q-mt-md text-center">
             <q-card class="my-card bg-primary text-white">
-              <q-card-section>
-                <div v-html="mood"></div>
-              </q-card-section>
-            </q-card>
-            <div class="q-pa-md">
-              <p>Mood score today:</p>
-              <q-linear-progress size="25px" :value="progress1" color="primary">
-                <div class="absolute-full flex flex-center">
-                  <q-badge color="white" text-color="primary" :label="progressLabel1" />
-                </div>
-              </q-linear-progress>
-            </div>
-            <p>Verlauf</p>
-          </div>
-        </q-carousel-slide>
-        <q-carousel-slide name="tv" class="column no-wrap flex-center">
-          <q-icon name="live_tv" size="56px" />
-          <div class="q-mt-md text-center">
-            <q-card class="my-card bg-primary text-white">
               <q-card-section flat bordered class="border-black">
-                <div v-html="lorem"></div>
+                <div v-html="burdentext"></div>
               </q-card-section>
             </q-card>
           </div>
         </q-carousel-slide>
+
         <q-carousel-slide name="layers" class="column no-wrap flex-center">
-          <q-icon name="layers" size="56px" />
+          <p>Beschwerden</p>
+          <TrsSunburst />
           <div class="q-mt-md text-center">
             {{ lorem }}
           </div>
         </q-carousel-slide>
-        <q-carousel-slide name="map" class="column no-wrap flex-center">
-          <q-icon name="terrain" size="56px" />
+
+        <q-carousel-slide name="rest" class="column no-wrap flex-center">
+          <p>Erholung</p>
+          <TrsSunburst />
           <div class="q-mt-md text-center">
-            {{ lorem }}
+            {{ resttext }}
           </div>
         </q-carousel-slide>
       </q-carousel>
@@ -70,8 +81,11 @@ export default {
     const progress1 = ref(0.3);
     return {
       slide: ref('mood'),
+      current: ref(1),
       lorem: 'Lorem ipsum dolor, sit amet consectetur adipisicing elit. Itaque voluptatem totam, architecto cupiditate officia rerum, error dignissimos praesentium libero ab nemo.',
-      mood: 'Deine Stimmung ist... <br> Durch das...<br>Kann sich deine Stimmung...',
+      moodtext: 'Deine Stimmung ist... <br> Durch das...<br>Kann sich deine Stimmung...',
+      burdentext: 'Dein ACWR liegt bei... <br> Im Verlauf der letzen Tage is er...<br>Da du dich in der... befindest, solltest du darauf achten das Trainingspensum...',
+      resttext: 'Dein Erholungszustand ist... Durch solltest das Training gerade im Hinblick auf die hormonellen Veränderungen in den nächsten Tagen...',
 
       progress1,
       progressLabel1: computed(() => (progress1.value * 100).toFixed(2) + '%'),
