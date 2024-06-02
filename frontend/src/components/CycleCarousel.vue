@@ -19,20 +19,34 @@
             {{ menstruationtext }}
           </div>
           <img class="cycle-image" src="../assets/CyclePhaseGraph.jpg" alt="Graph" />
-          <PhaseInformation :textNutrition="textNutrition" :textTraining="textTraining" :textHealth="textHealth" />
-
+          <PhaseInformation :textNutrition="menstruationNutrition" :textTraining="menstruationTraining" :textHealth="menstruationHealth" />
         </q-carousel-slide>
 
         <q-carousel-slide name="follicular" class="column no-wrap flex-center">
           <p>Follikelphase</p>
+          <div class="q-mt-md text-center">
+            {{ folliculartext }}
+          </div>
+          <img class="cycle-image" src="../assets/CyclePhaseGraph.jpg" alt="Graph" />
+          <PhaseInformation :textNutrition="follicularNutrition" :textTraining="follicularTraining" :textHealth="follicularHealth" />
         </q-carousel-slide>
 
         <q-carousel-slide name="ovulation" class="column no-wrap flex-center">
           <p>Ovulation</p>
+          <div class="q-mt-md text-center">
+            {{ ovulationtext }}
+          </div>
+          <img class="cycle-image" src="../assets/CyclePhaseGraph.jpg" alt="Graph" />
+          <PhaseInformation :textNutrition="ovulationNutrition" :textTraining="ovulationTraining" :textHealth="ovulationHealth" />
         </q-carousel-slide>
 
         <q-carousel-slide name="luteal" class="column no-wrap flex-center">
           <p>Luthealphase</p>
+          <div class="q-mt-md text-center">
+            {{ lutealtext }}
+          </div>
+          <img class="cycle-image" src="../assets/CyclePhaseGraph.jpg" alt="Graph" />
+          <PhaseInformation :textNutrition="lutealNutrition" :textTraining="lutealTraining" :textHealth="lutealHealth" />
         </q-carousel-slide>
       </q-carousel>
     </div>
@@ -49,7 +63,10 @@ export default {
     return {
       slide: ref('menstruation'),
       lorem: 'Lorem ipsum dolor, sit amet consectetur adipisicing elit. Itaque voluptatem totam, architecto cupiditate officia rerum, error dignissimos praesentium libero ab nemo.',
-      menstruationtext: 'Der Zyklus beginnt mit dem ersten Tag der Blutung, die durch den Abfall con Progesteron und Östrogen ausgelöst wird. Das steigende Östrogen hebt die Launer, macht selbstbewusst und kreativ.',
+      menstruationtext: 'Der Zyklus beginnt mit dem ersten Tag der Blutung, die durch den Abfall von Progesteron und Östrogen ausgelöst wird. Das steigende Östrogen hebt die Launer, macht selbstbewusst und kreativ.',
+      folliculartext: 'Phase nach der Menstruation, in der die Eibläschchen zu einem sprungbereiten Follikel reifen. Das steigende Östrogen hebt die Laune, machr selbstbewusst und kreativ.',
+      ovulationtext: 'Nach dem Eisprung wird die Eizelle aus dem Follikel im Eierstock in den Eileiter ausgestoßen. Die Hülle der Eizelle bleibt als Gelbkörper zurück. Zum Eisprung maccht das Östrogen häufig gute Laune. Danach gibt es auch mal schlechte Laune.',
+      lutealtext: 'Die Phase nach dem Eisprung bis zum Beginn der nächsten Menstruation. Der Gelbkörper produziert Progesteron, das die Gebärmutterschleimhaut auf die Einnistung einer befruchteten Eizelle vorbereitet. Das Progesteron kann die Laune verschlechtern.',
     }
   },
   components: {
@@ -57,9 +74,21 @@ export default {
   },
   data() {
     return {
-      textNutrition: "Probeotische Lebensmittel: Frische Sprossen, Sauerkraut",
-      textTraining: "Die Sauerstoffaufnahme ist erhöht und die Erholungsfähigkeit verbessert sich. Kraftaufbau. Intervalltraining, Schnelligkeitstraining, neue Belastungsreite, hohe Intensität.",
-      textHealth: "Text für Gesundheit"
+      menstruationNutrition: "Probeotische Lebensmittel: Frische Sprossen, Sauerkraut",
+      menstruationTraining: "Die Sauerstoffaufnahme ist erhöht und die Erholungsfähigkeit verbessert sich. Kraftaufbau. Intervalltraining, Schnelligkeitstraining, neue Belastungsreite, hohe Intensität.",
+      menstruationHealth: "Text für Gesundheit",
+
+      follicularNutrition: "Probeotische Lebensmittel: Frische Sprossen, Sauerkraut",
+      follicularTraining: "Die Sauerstoffaufnahme ist erhöht und die Erholungsfähigkeit verbessert sich. Kraftaufbau. Intervalltraining, Schnelligkeitstraining, neue Belastungsreite, hohe Intensität.",
+      follicularHealth: "Text für Gesundheit",
+
+      ovulationNutrition: "Probeotische Lebensmittel: Frische Sprossen, Sauerkraut",
+      ovulationTraining: "Die Sauerstoffaufnahme ist erhöht und die Erholungsfähigkeit verbessert sich. Kraftaufbau. Intervalltraining, Schnelligkeitstraining, neue Belastungsreite, hohe Intensität.",
+      ovulationHealth: "Text für Gesundheit",
+
+      lutealNutrition: "Magnesium, hochwertige Fette, Proteine, Ballaststoffe: Haferflocken, Vollkornprodukte, Bananen, Blattgemüse, Hülsenfrüchte. Weniger Koffein, Zucker und Alkohol.",
+      lutealTraining: "Die Sauerstoffaufnahme ist erhöht und die Erholungsfähigkeit verbessert sich. Kraftaufbau. Intervalltraining, Schnelligkeitstraining, neue Belastungsreite, hohe Intensität.",
+      lutealHealth: "Text für Gesundheit",
     }
   },
 }
