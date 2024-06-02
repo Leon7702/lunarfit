@@ -1,17 +1,16 @@
 <template>
   <BackButtonText />
-  <p>Stimmung</p>
-  <TrsSunburst />
+  <TrsCarousel />
 </template>
 
 <script>
 import BackButtonText from 'components/BackButtonText.vue';
-import TrsSunburst from 'components/TrsSunburst.vue';
+import TrsCarousel from 'components/TrsCarousel.vue';
 
 export default {
   components: {
     BackButtonText,
-    TrsSunburst,
+    TrsCarousel,
 
   },
 }
