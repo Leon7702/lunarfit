@@ -58,6 +58,15 @@ const routes = [
     path: '/calendar',
     component: () => import('pages/CalendarPage.vue')
   },
+  {
+    path: '/symptoms',
+    component: () => import('pages/SymptomsPage.vue')
+  },
+  {
+    path: '/mood',
+    component: () => import('pages/MoodPage.vue')
+  },
+  
 
   // Always leave this as last one,
   // but you can also remove it

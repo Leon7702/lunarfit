@@ -24,11 +24,11 @@
     <table>
       <!-- Header row with days of the week -->
       <tr>
-        <th>S</th>
         <th>M</th>
-        <th>T</th>
-        <th>W</th>
-        <th>T</th>
+        <th>D</th>
+        <th>M</th>
+        <th>M</th>
+        <th>D</th>
         <th>F</th>
         <th>S</th>
       </tr>
@@ -36,7 +36,9 @@
       <!-- Rows for each week in the month -->
       <tr v-for="(week, weekIndex) in weeksInMonth" :key="weekIndex">
         <td v-for="(day, dayIndex) in week" :key="`${weekIndex}-${dayIndex}`">
-          <div :class="['day-circle', dayColorClass(day)]" @click="selectDay(day)">{{ day }}</div>
+          <div :class="['day-circle', day.colorClass]" @click="selectDay(day.date)">
+            {{ day.date }}
+          </div>
         </td>
       </tr>
     </table>
@@ -66,7 +68,7 @@
         </q-btn>
       </div>
     </div>
-    
+
     <hr class="separator">
 
     <!-- Display training recommendation -->
@@ -78,18 +80,17 @@
       <div class="training-recommendation-text">
         Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed nonne merninisti licere mihi ista probare, quae sunt a te dicta? Atqui eorum nihil est eius generis, ut sit in fine atque extrerno bonorum. Quae cum dixisset paulumque institisset, Quid est? Duo Reges: constructio interrete. Quae cum essent dicta, discessimus. Quae cum dixisset paulumque institisset, Quid est? Duo Reges: constructio interrete. Quae cum essent dicta, discessimus.
       </div>
-      <div class="training-recommendation-list">
-      </div>
+      <div class="training-recommendation-list"></div>
     </div>
 
     <hr class="separator">
 
     <!-- Display Symptoms and Mood using the new reusable component -->
-    <SectionContainer title="Symptome" link="/" linkText="Hinzufügen"/>
+    <SectionContainer title="Symptome" link="/symptoms" linkText="Hinzufügen" />
     <hr class="separator">
-    <SectionContainer title="Stimmung" link="/" linkText="Hinzufügen"/>
+    <SectionContainer title="Stimmung" link="/mood" linkText="Hinzufügen" />
     <hr class="separator">
-    <SectionContainer title="Training Readiness Score" link="/" linkText="Hinzufügen"/>
+    <SectionContainer title="Training Readiness Score" link="/" linkText="Hinzufügen" />
   </div>
 </template>
 
@@ -98,7 +99,7 @@ import SectionContainer from 'components/SectionContainer.vue';
 
 export default {
   components: {
-    SectionContainer
+    SectionContainer,
   },
   data() {
     let date = new Date();
@@ -107,7 +108,7 @@ export default {
       date: {
         year: date.getFullYear(),
         month: date.getMonth(),
-        day: date.getDate()
+        day: date.getDate(),
       },
       // Define color classes for specific days
       dayColors: {
@@ -125,26 +126,50 @@ export default {
     },
     // Compute the current month as a string
     currentMonth() {
-      return new Date(this.date.year, this.date.month, 1).toLocaleString('de-DE', { month: 'long' });
+      return new Date(this.date.year, this.date.month, 1).toLocaleString('de-DE', {
+        month: 'long',
+      });
     },
     // Compute the number of days in the current month
     daysInMonth() {
       let date = new Date(this.date.year, this.date.month + 1, 0);
-      return [...Array(date.getDate()).keys()].map(i => i + 1);
+      return [...Array(date.getDate()).keys()].map((i) => i + 1);
     },
     // Compute the weeks in the current month for the calendar view
     weeksInMonth() {
       let days = this.daysInMonth;
-      let firstDay = new Date(this.date.year, this.date.month, 1).getDay();
+      let firstDay = (new Date(this.date.year, this.date.month, 1).getDay() + 6) % 7; // Adjust for Monday start
       let weeks = [];
-      let week = Array(firstDay).fill('');
-      days.forEach((day, index) => {
-        week.push(day);
-        if (week.length == 7 || index == days.length - 1) {
+      let week = [];
+
+      // Fill the first week with previous month's days
+      if (firstDay > 0) {
+        let prevMonthDays = this.getDaysInPreviousMonth().slice(-firstDay);
+        week.push(
+          ...prevMonthDays.map((day) => ({ date: day, colorClass: 'previous-month' }))
+        );
+      }
+
+      // Add the current month's days
+      days.forEach((day) => {
+        if (week.length === 7) {
           weeks.push(week);
           week = [];
         }
+        week.push({ date: day, colorClass: this.dayColorClass(day) });
       });
+
+      // Fill the remaining days of the last week with the next month days
+      if (week.length > 0 && week.length < 7) {
+        let nextMonthDays = 7 - week.length;
+        week.push(
+          ...Array(nextMonthDays).fill({ date: '', colorClass: 'next-month' })
+        );
+      }
+      if (week.length > 0) {
+        weeks.push(week);
+      }
+
       return weeks;
     },
     // Format the current day for display
@@ -155,8 +180,12 @@ export default {
       } else {
         date = new Date(this.date.year, this.date.month, this.date.day);
       }
-      return date.toLocaleDateString('de-DE', { weekday: 'long', day: '2-digit', month: 'long' });
-    }
+      return date.toLocaleDateString('de-DE', {
+        weekday: 'long',
+        day: '2-digit',
+        month: 'long',
+      });
+    },
   },
   methods: {
     // Navigate to the next month
@@ -186,7 +215,23 @@ export default {
     },
     // Select a day as the current date
     selectDay(day) {
-      this.selectedDay = day;
+      // Check if the clicked day is not an empty string (i.e., from previous or next month)
+      if (day !== '') {
+        // Create a new Date object with the year, month, and clicked day
+        let selectedDate = new Date(this.date.year, this.date.month, day);
+        // Set the selected day to the clicked day
+        this.selectedDay = selectedDate.getDate();
+      } else {
+        // If the clicked day is empty (i.e., from previous or next month), clear the selection
+        this.selectedDay = null;
+      }
+    },
+
+
+    // Get the days of the previous month
+    getDaysInPreviousMonth() {
+      let date = new Date(this.date.year, this.date.month, 0);
+      return [...Array(date.getDate()).keys()].map((i) => i + 1);
     },
   },
 };
@@ -218,13 +263,13 @@ a {
     font-weight: bold;
     font-size: 14px;
     text-decoration: none;
-  }
+}
 
-  p {
+p {
     font-size: 14px;
     margin: 20px;
     padding-top: 10px;
-  }
+}
 
 .header {
   display: flex;
@@ -279,6 +324,14 @@ a {
   color: #000;
 }
 
+.previous-month {
+  color: #b0b0b0;
+}
+
+.next-month {
+  color: #b0b0b0;
+}
+
 .legend {
   display: flex;
   justify-content: space-evenly; /* Evenly space legend items */
@@ -304,7 +357,7 @@ a {
 }
 
 .day-log-container {
-  width: 85%;
+  width: 90%;
   margin: 20px auto; /* Center container with top margin */
 }
 
@@ -334,7 +387,7 @@ a {
 }
 
 .training-recommendation-container {
-  width: 85%;
+  width: 90%;
   margin: 20px auto; /* Center container with top margin */
 }
 

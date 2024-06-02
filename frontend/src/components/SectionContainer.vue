@@ -40,7 +40,7 @@
   
   <style>
   .section-container {
-    width: 85%;
+    width: 90cqw;
     margin: 20px auto; /* Center container with top margin */
   }
   
