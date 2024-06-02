@@ -7,11 +7,11 @@
         <!-- <circle class="donut-ring" cx="10" cy="10" r="12" fill="transparent" stroke="#50C1BA" stroke-width="3"></circle> -->
 
         <circle class="donut-segment" cx="21" cy="21" r="15.91549430918954" fill="transparent" stroke="#50C1BA"
-          stroke-width="5" stroke-dasharray="20 80" stroke-dashoffset="25" @click="navigateToMenstruationPage"></circle>
+          stroke-width="5" stroke-dasharray="20 80" stroke-dashoffset="25"></circle>
         <!-- <text x="20" y="5.5" text-anchor="middle" fill="#fff" dy=".3em" font-size="2"
           transform="rotate(40 21 21)">Menstruation</text> -->
         <circle class="donut-segment" cx="21" cy="21" r="15.91549430918954" fill="transparent" stroke="#9CD3D0"
-          stroke-width="5" stroke-dasharray="30 70" stroke-dashoffset="105" @click="navigateToMenstruationPage"></circle>
+          stroke-width="5" stroke-dasharray="30 70" stroke-dashoffset="105"></circle>
 
         <text x="21" y="21" text-anchor="middle" fill="#000" dy=".3em" font-size="3">
         </text>
@@ -38,7 +38,7 @@
 
         <path id="myPath" d="M25 6 A15.91549430918954 15 0 0 1 35 15" fill="transparent"></path>
 
-        <text fill="#fff" font-size="2" @click="navigateToMenstruationPage">
+        <text fill="#fff" font-size="2">
           <textPath href="#myPath">
             Menstruation
           </textPath>
@@ -46,7 +46,7 @@
 
         <path id="myPath" d="M25 6 A15.91549430918954 15 0 0 1 35 15" fill="transparent"></path>
 
-        <text fill="#fff" font-size="2" transform="rotate(90 21 21)" @click="navigateToMenstruationPage">
+        <text fill="#fff" font-size="2" transform="rotate(90 21 21)">
           <textPath href="#myPath">
             Follikelphase
           </textPath>
@@ -69,9 +69,7 @@ export default {
     }
   },
   methods: {
-    navigateToMenstruationPage() {
-      this.$router.push({ name: 'MenstruationInfo' });
-    }
+
   }
 }
 </script>
