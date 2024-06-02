@@ -1,7 +1,7 @@
 <template>
   <main class="card-container">
     <div class="q-pa-md row items-start q-gutter-md">
-      <q-card class="my-card">
+      <q-card class="my-card" @click="navigateToCyclePage">
         <q-card-section class="card-content">
           <div class="text-h6">ZYKLUS</div>
           <CycleCircle />
@@ -45,8 +45,11 @@ export default {
   methods: {
     navigateToTrainingPage() {
       this.$router.push({ name: 'TrainingInfoPage' });
-    }
-  }
+    },
+    navigateToCyclePage() {
+      this.$router.push({ name: 'CycleInfoPage' });
+    },
+  },
 }
 </script>
 

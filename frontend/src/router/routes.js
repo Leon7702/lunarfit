@@ -64,6 +64,11 @@ const routes = [
     component: () => import('pages/MenstruationInfoPage.vue')
   },
   {
+    path: '/cycle',
+    name: 'CycleInfoPage',
+    component: () => import('pages/CyclePhaseInfoPage.vue')
+  },
+  {
     path: '/training',
     name: 'TrainingInfoPage',
     component: () => import('pages/TrainingInfoPage.vue')

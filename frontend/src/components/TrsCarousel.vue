@@ -81,7 +81,6 @@ export default {
     const progress1 = ref(0.3);
     return {
       slide: ref('mood'),
-      current: ref(1),
       lorem: 'Lorem ipsum dolor, sit amet consectetur adipisicing elit. Itaque voluptatem totam, architecto cupiditate officia rerum, error dignissimos praesentium libero ab nemo.',
       moodtext: 'Deine Stimmung ist... <br> Durch das...<br>Kann sich deine Stimmung...',
       burdentext: 'Dein ACWR liegt bei... <br> Im Verlauf der letzen Tage is er...<br>Da du dich in der... befindest, solltest du darauf achten das Trainingspensum...',
