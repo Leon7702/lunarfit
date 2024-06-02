@@ -14,10 +14,13 @@
         class="shadow-1 rounded-borders border-black">
 
         <q-carousel-slide name="menstruation" class="column no-wrap flex-center">
-          <PhaseInfoCard title="Menstruation"
-            text="Der Zyklus beginnt mit dem ersten Tag der Blutung, die durch den Abfall con Progesteron und Östrogen ausgelöst wird. Das steigende Östrogen hebt die Launer, macht selbstbewusst und kreativ." />
+          <p>Menstruation</p>
+          <div class="q-mt-md text-center">
+            {{ menstruationtext }}
+          </div>
           <img class="cycle-image" src="../assets/CyclePhaseGraph.jpg" alt="Graph" />
           <PhaseInformation :textNutrition="textNutrition" :textTraining="textTraining" :textHealth="textHealth" />
+
         </q-carousel-slide>
 
         <q-carousel-slide name="follicular" class="column no-wrap flex-center">
@@ -40,18 +43,16 @@
 <script>
 import { ref } from 'vue';
 import PhaseInformation from 'src/components/PhaseInformation.vue';
-import PhaseInfoCard from 'src/components/PhaseInfoCard.vue';
 
 export default {
   setup() {
     return {
       slide: ref('menstruation'),
       lorem: 'Lorem ipsum dolor, sit amet consectetur adipisicing elit. Itaque voluptatem totam, architecto cupiditate officia rerum, error dignissimos praesentium libero ab nemo.',
-
+      menstruationtext: 'Der Zyklus beginnt mit dem ersten Tag der Blutung, die durch den Abfall con Progesteron und Östrogen ausgelöst wird. Das steigende Östrogen hebt die Launer, macht selbstbewusst und kreativ.',
     }
   },
   components: {
-    PhaseInfoCard,
     PhaseInformation,
   },
   data() {
