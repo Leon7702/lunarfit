@@ -1,5 +1,5 @@
 <template>
-  <div class="q-pa-md" style="max-width: 350px">
+  <div class="q-pa-md" style="width: 100%">
     <q-list bordered class="rounded-borders">
       <q-expansion-item>
         <template v-slot:header>

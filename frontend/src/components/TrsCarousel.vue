@@ -9,80 +9,102 @@
         { label: '5', value: 'rest' }
       ]" />
     </div>
+    <div class="carousel-container">
     <div class="q-gutter-md">
       <q-carousel v-model="slide" transition-prev="slide-right" transition-next="slide-left" swipeable animated
-        control-color="black" navigation-icon="radio_button_unchecked" navigation padding height="100%"
+        control-color="black" navigation-icon="radio_button_unchecked" navigation padding :style="{ height: '80vh', width:'45vh' }"
         class="shadow-1 rounded-borders border-black">
 
         <q-carousel-slide name="training" class="column no-wrap flex-center">
-          <div class="text-h6">Training</div>
-          <TrsSunburst />
-          <div class="text-p">Training Readiness Score: 76%</div>
-          <div class="q-pa-md row items-start q-gutter-md text-center">
-            <q-card flat bordered class="my-card">
-              <q-card-section>
-                {{ trainingtext }}
-              </q-card-section>
-            </q-card>
-          </div>
+          <q-scroll-area class="fit">
+            <div class="column no-wrap flex-center">
+              <div class="text-h6">Training</div>
+              <TrsSunburst />
+              <div class="text-p">Training Readiness Score: 76%</div>
+              <div class="q-pa-md row items-start q-gutter-md text-center">
+                <q-card flat bordered class="my-card">
+                  <q-card-section>
+                    {{ trainingtext }}
+                  </q-card-section>
+                </q-card>
+              </div>
+            </div>
+          </q-scroll-area>
         </q-carousel-slide>
 
         <q-carousel-slide name="mood" class="column no-wrap flex-center">
-          <div class="text-h6">Stimmung</div>
-          <TrsSunburst />
-          <div class="q-mt-md text-center">
-            <q-card class="my-card bg-primary text-white">
-              <q-card-section>
-                <div v-html="moodtext"></div>
-              </q-card-section>
-            </q-card>
-            <div class="q-pa-md">
-              <p>Mood score today:</p>
-              <q-linear-progress size="25px" :value="progress1" color="primary">
-                <div class="absolute-full flex flex-center">
-                  <q-badge color="white" text-color="primary" :label="progressLabel1" />
+          <q-scroll-area class="fit">
+            <div class="column no-wrap flex-center">
+              <div class="text-h6">Stimmung</div>
+              <TrsSunburst />
+              <div class="q-mt-md text-center">
+                <q-card class="my-card bg-primary text-white">
+                  <q-card-section>
+                    <div v-html="moodtext"></div>
+                  </q-card-section>
+                </q-card>
+                <div class="q-pa-md">
+                  <p>Mood score today:</p>
+                  <q-linear-progress size="25px" :value="progress1" color="primary">
+                    <div class="absolute-full flex flex-center">
+                      <q-badge color="white" text-color="primary" :label="progressLabel1" />
+                    </div>
+                  </q-linear-progress>
                 </div>
-              </q-linear-progress>
+                <p>Verlauf</p>
+                <q-card class="my-card border-black">
+                  <q-card-section>
+                    <p>Diagram</p>
+                  </q-card-section>
+                </q-card>
+              </div>
             </div>
-            <p>Verlauf</p>
-            <q-card class="my-card border-black">
-              <q-card-section>
-                <p>Diagram</p>
-              </q-card-section>
-            </q-card>
-          </div>
+          </q-scroll-area>
         </q-carousel-slide>
 
         <q-carousel-slide name="burden" class="column no-wrap flex-center">
-          <div class="text-h6">Belastung</div>
-          <TrsSunburst />
-          <div class="q-mt-md text-center">
-            <q-card class="my-card bg-primary text-white">
-              <q-card-section flat bordered class="border-black">
-                <div v-html="burdentext"></div>
-              </q-card-section>
-            </q-card>
-          </div>
+          <q-scroll-area class="fit">
+            <div class="column no-wrap flex-center">
+              <div class="text-h6">Belastung</div>
+              <TrsSunburst />
+              <div class="q-mt-md text-center">
+                <q-card class="my-card bg-primary text-white">
+                  <q-card-section flat bordered class="border-black">
+                    <div v-html="burdentext"></div>
+                  </q-card-section>
+                </q-card>
+              </div>
+            </div>
+          </q-scroll-area>
         </q-carousel-slide>
 
         <q-carousel-slide name="layers" class="column no-wrap flex-center">
-          <div class="text-h6">Beschwerden</div>
-          <TrsSunburst />
-          <div class="q-mt-md text-center">
-            {{ lorem }}
-          </div>
+          <q-scroll-area class="fit">
+            <div class="column no-wrap flex-center">
+              <div class="text-h6">Beschwerden</div>
+              <TrsSunburst />
+              <div class="q-mt-md text-center">
+                {{ lorem }}
+              </div>
+            </div>
+          </q-scroll-area>
         </q-carousel-slide>
 
         <q-carousel-slide name="rest" class="column no-wrap flex-center">
-          <div class="text-h6">Erholung</div>
-          <TrsSunburst />
-          <div class="q-mt-md text-center">
-            {{ resttext }}
-          </div>
+          <q-scroll-area class="fit">
+            <div class="column no-wrap flex-center">
+              <div class="text-h6">Erholung</div>
+              <TrsSunburst />
+              <div class="q-mt-md text-center">
+                {{ resttext }}
+              </div>
+            </div>
+          </q-scroll-area>
         </q-carousel-slide>
       </q-carousel>
     </div>
   </div>
+</div>
 </template>
 
 
@@ -118,6 +140,12 @@ export default {
 
 .my-card {
   width: 100%;
-  max-width: 250px;
+  max-width: 250%;
+}
+
+.carousel-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
 </style>

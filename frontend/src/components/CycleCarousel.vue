@@ -10,43 +10,65 @@
     </div>
     <div class="q-gutter-md">
       <q-carousel v-model="slide" transition-prev="slide-right" transition-next="slide-left" swipeable animated
-        control-color="black" navigation-icon="radio_button_unchecked" navigation padding height="100%"
+        control-color="black" navigation-icon="radio_button_unchecked" navigation padding :style="{ height: '80vh' }"
         class="shadow-1 rounded-borders border-black">
 
         <q-carousel-slide name="menstruation" class="column no-wrap flex-center">
-          <p>Menstruation</p>
-          <div class="q-mt-md text-center">
-            {{ menstruationtext }}
-          </div>
-          <img class="cycle-image" src="../assets/CyclePhaseGraph.jpg" alt="Graph" />
-          <PhaseInformation :textNutrition="menstruationNutrition" :textTraining="menstruationTraining" :textHealth="menstruationHealth" />
+          <q-scroll-area class="fit">
+            <div class="column no-wrap flex-center">
+              <div class="text-h6">Menstruation</div>
+              <q-card flat bordered class="my-card">
+                <q-card-section>
+                  {{ menstruationtext }}
+                </q-card-section>
+              </q-card>
+              <img class="cycle-image" src="../assets/CyclePhaseGraph.jpg" alt="Graph" />
+              <PhaseInformation :textNutrition="menstruationNutrition" :textTraining="menstruationTraining"
+                :textHealth="menstruationHealth" />
+            </div>
+          </q-scroll-area>
         </q-carousel-slide>
 
         <q-carousel-slide name="follicular" class="column no-wrap flex-center">
-          <p>Follikelphase</p>
-          <div class="q-mt-md text-center">
-            {{ folliculartext }}
-          </div>
-          <img class="cycle-image" src="../assets/CyclePhaseGraph.jpg" alt="Graph" />
-          <PhaseInformation :textNutrition="follicularNutrition" :textTraining="follicularTraining" :textHealth="follicularHealth" />
+          <q-scroll-area class="fit">
+            <div class="column no-wrap flex-center">
+              <div class="text-h6">Follikelphase</div>
+              <div class="q-mt-md text-center">
+                {{ folliculartext }}
+              </div>
+              <img class="cycle-image" src="../assets/CyclePhaseGraph.jpg" alt="Graph" />
+              <PhaseInformation :textNutrition="follicularNutrition" :textTraining="follicularTraining"
+                :textHealth="follicularHealth" />
+            </div>
+          </q-scroll-area>
         </q-carousel-slide>
 
         <q-carousel-slide name="ovulation" class="column no-wrap flex-center">
-          <p>Ovulation</p>
-          <div class="q-mt-md text-center">
-            {{ ovulationtext }}
-          </div>
-          <img class="cycle-image" src="../assets/CyclePhaseGraph.jpg" alt="Graph" />
-          <PhaseInformation :textNutrition="ovulationNutrition" :textTraining="ovulationTraining" :textHealth="ovulationHealth" />
+          <q-scroll-area class="fit">
+            <div class="column no-wrap flex-center">
+              <div class="text-h6">Ovulation</div>
+              <div class="q-mt-md text-center">
+                {{ ovulationtext }}
+              </div>
+              <img class="cycle-image" src="../assets/CyclePhaseGraph.jpg" alt="Graph" />
+              <PhaseInformation :textNutrition="ovulationNutrition" :textTraining="ovulationTraining"
+                :textHealth="ovulationHealth" />
+            </div>
+          </q-scroll-area>
         </q-carousel-slide>
 
         <q-carousel-slide name="luteal" class="column no-wrap flex-center">
-          <p>Luthealphase</p>
-          <div class="q-mt-md text-center">
-            {{ lutealtext }}
+          <q-scroll-area class="fit">
+            <div class="column no-wrap flex-center">
+              <div class="text-h6">Luthealphase</div>
+              <div class="q-mt-md text-center">
+                {{ lutealtext }}
+              </div>
+              <img class="cycle-image" src="../assets/CyclePhaseGraph.jpg" alt="Graph" />
+          <PhaseInformation :textNutrition="lutealNutrition" :textTraining="lutealTraining"
+            :textHealth="lutealHealth" />
           </div>
-          <img class="cycle-image" src="../assets/CyclePhaseGraph.jpg" alt="Graph" />
-          <PhaseInformation :textNutrition="lutealNutrition" :textTraining="lutealTraining" :textHealth="lutealHealth" />
+          </q-scroll-area>
         </q-carousel-slide>
       </q-carousel>
     </div>
@@ -86,7 +108,7 @@ export default {
       ovulationTraining: "Die Sauerstoffaufnahme ist erhöht und die Erholungsfähigkeit verbessert sich. Kraftaufbau. Intervalltraining, Schnelligkeitstraining, neue Belastungsreite, hohe Intensität.",
       ovulationHealth: "Text für Gesundheit",
 
-      lutealNutrition: "Magnesium, hochwertige Fette, Proteine, Ballaststoffe: Haferflocken, Vollkornprodukte, Bananen, Blattgemüse, Hülsenfrüchte. Weniger Koffein, Zucker und Alkohol.",
+      lutealNutrition: "Magnesium, hochwertige Fette, Proteine, Ballaststoffe: Haferflocken, Vollkornprodukte, Bananen, Blattgemüse, Hülsenfrüchte. Weniger Koffein, Zucker und Alkohol",
       lutealTraining: "Die Sauerstoffaufnahme ist erhöht und die Erholungsfähigkeit verbessert sich. Kraftaufbau. Intervalltraining, Schnelligkeitstraining, neue Belastungsreite, hohe Intensität.",
       lutealHealth: "Text für Gesundheit",
     }
@@ -101,7 +123,7 @@ export default {
 
 .my-card {
   width: 100%;
-  max-width: 250px;
+  max-width: 100vw;
 }
 
 .cycle-image {
