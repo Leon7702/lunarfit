@@ -2,10 +2,11 @@
   <div class="q-pa-md">
     <div class="row justify-center">
       <q-btn-toggle v-model="slide" :options="[
-        { label: '1', value: 'mood' },
-        { label: '2', value: 'burden' },
-        { label: '3', value: 'layers' },
-        { label: '4', value: 'rest' }
+        { label: '1', value: 'training' },
+        { label: '2', value: 'mood' },
+        { label: '3', value: 'burden' },
+        { label: '4', value: 'layers' },
+        { label: '5', value: 'rest' }
       ]" />
     </div>
     <div class="q-gutter-md">
@@ -13,34 +14,47 @@
         control-color="black" navigation-icon="radio_button_unchecked" navigation padding height="100%"
         class="shadow-1 rounded-borders border-black">
 
+        <q-carousel-slide name="training" class="column no-wrap flex-center">
+          <div class="text-h6">Training</div>
+          <TrsSunburst />
+          <div class="text-p">Training Readiness Score: 76%</div>
+          <div class="q-pa-md row items-start q-gutter-md text-center">
+            <q-card flat bordered class="my-card">
+              <q-card-section>
+                {{ trainingtext }}
+              </q-card-section>
+            </q-card>
+          </div>
+        </q-carousel-slide>
+
         <q-carousel-slide name="mood" class="column no-wrap flex-center">
-              <p>Stimmung</p>
-              <TrsSunburst />
-              <div class="q-mt-md text-center">
-                <q-card class="my-card bg-primary text-white">
-                  <q-card-section>
-                    <div v-html="moodtext"></div>
-                  </q-card-section>
-                </q-card>
-                <div class="q-pa-md">
-                  <p>Mood score today:</p>
-                  <q-linear-progress size="25px" :value="progress1" color="primary">
-                    <div class="absolute-full flex flex-center">
-                      <q-badge color="white" text-color="primary" :label="progressLabel1" />
-                    </div>
-                  </q-linear-progress>
+          <div class="text-h6">Stimmung</div>
+          <TrsSunburst />
+          <div class="q-mt-md text-center">
+            <q-card class="my-card bg-primary text-white">
+              <q-card-section>
+                <div v-html="moodtext"></div>
+              </q-card-section>
+            </q-card>
+            <div class="q-pa-md">
+              <p>Mood score today:</p>
+              <q-linear-progress size="25px" :value="progress1" color="primary">
+                <div class="absolute-full flex flex-center">
+                  <q-badge color="white" text-color="primary" :label="progressLabel1" />
                 </div>
-                <p>Verlauf</p>
-                <q-card class="my-card border-black">
-                  <q-card-section>
-                    <p>Diagram</p>
-                  </q-card-section>
-                </q-card>
-              </div>
+              </q-linear-progress>
+            </div>
+            <p>Verlauf</p>
+            <q-card class="my-card border-black">
+              <q-card-section>
+                <p>Diagram</p>
+              </q-card-section>
+            </q-card>
+          </div>
         </q-carousel-slide>
 
         <q-carousel-slide name="burden" class="column no-wrap flex-center">
-          <p>Belastung</p>
+          <div class="text-h6">Belastung</div>
           <TrsSunburst />
           <div class="q-mt-md text-center">
             <q-card class="my-card bg-primary text-white">
@@ -52,7 +66,7 @@
         </q-carousel-slide>
 
         <q-carousel-slide name="layers" class="column no-wrap flex-center">
-          <p>Beschwerden</p>
+          <div class="text-h6">Beschwerden</div>
           <TrsSunburst />
           <div class="q-mt-md text-center">
             {{ lorem }}
@@ -60,7 +74,7 @@
         </q-carousel-slide>
 
         <q-carousel-slide name="rest" class="column no-wrap flex-center">
-          <p>Erholung</p>
+          <div class="text-h6">Erholung</div>
           <TrsSunburst />
           <div class="q-mt-md text-center">
             {{ resttext }}
@@ -80,8 +94,9 @@ export default {
   setup() {
     const progress1 = ref(0.3);
     return {
-      slide: ref('mood'),
+      slide: ref('training'),
       lorem: 'Lorem ipsum dolor, sit amet consectetur adipisicing elit. Itaque voluptatem totam, architecto cupiditate officia rerum, error dignissimos praesentium libero ab nemo.',
+      trainingtext: 'Trainingsempfehlung basierend auf Zyklusphase und TRS. Lorem ipsum dolor sit amet, consectetur adipiscing elit',
       moodtext: 'Deine Stimmung ist... <br> Durch das...<br>Kann sich deine Stimmung...',
       burdentext: 'Dein ACWR liegt bei... <br> Im Verlauf der letzen Tage is er...<br>Da du dich in der... befindest, solltest du darauf achten das Trainingspensum...',
       resttext: 'Dein Erholungszustand ist... Durch solltest das Training gerade im Hinblick auf die hormonellen Veränderungen in den nächsten Tagen...',

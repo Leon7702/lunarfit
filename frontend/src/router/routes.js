@@ -69,11 +69,6 @@ const routes = [
     component: () => import('pages/CyclePhaseInfoPage.vue')
   },
   {
-    path: '/training',
-    name: 'TrainingInfoPage',
-    component: () => import('pages/TrainingInfoPage.vue')
-  },
-  {
     path: '/trs',
     name: 'TrsInfoPage',
     component: () => import('pages/TrsInfoPage.vue')
