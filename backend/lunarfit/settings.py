@@ -35,6 +35,7 @@ CORS_ALLOWED_ORIGINS = [
 
 INSTALLED_APPS = [
     "django.contrib.admin",
+    "users",
     "django.contrib.auth",
     "django.contrib.contenttypes",
     "django.contrib.sessions",
@@ -103,6 +104,7 @@ DATABASES = {
     }
 }
 
+AUTH_USER_MODEL = "users.CustomUser"
 
 # Password validation
 # https://docs.djangoproject.com/en/5.0/ref/settings/#auth-password-validators
