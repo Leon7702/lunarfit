@@ -22,12 +22,12 @@
               <div class="text-h6">Menstruation</div>
               <q-card flat bordered class="my-card">
                 <q-card-section>
-                  {{ menstruationtext }}
+                  {{ data.menstruationtext }}
                 </q-card-section>
               </q-card>
               <img class="cycle-image" src="../assets/cyclePhase/PeriodOvulation.png" alt="Graph" />
-              <PhaseInformation :textNutrition="menstruationNutrition" :textTraining="menstruationTraining"
-                :textHealth="menstruationHealth" />
+              <PhaseInformation :textNutrition="data.menstruationNutrition" :textTraining="data.menstruationTraining"
+                :textHealth="data.menstruationHealth" />
             </div>
           </q-scroll-area>
         </q-carousel-slide>
@@ -39,12 +39,12 @@
               <div class="text-h6">Follikelphase</div>
               <q-card flat bordered class="my-card">
                 <q-card-section>
-                {{ folliculartext }}
+                {{ data.folliculartext }}
               </q-card-section>
               </q-card>
               <img class="cycle-image" src="../assets/cyclePhase/Follicular.png" alt="Graph" />
-              <PhaseInformation :textNutrition="follicularNutrition" :textTraining="follicularTraining"
-                :textHealth="follicularHealth" />
+              <PhaseInformation :textNutrition="data.follicularNutrition" :textTraining="data.follicularTraining"
+                :textHealth="data.follicularHealth" />
             </div>
           </q-scroll-area>
         </q-carousel-slide>
@@ -56,12 +56,12 @@
               <div class="text-h6">Ovulation</div>
               <q-card flat bordered class="my-card">
                 <q-card-section>
-                {{ ovulationtext }}
+                {{ data.ovulationtext }}
               </q-card-section>
               </q-card>
               <img class="cycle-image" src="../assets/cyclePhase/PeriodOvulation.png" alt="Graph" />
-              <PhaseInformation :textNutrition="ovulationNutrition" :textTraining="ovulationTraining"
-                :textHealth="ovulationHealth" />
+              <PhaseInformation :textNutrition="data.ovulationNutrition" :textTraining="data.ovulationTraining"
+                :textHealth="data.ovulationHealth" />
             </div>
           </q-scroll-area>
         </q-carousel-slide>
@@ -73,12 +73,12 @@
               <div class="text-h6">Luthealphase</div>
               <q-card flat bordered class="my-card">
                 <q-card-section>
-                {{ lutealtext }}
+                {{ data.lutealtext }}
               </q-card-section>
               </q-card>
               <img class="cycle-image" src="../assets/cyclePhase/Lutheal.png" alt="Graph" />
-          <PhaseInformation :textNutrition="lutealNutrition" :textTraining="lutealTraining"
-            :textHealth="lutealHealth" />
+          <PhaseInformation :textNutrition="data.lutealNutrition" :textTraining="data.lutealTraining"
+            :textHealth="data.lutealHealth" />
           </div>
           </q-scroll-area>
         </q-carousel-slide>
@@ -91,6 +91,7 @@
 <script>
 import { ref } from 'vue';
 import PhaseInformation from 'src/components/PhaseInformation.vue';
+import data from '../assets/cycleData.json'; // path to the JSON-file
 
 // TODO: Create a JSON-file for the data and import it here.
 // TODO: Import the JSON-file and use the data in the setup function.
@@ -98,40 +99,15 @@ import PhaseInformation from 'src/components/PhaseInformation.vue';
 export default {
   setup() {
     return {
-      // Defining reactive properties
       // TODO: Initial slide need to change depending on the current phase of the user
       slide: ref('menstruation'),
-      lorem: 'Lorem ipsum dolor, sit amet consectetur adipisicing elit. Itaque voluptatem totam, architecto cupiditate officia rerum, error dignissimos praesentium libero ab nemo.',
+      data
     }
   },
   components: {
     PhaseInformation,
   },
-  data() {
-    // Defining non-reactive properties
-    return {
-      menstruationtext: 'Der Zyklus beginnt mit dem ersten Tag der Blutung, die durch den Abfall von Progesteron und Östrogen ausgelöst wird. Das steigende Östrogen hebt die Laune, macht selbstbewusst und kreativ.',
-      folliculartext: 'Phase nach der Menstruation, in der die Eibläschchen zu einem sprungbereiten Follikel reifen. Das steigende Östrogen hebt die Laune, machr selbstbewusst und kreativ.',
-      ovulationtext: 'Nach dem Eisprung wird die Eizelle aus dem Follikel im Eierstock in den Eileiter ausgestoßen. Die Hülle der Eizelle bleibt als Gelbkörper zurück. Zum Eisprung macht das Östrogen häufig gute Laune. Danach gibt es auch mal schlechte Laune.',
-      lutealtext: 'Die Phase nach dem Eisprung bis zum Beginn der nächsten Menstruation. Der Gelbkörper produziert Progesteron, das die Gebärmutterschleimhaut auf die Einnistung einer befruchteten Eizelle vorbereitet. Das Progesteron kann die Laune verschlechtern.',
 
-      menstruationNutrition: "Probeotische Lebensmittel: Frische Sprossen, Sauerkraut",
-      menstruationTraining: "Die Sauerstoffaufnahme ist erhöht und die Erholungsfähigkeit verbessert sich. Kraftaufbau. Intervalltraining, Schnelligkeitstraining, neue Belastungsreite, hohe Intensität.",
-      menstruationHealth: "Text für Gesundheit",
-
-      follicularNutrition: "Probeotische Lebensmittel: Frische Sprossen, Sauerkraut",
-      follicularTraining: "Die Sauerstoffaufnahme ist erhöht und die Erholungsfähigkeit verbessert sich. Kraftaufbau. Intervalltraining, Schnelligkeitstraining, neue Belastungsreite, hohe Intensität.",
-      follicularHealth: "Text für Gesundheit",
-
-      ovulationNutrition: "Probeotische Lebensmittel: Frische Sprossen, Sauerkraut",
-      ovulationTraining: "Die Sauerstoffaufnahme ist erhöht und die Erholungsfähigkeit verbessert sich. Kraftaufbau. Intervalltraining, Schnelligkeitstraining, neue Belastungsreite, hohe Intensität.",
-      ovulationHealth: "Text für Gesundheit",
-
-      lutealNutrition: "Magnesium, hochwertige Fette, Proteine, Ballaststoffe: Haferflocken, Vollkornprodukte, Bananen, Blattgemüse, Hülsenfrüchte. Weniger Koffein, Zucker und Alkohol",
-      lutealTraining: "Die Sauerstoffaufnahme ist erhöht und die Erholungsfähigkeit verbessert sich. Kraftaufbau. Intervalltraining, Schnelligkeitstraining, neue Belastungsreite, hohe Intensität.",
-      lutealHealth: "Text für Gesundheit",
-    }
-  },
 }
 </script>
 
