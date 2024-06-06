@@ -1,6 +1,6 @@
 <template>
   <main>
-    <div class="q-pa-md flex flex-center">
+    <div class="q-px-md flex flex-center">
       <svg width="250" height="250" viewBox="0 0 42 42" class="donut">
         <!-- <circle class="donut-hole" cx="21" cy="21" r="10" fill="transparent"></circle> -->
         <!-- <circle class="donut-ring" cx="10" cy="10" r="6" fill="000" stroke="#50C1BA" stroke-width="3"></circle> -->
