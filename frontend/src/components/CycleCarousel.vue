@@ -93,23 +93,65 @@ import { ref } from 'vue';
 import PhaseInformation from 'src/components/PhaseInformation.vue';
 import data from '../assets/cycleData.json'; // path to the JSON-file
 
-// TODO: Create a JSON-file for the data and import it here.
-// TODO: Import the JSON-file and use the data in the setup function.
-
 export default {
   setup() {
+    // TODO: Initial slide need to change depending on the current phase of the user --> see idea below
+
+    // 1. Get the user's cycle length and current day from the database
+
+    // 2. Calculate the current phase of the user depending on the current day and cycle length
+    // cycleLength = 28; // replace this with the actual cycle length of the user --> get data from database
+    // if 2/10 of cyclelength & state1 (in menstruation) then in phase1
+    // if 3/10 of cyclelength then in phase2
+    // if 1/10 of cyclelength then in phase3
+    // if 4/10 of cyclelength then in phase4
+
+    // idea:
+    // const currentPhase = currentDay / cycleLength;
+    // let phase;
+    // if (currentPhase <= 0.2) {
+    //   phase = 1; // phase1
+    // } else if (currentPhase <= 0.3) {
+    //   phase = 2; // phase2
+    // } else if (currentPhase <= 0.4) {
+    //   phase = 3; // phase3
+    // } else {
+    //   phase = 4; // phase4
+    // }
+
+    const userPhase = ref('phase3'); // replace this with the actual user phase
+    // const userPhase = ref(`phase${phase}`);
+
+    // Initialize slide based on userPhase
+    const slide = ref('');
+    switch (userPhase.value) {
+      case 'phase1':
+        slide.value = 'menstruation';
+        break;
+      case 'phase2':
+        slide.value = 'follicular';
+        break;
+      case 'phase3':
+        slide.value = 'ovulation';
+        break;
+      case 'phase4':
+        slide.value = 'luteal';
+        break;
+      default:
+        slide.value = 'menstruation';
+    }
+
     return {
-      // TODO: Initial slide need to change depending on the current phase of the user
-      slide: ref('menstruation'),
+      slide,
       data
     }
   },
   components: {
     PhaseInformation,
   },
-
 }
 </script>
+
 
 <style scoped>
 .border-black {
