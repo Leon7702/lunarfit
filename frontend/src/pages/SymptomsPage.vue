@@ -55,7 +55,7 @@ export default {
   methods: {
     redirectToCalendarPage() {
       const router = useRouter();
-      router.push('/calendar'); // Assuming '/calendar' is the path to CalendarPage
+      router.push('/calendar'); 
     }
   }
 };

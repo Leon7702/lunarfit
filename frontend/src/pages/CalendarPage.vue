@@ -116,7 +116,7 @@ export default {
         2: 'follicle',
         3: 'prediction',
       },
-      selectedDay: null, // Track the currently selected day
+      selectedDay: date.getDate(), // Track the currently selected day, default to today
     };
   },
   computed: {
@@ -226,7 +226,6 @@ export default {
         this.selectedDay = null;
       }
     },
-
 
     // Get the days of the previous month
     getDaysInPreviousMonth() {
