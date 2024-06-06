@@ -70,12 +70,14 @@
 </template>
 
 <script>
+import axios from 'axios';
+
 export default {
   data() {
     return {
-      // TODO: this data needs to be fetched from the database
-      cycleLength: 33,
-      currentDay: 30,
+      // TODO: this data needs to be fetched from the database, onboarding or user input
+      cycleLength: null,
+      currentDay: null,
     };
   },
   // Fetch the data from the database when the component is created
@@ -83,9 +85,15 @@ export default {
     this.fetchData();
   },
   methods: {
-    fetchData() {
+    async fetchData() {
       // Fetch the data from the database and assign it to cycleLength and currentDay
-      // This is just a placeholder, replace it with your actual code
+      try {
+        const response = await axios.get('http://localhost:8000/usersdata/'); // TODO: change the URL
+        this.cycleLength = response.data.cycleLength;
+        this.currentDay = response.data.currentDay;
+      } catch (error) {
+        console.error('Failed to fetch data:', error);
+      }
     },
   },
 };
