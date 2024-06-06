@@ -1,14 +1,14 @@
 <template>
   <div class="root">
     <div class="header">
-      <router-link to="/calendar" class="leftButton">
-        <img src="/src/assets/arrow-left.svg" alt="Left">
+      <router-link to="/calendar" class="navButton">
+        <img src="/src/assets/arrow-left.svg" alt="Left" class="navButtonImage">
       </router-link>
       <div class="head">Symptome</div>
     </div>
 
     <div class="container">
-      <IconCheckbox
+      <IconSlider
         v-for="(item, index) in symptomItems"
         :key="index"
         :icon="item.icon"
@@ -20,11 +20,11 @@
 
 <script>
 import { useRouter } from 'vue-router';
-import IconCheckbox from 'components/IconCheckbox.vue';
+import IconSlider from 'components/IconSlider.vue';
 
 export default {
   components: {
-    IconCheckbox
+    IconSlider
   },
   data() {
     return {
@@ -69,7 +69,6 @@ export default {
 
 .header {
   display: flex;
-  justify-content: center;
   align-items: center;
   position: relative;
   padding: 10px;
@@ -77,10 +76,20 @@ export default {
   padding-bottom: 20px;
 }
 
-.leftButton {
-  cursor: pointer; /* Makes it look like a button */
-  position: absolute;
-  left: 0;
+.navButton {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 40px; /* Increase this value to make the clickable area larger */
+  height: 40px; /* Increase this value to make the clickable area larger */
+  cursor: pointer;
+  position: absolute; /* Position relative to header */
+  left: 10px; /* Align to the left side */
+}
+
+.navButtonImage {
+  width: 20px; /* Adjust the size of the actual image */
+  height: 20px; /* Adjust the size of the actual image */
 }
 
 .head {
@@ -90,6 +99,8 @@ export default {
   font-style: normal;
   font-weight: 600;
   line-height: 31px;
+  margin: 0 auto;
+  flex: 1;
 }
 
 .container {

@@ -3,21 +3,17 @@
     <!-- Header with navigation buttons and current month/year display -->
     <div class="header">
       <!-- Button to navigate to the previous month -->
-      <q-btn class="leftButton" @click="prevMonth">
-        <template v-slot:default>
-          <img src="/src/assets/arrow-left.svg" alt="Left">
-        </template>
-      </q-btn>
+      <div class="navButton" @click="prevMonth">
+        <img src="/src/assets/arrow-left.svg" alt="Left" class="navButtonImage">
+      </div>
 
       <!-- Display current month and year -->
       <div class="month-year">{{ currentMonth }} {{ currentYear }}</div>
 
       <!-- Button to navigate to the next month -->
-      <q-btn class="rightButton" @click="nextMonth">
-        <template v-slot:default>
-          <img src="/src/assets/arrow-right.svg" alt="Right">
-        </template>
-      </q-btn>
+      <div class="navButton" @click="nextMonth">
+        <img src="/src/assets/arrow-right.svg" alt="Right" class="navButtonImage">
+      </div>    
     </div>
 
     <!-- Calendar table with days of the week and dates -->
@@ -90,7 +86,7 @@
     <hr class="separator">
     <SectionContainer title="Stimmung" link="/mood" linkText="Hinzufügen" />
     <hr class="separator">
-    <SectionContainer title="Training Readiness Score" link="/" linkText="Hinzufügen" />
+    <SectionContainer title="Training Readiness Score" link="/" linkText="Mehr erfahren" />
   </div>
 </template>
 
@@ -249,6 +245,7 @@ table {
 th, td {
   width: 14.2857%; /* 100% / 7 days */
   text-align: center;
+  padding: 10px;
   padding-bottom: 10px;
   box-sizing: border-box; /* Ensure padding and border are included in the width */
 }
@@ -276,6 +273,8 @@ p {
   align-items: center;
   padding: 10px;
   padding-top: 46px;
+  width: 80%; /* Match the width of the table */
+  margin: 0 auto; /* Center the header */
 }
 
 .month-year {
@@ -287,8 +286,9 @@ p {
   line-height: 31px; /* 155% */
 }
 
-.leftButton, .rightButton {
+.navButton {
   font-size: 8px;
+  cursor: pointer;
 }
 
 .day-circle {
@@ -322,6 +322,21 @@ p {
   border: 2px solid #FF2D55; /* Set border color */
   color: #000;
 }
+
+.navButton {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 40px; /* Increase this value to make the clickable area larger */
+  height: 40px; /* Increase this value to make the clickable area larger */
+  cursor: pointer;
+}
+
+.navButtonImage {
+  width: 20px; /* Adjust the size of the actual image */
+  height: 20px; /* Adjust the size of the actual image */
+}
+
 
 .previous-month {
   color: #b0b0b0;
