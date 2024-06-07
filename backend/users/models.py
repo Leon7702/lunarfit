@@ -6,7 +6,7 @@ from django.contrib.auth.models import (
 )
 
 
-class CustomerUserManager(BaseUserManager):
+class CustomUserManager(BaseUserManager):
     def create_user(self, email, password=None, **extra_fields):
         if not email:
             raise ValueError("The Email field must be set")
@@ -26,13 +26,18 @@ class CustomerUserManager(BaseUserManager):
 class CustomUser(AbstractBaseUser, PermissionsMixin):
     email = models.EmailField(unique=True)
     is_staff = models.BooleanField(default=False)
+    is_active = models.BooleanField(default=True)
     first_name = models.CharField(max_length=24)
     last_name = models.CharField(max_length=24)
 
-    objects = CustomerUserManager()
+    objects = CustomUserManager()
 
+    
+    #https://docs.djangoproject.com/en/5.0/topics/auth/customizing/#django.contrib.auth.models.AbstractBaseUser
+    
     USERNAME_FIELD = "email"
     REQUIRED_FIELDS = []
+
 
     def __str__(self):
         return self.email
