@@ -59,6 +59,19 @@ const routes = [
     component: () => import('pages/LoginPage.vue')
   },
   {
+    path: '/calendar',
+    component: () => import('pages/CalendarPage.vue')
+  },
+  {
+    path: '/symptoms',
+    component: () => import('pages/SymptomsPage.vue')
+  },
+  {
+    path: '/mood',
+    component: () => import('pages/MoodPage.vue')
+  },
+  
+  {
     path: '/menstruation',
     name: 'MenstruationInfo',
     component: () => import('pages/MenstruationInfoPage.vue')
