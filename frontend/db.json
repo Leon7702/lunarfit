@@ -4,8 +4,8 @@
     "currentDay": 7
   },
   "trsdata": {
-    "mood": 3,
     "strain": 4,
+    "mood": 5,
     "rest": 6,
     "free": 5
   }

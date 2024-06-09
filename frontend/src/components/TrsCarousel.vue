@@ -116,6 +116,7 @@ export default {
   setup() {
     const progress1 = ref(0.3);
     return {
+      // TODO: change names to be consistent to TrsSunburst and database
       slide: ref('training'),
       lorem: 'Lorem ipsum dolor, sit amet consectetur adipisicing elit. Itaque voluptatem totam, architecto cupiditate officia rerum, error dignissimos praesentium libero ab nemo.',
       trainingtext: 'Trainingsempfehlung basierend auf Zyklusphase und TRS. Lorem ipsum dolor sit amet, consectetur adipiscing elit',
@@ -128,6 +129,12 @@ export default {
     }
   },
   components: {
+    // TODO: respective TrsSunburst components for each slide should be changed accordingly
+    // Training gets original TrsSunburst component, the others get a modified version:
+    // Mood: TrsSunburstMood
+    // Strain: TrsSunburstStrain
+    // Rest: TrsSunburstRest
+    //  Free: TrsSunburstFree
     TrsSunburst,
   },
 }
