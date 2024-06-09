@@ -1,8 +1,11 @@
 <template>
+  <!-- TODO: Change size of the cards, because needs to fit with the toolbar in one screen. -->
   <main class="card-container">
-    <div class="q-pa-md row items-start q-gutter-md">
-      <q-card class="my-card">
-        <q-card-section class="card-content">
+    <!-- Card for Cycle information -->
+    <div class="q-pa-sm q-pt-lg">
+      <q-card class="my-card" @click="navigateToCyclePage">
+        <q-img class="top-left-png" src="/src/assets/CycleIcon.png" />
+        <q-card-section class="card-content q-py-none">
           <div class="text-h6">ZYKLUS</div>
           <CycleCircle />
           <div class="text-p">
@@ -13,9 +16,11 @@
       </q-card>
     </div>
 
-    <div class="q-pa-md row items-start q-gutter-md">
+    <!-- Card for Training information -->
+    <div class="q-pa-sm">
       <q-card class="my-card" @click="navigateToTrainingPage">
-        <q-card-section class="card-content">
+        <q-img class="top-left-png" src="/src/assets/TrainingIcon.png" />
+        <q-card-section class="card-content q-py-none">
           <div class="text-h6">TRAINING</div>
           <TrsSunburst />
           <div class="text-p">
@@ -37,16 +42,14 @@ export default {
     CycleCircle,
     TrsSunburst,
   },
-  setup() {
-    return {
-
-    }
-  },
   methods: {
     navigateToTrainingPage() {
       this.$router.push({ name: 'TrsInfoPage' });
-    }
-  }
+    },
+    navigateToCyclePage() {
+      this.$router.push({ name: 'CycleInfoPage' });
+    },
+  },
 }
 </script>
 
@@ -60,8 +63,6 @@ export default {
 }
 
 .my-card {
-  /* width: 324px;
-  height: 318px; */
   display: flex;
   border-radius: 40px;
   align-items: center;
@@ -74,10 +75,20 @@ export default {
   display: flex;
   flex-direction: column;
   align-items: center;
+  padding-bottom: 16px;
+  padding-top: 8px;
 }
 
 .aligned-svg {
   vertical-align: middle;
   /* Zentriert das SVG-Bild vertikal relativ zum umgebenden Text */
+}
+
+.top-left-png {
+  position: absolute;
+  top: 14px;
+  left: 14px;
+  max-width: 37px;
+  max-height: 37px;
 }
 </style>

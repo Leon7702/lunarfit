@@ -77,20 +77,24 @@ const routes = [
     component: () => import('pages/MenstruationInfoPage.vue')
   },
   {
-    path: '/training',
+    path: '/cycle',
+    name: 'CycleInfoPage',
+    component: () => import('pages/CyclePhaseInfoPage.vue')
+  },
+  {
+    path: '/trs',
     name: 'TrsInfoPage',
     component: () => import('pages/TrsInfoPage.vue')
   },
-
-  { 
-    path: '/log', 
-    name: 'LogHome', 
-    component: () => import('pages/log/LogHome.vue') 
+  {
+    path: '/log',
+    name: 'LogHome',
+    component: () => import('pages/log/LogHome.vue')
   },
-  { 
-    path: '/log-cycle', 
-    name: 'LogCycleHome', 
-    component: () => import('pages/log/LogCycleHome.vue') 
+  {
+    path: '/log-cycle',
+    name: 'LogCycleHome',
+    component: () => import('pages/log/LogCycleHome.vue')
   },
   {
     path: '/log-cycle-mens',

@@ -1,0 +1,21 @@
+{
+  "menstruationtext": "Der Zyklus beginnt mit dem ersten Tag der Blutung, die durch den Abfall von Progesteron und Östrogen ausgelöst wird. Das steigende Östrogen hebt die Laune, macht selbstbewusst und kreativ.",
+  "menstruationNutrition": "Probeotische Lebensmittel: Frische Sprossen, Sauerkraut",
+  "menstruationTraining": "Die Sauerstoffaufnahme ist erhöht und die Erholungsfähigkeit verbessert sich. Kraftaufbau. Intervalltraining, Schnelligkeitstraining, neue Belastungsreite, hohe Intensität.",
+  "menstruationHealth": "Text für Gesundheit",
+
+  "folliculartext": "Phase nach der Menstruation, in der die Eibläschchen zu einem sprungbereiten Follikel reifen. Das steigende Östrogen hebt die Laune, machr selbstbewusst und kreativ.",
+  "follicularNutrition": "Probeotische Lebensmittel: Frische Sprossen, Sauerkraut",
+  "follicularTraining": "Die Sauerstoffaufnahme ist erhöht und die Erholungsfähigkeit verbessert sich. Kraftaufbau. Intervalltraining, Schnelligkeitstraining, neue Belastungsreite, hohe Intensität.",
+  "follicularHealth": "Text für Gesundheit",
+
+  "ovulationtext": "Nach dem Eisprung wird die Eizelle aus dem Follikel im Eierstock in den Eileiter ausgestoßen. Die Hülle der Eizelle bleibt als Gelbkörper zurück. Zum Eisprung macht das Östrogen häufig gute Laune. Danach gibt es auch mal schlechte Laune.",
+  "ovulationNutrition": "Probeotische Lebensmittel: Frische Sprossen, Sauerkraut",
+  "ovulationTraining": "Die Sauerstoffaufnahme ist erhöht und die Erholungsfähigkeit verbessert sich. Kraftaufbau. Intervalltraining, Schnelligkeitstraining, neue Belastungsreite, hohe Intensität.",
+  "ovulationHealth": "Text für Gesundheit",
+
+  "lutealtext": "Die Phase nach dem Eisprung bis zum Beginn der nächsten Menstruation. Der Gelbkörper produziert Progesteron, das die Gebärmutterschleimhaut auf die Einnistung einer befruchteten Eizelle vorbereitet. Das Progesteron kann die Laune verschlechtern.",
+  "lutealNutrition": "Magnesium, hochwertige Fette, Proteine, Ballaststoffe: Haferflocken, Vollkornprodukte, Bananen, Blattgemüse, Hülsenfrüchte. Weniger Koffein, Zucker und Alkohol",
+  "lutealTraining": "Die Sauerstoffaufnahme ist erhöht und die Erholungsfähigkeit verbessert sich. Kraftaufbau. Intervalltraining, Schnelligkeitstraining, neue Belastungsreite, hohe Intensität.",
+  "lutealHealth": "Text für Gesundheit"
+}

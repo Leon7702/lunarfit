@@ -1,0 +1,14 @@
+{
+  "usersdata": {
+    "cycleLength": 28,
+    "currentDay": 7
+  },
+  "trsdata": {
+    "strain": 4,
+    "mood": 5,
+    "rest": 6,
+    "free": 5
+  }
+}
+
+

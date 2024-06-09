@@ -1,17 +1,17 @@
 <template>
   <BackButtonText />
-  <TrsCarousel />
+  <CycleCarousel />
 </template>
 
 <script>
 import BackButtonText from 'components/BackButtonText.vue';
-import TrsCarousel from 'components/TrsCarousel.vue';
+import CycleCarousel from 'components/CycleCarousel.vue';
 
 export default {
   components: {
     BackButtonText,
-    TrsCarousel,
-
+    CycleCarousel,
   },
+
 }
 </script>
