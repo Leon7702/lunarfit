@@ -75,7 +75,7 @@ import axios from 'axios';
 export default {
   data() {
     return {
-      // TODO: this data needs to be fetched from the database, onboarding or user input
+      // FIXME: this data needs to be fetched from the database, onboarding or user input
       cycleLength: null,
       currentDay: null,
     };
@@ -86,7 +86,9 @@ export default {
   },
   methods: {
     async fetchData() {
-      // Fetch the data from the database and assign it to cycleLength and currentDay
+      // TODO: Fetch the data from the database and assign it to cycleLength and currentDay
+      // FOR NOW: to test the method without having a real database, direct to db.json file and put in terminal: json-server --watch db.json --port 8000
+      // then use curl: curl -X GET http://localhost:8000/usersdata/
       try {
         const response = await axios.get('http://localhost:8000/usersdata/'); // TODO: change the URL
         this.cycleLength = response.data.cycleLength;

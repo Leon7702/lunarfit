@@ -39,8 +39,8 @@
               <div class="text-h6">Follikelphase</div>
               <q-card flat bordered class="my-card">
                 <q-card-section>
-                {{ data.folliculartext }}
-              </q-card-section>
+                  {{ data.folliculartext }}
+                </q-card-section>
               </q-card>
               <img class="cycle-image" src="../assets/cyclePhase/Follicular.png" alt="Graph" />
               <PhaseInformation :textNutrition="data.follicularNutrition" :textTraining="data.follicularTraining"
@@ -56,8 +56,8 @@
               <div class="text-h6">Ovulation</div>
               <q-card flat bordered class="my-card">
                 <q-card-section>
-                {{ data.ovulationtext }}
-              </q-card-section>
+                  {{ data.ovulationtext }}
+                </q-card-section>
               </q-card>
               <img class="cycle-image" src="../assets/cyclePhase/PeriodOvulation.png" alt="Graph" />
               <PhaseInformation :textNutrition="data.ovulationNutrition" :textTraining="data.ovulationTraining"
@@ -73,13 +73,13 @@
               <div class="text-h6">Luthealphase</div>
               <q-card flat bordered class="my-card">
                 <q-card-section>
-                {{ data.lutealtext }}
-              </q-card-section>
+                  {{ data.lutealtext }}
+                </q-card-section>
               </q-card>
               <img class="cycle-image" src="../assets/cyclePhase/Lutheal.png" alt="Graph" />
-          <PhaseInformation :textNutrition="data.lutealNutrition" :textTraining="data.lutealTraining"
-            :textHealth="data.lutealHealth" />
-          </div>
+              <PhaseInformation :textNutrition="data.lutealNutrition" :textTraining="data.lutealTraining"
+                :textHealth="data.lutealHealth" />
+            </div>
           </q-scroll-area>
         </q-carousel-slide>
       </q-carousel>
@@ -89,67 +89,60 @@
 
 
 <script>
+import axios from 'axios';
 import { ref } from 'vue';
 import PhaseInformation from 'src/components/PhaseInformation.vue';
 import data from '../assets/cycleData.json'; // path to the JSON-file
 
 export default {
+  // TODO: Initial slide need to change depending on the current phase of the user
+  // 1. Get the user's cycle length and current day from the database
+
+  // 2. Calculate the current phase of the user depending on the current day and cycle length
+  // cycleLength = 28; // replace this with the actual cycle length of the user --> get data from database
+  // if 2/10 of cyclelength & state1 (in menstruation) then in phase1
+  // if 3/10 (so 0.5) of cyclelength then in phase2
+  // if 1/10 (so 0.6) of cyclelength then in phase3
+  // if 4/10 of cyclelength then in phase4
+
+  // 3. Set the initial slide depending on the current phase of the user
   setup() {
-    // TODO: Initial slide need to change depending on the current phase of the user --> see idea below
-
-    // 1. Get the user's cycle length and current day from the database
-
-    // 2. Calculate the current phase of the user depending on the current day and cycle length
-    // cycleLength = 28; // replace this with the actual cycle length of the user --> get data from database
-    // if 2/10 of cyclelength & state1 (in menstruation) then in phase1
-    // if 3/10 of cyclelength then in phase2
-    // if 1/10 of cyclelength then in phase3
-    // if 4/10 of cyclelength then in phase4
-
-    // idea:
-    // const currentPhase = currentDay / cycleLength;
-    // let phase;
-    // if (currentPhase <= 0.2) {
-    //   phase = 1; // phase1
-    // } else if (currentPhase <= 0.3) {
-    //   phase = 2; // phase2
-    // } else if (currentPhase <= 0.4) {
-    //   phase = 3; // phase3
-    // } else {
-    //   phase = 4; // phase4
-    // }
-
-    const userPhase = ref('phase3'); // replace this with the actual user phase
-    // const userPhase = ref(`phase${phase}`);
-
-    // Initialize slide based on userPhase
     const slide = ref('');
-    switch (userPhase.value) {
-      case 'phase1':
-        slide.value = 'menstruation';
-        break;
-      case 'phase2':
-        slide.value = 'follicular';
-        break;
-      case 'phase3':
-        slide.value = 'ovulation';
-        break;
-      case 'phase4':
-        slide.value = 'luteal';
-        break;
-      default:
-        slide.value = 'menstruation';
-    }
+    const cycleLength = ref(null);
+    const currentDay = ref(null);
+
+    const fetchData = async () => {
+      try {
+        const response = await axios.get('http://localhost:8000/usersdata/');
+        cycleLength.value = response.data.cycleLength;
+        currentDay.value = response.data.currentDay;
+
+        const currentPhase = currentDay.value / cycleLength.value;
+        if (currentPhase <= 0.2) {
+          slide.value = 'menstruation';
+        } else if (currentPhase <= 0.5) { // Adjusted to 0.5 for clarity in phases
+          slide.value = 'follicular';
+        } else if (currentPhase <= 0.6) {
+          slide.value = 'ovulation';
+        } else {
+          slide.value = 'luteal';
+        }
+      } catch (error) {
+        console.error('Failed to fetch data:', error);
+      }
+    };
+
+    fetchData();
 
     return {
       slide,
       data
-    }
+    };
   },
   components: {
     PhaseInformation,
   },
-}
+};
 </script>
 
 
