@@ -75,9 +75,9 @@ import axios from 'axios';
 export default {
   data() {
     return {
-      // FIXME: this data needs to be fetched from the database, onboarding or user input
+      // FIXME: this data needs to be fetched from the actual database, onboarding or user input
       cycleLength: null,
-      currentDay: null,
+      currentDay: 1, // needs to be initialized with a number (not null)
     };
   },
   // Fetch the data from the database when the component is created

@@ -117,6 +117,7 @@ export default {
         cycleLength.value = response.data.cycleLength;
         currentDay.value = response.data.currentDay;
 
+        // FIXME: fix edge cases due to rounding errors --> see calculation
         const currentPhase = currentDay.value / cycleLength.value;
         if (currentPhase <= 0.2) {
           slide.value = 'menstruation';
