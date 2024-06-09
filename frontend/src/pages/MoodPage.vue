@@ -17,6 +17,10 @@
         @update:value="updateMoodValue(index, $event)"
       />
     </div>
+    
+    <div class="button-container">
+      <button class="save-button">Speichern</button>
+    </div>
   </div>
 </template>
 
@@ -44,7 +48,7 @@ export default {
         { icon: '/src/assets/icon2.svg', text: 'Traurig', value: 1 },
         { icon: '/src/assets/icon2.svg', text: 'Unglücklich', value: 1 },
         { icon: '/src/assets/icon2.svg', text: 'Unsicher', value: 1 },
-        { icon: '/src/assets/icon2.svg', text: 'Verägert', value: 1 },
+        { icon: '/src/assets/icon2.svg', text: 'Verärgert', value: 1 },
         { icon: '/src/assets/icon2.svg', text: 'Verlegen', value: 1 },
         { icon: '/src/assets/icon2.svg', text: 'Verwirrt', value: 1 },
         { icon: '/src/assets/icon2.svg', text: 'Wütend', value: 1 },
@@ -65,6 +69,9 @@ export default {
 .root {
   width: 90%;
   margin: 0 auto; /* Centers the content horizontally */
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh; /* Ensure the root takes full viewport height */
 }
 
 .header {
@@ -105,5 +112,26 @@ export default {
 
 .container {
   border-top: 1px solid #ccc;
+  flex: 1; /* This will make the container take the available space */
+}
+
+.button-container {
+  display: flex;
+  justify-content: center;
+  padding: 20px 0; /* Add some padding for spacing */
+}
+
+.save-button {
+  background-color: #50c1ba; /* Change this to your preferred color */
+  color: white;
+  border: none;
+  padding: 10px 20px;
+  font-size: 16px;
+  cursor: pointer;
+  border-radius: 5px;
+}
+
+.save-button:hover {
+  background-color: #0056b3; /* Change this to your preferred hover color */
 }
 </style>
