@@ -38,8 +38,7 @@
     display: flex;
     flex-direction: column;
     align-items: center; /* Zentriert den Inhalt horizontal */
-    padding-left: 20px;
-    padding-right: 20px;
+    width: 90%;
     height: 100vh; /* Vollbildhöhe */
     overflow: auto;
     margin: auto;

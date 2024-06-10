@@ -56,8 +56,7 @@
     display: flex;
     flex-direction: column;
     align-items: center;
-    padding-left: 20px;
-    padding-right: 20px;
+    width: 90%;
     height: 100vh;
     overflow: auto;
     margin: auto;
@@ -123,11 +122,11 @@
   
   .icon-circle {
     position: absolute;
-    bottom: 15px; /* Adjusted for larger size */
+    bottom: 15px; 
     left: 50%;
     transform: translateX(-50%);
-    width: 25px; /* 15px * 3 */
-    height: 25px; /* 15px * 3 */
+    width: 25px; 
+    height: 25px; 
     border-radius: 50%;
     background-color: lightgray;
     transition: background-color 0.3s;

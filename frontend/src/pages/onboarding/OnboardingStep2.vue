@@ -54,7 +54,7 @@
   }
   
   .content {
-    max-width: 324px;
+    width: 90%;
     flex: 1; 
     overflow-y: auto; 
   }

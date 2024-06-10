@@ -2,44 +2,37 @@
     <div class="welcome-container">
       <div class="header">
         <q-btn flat dense round icon="arrow_back" @click="goBack" />
-        <div class="title">Menstruation</div>
+        <div class="title">Trainingsbelastung</div>
       </div>
       <div class="linie"></div>
-      <div class="button-container">
-        <StandardButton :label="buttonLabel" @click="toggleMenstruationStatus" />
+      <div class="description">
+        Wie anstrengend war <br>deine Trainingseinheit?
       </div>
-      <div class="welcome-text">
-        <p class="description">{{ descriptionText }}</p>
+      <div class="slider">
+        <SliderWithLabelVertical10 topText="Maximal anstrengend" bottomText="Gar nicht anstrengend" />
+      </div>
+      <div class="button-container">
+        <StandardButton label="Weiter" @click="navigateToNextStep" />
       </div>
     </div>
   </template>
   
   <script>
-  import StandardButton from 'components/StandardButton.vue';
+  import SliderWithLabelVertical10 from 'components/SliderWithLabelVertical10.vue';
+  import StandardButton from 'components/StandardButton.vue'
   
   export default {
     components: {
+      SliderWithLabelVertical10,
       StandardButton
-    },
-    data() {
-      return {
-        buttonLabel: "+  Menstruation",
-        descriptionText: "Tippe hier, wenn deine Menstruation heute begonnen hat."
-      };
     },
     methods: {
       goBack() {
         window.history.back();
       },
-      toggleMenstruationStatus() {
-        if (this.buttonLabel === "+  Menstruation") {
-          this.buttonLabel = "Menstruation aktiv";
-          this.descriptionText = "Tippe hier, wenn deine Menstruation vorbei ist.";
-        } else {
-          this.buttonLabel = "+  Menstruation";
-          this.descriptionText = "Tippe hier, wenn deine Menstruation heute begonnen hat.";
-        }
-      }
+    navigateToNextStep() {
+      this.$router.push({ name: 'LogTrainingComplaints' });
+    }
     }
   };
   </script>
@@ -48,8 +41,7 @@
   .welcome-container {
     display: flex;
     flex-direction: column;
-    align-items: flex-start; 
-    width: 90%;
+    align-items: center;
     height: 100vh;
     overflow: auto;
     margin: auto;
@@ -78,16 +70,26 @@
     flex-grow: 1;
     padding-right: 30px;
   }
-  
+
   .description {
-    font: 12px/22px 'Inter', sans-serif;
-    margin-top: 5px;
-  }
-  
-  .button-container {
-    margin-top: 20px;
-    margin-left: 0; 
+    text-align: center;
     width: 100%;
+    margin-top: 30px;
+    font-size: 16px;
+    font-weight: 500;
+    margin-bottom: 10px;
+  }
+  .slider {
+    margin-top: 40px;
+  }
+
+  .button-container {
+    position: fixed;
+    bottom: 40px; 
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    left: 0;
   }
   </style>
   
