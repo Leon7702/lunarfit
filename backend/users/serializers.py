@@ -15,17 +15,15 @@ class UserModelSerializer(serializers.ModelSerializer):
             "last_name": {"required": False},
         }
 
-        def create(self, validated_data):
-            user = CustomUser(username=validated_data["username"])
-            user.set_password(validated_data["password"])
-            user.save()
-            return user
+    def create(self, validated_data):
+        user = CustomUser.objects.create_user(**validated_data)
+        return user
 
-        def to_representation(self, instance):
-            """Overriding to remove Password Field when returning Data"""
-            ret = super().to_representation(instance)
-            ret.pop("password", None)
-            return ret
+    def to_representation(self, instance):
+        """Overriding to remove Password Field when returning Data"""
+        ret = super().to_representation(instance)
+        ret.pop("password", None)
+        return ret
 
 
 class CustomTokenObtainPairSerializer(TokenObtainPairSerializer):
