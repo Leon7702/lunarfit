@@ -48,42 +48,49 @@ const routes = [
   {
     path: '/onboarding',
     name: 'OnboardingStart',
-    component: () => import('pages/onboarding/OnboardingStart.vue')
+    component: () => import('pages/onboarding/OnboardingStart.vue'),
+    meta: { requiresAuth: true }
   },
   {
     path: '/onboardingStep1',
     name: 'OnboardingStep1',
-    component: () => import('pages/onboarding/OnboardingStep1.vue')
+    component: () => import('pages/onboarding/OnboardingStep1.vue'),
+    meta: { requiresAuth: true }
   },
   {
     path: '/onboardingStep2',
     name: 'OnboardingStep2',
-    component: () => import('pages/onboarding/OnboardingStep2.vue')
+    component: () => import('pages/onboarding/OnboardingStep2.vue'),
+    meta: { requiresAuth: true }
   },
   {
     path: '/onboardingStep4',
     name: 'OnboardingStep4',
-    component: () => import('pages/onboarding/OnboardingStep4.vue')
+    component: () => import('pages/onboarding/OnboardingStep4.vue'),
+    meta: { requiresAuth: true }
   },
   {
     path: '/onboardingStep5',
     name: 'OnboardingStep5',
-    component: () => import('pages/onboarding/OnboardingStep5.vue')
+    component: () => import('pages/onboarding/OnboardingStep5.vue'),
+    meta: { requiresAuth: true }
   },
   {
     path: '/onboardingStep6',
     name: 'OnboardingStep6',
-    component: () => import('pages/onboarding/OnboardingStep6.vue')
+    component: () => import('pages/onboarding/OnboardingStep6.vue'),
+    meta: { requiresAuth: true }
   },
   {
     path: '/onboardingEnd',
     name: 'OnboardingEnd',
-    component: () => import('pages/onboarding/OnboardingEnd.vue')
+    component: () => import('pages/onboarding/OnboardingEnd.vue'),
+    meta: { requiresAuth: true }
   },
   {
     path: '/:catchAll(.*)*',
     component: () => import('pages/ErrorNotFound.vue')
   }
-]
+];
 
 export default routes;
