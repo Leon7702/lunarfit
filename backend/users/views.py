@@ -20,7 +20,7 @@ class UserCreateView(CreateAPIView):
 class UserListView(ListAPIView):
     """Endpoint for listing all Users"""
 
-    queryset = CustomUser.objects.all()
+    queryset = CustomUser.objects.all().order_by("last_name", "first_name")
     serializer_class = UserModelSerializer
     permission_classes = [IsAdminUser]
 
