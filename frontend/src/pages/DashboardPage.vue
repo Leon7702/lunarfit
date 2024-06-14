@@ -22,7 +22,41 @@
         <q-img class="top-left-png" src="/src/assets/TrainingIcon.png" />
         <q-card-section class="card-content q-py-none">
           <div class="text-h6">TRAINING</div>
+          <div style="position: relative;">
           <TrsSunburst />
+          <!-- Add your SVG paths and text labels here -->
+          <svg style="position: absolute; top: -15; left: 0;" viewBox="0 0 40 40">
+            <!-- Paths for the text labels -->
+            <path id="myPath1" d="M25 6 A15.91549430918954 15 0 0 1 35 15" fill="transparent"></path>
+            <path id="myPath2" d="M32.5 33 A15.91549430918954 15 0 0 0 5 10" fill="transparent"></path>
+
+            <!-- Text labels for the segments -->
+            <!-- The textPath element allows the text to follow the path defined above -->
+            <text fill="#000" font-size="1.8" transform="rotate(10 21 21)">
+              <textPath href="#myPath1">
+                Belastung
+              </textPath>
+            </text>
+
+            <text fill="#000" font-size="1.8" transform="rotate(20 21 21)">
+              <textPath href="#myPath2">
+                Beschwerdefreiheit
+              </textPath>
+            </text>
+
+            <text fill="#000" font-size="1.8" transform="rotate(105 21 21)">
+              <textPath href="#myPath2">
+                Erholung
+              </textPath>
+            </text>
+
+            <text fill="#000" font-size="1.8" transform="rotate(280 21 21)">
+              <textPath href="#myPath1">
+                Stimmung
+              </textPath>
+            </text>
+          </svg>
+        </div>
           <div class="text-p">
             Erfahre jetzt mehr über dein Training
             <img class="aligned-svg" src="/src/assets/ForwardArrow.svg" alt="Weiter" />
