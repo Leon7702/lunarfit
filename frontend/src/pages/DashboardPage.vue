@@ -25,37 +25,36 @@
           <div style="position: relative;">
           <TrsSunburst />
           <!-- Add your SVG paths and text labels here -->
-          <svg style="position: absolute; top: -15; left: 0;" viewBox="0 0 40 40">
-            <!-- Paths for the text labels -->
-            <path id="myPath1" d="M25 6 A15.91549430918954 15 0 0 1 35 15" fill="transparent"></path>
-            <path id="myPath2" d="M32.5 33 A15.91549430918954 15 0 0 0 5 10" fill="transparent"></path>
+          <svg style="position: absolute; top: -12; left: -2;" width="270" height="270" viewBox="0 0 57 57">
+              <!-- Paths for the text labels -->
+              <path id="path1" d="M 30,30 m -26,0 a 26,26 0 1,1 52,0 a 26,26 0 1,1 -52,0" fill="transparent" />
+              <path id="path2" d="M 30,30 m -26,0 a 26,26 0 1,0 52,0 a 26,26 0 1,0 -52,0" fill="transparent" />
 
-            <!-- Text labels for the segments -->
-            <!-- The textPath element allows the text to follow the path defined above -->
-            <text fill="#000" font-size="1.8" transform="rotate(10 21 21)">
-              <textPath href="#myPath1">
-                Belastung
-              </textPath>
-            </text>
+              <!-- Text labels for the segments -->
+              <text fill="#000" font-size="2.5">
+                <textPath href="#path1" startOffset="35%">
+                  Belastung
+                </textPath>
+              </text>
 
-            <text fill="#000" font-size="1.8" transform="rotate(20 21 21)">
-              <textPath href="#myPath2">
-                Beschwerdefreiheit
-              </textPath>
-            </text>
+              <text fill="#000" font-size="2.5">
+                <textPath href="#path2" startOffset="10%">
+                  Erholung
+                </textPath>
+              </text>
 
-            <text fill="#000" font-size="1.8" transform="rotate(105 21 21)">
-              <textPath href="#myPath2">
-                Erholung
-              </textPath>
-            </text>
+              <text fill="#000" font-size="2.5">
+                <textPath href="#path1" startOffset="8%">
+                  Stimmung
+                </textPath>
+              </text>
 
-            <text fill="#000" font-size="1.8" transform="rotate(280 21 21)">
-              <textPath href="#myPath1">
-                Stimmung
-              </textPath>
-            </text>
-          </svg>
+              <text fill="#000" font-size="2.5">
+                <textPath href="#path2" startOffset="32%">
+                  Beschwerdefreiheit
+                </textPath>
+              </text>
+            </svg>
         </div>
           <div class="text-p">
             Erfahre jetzt mehr über dein Training

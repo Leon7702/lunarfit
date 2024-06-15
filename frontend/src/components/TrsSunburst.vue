@@ -73,6 +73,10 @@ export default {
 
       // Array of radius levels for the segments of the donut chart
       const radiusLevels = [4.456338407, 6.047887837, 8.116902098, 10.66338119, 13.68732511, 17.18873385];
+      // 14, 19, 25.5, 33.5, 43, 54 divided by pi
+
+      // const multipliedByPi = radiusLevels.map(value => value * Math.PI);
+      // console.log(multipliedByPi);
 
       // Array of stroke widths for the segments of the donut chart
       const strokeWidths = [1, 1.5, 2, 2.5, 3, 3.5];
