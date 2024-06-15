@@ -58,9 +58,17 @@ export default {
         };
 
         this.updateSegments(trsdata);
+        this.calculateScore(trsdata);
       } catch (error) {
         console.error('Failed to fetch data:', error);
       }
+    },
+    calculateScore(trsdata) {
+      // Each score contributes 25/6 to the total score
+      const weight = 25 / 6;
+      const totalScore = (trsdata.strain + trsdata.mood + trsdata.rest + trsdata.free) * weight;
+
+      this.score = totalScore;
     },
     updateSegments(trsdata) {
       // Colors for the different segments of the donut chart
@@ -96,7 +104,7 @@ export default {
 
       // Calculate the opacity of a segment based on its level
       const calculateOpacity = (maxLevel, currentLevel) => {
-        return currentLevel <= maxLevel ? 1 : 0.2;
+        return currentLevel <= maxLevel ? 1 : 0.3;
       };
 
       // Loop over each key in the trsdata object
