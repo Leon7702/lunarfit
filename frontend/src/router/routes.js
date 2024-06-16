@@ -70,7 +70,7 @@ const routes = [
     path: '/mood',
     component: () => import('pages/MoodPage.vue')
   },
-  
+
   {
     path: '/menstruation',
     name: 'MenstruationInfo',
@@ -140,6 +140,26 @@ const routes = [
     path: '/log-cycle-pregnancy-test',
     name: 'LogCyclePregnancyTest',
     component: () => import('pages/log/LogCyclePregnancyTest.vue')
+  },
+  {
+    path: '/settings',
+    name: 'Settings',
+    component: () => import('src/pages/settings/SettingsPage.vue')
+  },
+  {
+    path: '/profile',
+    name: 'Profile',
+    component: () => import('src/pages/settings/ProfilePage.vue')
+  },
+  {
+    path: '/account',
+    name: 'Account',
+    component: () => import('src/pages/settings/AccountPage.vue')
+  },
+  {
+    path: '/language',
+    name: 'Language',
+    component: () => import('src/pages/settings/LanguagePage.vue')
   },
 
   // Always leave this as last one,
