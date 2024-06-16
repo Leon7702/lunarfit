@@ -19,6 +19,14 @@ class UserModelSerializer(serializers.ModelSerializer):
         user = CustomUser.objects.create_user(**validated_data)
         return user
 
+    def update(self, instance: CustomUser, validated_data: dict):
+        for key in validated_data.keys():
+            setattr(instance, key, validated_data.get(key))
+
+        instance.set_password(validated_data.get("password", instance.password))
+        instance.save()
+        return instance
+
     def to_representation(self, instance):
         """Overriding to remove Password Field when returning Data"""
         ret = super().to_representation(instance)

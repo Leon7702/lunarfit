@@ -4,6 +4,7 @@ from rest_framework.permissions import AllowAny, IsAdminUser, IsAuthenticated
 from rest_framework_simplejwt.views import TokenObtainPairView
 
 from .models import CustomUser
+from .permissions import UserPermission
 from .serializers import (
     CustomTokenObtainPairSerializer,
     UserModelSerializer,
@@ -28,7 +29,7 @@ class UserListView(ListAPIView):
 class UserView(RetrieveAPIView, UpdateModelMixin, DestroyModelMixin):
     serializer_class = UserModelSerializer
     queryset = CustomUser.objects.all()
-    permission_classes = [IsAuthenticated]
+    permission_classes = [IsAuthenticated, UserPermission]
 
     def delete(self, request, *args, **kwargs):
         return self.destroy(request, *args, **kwargs)

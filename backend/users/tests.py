@@ -1,5 +1,6 @@
+import pytest
 from rest_framework import status
-from rest_framework.test import APITestCase, force_authenticate
+from rest_framework.test import APITestCase
 
 from .models import CustomUser
 
@@ -26,7 +27,7 @@ class RegisterTest(APITestCase):
         assert response.status_code == status.HTTP_400_BAD_REQUEST
 
 
-class UserPermissionsTest(APITestCase):
+class UserPermissionTest(APITestCase):
     def setUp(self):
         self.user1 = CustomUser.objects.create_user(
             email="user1@example.com", password="string"
@@ -60,12 +61,102 @@ class UserPermissionsTest(APITestCase):
         response = self.client.get("/api/users/")
         assert response.status_code == status.HTTP_403_FORBIDDEN
 
-    def test_user_can_access_own_data(self):
+    def test_user_can_read_own_data(self):
         self.client.force_authenticate(user=self.user2)
         response = self.client.get(f"/api/users/{self.user2.id}")
         assert response.status_code == status.HTTP_200_OK
 
-    def test_user_cannot_access_other_user_data(self):
+    def test_user_can_change_own_email(self):
+        """
+        Changing the email should provide the same valiadation as creating a new user.
+        Since emails are used as username they have to be valid emails and unique.
+        """
+        id = self.user2.id
+        new_email = "new_email@example.com"
+        self.client.force_authenticate(user=self.user2)
+
+        response = self.client.patch(
+            f"/api/users/{self.user2.id}", {"email": new_email}
+        )
+
+        user = CustomUser.objects.get(pk=id)
+        assert response.status_code == status.HTTP_200_OK
+        assert user.email == new_email
+
+    def test_user_cannot_change_to_invalid_email(self):
+        """
+        Changing the email should provide the same valiadation as creating a new user.
+        Since emails are used as username they have to stay valid.
+        """
+        id = self.user2.id
+        new_email = "invalid"
+        self.client.force_authenticate(user=self.user2)
+
+        response = self.client.patch(
+            f"/api/users/{self.user2.id}", {"email": new_email}
+        )
+
+        user = CustomUser.objects.get(pk=id)
+        assert response.status_code == status.HTTP_400_BAD_REQUEST
+        assert user.email != new_email
+
+    def test_user_cannot_change_to_existing_email(self):
+        """
+        Changing the email should provide the same validation as creating a new user.
+        Since emails are used as username they have to stay unique.
+        """
+        id = self.user2.id
+        new_email = self.superuser.email
+        self.client.force_authenticate(user=self.user2)
+
+        response = self.client.patch(
+            f"/api/users/{self.user2.id}", {"email": new_email}
+        )
+
+        user = CustomUser.objects.get(pk=id)
+        assert response.status_code == status.HTTP_400_BAD_REQUEST
+        assert user.email != new_email
+
+    def test_user_can_change_own_password(self):
+        """
+        Setting a new password has to be done using the users set.password(raw_password) method.
+        Otherwise the raw password will be stored in the database.
+        """
+        id = self.user2.id
+        new_password = "definitely_safe"
+        self.client.force_authenticate(user=self.user2)
+
+        response = self.client.patch(
+            f"/api/users/{self.user2.id}", {"password": new_password}
+        )
+        assert response.status_code == status.HTTP_200_OK
+
+        # Don't store the raw password!
+        user = CustomUser.objects.get(pk=id)
+        assert user.password != new_password
+        assert user.check_password(new_password) == True
+
+    def test_user_can_delete_own_data(self):
+        id = self.user2.id
+        self.client.force_authenticate(user=self.user2)
+        response = self.client.delete(f"/api/users/{id}")
+        assert response.status_code == status.HTTP_204_NO_CONTENT
+        with pytest.raises(CustomUser.DoesNotExist):
+            assert CustomUser.objects.get(pk=id)
+
+    def test_user_cannot_read_other_user_data(self):
         self.client.force_authenticate(user=self.user1)
         response = self.client.get(f"/api/users/{self.user2.id}")
+        assert response.status_code == status.HTTP_403_FORBIDDEN
+
+    def test_user_cannot_change_other_user_data(self):
+        self.client.force_authenticate(user=self.user1)
+        response = self.client.patch(
+            f"/api/users/{self.user2.id}", {"email": "new_email@example.com"}
+        )
+        assert response.status_code == status.HTTP_403_FORBIDDEN
+
+    def test_user_cannot_delete_other_user_data(self):
+        self.client.force_authenticate(user=self.user1)
+        response = self.client.delete(f"/api/users/{self.user2.id}")
         assert response.status_code == status.HTTP_403_FORBIDDEN
