@@ -21,13 +21,11 @@
               <div class="text-h6">Training</div>
               <TrsSunburst />
               <div class="text-p">Training Readiness Score: 76%</div>
-              <div class="q-pa-md row items-start q-gutter-md text-center">
                 <q-card flat bordered class="my-card">
                   <q-card-section>
                     {{ trainingtext }}
                   </q-card-section>
                 </q-card>
-              </div>
             </div>
           </q-scroll-area>
         </q-carousel-slide>
@@ -37,10 +35,11 @@
             <div class="column no-wrap flex-center">
               <div class="text-h6">Stimmung</div>
               <TrsSunburst />
+              <!-- TODO: add this div to all slides -->
               <div class="q-mt-md text-center">
-                <q-card class="my-card bg-primary text-white">
+                <q-card flat bordered class="my-card">
                   <q-card-section>
-                    <div v-html="moodtext"></div>
+                    {{ moodtext }}
                   </q-card-section>
                 </q-card>
                 <div class="q-pa-md">
@@ -67,13 +66,11 @@
             <div class="column no-wrap flex-center">
               <div class="text-h6">Belastung</div>
               <TrsSunburst />
-              <div class="q-mt-md text-center">
-                <q-card class="my-card bg-primary text-white">
-                  <q-card-section flat bordered class="border-black">
-                    <div v-html="burdentext"></div>
+                <q-card flat bordered class="my-card">
+                  <q-card-section>
+                    {{ burdentext }}
                   </q-card-section>
                 </q-card>
-              </div>
             </div>
           </q-scroll-area>
         </q-carousel-slide>
@@ -83,9 +80,11 @@
             <div class="column no-wrap flex-center">
               <div class="text-h6">Beschwerden</div>
               <TrsSunburst />
-              <div class="q-mt-md text-center">
-                {{ lorem }}
-              </div>
+                <q-card flat bordered class="my-card">
+                  <q-card-section>
+                    {{ lorem }}
+                  </q-card-section>
+                </q-card>
             </div>
           </q-scroll-area>
         </q-carousel-slide>
@@ -95,9 +94,11 @@
             <div class="column no-wrap flex-center">
               <div class="text-h6">Erholung</div>
               <TrsSunburst />
-              <div class="q-mt-md text-center">
-                {{ resttext }}
-              </div>
+                <q-card flat bordered class="my-card">
+                  <q-card-section>
+                    {{ resttext }}
+                  </q-card-section>
+                </q-card>
             </div>
           </q-scroll-area>
         </q-carousel-slide>
@@ -120,8 +121,8 @@ export default {
       slide: ref('training'),
       lorem: 'Lorem ipsum dolor, sit amet consectetur adipisicing elit. Itaque voluptatem totam, architecto cupiditate officia rerum, error dignissimos praesentium libero ab nemo.',
       trainingtext: 'Trainingsempfehlung basierend auf Zyklusphase und TRS. Lorem ipsum dolor sit amet, consectetur adipiscing elit',
-      moodtext: 'Deine Stimmung ist... <br> Durch das...<br>Kann sich deine Stimmung...',
-      burdentext: 'Dein ACWR liegt bei... <br> Im Verlauf der letzen Tage is er...<br>Da du dich in der... befindest, solltest du darauf achten das Trainingspensum...',
+      moodtext: 'Deine Stimmung ist... Durch das...Kann sich deine Stimmung...',
+      burdentext: 'Dein ACWR liegt bei... Im Verlauf der letzen Tage is er...Da du dich in der... befindest, solltest du darauf achten das Trainingspensum...',
       resttext: 'Dein Erholungszustand ist... Durch solltest das Training gerade im Hinblick auf die hormonellen Veränderungen in den nächsten Tagen...',
 
       progress1,
@@ -134,7 +135,7 @@ export default {
     // Mood: TrsSunburstMood
     // Strain: TrsSunburstStrain
     // Rest: TrsSunburstRest
-    //  Free: TrsSunburstFree
+    // Free: TrsSunburstFree
     TrsSunburst,
   },
 }
@@ -147,7 +148,8 @@ export default {
 
 .my-card {
   width: 100%;
-  max-width: 250%;
+  /* max-width: 250%; */
+  max-width: 100vw;
 }
 
 .carousel-container {
