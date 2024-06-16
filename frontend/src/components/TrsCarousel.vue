@@ -10,123 +10,136 @@
       ]" />
     </div>
     <div class="carousel-container">
-    <div class="q-gutter-md">
-      <q-carousel v-model="slide" transition-prev="slide-right" transition-next="slide-left" swipeable animated
-        control-color="black" navigation-icon="radio_button_unchecked" navigation padding :style="{ height: '80vh', width:'45vh' }"
-        class="shadow-1 rounded-borders border-black">
+      <div class="q-gutter-md">
+        <q-carousel v-model="slide" transition-prev="slide-right" transition-next="slide-left" swipeable animated
+          control-color="black" navigation-icon="radio_button_unchecked" navigation padding
+          :style="{ height: '80vh', width: '45vh' }" class="shadow-1 rounded-borders border-black">
 
-        <q-carousel-slide name="training" class="column no-wrap flex-center">
-          <q-scroll-area class="fit">
-            <div class="column no-wrap flex-center">
-              <div class="text-h6">Training</div>
-              <TrsSunburst />
-              <div class="text-p">Training Readiness Score: 76%</div>
+          <q-carousel-slide name="training" class="column no-wrap flex-center">
+            <q-scroll-area class="fit">
+              <div class="column no-wrap flex-center">
+                <div class="text-h6">Training</div>
+                <TrsSunburst />
+                <div class="text-p">Training Readiness Score: 76%</div>
                 <q-card flat bordered class="my-card">
                   <q-card-section>
                     {{ trainingtext }}
                   </q-card-section>
                 </q-card>
-            </div>
-          </q-scroll-area>
-        </q-carousel-slide>
-
-        <q-carousel-slide name="mood" class="column no-wrap flex-center">
-          <q-scroll-area class="fit">
-            <div class="column no-wrap flex-center">
-              <div class="text-h6">Stimmung</div>
-              <TrsSunburst />
-              <!-- TODO: add this div to all slides -->
-              <div class="q-mt-md text-center">
-                <q-card flat bordered class="my-card">
-                  <q-card-section>
-                    {{ moodtext }}
-                  </q-card-section>
-                </q-card>
-                <div class="q-pa-md">
-                  <p>Mood score today:</p>
-                  <q-linear-progress size="25px" :value="progress1" color="primary">
-                    <div class="absolute-full flex flex-center">
-                      <q-badge color="white" text-color="primary" :label="progressLabel1" />
-                    </div>
-                  </q-linear-progress>
-                </div>
-                <p>Verlauf</p>
-                <q-card class="my-card border-black">
-                  <q-card-section>
-                    <p>Diagram</p>
-                  </q-card-section>
-                </q-card>
               </div>
-            </div>
-          </q-scroll-area>
-        </q-carousel-slide>
+            </q-scroll-area>
+          </q-carousel-slide>
 
-        <q-carousel-slide name="burden" class="column no-wrap flex-center">
-          <q-scroll-area class="fit">
-            <div class="column no-wrap flex-center">
-              <div class="text-h6">Belastung</div>
-              <TrsSunburst />
+          <q-carousel-slide name="mood" class="column no-wrap flex-center">
+            <q-scroll-area class="fit">
+              <div class="column no-wrap flex-center">
+                <div class="text-h6">Stimmung</div>
+                <TrsSunburst />
+                <!-- TODO: add this div to all slides -->
+                <div class="q-mt-md text-center">
+                  <q-card flat bordered class="my-card">
+                    <q-card-section>
+                      {{ moodtext }}
+                    </q-card-section>
+                  </q-card>
+                  <div class="q-pa-md">
+                    <p>Mood score today:</p>
+                    <div class="q-gutter-y-md column justify-center items-center">
+                      <q-rating v-model="moodScore" size="2em" :max="6" color="primary" icon="rectangle" readonly />
+                    </div>
+                  </div>
+
+                      <p>Verlauf</p>
+                      <q-card class="my-card border-black">
+                        <q-card-section>
+                          <p>Diagram</p>
+                        </q-card-section>
+                      </q-card>
+                    </div>
+                  </div>
+            </q-scroll-area>
+          </q-carousel-slide>
+
+          <q-carousel-slide name="burden" class="column no-wrap flex-center">
+            <q-scroll-area class="fit">
+              <div class="column no-wrap flex-center">
+                <div class="text-h6">Belastung</div>
+                <TrsSunburst />
                 <q-card flat bordered class="my-card">
                   <q-card-section>
                     {{ burdentext }}
                   </q-card-section>
                 </q-card>
-            </div>
-          </q-scroll-area>
-        </q-carousel-slide>
+              </div>
+            </q-scroll-area>
+          </q-carousel-slide>
 
-        <q-carousel-slide name="layers" class="column no-wrap flex-center">
-          <q-scroll-area class="fit">
-            <div class="column no-wrap flex-center">
-              <div class="text-h6">Beschwerden</div>
-              <TrsSunburst />
+          <q-carousel-slide name="layers" class="column no-wrap flex-center">
+            <q-scroll-area class="fit">
+              <div class="column no-wrap flex-center">
+                <div class="text-h6">Beschwerden</div>
+                <TrsSunburst />
                 <q-card flat bordered class="my-card">
                   <q-card-section>
                     {{ lorem }}
                   </q-card-section>
                 </q-card>
-            </div>
-          </q-scroll-area>
-        </q-carousel-slide>
+              </div>
+            </q-scroll-area>
+          </q-carousel-slide>
 
-        <q-carousel-slide name="rest" class="column no-wrap flex-center">
-          <q-scroll-area class="fit">
-            <div class="column no-wrap flex-center">
-              <div class="text-h6">Erholung</div>
-              <TrsSunburst />
+          <q-carousel-slide name="rest" class="column no-wrap flex-center">
+            <q-scroll-area class="fit">
+              <div class="column no-wrap flex-center">
+                <div class="text-h6">Erholung</div>
+                <TrsSunburst />
                 <q-card flat bordered class="my-card">
                   <q-card-section>
                     {{ resttext }}
                   </q-card-section>
                 </q-card>
-            </div>
-          </q-scroll-area>
-        </q-carousel-slide>
-      </q-carousel>
+              </div>
+            </q-scroll-area>
+          </q-carousel-slide>
+        </q-carousel>
+      </div>
     </div>
   </div>
-</div>
 </template>
 
 
 <script>
-import { ref, computed } from 'vue';
+import { ref } from 'vue';
+import axios from 'axios';
 import TrsSunburst from 'components/TrsSunburst.vue';
 
 export default {
   setup() {
-    const progress1 = ref(0.3);
+    const slide = ref('training');
+    const moodScore = ref(0);  // Reactive variable for mood score
+
+    const fetchData = async () => {
+      try {
+        const response = await axios.get('http://localhost:8000/trsdata');
+        const trsdata = response.data;
+        moodScore.value = trsdata.mood;  // Update mood score from fetched data
+      } catch (error) {
+        console.error('Failed to fetch data:', error);
+      }
+    };
+
+    fetchData();
+
     return {
       // TODO: change names to be consistent to TrsSunburst and database
-      slide: ref('training'),
       lorem: 'Lorem ipsum dolor, sit amet consectetur adipisicing elit. Itaque voluptatem totam, architecto cupiditate officia rerum, error dignissimos praesentium libero ab nemo.',
       trainingtext: 'Trainingsempfehlung basierend auf Zyklusphase und TRS. Lorem ipsum dolor sit amet, consectetur adipiscing elit',
       moodtext: 'Deine Stimmung ist... Durch das...Kann sich deine Stimmung...',
       burdentext: 'Dein ACWR liegt bei... Im Verlauf der letzen Tage is er...Da du dich in der... befindest, solltest du darauf achten das Trainingspensum...',
       resttext: 'Dein Erholungszustand ist... Durch solltest das Training gerade im Hinblick auf die hormonellen Veränderungen in den nächsten Tagen...',
 
-      progress1,
-      progressLabel1: computed(() => (progress1.value * 100).toFixed(2) + '%'),
+      slide,
+      moodScore,
     }
   },
   components: {
