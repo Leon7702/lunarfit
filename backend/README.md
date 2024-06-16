@@ -65,3 +65,14 @@ Tests need access to the database server (to create a test database), so the eas
 ``` sh
 docker compose exec backend pytest
 ```
+
+The tests use [pytest-xdist](https://pytest-xdist.readthedocs.io/en/stable/) to run tests in parallel.
+Use `-n` to specify the number of threads. By default the number of logical cores is used, set in the projects toml.
+```
+docker compose exec backend pytest -n logical
+```
+
+[Reusing the test database](https://pytest-django.readthedocs.io/en/latest/database.html#reuse-db-reuse-the-testing-database-between-test-runs) can increase the startup time for subsequent test runs.
+Set this behavior with `--reuse-db`, but be aware that it might be necessary to recreate the database with `--create-db`.
+
+The biggest performance bottleneck are the database transactions. When writing tests make sure to limit these to the minimum necessary.
