@@ -45,7 +45,8 @@
                   <div class="q-pa-md">
                     <p>Mood score today:</p>
                     <div class="q-gutter-y-md column justify-center items-center">
-                      <q-rating v-model="moodScore" size="2em" :max="6" color="primary" icon="rectangle" readonly />
+                      <q-rating v-model="moodScore" size="2em" :max="6" color="grey"
+                      :color-selected="ratingColors" icon="rectangle" readonly />
                     </div>
                   </div>
 
@@ -140,6 +141,7 @@ export default {
 
       slide,
       moodScore,
+      ratingColors: ['teal-2', 'teal-3', 'teal-4', 'teal-5', 'teal-6', 'teal-7']
     }
   },
   components: {
