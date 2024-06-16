@@ -66,35 +66,45 @@
               <div class="column no-wrap flex-center">
                 <div class="text-h6">Belastung</div>
                 <div class="q-mt-md text-center">
-                <TrsSunburst />
-                <q-card flat bordered class="my-card">
-                  <q-card-section>
-                    {{ burdentext }}
-                  </q-card-section>
-                </q-card>
+                  <TrsSunburst />
+                  <q-card flat bordered class="my-card">
+                    <q-card-section>
+                      {{ burdentext }}
+                    </q-card-section>
+                  </q-card>
 
-                <div class="q-pa-md">
-                  <p>Belastung Score heute:</p>
-                  <div class="q-gutter-y-md column justify-center items-center">
-                    <q-rating v-model="strainScore" size="2em" :max="6" color="grey" :color-selected="ratingColors"
-                      icon="rectangle" readonly />
+                  <div class="q-pa-md">
+                    <p>Belastung Score heute:</p>
+                    <div class="q-gutter-y-md column justify-center items-center">
+                      <q-rating v-model="strainScore" size="2em" :max="6" color="grey" :color-selected="ratingColors"
+                        icon="rectangle" readonly />
+                    </div>
                   </div>
                 </div>
               </div>
-            </div>
             </q-scroll-area>
           </q-carousel-slide>
 
           <q-carousel-slide name="layers" class="column no-wrap flex-center">
             <q-scroll-area class="fit">
               <div class="column no-wrap flex-center">
-                <div class="text-h6">Beschwerden</div>
+                <div class="text-h6">Beschwerdefreiheit</div>
                 <TrsSunburst />
-                <q-card flat bordered class="my-card">
-                  <q-card-section>
-                    {{ lorem }}
-                  </q-card-section>
-                </q-card>
+                <div class="q-mt-md text-center">
+                  <q-card flat bordered class="my-card">
+                    <q-card-section>
+                      {{ lorem }}
+                    </q-card-section>
+                  </q-card>
+
+                  <div class="q-pa-md">
+                    <p>Beschwerdefreiheit Score heute:</p>
+                    <div class="q-gutter-y-md column justify-center items-center">
+                      <q-rating v-model="freeScore" size="2em" :max="6" color="grey" :color-selected="ratingColors"
+                        icon="rectangle" readonly />
+                    </div>
+                  </div>
+                </div>
               </div>
             </q-scroll-area>
           </q-carousel-slide>
@@ -129,6 +139,7 @@ export default {
     const slide = ref('training');
     const moodScore = ref(0);
     const strainScore = ref(0);
+    const freeScore = ref(0);
 
     const fetchData = async () => {
       try {
@@ -136,6 +147,7 @@ export default {
         const trsdata = response.data;
         moodScore.value = trsdata.mood;
         strainScore.value = trsdata.strain;
+        freeScore.value = trsdata.free;
       } catch (error) {
         console.error('Failed to fetch data:', error);
       }
@@ -154,6 +166,7 @@ export default {
       slide,
       moodScore,
       strainScore,
+      freeScore,
       ratingColors: ['teal-2', 'teal-3', 'teal-4', 'teal-5', 'teal-6', 'teal-7']
     }
   },
