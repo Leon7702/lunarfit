@@ -43,21 +43,21 @@
                     </q-card-section>
                   </q-card>
                   <div class="q-pa-md">
-                    <p>Mood score today:</p>
+                    <p>Stimmung Score heute:</p>
                     <div class="q-gutter-y-md column justify-center items-center">
-                      <q-rating v-model="moodScore" size="2em" :max="6" color="grey"
-                      :color-selected="ratingColors" icon="rectangle" readonly />
+                      <q-rating v-model="moodScore" size="2em" :max="6" color="grey" :color-selected="ratingColors"
+                        icon="rectangle" readonly />
                     </div>
                   </div>
 
-                      <p>Verlauf</p>
-                      <q-card class="my-card border-black">
-                        <q-card-section>
-                          <p>Diagram</p>
-                        </q-card-section>
-                      </q-card>
-                    </div>
-                  </div>
+                  <p>Verlauf</p>
+                  <q-card class="my-card border-black">
+                    <q-card-section>
+                      <p>Diagram</p>
+                    </q-card-section>
+                  </q-card>
+                </div>
+              </div>
             </q-scroll-area>
           </q-carousel-slide>
 
@@ -65,13 +65,23 @@
             <q-scroll-area class="fit">
               <div class="column no-wrap flex-center">
                 <div class="text-h6">Belastung</div>
+                <div class="q-mt-md text-center">
                 <TrsSunburst />
                 <q-card flat bordered class="my-card">
                   <q-card-section>
                     {{ burdentext }}
                   </q-card-section>
                 </q-card>
+
+                <div class="q-pa-md">
+                  <p>Belastung Score heute:</p>
+                  <div class="q-gutter-y-md column justify-center items-center">
+                    <q-rating v-model="strainScore" size="2em" :max="6" color="grey" :color-selected="ratingColors"
+                      icon="rectangle" readonly />
+                  </div>
+                </div>
               </div>
+            </div>
             </q-scroll-area>
           </q-carousel-slide>
 
@@ -117,13 +127,15 @@ import TrsSunburst from 'components/TrsSunburst.vue';
 export default {
   setup() {
     const slide = ref('training');
-    const moodScore = ref(0);  // Reactive variable for mood score
+    const moodScore = ref(0);
+    const strainScore = ref(0);
 
     const fetchData = async () => {
       try {
         const response = await axios.get('http://localhost:8000/trsdata');
         const trsdata = response.data;
-        moodScore.value = trsdata.mood;  // Update mood score from fetched data
+        moodScore.value = trsdata.mood;
+        strainScore.value = trsdata.strain;
       } catch (error) {
         console.error('Failed to fetch data:', error);
       }
@@ -141,6 +153,7 @@ export default {
 
       slide,
       moodScore,
+      strainScore,
       ratingColors: ['teal-2', 'teal-3', 'teal-4', 'teal-5', 'teal-6', 'teal-7']
     }
   },
