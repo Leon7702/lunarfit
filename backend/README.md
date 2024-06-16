@@ -57,3 +57,11 @@ Don't forget to [activate the python virtual environment](https://packaging.pyth
 You can create a superuser to browse the API webinterface using `python3 manage.py createsuperuser`.
 
 You can start the dev server using the Dockerfile, or the top-level docker compose backend instead.
+
+## Tests
+
+Tests need access to the database server (to create a test database), so the easiest way is to run them inside the backend container:
+
+``` sh
+docker compose exec backend pytest
+```

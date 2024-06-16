@@ -15,6 +15,12 @@ psycopg = {extras = ["binary"], version = "^3.1.19"}
 djangorestframework-simplejwt = {extras = ["crypto"], version = "^5.3.1"}
 django-cors-headers = "^4.3.1"
 drf-spectacular = {extras = ["sidecar"], version = "^0.27.2"}
+pytest-django = "^4.8.0"
+pytest-sugar = "^1.0.0"
+
+[tool.pytest.ini_options]
+DJANGO_SETTINGS_MODULE = "lunarfit.settings"
+python_files = "tests.py test_*.py *_tests.py"
 
 [tool.poetry.group.dev.dependencies]
 django-filter = "^24.2"
