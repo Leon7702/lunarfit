@@ -22,11 +22,6 @@ const routes = [
     component: () => import('pages/onboarding/OnboardingStep2.vue')
   },
   {
-    path: '/onboardingStep3',
-    name: 'OnboardingStep3',
-    component: () => import('pages/onboarding/OnboardingStep3.vue')
-  },
-  {
     path: '/onboardingStep4',
     name: 'OnboardingStep4',
     component: () => import('pages/onboarding/OnboardingStep4.vue')

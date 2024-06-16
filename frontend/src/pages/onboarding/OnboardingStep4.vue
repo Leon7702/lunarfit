@@ -2,9 +2,9 @@
     <div class="welcome-container">
       <div class="content">
         <BackButtonText />
-        <img src="/src/assets/Step4.svg" alt="Person form" class="person-image" />
+        <img src="/src/assets/Step3.svg" alt="Person form" class="person-image" />
         <h2 class="form-step">
-          <span class="form-step-highlight">Schritt 4:</span> Zyklus
+          <span class="form-step-highlight">Schritt 3:</span> Zyklus
         </h2>
         <div class="form-group">
           <p>Verhütest du hormonell?</p>

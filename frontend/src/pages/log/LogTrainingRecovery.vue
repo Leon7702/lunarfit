@@ -6,7 +6,7 @@
       </div>
       <div class="linie"></div>
       <div class="description">
-        Wie bewertest du deinen allgemeinen Erholungszustand? 
+        Wie bewertest du deinen <br>allgemeinen Erholungszustand? 
       </div>
       <div class="slider">
         <SliderWithLabelVertical topText="Erholt" bottomText="Nicht erholt" />

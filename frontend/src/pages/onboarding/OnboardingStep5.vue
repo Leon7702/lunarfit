@@ -1,53 +1,60 @@
 <template>
-    <div class="welcome-container">
-      <div class="content">
-        <BackButtonText />
-        <img src="/src/assets/Step5.svg" alt="Person form" class="person-image" />
-        <h2 class="form-step">
-          <span class="form-step-highlight">Schritt 5:</span> Sportverhalten
-        </h2>
-        <div class="form-group">
-          <p>Treibst du regelmäßig Sport? (mind. 150 min/Woche)</p>
-          <RadioToggle/>
-        </div>
-        <div class="form-group">
-          <p>Wie viele Trainingseinheiten pro Woche hast du?</p>
-          <DropDownSingleSelect :options="contraceptionOptions"/>
-        </div>
+  <div class="welcome-container">
+    <div class="content">
+      <BackButtonText />
+      <img src="/src/assets/Step4.svg" alt="Person form" class="person-image" />
+      <h2 class="form-step">
+        <span class="form-step-highlight">Schritt 4:</span> Sportverhalten
+      </h2>
+      <div class="form-group">
+        <p>Treibst du regelmäßig Sport? (mind. 150 min/Woche)</p>
+        <RadioToggle/>
       </div>
-      <div class="button-container">
-        <StandardButton label="Weiter" @click="navigateToNextStep" />
+      <div class="form-group">
+        <p>Wie viele Trainingseinheiten pro Woche hast du hattest du im letzten Monat?</p>
+        <DropDownSingleSelect :options="contraceptionOptions"/>
+      </div>
+      <div class="form-group">
+        <p>Wie lange dauerte eine Trainingseinheit?</p>
+        <DropDownSingleSelect :options="trainingDurationOptions"/>
       </div>
     </div>
+    <div class="button-container">
+      <StandardButton label="Weiter" @click="navigateToNextStep" />
+    </div>
+  </div>
+  
   </template>
   
   <script>
   import StandardButton from 'components/StandardButton.vue';
-  import BackButtonText from 'components/BackButtonText.vue';
-  import RadioToggle from 'components/RadioToggle.vue';
-  import DropDownSingleSelect from 'components/DropDownSingleSelect.vue';
-  
-  export default {
-    components: {
-      StandardButton,
-      BackButtonText,
-      RadioToggle,
-      DropDownSingleSelect
-    },
-    data() {
-      return {
-        contraceptionOptions: ['2 oder weniger', '3 bis 4', '5 oder mehr']
-      }
-    },
-    methods: {
-      goBack() {
-        window.history.back();
-      },
-      navigateToNextStep() {
-        this.$router.push({ name: 'OnboardingStep6' });
-      }
+import BackButtonText from 'components/BackButtonText.vue';
+import RadioToggle from 'components/RadioToggle.vue';
+import DropDownSingleSelect from 'components/DropDownSingleSelect.vue';
+
+export default {
+  components: {
+    StandardButton,
+    BackButtonText,
+    RadioToggle,
+    DropDownSingleSelect
+  },
+  data() {
+    return {
+      contraceptionOptions: ['2 oder weniger', '3 bis 4', '5 oder mehr'],
+      trainingDurationOptions: ['60 Minuten oder weniger', '60 bis 120 Minuten', '120 Minuten oder mehr']
     }
-  };
+  },
+  methods: {
+    goBack() {
+      window.history.back();
+    },
+    navigateToNextStep() {
+      this.$router.push({ name: 'OnboardingStep6' });
+    }
+  }
+};
+
   </script>
   
   <style scoped>
