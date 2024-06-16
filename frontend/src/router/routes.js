@@ -144,22 +144,22 @@ const routes = [
   {
     path: '/settings',
     name: 'Settings',
-    component: () => import('src/pages/settings/SettingsPage.vue')
+    component: () => import('pages/settings/SettingsPage.vue')
   },
   {
     path: '/profile',
     name: 'Profile',
-    component: () => import('src/pages/settings/ProfilePage.vue')
+    component: () => import('pages/settings/ProfilePage.vue')
   },
   {
     path: '/account',
     name: 'Account',
-    component: () => import('src/pages/settings/AccountPage.vue')
+    component: () => import('pages/settings/AccountPage.vue')
   },
   {
     path: '/language',
     name: 'Language',
-    component: () => import('src/pages/settings/LanguagePage.vue')
+    component: () => import('pages/settings/LanguagePage.vue')
   },
 
   // Always leave this as last one,
