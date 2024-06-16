@@ -12,9 +12,9 @@ class RegisterTest(APITestCase):
 
         response = self.client.post(url, data)
 
-        self.assertEqual(response.status_code, status.HTTP_201_CREATED)
-        self.assertEqual(CustomUser.objects.count(), 1)
-        self.assertEqual(CustomUser.objects.get().email, "user@example.com")
+        assert response.status_code == status.HTTP_201_CREATED
+        assert CustomUser.objects.count() == 1
+        assert CustomUser.objects.get().email == "user@example.com"
 
     def test_register_fail_duplicate_email(self):
 
@@ -23,7 +23,7 @@ class RegisterTest(APITestCase):
 
         self.client.post(url, data)
         response = self.client.post(url, data)
-        self.assertEqual(response.status_code, status.HTTP_400_BAD_REQUEST)
+        assert response.status_code == status.HTTP_400_BAD_REQUEST
 
 
 class UserPermissionsTest(APITestCase):
@@ -44,19 +44,28 @@ class UserPermissionsTest(APITestCase):
     def test_admin_can_list_users(self):
         self.client.force_authenticate(user=self.superuser)
         response = self.client.get("/api/users/")
-        self.assertEqual(response.status_code, status.HTTP_200_OK)
+        assert response.status_code == status.HTTP_200_OK
+
+    def test_admin_can_delete_user(self):
+        id = self.user2.id
+        self.client.force_authenticate(user=self.superuser)
+        assert CustomUser.objects.count() == 3
+        self.client.delete(f"/api/users/{id}")
+        assert CustomUser.objects.count() == 2
+        response = self.client.get(f"/api/users/{id}")
+        assert response.status_code == status.HTTP_404_NOT_FOUND
 
     def test_user_cannot_list_users(self):
         self.client.force_authenticate(user=self.user1)
         response = self.client.get("/api/users/")
-        self.assertEqual(response.status_code, status.HTTP_403_FORBIDDEN)
+        assert response.status_code == status.HTTP_403_FORBIDDEN
 
     def test_user_can_access_own_data(self):
         self.client.force_authenticate(user=self.user2)
         response = self.client.get(f"/api/users/{self.user2.id}")
-        self.assertEqual(response.status_code, status.HTTP_200_OK)
+        assert response.status_code == status.HTTP_200_OK
 
     def test_user_cannot_access_other_user_data(self):
         self.client.force_authenticate(user=self.user1)
         response = self.client.get(f"/api/users/{self.user2.id}")
-        self.assertEqual(response.status_code, status.HTTP_403_FORBIDDEN)
+        assert response.status_code == status.HTTP_403_FORBIDDEN
