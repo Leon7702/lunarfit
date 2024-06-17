@@ -1,6 +1,6 @@
 <template>
   <div class="q-pa-md">
-    <div class="q-gutter-y-md column" style="max-width: 324px">
+    <div class="q-gutter-y-md column" >
       <q-input
         :type="inputType"
         :pattern="pattern"

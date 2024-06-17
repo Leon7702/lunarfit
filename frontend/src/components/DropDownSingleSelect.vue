@@ -27,10 +27,10 @@
   
   <style scoped>
   .dropdown-container {
-    width: 100%; /* Ensure the component takes the full width of its parent */
+    width: 100%; 
   }
   .q-select {
-    width: 100%; /* Ensure the select input takes the full width of its parent */
+    width: 100%;
   }
   .q-pa-md {
     padding-top: 5px;

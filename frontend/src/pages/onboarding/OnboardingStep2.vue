@@ -7,7 +7,7 @@
           <span class="form-step-highlight">Schritt 2:</span> Zyklus
         </h2>
         <div class="form-group">
-          <p>Wann war deine letzte Menstruation?</p>
+          <p>An welchem Tag setzte deine letzte Menstruation ein?</p>
           <FormFieldText id="birthdate" label="" iconName="" inputType="date" />
         </div>
         <div class="form-group">
@@ -37,7 +37,7 @@
         window.history.back();
       },
       navigateToNextStep() {
-        this.$router.push({ name: 'OnboardingStep3' });
+        this.$router.push({ name: 'OnboardingStep4' });
       }
     }
   };
@@ -54,7 +54,7 @@
   }
   
   .content {
-    max-width: 324px;
+    width: 90%;
     flex: 1; 
     overflow-y: auto; 
   }
@@ -62,6 +62,7 @@
   .person-image {
     margin-bottom: 20px;
     margin-top: 10px;
+    width: 100%;
   }
   
   .form-step {
@@ -92,5 +93,13 @@
     display: flex;
     justify-content: center;
     left: 0;
+  }
+
+  @media only screen and (min-width: 500px) {
+    .welcome-container {
+      max-width: 500px;
+      margin: auto;
+      margin-top: 5%;
+    }
   }
   </style>

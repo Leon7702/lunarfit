@@ -22,11 +22,6 @@ const routes = [
     component: () => import('pages/onboarding/OnboardingStep2.vue')
   },
   {
-    path: '/onboardingStep3',
-    name: 'OnboardingStep3',
-    component: () => import('pages/onboarding/OnboardingStep3.vue')
-  },
-  {
     path: '/onboardingStep4',
     name: 'OnboardingStep4',
     component: () => import('pages/onboarding/OnboardingStep4.vue')
@@ -96,6 +91,11 @@ const routes = [
     name: 'LogCycleHome',
     component: () => import('pages/log/LogCycleHome.vue')
   },
+  { 
+    path: '/log-cycle-list', 
+    name: 'LogCycleHomeList', 
+    component: () => import('pages/log/LogCycleHomeList.vue') 
+  },
   {
     path: '/log-cycle-mens',
     name: 'LogCycleMens',
@@ -140,6 +140,36 @@ const routes = [
     path: '/log-cycle-pregnancy-test',
     name: 'LogCyclePregnancyTest',
     component: () => import('pages/log/LogCyclePregnancyTest.vue')
+  },
+  {
+    path: '/log-training-complaints',
+    name: 'LogTrainingComplaints',
+    component: () => import('pages/log/LogTrainingComplaints.vue')
+  },
+  {
+    path: '/log-training-mood',
+    name: 'LogTrainingMood',
+    component: () => import('pages/log/LogTrainingMood.vue')
+  },
+  {
+    path: '/log-training-recovery',
+    name: 'LogTrainingRecovery',
+    component: () => import('pages/log/LogTrainingRecovery.vue')
+  },
+  {
+    path: '/log-training-strain',
+    name: 'LogTrainingStrainPre',
+    component: () => import('pages/log/LogTrainingStrainPre.vue')
+  },
+  {
+    path: '/log-training-strain-2',
+    name: 'LogTrainingStrain',
+    component: () => import('pages/log/LogTrainingStrain.vue')
+  },
+  {
+    path: '/log-notes',
+    name: 'LogNotes',
+    component: () => import('pages/log/LogNotes.vue')
   },
 
   // Always leave this as last one,

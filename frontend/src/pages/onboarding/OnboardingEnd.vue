@@ -37,8 +37,7 @@
     display: flex;
     flex-direction: column;
     align-items: center; 
-    padding-left: 20px;
-    padding-right: 20px;
+    width: 90%;
     height: 100vh; 
     overflow: auto;
     margin: auto;
@@ -75,10 +74,11 @@
     left: 0;
   }
   
-  @media only screen and (min-width: 600px) {
+  @media only screen and (min-width: 500px) {
     .welcome-container {
       max-width: 500px;
       margin: auto;
+      margin-top: 5%;
     }
   }
   </style>

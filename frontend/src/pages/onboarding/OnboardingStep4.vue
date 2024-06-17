@@ -2,9 +2,9 @@
     <div class="welcome-container">
       <div class="content">
         <BackButtonText />
-        <img src="/src/assets/Step4.svg" alt="Person form" class="person-image" />
+        <img src="/src/assets/Step3.svg" alt="Person form" class="person-image" />
         <h2 class="form-step">
-          <span class="form-step-highlight">Schritt 4:</span> Zyklus
+          <span class="form-step-highlight">Schritt 3:</span> Zyklus
         </h2>
         <div class="form-group">
           <p>Verhütest du hormonell?</p>
@@ -62,7 +62,7 @@
   }
   
   .content {
-    max-width: 324px;
+    width: 90%;
     flex: 1;
     overflow-y: auto;
   }
@@ -70,6 +70,7 @@
   .person-image {
     margin-bottom: 20px;
     margin-top: 10px;
+    width: 100%;
   }
   
   .form-step {
@@ -100,5 +101,13 @@
     display: flex;
     justify-content: center;
     left: 0;
+  }
+
+  @media only screen and (min-width: 500px) {
+    .welcome-container {
+      max-width: 500px;
+      margin: auto;
+      margin-top: 5%;
+    }
   }
   </style>

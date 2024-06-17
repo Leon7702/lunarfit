@@ -2,43 +2,33 @@
     <div class="welcome-container">
       <div class="header">
         <q-btn flat dense round icon="arrow_back" @click="goBack" />
-        <div class="title">Menstruation</div>
+        <div class="title">Notizen</div>
       </div>
       <div class="linie"></div>
-      <div class="button-container">
-        <StandardButton :label="buttonLabel" @click="toggleMenstruationStatus" />
+      <div class="description">
+        Füge eine Notiz hinzu:
       </div>
-      <div class="welcome-text">
-        <p class="description">{{ descriptionText }}</p>
+      <div class="textarea">
+        <InputTextArea v-model="notes" />
       </div>
     </div>
   </template>
   
   <script>
-  import StandardButton from 'components/StandardButton.vue';
+  import InputTextArea from 'components/InputTextArea.vue';
   
   export default {
     components: {
-      StandardButton
+      InputTextArea
     },
     data() {
       return {
-        buttonLabel: "+  Menstruation",
-        descriptionText: "Tippe hier, wenn deine Menstruation heute begonnen hat."
+        notes: ''
       };
     },
     methods: {
       goBack() {
         window.history.back();
-      },
-      toggleMenstruationStatus() {
-        if (this.buttonLabel === "+  Menstruation") {
-          this.buttonLabel = "Menstruation aktiv";
-          this.descriptionText = "Tippe hier, wenn deine Menstruation vorbei ist.";
-        } else {
-          this.buttonLabel = "+  Menstruation";
-          this.descriptionText = "Tippe hier, wenn deine Menstruation heute begonnen hat.";
-        }
       }
     }
   };
@@ -48,7 +38,7 @@
   .welcome-container {
     display: flex;
     flex-direction: column;
-    align-items: flex-start; 
+    align-items: flex-start;
     width: 90%;
     height: 100vh;
     overflow: auto;
@@ -80,14 +70,15 @@
   }
   
   .description {
-    font: 12px/22px 'Inter', sans-serif;
-    margin-top: 5px;
-  }
-  
-  .button-container {
-    margin-top: 20px;
-    margin-left: 0; 
+    text-align: left;
     width: 100%;
+    margin-top: 30px;
+    font-size: 16px;
+    font-weight: 500;
+    margin-bottom: 15px;
+  }
+   .textarea {
+    width:100%;
   }
   </style>
   
