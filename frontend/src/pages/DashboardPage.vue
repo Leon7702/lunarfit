@@ -22,7 +22,40 @@
         <q-img class="top-left-png" src="/src/assets/TrainingIcon.png" />
         <q-card-section class="card-content q-py-none">
           <div class="text-h6">TRAINING</div>
+          <div style="position: relative;">
           <TrsSunburst />
+          <!-- Add your SVG paths and text labels here -->
+          <svg style="position: absolute; top: -1; left: 10;" width="250" height="250" viewBox="0 0 57 57">
+              <!-- Paths for the text labels -->
+              <path id="path1" d="M 30,30 m -26,0 a 26,26 0 1,1 52,0 a 26,26 0 1,1 -52,0" fill="transparent" />
+              <path id="path2" d="M 30,30 m -26,0 a 26,26 0 1,0 52,0 a 26,26 0 1,0 -52,0" fill="transparent" />
+
+              <!-- Text labels for the segments -->
+              <text fill="#000" font-size="3">
+                <textPath href="#path1" startOffset="35%">
+                  Belastung
+                </textPath>
+              </text>
+
+              <text fill="#000" font-size="3">
+                <textPath href="#path2" startOffset="10%">
+                  Erholung
+                </textPath>
+              </text>
+
+              <text fill="#000" font-size="3">
+                <textPath href="#path1" startOffset="8%">
+                  Stimmung
+                </textPath>
+              </text>
+
+              <text fill="#000" font-size="3">
+                <textPath href="#path2" startOffset="32%">
+                  Beschwerdefreiheit
+                </textPath>
+              </text>
+            </svg>
+        </div>
           <div class="text-p">
             Erfahre jetzt mehr über dein Training
             <img class="aligned-svg" src="/src/assets/ForwardArrow.svg" alt="Weiter" />
