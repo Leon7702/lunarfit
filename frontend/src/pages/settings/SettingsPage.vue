@@ -11,25 +11,25 @@
       <q-item-label header class="q-pt-xl q-pb-xs">PROFIL</q-item-label>
       <q-item clickable v-ripple class="q-mb-xs grey-background" @click="navigateToProfile">
         <q-item-section side>
-            <img src="../../assets/ProfileIcon.svg">
+            <img src="/src/assets/ProfileIcon.svg">
         </q-item-section>
         <q-item-section>
           <q-item-label>Persönliche Informationen</q-item-label>
         </q-item-section>
         <q-item-section side>
-            <img src="../../assets/arrow-right.svg">
+            <img src="/src/assets/arrow-right.svg">
         </q-item-section>
       </q-item>
 
       <q-item clickable v-ripple class="grey-background" @click="navigateToAccount">
         <q-item-section side>
-            <img src="../../assets/SettingsIcon.svg">
+            <img src="/src/assets/SettingsIcon.svg">
         </q-item-section>
         <q-item-section>
           <q-item-label>Account Einstellungen</q-item-label>
         </q-item-section>
         <q-item-section side>
-            <img src="../../assets/arrow-right.svg">
+            <img src="/src/assets/arrow-right.svg">
         </q-item-section>
       </q-item>
     </q-list>
@@ -39,7 +39,7 @@
 
       <q-item tag="label" v-ripple class="grey-background2">
         <q-item-section side>
-            <img src="../../assets/NotificationIcon.svg">
+            <img src="/src/assets/NotificationIcon.svg">
         </q-item-section>
         <q-item-section>
           <q-item-label>Mitteilungen</q-item-label>
@@ -54,25 +54,25 @@
       <q-item-label header class="q-pt-lg q-pb-xs">EINSTELLUNGEN</q-item-label>
       <q-item clickable v-ripple class="q-mb-xs grey-background" @click="navigateToLanguage">
         <q-item-section side>
-            <img src="../../assets/GlobeIcon.svg">
+            <img src="/src/assets/GlobeIcon.svg">
         </q-item-section>
         <q-item-section>
           <q-item-label>Sprache</q-item-label>
         </q-item-section>
         <q-item-section side>
-            <img src="../../assets/arrow-right.svg">
+            <img src="/src/assets/arrow-right.svg">
         </q-item-section>
       </q-item>
 
       <q-item clickable v-ripple class="grey-background">
         <q-item-section side>
-            <img src="../../assets/LogoutIcon.svg">
+            <img src="/src/assets/LogoutIcon.svg">
         </q-item-section>
         <q-item-section>
           <q-item-label>Logout</q-item-label>
         </q-item-section>
         <q-item-section side>
-            <img src="../../assets/arrow-right.svg">
+            <img src="/src/assets/arrow-right.svg">
         </q-item-section>
       </q-item>
     </q-list>
