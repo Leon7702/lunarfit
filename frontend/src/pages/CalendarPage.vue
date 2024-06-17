@@ -13,7 +13,7 @@
       <!-- Button to navigate to the next month -->
       <div class="navButton" @click="nextMonth">
         <img src="/src/assets/arrow-right.svg" alt="Right" class="navButtonImage">
-      </div>    
+      </div>
     </div>
 
     <!-- Calendar table with days of the week and dates -->
@@ -59,7 +59,8 @@
     <div class="day-log-container">
       <div class="day-log-header">
         <div class="current-day">{{ currentDayFormatted }}</div>
-        <q-btn class="log-button" no-caps rounded style="background: #50C1BA; color: white" label="+ Log" padding="xs lg" size="14px">
+        <q-btn class="log-button" no-caps rounded style="background: #50C1BA; color: white" label="+ Log"
+          padding="xs lg" size="14px">
           <template v-slot:default></template>
         </q-btn>
       </div>
@@ -74,7 +75,11 @@
         <router-link to="/r">Mehr erfahren</router-link>
       </div>
       <div class="training-recommendation-text">
-        Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed nonne merninisti licere mihi ista probare, quae sunt a te dicta? Atqui eorum nihil est eius generis, ut sit in fine atque extrerno bonorum. Quae cum dixisset paulumque institisset, Quid est? Duo Reges: constructio interrete. Quae cum essent dicta, discessimus. Quae cum dixisset paulumque institisset, Quid est? Duo Reges: constructio interrete. Quae cum essent dicta, discessimus.
+        Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed nonne merninisti licere mihi ista probare, quae
+        sunt a
+        te dicta? Atqui eorum nihil est eius generis, ut sit in fine atque extrerno bonorum. Quae cum dixisset paulumque
+        institisset, Quid est? Duo Reges: constructio interrete. Quae cum essent dicta, discessimus. Quae cum dixisset
+        paulumque institisset, Quid est? Duo Reges: constructio interrete. Quae cum essent dicta, discessimus.
       </div>
       <div class="training-recommendation-list"></div>
     </div>
@@ -239,15 +244,19 @@ table {
   table-layout: fixed;
   margin: 0 auto;
   margin-top: 20px;
-  border-collapse: collapse; /* Remove gaps between cells */
+  border-collapse: collapse;
+  /* Remove gaps between cells */
 }
 
-th, td {
-  width: 14.2857%; /* 100% / 7 days */
+th,
+td {
+  width: 14.2857%;
+  /* 100% / 7 days */
   text-align: center;
   padding: 10px;
   padding-bottom: 10px;
-  box-sizing: border-box; /* Ensure padding and border are included in the width */
+  box-sizing: border-box;
+  /* Ensure padding and border are included in the width */
 }
 
 th {
@@ -255,16 +264,16 @@ th {
 }
 
 a {
-    color: #50c1ba;
-    font-weight: bold;
-    font-size: 14px;
-    text-decoration: none;
+  color: #50c1ba;
+  font-weight: bold;
+  font-size: 14px;
+  text-decoration: none;
 }
 
 p {
-    font-size: 14px;
-    margin: 20px;
-    padding-top: 10px;
+  font-size: 14px;
+  margin: 20px;
+  padding-top: 10px;
 }
 
 .header {
@@ -273,8 +282,10 @@ p {
   align-items: center;
   padding: 10px;
   padding-top: 46px;
-  width: 80%; /* Match the width of the table */
-  margin: 0 auto; /* Center the header */
+  width: 80%;
+  /* Match the width of the table */
+  margin: 0 auto;
+  /* Center the header */
 }
 
 .month-year {
@@ -283,7 +294,8 @@ p {
   font-size: 20px;
   font-style: normal;
   font-weight: 600;
-  line-height: 31px; /* 155% */
+  line-height: 31px;
+  /* 155% */
 }
 
 .navButton {
@@ -295,12 +307,16 @@ p {
   display: flex;
   justify-content: center;
   align-items: center;
-  width: 30px; /* Ensure this matches height */
-  height: 30px; /* Ensure this matches width */
-  line-height: 30px; /* Ensure this matches height */
+  width: 30px;
+  /* Ensure this matches height */
+  height: 30px;
+  /* Ensure this matches width */
+  line-height: 30px;
+  /* Ensure this matches height */
   border-radius: 50%;
   text-align: center;
-  margin: auto; /* Center the circle in the table cell */
+  margin: auto;
+  /* Center the circle in the table cell */
 }
 
 .period {
@@ -314,12 +330,15 @@ p {
 }
 
 .prediction {
-  border: 2px dotted #FF2D55; /* You can change the color as needed */
-  color: #000; /* Set the text color */
+  border: 2px dotted #FF2D55;
+  /* You can change the color as needed */
+  color: #000;
+  /* Set the text color */
 }
 
 .currentDate {
-  border: 2px solid #FF2D55; /* Set border color */
+  border: 2px solid #FF2D55;
+  /* Set border color */
   color: #000;
 }
 
@@ -327,14 +346,18 @@ p {
   display: flex;
   justify-content: center;
   align-items: center;
-  width: 40px; /* Increase this value to make the clickable area larger */
-  height: 40px; /* Increase this value to make the clickable area larger */
+  width: 40px;
+  /* Increase this value to make the clickable area larger */
+  height: 40px;
+  /* Increase this value to make the clickable area larger */
   cursor: pointer;
 }
 
 .navButtonImage {
-  width: 20px; /* Adjust the size of the actual image */
-  height: 20px; /* Adjust the size of the actual image */
+  width: 20px;
+  /* Adjust the size of the actual image */
+  height: 20px;
+  /* Adjust the size of the actual image */
 }
 
 
@@ -348,7 +371,8 @@ p {
 
 .legend {
   display: flex;
-  justify-content: space-evenly; /* Evenly space legend items */
+  justify-content: space-evenly;
+  /* Evenly space legend items */
   margin: 5px 0;
 }
 
@@ -358,21 +382,28 @@ p {
 }
 
 .legend-item .day-circle {
-  width: 15px; /* Smaller width for legend items */
-  height: 15px; /* Smaller height for legend items */
-  line-height: 15px; /* Smaller line-height for legend items */
-  border-radius: 50%; /* Ensure circle shape */
+  width: 15px;
+  /* Smaller width for legend items */
+  height: 15px;
+  /* Smaller height for legend items */
+  line-height: 15px;
+  /* Smaller line-height for legend items */
+  border-radius: 50%;
+  /* Ensure circle shape */
 }
 
 .legend-label {
   margin-left: 5px;
-  font-size: 12px; /* Smaller font size for legend labels */
-  color: #72777A; /* Set text color */
+  font-size: 12px;
+  /* Smaller font size for legend labels */
+  color: #72777A;
+  /* Set text color */
 }
 
 .day-log-container {
   width: 90%;
-  margin: 20px auto; /* Center container with top margin */
+  margin: 20px auto;
+  /* Center container with top margin */
 }
 
 .day-log-header {
@@ -386,7 +417,7 @@ p {
   font-size: 18px;
   font-style: normal;
   font-weight: 600;
-  margin-top: 5px;  
+  margin-top: 5px;
 }
 
 .log-button {
@@ -396,13 +427,16 @@ p {
 .separator {
   margin-top: 10px;
   border: 0;
-  border-top: 1px solid #e0e0e0; /* Light grey color for the line */
-  width: 100%; /* Ensure the separator stretches the full width */
+  border-top: 1px solid #e0e0e0;
+  /* Light grey color for the line */
+  width: 100%;
+  /* Ensure the separator stretches the full width */
 }
 
 .training-recommendation-container {
   width: 90%;
-  margin: 20px auto; /* Center container with top margin */
+  margin: 20px auto;
+  /* Center container with top margin */
 }
 
 .training-recommendation-header {
@@ -413,14 +447,16 @@ p {
   font-size: 16px;
   font-style: normal;
   font-weight: 600;
-  line-height: 21px; /* 150% */
+  line-height: 21px;
+  /* 150% */
 }
 
 .training-recommendation-text {
   font-size: 14px;
   font-style: normal;
   font-weight: 400;
-  line-height: 18px; /* 150% */
+  line-height: 18px;
+  /* 150% */
   padding-top: 18px;
 }
 </style>
