@@ -9,9 +9,9 @@
           :stroke-width="segment.strokeWidth" :stroke-dasharray="segment.dasharray"
           :stroke-dashoffset="segment.dashoffset" :style="{ opacity: segment.opacity }"></circle>
         <!-- Text element for displaying the score in the middle of the donut chart -->
-        <text x="21" y="21" text-anchor="middle" dominant-baseline="middle" font-size="2.5"
-          transform="rotate(90, 21, 21)">
-          {{ Math.round(score) }} %
+        <text x="21" y="21" text-anchor="middle" dominant-baseline="middle" font-size="2.2"
+          font-weight="bold" transform="rotate(90, 21, 21)">
+          {{ Math.round(score) }}%
         </text>
       </svg>
     </div>
@@ -30,7 +30,7 @@ export default {
   data() {
     return {
       // TODO: Score should be calculated based on the fetched data!!
-      score: 76,
+      score: 0,
       segments: [],
 
       // FIXME: this data needs to be fetched from the actual database, should get this from assessment
@@ -80,8 +80,9 @@ export default {
       };
 
       // Array of radius levels for the segments of the donut chart
-      const radiusLevels = [4.456338407, 6.047887837, 8.116902098, 10.66338119, 13.68732511, 17.18873385];
+      const radiusLevels = [3.183098862, 4.774648293, 6.843662553, 9.390141642, 12.41408556, 15.91549431];
       // 14, 19, 25.5, 33.5, 43, 54 divided by pi
+      // new: 10, 15, 21.5, 29.5, 39, 50 divided by pi
 
       // const multipliedByPi = radiusLevels.map(value => value * Math.PI);
       // console.log(multipliedByPi);
@@ -91,12 +92,12 @@ export default {
 
       // Array of dasharray objects for the segments of the donut chart
       const dasharrays = [
-        { dash: 7, gap: 21 },
-        { dash: 9.5, gap: 28.5 },
-        { dash: 12.75, gap: 38.25 },
-        { dash: 16.75, gap: 50.25 },
-        { dash: 21.5, gap: 64.5 },
-        { dash: 27, gap: 81 }
+        { dash: 5, gap: 15 },
+        { dash: 7.5, gap: 22.5 },
+        { dash: 10.75, gap: 32.25 },
+        { dash: 14.75, gap: 44.25 },
+        { dash: 19.5, gap: 58.5 },
+        { dash: 25, gap: 75 }
       ];
 
       // Array to hold the segment objects

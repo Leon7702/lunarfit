@@ -25,31 +25,31 @@
           <div style="position: relative;">
           <TrsSunburst />
           <!-- Add your SVG paths and text labels here -->
-          <svg style="position: absolute; top: -12; left: -2;" width="270" height="270" viewBox="0 0 57 57">
+          <svg style="position: absolute; top: -1; left: 10;" width="250" height="250" viewBox="0 0 57 57">
               <!-- Paths for the text labels -->
               <path id="path1" d="M 30,30 m -26,0 a 26,26 0 1,1 52,0 a 26,26 0 1,1 -52,0" fill="transparent" />
               <path id="path2" d="M 30,30 m -26,0 a 26,26 0 1,0 52,0 a 26,26 0 1,0 -52,0" fill="transparent" />
 
               <!-- Text labels for the segments -->
-              <text fill="#000" font-size="2.5">
+              <text fill="#000" font-size="3">
                 <textPath href="#path1" startOffset="35%">
                   Belastung
                 </textPath>
               </text>
 
-              <text fill="#000" font-size="2.5">
+              <text fill="#000" font-size="3">
                 <textPath href="#path2" startOffset="10%">
                   Erholung
                 </textPath>
               </text>
 
-              <text fill="#000" font-size="2.5">
+              <text fill="#000" font-size="3">
                 <textPath href="#path1" startOffset="8%">
                   Stimmung
                 </textPath>
               </text>
 
-              <text fill="#000" font-size="2.5">
+              <text fill="#000" font-size="3">
                 <textPath href="#path2" startOffset="32%">
                   Beschwerdefreiheit
                 </textPath>

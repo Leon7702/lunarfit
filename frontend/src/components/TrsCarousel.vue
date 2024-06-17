@@ -64,8 +64,8 @@
             <q-scroll-area class="fit">
               <div class="column no-wrap flex-center">
                 <div class="text-h6">Belastung</div>
-                <div class="q-mt-md text-center">
                   <TrsSunburst />
+                  <div class="q-mt-md text-center">
                   <q-card flat bordered class="my-card">
                     <q-card-section>
                       {{ burdentext }}
