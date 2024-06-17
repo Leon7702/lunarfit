@@ -5,12 +5,29 @@
       <div class="title">Sprache</div>
     </div>
     <div class="linie"></div>
+    <div class="q-pa-md">
+    <q-option-group
+      :options="options"
+      type="radio"
+      v-model="group"
+    />
+  </div>
   </div>
 </template>
 
 <script>
-
+import { ref } from 'vue';
   export default {
+    setup () {
+      return {
+      group: ref(null),
+
+      options: [
+        { label: 'Deutsch', value: 'de', color: 'primary'},
+        { label: 'Englisch', value: 'en', color: 'primary' },
+      ]
+    }
+  },
     components: {
 
     },
@@ -31,11 +48,6 @@
   .welcome-container {
     display: flex;
     flex-direction: column;
-    align-items: center;
-    padding-left: 20px;
-    padding-right: 20px;
-    height: 100vh;
-    overflow: auto;
     margin: auto;
   }
 
