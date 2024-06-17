@@ -16,6 +16,7 @@ export const useAuthStore = defineStore('auth', {
       const response = await axios.post('http://localhost:8000/api/users/token/refresh/', {
         refresh: this.refreshToken,
       });
+      this.setRefreshToken(response.data.refresh);
       this.setAccessToken(response.data.access);
       return response.data.access;
     },
