@@ -65,7 +65,7 @@ const routes = [
     path: '/mood',
     component: () => import('pages/MoodPage.vue')
   },
-  
+
   {
     path: '/menstruation',
     name: 'MenstruationInfo',
@@ -91,10 +91,10 @@ const routes = [
     name: 'LogCycleHome',
     component: () => import('pages/log/LogCycleHome.vue')
   },
-  { 
-    path: '/log-cycle-list', 
-    name: 'LogCycleHomeList', 
-    component: () => import('pages/log/LogCycleHomeList.vue') 
+  {
+    path: '/log-cycle-list',
+    name: 'LogCycleHomeList',
+    component: () => import('pages/log/LogCycleHomeList.vue')
   },
   {
     path: '/log-cycle-mens',
@@ -170,6 +170,26 @@ const routes = [
     path: '/log-notes',
     name: 'LogNotes',
     component: () => import('pages/log/LogNotes.vue')
+  },
+  {
+    path: '/settings',
+    name: 'Settings',
+    component: () => import('pages/settings/SettingsPage.vue')
+  },
+  {
+    path: '/profile',
+    name: 'Profile',
+    component: () => import('pages/settings/ProfilePage.vue')
+  },
+  {
+    path: '/account',
+    name: 'Account',
+    component: () => import('pages/settings/AccountPage.vue')
+  },
+  {
+    path: '/language',
+    name: 'Language',
+    component: () => import('pages/settings/LanguagePage.vue')
   },
 
   // Always leave this as last one,
