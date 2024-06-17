@@ -37,7 +37,7 @@
     <q-list>
       <q-item-label header class="q-pt-lg q-pb-xs">MITTEILUNGEN</q-item-label>
 
-      <q-item tag="label" v-ripple class="grey-background">
+      <q-item tag="label" v-ripple class="grey-background2">
         <q-item-section side>
             <img src="../../assets/NotificationIcon.svg">
         </q-item-section>
@@ -143,6 +143,11 @@ export default {
 }
 
 .grey-background {
+  background-color: #F8F8F8;
+  padding: 12px;
+}
+
+.grey-background2 {
   background-color: #F8F8F8;
 }
 </style>
