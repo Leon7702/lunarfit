@@ -15,10 +15,10 @@
         </div>
         <div class="toolbar-item" @click="goToCalendar" :class="{ 'active-tab': activeTab === 'calendar' }">
           <img :src="getIconSrc('Calendar')" class="toolbar-icon" alt="Calendar" />
-          <div class="toolbar-label" :class="{ 'active-label': activeTab === 'calendar' }">Kalendar</div>
+          <div class="toolbar-label" :class="{ 'active-label': activeTab === 'calendar' }">Kalender</div>
         </div>
-        <div class="log-entry-btn-wrapper">
-          <q-btn class="log-entry-btn" @click="goToLogEntry">
+        <div class="toolbar-item" @click="goToLogEntry">
+          <q-btn class="log-entry-btn">
             <q-icon name="add" style="color: white;" />
           </q-btn>
         </div>
@@ -76,19 +76,18 @@ export default {
 .footer-divider {
   height: 1px;
   background-color: #e0e0e0;
-  margin-top: 10px;
 }
 
 .footer-toolbar {
   background-color: white;
+  padding-bottom: 5px;
 }
 
 .footer-toolbar-content {
   display: flex;
-  justify-content: space-around;
+  justify-content: space-evenly;
   align-items: center;
-  padding: 10px 0;
-  /* Vergrößerte Toolbar */
+  padding: 0;
 }
 
 .toolbar-item {
@@ -105,31 +104,38 @@ export default {
 }
 
 .toolbar-label {
-  font-size: 14px;
-  /* Vergrößerte Schriftgröße */
+  font-size: 10px;
   color: #A3A3A3;
-}
-
-.active-label {
-  color: #50C1BA;
-}
-
-.log-entry-btn-wrapper {
-  display: flex;
-  justify-content: center;
-  align-items: center;
+  white-space: nowrap;
+  /* Prevent label from wrapping */
+  overflow: hidden;
+  /* Hide overflowing text */
+  text-overflow: ellipsis;
+  /* Show ellipsis (...) for overflow */
+  max-width: 40px;
+  /* Adjust max-width as per your design */
+  text-align: center;
+  /* Center align the text */
 }
 
 .log-entry-btn {
   background-color: #50C1BA;
+  width: 48px;
+  height: 48px;
   border-radius: 50%;
-  width: 50px;
-  /* Größere Kreisgröße */
-  height: 50px;
-  /* Größere Kreisgröße */
   display: flex;
   justify-content: center;
   align-items: center;
   padding: 0;
+}
+
+.active-tab {
+  color: #50C1BA;
+  /* Example of active tab color */
+}
+
+.active-label {
+  color: #50C1BA;
+  /* Color for active label */
 }
 </style>
