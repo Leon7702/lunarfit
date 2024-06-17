@@ -20,7 +20,7 @@
 
         <!-- Paths for the text labels -->
         <path id="myPath1" d="M25 6 A15.91549430918954 15 0 0 1 35 15" fill="transparent"></path>
-        <path id="myPath2" d="M32.5 33 A15.91549430918954 15 0 0 0 5 10" fill="transparent"></path>
+        <path id="myPath2" d="M33 32 A15.91549430918954 15 0 0 0 5 10" fill="transparent"></path>
 
         <!-- Text labels for the segments -->
         <!-- The textPath element allows the text to follow the path defined above -->
@@ -30,19 +30,19 @@
           </textPath>
         </text>
 
-        <text fill="#000" font-size="2" transform="rotate(12 21 21)">
+        <text fill="#fff" font-size="2" transform="rotate(15 21 21)">
           <textPath href="#myPath2">
             Follikelphase
           </textPath>
         </text>
 
-        <text fill="#fff" font-size="2" transform="rotate(76 21 21)">
+        <text fill="#fff" font-size="2" transform="rotate(80 21 21)">
           <textPath href="#myPath2">
             Ovulation
           </textPath>
         </text>
 
-        <text fill="#000" font-size="2" transform="rotate(255 21 21)">
+        <text fill="#fff" font-size="2" transform="rotate(255 21 21)">
           <textPath href="#myPath1">
             Luthealphase
           </textPath>
@@ -59,14 +59,8 @@
         <!-- displays the current day of the cycle -->
         <foreignObject x="-7" y="-7" width="42" height="42">
           <div style="box-shadow: none;">
-            <q-knob :step="1" :min="1" :max="cycleLength" v-model="currentDay" show-value size="24px" :thickness="0.05"
-              color="teal" track-color="grey-3" class="q-ma-md" font-size="4px">
-              <div style="display: flex; flex-direction: column; align-items: center; justify-content: center;">
-                <p style="font-size: 3px; margin: 1px;"></p>
-                <p style="font-size: 2.5px; margin: 0;">Zyklustag</p>
-                <p style="font-size: 3px; margin: 0;">{{ currentDay }}</p>
-              </div>
-            </q-knob>
+            <q-knob :step="1" :min="1" :max="cycleLength" v-model="currentDay" show-value size="24px" :thickness="0.05" color="teal"
+              track-color="grey-3" class="q-ma-md" font-size="4px" />
           </div>
         </foreignObject>
       </svg>
