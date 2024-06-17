@@ -93,10 +93,9 @@ export default {
   methods: {
     async fetchData() {
       // TODO: Fetch the data from the database and assign it to cycleLength and currentDay
-      // FOR NOW: to test the method without having a real database, direct to db.json file and put in terminal: json-server --watch db.json --port 8000
-      // then use curl: curl -X GET http://localhost:8000/usersdata/
+      // FOR NOW: to test the method without having a real database, use json-server
       try {
-        const response = await axios.get('http://localhost:8000/usersdata/'); // TODO: change the URL
+        const response = await axios.get('http://localhost:3000/usersdata/'); // TODO: change the URL
         this.cycleLength = response.data.cycleLength;
         this.currentDay = response.data.currentDay;
       } catch (error) {

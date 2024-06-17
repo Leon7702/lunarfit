@@ -150,7 +150,7 @@ export default {
 
     const fetchData = async () => {
       try {
-        const response = await axios.get('http://localhost:8000/trsdata');
+        const response = await axios.get('http://localhost:3000/trsdata');
         const trsdata = response.data;
         moodScore.value = trsdata.mood;
         strainScore.value = trsdata.strain;

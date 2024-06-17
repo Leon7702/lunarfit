@@ -113,7 +113,7 @@ export default {
 
     const fetchData = async () => {
       try {
-        const response = await axios.get('http://localhost:8000/usersdata/');
+        const response = await axios.get('http://localhost:3000/usersdata/');
         cycleLength.value = response.data.cycleLength;
         currentDay.value = response.data.currentDay;
 

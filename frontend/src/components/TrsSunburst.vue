@@ -46,10 +46,9 @@ export default {
   methods: {
     async fetchData() {
       // TODO: Fetch the data from the database and assign it to strain, mood, rest, and free
-      // FOR NOW: to test the method without having a real database, direct to db.json file and put in terminal: json-server --watch db.json --port 8000
-      // then use curl: curl -X GET http://localhost:8000/trsdata/
+      // FOR NOW: to test the method without having a real database, use json-server
       try {
-        const response = await axios.get('http://localhost:8000/trsdata');
+        const response = await axios.get('http://localhost:3000/trsdata');
         const trsdata = {
           strain: response.data.strain,
           mood: response.data.mood,
