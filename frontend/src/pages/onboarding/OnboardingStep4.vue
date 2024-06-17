@@ -70,6 +70,7 @@
   .person-image {
     margin-bottom: 20px;
     margin-top: 10px;
+    width: 100%;
   }
   
   .form-step {
@@ -100,5 +101,13 @@
     display: flex;
     justify-content: center;
     left: 0;
+  }
+
+  @media only screen and (min-width: 500px) {
+    .welcome-container {
+      max-width: 500px;
+      margin: auto;
+      margin-top: 5%;
+    }
   }
   </style>

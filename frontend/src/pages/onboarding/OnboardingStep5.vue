@@ -6,7 +6,7 @@
       <h2 class="form-step">
         <span class="form-step-highlight">Schritt 4:</span> Sportverhalten
       </h2>
-      <div class="form-group">
+      <div class="form-group-one">
         <p>Treibst du regelmäßig Sport? (mind. 150 min/Woche)</p>
         <RadioToggle/>
       </div>
@@ -76,6 +76,7 @@ export default {
   .person-image {
     margin-bottom: 20px;
     margin-top: 10px;
+    width: 100%;
   }
   
   .form-step {
@@ -89,10 +90,21 @@ export default {
   }
   
   .form-group {
-    margin-bottom: 10px; 
+    margin-bottom: 20px; 
+  }
+
+  .form-group-one {
+    margin-bottom: 0px; 
   }
   
   .form-group p {
+    margin: 0;
+    font-size: 16px;
+    margin-left: 7px;
+    margin-right: 7px;
+  }
+
+  .form-group-one p {
     margin: 0;
     font-size: 16px;
     margin-left: 7px;
@@ -106,5 +118,13 @@ export default {
     display: flex;
     justify-content: center;
     left: 0;
+  }
+
+  @media only screen and (min-width: 500px) {
+    .welcome-container {
+      max-width: 500px;
+      margin: auto;
+      margin-top: 5%;
+    }
   }
   </style>

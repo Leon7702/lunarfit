@@ -9,7 +9,7 @@
             v-model="model"
             :min="1"
             :max="10"
-            color="grey"
+            color="grey-4"
             track-size="40px"
             thumb-color="black"
             thumb-size="0px"
