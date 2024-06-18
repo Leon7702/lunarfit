@@ -18,6 +18,7 @@ drf-spectacular = {extras = ["sidecar"], version = "^0.27.2"}
 pytest-django = "^4.8.0"
 pytest-sugar = "^1.0.0"
 pytest-xdist = {extras = ["psutil"], version = "^3.6.1"}
+ipython = "^8.25.0"
 
 [tool.pytest.ini_options]
 DJANGO_SETTINGS_MODULE = "lunarfit.settings"
