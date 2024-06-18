@@ -2,24 +2,23 @@ from django.contrib.auth import authenticate
 from rest_framework import exceptions, serializers
 from rest_framework_simplejwt.serializers import TokenObtainPairSerializer
 
-from .models import CustomUser
+from .models import User, Profile
 
 
-class UserModelSerializer(serializers.ModelSerializer):
+class UserSerializer(serializers.HyperlinkedModelSerializer):
     class Meta:
-        model = CustomUser
-        fields = ["id", "email", "password", "first_name", "last_name"]
+        model = User
+        fields = ["id", "email", "password", "profile"]
         extra_kwargs = {
             "password": {"write_only": True, "min_length": 5},
-            "first_name": {"required": False},
-            "last_name": {"required": False},
+            "profile": {"read_only": True},
         }
 
     def create(self, validated_data):
-        user = CustomUser.objects.create_user(**validated_data)
+        user = User.objects.create_user(**validated_data)
         return user
 
-    def update(self, instance: CustomUser, validated_data: dict):
+    def update(self, instance: User, validated_data: dict):
         for key in validated_data.keys():
             setattr(instance, key, validated_data.get(key))
 
@@ -27,11 +26,11 @@ class UserModelSerializer(serializers.ModelSerializer):
         instance.save()
         return instance
 
-    def to_representation(self, instance):
-        """Overriding to remove Password Field when returning Data"""
-        ret = super().to_representation(instance)
-        ret.pop("password", None)
-        return ret
+
+class ProfileSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = Profile
+        fields = "__all__"
 
 
 class CustomTokenObtainPairSerializer(TokenObtainPairSerializer):

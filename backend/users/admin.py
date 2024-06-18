@@ -5,7 +5,7 @@ from django.contrib.auth.forms import ReadOnlyPasswordHashField
 from django.contrib.auth.models import Group
 from django.core.exceptions import ValidationError
 
-from .models import CustomUser
+from .models import User, Profile, Contraceptive
 
 
 class UserCreationForm(forms.ModelForm):
@@ -18,7 +18,7 @@ class UserCreationForm(forms.ModelForm):
     )
 
     class Meta:
-        model = CustomUser
+        model = User
         fields = ["email"]
 
     def clean_password2(self):
@@ -47,23 +47,37 @@ class UserChangeForm(forms.ModelForm):
     password = ReadOnlyPasswordHashField()
 
     class Meta:
-        model = CustomUser
+        model = User
         fields = ["email", "password", "is_active", "is_staff"]
 
 
+class ProfileInline(admin.StackedInline):
+    model = Profile
+
+
 class UserAdmin(BaseUserAdmin):
+
+    @admin.display(description="Firstname Lastname", ordering="profile")
+    def full_name(obj: User) -> str:
+        if hasattr(obj, "profile"):
+            return f"{obj.profile.first_name} {obj.profile.last_name}"
+        else:
+            # this should not happen if the database is migrated properly
+            return "NO PROFILE"
+
     # The forms to add and change user instances
     form = UserChangeForm
     add_form = UserCreationForm
+    inlines = [ProfileInline]
 
     # The fields to be used in displaying the User model.
     # These override the definitions on the base UserAdmin
     # that reference specific fields on auth.User.
-    list_display = ["email", "first_name", "last_name"]
+    list_display = ["email", "id", full_name, "is_staff", "is_active"]
     list_filter = ["is_staff", "is_active"]
 
-    # add_fieldsets is not a standard ModelAdmin attribute. UserAdmin
-    # overrides get_fieldsets to use this attribute when creating a user.
+    # add_fieldsets is not a standard ModelAdmin attribute.
+    # UserAdmin overrides get_fieldsets to use this attribute when creating a user.
     add_fieldsets = [
         (
             None,
@@ -74,8 +88,8 @@ class UserAdmin(BaseUserAdmin):
         ),
     ]
 
-    fields = ["email", "first_name", "last_name", "is_staff", "is_active"]
-    fieldsets = None    
+    fields = ["email", "is_staff", "is_active"]
+    fieldsets = None
 
     search_fields = ["email"]
     ordering = ["email"]
@@ -83,7 +97,8 @@ class UserAdmin(BaseUserAdmin):
 
 
 # Now register the new UserAdmin...
-admin.site.register(CustomUser, UserAdmin)
+admin.site.register(User, UserAdmin)
 # ... and, since we're not using Django's built-in permissions,
 # unregister the Group model from admin.
 admin.site.unregister(Group)
+admin.site.register(Contraceptive)

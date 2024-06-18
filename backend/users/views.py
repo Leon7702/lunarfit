@@ -1,34 +1,36 @@
+from rest_framework import viewsets
 from rest_framework.generics import CreateAPIView, ListAPIView, RetrieveAPIView
 from rest_framework.mixins import DestroyModelMixin, UpdateModelMixin
 from rest_framework.permissions import AllowAny, IsAdminUser, IsAuthenticated
 from rest_framework_simplejwt.views import TokenObtainPairView
 
-from .models import CustomUser
+from .models import User, Profile
 from .permissions import UserPermission
 from .serializers import (
     CustomTokenObtainPairSerializer,
-    UserModelSerializer,
+    UserSerializer,
+    ProfileSerializer,
 )
 
 
 class UserCreateView(CreateAPIView):
     """Endpoint for creating a new User"""
 
-    serializer_class = UserModelSerializer
+    serializer_class = UserSerializer
     permission_classes = [AllowAny]
 
 
 class UserListView(ListAPIView):
     """Endpoint for listing all Users"""
 
-    queryset = CustomUser.objects.all().order_by("last_name", "first_name")
-    serializer_class = UserModelSerializer
+    queryset = User.objects.all().order_by("email")
+    serializer_class = UserSerializer
     permission_classes = [IsAdminUser]
 
 
 class UserView(RetrieveAPIView, UpdateModelMixin, DestroyModelMixin):
-    serializer_class = UserModelSerializer
-    queryset = CustomUser.objects.all()
+    serializer_class = UserSerializer
+    queryset = User.objects.all()
     permission_classes = [IsAuthenticated, UserPermission]
 
     def delete(self, request, *args, **kwargs):
@@ -40,3 +42,9 @@ class UserView(RetrieveAPIView, UpdateModelMixin, DestroyModelMixin):
 
 class CustomTokenObtainPairView(TokenObtainPairView):
     serializer_class = CustomTokenObtainPairSerializer
+
+
+class ProfileViewSet(viewsets.ModelViewSet):
+    queryset = Profile.objects.all()
+    serializer_class = ProfileSerializer
+    http_method_names = ["get", "patch"]

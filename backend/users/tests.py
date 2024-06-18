@@ -2,7 +2,7 @@ import pytest
 from rest_framework import status
 from rest_framework.test import APITestCase
 
-from .models import CustomUser
+from .models import User
 
 
 class RegisterTest(APITestCase):
@@ -14,8 +14,8 @@ class RegisterTest(APITestCase):
         response = self.client.post(url, data)
 
         assert response.status_code == status.HTTP_201_CREATED
-        assert CustomUser.objects.count() == 1
-        assert CustomUser.objects.get().email == "user@example.com"
+        assert User.objects.count() == 1
+        assert User.objects.get().email == "user@example.com"
 
     def test_register_fail_duplicate_email(self):
 
@@ -29,13 +29,13 @@ class RegisterTest(APITestCase):
 
 class UserPermissionTest(APITestCase):
     def setUp(self):
-        self.user1 = CustomUser.objects.create_user(
+        self.user1 = User.objects.create_user(
             email="user1@example.com", password="string"
         )
-        self.user2 = CustomUser.objects.create_user(
+        self.user2 = User.objects.create_user(
             email="user2@example.com", password="string"
         )
-        self.superuser = CustomUser.objects.create_superuser(
+        self.superuser = User.objects.create_superuser(
             email="superuser@example.com", password="string"
         )
 
@@ -50,9 +50,9 @@ class UserPermissionTest(APITestCase):
     def test_admin_can_delete_user(self):
         id = self.user2.id
         self.client.force_authenticate(user=self.superuser)
-        assert CustomUser.objects.count() == 3
+        assert User.objects.count() == 3
         self.client.delete(f"/api/users/{id}")
-        assert CustomUser.objects.count() == 2
+        assert User.objects.count() == 2
         response = self.client.get(f"/api/users/{id}")
         assert response.status_code == status.HTTP_404_NOT_FOUND
 
@@ -79,7 +79,7 @@ class UserPermissionTest(APITestCase):
             f"/api/users/{self.user2.id}", {"email": new_email}
         )
 
-        user = CustomUser.objects.get(pk=id)
+        user = User.objects.get(pk=id)
         assert response.status_code == status.HTTP_200_OK
         assert user.email == new_email
 
@@ -96,7 +96,7 @@ class UserPermissionTest(APITestCase):
             f"/api/users/{self.user2.id}", {"email": new_email}
         )
 
-        user = CustomUser.objects.get(pk=id)
+        user = User.objects.get(pk=id)
         assert response.status_code == status.HTTP_400_BAD_REQUEST
         assert user.email != new_email
 
@@ -113,7 +113,7 @@ class UserPermissionTest(APITestCase):
             f"/api/users/{self.user2.id}", {"email": new_email}
         )
 
-        user = CustomUser.objects.get(pk=id)
+        user = User.objects.get(pk=id)
         assert response.status_code == status.HTTP_400_BAD_REQUEST
         assert user.email != new_email
 
@@ -132,7 +132,7 @@ class UserPermissionTest(APITestCase):
         assert response.status_code == status.HTTP_200_OK
 
         # Don't store the raw password!
-        user = CustomUser.objects.get(pk=id)
+        user = User.objects.get(pk=id)
         assert user.password != new_password
         assert user.check_password(new_password) == True
 
@@ -141,8 +141,8 @@ class UserPermissionTest(APITestCase):
         self.client.force_authenticate(user=self.user2)
         response = self.client.delete(f"/api/users/{id}")
         assert response.status_code == status.HTTP_204_NO_CONTENT
-        with pytest.raises(CustomUser.DoesNotExist):
-            assert CustomUser.objects.get(pk=id)
+        with pytest.raises(User.DoesNotExist):
+            assert User.objects.get(pk=id)
 
     def test_user_cannot_read_other_user_data(self):
         self.client.force_authenticate(user=self.user1)
