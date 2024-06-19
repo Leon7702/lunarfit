@@ -81,8 +81,9 @@ export default {
       }
 
       try {
-        const response = await axios.post('http://localhost:8000/users/', {
-          username: "first-user",
+        const response = await axios.post('http://localhost:8000/api/users/register/', {
+          first_name: email.value,
+          last_name: email.value,
           email: email.value,
           password: password.value
         });

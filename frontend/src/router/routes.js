@@ -1,89 +1,241 @@
 const routes = [
   {
-    path: '/',
-    component: () => import('layouts/MainLayout.vue'),
+    path: "/",
+    component: () => import("layouts/MainLayout.vue"),
     children: [
-      { path: '', component: () => import('pages/DashboardPage.vue') },
-      { path: 'home', component: () => import('pages/DashboardPage.vue') },
-      { path: 'calendar', component: () => import('pages/CalendarPage.vue') },
-      { path: 'symptoms', component: () => import('pages/SymptomsPage.vue') },
-      { path: 'mood', component: () => import('pages/MoodPage.vue') },
-      { path: 'menstruation', name: 'MenstruationInfo', component: () => import('pages/MenstruationInfoPage.vue') },
-      { path: 'cycle', name: 'CycleInfoPage', component: () => import('pages/CyclePhaseInfoPage.vue') },
-      { path: 'trs', name: 'TrsInfoPage', component: () => import('pages/TrsInfoPage.vue') },
-      { path: 'log', name: 'LogHome', component: () => import('pages/log/LogHome.vue') },
-      { path: 'log-cycle', name: 'LogCycleHome', component: () => import('pages/log/LogCycleHome.vue') },
-      { path: 'log-cycle-list', name: 'LogCycleHomeList', component: () => import('pages/log/LogCycleHomeList.vue') },
-      { path: 'log-cycle-mens', name: 'LogCycleMens', component: () => import('pages/log/LogCycleMens.vue') },
-      { path: 'log-cycle-temp', name: 'LogCycleTemp', component: () => import('pages/log/LogCycleTemp.vue') },
-      { path: 'log-cycle-cerfix', name: 'LogCycleCerfix', component: () => import('pages/log/LogCycleCerfix.vue') },
-      { path: 'log-cycle-gebaermutterhals', name: 'LogCycleGebaermutter', component: () => import('pages/log/LogCycleGebaermutter.vue') },
-      { path: 'log-cycle-sex', name: 'LogCycleSex', component: () => import('pages/log/LogCycleSex.vue') },
-      { path: 'log-cycle-contraceptive', name: 'LogCycleContraceptive', component: () => import('pages/log/LogCycleContraceptive.vue') },
-      { path: 'log-cycle-medicine', name: 'LogCycleMedicine', component: () => import('pages/log/LogCycleMedicine.vue') },
-      { path: 'log-cycle-ovulation-test', name: 'LogCycleOvulationTest', component: () => import('pages/log/LogCycleOvulationTest.vue') },
-      { path: 'log-cycle-pregnancy-test', name: 'LogCyclePregnancyTest', component: () => import('pages/log/LogCyclePregnancyTest.vue') },
-      { path: 'log-training-complaints', name: 'LogTrainingComplaints', component: () => import('pages/log/LogTrainingComplaints.vue') },
-      { path: 'log-training-mood', name: 'LogTrainingMood', component: () => import('pages/log/LogTrainingMood.vue') },
-      { path: 'log-training-recovery', name: 'LogTrainingRecovery', component: () => import('pages/log/LogTrainingRecovery.vue') },
-      { path: 'log-training-strain', name: 'LogTrainingStrainPre', component: () => import('pages/log/LogTrainingStrainPre.vue') },
-      { path: 'log-training-strain-2', name: 'LogTrainingStrain', component: () => import('pages/log/LogTrainingStrain.vue') },
-      { path: 'log-notes', name: 'LogNotes', component: () => import('pages/log/LogNotes.vue') },
-      { path: 'settings', name: 'Settings', component: () => import('pages/settings/SettingsPage.vue') },
-      { path: 'profile', name: 'Profile', component: () => import('pages/settings/ProfilePage.vue') },
-      { path: 'account', name: 'Account', component: () => import('pages/settings/AccountPage.vue') },
-      { path: 'language', name: 'Language', component: () => import('pages/settings/LanguagePage.vue') }
-    ]
+      {
+        path: "",
+        component: () => import("pages/DashboardPage.vue"),
+        meta: { requiresAuth: true },
+      },
+      {
+        path: "home",
+        component: () => import("pages/DashboardPage.vue"),
+        meta: { requiresAuth: true },
+      },
+      {
+        path: "calendar",
+        component: () => import("pages/CalendarPage.vue"),
+        meta: { requiresAuth: true },
+      },
+      {
+        path: "symptoms",
+        component: () => import("pages/SymptomsPage.vue"),
+        meta: { requiresAuth: true },
+      },
+      {
+        path: "mood",
+        component: () => import("pages/MoodPage.vue"),
+        meta: { requiresAuth: true },
+      },
+      {
+        path: "menstruation",
+        name: "MenstruationInfo",
+        component: () => import("pages/MenstruationInfoPage.vue"),
+        meta: { requiresAuth: true },
+      },
+      {
+        path: "cycle",
+        name: "CycleInfoPage",
+        component: () => import("pages/CyclePhaseInfoPage.vue"),
+        meta: { requiresAuth: true },
+      },
+      {
+        path: "trs",
+        name: "TrsInfoPage",
+        component: () => import("pages/TrsInfoPage.vue"),
+        meta: { requiresAuth: true },
+      },
+      {
+        path: "log",
+        name: "LogHome",
+        component: () => import("pages/log/LogHome.vue"),
+        meta: { requiresAuth: true },
+      },
+      {
+        path: "log-cycle",
+        name: "LogCycleHome",
+        component: () => import("pages/log/LogCycleHome.vue"),
+        meta: { requiresAuth: true },
+      },
+      {
+        path: "log-cycle-list",
+        name: "LogCycleHomeList",
+        component: () => import("pages/log/LogCycleHomeList.vue"),
+        meta: { requiresAuth: true },
+      },
+      {
+        path: "log-cycle-mens",
+        name: "LogCycleMens",
+        component: () => import("pages/log/LogCycleMens.vue"),
+        meta: { requiresAuth: true },
+      },
+      {
+        path: "log-cycle-temp",
+        name: "LogCycleTemp",
+        component: () => import("pages/log/LogCycleTemp.vue"),
+        meta: { requiresAuth: true },
+      },
+      {
+        path: "log-cycle-cerfix",
+        name: "LogCycleCerfix",
+        component: () => import("pages/log/LogCycleCerfix.vue"),
+        meta: { requiresAuth: true },
+      },
+      {
+        path: "log-cycle-gebaermutterhals",
+        name: "LogCycleGebaermutter",
+        component: () => import("pages/log/LogCycleGebaermutter.vue"),
+        meta: { requiresAuth: true },
+      },
+      {
+        path: "log-cycle-sex",
+        name: "LogCycleSex",
+        component: () => import("pages/log/LogCycleSex.vue"),
+        meta: { requiresAuth: true },
+      },
+      {
+        path: "log-cycle-contraceptive",
+        name: "LogCycleContraceptive",
+        component: () => import("pages/log/LogCycleContraceptive.vue"),
+        meta: { requiresAuth: true },
+      },
+      {
+        path: "log-cycle-medicine",
+        name: "LogCycleMedicine",
+        component: () => import("pages/log/LogCycleMedicine.vue"),
+        meta: { requiresAuth: true },
+      },
+      {
+        path: "log-cycle-ovulation-test",
+        name: "LogCycleOvulationTest",
+        component: () => import("pages/log/LogCycleOvulationTest.vue"),
+        meta: { requiresAuth: true },
+      },
+      {
+        path: "log-cycle-pregnancy-test",
+        name: "LogCyclePregnancyTest",
+        component: () => import("pages/log/LogCyclePregnancyTest.vue"),
+        meta: { requiresAuth: true },
+      },
+      {
+        path: "log-training-complaints",
+        name: "LogTrainingComplaints",
+        component: () => import("pages/log/LogTrainingComplaints.vue"),
+        meta: { requiresAuth: true },
+      },
+      {
+        path: "log-training-mood",
+        name: "LogTrainingMood",
+        component: () => import("pages/log/LogTrainingMood.vue"),
+        meta: { requiresAuth: true },
+      },
+      {
+        path: "log-training-recovery",
+        name: "LogTrainingRecovery",
+        component: () => import("pages/log/LogTrainingRecovery.vue"),
+        meta: { requiresAuth: true },
+      },
+      {
+        path: "log-training-strain",
+        name: "LogTrainingStrainPre",
+        component: () => import("pages/log/LogTrainingStrainPre.vue"),
+        meta: { requiresAuth: true },
+      },
+      {
+        path: "log-training-strain-2",
+        name: "LogTrainingStrain",
+        component: () => import("pages/log/LogTrainingStrain.vue"),
+        meta: { requiresAuth: true },
+      },
+      {
+        path: "log-notes",
+        name: "LogNotes",
+        component: () => import("pages/log/LogNotes.vue"),
+        meta: { requiresAuth: true },
+      },
+      {
+        path: "settings",
+        name: "Settings",
+        component: () => import("pages/settings/SettingsPage.vue"),
+        meta: { requiresAuth: true },
+      },
+      {
+        path: "profile",
+        name: "Profile",
+        component: () => import("pages/settings/ProfilePage.vue"),
+        meta: { requiresAuth: true },
+      },
+      {
+        path: "account",
+        name: "Account",
+        component: () => import("pages/settings/AccountPage.vue"),
+        meta: { requiresAuth: true },
+      },
+      {
+        path: "language",
+        name: "Language",
+        component: () => import("pages/settings/LanguagePage.vue"),
+        meta: { requiresAuth: true },
+      },
+    ],
   },
   {
-    path: '/register',
-    name: 'register',
-    component: () => import('pages/RegisterPage.vue')
+    path: "/register",
+    name: "register",
+    component: () => import("pages/RegisterPage.vue"),
   },
   {
-    path: '/login',
-    name: 'login',
-    component: () => import('pages/LoginPage.vue')
+    path: "/login",
+    name: "login",
+    component: () => import("pages/LoginPage.vue"),
   },
   {
-    path: '/onboarding',
-    name: 'OnboardingStart',
-    component: () => import('pages/onboarding/OnboardingStart.vue')
+    path: "/onboarding",
+    name: "OnboardingStart",
+    component: () => import("pages/onboarding/OnboardingStart.vue"),
+    meta: { requiresAuth: true },
   },
   {
-    path: '/onboardingStep1',
-    name: 'OnboardingStep1',
-    component: () => import('pages/onboarding/OnboardingStep1.vue')
+    path: "/onboardingStep1",
+    name: "OnboardingStep1",
+    component: () => import("pages/onboarding/OnboardingStep1.vue"),
+    meta: { requiresAuth: true },
   },
   {
-    path: '/onboardingStep2',
-    name: 'OnboardingStep2',
-    component: () => import('pages/onboarding/OnboardingStep2.vue')
+    path: "/onboardingStep2",
+    name: "OnboardingStep2",
+    component: () => import("pages/onboarding/OnboardingStep2.vue"),
+    meta: { requiresAuth: true },
   },
   {
-    path: '/onboardingStep4',
-    name: 'OnboardingStep4',
-    component: () => import('pages/onboarding/OnboardingStep4.vue')
+    path: "/onboardingStep4",
+    name: "OnboardingStep4",
+    component: () => import("pages/onboarding/OnboardingStep4.vue"),
+    meta: { requiresAuth: true },
   },
   {
-    path: '/onboardingStep5',
-    name: 'OnboardingStep5',
-    component: () => import('pages/onboarding/OnboardingStep5.vue')
+    path: "/onboardingStep5",
+    name: "OnboardingStep5",
+    component: () => import("pages/onboarding/OnboardingStep5.vue"),
+    meta: { requiresAuth: true },
   },
   {
-    path: '/onboardingStep6',
-    name: 'OnboardingStep6',
-    component: () => import('pages/onboarding/OnboardingStep6.vue')
+    path: "/onboardingStep6",
+    name: "OnboardingStep6",
+    component: () => import("pages/onboarding/OnboardingStep6.vue"),
+    meta: { requiresAuth: true },
   },
   {
-    path: '/onboardingEnd',
-    name: 'OnboardingEnd',
-    component: () => import('pages/onboarding/OnboardingEnd.vue')
+    path: "/onboardingEnd",
+    name: "OnboardingEnd",
+    component: () => import("pages/onboarding/OnboardingEnd.vue"),
+    meta: { requiresAuth: true },
   },
   {
-    path: '/:catchAll(.*)*',
-    component: () => import('pages/ErrorNotFound.vue')
-  }
-]
+    path: "/:catchAll(.*)*",
+    component: () => import("pages/ErrorNotFound.vue"),
+  },
+];
 
 export default routes;

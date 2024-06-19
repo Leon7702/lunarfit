@@ -1,115 +1,106 @@
 <template>
-    <header>
-      <img alt="Lunafit logo" class="logo" src="../assets/LunaFit.svg" height="45" />
-    </header>
-    <div class="q-pa-lg q-gutter-sm">
-      <q-input color="teal" outlined v-model="email" label="E-Mail">
-        <template v-slot:prepend>
-          <q-icon>
-            <img src="../assets/Communication.svg" alt="Email Icon" />
-          </q-icon>
-        </template>
-      </q-input>
-      <q-input :type="showPassword ? 'text' : 'password'" color="teal" outlined v-model="password" label="Password">
+  <header>
+    <img alt="Lunafit logo" class="logo" src="../assets/LunaFit.svg" height="45" />
+  </header>
+  <div class="q-pa-lg q-gutter-sm">
+    <q-input color="teal" outlined v-model="email" label="E-Mail">
+      <template v-slot:prepend>
+        <q-icon>
+          <img src="../assets/Communication.svg" alt="Email Icon" />
+        </q-icon>
+      </template>
+    </q-input>
+    <q-input :type="showPassword ? 'text' : 'password'" color="teal" outlined v-model="password" label="Password">
       <template v-slot:prepend>
         <q-icon>
           <img src="../assets/System.svg" alt="Lock Icon" />
         </q-icon>
       </template>
       <template v-slot:append>
-        <q-icon
-            @click="togglePasswordVisibility"  
-            :name="showPassword ? 'visibility_off' : 'visibility'"
-            class="cursor-pointer"> </q-icon>
+        <q-icon @click="togglePasswordVisibility" :name="showPassword ? 'visibility_off' : 'visibility'"
+          class="cursor-pointer"> </q-icon>
       </template>
     </q-input>
-    </div>
-    <div class="q-pa-md q-gutter-sm row justify-center">
-      <q-btn no-caps rounded style="background: #50C1BA; color: white" label="Anmelden" padding="sm lg" size="16px" @click="loginUser"/>
-    </div>
-    <p style="text-align: center;">
-      Noch keinen Account?
-      <router-link to="/register">Jetzt registrieren</router-link>
-    </p>
-  </template>
-  
-  <script>
-  import { ref } from 'vue';
-  import axios from 'axios';
-  import { useRouter } from 'vue-router';
-  
-  export default {
-    setup() {
-      const email = ref('');
-      const password = ref('');
-      const router = useRouter();
-      const showPassword = ref(false);
-  
-      const loginUser = async () => {
-        try {
-          const response = await axios.post('http://localhost:8000/users/', {
-            email: email.value,
-            password: password.value
-          });
-          const token = response.data.token;
-          localStorage.setItem('token', token); // Store token in local storage
-          alert("Login successful!");
-          router.push('/onboarding');
-        } catch (error) {
-          alert("There was an error logging in: " + error);
-        }
-      };
-  
-      const togglePasswordVisibility = () => {
-        showPassword.value = !showPassword.value;
-      };
-  
-      return { email, password, loginUser, showPassword, togglePasswordVisibility };
-    },
-  };
-  </script>
-  
-  <style scoped>
-  /* @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap');
-  @import url('https://fonts.googleapis.com/css2?family=Assistant:wght@400;700&display=swap'); */
-  
+  </div>
+  <div class="q-pa-md q-gutter-sm row justify-center">
+    <q-btn no-caps rounded style="background: #50C1BA; color: white" label="Anmelden" padding="sm lg" size="16px"
+      @click="loginUser" />
+  </div>
+  <p style="text-align: center;">
+    Noch keinen Account?
+    <router-link to="/register">Jetzt registrieren</router-link>
+  </p>
+</template>
+
+<script>
+import { ref } from 'vue';
+import { useRouter } from 'vue-router';
+import { useAuthStore } from 'src/stores/auth';
+
+export default {
+  setup() {
+    const email = ref('');
+    const password = ref('');
+    const router = useRouter();
+    const authStore = useAuthStore();
+    const showPassword = ref(false);
+
+    const loginUser = async () => {
+      try {
+        await authStore.login({ email: email.value, password: password.value });
+        alert("Login successful!");
+        router.push('/onboarding');
+      } catch (error) {
+        alert("There was an error logging in: " + error);
+      }
+    };
+
+    const togglePasswordVisibility = () => {
+      showPassword.value = !showPassword.value;
+    };
+
+    return { email, password, loginUser, showPassword, togglePasswordVisibility };
+  },
+};
+</script>
+
+<style scoped>
+header {
+  line-height: 1.5;
+}
+
+p {
+  font-size: 14px;
+  margin: 20px;
+}
+
+a {
+  color: #50c1ba;
+  font-weight: bold;
+  font-size: 14px;
+  text-decoration: none;
+}
+
+.logo {
+  display: block;
+  margin: 6rem auto 6rem;
+}
+
+@media (min-width: 1024px) {
   header {
-    line-height: 1.5;
+    display: flex;
+    place-items: center;
+    padding-right: calc(var(--section-gap) / 2);
   }
-  
-  p {
-    font-size: 14px;
-    margin: 20px;
-  }
-  
-  a {
-    color: #50c1ba;
-    font-weight: bold;
-    font-size: 14px;
-    text-decoration: none;
-  }
-  
+
   .logo {
-    display: block;
-    margin: 6rem auto 6rem;
+    margin: 0 2rem 0 0;
   }
-  
-  @media (min-width: 1024px) {
-    header {
-      display: flex;
-      place-items: center;
-      padding-right: calc(var(--section-gap) / 2);
-    }
-  
-    .logo {
-      margin: 0 2rem 0 0;
-    }
-  
-    header .wrapper {
-      display: flex;
-      place-items: flex-start;
-      flex-wrap: wrap;
-    }
+
+  header .wrapper {
+    display: flex;
+    place-items: flex-start;
+    flex-wrap: wrap;
   }
-  </style>
-  
+}
+</style>
