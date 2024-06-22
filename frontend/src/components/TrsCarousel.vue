@@ -114,7 +114,7 @@
                 <div class="q-mt-md text-center">
                   <q-card flat bordered class="my-card">
                     <q-card-section>
-                      {{ resttext }}
+                      {{ $t(`restInfo.${restScore}`) }}
                     </q-card-section>
                   </q-card>
                   <div class="q-pa-md">

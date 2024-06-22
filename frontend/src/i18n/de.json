@@ -128,7 +128,14 @@
     "4": "Gut: Deine Stimmung ist gut, das ist schön zu hören! Nutze diese positive Energie für ein intensiveres Training. So kannst du deine Stimmung weiter verbessern und deine Fitness steigern.",
     "5": "Sehr gut: Du scheinst dich wirklich gut zu fühlen! Teile deine gute Laune mit anderen, indem du eine sportliche Aktivität in der Gruppe machst. Zusammen zu trainieren kann viel Spaß machen und die Stimmung weiter heben.",
     "6": "Hervorragend: Du strahlst vor positiver Energie! Genieße diesen Moment voll und ganz mit einer sportlichen Aktivität, die dir besonders viel Freude bereitet. Ob es ein längerer Lauf, eine intensive Radtour oder ein herausfordernder Fitnesskurs ist – nutze diese Hochstimmung für ein großartiges Training."
+  },
+
+  "restInfo": {
+    "1": "Du scheinst körperlich sehr erschöpft zu sein. Du solltest eine Trainingspause einlegen. Weitere regenerative Maßnahmen wie Sauna, warme Bäder, Massagen und Faszientraining können den Regenerationsprozess unterstützen.",
+    "2": "Dein Erholungszustand ist gering. Du solltest ein Regenerations- und Kompensationstraining in Betracht ziehen. Das bedeutet bewusst lockere Einheiten mit einer sehr geringen Intensität. Um einseitige Belastungen zu vermeiden, kannst du auch eine andere Sportart wählen.",
+    "3": "Dein Erholungszustand ist eingeschränkt. Du solltest dein Trainingsvolumen oder die Trainingsintensität etwas reduzieren.",
+    "4": "Dein Erholungszustand ist nicht optimal. Wenn dieser Zustand länger anhält, solltest du dein Trainingsvolumen und die Trainingsintensität für einige Zeit etwas reduzieren, um langfristig ein Übertraining zu vermeiden.",
+    "5": "Du scheinst gut erholt zu sein. Du kannst dein Trainingspensum so fortsetzen.",
+    "6": "Du scheinst optimal erholt zu sein. Du kannst überlegen, den Trainingsumfang oder die Trainingsintensität zu erhöhen."
   }
-
-
 }
