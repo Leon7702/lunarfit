@@ -84,5 +84,35 @@
         "7": "In dieser Phase bist du nicht fruchtbar."
       }
     }
+  },
+
+  "trsInfo": "Dein Training Readiness Score liegt bei...",
+  "scores": {
+    "0-25": {
+      "1": "Dein Körper ist momentan nicht optimal auf intensives Training vorbereitet. Hier sind einige Empfehlungen, um deine Erholung zu unterstützen und deine Belastung zu reduzieren:",
+      "2": "Vermeide intensive Trainingseinheiten und setze stattdessen auf regenerative Maßnahmen.",
+      "3": "Achte besonders auf ausreichend Schlaf und eine ausgewogene Ernährung, um deine Regeneration zu fördern.",
+      "4": "Beobachte deine Beschwerden und passe dein Training entsprechend an."
+    },
+    "26-50": {
+      "1": "Deine Trainingsbereitschaft ist moderat. Dein Körper braucht etwas mehr Erholung, bevor du wieder voll durchstarten kannst. Hier sind einige Tipps:",
+      "2": "Reduziere die Intensität und das Volumen deiner Trainingseinheiten, um Überlastung zu vermeiden.",
+      "3": "Integriere mehr regenerative Maßnahmen wie Dehnen, leichtes Cardio und Entspannungstechniken in deinen Trainingsplan.",
+      "4": "Achte auf deine Stimmung und versuche, positive Aktivitäten in deinen Alltag zu integrieren, die dich motivieren und entspannen.",
+      "5": "Achte weiterhin auf eine gute Ernährung und ausreichend Schlaf, um deine Erholung zu unterstützen."
+    },
+    "51-75": {
+      "1": "Deine Trainingsbereitschaft ist gut, und du kannst dein Training wie gewohnt fortsetzen. Hier sind einige Empfehlungen, um deine Trainingsbereitschaft zu optimieren:",
+      "2": "Setze dein Training wie gewohnt fort, aber achte darauf, dein Trainingsvolumen schrittweise zu steigern.",
+      "3": "Führe regelmäßig regenerative Maßnahmen durch, um deine Erholung zu unterstützen.",
+      "4": "Achte weiterhin auf eine ausgewogene Ernährung und ausreichend Schlaf, um deine Regeneration zu optimieren."
+    },
+    "76-100": {
+      "1": "Herzlichen Glückwunsch! Du bist optimal auf dein Training vorbereitet. Dein Körper ist gut erholt und deine Belastung ist ausgeglichen. Hier sind einige Tipps, um dein Training optimal zu nutzen:",
+      "2": "Nutze die Gelegenheit, um intensive und anspruchsvolle Trainingseinheiten durchzuführen und deine Leistung zu steigern.",
+      "3": "Achte weiterhin auf eine gute Aufwärmphase, um Verletzungen vorzubeugen.",
+      "4": "Halte an deinen regenerativen Maßnahmen fest, um dein hohes Leistungsniveau aufrechtzuerhalten.",
+      "5": "Bleibe positiv und motiviert, und sorge für eine ausgewogene Ernährung und ausreichend Schlaf, um deine Regeneration und Leistung zu unterstützen."
+    }
   }
 }
