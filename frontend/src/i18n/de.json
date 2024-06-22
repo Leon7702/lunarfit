@@ -86,6 +86,11 @@
     }
   },
 
+  "menstruationPhaseText": "Da du dich in der Menstruationsphase befindest, kann es sein, dass deine Stimmung, Motivation und Energie niedriger sind als sonst. Höre daher gut auf deinen Körper und plane gegebenenfalls eher kurze, regenerative Einheiten mit niedriger Intensität ein. Diese Einheiten können auch dazu beitragen, mögliche Symptome zu verringern.",
+  "follicularPhaseText": "Du befindest dich in der Follikelphase. Der steigende Östrogenspiegel hilft dir, dich selbstbewusst und stark zu fühlen. Wenn du dich gut fühlst, ist dies die optimale Zeit für intensivere Einheiten! Plane also verstärkt lange oder intensive Trainingseinheiten ein.  Auch Kraft- und Schnelligkeit lässt sich jetzt gut trainieren.",
+  "earlyLutealPhaseText": "Du befindest dich in der frühen Luthealphase. Die erste Woche dieser Phase eignet sich grundsätzlich gut für Einheiten mit hoher Intensität oder hohem Volumen sowie für Kraft- und Schnellkrafttraining. Wenn du dich schon im zweiten Teil der frühen Lutealphase befindest  kannst du die Intensität etwas drosseln, und den Fokus auf eher lange und weniger intensive Einheiten legen.",
+  "lateLutealPhaseText": "Du befindest dich in der späten Lutealphase. Wenn dich unangenehme körperliche und mentale Symptome plagen, plane kurze und leichte Regenerationseinheiten ein (z. B. leichtes Joggen, Fahrradfahren, Yoga oder Spaziergänge). Diese können dir auch dabei helfen, mögliche unangenehme Symptome zu mindern.",
+
   "trsInfo": "Dein Training Readiness Score liegt bei...",
   "scores": {
     "0-25": {
