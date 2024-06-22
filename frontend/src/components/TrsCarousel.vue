@@ -38,7 +38,7 @@
                 <div class="q-mt-md text-center">
                   <q-card flat bordered class="my-card">
                     <q-card-section>
-                      {{ moodtext }}
+                      {{ $t(`moodInfo.${moodScore}`) }}
                     </q-card-section>
                   </q-card>
                   <div class="q-pa-md">
