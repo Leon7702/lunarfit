@@ -280,6 +280,100 @@
       "title": "Geschafft!",
       "description": "Vielen Dank für das Ausfüllen der Fragen. Auf Basis deiner Antworten werden dir bereits anfängliche Empfehlungen abgegeben.\n\nDenk daran: Je genauer du deinen Zyklus und dein Sportverhalten trackst, desto genauer werden deine Empfehlungen."
     }
+  },
+  "logCycle": {
+    "home": {
+      "title": "Zyklus Log-Eintrag",
+      "labels": {
+        "menstruation": "Menstruation",
+        "temperature": "Temperatur",
+        "cervixMucus": "Zervixschleim",
+        "cervixPosition": "Gebärmutterhals",
+        "sex": "Geschlechtsverkehr",
+        "contraceptive": "Verhütungsmittel",
+        "medicine": "Medikamente",
+        "ovulationTest": "Ovulationstest",
+        "pregnancyTest": "Schwangerschaftstest"
+      }
+    },
+    "homeList": {
+      "title": "Liste anpassen",
+      "labels": {
+        "menstruation": "Menstruation",
+        "temperature": "Temperatur",
+        "cervixMucus": "Zervixschleim",
+        "cervixPosition": "Gebärmutterhals",
+        "sex": "Geschlechtsverkehr",
+        "contraceptive": "Verhütungsmittel",
+        "medicine": "Medikamente",
+        "ovulationTest": "Ovulationstest",
+        "pregnancyTest": "Schwangerschaftstest"
+      }
+    },
+    "cervix": {
+      "title": "Zervixschleim",
+      "description": "Bitte zutreffendes auswählen:"
+    },
+    "contraceptive": {
+      "title": "Verhütungsmittel",
+      "description": "Hormonelle Verhütungsmittel:",
+      "smallDescription": "Bitte beachten Sie, dass die oben genannten Verhütungsmittel Einfluss auf Ihren Zyklus haben können.",
+      "options": [
+        "Pille",
+        "Hormonspirale",
+        "Hormonimplantat",
+        "Dreimonatsspritze",
+        "Vaginalring",
+        "Sonstiges"
+      ]
+    },
+    "cervixPosition": {
+      "title": "Gebärmutterhals",
+      "description": "Bitte zutreffende Position auswählen:"
+    },
+    "medicine": {
+      "title": "Medikamente",
+      "description": "Spezifische Medikamenteneinnahme:",
+      "smallDescription": "Bitte beachten Sie, dass die oben genannten Medikamente Einfluss auf Ihren Zyklus haben können.",
+      "options": [
+        "Notfallkontrazeptiva",
+        "Hormonersatz",
+        "Opiode Schmerzmittel",
+        "Diclofenac/Ibuprofen"
+      ]
+    },
+    "mens": {
+      "title": "Menstruation",
+      "buttonLabel": "+  Menstruation",
+      "descriptionText": "Tippe hier, wenn deine Menstruation heute begonnen hat.",
+      "buttonLabelActive": "Menstruation aktiv",
+      "descriptionTextActive": "Tippe hier, wenn deine Menstruation vorbei ist."
+    },
+    "ovulationTest": {
+      "title": "Ovulationstest",
+      "description": "Bitte zutreffendes auswählen:"
+    },
+    "pregnancyTest": {
+      "title": "Schwangerschaftstest",
+      "description": "Bitte zutreffendes auswählen:"
+    },
+    "sex": {
+      "title": "Geschlechtsverkehr",
+      "description": "Bitte zutreffendes auswählen:",
+      "options": [
+        "Kein Sex",
+        "Geschützter Sex",
+        "Ungeschützter Sex",
+        "Lust auf Sex",
+        "Masturbation"
+      ]
+    },
+    "temperature": {
+      "title": "Temperatur",
+      "description": "Temperatur in °C:",
+      "descriptionTwo": "Störfaktoren*:",
+      "smallDescription": "*Störfaktoren können sein: Fieber, Alkoholkonsum, Schlafmangel, Stress, Medikamente, sonstige gesundheitliche Beschwerden. Bitte beachten Sie, dass die genannten Störfaktoren Einfluss auf Ihren Zyklus haben können."
+    }
   }
   
 }
