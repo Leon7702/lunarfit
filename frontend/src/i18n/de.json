@@ -36,24 +36,25 @@
 
   "menstruationInfo": {
     "title": "Menstruation",
-    "text": "Der Zyklus beginnt mit dem ersten Tag der Blutung, die durch den Abfall von Progesteron und Östrogen ausgelöst wird. Das steigende Östrogen hebt die Laune, macht selbstbewusst und kreativ.",
-    "nutrition": {
-      "1": "Entzündungshemmende und antioxidative Nahrungsmittel, um Symptome zu lindern: Curcumin, Vitamin D, Calcium, Magnesium and Zink (Brown et al., 2023) --> Kurkuma, Milchprodukte (Milch, Joghurt, Käse), Spinat, Vollkorn, Kerne und Samen, Präparate",
-      "2": "Achte auf eine genügende Eisenzufuhr, insbesondere wenn deine Blutung stark ausfällt (Pedlar et al., 2017; Gaxiola & Regil, 2019) --> Rotes Fleisch, Bohnen, Leafy Greens z.B Spinat, Linsen, Brokkoli",
-      "3": "Verbesserte Resorption durch parallele Aufnahme von Vitamin C (z.B. Sanddorn, Acerolakirsche, schwarze Johannisbeere, Petersilie, Wising, Rosenkohl, Paprika); Hemmung der Aufnahme u.a. durch Gerbstoffe (schwarzer Tee, Kaffee), Phytin (Vollkorn, Soja, Hülsenfrüchten), Phospohate (in Milch, Cola, Wurstwaren)",
-      "4": "Trinke genug Wasser, mind. 1.5 - 2 Liter + bei Training Kompensation des Schweissverlustes"
-    },
+    "description": "Der Zyklus beginnt mit dem ersten Tag der Blutung, die durch den Abfall von Progesteron und Östrogen ausgelöst wird. Das steigende Östrogen hebt die Laune, macht selbstbewusst und kreativ.",
+    "nutrition": [
+      "- Entzündungshemmende und antioxidative Nahrungsmittel, um Symptome zu lindern: Curcumin, Vitamin D, Calcium, Magnesium and Zink (Brown et al., 2023) --> Kurkuma, Milchprodukte (Milch, Joghurt, Käse), Spinat, Vollkorn, Kerne und Samen, Präparate",
+      "- Achte auf eine genügende Eisenzufuhr, insbesondere wenn deine Blutung stark ausfällt (Pedlar et al., 2017; Gaxiola & Regil, 2019) --> Rotes Fleisch, Bohnen, Leafy Greens z.B Spinat, Linsen, Brokkoli",
+      "- Verbesserte Resorption durch parallele Aufnahme von Vitamin C (z.B. Sanddorn, Acerolakirsche, schwarze Johannisbeere, Petersilie, Wising, Rosenkohl, Paprika); Hemmung der Aufnahme u.a. durch Gerbstoffe (schwarzer Tee, Kaffee), Phytin (Vollkorn, Soja, Hülsenfrüchten), Phospohate (in Milch, Cola, Wurstwaren)",
+      "- Trinke genug Wasser, mind. 1.5 - 2 Liter + bei Training Kompensation des Schweissverlustes"
+    ],
     "training": "Durch die potenziellen Symptome der Menstruation kann es sein, dass deine Stimmung, deine Motivation und deine Energie tiefer sind als sonst. Höre auf deinen Körper und plane deshalb vermehrt kurze, regenerative Einheiten mit niedriger Intensität in Phase 1 ein. Diese Einheiten können auch dazu beitragen, deine Symptome zu verringern.",
-    "health": {
-      "1": "Achte besonders in Phase 1 auf ausreichend (7-9h) und qualitativ hochwertigen Schlaf, um allfällige negative Symptome dieser Phase auszugleichen. Dabei können helfen:",
-      "2": "Konstanter Schlafrhythmus",
-      "3": "Das Zimmer dunkel und kühl halten",
-      "4": "Koffein und Alkohol limitieren",
-      "5": "1h vor dem Schlafengehen keine Bildschirm-Zeit",
-      "6": "2h vor dem Schlafengehen nicht essen",
-      "7": "In dieser Phase ist deine Fruchtbarkeit sehr gering."
-    }
+    "health": [
+      "- Achte besonders in Phase 1 auf ausreichend (7-9h) und qualitativ hochwertigen Schlaf, um allfällige negative Symptome dieser Phase auszugleichen. Dabei können helfen:",
+      "- Konstanter Schlafrhythmus",
+      "- Das Zimmer dunkel und kühl halten",
+      "- Koffein und Alkohol limitieren",
+      "- 1h vor dem Schlafengehen keine Bildschirm-Zeit",
+      "- 2h vor dem Schlafengehen nicht essen",
+      "- In dieser Phase ist deine Fruchtbarkeit sehr gering."
+    ]
   },
+
   "follicularInfo": {
     "title": "Follikelphase",
     "text": "Phase nach der Menstruation, in der die Eibläschchen zu einem sprungbereiten Follikel reifen. Das steigende Östrogen hebt die Laune, macht selbstbewusst und kreativ.",
