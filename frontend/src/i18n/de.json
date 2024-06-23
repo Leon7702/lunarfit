@@ -378,6 +378,49 @@
   "logNotes": {
     "title": "Notizen",
     "description": "Füge eine Notiz hinzu:"
+  },
+  "logTrainingComplaints": {
+    "title": "Beschwerden",
+    "description": "Hast du körperliche <br>Beschwerden?",
+    "slider": {
+      "topText": "Sehr starke Beschwerden",
+      "bottomText": "Keine Beschwerden"
+    }
+  },
+  "logTrainingMood": {
+    "backButton": "arrow_back",
+    "title": "Stimmung",
+    "description": "Wie bewertest du deine <br>heutige Stimmung?",
+    "slider": {
+      "topText": "Glücklich",
+      "bottomText": "Traurig"
+    }
+  },
+  "logTrainingRecovery": {
+    "title": "Erholung",
+    "description": "Wie bewertest du deinen <br>allgemeinen Erholungszustand?",
+    "slider": {
+      "topText": "Erholt",
+      "bottomText": "Nicht erholt"
+    }
+  },
+  "logTrainingStrain": {
+    "title": "Trainingsbelastung",
+    "description": "Wie anstrengend war <br>deine Trainingseinheit?",
+    "slider": {
+      "topText": "Maximal anstrengend",
+      "bottomText": "Gar nicht anstrengend"
+    }
+  },
+  "logTrainingStrainPre": {
+    "title": "Trainingsbelastung",
+    "description1": "Hast du heute oder gestern trainiert?",
+    "trainingOptions": {
+      "prompt": "Welche Sportart/Aktivität hast du durchgeführt?"
+    },
+    "durationOptions": {
+      "prompt": "Wie viele Minuten hast du trainiert?"
+    }
   }
   
 }
