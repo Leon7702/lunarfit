@@ -74,10 +74,11 @@
                   </q-card>
                   <div class="q-pa-md">
                     <p>Belastung Score heute:</p>
-                    <div class="q-gutter-y-md column justify-center items-center">
-                      <q-rating v-model="strainScore" size="2em" :max="6" color="grey" :color-selected="ratingColors"
-                        icon="rectangle" readonly />
-                    </div>
+                    <q-linear-progress size="25px" :value="acwrProgress" color="primary">
+                      <div class="absolute-full flex flex-center">
+                        <q-badge color="white" text-color="primary" :label="acwrProgressLabel" />
+                      </div>
+                    </q-linear-progress>
                   </div>
                 </div>
               </div>
@@ -142,7 +143,7 @@
 
 
 <script>
-import { ref } from 'vue';
+import { ref, computed } from 'vue';
 import axios from 'axios';
 import TrsSunburst from 'components/TrsSunburst.vue';
 
@@ -153,6 +154,7 @@ export default {
     const strainScore = ref(0);
     const freeScore = ref(0);
     const restScore = ref(0);
+    const acwr = ref(1.2);
 
     const fetchData = async () => {
       try {
@@ -162,12 +164,16 @@ export default {
         strainScore.value = trsdata.strain;
         freeScore.value = trsdata.free;
         restScore.value = trsdata.rest;
+        acwr.value = trsdata.acwr;
       } catch (error) {
         console.error('Failed to fetch data:', error);
       }
     };
 
     fetchData();
+
+    const acwrProgress = computed(() => Math.min(acwr.value / 2, 1));
+    const acwrProgressLabel = computed(() => (acwr.value).toFixed(2));
 
     return {
       // TODO: change names to be consistent to TrsSunburst and database
@@ -182,6 +188,8 @@ export default {
       strainScore,
       freeScore,
       restScore,
+      acwrProgress,
+      acwrProgressLabel,
       ratingColors: ['teal-2', 'teal-3', 'teal-4', 'teal-5', 'teal-6', 'teal-7']
     }
   },
