@@ -4,8 +4,8 @@
       <q-btn-toggle v-model="slide" :options="[
         { label: '1', value: 'training' },
         { label: '2', value: 'mood' },
-        { label: '3', value: 'burden' },
-        { label: '4', value: 'layers' },
+        { label: '3', value: 'strain' },
+        { label: '4', value: 'free' },
         { label: '5', value: 'rest' }
       ]" />
     </div>
@@ -62,14 +62,22 @@
             </q-scroll-area>
           </q-carousel-slide>
 
-          <q-carousel-slide name="burden" class="column no-wrap flex-center">
+          <q-carousel-slide name="strain" class="column no-wrap flex-center">
             <q-scroll-area class="fit">
               <div class="column no-wrap flex-center">
                 <div class="text-h6">Belastung</div>
                 <div class="q-mt-md text-center">
                   <q-card flat bordered class="my-card">
                     <q-card-section>
-                      {{ burdentext }}
+                      <div class="info-text">
+                        <strong>{{ $t(`acwrInfo`)}} {{ acwr }}</strong>
+                        <div>{{ $t(`strainInfo.${acwrScore}.description`) }}</div>
+                        <p></p>
+                        <div>{{ $t(`strainInfo.${acwrScore}.recommendations[0]`) }}</div>
+                        <div>{{ $t(`strainInfo.${acwrScore}.recommendations[1]`) }}</div>
+                        <div>{{ $t(`strainInfo.${acwrScore}.recommendations[2]`) }}</div>
+                        <div>{{ $t(`strainInfo.${acwrScore}.recommendations[3]`) }}</div>
+                      </div>
                     </q-card-section>
                   </q-card>
                   <div class="q-pa-md">
@@ -85,7 +93,7 @@
             </q-scroll-area>
           </q-carousel-slide>
 
-          <q-carousel-slide name="layers" class="column no-wrap flex-center">
+          <q-carousel-slide name="free" class="column no-wrap flex-center">
             <q-scroll-area class="fit">
               <div class="column no-wrap flex-center">
                 <div class="text-h6">Beschwerdefreiheit</div>
@@ -94,6 +102,7 @@
                     <q-card-section>
                       <div class="info-text">
                         <div>{{ $t(`freeInfo.${freeScore}.description`) }}</div>
+                        <p></p>
                         <div>{{ $t(`freeInfo.${freeScore}.recommendations[0]`) }}</div>
                         <div>{{ $t(`freeInfo.${freeScore}.recommendations[1]`) }}</div>
                         <div>{{ $t(`freeInfo.${freeScore}.recommendations[2]`) }}</div>
@@ -175,6 +184,13 @@ export default {
     const acwrProgress = computed(() => Math.min(acwr.value / 2, 1));
     const acwrProgressLabel = computed(() => (acwr.value).toFixed(2));
 
+    const acwrScore = computed(() => {
+      if (acwr.value < 0.8) return 1;
+      if (acwr.value < 1.5) return 2;
+      if (acwr.value < 1.8) return 3;
+      return 4;
+    });
+
     return {
       // TODO: change names to be consistent to TrsSunburst and database
       lorem: 'Lorem ipsum dolor, sit amet consectetur adipisicing elit. Itaque voluptatem totam, architecto cupiditate officia rerum, error dignissimos praesentium libero ab nemo.',
@@ -188,6 +204,8 @@ export default {
       strainScore,
       freeScore,
       restScore,
+      acwr,
+      acwrScore,
       acwrProgress,
       acwrProgressLabel,
       ratingColors: ['teal-2', 'teal-3', 'teal-4', 'teal-5', 'teal-6', 'teal-7']

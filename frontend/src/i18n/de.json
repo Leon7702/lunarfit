@@ -161,7 +161,48 @@
     }
   },
 
-"freeInfo": {
+  "acwrInfo": "Dein ACWR-Wert liegt bei ",
+
+  "strainInfo": {
+    "1": {
+      "description": "< 0,8 → Dein Trainingsvolumen ist momentan relativ niedrig. Um weiterhin Fortschritte zu machen und deine Trainingsziele zu erreichen, empfehlen wir dir:",
+      "recommendations": [
+        ">> Erhöhe dein Trainingsvolumen schrittweise, um deinen Körper zu fordern und Verbesserungen zu erzielen.",
+        ">> Integriere auch herausfordernde Trainingseinheiten, um deine Motivation zu steigern und Leistungsplateaus zu vermeiden.",
+        ">> Setze dir konkrete Ziele und verfolge deine Fortschritte, um kontinuierlich motiviert zu bleiben.",
+        ""
+      ]
+    },
+    "2": {
+      "description": "0,8 ≤ ACWR < 1,5 → Dein Trainingsvolumen liegt im optimalen Bereich. Du bist auf einem guten Weg, um Fortschritte zu machen und Verletzungen zu vermeiden. Unsere Empfehlungen:",
+      "recommendations": [
+        ">> Setze dein aktuelles Training fort und erhöhe das Volumen allmählich und kontrolliert.",
+        ">> Integriere abwechslungsreiche Trainingseinheiten, um verschiedene Muskelgruppen anzusprechen und die Motivation hochzuhalten.",
+        ">> Plane regelmäßig Ruhetage ein, um deinem Körper die notwendige Erholung zu bieten.",
+        ">> Bleibe aufmerksam gegenüber den Signalen deines Körpers und passe dein Training bei Bedarf an."
+      ]
+    },
+    "3": {
+      "description": "1,5 ≤ ACWR < 1,8 → Du bist voll motiviert und dein Trainingsvolumen ist hoch! Es ist jedoch wichtig, eine Balance zu finden, um Überlastungen und Verletzungen zu vermeiden. Wir empfehlen dir:",
+      "recommendations": [
+        ">> Reduziere das Trainingsvolumen für die nächsten Tage leicht, um deinem Körper Zeit zur Erholung zu geben.",
+        ">> Integriere regelmäßig regenerative Maßnahmen wie Stretching, Yoga oder Massagen, um deine Erholung zu unterstützen.",
+        ">> Höre auf die Signale deines Körpers und plane regelmäßige Ruhetage ein, um Übertraining zu vermeiden.",
+        ">> Achte auf eine ausgewogene Ernährung und ausreichend Schlaf, um deine Regeneration zu fördern."
+      ]
+    },
+    "4": {
+      "description": "≥ 1,8 → Achtung! Dein Trainingsvolumen ist momentan sehr hoch und das Risiko für eine Überlastung und Verletzungen steigt. Um dich vor Verletzungen zu schützen, empfehlen wir dir:",
+      "recommendations": [
+        ">> Reduziere das Trainingsvolumen und plane mehrere Ruhetage ein.",
+        ">> Setze verstärkt auf aktive Erholung wie lockeres Joggen, leichtes Schwimmen oder entspannende Aktivitäten.",
+        ">> Setze den Schwerpunkt auf Regenerationsmassnahmen, einschließlich Massagen, Physiotherapie oder Faszientraining.",
+        ">> Achte auf Warnsignale deines Körpers."
+      ]
+    }
+  },
+
+  "freeInfo": {
     "1": {
       "description": "Du hast derzeit starke Beschwerden. Es ist wichtig, auf deinen Körper zu hören und ihn zu schonen:",
       "recommendations": [
