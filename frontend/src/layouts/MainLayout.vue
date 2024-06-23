@@ -90,12 +90,15 @@ export default {
   padding: 0;
 }
 
+
 .toolbar-item {
   display: flex;
   flex-direction: column;
   align-items: center;
   cursor: pointer;
   padding: 5px;
+  width: 80px;
+  /* Set a fixed width for each toolbar item */
 }
 
 .toolbar-icon {
@@ -112,8 +115,6 @@ export default {
   /* Hide overflowing text */
   text-overflow: ellipsis;
   /* Show ellipsis (...) for overflow */
-  max-width: 40px;
-  /* Adjust max-width as per your design */
   text-align: center;
   /* Center align the text */
 }
