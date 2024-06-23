@@ -64,8 +64,8 @@
             <q-scroll-area class="fit">
               <div class="column no-wrap flex-center">
                 <div class="text-h6">Belastung</div>
-                  <TrsSunburst />
-                  <div class="q-mt-md text-center">
+                <TrsSunburst />
+                <div class="q-mt-md text-center">
                   <q-card flat bordered class="my-card">
                     <q-card-section>
                       {{ burdentext }}
@@ -91,7 +91,12 @@
                 <div class="q-mt-md text-center">
                   <q-card flat bordered class="my-card">
                     <q-card-section>
-                      {{ lorem }}
+                      <div>{{ $t(`freeInfo.${freeScore}[0]`) }}</div>
+                      <div>{{ $t(`freeInfo.${freeScore}[1]`) }}</div>
+                      <div>{{ $t(`freeInfo.${freeScore}[2]`) }}</div>
+                      <div>{{ $t(`freeInfo.${freeScore}[3]`) }}</div>
+                      <div>{{ $t(`freeInfo.${freeScore}[4]`) }}</div>
+                      <div>{{ $t(`freeInfo.${freeScore}[5]`) }}</div>
                     </q-card-section>
                   </q-card>
                   <div class="q-pa-md">
