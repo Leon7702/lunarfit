@@ -1,5 +1,5 @@
 <template>
-  <div class="q-pa-md">
+  <div class="q-px-md">
     <div class="row justify-center">
       <!-- Quasar button toggle component to switch between slides -->
       <q-btn-toggle v-model="slide" :options="[
