@@ -12,6 +12,19 @@
     "0": "Sonntag"
   },
 
+  "cycleTitle": "ZYKLUS",
+  "trainingTitle": "TRAINING",
+
+  "cycleDay": "Zyklustag",
+
+  "mood": "Stimmung",
+  "strain": "Belastung",
+  "rest": "Erholung",
+  "free": "Beschwerdefreiheit",
+
+  "moreCycleInfo": "Erfahre jetzt mehr über deinen Zyklus",
+  "moreTrainingInfo": "Erfahre jetzt mehr über dein Training",
+
   "menstruationInfo": {
     "title": "Menstruation",
     "text": "Der Zyklus beginnt mit dem ersten Tag der Blutung, die durch den Abfall von Progesteron und Östrogen ausgelöst wird. Das steigende Östrogen hebt die Laune, macht selbstbewusst und kreativ.",
@@ -219,6 +232,7 @@
     "5": "Du scheinst gut erholt zu sein. Du kannst dein Trainingspensum so fortsetzen.",
     "6": "Du scheinst optimal erholt zu sein. Du kannst überlegen, den Trainingsumfang oder die Trainingsintensität zu erhöhen."
   },
+
   "onboarding": {
     "start": {
       "title": "Willkommen bei LunarFit.",
@@ -422,5 +436,5 @@
       "prompt": "Wie viele Minuten hast du trainiert?"
     }
   }
-  
+
 }

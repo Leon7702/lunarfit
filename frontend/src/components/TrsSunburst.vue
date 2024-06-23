@@ -2,7 +2,7 @@
   <main>
     <div class="q-px-md flex flex-center">
       <!-- SVG element for the donut chart -->
-      <svg width="250" height="250" viewBox="0 0 42 42" class="donut">
+      <svg width="240" height="240" viewBox="0 0 42 42" class="donut">
         <!-- Loop over each segment in the segments array -->
         <circle v-for="(segment, index) in segments" :key="'segment-' + index" :class="'donut-segment-' + segment.level"
           cx="21" cy="21" :r="segment.radius" fill="transparent" :stroke="segment.color"
