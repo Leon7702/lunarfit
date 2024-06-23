@@ -34,11 +34,13 @@
             <q-scroll-area class="fit">
               <div class="column no-wrap flex-center">
                 <div class="text-h6">Stimmung</div>
-                <TrsSunburst />
                 <div class="q-mt-md text-center">
                   <q-card flat bordered class="my-card">
                     <q-card-section>
-                      {{ moodtext }}
+                      <div class="info-text">
+                        <strong>{{ $t(`moodInfo.${moodScore}.description`) }}</strong>
+                        <div>{{ $t(`moodInfo.${moodScore}.advice`) }}</div>
+                      </div>
                     </q-card-section>
                   </q-card>
                   <div class="q-pa-md">
@@ -49,12 +51,12 @@
                     </div>
                   </div>
 
-                  <p>Verlauf</p>
+                  <!-- <p>Verlauf</p>
                   <q-card class="my-card border-black">
                     <q-card-section>
                       <p>Diagram</p>
                     </q-card-section>
-                  </q-card>
+                  </q-card> -->
                 </div>
               </div>
             </q-scroll-area>
@@ -64,8 +66,7 @@
             <q-scroll-area class="fit">
               <div class="column no-wrap flex-center">
                 <div class="text-h6">Belastung</div>
-                  <TrsSunburst />
-                  <div class="q-mt-md text-center">
+                <div class="q-mt-md text-center">
                   <q-card flat bordered class="my-card">
                     <q-card-section>
                       {{ burdentext }}
@@ -87,11 +88,17 @@
             <q-scroll-area class="fit">
               <div class="column no-wrap flex-center">
                 <div class="text-h6">Beschwerdefreiheit</div>
-                <TrsSunburst />
                 <div class="q-mt-md text-center">
                   <q-card flat bordered class="my-card">
                     <q-card-section>
-                      {{ lorem }}
+                      <div class="info-text">
+                        <div>{{ $t(`freeInfo.${freeScore}.description`) }}</div>
+                        <div>{{ $t(`freeInfo.${freeScore}.recommendations[0]`) }}</div>
+                        <div>{{ $t(`freeInfo.${freeScore}.recommendations[1]`) }}</div>
+                        <div>{{ $t(`freeInfo.${freeScore}.recommendations[2]`) }}</div>
+                        <div>{{ $t(`freeInfo.${freeScore}.recommendations[3]`) }}</div>
+                        <div>{{ $t(`freeInfo.${freeScore}.recommendations[4]`) }}</div>
+                      </div>
                     </q-card-section>
                   </q-card>
                   <div class="q-pa-md">
@@ -110,11 +117,10 @@
             <q-scroll-area class="fit">
               <div class="column no-wrap flex-center">
                 <div class="text-h6">Erholung</div>
-                <TrsSunburst />
                 <div class="q-mt-md text-center">
                   <q-card flat bordered class="my-card">
                     <q-card-section>
-                      {{ resttext }}
+                      {{ $t(`restInfo.${restScore}`) }}
                     </q-card-section>
                   </q-card>
                   <div class="q-pa-md">
@@ -206,5 +212,9 @@ export default {
   display: flex;
   justify-content: center;
   align-items: center;
+}
+
+.info-text {
+  text-align: left;
 }
 </style>

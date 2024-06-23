@@ -85,6 +85,140 @@
       }
     }
   },
+
+  "menstruationPhaseText": "Da du dich in der Menstruationsphase befindest, kann es sein, dass deine Stimmung, Motivation und Energie niedriger sind als sonst. Höre daher gut auf deinen Körper und plane gegebenenfalls eher kurze, regenerative Einheiten mit niedriger Intensität ein. Diese Einheiten können auch dazu beitragen, mögliche Symptome zu verringern.",
+  "follicularPhaseText": "Du befindest dich in der Follikelphase. Der steigende Östrogenspiegel hilft dir, dich selbstbewusst und stark zu fühlen. Wenn du dich gut fühlst, ist dies die optimale Zeit für intensivere Einheiten! Plane also verstärkt lange oder intensive Trainingseinheiten ein.  Auch Kraft- und Schnelligkeit lässt sich jetzt gut trainieren.",
+  "earlyLutealPhaseText": "Du befindest dich in der frühen Luthealphase. Die erste Woche dieser Phase eignet sich grundsätzlich gut für Einheiten mit hoher Intensität oder hohem Volumen sowie für Kraft- und Schnellkrafttraining. Wenn du dich schon im zweiten Teil der frühen Lutealphase befindest  kannst du die Intensität etwas drosseln, und den Fokus auf eher lange und weniger intensive Einheiten legen.",
+  "lateLutealPhaseText": "Du befindest dich in der späten Lutealphase. Wenn dich unangenehme körperliche und mentale Symptome plagen, plane kurze und leichte Regenerationseinheiten ein (z. B. leichtes Joggen, Fahrradfahren, Yoga oder Spaziergänge). Diese können dir auch dabei helfen, mögliche unangenehme Symptome zu mindern.",
+
+  "trsInfo": "Dein Training Readiness Score liegt bei...",
+  "scores": {
+    "0-25": {
+      "1": "Dein Körper ist momentan nicht optimal auf intensives Training vorbereitet. Hier sind einige Empfehlungen, um deine Erholung zu unterstützen und deine Belastung zu reduzieren:",
+      "2": "Vermeide intensive Trainingseinheiten und setze stattdessen auf regenerative Maßnahmen.",
+      "3": "Achte besonders auf ausreichend Schlaf und eine ausgewogene Ernährung, um deine Regeneration zu fördern.",
+      "4": "Beobachte deine Beschwerden und passe dein Training entsprechend an."
+    },
+    "26-50": {
+      "1": "Deine Trainingsbereitschaft ist moderat. Dein Körper braucht etwas mehr Erholung, bevor du wieder voll durchstarten kannst. Hier sind einige Tipps:",
+      "2": "Reduziere die Intensität und das Volumen deiner Trainingseinheiten, um Überlastung zu vermeiden.",
+      "3": "Integriere mehr regenerative Maßnahmen wie Dehnen, leichtes Cardio und Entspannungstechniken in deinen Trainingsplan.",
+      "4": "Achte auf deine Stimmung und versuche, positive Aktivitäten in deinen Alltag zu integrieren, die dich motivieren und entspannen.",
+      "5": "Achte weiterhin auf eine gute Ernährung und ausreichend Schlaf, um deine Erholung zu unterstützen."
+    },
+    "51-75": {
+      "1": "Deine Trainingsbereitschaft ist gut, und du kannst dein Training wie gewohnt fortsetzen. Hier sind einige Empfehlungen, um deine Trainingsbereitschaft zu optimieren:",
+      "2": "Setze dein Training wie gewohnt fort, aber achte darauf, dein Trainingsvolumen schrittweise zu steigern.",
+      "3": "Führe regelmäßig regenerative Maßnahmen durch, um deine Erholung zu unterstützen.",
+      "4": "Achte weiterhin auf eine ausgewogene Ernährung und ausreichend Schlaf, um deine Regeneration zu optimieren."
+    },
+    "76-100": {
+      "1": "Herzlichen Glückwunsch! Du bist optimal auf dein Training vorbereitet. Dein Körper ist gut erholt und deine Belastung ist ausgeglichen. Hier sind einige Tipps, um dein Training optimal zu nutzen:",
+      "2": "Nutze die Gelegenheit, um intensive und anspruchsvolle Trainingseinheiten durchzuführen und deine Leistung zu steigern.",
+      "3": "Achte weiterhin auf eine gute Aufwärmphase, um Verletzungen vorzubeugen.",
+      "4": "Halte an deinen regenerativen Maßnahmen fest, um dein hohes Leistungsniveau aufrechtzuerhalten.",
+      "5": "Bleibe positiv und motiviert, und sorge für eine ausgewogene Ernährung und ausreichend Schlaf, um deine Regeneration und Leistung zu unterstützen."
+    }
+  },
+
+  "moodInfo": {
+    "1": {
+      "description": "Sehr schlecht:",
+      "advice": "Es scheint, als ob du einen sehr schwierigen Tag hast. Versuche, dich zu bewegen, auch wenn es nur ein kurzer Spaziergang ist. Bewegung kann helfen, den Kopf frei zu bekommen und die Stimmung zu heben."
+    },
+    "2": {
+      "description": "Schlecht:",
+      "advice": "Deine Stimmung ist momentan nicht die beste. Probiere eine kurze, leichte Übung wie Dehnen oder Yoga. Diese Aktivitäten können helfen, Spannungen abzubauen und deine Laune zu verbessern."
+    },
+    "3": {
+      "description": "Mittelmäßig:",
+      "advice": "Du fühlst dich wohl, aber es gibt Raum für Verbesserung. Mach eine moderate Sporteinheit, wie einen zügigen Spaziergang, leichtes Joggen oder Radfahren. Körperliche Aktivität, vorallem an der frischen Luft, kann helfen, Endorphine freizusetzen und deine Stimmung zu heben."
+    },
+    "4": {
+      "description": "Gut:",
+      "advice": "Deine Stimmung ist gut, das ist schön zu hören! Nutze diese positive Energie für ein intensiveres Training. So kannst du deine Stimmung weiter verbessern und deine Fitness steigern."
+    },
+    "5": {
+      "description": "Sehr gut:",
+      "advice": "Du scheinst dich wirklich gut zu fühlen! Teile deine gute Laune mit anderen, indem du eine sportliche Aktivität in der Gruppe machst. Zusammen zu trainieren kann viel Spaß machen und die Stimmung weiter heben."
+    },
+    "6": {
+      "description": "Hervorragend:",
+      "advice": "Du strahlst vor positiver Energie! Genieße diesen Moment voll und ganz mit einer sportlichen Aktivität, die dir besonders viel Freude bereitet. Ob es ein längerer Lauf, eine intensive Radtour oder ein herausfordernder Fitnesskurs ist – nutze diese Hochstimmung für ein großartiges Training."
+    }
+  },
+
+"freeInfo": {
+    "1": {
+      "description": "Du hast derzeit starke Beschwerden. Es ist wichtig, auf deinen Körper zu hören und ihn zu schonen:",
+      "recommendations": [
+        ">> Vermeide intensive körperliche Aktivitäten und gönne dir ausreichend Ruhe.",
+        ">> Setze auf sanfte Bewegungen wie leichtes Dehnen und Spaziergänge, um die Durchblutung zu fördern, ohne die Beschwerden zu verschlimmern.",
+        ">> Wärmebehandlungen wie ein warmes Bad oder eine Wärmflasche können helfen, Krämpfe zu lindern.",
+        ">> Konsultiere gegebenenfalls einen Arzt, um geeignete Maßnahmen zur Linderung deiner Beschwerden zu besprechen.",
+        ">> Achte besonders auf eine ausgewogene Ernährung und trinke ausreichend Wasser."
+      ]
+    },
+    "2": {
+      "description": "Du hast erhebliche Beschwerden. Hier sind einige Empfehlungen, um deine Beschwerden zu lindern:",
+      "recommendations": [
+        ">> Reduziere dein Trainingsvolumen deutlich und fokussiere dich auf regenerative Maßnahmen wie leichtes Yoga oder Stretching.",
+        ">> Verzichte auf belastende Übungen und setze stattdessen auf sanfte Bewegungen, die keine Schmerzen verursachen.",
+        ">> Wärmebehandlungen und leichte Massagen können hilfreich sein, um Verspannungen zu lösen und Schmerzen zu lindern.",
+        "",
+        ""
+      ]
+    },
+    "3": {
+      "description": "Du hast mäßige Beschwerden. Hier sind einige Tipps, um deine Beschwerden zu managen:",
+      "recommendations": [
+        ">> Reduziere die Intensität deines Trainings und vermeide Übungen, die die Beschwerden verschlimmern könnten.",
+        ">> Führe regelmäßig Dehn- und Entspannungsübungen durch, um deinen Körper zu entlasten.",
+        ">> Achte darauf, regelmäßig Pausen einzulegen und deinem Körper genügend Zeit zur Erholung zu geben.",
+        "",
+        ""
+      ]
+    },
+    "4": {
+      "description": "Du hast leichte  Beschwerden. Es ist wichtig, darauf zu achten und präventiv zu handeln:",
+      "recommendations": [
+        ">> Reduziere die Trainingsintensität geringfügig und achte darauf, keine Übungen zu machen, die die Beschwerden verschlimmern.",
+        ">> Führe regelmäßig Dehnübungen und leichte Kräftigungsübungen durch, um die betroffenen Bereiche zu entlasten.",
+        ">> Wärme- oder Kälteanwendungen können helfen, leichte Beschwerden zu lindern.",
+        ">> Achte auf eine gute Körperhaltung und ergonomische Bewegungen im Alltag, um zusätzliche Belastungen zu vermeiden.",
+        ""
+      ]
+    },
+    "5": {
+      "description": "Du hast sehr geringe  Beschwerden. Dein Training sollte hierdurch nicht beeinflusst werden.",
+      "recommendations": [
+        ">> Achte dennoch auf die Signale deines Körpers und passe dein Training bei Bedarf an.",
+        ">> Wärme- oder Entspannungstechniken können helfen, leichte Beschwerden zu vermeiden.",
+        "",
+        "",
+        ""
+      ]
+    },
+    "6": {
+      "description": "Du hast keine Beschwerden. Perfekt! So kannst du dein Training optimal fortsetzen:",
+      "recommendations": [
+        ">> Setze dein gewohntes Trainingsprogramm fort und steigere die Intensität allmählich, um weitere Fortschritte zu erzielen.",
+        ">> Achte weiterhin auf eine gute Aufwärmphase, um Verletzungen vorzubeugen.",
+        ">> Integriere regelmäßig Übungen zur Verbesserung der Flexibilität und Stabilität.",
+        ">> Höre auf deinen Körper und sorge für genügend Erholungsphasen.",
+        ""
+      ]
+    }
+  },
+
+  "restInfo": {
+    "1": "Du scheinst körperlich sehr erschöpft zu sein. Du solltest eine Trainingspause einlegen. Weitere regenerative Maßnahmen wie Sauna, warme Bäder, Massagen und Faszientraining können den Regenerationsprozess unterstützen.",
+    "2": "Dein Erholungszustand ist gering. Du solltest ein Regenerations- und Kompensationstraining in Betracht ziehen. Das bedeutet bewusst lockere Einheiten mit einer sehr geringen Intensität. Um einseitige Belastungen zu vermeiden, kannst du auch eine andere Sportart wählen.",
+    "3": "Dein Erholungszustand ist eingeschränkt. Du solltest dein Trainingsvolumen oder die Trainingsintensität etwas reduzieren.",
+    "4": "Dein Erholungszustand ist nicht optimal. Wenn dieser Zustand länger anhält, solltest du dein Trainingsvolumen und die Trainingsintensität für einige Zeit etwas reduzieren, um langfristig ein Übertraining zu vermeiden.",
+    "5": "Du scheinst gut erholt zu sein. Du kannst dein Trainingspensum so fortsetzen.",
+    "6": "Du scheinst optimal erholt zu sein. Du kannst überlegen, den Trainingsumfang oder die Trainingsintensität zu erhöhen."
+  },
   "onboarding": {
     "start": {
       "title": "Willkommen bei LunarFit.",
