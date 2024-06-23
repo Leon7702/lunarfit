@@ -24,8 +24,9 @@
           <div class="text-h6">{{ $t('trainingTitle') }}</div>
           <div style="position: relative;">
           <TrsSunburst />
+          <div class="browser-svg-container">
           <!-- Add your SVG paths and text labels here -->
-          <svg style="position: absolute; top: -1; left: 10;" width="240" height="240" viewBox="0 0 57 57">
+          <svg width="240" height="240" viewBox="0 0 57 57">
               <!-- Paths for the text labels -->
               <path id="path1" d="M 30,30 m -26,0 a 26,26 0 1,1 52,0 a 26,26 0 1,1 -52,0" fill="transparent" />
               <path id="path2" d="M 30,30 m -26,0 a 26,26 0 1,0 52,0 a 26,26 0 1,0 -52,0" fill="transparent" />
@@ -56,6 +57,7 @@
               </text>
             </svg>
         </div>
+      </div>
           <div class="more-text">
             {{ $t('moreTrainingInfo') }}
             <img class="aligned-svg" src="/src/assets/ForwardArrow.svg" alt="Weiter" />
@@ -127,5 +129,12 @@ export default {
 
 .more-text {
   padding-left: 1.2rem;
+}
+
+/* Browser-specific styles */
+.browser-svg-container {
+  position: absolute;
+  top: 0;
+  left: 10px;
 }
 </style>
