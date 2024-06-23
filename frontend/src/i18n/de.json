@@ -11,6 +11,15 @@
     "6": "Samstag",
     "0": "Sonntag"
   },
+  "weekdays_short": {
+    "1": "M",
+    "2": "D",
+    "3": "M",
+    "4": "D",
+    "5": "F",
+    "6": "S",
+    "0": "S"
+  },
 
   "cycleTitle": "ZYKLUS",
   "trainingTitle": "TRAINING",
@@ -476,6 +485,92 @@
     "durationOptions": {
       "prompt": "Wie viele Minuten hast du trainiert?"
     }
-  }
+  },
+  "calendarLegend": {
+    "0": "Periode",
+    "1": "Vorausgesagte Periode",
+    "2": "Follikelphase"
+  },
 
+  "training-recommendation": {
+    "title": "Trainingsempfehlung",
+    "description": "Basierend auf deinem Zyklus und deinem aktuellen Zustand empfehlen wir dir folgende Trainingseinheiten:"
+  },
+
+  "symptoms": "Symptome",
+  "trs": "Training Readiness Score",
+  "more-info": "Mehr erfahren",
+  "add": "Hinzufügen",
+
+  "toolbar": {
+    "start": "Start",
+    "calendar": "Kalender",
+    "Chat": "Chat",
+    "settings": "Einstellungen"
+  },
+
+ "symptomsList": {
+    "bloating": "Blähungen",
+    "breastPain": "Brustschmerzen",
+    "diarrhea": "Durchfall",
+    "exhaustion": "Erschöpfung",
+    "cold": "Frieren",
+    "cravings": "Gelüste",
+    "irritability": "Gereiztheit",
+    "aches": "Gliederschmerzen",
+    "hotFlashes": "Hitzewallungen",
+    "headaches": "Kopfschmerzen",
+    "cramps": "Krämpfe",
+    "fatigue": "Müdigkeit",
+    "sleepIssues": "Schlafstörungen",
+    "dizziness": "Schwindelgefühl",
+    "moodSwings": "Stimmungsschwankungen",
+    "weakness": "Schwächegefühl",
+    "nausea": "Übelkeit",
+    "acne": "Unreine Haut",
+    "pelvicPain": "Unterleibsschmerzen",
+    "constipation": "Verstopfung"
+  },
+
+  "moods": {
+    "anxious": "Ängstlich",
+    "excited": "Begeistert",
+    "relaxed": "Entspannt",
+    "fit": "Fit",
+    "frustrated": "Frustriert",
+    "happy": "Glücklich",
+    "stressed": "Gestresst",
+    "tired": "Müde",
+    "nervous": "Nervös",
+    "weak": "Schwach",
+    "confident": "Selbstsicher",
+    "sad": "Traurig",
+    "unhappy": "Unglücklich",
+    "insecure": "Unsicher",
+    "angry": "Verärgert",
+    "embarrassed": "Verlegen",
+    "confused": "Verwirrt",
+    "furious": "Wütend",
+    "satisfied": "Zufrieden",
+    "optimistic": "Zuversichtlich"
+  },
+
+  "save": "Speichern",
+  "cancel": "Abbrechen",
+  "track": "Tracken",
+
+  "email": "E-Mail",
+  "password": "Passwort",
+  "confirm-password": "Passwort bestätigen",
+  "register": {
+    "title": "Registrieren",
+    "account": "Du hast bereits einen Account?",
+    "login-now": "Jetzt anmelden"
+  },
+
+  "login": {
+    "title": "Anmelden",
+    "no-account": "Noch keinen Account?",
+    "register-now": "Jetzt registrieren"
+  }
 }

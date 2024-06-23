@@ -4,20 +4,15 @@
       <router-link to="/calendar" class="navButton">
         <img src="/src/assets/arrow-left.svg" alt="Left" class="navButtonImage">
       </router-link>
-      <div class="head">Symptome</div>
+      <div class="head">{{ $t('symptoms') }}</div>
     </div>
 
     <div class="container">
-      <IconSlider
-        v-for="(item, index) in symptomItems"
-        :key="index"
-        :icon="item.icon"
-        :text="item.text"
-      />
+      <IconSlider v-for="(item, index) in symptomItems" :key="index" :icon="item.icon" :text="item.text" />
     </div>
-    
+
     <div class="button-container">
-      <button class="save-button" @click="redirectToCalendarPage">Speichern</button>
+      <button class="save-button" @click="redirectToCalendarPage">{{ $t('save') }}</button>
     </div>
   </div>
 </template>
@@ -33,33 +28,33 @@ export default {
   data() {
     return {
       symptomItems: [
-        { icon: '/src/assets/LunaFit.svg', text: 'Blähungen' },
-        { icon: '/src/assets/icon2.svg', text: 'Brustschmerzen' },
-        { icon: '/src/assets/icon3.svg', text: 'Durchfall' },
-        { icon: '/src/assets/icon2.svg', text: 'Erschöpfung' },
-        { icon: '/src/assets/icon2.svg', text: 'Frieren' },
-        { icon: '/src/assets/icon2.svg', text: 'Gelüste' },
-        { icon: '/src/assets/icon2.svg', text: 'Gereiztheit' },
-        { icon: '/src/assets/icon2.svg', text: 'Gliederschmerzen' },
-        { icon: '/src/assets/icon2.svg', text: 'Hitzewallungen' },
-        { icon: '/src/assets/icon2.svg', text: 'Kopfschmerzen' },
-        { icon: '/src/assets/icon2.svg', text: 'Krämpfe' },
-        { icon: '/src/assets/icon2.svg', text: 'Müdigkeit' },
-        { icon: '/src/assets/icon2.svg', text: 'Schlafstörungen' },
-        { icon: '/src/assets/icon2.svg', text: 'Schwindelgefühl' },
-        { icon: '/src/assets/icon2.svg', text: 'Stimmungsschwankungen' },
-        { icon: '/src/assets/icon2.svg', text: 'Schwächegefühl' },
-        { icon: '/src/assets/icon2.svg', text: 'Übelkeit' },
-        { icon: '/src/assets/icon2.svg', text: 'Unreine Haut' },
-        { icon: '/src/assets/icon2.svg', text: 'Unterleibsschmerzen' },
-        { icon: '/src/assets/icon2.svg', text: 'Verstopfung' },
+        { icon: '/src/assets/LunaFit.svg', text: this.$t('symptomsList.bloating') },
+        { icon: '/src/assets/icon2.svg', text: this.$t('symptomsList.breastPain') },
+        { icon: '/src/assets/icon3.svg', text: this.$t('symptomsList.diarrhea') },
+        { icon: '/src/assets/icon2.svg', text: this.$t('symptomsList.exhaustion') },
+        { icon: '/src/assets/icon2.svg', text: this.$t('symptomsList.cold') },
+        { icon: '/src/assets/icon2.svg', text: this.$t('symptomsList.cravings') },
+        { icon: '/src/assets/icon2.svg', text: this.$t('symptomsList.irritability') },
+        { icon: '/src/assets/icon2.svg', text: this.$t('symptomsList.aches') },
+        { icon: '/src/assets/icon2.svg', text: this.$t('symptomsList.hotFlashes') },
+        { icon: '/src/assets/icon2.svg', text: this.$t('symptomsList.headaches') },
+        { icon: '/src/assets/icon2.svg', text: this.$t('symptomsList.cramps') },
+        { icon: '/src/assets/icon2.svg', text: this.$t('symptomsList.fatigue') },
+        { icon: '/src/assets/icon2.svg', text: this.$t('symptomsList.sleepIssues') },
+        { icon: '/src/assets/icon2.svg', text: this.$t('symptomsList.dizziness') },
+        { icon: '/src/assets/icon2.svg', text: this.$t('symptomsList.moodSwings') },
+        { icon: '/src/assets/icon2.svg', text: this.$t('symptomsList.weakness') },
+        { icon: '/src/assets/icon2.svg', text: this.$t('symptomsList.nausea') },
+        { icon: '/src/assets/icon2.svg', text: this.$t('symptomsList.acne') },
+        { icon: '/src/assets/icon2.svg', text: this.$t('symptomsList.pelvicPain') },
+        { icon: '/src/assets/icon2.svg', text: this.$t('symptomsList.constipation') },
       ]
     };
   },
   methods: {
     redirectToCalendarPage() {
       const router = useRouter();
-      router.push('/calendar'); 
+      router.push('/calendar');
     }
   }
 };
@@ -68,10 +63,12 @@ export default {
 <style scoped>
 .root {
   width: 90%;
-  margin: 0 auto; /* Centers the content horizontally */
+  margin: 0 auto;
+  /* Centers the content horizontally */
   display: flex;
   flex-direction: column;
-  min-height: 100vh; /* Ensure the root takes full viewport height */
+  min-height: 100vh;
+  /* Ensure the root takes full viewport height */
 }
 
 .header {
@@ -87,16 +84,22 @@ export default {
   display: flex;
   justify-content: center;
   align-items: center;
-  width: 40px; /* Increase this value to make the clickable area larger */
-  height: 40px; /* Increase this value to make the clickable area larger */
+  width: 40px;
+  /* Increase this value to make the clickable area larger */
+  height: 40px;
+  /* Increase this value to make the clickable area larger */
   cursor: pointer;
-  position: absolute; /* Position relative to header */
-  left: 10px; /* Align to the left side */
+  position: absolute;
+  /* Position relative to header */
+  left: 10px;
+  /* Align to the left side */
 }
 
 .navButtonImage {
-  width: 20px; /* Adjust the size of the actual image */
-  height: 20px; /* Adjust the size of the actual image */
+  width: 20px;
+  /* Adjust the size of the actual image */
+  height: 20px;
+  /* Adjust the size of the actual image */
 }
 
 .head {
@@ -112,17 +115,20 @@ export default {
 
 .container {
   border-top: 1px solid #ccc;
-  flex: 1; /* This will make the container take the available space */
+  flex: 1;
+  /* This will make the container take the available space */
 }
 
 .button-container {
   display: flex;
   justify-content: center;
-  padding: 20px 0; /* Add some padding for spacing */
+  padding: 20px 0;
+  /* Add some padding for spacing */
 }
 
 .save-button {
-  background-color: #50c1ba; /* Change this to your preferred color */
+  background-color: #50c1ba;
+  /* Change this to your preferred color */
   color: white;
   border: none;
   padding: 10px 20px;
@@ -132,6 +138,7 @@ export default {
 }
 
 .save-button:hover {
-  background-color: #0056b3; /* Change this to your preferred hover color */
+  background-color: #0056b3;
+  /* Change this to your preferred hover color */
 }
 </style>

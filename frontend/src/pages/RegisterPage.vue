@@ -3,46 +3,45 @@
     <img alt="Lunafit logo" class="logo" src="../assets/LunaFit.svg" height="45" />
   </header>
   <div class="q-pa-lg q-gutter-sm">
-    <q-input color="teal" outlined v-model="email" label="E-Mail">
+    <q-input color="teal" outlined v-model="email" :label="$t('email')">
       <template v-slot:prepend>
         <q-icon>
           <img src="../assets/Communication.svg" alt="Email Icon" />
         </q-icon>
       </template>
     </q-input>
-    <q-input :type="showPassword ? 'text' : 'password'" color="teal" outlined v-model="password" label="Password">
+    <q-input :type="showPassword ? 'text' : 'password'" color="teal" outlined v-model="password"
+      :label="$t('password')">
       <template v-slot:prepend>
         <q-icon>
           <img src="../assets/System.svg" alt="Lock Icon" />
         </q-icon>
       </template>
       <template v-slot:append>
-        <q-icon
-          @click="togglePasswordVisibility"
-          :name="showPassword ? 'visibility_off' : 'visibility'"
+        <q-icon @click="togglePasswordVisibility" :name="showPassword ? 'visibility_off' : 'visibility'"
           class="cursor-pointer"> </q-icon>
       </template>
     </q-input>
-    <q-input :type="showPassword ? 'text' : 'password'" color="teal" outlined v-model="passwordConfirm" label="Password bestätigen">
+    <q-input :type="showPassword ? 'text' : 'password'" color="teal" outlined v-model="passwordConfirm"
+      :label="$t('confirm-password')">
       <template v-slot:prepend>
         <q-icon>
           <img src="../assets/System.svg" alt="Lock Icon" />
         </q-icon>
       </template>
       <template v-slot:append>
-        <q-icon
-          @click="togglePasswordVisibility"
-          :name="showPassword ? 'visibility_off' : 'visibility'"
+        <q-icon @click="togglePasswordVisibility" :name="showPassword ? 'visibility_off' : 'visibility'"
           class="cursor-pointer"> </q-icon>
       </template>
     </q-input>
   </div>
   <div class="q-pa-md q-gutter-sm row justify-center">
-    <q-btn no-caps rounded style="background: #50C1BA; color: white" label="Registrieren" padding="sm lg" size="16px" @click="registerUser"/>
+    <q-btn no-caps rounded style="background: #50C1BA; color: white" :label="$t('register.title')" padding="sm lg"
+      size="16px" @click="registerUser" />
   </div>
   <p style="text-align: center;">
-    Du hast einen Account?
-    <router-link to="/login">Jetzt anmelden</router-link>
+    {{ $t('register.account') }}
+    <router-link to="/login">{{ $t('register.login-now') }}</router-link>
   </p>
 </template>
 
