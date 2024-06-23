@@ -8,80 +8,81 @@
 
     <div class="q-md" style="max-width: 100%">
       <q-list>
-      <q-item-label header class="q-pt-xl q-pb-xs">PROFIL</q-item-label>
-      <q-item clickable v-ripple class="q-mb-xs grey-background" @click="navigateToProfile">
-        <q-item-section side>
+        <q-item-label header class="q-pt-xl q-pb-xs">PROFIL</q-item-label>
+        <q-item clickable v-ripple class="q-mb-xs grey-background" @click="navigateToProfile">
+          <q-item-section side>
             <img src="/src/assets/ProfileIcon.svg">
-        </q-item-section>
-        <q-item-section>
-          <q-item-label>Persönliche Informationen</q-item-label>
-        </q-item-section>
-        <q-item-section side>
+          </q-item-section>
+          <q-item-section>
+            <q-item-label>Persönliche Informationen</q-item-label>
+          </q-item-section>
+          <q-item-section side>
             <img src="/src/assets/arrow-right.svg">
-        </q-item-section>
-      </q-item>
+          </q-item-section>
+        </q-item>
 
-      <q-item clickable v-ripple class="grey-background" @click="navigateToAccount">
-        <q-item-section side>
+        <q-item clickable v-ripple class="grey-background" @click="navigateToAccount">
+          <q-item-section side>
             <img src="/src/assets/SettingsIcon.svg">
-        </q-item-section>
-        <q-item-section>
-          <q-item-label>Account Einstellungen</q-item-label>
-        </q-item-section>
-        <q-item-section side>
+          </q-item-section>
+          <q-item-section>
+            <q-item-label>Account Einstellungen</q-item-label>
+          </q-item-section>
+          <q-item-section side>
             <img src="/src/assets/arrow-right.svg">
-        </q-item-section>
-      </q-item>
-    </q-list>
-
-    <q-list>
-      <q-item-label header class="q-pt-lg q-pb-xs">MITTEILUNGEN</q-item-label>
-
-      <q-item tag="label" v-ripple class="grey-background2">
-        <q-item-section side>
-            <img src="/src/assets/NotificationIcon.svg">
-        </q-item-section>
-        <q-item-section>
-          <q-item-label>Mitteilungen</q-item-label>
-        </q-item-section>
-        <q-item-section side>
-          <q-toggle color="teal" v-model="notif1" />
-        </q-item-section>
-      </q-item>
-    </q-list>
+          </q-item-section>
+        </q-item>
+      </q-list>
 
       <q-list>
-      <q-item-label header class="q-pt-lg q-pb-xs">EINSTELLUNGEN</q-item-label>
-      <q-item clickable v-ripple class="q-mb-xs grey-background" @click="navigateToLanguage">
-        <q-item-section side>
-            <img src="/src/assets/GlobeIcon.svg">
-        </q-item-section>
-        <q-item-section>
-          <q-item-label>Sprache</q-item-label>
-        </q-item-section>
-        <q-item-section side>
-            <img src="/src/assets/arrow-right.svg">
-        </q-item-section>
-      </q-item>
+        <q-item-label header class="q-pt-lg q-pb-xs">MITTEILUNGEN</q-item-label>
 
-      <q-item clickable v-ripple class="grey-background">
-        <q-item-section side>
-            <img src="/src/assets/LogoutIcon.svg">
-        </q-item-section>
-        <q-item-section>
-          <q-item-label>Logout</q-item-label>
-        </q-item-section>
-        <q-item-section side>
+        <q-item tag="label" v-ripple class="grey-background2">
+          <q-item-section side>
+            <img src="/src/assets/NotificationIcon.svg">
+          </q-item-section>
+          <q-item-section>
+            <q-item-label>Mitteilungen</q-item-label>
+          </q-item-section>
+          <q-item-section side>
+            <q-toggle color="teal" v-model="notif1" />
+          </q-item-section>
+        </q-item>
+      </q-list>
+
+      <q-list>
+        <q-item-label header class="q-pt-lg q-pb-xs">EINSTELLUNGEN</q-item-label>
+        <q-item clickable v-ripple class="q-mb-xs grey-background" @click="navigateToLanguage">
+          <q-item-section side>
+            <img src="/src/assets/GlobeIcon.svg">
+          </q-item-section>
+          <q-item-section>
+            <q-item-label>Sprache</q-item-label>
+          </q-item-section>
+          <q-item-section side>
             <img src="/src/assets/arrow-right.svg">
-        </q-item-section>
-      </q-item>
-    </q-list>
+          </q-item-section>
+        </q-item>
+
+        <q-item clickable v-ripple class="grey-background" @click="logout">
+          <q-item-section side>
+            <img src="/src/assets/LogoutIcon.svg">
+          </q-item-section>
+          <q-item-section>
+            <q-item-label>Logout</q-item-label>
+          </q-item-section>
+          <q-item-section side>
+            <img src="/src/assets/arrow-right.svg">
+          </q-item-section>
+        </q-item>
+      </q-list>
     </div>
   </div>
 </template>
 
 <script>
 import { ref } from 'vue';
+import { useAuthStore } from 'src/stores/auth.js';
 export default {
 
   components: {
@@ -98,14 +99,19 @@ export default {
       window.history.back();
     },
     navigateToProfile() {
-        this.$router.push({ name: 'Profile' });
-      },
-      navigateToAccount() {
-        this.$router.push({ name: 'Account' });
-      },
-      navigateToLanguage() {
-        this.$router.push({ name: 'Language' });
-      },
+      this.$router.push({ name: 'Profile' });
+    },
+    navigateToAccount() {
+      this.$router.push({ name: 'Account' });
+    },
+    navigateToLanguage() {
+      this.$router.push({ name: 'Language' });
+    },
+    logout() {
+      const authStore = useAuthStore();
+      authStore.logout();
+      this.$router.push('/login');
+    }
   }
 };
 </script>

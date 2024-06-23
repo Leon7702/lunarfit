@@ -28,7 +28,7 @@
         </div>
         <div class="toolbar-item" @click="goToProfile" :class="{ 'active-tab': activeTab === 'profile' }">
           <img :src="getIconSrc('Profile')" class="toolbar-icon" alt="Profile" />
-          <div class="toolbar-label" :class="{ 'active-label': activeTab === 'profile' }">Profil</div>
+          <div class="toolbar-label" :class="{ 'active-label': activeTab === 'profile' }">Einstellungen</div>
         </div>
       </q-toolbar>
     </q-footer>
@@ -66,7 +66,7 @@ export default {
     },
     goToProfile() {
       this.activeTab = 'profile';
-      this.$router.push('/profile');
+      this.$router.push('/settings');
     }
   }
 }
