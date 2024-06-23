@@ -34,7 +34,6 @@
             <q-scroll-area class="fit">
               <div class="column no-wrap flex-center">
                 <div class="text-h6">Stimmung</div>
-                <TrsSunburst />
                 <div class="q-mt-md text-center">
                   <q-card flat bordered class="my-card">
                     <q-card-section>
@@ -52,12 +51,12 @@
                     </div>
                   </div>
 
-                  <p>Verlauf</p>
+                  <!-- <p>Verlauf</p>
                   <q-card class="my-card border-black">
                     <q-card-section>
                       <p>Diagram</p>
                     </q-card-section>
-                  </q-card>
+                  </q-card> -->
                 </div>
               </div>
             </q-scroll-area>
@@ -67,7 +66,6 @@
             <q-scroll-area class="fit">
               <div class="column no-wrap flex-center">
                 <div class="text-h6">Belastung</div>
-                <TrsSunburst />
                 <div class="q-mt-md text-center">
                   <q-card flat bordered class="my-card">
                     <q-card-section>
@@ -90,7 +88,6 @@
             <q-scroll-area class="fit">
               <div class="column no-wrap flex-center">
                 <div class="text-h6">Beschwerdefreiheit</div>
-                <TrsSunburst />
                 <div class="q-mt-md text-center">
                   <q-card flat bordered class="my-card">
                     <q-card-section>
@@ -120,7 +117,6 @@
             <q-scroll-area class="fit">
               <div class="column no-wrap flex-center">
                 <div class="text-h6">Erholung</div>
-                <TrsSunburst />
                 <div class="q-mt-md text-center">
                   <q-card flat bordered class="my-card">
                     <q-card-section>
