@@ -84,5 +84,68 @@
         "7": "In dieser Phase bist du nicht fruchtbar."
       }
     }
+  },
+  "onboarding": {
+    "start": {
+      "title": "Willkommen bei LunarFit.",
+      "description": "Um dich und deinen Zyklus besser kennenzulernen, beantworte bitte die folgenden Fragen über deinen Körper, deinen Zyklus und dein Sportverhalten.\n\nDeine Daten werden streng vertraulich behandelt und sicher aufbewahrt."
+    },
+    "onboardingStep1": {
+      "step": "Schritt 1:",
+      "title": "Person",
+      "fields": {
+        "firstName": "Vorname",
+        "lastName": "Nachname",
+        "birthdate": "Geburtsdatum",
+        "height": "Größe in cm",
+        "weight": "Gewicht in kg"
+      }
+    },
+    "onboardingStep2": {
+      "step": "Schritt 2:",
+      "title": "Zyklus",
+      "fields": {
+        "lastMenstruation": "An welchem Tag setzte deine letzte Menstruation ein?",
+        "menstruationDuration": "Wie viele Tage dauert deine Menstruation im Durchschnitt?"
+      }
+    },
+    "onboardingStep3": {
+      "step": "Schritt 3:",
+      "title": "Zyklus",
+      "fields": {
+        "hormonalContraception": "Verhütest du hormonell?",
+        "contraceptionMethod": "Welches Verhütungsmittel nutzt du?",
+        "contraceptionOptions": [
+          "Pille",
+          "Hormonspirale",
+          "Hormonimplantat",
+          "Dreimonatsspritze",
+          "Vaginalring",
+          "Sonstiges"
+        ]
+      }
+    },
+    "onboardingStep4": {
+      "step": "Schritt 4:",
+      "title": "Sportverhalten",
+      "fields": {
+        "trainingSessions": "Wie viele Trainingseinheiten pro Woche hattest du im letzten Monat?",
+        "trainingDuration": "Wie lange dauerte eine Trainingseinheit?"
+      }
+    },
+    "onboardingStep5": {
+      "step": "Schritt 5:",
+      "title": "Sportverhalten",
+      "description": "Wie intensiv waren deine Trainingseinheiten im Durchschnitt im letzten Monat?",
+      "slider": {
+        "topText": "Maximal anstrengend",
+        "bottomText": "Gar nicht anstrengend"
+      }
+    },
+    "onboardingEnd": {
+      "title": "Geschafft!",
+      "description": "Vielen Dank für das Ausfüllen der Fragen. Auf Basis deiner Antworten werden dir bereits anfängliche Empfehlungen abgegeben.\n\nDenk daran: Je genauer du deinen Zyklus und dein Sportverhalten trackst, desto genauer werden deine Empfehlungen."
+    }
   }
+  
 }
