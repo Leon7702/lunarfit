@@ -91,12 +91,14 @@
                 <div class="q-mt-md text-center">
                   <q-card flat bordered class="my-card">
                     <q-card-section>
-                      <div>{{ $t(`freeInfo.${freeScore}[0]`) }}</div>
-                      <div>{{ $t(`freeInfo.${freeScore}[1]`) }}</div>
-                      <div>{{ $t(`freeInfo.${freeScore}[2]`) }}</div>
-                      <div>{{ $t(`freeInfo.${freeScore}[3]`) }}</div>
-                      <div>{{ $t(`freeInfo.${freeScore}[4]`) }}</div>
-                      <div>{{ $t(`freeInfo.${freeScore}[5]`) }}</div>
+                      <div class="info-text">
+                        <div>{{ $t(`freeInfo.${freeScore}.description`) }}</div>
+                        <div>{{ $t(`freeInfo.${freeScore}.recommendations[0]`) }}</div>
+                        <div>{{ $t(`freeInfo.${freeScore}.recommendations[1]`) }}</div>
+                        <div>{{ $t(`freeInfo.${freeScore}.recommendations[2]`) }}</div>
+                        <div>{{ $t(`freeInfo.${freeScore}.recommendations[3]`) }}</div>
+                        <div>{{ $t(`freeInfo.${freeScore}.recommendations[4]`) }}</div>
+                      </div>
                     </q-card-section>
                   </q-card>
                   <div class="q-pa-md">
@@ -211,5 +213,9 @@ export default {
   display: flex;
   justify-content: center;
   align-items: center;
+}
+
+.info-text {
+  text-align: left;
 }
 </style>

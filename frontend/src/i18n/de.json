@@ -130,55 +130,67 @@
     "6": "Hervorragend: Du strahlst vor positiver Energie! Genieße diesen Moment voll und ganz mit einer sportlichen Aktivität, die dir besonders viel Freude bereitet. Ob es ein längerer Lauf, eine intensive Radtour oder ein herausfordernder Fitnesskurs ist – nutze diese Hochstimmung für ein großartiges Training."
   },
 
-  "freeInfo": {
-    "1": [
-      "Du hast derzeit starke Beschwerden. Es ist wichtig, auf deinen Körper zu hören und ihn zu schonen:",
-      "Vermeide intensive körperliche Aktivitäten und gönne dir ausreichend Ruhe.",
-      "Setze auf sanfte Bewegungen wie leichtes Dehnen und Spaziergänge, um die Durchblutung zu fördern, ohne die Beschwerden zu verschlimmern.",
-      "Wärmebehandlungen wie ein warmes Bad oder eine Wärmflasche können helfen, Krämpfe zu lindern.",
-      "Konsultiere gegebenenfalls einen Arzt, um geeignete Maßnahmen zur Linderung deiner Beschwerden zu besprechen.",
-      "Achte besonders auf eine ausgewogene Ernährung und trinke ausreichend Wasser."
-    ],
-    "2": [
-      "Du hast erhebliche Beschwerden. Hier sind einige Empfehlungen, um deine Beschwerden zu lindern:",
-      "Reduziere dein Trainingsvolumen deutlich und fokussiere dich auf regenerative Maßnahmen wie leichtes Yoga oder Stretching.",
-      "Verzichte auf belastende Übungen und setze stattdessen auf sanfte Bewegungen, die keine Schmerzen verursachen.",
-      "Wärmebehandlungen und leichte Massagen können hilfreich sein, um Verspannungen zu lösen und Schmerzen zu lindern.",
-      "",
-      ""
-      ],
-    "3": [
-      "Du hast mäßige Beschwerden. Hier sind einige Tipps, um deine Beschwerden zu managen:",
-      "Reduziere die Intensität deines Trainings und vermeide Übungen, die die Beschwerden verschlimmern könnten.",
-      "Führe regelmäßig Dehn- und Entspannungsübungen durch, um deinen Körper zu entlasten.",
-      "Achte darauf, regelmäßig Pausen einzulegen und deinem Körper genügend Zeit zur Erholung zu geben.",
-      "",
-      ""
-    ],
-    "4": [
-      "Du hast leichte Beschwerden. Es ist wichtig, darauf zu achten und präventiv zu handeln:",
-      "Reduziere die Trainingsintensität geringfügig und achte darauf, keine Übungen zu machen, die die Beschwerden verschlimmern.",
-      "Führe regelmäßig Dehnübungen und leichte Kräftigungsübungen durch, um die betroffenen Bereiche zu entlasten.",
-      "Wärme- oder Kälteanwendungen können helfen, leichte Beschwerden zu lindern.",
-      "Achte auf eine gute Körperhaltung und ergonomische Bewegungen im Alltag, um zusätzliche Belastungen zu vermeiden.",
-      ""
-    ],
-    "5": [
-      "Du hast sehr geringe Beschwerden. Dein Training sollte hierdurch nicht beeinflusst werden.",
-      "Achte dennoch auf die Signale deines Körpers und passe dein Training bei Bedarf an.",
-      "Wärme- oder Entspannungstechniken können helfen, leichte Beschwerden zu vermeiden.",
-      "",
-      "",
-      ""
-    ],
-    "6": [
-      "Du hast keine Beschwerden. Perfekt! So kannst du dein Training optimal fortsetzen:",
-      "Setze dein gewohntes Trainingsprogramm fort und steigere die Intensität allmählich, um weitere Fortschritte zu erzielen.",
-      "Achte weiterhin auf eine gute Aufwärmphase, um Verletzungen vorzubeugen.",
-      "Integriere regelmäßig Übungen zur Verbesserung der Flexibilität und Stabilität.",
-      "Höre auf deinen Körper und sorge für genügend Erholungsphasen.",
-      ""
-    ]
+"freeInfo": {
+    "1": {
+      "description": "Du hast derzeit starke Beschwerden. Es ist wichtig, auf deinen Körper zu hören und ihn zu schonen:",
+      "recommendations": [
+        ">> Vermeide intensive körperliche Aktivitäten und gönne dir ausreichend Ruhe.",
+        ">> Setze auf sanfte Bewegungen wie leichtes Dehnen und Spaziergänge, um die Durchblutung zu fördern, ohne die Beschwerden zu verschlimmern.",
+        ">> Wärmebehandlungen wie ein warmes Bad oder eine Wärmflasche können helfen, Krämpfe zu lindern.",
+        ">> Konsultiere gegebenenfalls einen Arzt, um geeignete Maßnahmen zur Linderung deiner Beschwerden zu besprechen.",
+        ">> Achte besonders auf eine ausgewogene Ernährung und trinke ausreichend Wasser."
+      ]
+    },
+    "2": {
+      "description": "Du hast erhebliche Beschwerden. Hier sind einige Empfehlungen, um deine Beschwerden zu lindern:",
+      "recommendations": [
+        ">> Reduziere dein Trainingsvolumen deutlich und fokussiere dich auf regenerative Maßnahmen wie leichtes Yoga oder Stretching.",
+        ">> Verzichte auf belastende Übungen und setze stattdessen auf sanfte Bewegungen, die keine Schmerzen verursachen.",
+        ">> Wärmebehandlungen und leichte Massagen können hilfreich sein, um Verspannungen zu lösen und Schmerzen zu lindern.",
+        "",
+        ""
+      ]
+    },
+    "3": {
+      "description": "Du hast mäßige Beschwerden. Hier sind einige Tipps, um deine Beschwerden zu managen:",
+      "recommendations": [
+        ">> Reduziere die Intensität deines Trainings und vermeide Übungen, die die Beschwerden verschlimmern könnten.",
+        ">> Führe regelmäßig Dehn- und Entspannungsübungen durch, um deinen Körper zu entlasten.",
+        ">> Achte darauf, regelmäßig Pausen einzulegen und deinem Körper genügend Zeit zur Erholung zu geben.",
+        "",
+        ""
+      ]
+    },
+    "4": {
+      "description": "Du hast leichte  Beschwerden. Es ist wichtig, darauf zu achten und präventiv zu handeln:",
+      "recommendations": [
+        ">> Reduziere die Trainingsintensität geringfügig und achte darauf, keine Übungen zu machen, die die Beschwerden verschlimmern.",
+        ">> Führe regelmäßig Dehnübungen und leichte Kräftigungsübungen durch, um die betroffenen Bereiche zu entlasten.",
+        ">> Wärme- oder Kälteanwendungen können helfen, leichte Beschwerden zu lindern.",
+        ">> Achte auf eine gute Körperhaltung und ergonomische Bewegungen im Alltag, um zusätzliche Belastungen zu vermeiden.",
+        ""
+      ]
+    },
+    "5": {
+      "description": "Du hast sehr geringe  Beschwerden. Dein Training sollte hierdurch nicht beeinflusst werden.",
+      "recommendations": [
+        ">> Achte dennoch auf die Signale deines Körpers und passe dein Training bei Bedarf an.",
+        ">> Wärme- oder Entspannungstechniken können helfen, leichte Beschwerden zu vermeiden.",
+        "",
+        "",
+        ""
+      ]
+    },
+    "6": {
+      "description": "Du hast keine Beschwerden. Perfekt! So kannst du dein Training optimal fortsetzen:",
+      "recommendations": [
+        ">> Setze dein gewohntes Trainingsprogramm fort und steigere die Intensität allmählich, um weitere Fortschritte zu erzielen.",
+        ">> Achte weiterhin auf eine gute Aufwärmphase, um Verletzungen vorzubeugen.",
+        ">> Integriere regelmäßig Übungen zur Verbesserung der Flexibilität und Stabilität.",
+        ">> Höre auf deinen Körper und sorge für genügend Erholungsphasen.",
+        ""
+      ]
+    }
   },
 
   "restInfo": {
