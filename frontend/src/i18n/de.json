@@ -122,12 +122,30 @@
   },
 
   "moodInfo": {
-    "1": "Sehr schlecht: Es scheint, als ob du einen sehr schwierigen Tag hast. Versuche, dich zu bewegen, auch wenn es nur ein kurzer Spaziergang ist. Bewegung kann helfen, den Kopf frei zu bekommen und die Stimmung zu heben.",
-    "2": "Schlecht: Deine Stimmung ist momentan nicht die beste. Probiere eine kurze, leichte Übung wie Dehnen oder Yoga. Diese Aktivitäten können helfen, Spannungen abzubauen und deine Laune zu verbessern.",
-    "3": "Mittelmäßig: Du fühlst dich wohl, aber es gibt Raum für Verbesserung. Mach eine moderate Sporteinheit, wie einen zügigen Spaziergang, leichtes Joggen oder Radfahren. Körperliche Aktivität, vorallem an der frischen Luft,  kann helfen, Endorphine freizusetzen und deine Stimmung zu heben.",
-    "4": "Gut: Deine Stimmung ist gut, das ist schön zu hören! Nutze diese positive Energie für ein intensiveres Training. So kannst du deine Stimmung weiter verbessern und deine Fitness steigern.",
-    "5": "Sehr gut: Du scheinst dich wirklich gut zu fühlen! Teile deine gute Laune mit anderen, indem du eine sportliche Aktivität in der Gruppe machst. Zusammen zu trainieren kann viel Spaß machen und die Stimmung weiter heben.",
-    "6": "Hervorragend: Du strahlst vor positiver Energie! Genieße diesen Moment voll und ganz mit einer sportlichen Aktivität, die dir besonders viel Freude bereitet. Ob es ein längerer Lauf, eine intensive Radtour oder ein herausfordernder Fitnesskurs ist – nutze diese Hochstimmung für ein großartiges Training."
+    "1": {
+      "description": "Sehr schlecht:",
+      "advice": "Es scheint, als ob du einen sehr schwierigen Tag hast. Versuche, dich zu bewegen, auch wenn es nur ein kurzer Spaziergang ist. Bewegung kann helfen, den Kopf frei zu bekommen und die Stimmung zu heben."
+    },
+    "2": {
+      "description": "Schlecht:",
+      "advice": "Deine Stimmung ist momentan nicht die beste. Probiere eine kurze, leichte Übung wie Dehnen oder Yoga. Diese Aktivitäten können helfen, Spannungen abzubauen und deine Laune zu verbessern."
+    },
+    "3": {
+      "description": "Mittelmäßig:",
+      "advice": "Du fühlst dich wohl, aber es gibt Raum für Verbesserung. Mach eine moderate Sporteinheit, wie einen zügigen Spaziergang, leichtes Joggen oder Radfahren. Körperliche Aktivität, vorallem an der frischen Luft, kann helfen, Endorphine freizusetzen und deine Stimmung zu heben."
+    },
+    "4": {
+      "description": "Gut:",
+      "advice": "Deine Stimmung ist gut, das ist schön zu hören! Nutze diese positive Energie für ein intensiveres Training. So kannst du deine Stimmung weiter verbessern und deine Fitness steigern."
+    },
+    "5": {
+      "description": "Sehr gut:",
+      "advice": "Du scheinst dich wirklich gut zu fühlen! Teile deine gute Laune mit anderen, indem du eine sportliche Aktivität in der Gruppe machst. Zusammen zu trainieren kann viel Spaß machen und die Stimmung weiter heben."
+    },
+    "6": {
+      "description": "Hervorragend:",
+      "advice": "Du strahlst vor positiver Energie! Genieße diesen Moment voll und ganz mit einer sportlichen Aktivität, die dir besonders viel Freude bereitet. Ob es ein längerer Lauf, eine intensive Radtour oder ein herausfordernder Fitnesskurs ist – nutze diese Hochstimmung für ein großartiges Training."
+    }
   },
 
 "freeInfo": {
