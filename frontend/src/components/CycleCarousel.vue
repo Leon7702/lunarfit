@@ -5,8 +5,8 @@
       <q-btn-toggle v-model="slide" :options="[
         { label: '1', value: 'menstruation' },
         { label: '2', value: 'follicular' },
-        { label: '3', value: 'ovulation' },
-        { label: '4', value: 'luteal' }
+        { label: '3', value: 'lutealEarly' },
+        { label: '4', value: 'lutealLate' }
       ]" />
     </div>
     <div class="q-gutter-md">
@@ -52,36 +52,38 @@
           </q-scroll-area>
         </q-carousel-slide>
 
-        <!-- Carousel slide for ovulation phase -->
-        <q-carousel-slide name="ovulation" class="column no-wrap flex-center">
+        <!-- Carousel slide for early luteal phase -->
+        <q-carousel-slide name="lutealEarly" class="column no-wrap flex-center">
           <q-scroll-area class="fit">
             <div class="column no-wrap flex-center">
-              <div class="text-h6">Ovulation</div>
+              <div class="text-h6">{{ $t('lutealInfoEarly.title') }}</div>
               <q-card flat bordered class="my-card">
                 <q-card-section>
-                  {{ data.ovulationtext }}
+                  {{ $t('lutealInfoEarly.description') }}
                 </q-card-section>
               </q-card>
               <img class="cycle-image" src="../assets/cyclePhase/PeriodOvulation.png" alt="Graph" />
-              <PhaseInformation :textNutrition="data.ovulationNutrition" :textTraining="data.ovulationTraining"
-                :textHealth="data.ovulationHealth" />
+              <PhaseInformation
+                :textNutrition="$t('lutealInfoEarly.nutrition[0]') + ' ' + $t('lutealInfoEarly.nutrition[1]') + ' ' + $t('lutealInfoEarly.nutrition[2]') + ' ' + $t('lutealInfoEarly.nutrition[3]') + ' ' + $t('lutealInfoEarly.nutrition[4]') + ' ' + $t('lutealInfoEarly.nutrition[5]')"
+                :textTraining="$t('lutealInfoEarly.training')" :textHealth="$t('lutealInfoEarly.health')" />
             </div>
           </q-scroll-area>
         </q-carousel-slide>
 
         <!-- Carousel slide for lutheal phase -->
-        <q-carousel-slide name="luteal" class="column no-wrap flex-center">
+        <q-carousel-slide name="lutealLate" class="column no-wrap flex-center">
           <q-scroll-area class="fit">
             <div class="column no-wrap flex-center">
-              <div class="text-h6">Luthealphase</div>
+              <div class="text-h6">{{ $t('lutealInfoLate.title') }}</div>
               <q-card flat bordered class="my-card">
                 <q-card-section>
-                  {{ data.lutealtext }}
+                  {{ $t('lutealInfoEarly.description') }}
                 </q-card-section>
               </q-card>
               <img class="cycle-image" src="../assets/cyclePhase/Lutheal.png" alt="Graph" />
-              <PhaseInformation :textNutrition="data.lutealNutrition" :textTraining="data.lutealTraining"
-                :textHealth="data.lutealHealth" />
+              <PhaseInformation
+                :textNutrition="$t('lutealInfoLate.nutrition[0]') + ' ' + $t('lutealInfoLate.nutrition[1]') + ' ' + $t('lutealInfoLate.nutrition[2]') + ' ' + $t('lutealInfoLate.nutrition[3]') + ' ' + $t('lutealInfoLate.nutrition[4]')"
+                :textTraining="$t('lutealInfoLate.training')" :textHealth="$t('lutealInfoLate.health[0]') + ' ' + $t('lutealInfoLate.health[1]') + ' ' + $t('lutealInfoLate.health[2]') + ' ' + $t('lutealInfoLate.health[3]') + ' ' + $t('lutealInfoLate.health[4]') + ' ' + $t('lutealInfoLate.health[5]') + ' ' + $t('lutealInfoLate.health[6]')" />
             </div>
           </q-scroll-area>
         </q-carousel-slide>
@@ -127,9 +129,9 @@ export default {
         } else if (currentPhase <= 0.5) { // Adjusted to 0.5 for clarity in phases
           slide.value = 'follicular';
         } else if (currentPhase <= 0.6) {
-          slide.value = 'ovulation';
+          slide.value = 'lutealEarly';
         } else {
-          slide.value = 'luteal';
+          slide.value = 'lutealLate';
         }
       } catch (error) {
         console.error('Failed to fetch data:', error);

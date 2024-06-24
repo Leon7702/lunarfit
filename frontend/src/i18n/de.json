@@ -45,13 +45,13 @@
     ],
     "training": "Durch die potenziellen Symptome der Menstruation kann es sein, dass deine Stimmung, deine Motivation und deine Energie tiefer sind als sonst. Höre auf deinen Körper und plane deshalb vermehrt kurze, regenerative Einheiten mit niedriger Intensität in Phase 1 ein. Diese Einheiten können auch dazu beitragen, deine Symptome zu verringern.",
     "health": [
-      "- Achte besonders in Phase 1 auf ausreichend (7-9h) und qualitativ hochwertigen Schlaf, um allfällige negative Symptome dieser Phase auszugleichen. Dabei können helfen:",
+      "Achte besonders in Phase 1 auf ausreichend (7-9h) und qualitativ hochwertigen Schlaf, um allfällige negative Symptome dieser Phase auszugleichen. Dabei können helfen:",
       "- Konstanter Schlafrhythmus",
       "- Das Zimmer dunkel und kühl halten",
       "- Koffein und Alkohol limitieren",
       "- 1h vor dem Schlafengehen keine Bildschirm-Zeit",
       "- 2h vor dem Schlafengehen nicht essen",
-      "- In dieser Phase ist deine Fruchtbarkeit sehr gering."
+      "In dieser Phase ist deine Fruchtbarkeit sehr gering."
     ]
   },
 
@@ -69,45 +69,41 @@
     "health": "Höchste Fruchtbarkeit am Ende der Phase 2 (ca. 5 Tage vor dem Eisprung bis 1 Tag nach dem Eisprung)"
   },
 
-  "ovulationInfo": {
-    "title": "Ovulation",
-    "text": "Nach dem Eisprung wird die Eizelle aus dem Follikel im Eierstock in den Eileiter ausgestoßen. Die Hülle der Eizelle bleibt als Gelbkörper zurück. Zum Eisprung macht das Östrogen häufig gute Laune. Danach gibt es auch mal schlechte Laune.",
-    "nutrition": "...",
-    "training": "...",
-    "health": "..."
+  "lutealInfoEarly": {
+    "title": "frühe Lutealphase",
+    "description": "Die Phase nach dem Eisprung bis zum Beginn der nächsten Menstruation. Der Gelbkörper produziert Progesteron, das die Gebärmutterschleimhaut auf die Einnistung einer befruchteten Eizelle vorbereitet. Das Progesteron kann die Laune verschlechtern.",
+    "nutrition": [
+      "- Während der Lutealphase braucht dein Körper mehr Energie (+ ca. 200 kcal / Tag). Es kann also gut sein, dass du hungriger bist als sonst.",
+      "- Weiterhin erhöht sich dein Energiebedarf auch durch die Erhöhung der Intensität oder des Volumens deines Trainings!  Achte auf eine genügende Kohlenhydratzufuhr vor und nach dem Training. Vorzugsweise nimmst du dazu komplexe Kohlenhydrate wie Vollkornprodukte, Hafer, Quinoa, brauner Reis",
+      "- Ebenso bei längeren Trainingseinheiten --> 1h bewusst KH zuführen",
+      "- Bei vermehrtem Training solltest du auch deine Proteinzufuhr erhöhen: Achte auf eine tägliche Proteinzufuhr von ca. 1,6g pro kg Körpergewicht. Proteindrinks können dabei helfen, den Bedarf zu decken. Nimm dazu Drinks, die wenig zugesetzten Zucker beinhalten.",
+      "- Trinke genug Wasser, mind. 1.5 - 2 Liter + bei Training Kompensation des Schweissverlustes",
+      "- Decke deinen Fettbedarf mit gesunden Fetten, bspw. Fisch, Nüsse und Samen, pflanzliche Öle"
+    ],
+    "training": "Nutze die Woche nach dem Eisprung weiterhin für Einheiten mit hoher Intensität oder hohem Volumen. Diese Woche eignet sich auch hervorragend für Kraft- und Schnellkrafttraining. Im zweiten Teil der Phase 3 kannst du die Intensität drosseln, und den Fokus auf eher lange und weniger intensive Einheiten legen.",
+    "health":  "Kurz nach dem Eisprung ist die Chance schwanger zu werden erhöht. Die Chance nimmt ab, je weiter dein Eisprung zurück liegt."
   },
-  "lutealInfo": {
-    "title": "Lutealphase",
-    "text": "Die Phase nach dem Eisprung bis zum Beginn der nächsten Menstruation. Der Gelbkörper produziert Progesteron, das die Gebärmutterschleimhaut auf die Einnistung einer befruchteten Eizelle vorbereitet. Das Progesteron kann die Laune verschlechtern.",
-    "nutrition": {
-      "early-mid": {
-        "1": "Durch die Erhöhung der Intensität oder des Volumens deines Trainings erhöht sich auch dein Energiebedarf! Achte auf eine genügende Kohlenhydratzufuhr vor und nach dem Training. Vorzugsweise nimmst du dazu komplexe Kohlenhydrate wie Vollkornprodukte, Hafer, Quinoa, brauner Reis",
-        "2": "Bei vermehrtem Training solltest du auch deine Proteinzufuhr erhöhen: Achte auf eine tägliche Proteinzufuhr von ca. 1,6g pro kg Körpergewicht. Proteindrinks können dabei helfen, den Bedarf zu decken. Nimm dazu Drinks, die wenig zugesetzten Zucker beinhalten.",
-        "3": " Trinke genug Wasser, mind. 1.5 - 2 Liter + bei Training Kompensation des Schweissverlustes",
-        "4": "Decke deinen Fettbedarf mit gesunden Fetten, bspw. Fisch, Nüsse und Samen, pflanzliche Öle"
-      },
-      "late": {
-        "1": "Achte in dieser Phase besonders auf die Zufuhr von gesunden Fetten und Proteinen, um länger satt zu bleiben und Heisshungerattacken zu vermeden. Wenn du Kohlenhydrate isst, achte auf hochwertige Kohlenhydrate mit viel Ballaststoffen (Hafer, Vollkorn, brauner Reis, etc.). Diese hälten deinen Blutzuckerspiegel konstant und helfen somit Stimmungsschwankungen zu vermeiden (Benton, 2002)",
-        "2": "Kalziumsupplementation kann die negativen Symptome vermindern (Bendich, 2000)",
-        "3": "Weitere Lebensmittel, die die negativen Symptome potenziell vermindern sind Magnesium, Vitamin D (Bendich, 2000), Soya (Isoflavone; Bryant et al., 2005), Mönchspfeffer (Swiss Olympic)"
-      }
-    },
-    "training": {
-      "early-mid": "Nutze die Woche nach dem Eisprung weiterhin für Einheiten mit hoher Intensität oder hohem Volumen. Diese Woche eignet sich auch hervorragend für Kraft- und Schnellkrafttraining. Im zweiten Teil der Phase 3 kannst du die Intensität drosseln, und den Fokus auf eher lange und weniger intensive Einheiten legen.",
-      "late": "Die ca. 5 Tage vor der nächsten Mens können von unangenehmen körperlichen und mentalen Symptomen begleitet sein. Höre auch hier wieder auf deinen Körper und plane kurze und leichte Regenerationseinheiten ein (bspw. leichtes Jogging oder Fahrradfahren, Yoga, Spaziergang). Diese können dir auch dabei helfen, die unangenehmen Symptome zu mindern."
-    },
-    "health": {
-      "early-mid": "Kurz nach dem Eisprung ist die Chance schwanger zu werden erhöht. Die Chance nimmt ab, je weiter dein Eisprung zurück liegt.",
-      "late": {
-        "1": "Achte besonders in Phase 4 auf ausreichend (7-9h) und qualitativ hochwertigen Schlaf, um allfällige negative Symptome dieser Phase auszugleichen. Dabei können helfen:",
-        "2": "Konstanter Schlafrhythmus",
-        "3": "Das Zimmer dunkel und kühl halten",
-        "4": "Koffein und Alkohol limitieren",
-        "5": "1h vor dem Schlafengehen keine Bildschirm-Zeit",
-        "6": "2h vor dem Schlafengehen nicht essen",
-        "7": "In dieser Phase bist du nicht fruchtbar."
-      }
-    }
+
+  "lutealInfoLate": {
+    "title": "späte Lutealphase",
+    "description": "Die Phase nach dem Eisprung bis zum Beginn der nächsten Menstruation. Der Gelbkörper produziert Progesteron, das die Gebärmutterschleimhaut auf die Einnistung einer befruchteten Eizelle vorbereitet. Das Progesteron kann die Laune verschlechtern.",
+    "nutrition": [
+      "- Während der Lutealphase braucht dein Körper mehr Energie (+ ca. 200 kcal / Tag). Es kann also gut sein, dass du hungriger bist als sonst.",
+      "- Achte in dieser Phase besonders auf die Zufuhr von gesunden Fetten und Proteinen, um länger satt zu bleiben und Heisshungerattacken zu vermeiden. Wenn du Kohlenhydrate isst, achte auf hochwertige Kohlenhydrate mit viel Ballaststoffen (Hafer, Vollkorn, brauner Reis, etc.). Diese hälten deinen Blutzuckerspiegel konstant und helfen somit Stimmungsschwankungen zu vermeiden (Benton, 2002)",
+      "- Kalziumsupplementation kann die negativen Symptome vermindern (Bendich, 2000)",
+      "- Weitere Lebensmittel, die die negativen Symptome potenziell vermindern sind Magnesium, Vitamin D (Bendich, 2000), Soya (Isoflavone; Bryant et al., 2005), Mönchspfeffer (Swiss Olympic)",
+      "- Entzündungsfördernde Lebensmittel (bspw. Koffein, Alkohol, Zucker, Weissmehlprodukte) meiden (Femnetic Slides, 2024)"
+    ],
+    "training": "Die ca. 5 Tage vor der nächsten Mens können von unangenehmen körperlichen und mentalen Symptomen begleitet sein. Höre auch hier wieder auf deinen Körper und plane kurze und leichte Regenerationseinheiten ein (bspw. leichtes Jogging oder Fahrradfahren, Yoga, Spaziergang). Diese können dir auch dabei helfen, die unangenehmen Symptome zu mindern.",
+    "health": [
+      "Achte besonders in Phase 4 auf ausreichend (7-9h) und qualitativ hochwertigen Schlaf, um allfällige negative Symptome dieser Phase auszugleichen. Dabei können helfen:",
+      "- Konstanter Schlafrhythmus",
+      "- Das Zimmer dunkel und kühl halten",
+      "- Koffein und Alkohol limitieren",
+      "- 1h vor dem Schlafengehen keine Bildschirm-Zeit",
+      "- 2h vor dem Schlafengehen nicht essen",
+      "In dieser Phase bist du nicht fruchtbar."
+    ]
   },
 
   "menstruationPhaseText": "Da du dich in der Menstruationsphase befindest, kann es sein, dass deine Stimmung, Motivation und Energie niedriger sind als sonst. Höre daher gut auf deinen Körper und plane gegebenenfalls eher kurze, regenerative Einheiten mit niedriger Intensität ein. Diese Einheiten können auch dazu beitragen, mögliche Symptome zu verringern.",
