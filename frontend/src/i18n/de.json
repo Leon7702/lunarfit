@@ -582,6 +582,24 @@
     "settingsCaps": "EINSTELLUNGEN",
     "language": "Sprache",
     "logout": "Abmelden"
+  },
+
+  "profile": {
+    "title": "Profil",
+    "firstName": "Vorname",
+    "lastName": "Nachname",
+    "birthdate": "Geburtsdatum",
+    "height": "Größe in cm",
+    "weight": "Gewicht in kg",
+    "contraception": "Verhütungsmittel",
+    "contraceptionOptions": [
+          "Pille",
+          "Hormonspirale",
+          "Hormonimplantat",
+          "Dreimonatsspritze",
+          "Vaginalring",
+          "Sonstiges"
+    ]
   }
 
 }
