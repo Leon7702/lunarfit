@@ -156,4 +156,12 @@ export default {
 .grey-background2 {
   background-color: #F8F8F8;
 }
+
+@media only screen and (min-width: 200px) {
+  .welcome-container {
+    max-width: 350px;
+    margin: auto;
+    margin-top: 5%;
+  }
+}
 </style>

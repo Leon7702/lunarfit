@@ -1,38 +1,40 @@
 <template>
-  <q-layout view="hHh lpR fFf">
-    <!-- Main Content Area -->
-    <q-page-container>
-      <router-view />
-    </q-page-container>
+  <div class="container">
+    <q-layout view="hHh lpR fFf">
+      <!-- Main Content Area -->
+      <q-page-container>
+        <router-view />
+      </q-page-container>
 
-    <!-- Flat Footer with Toolbar and Divider Line -->
-    <q-footer class="footer-toolbar">
-      <div class="footer-divider"></div>
-      <q-toolbar class="footer-toolbar-content">
-        <div class="toolbar-item" @click="goToHome" :class="{ 'active-tab': activeTab === 'home' }">
-          <img :src="getIconSrc('Home')" class="toolbar-icon" alt="Home" />
-          <div class="toolbar-label" :class="{ 'active-label': activeTab === 'home' }">Start</div>
-        </div>
-        <div class="toolbar-item" @click="goToCalendar" :class="{ 'active-tab': activeTab === 'calendar' }">
-          <img :src="getIconSrc('Calendar')" class="toolbar-icon" alt="Calendar" />
-          <div class="toolbar-label" :class="{ 'active-label': activeTab === 'calendar' }">Kalender</div>
-        </div>
-        <div class="toolbar-item" @click="goToLogEntry">
-          <q-btn class="log-entry-btn">
-            <q-icon name="add" style="color: white;" />
-          </q-btn>
-        </div>
-        <div class="toolbar-item" @click="goToChat" :class="{ 'active-tab': activeTab === 'chat' }">
-          <img :src="getIconSrc('Chat')" class="toolbar-icon" alt="Chat" />
-          <div class="toolbar-label" :class="{ 'active-label': activeTab === 'chat' }">Chat</div>
-        </div>
-        <div class="toolbar-item" @click="goToSettings" :class="{ 'active-tab': activeTab === 'settings' }">
-          <img :src="getIconSrc('Settings')" class="toolbar-icon" alt="Settings" />
-          <div class="toolbar-label" :class="{ 'active-label': activeTab === 'settings' }">Einstellungen</div>
-        </div>
-      </q-toolbar>
-    </q-footer>
-  </q-layout>
+      <!-- Flat Footer with Toolbar and Divider Line -->
+      <q-footer class="footer-toolbar">
+        <div class="footer-divider"></div>
+        <q-toolbar class="footer-toolbar-content">
+          <div class="toolbar-item" @click="goToHome" :class="{ 'active-tab': activeTab === 'home' }">
+            <img :src="getIconSrc('Home')" class="toolbar-icon" alt="Home" />
+            <div class="toolbar-label" :class="{ 'active-label': activeTab === 'home' }">Start</div>
+          </div>
+          <div class="toolbar-item" @click="goToCalendar" :class="{ 'active-tab': activeTab === 'calendar' }">
+            <img :src="getIconSrc('Calendar')" class="toolbar-icon" alt="Calendar" />
+            <div class="toolbar-label" :class="{ 'active-label': activeTab === 'calendar' }">Kalender</div>
+          </div>
+          <div class="toolbar-item log-entry-btn-container" @click="goToLogEntry">
+            <q-btn class="log-entry-btn">
+              <q-icon name="add" style="color: white;" />
+            </q-btn>
+          </div>
+          <div class="toolbar-item" @click="goToChat" :class="{ 'active-tab': activeTab === 'chat' }">
+            <img :src="getIconSrc('Chat')" class="toolbar-icon" alt="Chat" />
+            <div class="toolbar-label" :class="{ 'active-label': activeTab === 'chat' }">Chat</div>
+          </div>
+          <div class="toolbar-item" @click="goToSettings" :class="{ 'active-tab': activeTab === 'settings' }">
+            <img :src="getIconSrc('Settings')" class="toolbar-icon" alt="Settings" />
+            <div class="toolbar-label" :class="{ 'active-label': activeTab === 'settings' }">Einstellungen</div>
+          </div>
+        </q-toolbar>
+      </q-footer>
+    </q-layout>
+  </div>
 </template>
 
 <script>
@@ -85,11 +87,11 @@ export default {
 
 .footer-toolbar-content {
   display: flex;
-  justify-content: space-evenly;
+  justify-content: space-between;
   align-items: center;
   padding: 0;
+  width: 100%;
 }
-
 
 .toolbar-item {
   display: flex;
@@ -97,8 +99,8 @@ export default {
   align-items: center;
   cursor: pointer;
   padding: 5px;
-  width: 80px;
-  /* Set a fixed width for each toolbar item */
+  flex: 1;
+  text-align: center;
 }
 
 .toolbar-icon {
@@ -109,14 +111,13 @@ export default {
 .toolbar-label {
   font-size: 10px;
   color: #A3A3A3;
-  white-space: nowrap;
-  /* Prevent label from wrapping */
-  overflow: hidden;
-  /* Hide overflowing text */
-  text-overflow: ellipsis;
-  /* Show ellipsis (...) for overflow */
-  text-align: center;
-  /* Center align the text */
+}
+
+.log-entry-btn-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex: 1;
 }
 
 .log-entry-btn {
@@ -132,11 +133,25 @@ export default {
 
 .active-tab {
   color: #50C1BA;
-  /* Example of active tab color */
 }
 
 .active-label {
   color: #50C1BA;
-  /* Color for active label */
+}
+
+@media only screen and (min-width: 200px) {
+  .footer-divider {
+    height: 1px;
+    background-color: #e0e0e0;
+    max-width: 350px;
+  }
+
+  .footer-toolbar {
+    background-color: white;
+    padding-bottom: 5px;
+    max-width: 350px;
+    margin-left: auto;
+    margin-right: auto;
+  }
 }
 </style>

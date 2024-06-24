@@ -1,5 +1,5 @@
 <template>
-  <div>
+  <div class="container">
     <!-- Header with navigation buttons and current month/year display -->
     <div class="header">
       <!-- Button to navigate to the previous month -->
@@ -105,45 +105,38 @@ export default {
   data() {
     let date = new Date();
     return {
-      // Store the current date
       date: {
         year: date.getFullYear(),
         month: date.getMonth(),
         day: date.getDate(),
       },
-      // Define color classes for specific days
       dayColors: {
         1: 'period',
         2: 'follicle',
         3: 'prediction'
       },
-      selectedDay: date.getDate(), // Track the currently selected day, default to today
+      selectedDay: date.getDate(),
     };
   },
   computed: {
-    // Compute the current year
     currentYear() {
       return this.date.year;
     },
-    // Compute the current month as a string
     currentMonth() {
       return new Date(this.date.year, this.date.month, 1).toLocaleString('de-DE', {
         month: 'long',
       });
     },
-    // Compute the number of days in the current month
     daysInMonth() {
       let date = new Date(this.date.year, this.date.month + 1, 0);
       return [...Array(date.getDate()).keys()].map((i) => i + 1);
     },
-    // Compute the weeks in the current month for the calendar view
     weeksInMonth() {
       let days = this.daysInMonth;
       let firstDay = (new Date(this.date.year, this.date.month, 1).getDay() + 6) % 7; // Adjust for Monday start
       let weeks = [];
       let week = [];
 
-      // Fill the first week with previous month's days
       if (firstDay > 0) {
         let prevMonthDays = this.getDaysInPreviousMonth().slice(-firstDay);
         week.push(
@@ -151,7 +144,6 @@ export default {
         );
       }
 
-      // Add the current month's days
       days.forEach((day) => {
         if (week.length === 7) {
           weeks.push(week);
@@ -160,7 +152,6 @@ export default {
         week.push({ date: day, colorClass: this.dayColorClass(day) });
       });
 
-      // Fill the remaining days of the last week with the next month days
       if (week.length > 0 && week.length < 7) {
         let nextMonthDays = 7 - week.length;
         week.push(
@@ -173,7 +164,6 @@ export default {
 
       return weeks;
     },
-    // Format the current day for display
     currentDayFormatted() {
       let date;
       if (this.selectedDay !== null) {
@@ -189,7 +179,6 @@ export default {
     },
   },
   methods: {
-    // Navigate to the next month
     nextMonth() {
       if (this.date.month === 11) {
         this.date.year++;
@@ -198,7 +187,6 @@ export default {
         this.date.month++;
       }
     },
-    // Navigate to the previous month
     prevMonth() {
       if (this.date.month === 0) {
         this.date.year--;
@@ -207,28 +195,21 @@ export default {
         this.date.month--;
       }
     },
-    // Get the color class for a given day
     dayColorClass(day) {
       if (this.selectedDay === day) {
         return 'currentDate';
       }
       return this.dayColors[day] || '';
     },
-    // Select a day as the current date
     selectDay(day) {
-      // Check if the clicked day is not an empty string (i.e., from previous or next month)
       if (day !== '') {
-        // Create a new Date object with the year, month, and clicked day
         let selectedDate = new Date(this.date.year, this.date.month, day);
-        // Set the selected day to the clicked day
         this.selectedDay = selectedDate.getDate();
       } else {
-        // If the clicked day is empty (i.e., from previous or next month), clear the selection
         this.selectedDay = null;
       }
     },
 
-    // Get the days of the previous month
     getDaysInPreviousMonth() {
       let date = new Date(this.date.year, this.date.month, 0);
       return [...Array(date.getDate()).keys()].map((i) => i + 1);
@@ -238,29 +219,26 @@ export default {
 </script>
 
 <style>
-/* Ensure consistent styling for both table headers and data cells */
 table {
-  width: 80%;
+  width: 100%;
   table-layout: fixed;
   margin: 0 auto;
   margin-top: 20px;
-  border-collapse: collapse;
-  /* Remove gaps between cells */
 }
 
 th,
 td {
-  width: 14.2857%;
-  /* 100% / 7 days */
   text-align: center;
-  padding: 10px;
+  padding: 0px;
   padding-bottom: 10px;
+  margin: 0;
   box-sizing: border-box;
-  /* Ensure padding and border are included in the width */
 }
 
 th {
+  width: 350px/7px;
   color: #6C7072;
+  ;
 }
 
 a {
@@ -281,11 +259,9 @@ p {
   justify-content: space-between;
   align-items: center;
   padding: 10px;
-  padding-top: 46px;
+  margin-top: 46px;
   width: 80%;
-  /* Match the width of the table */
   margin: 0 auto;
-  /* Center the header */
 }
 
 .month-year {
@@ -295,7 +271,6 @@ p {
   font-style: normal;
   font-weight: 600;
   line-height: 31px;
-  /* 155% */
 }
 
 .navButton {
@@ -308,15 +283,11 @@ p {
   justify-content: center;
   align-items: center;
   width: 30px;
-  /* Ensure this matches height */
   height: 30px;
-  /* Ensure this matches width */
   line-height: 30px;
-  /* Ensure this matches height */
   border-radius: 50%;
   text-align: center;
   margin: auto;
-  /* Center the circle in the table cell */
 }
 
 .period {
@@ -331,14 +302,11 @@ p {
 
 .prediction {
   border: 2px dotted #FF2D55;
-  /* You can change the color as needed */
   color: #000;
-  /* Set the text color */
 }
 
 .currentDate {
   border: 2px solid #FF2D55;
-  /* Set border color */
   color: #000;
 }
 
@@ -347,17 +315,13 @@ p {
   justify-content: center;
   align-items: center;
   width: 40px;
-  /* Increase this value to make the clickable area larger */
   height: 40px;
-  /* Increase this value to make the clickable area larger */
   cursor: pointer;
 }
 
 .navButtonImage {
   width: 20px;
-  /* Adjust the size of the actual image */
   height: 20px;
-  /* Adjust the size of the actual image */
 }
 
 
@@ -372,7 +336,6 @@ p {
 .legend {
   display: flex;
   justify-content: space-evenly;
-  /* Evenly space legend items */
   margin: 5px 0;
 }
 
@@ -383,27 +346,20 @@ p {
 
 .legend-item .day-circle {
   width: 15px;
-  /* Smaller width for legend items */
   height: 15px;
-  /* Smaller height for legend items */
   line-height: 15px;
-  /* Smaller line-height for legend items */
   border-radius: 50%;
-  /* Ensure circle shape */
 }
 
 .legend-label {
   margin-left: 5px;
   font-size: 12px;
-  /* Smaller font size for legend labels */
   color: #72777A;
-  /* Set text color */
 }
 
 .day-log-container {
-  width: 90%;
+  width: 100%;
   margin: 20px auto;
-  /* Center container with top margin */
 }
 
 .day-log-header {
@@ -428,15 +384,12 @@ p {
   margin-top: 10px;
   border: 0;
   border-top: 1px solid #e0e0e0;
-  /* Light grey color for the line */
   width: 100%;
-  /* Ensure the separator stretches the full width */
 }
 
 .training-recommendation-container {
-  width: 90%;
+  width: 100%;
   margin: 20px auto;
-  /* Center container with top margin */
 }
 
 .training-recommendation-header {
@@ -448,7 +401,6 @@ p {
   font-style: normal;
   font-weight: 600;
   line-height: 21px;
-  /* 150% */
 }
 
 .training-recommendation-text {
@@ -456,7 +408,14 @@ p {
   font-style: normal;
   font-weight: 400;
   line-height: 18px;
-  /* 150% */
   padding-top: 18px;
+}
+
+@media only screen and (min-width: 200px) {
+  .container {
+    max-width: 350px;
+    margin: auto;
+    margin-top: 20px;
+  }
 }
 </style>
