@@ -11,7 +11,7 @@
         </p>
       </div>
       <div class="button-container">
-        <StandardButton label="Weiter" @click="navigateToOnboardingStep1" />
+        <StandardButton label="Weiter" @click="navigateToDashboard" />
       </div>
     </div>
   </template>
@@ -20,16 +20,16 @@
   import StandardButton from 'components/StandardButton.vue';
   
   export default {
-    components: {
-      StandardButton
-    },
-    methods: {
-      navigateToOnboardingStep1() {
-        // Weiterleitung zur Vue-Komponente des zweiten Bildschirms
-        this.$router.push({ name: 'OnboardingStart' }); // Passe den Routenname entsprechend an
-      }
+  name: 'OnboardingEnd',
+  components: {
+    StandardButton
+  },
+  methods: {
+    navigateToDashboard() {
+      this.$router.push({ path: '/home' });
     }
-  };
+  }
+};
   </script>
   
   <style scoped>

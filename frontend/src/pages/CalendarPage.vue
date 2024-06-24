@@ -115,7 +115,7 @@ export default {
       dayColors: {
         1: 'period',
         2: 'follicle',
-        3: 'prediction',
+        3: 'prediction'
       },
       selectedDay: date.getDate(), // Track the currently selected day, default to today
     };
