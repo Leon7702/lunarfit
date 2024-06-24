@@ -26,9 +26,9 @@
           <img :src="getIconSrc('Chat')" class="toolbar-icon" alt="Chat" />
           <div class="toolbar-label" :class="{ 'active-label': activeTab === 'chat' }">Chat</div>
         </div>
-        <div class="toolbar-item" @click="goToProfile" :class="{ 'active-tab': activeTab === 'profile' }">
-          <img :src="getIconSrc('Profile')" class="toolbar-icon" alt="Profile" />
-          <div class="toolbar-label" :class="{ 'active-label': activeTab === 'profile' }">Einstellungen</div>
+        <div class="toolbar-item" @click="goToSettings" :class="{ 'active-tab': activeTab === 'settings' }">
+          <img :src="getIconSrc('Settings')" class="toolbar-icon" alt="Settings" />
+          <div class="toolbar-label" :class="{ 'active-label': activeTab === 'settings' }">Einstellungen</div>
         </div>
       </q-toolbar>
     </q-footer>
@@ -64,8 +64,8 @@ export default {
       this.activeTab = 'chat';
       this.$router.push('/chat');
     },
-    goToProfile() {
-      this.activeTab = 'profile';
+    goToSettings() {
+      this.activeTab = 'settings';
       this.$router.push('/settings');
     }
   }
