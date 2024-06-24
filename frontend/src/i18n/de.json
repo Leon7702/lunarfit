@@ -607,6 +607,12 @@
     "email": "E-Mail",
     "password": "Passwort",
     "change-password": "Passwort ändern"
+  },
+
+  "language": {
+    "title": "Sprache",
+    "german": "Deutsch",
+    "english": "Englisch"
   }
 
 }
