@@ -505,7 +505,7 @@
   "toolbar": {
     "start": "Start",
     "calendar": "Kalender",
-    "Chat": "Chat",
+    "chat": "Chat",
     "settings": "Einstellungen"
   },
 
