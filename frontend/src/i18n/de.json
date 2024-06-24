@@ -36,37 +36,39 @@
 
   "menstruationInfo": {
     "title": "Menstruation",
-    "text": "Der Zyklus beginnt mit dem ersten Tag der Blutung, die durch den Abfall von Progesteron und Östrogen ausgelöst wird. Das steigende Östrogen hebt die Laune, macht selbstbewusst und kreativ.",
-    "nutrition": {
-      "1": "Entzündungshemmende und antioxidative Nahrungsmittel, um Symptome zu lindern: Curcumin, Vitamin D, Calcium, Magnesium and Zink (Brown et al., 2023) --> Kurkuma, Milchprodukte (Milch, Joghurt, Käse), Spinat, Vollkorn, Kerne und Samen, Präparate",
-      "2": "Achte auf eine genügende Eisenzufuhr, insbesondere wenn deine Blutung stark ausfällt (Pedlar et al., 2017; Gaxiola & Regil, 2019) --> Rotes Fleisch, Bohnen, Leafy Greens z.B Spinat, Linsen, Brokkoli",
-      "3": "Verbesserte Resorption durch parallele Aufnahme von Vitamin C (z.B. Sanddorn, Acerolakirsche, schwarze Johannisbeere, Petersilie, Wising, Rosenkohl, Paprika); Hemmung der Aufnahme u.a. durch Gerbstoffe (schwarzer Tee, Kaffee), Phytin (Vollkorn, Soja, Hülsenfrüchten), Phospohate (in Milch, Cola, Wurstwaren)",
-      "4": "Trinke genug Wasser, mind. 1.5 - 2 Liter + bei Training Kompensation des Schweissverlustes"
-    },
+    "description": "Der Zyklus beginnt mit dem ersten Tag der Blutung, die durch den Abfall von Progesteron und Östrogen ausgelöst wird. Das steigende Östrogen hebt die Laune, macht selbstbewusst und kreativ.",
+    "nutrition": [
+      "- Entzündungshemmende und antioxidative Nahrungsmittel, um Symptome zu lindern: Curcumin, Vitamin D, Calcium, Magnesium and Zink (Brown et al., 2023) --> Kurkuma, Milchprodukte (Milch, Joghurt, Käse), Spinat, Vollkorn, Kerne und Samen, Präparate",
+      "- Achte auf eine genügende Eisenzufuhr, insbesondere wenn deine Blutung stark ausfällt (Pedlar et al., 2017; Gaxiola & Regil, 2019) --> Rotes Fleisch, Bohnen, Leafy Greens z.B Spinat, Linsen, Brokkoli",
+      "- Verbesserte Resorption durch parallele Aufnahme von Vitamin C (z.B. Sanddorn, Acerolakirsche, schwarze Johannisbeere, Petersilie, Wising, Rosenkohl, Paprika); Hemmung der Aufnahme u.a. durch Gerbstoffe (schwarzer Tee, Kaffee), Phytin (Vollkorn, Soja, Hülsenfrüchten), Phospohate (in Milch, Cola, Wurstwaren)",
+      "- Trinke genug Wasser, mind. 1.5 - 2 Liter + bei Training Kompensation des Schweissverlustes"
+    ],
     "training": "Durch die potenziellen Symptome der Menstruation kann es sein, dass deine Stimmung, deine Motivation und deine Energie tiefer sind als sonst. Höre auf deinen Körper und plane deshalb vermehrt kurze, regenerative Einheiten mit niedriger Intensität in Phase 1 ein. Diese Einheiten können auch dazu beitragen, deine Symptome zu verringern.",
-    "health": {
-      "1": "Achte besonders in Phase 1 auf ausreichend (7-9h) und qualitativ hochwertigen Schlaf, um allfällige negative Symptome dieser Phase auszugleichen. Dabei können helfen:",
-      "2": "Konstanter Schlafrhythmus",
-      "3": "Das Zimmer dunkel und kühl halten",
-      "4": "Koffein und Alkohol limitieren",
-      "5": "1h vor dem Schlafengehen keine Bildschirm-Zeit",
-      "6": "2h vor dem Schlafengehen nicht essen",
-      "7": "In dieser Phase ist deine Fruchtbarkeit sehr gering."
-    }
+    "health": [
+      "- Achte besonders in Phase 1 auf ausreichend (7-9h) und qualitativ hochwertigen Schlaf, um allfällige negative Symptome dieser Phase auszugleichen. Dabei können helfen:",
+      "- Konstanter Schlafrhythmus",
+      "- Das Zimmer dunkel und kühl halten",
+      "- Koffein und Alkohol limitieren",
+      "- 1h vor dem Schlafengehen keine Bildschirm-Zeit",
+      "- 2h vor dem Schlafengehen nicht essen",
+      "- In dieser Phase ist deine Fruchtbarkeit sehr gering."
+    ]
   },
+
   "follicularInfo": {
     "title": "Follikelphase",
-    "text": "Phase nach der Menstruation, in der die Eibläschchen zu einem sprungbereiten Follikel reifen. Das steigende Östrogen hebt die Laune, macht selbstbewusst und kreativ.",
-    "nutrition": {
-      "1": "Durch die Erhöhung der Intensität oder des Volumens deines Trainings erhöht sich auch dein Energiebedarf! Achte auf eine genügende Kohlenhydratzufuhr vor und nach dem Training. Vorzugsweise nimmst du dazu komplexe Kohlenhydrate wie Vollkornprodukte, Hafer, Quinoa, brauner Reis",
-      "2": "Ebenso bei längeren Trainingseinheiten --> 1h bewusst KH zuführen",
-      "3": "Bei vermehrtem Training solltest du auch deine Proteinzufuhr erhöhen: Achte auf eine tägliche Proteinzufuhr von ca. 1,6g pro kg Körpergewicht. Proteindrinks können dabei helfen, den Bedarf zu decken. Nimm dazu Drinks, die wenig zugesetzten Zucker beinhalten.",
-      "4": "Trinke genug Wasser, mind. 1.5 - 2 Liter + bei Training Kompensation des Schweissverlustes",
-      "5": "Decke deinen Fettbedarf mit gesunden Fetten, bspw. Fisch, Nüsse und Samen, pflanzliche Öle."
-    },
+    "description": "Phase nach der Menstruation, in der die Eibläschchen zu einem sprungbereiten Follikel reifen. Das steigende Östrogen hebt die Laune, macht selbstbewusst und kreativ.",
+    "nutrition": [
+      "- Durch die Erhöhung der Intensität oder des Volumens deines Trainings erhöht sich auch dein Energiebedarf! Achte auf eine genügende Kohlenhydratzufuhr vor und nach dem Training. Vorzugsweise nimmst du dazu komplexe Kohlenhydrate wie Vollkornprodukte, Hafer, Quinoa, brauner Reis",
+      "- Ebenso bei längeren Trainingseinheiten --> 1h bewusst KH zuführen",
+      "- Bei vermehrtem Training solltest du auch deine Proteinzufuhr erhöhen: Achte auf eine tägliche Proteinzufuhr von ca. 1,6g pro kg Körpergewicht. Proteindrinks können dabei helfen, den Bedarf zu decken. Nimm dazu Drinks, die wenig zugesetzten Zucker beinhalten.",
+      "- Trinke genug Wasser, mind. 1.5 - 2 Liter + bei Training Kompensation des Schweissverlustes",
+      "- Decke deinen Fettbedarf mit gesunden Fetten, bspw. Fisch, Nüsse und Samen, pflanzliche Öle."
+    ],
     "training": "Der steigende Östrogenspiegel hilft dir dabei, dich selbstbewusst und stark zu fühlen. Zeit also für die härteren Einheiten! Plane in Phase 2 vermehrt lange oder intensive Einheiten ein. Steigere dabei die die Intensität oder das Volumen kontinuerlich vom Ende der Mens bis zum Eisprung. Des weiteren ist Phase 2 optimal, um Kraft oder Schnelligkeit zu trainieren.",
     "health": "Höchste Fruchtbarkeit am Ende der Phase 2 (ca. 5 Tage vor dem Eisprung bis 1 Tag nach dem Eisprung)"
   },
+
   "ovulationInfo": {
     "title": "Ovulation",
     "text": "Nach dem Eisprung wird die Eizelle aus dem Follikel im Eierstock in den Eileiter ausgestoßen. Die Hülle der Eizelle bleibt als Gelbkörper zurück. Zum Eisprung macht das Östrogen häufig gute Laune. Danach gibt es auch mal schlechte Laune.",
