@@ -600,6 +600,13 @@
           "Vaginalring",
           "Sonstiges"
     ]
+  },
+
+  "account": {
+    "title": "Account",
+    "email": "E-Mail",
+    "password": "Passwort",
+    "change-password": "Passwort ändern"
   }
 
 }
