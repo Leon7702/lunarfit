@@ -87,11 +87,18 @@
 
   .button-container {
     position: fixed;
-    bottom: 40px; 
+    bottom: 80px; 
     width: 100%;
     display: flex;
     justify-content: center;
     left: 0;
+  }
+
+  @media only screen and (min-width: 200px) {
+    .welcome-container {
+      max-width: 350px;
+      margin: auto;
+    }
   }
   </style>
   

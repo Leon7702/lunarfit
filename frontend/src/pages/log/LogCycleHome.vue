@@ -151,4 +151,11 @@ export default {
   font-size: 14px;
   padding: 0 5px;
 }
+
+@media only screen and (min-width: 200px) {
+  .welcome-container {
+    max-width: 350px;
+    margin: auto;
+  }
+}
 </style>

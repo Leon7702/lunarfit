@@ -89,5 +89,12 @@
     margin-left: 0; 
     width: 100%;
   }
+
+  @media only screen and (min-width: 200px) {
+    .welcome-container {
+      max-width: 350px;
+      margin: auto;
+    }
+  }
   </style>
   

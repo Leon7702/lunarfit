@@ -110,9 +110,9 @@
     left: 0;
   }
 
-  @media only screen and (min-width: 500px) {
+  @media only screen and (min-width: 200px) {
     .welcome-container {
-      max-width: 500px;
+      max-width: 350px;
       margin: auto;
       margin-top: 5%;
     }

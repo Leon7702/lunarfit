@@ -95,6 +95,13 @@
     font: 12px/16px 'Inter', sans-serif;
     margin-top: 15px;
   }
+
+  @media only screen and (min-width: 200px) {
+    .welcome-container {
+      max-width: 350px;
+      margin: auto;
+    }
+  }
   
   </style>
   

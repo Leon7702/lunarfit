@@ -131,4 +131,11 @@
     justify-content: center;
     left: 0;
   }
+
+  @media only screen and (min-width: 200px) {
+    .welcome-container {
+      max-width: 350px;
+      margin: auto;
+    }
+  }
 </style>
