@@ -1,7 +1,7 @@
 <template>
   <div class="q-pt-md q-pb-md" style="width: 100%">
     <q-list bordered class="rounded-borders">
-      <q-expansion-item>
+      <q-expansion-item class="hover-effect">
         <template v-slot:header>
           <q-item-section avatar>
             <q-avatar>
@@ -21,7 +21,7 @@
 
     <q-separator />
 
-      <q-expansion-item>
+      <q-expansion-item class="hover-effect">
         <template v-slot:header>
           <q-item-section avatar>
             <q-avatar>
@@ -41,7 +41,7 @@
 
     <q-separator />
 
-      <q-expansion-item>
+      <q-expansion-item class="hover-effect">
         <template v-slot:header>
           <q-item-section avatar>
             <q-avatar>
@@ -68,3 +68,14 @@ export default {
   props: ['textNutrition', 'textTraining', 'textHealth'],
 }
 </script>
+
+<style scoped>
+
+.hover-effect {
+  transition: background-color 0.3s ease-in-out;
+}
+
+.hover-effect:hover {
+  background-color: rgba(80, 193, 186, 0.2);
+}
+</style>

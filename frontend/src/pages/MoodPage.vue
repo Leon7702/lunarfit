@@ -8,16 +8,10 @@
     </div>
 
     <div class="container">
-      <IconSlider
-        v-for="(item, index) in moodItems"
-        :key="index"
-        :icon="item.icon"
-        :text="item.text"
-        :value="item.value"
-        @update:value="updateMoodValue(index, $event)"
-      />
+      <IconSlider v-for="(item, index) in moodItems" :key="index" :icon="item.icon" :text="item.text"
+        :value="item.value" @update:value="updateMoodValue(index, $event)" />
     </div>
-    
+
     <div class="button-container">
       <button class="save-button">Speichern</button>
     </div>
@@ -34,26 +28,26 @@ export default {
   data() {
     return {
       moodItems: [
-        { icon: '/src/assets/LunaFit.svg', text: 'Ängstlich', value: 1 },
-        { icon: '/src/assets/icon2.svg', text: 'Begeistert', value: 1 },
-        { icon: '/src/assets/icon3.svg', text: 'Entspannt', value: 1 },
-        { icon: '/src/assets/icon2.svg', text: 'Fit', value: 1 },
-        { icon: '/src/assets/icon2.svg', text: 'Frustriert', value: 1 },
-        { icon: '/src/assets/icon2.svg', text: 'Glücklich', value: 1 },
-        { icon: '/src/assets/icon2.svg', text: 'Gestresst', value: 1 },
-        { icon: '/src/assets/icon2.svg', text: 'Müde', value: 1 },
-        { icon: '/src/assets/icon2.svg', text: 'Nervös', value: 1 },
-        { icon: '/src/assets/icon2.svg', text: 'Schwach', value: 1 },
-        { icon: '/src/assets/icon2.svg', text: 'Selbstsicher', value: 1 },
-        { icon: '/src/assets/icon2.svg', text: 'Traurig', value: 1 },
-        { icon: '/src/assets/icon2.svg', text: 'Unglücklich', value: 1 },
-        { icon: '/src/assets/icon2.svg', text: 'Unsicher', value: 1 },
-        { icon: '/src/assets/icon2.svg', text: 'Verärgert', value: 1 },
-        { icon: '/src/assets/icon2.svg', text: 'Verlegen', value: 1 },
-        { icon: '/src/assets/icon2.svg', text: 'Verwirrt', value: 1 },
-        { icon: '/src/assets/icon2.svg', text: 'Wütend', value: 1 },
-        { icon: '/src/assets/icon2.svg', text: 'Zufrieden', value: 1 },
-        { icon: '/src/assets/icon2.svg', text: 'Zuversichtlich', value: 1 },
+        { icon: '/src/assets/LunaFit.svg', text: this.$t('moods.anxious'), value: 1 },
+        { icon: '/src/assets/icon2.svg', text: this.$t('moods.excited'), value: 1 },
+        { icon: '/src/assets/icon3.svg', text: this.$t('moods.relaxed'), value: 1 },
+        { icon: '/src/assets/icon2.svg', text: this.$t('moods.fit'), value: 1 },
+        { icon: '/src/assets/icon2.svg', text: this.$t('moods.frustrated'), value: 1 },
+        { icon: '/src/assets/icon2.svg', text: this.$t('moods.happy'), value: 1 },
+        { icon: '/src/assets/icon2.svg', text: this.$t('moods.stressed'), value: 1 },
+        { icon: '/src/assets/icon2.svg', text: this.$t('moods.tired'), value: 1 },
+        { icon: '/src/assets/icon2.svg', text: this.$t('moods.nervous'), value: 1 },
+        { icon: '/src/assets/icon2.svg', text: this.$t('moods.weak'), value: 1 },
+        { icon: '/src/assets/icon2.svg', text: this.$t('moods.confident'), value: 1 },
+        { icon: '/src/assets/icon2.svg', text: this.$t('moods.sad'), value: 1 },
+        { icon: '/src/assets/icon2.svg', text: this.$t('moods.unhappy'), value: 1 },
+        { icon: '/src/assets/icon2.svg', text: this.$t('moods.insecure'), value: 1 },
+        { icon: '/src/assets/icon2.svg', text: this.$t('moods.angry'), value: 1 },
+        { icon: '/src/assets/icon2.svg', text: this.$t('moods.embarrassed'), value: 1 },
+        { icon: '/src/assets/icon2.svg', text: this.$t('moods.confused'), value: 1 },
+        { icon: '/src/assets/icon2.svg', text: this.$t('moods.furious'), value: 1 },
+        { icon: '/src/assets/icon2.svg', text: this.$t('moods.satisfied'), value: 1 },
+        { icon: '/src/assets/icon2.svg', text: this.$t('moods.optimistic'), value: 1 },
       ]
     };
   },
@@ -68,10 +62,12 @@ export default {
 <style scoped>
 .root {
   width: 90%;
-  margin: 0 auto; /* Centers the content horizontally */
+  margin: 0 auto;
+  /* Centers the content horizontally */
   display: flex;
   flex-direction: column;
-  min-height: 100vh; /* Ensure the root takes full viewport height */
+  min-height: 100vh;
+  /* Ensure the root takes full viewport height */
 }
 
 .header {
@@ -87,16 +83,22 @@ export default {
   display: flex;
   justify-content: center;
   align-items: center;
-  width: 40px; /* Increase this value to make the clickable area larger */
-  height: 40px; /* Increase this value to make the clickable area larger */
+  width: 40px;
+  /* Increase this value to make the clickable area larger */
+  height: 40px;
+  /* Increase this value to make the clickable area larger */
   cursor: pointer;
-  position: absolute; /* Position relative to header */
-  left: 10px; /* Align to the left side */
+  position: absolute;
+  /* Position relative to header */
+  left: 10px;
+  /* Align to the left side */
 }
 
 .navButtonImage {
-  width: 20px; /* Adjust the size of the actual image */
-  height: 20px; /* Adjust the size of the actual image */
+  width: 20px;
+  /* Adjust the size of the actual image */
+  height: 20px;
+  /* Adjust the size of the actual image */
 }
 
 .head {
@@ -112,17 +114,20 @@ export default {
 
 .container {
   border-top: 1px solid #ccc;
-  flex: 1; /* This will make the container take the available space */
+  flex: 1;
+  /* This will make the container take the available space */
 }
 
 .button-container {
   display: flex;
   justify-content: center;
-  padding: 20px 0; /* Add some padding for spacing */
+  padding: 20px 0;
+  /* Add some padding for spacing */
 }
 
 .save-button {
-  background-color: #50c1ba; /* Change this to your preferred color */
+  background-color: #50c1ba;
+  /* Change this to your preferred color */
   color: white;
   border: none;
   padding: 10px 20px;
@@ -132,6 +137,7 @@ export default {
 }
 
 .save-button:hover {
-  background-color: #0056b3; /* Change this to your preferred hover color */
+  background-color: #0056b3;
+  /* Change this to your preferred hover color */
 }
 </style>

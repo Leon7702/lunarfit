@@ -7,7 +7,8 @@
     "strain": 4,
     "mood": 5,
     "rest": 6,
-    "free": 5
+    "free": 5,
+    "acwr": 1.6
   }
 }
 
