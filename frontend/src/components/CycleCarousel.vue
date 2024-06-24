@@ -26,79 +26,10 @@
                 </q-card-section>
               </q-card>
               <img class="cycle-image" src="../assets/cyclePhase/PeriodOvulation.png" alt="Graph" />
-              <!-- <PhaseInformation :textNutrition="data.menstruationNutrition" :textTraining="data.menstruationTraining"
-                :textHealth="data.menstruationHealth" /> -->
-
-              <div class="q-pt-md q-pb-md" style="width: 100%">
-                <q-list bordered class="rounded-borders">
-                  <q-expansion-item class="hover-effect">
-                    <template v-slot:header>
-                      <q-item-section avatar>
-                        <q-avatar>
-                          <img src="../assets/Food.svg" alt="Food" />
-                        </q-avatar>
-                      </q-item-section>
-                      <q-item-section>
-                        Ernährung
-                      </q-item-section>
-                    </template>
-                    <q-card>
-                      <q-card-section>
-                        <div>{{ $t('menstruationInfo.nutrition[0]') }}</div>
-                        <div>{{ $t('menstruationInfo.nutrition[1]') }}</div>
-                        <div>{{ $t('menstruationInfo.nutrition[2]') }}</div>
-                        <div>{{ $t('menstruationInfo.nutrition[3]') }}</div>
-                      </q-card-section>
-                    </q-card>
-                  </q-expansion-item>
-
-                  <q-separator />
-
-                  <q-expansion-item class="hover-effect">
-                    <template v-slot:header>
-                      <q-item-section avatar>
-                        <q-avatar>
-                          <img src="../assets/Training.svg" alt="Training" />
-                        </q-avatar>
-                      </q-item-section>
-                      <q-item-section>
-                        Training
-                      </q-item-section>
-                    </template>
-                    <q-card>
-                      <q-card-section>
-                        {{ $t('menstruationInfo.training') }}
-                      </q-card-section>
-                    </q-card>
-                  </q-expansion-item>
-
-                  <q-separator />
-
-                  <q-expansion-item class="hover-effect">
-                    <template v-slot:header>
-                      <q-item-section avatar>
-                        <q-avatar>
-                          <img src="../assets/Health.svg" alt="Food" />
-                        </q-avatar>
-                      </q-item-section>
-                      <q-item-section>
-                        Gesundheit/ Fruchtbarkeit
-                      </q-item-section>
-                    </template>
-                    <q-card>
-                      <q-card-section>
-                        <div>{{ $t('menstruationInfo.health[0]') }}</div>
-                        <div>{{ $t('menstruationInfo.health[1]') }}</div>
-                        <div>{{ $t('menstruationInfo.health[2]') }}</div>
-                        <div>{{ $t('menstruationInfo.health[3]') }}</div>
-                        <div>{{ $t('menstruationInfo.health[4]') }}</div>
-                        <div>{{ $t('menstruationInfo.health[5]') }}</div>
-                        <div>{{ $t('menstruationInfo.health[6]') }}</div>
-                      </q-card-section>
-                    </q-card>
-                  </q-expansion-item>
-                </q-list>
-              </div>
+              <PhaseInformation
+                :textNutrition="$t('menstruationInfo.nutrition[0]') + ' ' + $t('menstruationInfo.nutrition[1]') + ' ' + $t('menstruationInfo.nutrition[2]') + ' ' + $t('menstruationInfo.nutrition[3]')"
+                :textTraining="$t('menstruationInfo.training')"
+                :textHealth="$t('menstruationInfo.health[0]') + ' ' + $t('menstruationInfo.health[1]') + ' ' + $t('menstruationInfo.health[2]') + ' ' + $t('menstruationInfo.health[3]') + ' ' + $t('menstruationInfo.health[4]') + ' ' + $t('menstruationInfo.health[5]') + ' ' + $t('menstruationInfo.health[6]')" />
             </div>
           </q-scroll-area>
         </q-carousel-slide>
@@ -114,80 +45,9 @@
                 </q-card-section>
               </q-card>
               <img class="cycle-image" src="../assets/cyclePhase/Follicular.png" alt="Graph" />
-              <!-- <PhaseInformation :textNutrition="data.follicularNutrition" :textTraining="data.follicularTraining"
-                :textHealth="data.follicularHealth" /> -->
-
-                <div class="q-pt-md q-pb-md" style="width: 100%">
-                <q-list bordered class="rounded-borders">
-                  <q-expansion-item class="hover-effect">
-                    <template v-slot:header>
-                      <q-item-section avatar>
-                        <q-avatar>
-                          <img src="../assets/Food.svg" alt="Food" />
-                        </q-avatar>
-                      </q-item-section>
-                      <q-item-section>
-                        Ernährung
-                      </q-item-section>
-                    </template>
-                    <q-card>
-                      <q-card-section>
-                        <div>{{ $t('follicularInfo.nutrition[0]') }}</div>
-                        <div>{{ $t('follicularInfo.nutrition[1]') }}</div>
-                        <div>{{ $t('follicularInfo.nutrition[2]') }}</div>
-                        <div>{{ $t('follicularInfo.nutrition[3]') }}</div>
-                        <div>{{ $t('follicularInfo.nutrition[3]') }}</div>
-                      </q-card-section>
-                    </q-card>
-                  </q-expansion-item>
-
-                  <q-separator />
-
-                  <q-expansion-item class="hover-effect">
-                    <template v-slot:header>
-                      <q-item-section avatar>
-                        <q-avatar>
-                          <img src="../assets/Training.svg" alt="Training" />
-                        </q-avatar>
-                      </q-item-section>
-                      <q-item-section>
-                        Training
-                      </q-item-section>
-                    </template>
-                    <q-card>
-                      <q-card-section>
-                        {{ $t('menstruationInfo.training') }}
-                      </q-card-section>
-                    </q-card>
-                  </q-expansion-item>
-
-                  <q-separator />
-
-                  <q-expansion-item class="hover-effect">
-                    <template v-slot:header>
-                      <q-item-section avatar>
-                        <q-avatar>
-                          <img src="../assets/Health.svg" alt="Food" />
-                        </q-avatar>
-                      </q-item-section>
-                      <q-item-section>
-                        Gesundheit/ Fruchtbarkeit
-                      </q-item-section>
-                    </template>
-                    <q-card>
-                      <q-card-section>
-                        <div>{{ $t('menstruationInfo.health[0]') }}</div>
-                        <div>{{ $t('menstruationInfo.health[1]') }}</div>
-                        <div>{{ $t('menstruationInfo.health[2]') }}</div>
-                        <div>{{ $t('menstruationInfo.health[3]') }}</div>
-                        <div>{{ $t('menstruationInfo.health[4]') }}</div>
-                        <div>{{ $t('menstruationInfo.health[5]') }}</div>
-                        <div>{{ $t('menstruationInfo.health[6]') }}</div>
-                      </q-card-section>
-                    </q-card>
-                  </q-expansion-item>
-                </q-list>
-              </div>
+              <PhaseInformation
+                :textNutrition="$t('follicularInfo.nutrition[0]') + ' ' + $t('follicularInfo.nutrition[1]') + ' ' + $t('follicularInfo.nutrition[2]') + ' ' + $t('follicularInfo.nutrition[3]') + ' ' + $t('follicularInfo.nutrition[4]')"
+                :textTraining="$t('follicularInfo.training')" :textHealth="$t('follicularInfo.health')" />
             </div>
           </q-scroll-area>
         </q-carousel-slide>
@@ -307,13 +167,5 @@ export default {
 
 li {
   margin: 0;
-}
-
-.hover-effect {
-  transition: background-color 0.3s ease-in-out;
-}
-
-.hover-effect:hover {
-  background-color: rgba(80, 193, 186, 0.2);
 }
 </style>
