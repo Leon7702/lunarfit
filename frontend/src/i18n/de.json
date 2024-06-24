@@ -570,5 +570,18 @@
     "title": "Anmelden",
     "no-account": "Noch keinen Account?",
     "register-now": "Jetzt registrieren"
+  },
+
+  "settings": {
+    "title": "Einstellungen",
+    "profileCaps": "PROFIL",
+    "personal-info": "Persönliche Informationen",
+    "account-settings": "Account Einstellungen",
+    "notificationsCaps": "BENAHRICHTIGUNGEN",
+    "notifications": "Benachrichtigungen",
+    "settingsCaps": "EINSTELLUNGEN",
+    "language": "Sprache",
+    "logout": "Abmelden"
   }
+
 }
