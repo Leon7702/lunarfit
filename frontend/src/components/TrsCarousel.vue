@@ -20,11 +20,19 @@
               <div class="column no-wrap flex-center">
                 <div class="text-h6">Training</div>
                 <TrsSunburst />
-                <div class="text-p"><strong>Training Readiness Score: 76%</strong></div>
+                <div class="text-p">
+                  <strong>Training Readiness Score: {{ trainingReadinessScore }}%</strong>
+                </div>
                 <p></p>
                 <q-card flat bordered class="my-card">
                   <q-card-section>
-                    {{ trainingtext }}
+                    {{ $t(`${trainingTextKey}.description`) }}
+                    <ul>
+                      <li>{{ $t(`${trainingTextKey}.recommendations[0]`) }}</li>
+                      <li>{{ $t(`${trainingTextKey}.recommendations[1]`) }}</li>
+                      <li>{{ $t(`${trainingTextKey}.recommendations[2]`) }}</li>
+                      <li>{{ $t(`${trainingTextKey}.recommendations[3]`) }}</li>
+                    </ul>
                   </q-card-section>
                 </q-card>
               </div>
@@ -71,7 +79,7 @@
                   <q-card flat bordered class="my-card">
                     <q-card-section>
                       <div class="info-text">
-                        <strong>{{ $t(`acwrInfo`)}} {{ acwr }}</strong>
+                        <strong>{{ $t(`acwrInfo`) }} {{ acwr }}</strong>
                         <div>{{ $t(`strainInfo.${acwrScore}.description`) }}</div>
                         <p></p>
                         <div>{{ $t(`strainInfo.${acwrScore}.recommendations[0]`) }}</div>
@@ -156,6 +164,7 @@
 import { ref, computed } from 'vue';
 import axios from 'axios';
 import TrsSunburst from 'components/TrsSunburst.vue';
+import { calculateScore } from 'src/utils/scoreCalculator';
 
 export default {
   setup() {
@@ -165,6 +174,7 @@ export default {
     const freeScore = ref(0);
     const restScore = ref(0);
     const acwr = ref(1.2);
+    const trainingReadinessScore = ref(0);
 
     const fetchData = async () => {
       try {
@@ -175,6 +185,7 @@ export default {
         freeScore.value = trsdata.free;
         restScore.value = trsdata.rest;
         acwr.value = trsdata.acwr;
+        trainingReadinessScore.value = calculateScore(trsdata); // calculate the trs
       } catch (error) {
         console.error('Failed to fetch data:', error);
       }
@@ -190,6 +201,14 @@ export default {
       if (acwr.value < 1.5) return 2;
       if (acwr.value < 1.8) return 3;
       return 4;
+    });
+
+    // Computed property to get the correct training text key based on trainingReadinessScore
+    const trainingTextKey = computed(() => {
+      if (trainingReadinessScore.value <= 25) return 'scores.1';
+      if (trainingReadinessScore.value <= 50) return 'scores.2';
+      if (trainingReadinessScore.value <= 75) return 'scores.3';
+      return 'scores.4';
     });
 
     return {
@@ -209,6 +228,8 @@ export default {
       acwrScore,
       acwrProgress,
       acwrProgressLabel,
+      trainingReadinessScore,
+      trainingTextKey,
       ratingColors: ['teal-2', 'teal-3', 'teal-4', 'teal-5', 'teal-6', 'teal-7']
     }
   },
@@ -225,6 +246,11 @@ export default {
 </script>
 
 <style scoped>
+ul {
+  padding-left: 15px;
+  margin: 0;
+}
+
 .border-black {
   border: 1px solid black;
 }

@@ -21,6 +21,7 @@
 <script>
 import { ref } from 'vue';
 import axios from 'axios';
+import { calculateScore } from 'src/utils/scoreCalculator';
 
 export default {
   // TODO: 1. Fetch data from the API (for now using mock database data)
@@ -57,17 +58,10 @@ export default {
         };
 
         this.updateSegments(trsdata);
-        this.calculateScore(trsdata);
+        this.score = calculateScore(trsdata);
       } catch (error) {
         console.error('Failed to fetch data:', error);
       }
-    },
-    calculateScore(trsdata) {
-      // Each score contributes 25/6 to the total score
-      const weight = 25 / 6;
-      const totalScore = (trsdata.strain + trsdata.mood + trsdata.rest + trsdata.free) * weight;
-
-      this.score = totalScore;
     },
     updateSegments(trsdata) {
       // Colors for the different segments of the donut chart
