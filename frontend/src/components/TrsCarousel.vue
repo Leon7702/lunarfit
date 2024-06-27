@@ -20,7 +20,8 @@
               <div class="column no-wrap flex-center">
                 <div class="text-h6">Training</div>
                 <TrsSunburst />
-                <div class="text-p">Training Readiness Score: 76%</div>
+                <div class="text-p"><strong>Training Readiness Score: 76%</strong></div>
+                <p></p>
                 <q-card flat bordered class="my-card">
                   <q-card-section>
                     {{ trainingtext }}
