@@ -26,10 +26,19 @@
                 </q-card-section>
               </q-card>
               <img class="cycle-image" src="../assets/cyclePhase/PeriodOvulation.png" alt="Graph" />
-              <PhaseInformation
-                :textNutrition="$t('menstruationInfo.nutrition[0]') + ' ' + $t('menstruationInfo.nutrition[1]') + ' ' + $t('menstruationInfo.nutrition[2]') + ' ' + $t('menstruationInfo.nutrition[3]')"
-                :textTraining="$t('menstruationInfo.training')"
-                :textHealth="$t('menstruationInfo.health[0]') + ' ' + $t('menstruationInfo.health[1]') + ' ' + $t('menstruationInfo.health[2]') + ' ' + $t('menstruationInfo.health[3]') + ' ' + $t('menstruationInfo.health[4]') + ' ' + $t('menstruationInfo.health[5]') + ' ' + $t('menstruationInfo.health[6]')" />
+              <PhaseInformation :textNutrition="[
+                $t('menstruationInfo.nutrition[0]'),
+                $t('menstruationInfo.nutrition[1]'),
+                $t('menstruationInfo.nutrition[2]'),
+                $t('menstruationInfo.nutrition[3]')
+              ]" :textTraining="$t('menstruationInfo.training')"
+              :textHealthString1="$t('menstruationInfo.health[0]')" :textHealthArray="[
+                $t('menstruationInfo.health[1]'),
+                $t('menstruationInfo.health[2]'),
+                $t('menstruationInfo.health[3]'),
+                $t('menstruationInfo.health[4]'),
+                $t('menstruationInfo.health[5]')
+              ]" :textHealthString2="$t('menstruationInfo.health[6]')" />
             </div>
           </q-scroll-area>
         </q-carousel-slide>
@@ -45,9 +54,13 @@
                 </q-card-section>
               </q-card>
               <img class="cycle-image" src="../assets/cyclePhase/Follicular.png" alt="Graph" />
-              <PhaseInformation
-                :textNutrition="$t('follicularInfo.nutrition[0]') + ' ' + $t('follicularInfo.nutrition[1]') + ' ' + $t('follicularInfo.nutrition[2]') + ' ' + $t('follicularInfo.nutrition[3]') + ' ' + $t('follicularInfo.nutrition[4]')"
-                :textTraining="$t('follicularInfo.training')" :textHealth="$t('follicularInfo.health')" />
+              <PhaseInformation :textNutrition="[
+                $t('follicularInfo.nutrition[0]'),
+                $t('follicularInfo.nutrition[1]'),
+                $t('follicularInfo.nutrition[2]'),
+                $t('follicularInfo.nutrition[3]'),
+                $t('follicularInfo.nutrition[4]')
+              ]" :textTraining="$t('follicularInfo.training')" :textHealthString1="$t('follicularInfo.health')" />
             </div>
           </q-scroll-area>
         </q-carousel-slide>
@@ -64,8 +77,15 @@
               </q-card>
               <img class="cycle-image" src="../assets/cyclePhase/PeriodOvulation.png" alt="Graph" />
               <PhaseInformation
-                :textNutrition="$t('lutealInfoEarly.nutrition[0]') + ' ' + $t('lutealInfoEarly.nutrition[1]') + ' ' + $t('lutealInfoEarly.nutrition[2]') + ' ' + $t('lutealInfoEarly.nutrition[3]') + ' ' + $t('lutealInfoEarly.nutrition[4]') + ' ' + $t('lutealInfoEarly.nutrition[5]')"
-                :textTraining="$t('lutealInfoEarly.training')" :textHealth="$t('lutealInfoEarly.health')" />
+                :textNutrition="[
+                  $t('lutealInfoEarly.nutrition[0]'),
+                  $t('lutealInfoEarly.nutrition[1]'),
+                  $t('lutealInfoEarly.nutrition[2]'),
+                  $t('lutealInfoEarly.nutrition[3]'),
+                  $t('lutealInfoEarly.nutrition[4]'),
+                  $t('lutealInfoEarly.nutrition[5]')
+                ]"
+                :textTraining="$t('lutealInfoEarly.training')" :textHealthString1="$t('lutealInfoEarly.health')" />
             </div>
           </q-scroll-area>
         </q-carousel-slide>
@@ -82,8 +102,21 @@
               </q-card>
               <img class="cycle-image" src="../assets/cyclePhase/Lutheal.png" alt="Graph" />
               <PhaseInformation
-                :textNutrition="$t('lutealInfoLate.nutrition[0]') + ' ' + $t('lutealInfoLate.nutrition[1]') + ' ' + $t('lutealInfoLate.nutrition[2]') + ' ' + $t('lutealInfoLate.nutrition[3]') + ' ' + $t('lutealInfoLate.nutrition[4]')"
-                :textTraining="$t('lutealInfoLate.training')" :textHealth="$t('lutealInfoLate.health[0]') + ' ' + $t('lutealInfoLate.health[1]') + ' ' + $t('lutealInfoLate.health[2]') + ' ' + $t('lutealInfoLate.health[3]') + ' ' + $t('lutealInfoLate.health[4]') + ' ' + $t('lutealInfoLate.health[5]') + ' ' + $t('lutealInfoLate.health[6]')" />
+                :textNutrition="[
+                  $t('lutealInfoLate.nutrition[0]'),
+                  $t('lutealInfoLate.nutrition[1]'),
+                  $t('lutealInfoLate.nutrition[2]'),
+                  $t('lutealInfoLate.nutrition[3]'),
+                  $t('lutealInfoLate.nutrition[4]')
+                ]"
+                :textTraining="$t('lutealInfoLate.training')"
+                :textHealthString1="$t('lutealInfoLate.health[0]')" :textHealthArray="[
+                $t('lutealInfoLate.health[1]'),
+                $t('lutealInfoLate.health[2]'),
+                $t('lutealInfoLate.health[3]'),
+                $t('lutealInfoLate.health[4]'),
+                $t('lutealInfoLate.health[5]')
+              ]" :textHealthString2="$t('lutealInfoLate.health[6]')" />
             </div>
           </q-scroll-area>
         </q-carousel-slide>

@@ -14,12 +14,14 @@
         </template>
         <q-card>
           <q-card-section>
-            {{ textNutrition }}
+            <ul>
+              <li v-for="(item, index) in textNutrition" :key="'nutrition-' + index">{{ item }}</li>
+            </ul>
           </q-card-section>
         </q-card>
       </q-expansion-item>
 
-    <q-separator />
+      <q-separator />
 
       <q-expansion-item class="hover-effect">
         <template v-slot:header>
@@ -39,7 +41,7 @@
         </q-card>
       </q-expansion-item>
 
-    <q-separator />
+      <q-separator />
 
       <q-expansion-item class="hover-effect">
         <template v-slot:header>
@@ -54,7 +56,11 @@
         </template>
         <q-card>
           <q-card-section>
-            {{ textHealth }}
+            {{ textHealthString1 }}
+            <ul>
+              <li v-for="(item, index) in textHealthArray" :key="'health-' + index">{{ item }}</li>
+            </ul>
+            {{ textHealthString2 }}
           </q-card-section>
         </q-card>
       </q-expansion-item>
@@ -65,11 +71,21 @@
 
 <script>
 export default {
-  props: ['textNutrition', 'textTraining', 'textHealth'],
+  props: {
+    textNutrition: Array,
+    textTraining: String,
+    textHealthString1: String,
+    textHealthString2: String,
+    textHealthArray: Array,
+  },
 }
 </script>
 
 <style scoped>
+ul {
+  padding-left: 15px;
+  margin: 0;
+}
 
 .hover-effect {
   transition: background-color 0.3s ease-in-out;
