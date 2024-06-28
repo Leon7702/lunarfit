@@ -47,7 +47,7 @@
     aspect-ratio: 1.64;
     object-fit: auto;
     object-position: center;
-    margin-top: 60px;
+    margin-top: 20px;
     width: 100%;
   }
   

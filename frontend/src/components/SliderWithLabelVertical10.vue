@@ -54,6 +54,7 @@ export default {
     margin: auto;
     height: 300px;
     width: 70px;
+    padding-right: 6%;
 }
 
 .slider-labels {

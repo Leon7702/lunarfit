@@ -11,15 +11,20 @@
       <div class="textarea">
         <InputTextArea v-model="notes" />
       </div>
+      <div class="button-container">
+        <StandardButton @click="saveChanges" label="Speichern" />
+      </div>
     </div>
   </template>
   
   <script>
   import InputTextArea from 'components/InputTextArea.vue';
+  import StandardButton from 'components/StandardButton.vue';
   
   export default {
     components: {
-      InputTextArea
+      InputTextArea,
+      StandardButton
     },
     data() {
       return {
@@ -58,7 +63,7 @@
     align-items: center;
     width: 100%;
     padding: 10px 0;
-    margin-top: 60px;
+    margin-top: 20px;
   }
   
   .title {
@@ -79,6 +84,14 @@
   }
    .textarea {
     width:100%;
+  }
+  .button-container {
+    position: fixed;
+    bottom: 80px; 
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    left: 0;
   }
 
   @media only screen and (min-width: 200px) {

@@ -53,7 +53,7 @@ export default {
 }
 
 .welcome-text {
-  margin-top: 60px;
+  margin-top: 20px;
 }
 
 .title {

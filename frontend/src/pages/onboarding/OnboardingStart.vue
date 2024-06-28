@@ -46,7 +46,7 @@
   .image {
     object-fit: auto;
     object-position: center;
-    margin-top: 60px;
+    margin-top: 20px;
     width: 70%;
   }
   

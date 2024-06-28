@@ -6,7 +6,7 @@
         </div>
         <div class="linie"></div>
         <div class="form-group">
-            <p>Hast du heute oder gestern trainiert?</p>
+            <p>Hast du in den letzten 24 Stunden trainiert?</p>
             <RadioToggle v-model="trainingStatus" />
         </div>
         <div class="form-group" v-if="trainingStatus === 'ja'">
@@ -84,7 +84,7 @@ export default {
     align-items: center;
     width: 100%;
     padding: 10px 0;
-    margin-top: 60px;
+    margin-top: 20px;
 }
 
 .title {
