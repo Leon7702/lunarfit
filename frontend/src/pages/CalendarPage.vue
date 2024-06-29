@@ -32,7 +32,7 @@
       <!-- Rows for each week in the month -->
       <tr v-for="(week, weekIndex) in weeksInMonth" :key="weekIndex">
         <td v-for="(day, dayIndex) in week" :key="`${weekIndex}-${dayIndex}`">
-          <div :class="['day-circle', day.colorClass]" @click="selectDay(day.date)">
+          <div :class="['day-circle', day.colorClass]" @click="selectDay(day)">
             {{ day.date }}
           </div>
         </td>
@@ -60,7 +60,7 @@
       <div class="day-log-header">
         <div class="current-day">{{ currentDayFormatted }}</div>
         <q-btn class="log-button" no-caps rounded style="background: #50C1BA; color: white" label="+ Log"
-          padding="xs lg" size="14px">
+          padding="xs lg" size="14px" @click="log">
           <template v-slot:default></template>
         </q-btn>
       </div>
@@ -202,18 +202,29 @@ export default {
       return this.dayColors[day] || '';
     },
     selectDay(day) {
-      if (day !== '') {
-        let selectedDate = new Date(this.date.year, this.date.month, day);
+      if (day.colorClass === 'previous-month') {
+        let selectedDate = new Date(this.date.year, this.date.month - 1, day.date);
         this.selectedDay = selectedDate.getDate();
+        this.date.year = selectedDate.getFullYear();
+        this.date.month = selectedDate.getMonth();
+      } else if (day.colorClass === 'next-month') {
+        let selectedDate = new Date(this.date.year, this.date.month + 1, day.date);
+        this.selectedDay = selectedDate.getDate();
+        this.date.year = selectedDate.getFullYear();
+        this.date.month = selectedDate.getMonth();
+      } else if (day.date !== '') {
+        this.selectedDay = day.date;
       } else {
         this.selectedDay = null;
       }
     },
-
     getDaysInPreviousMonth() {
       let date = new Date(this.date.year, this.date.month, 0);
       return [...Array(date.getDate()).keys()].map((i) => i + 1);
     },
+    log() {
+      this.$router.push('/log');
+    }
   },
 };
 </script>
