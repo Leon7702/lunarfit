@@ -20,13 +20,13 @@
     <table>
       <!-- Header row with days of the week -->
       <tr>
-        <th>M</th>
-        <th>D</th>
-        <th>M</th>
-        <th>M</th>
-        <th>D</th>
-        <th>F</th>
-        <th>S</th>
+        <th>{{ $t('weekdays_short[1]') }} </th>
+        <th>{{ $t('weekdays_short[2]') }}</th>
+        <th>{{ $t('weekdays_short[3]') }}</th>
+        <th>{{ $t('weekdays_short[4]') }}</th>
+        <th>{{ $t('weekdays_short[5]') }}</th>
+        <th>{{ $t('weekdays_short[6]') }}</th>
+        <th>{{ $t('weekdays_short[0]') }}</th>
       </tr>
 
       <!-- Rows for each week in the month -->
@@ -43,15 +43,15 @@
     <div class="legend">
       <div class="legend-item">
         <div class="day-circle period"></div>
-        <span class="legend-label">Periode</span>
+        <span class="legend-label">{{ $t('calendarLegend[0]') }}</span>
       </div>
       <div class="legend-item">
         <div class="day-circle prediction"></div>
-        <span class="legend-label">Vorausgesagte Periode</span>
+        <span class="legend-label">{{ $t('calendarLegend[1]') }}</span>
       </div>
       <div class="legend-item">
         <div class="day-circle follicle"></div>
-        <span class="legend-label">Follikelphase</span>
+        <span class="legend-label">{{ $t('calendarLegend[2]') }}</span>
       </div>
     </div>
 
@@ -71,27 +71,23 @@
     <!-- Display training recommendation -->
     <div class="training-recommendation-container">
       <div class="training-recommendation-header">
-        Trainingsempfehlungen
-        <router-link to="/r">Mehr erfahren</router-link>
+        {{ $t('training-recommendation.title') }}
+        <router-link to="/r">{{ $t('more-info') }}</router-link>
       </div>
       <div class="training-recommendation-text">
-        Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed nonne merninisti licere mihi ista probare, quae
-        sunt a
-        te dicta? Atqui eorum nihil est eius generis, ut sit in fine atque extrerno bonorum. Quae cum dixisset paulumque
-        institisset, Quid est? Duo Reges: constructio interrete. Quae cum essent dicta, discessimus. Quae cum dixisset
-        paulumque institisset, Quid est? Duo Reges: constructio interrete. Quae cum essent dicta, discessimus.
+        {{ $t('training-recommendation.description') }}
       </div>
-      <div class="training-recommendation-list"></div>
+      <div class="training-recommendation"></div>
     </div>
 
     <hr class="separator">
 
     <!-- Display Symptoms and Mood using the new reusable component -->
-    <SectionContainer title="Symptome" link="/symptoms" linkText="Hinzufügen" />
+    <SectionContainer :title="$t('symptoms')" link="/symptoms" :linkText="$t('add')" />
     <hr class="separator">
-    <SectionContainer title="Stimmung" link="/mood" linkText="Hinzufügen" />
+    <SectionContainer :title="$t('mood')" link="/mood" :linkText="$t('add')" />
     <hr class="separator">
-    <SectionContainer title="Training Readiness Score" link="/" linkText="Mehr erfahren" />
+    <SectionContainer :title="$t('trs')" link="/" :linkText="$t('more-info')" />
   </div>
 </template>
 
@@ -123,7 +119,9 @@ export default {
       return this.date.year;
     },
     currentMonth() {
-      return new Date(this.date.year, this.date.month, 1).toLocaleString('de-DE', {
+      // Use the current i18n locale for formatting
+      const locale = this.$i18n.locale;
+      return new Date(this.date.year, this.date.month, 1).toLocaleString(locale, {
         month: 'long',
       });
     },

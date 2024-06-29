@@ -2,7 +2,7 @@
     <div class="welcome-container">
       <img src="/src/assets/Image_OnboardingStart.svg" alt="Welcome Image" class="image" />
       <div class="welcome-text">
-        <h1 class="title">Willkommen bei LunarFit.</h1>
+        <h1 class="title">{{ $t('onboarding.start.title')}}</h1>
         <p class="description">
           Um dich und deinen Zyklus besser kennenzulernen, beantworte bitte die
           folgenden Fragen über deinen Körper, deinen Zyklus und dein Sportverhalten.

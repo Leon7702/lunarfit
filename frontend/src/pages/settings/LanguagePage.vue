@@ -2,7 +2,7 @@
   <div class="welcome-container">
     <div class="header">
       <q-btn flat dense round icon="arrow_back" @click="goBack" />
-      <div class="title">Sprache</div>
+      <div class="title">{{ $t('language.title') }}</div>
     </div>
     <div class="linie"></div>
     <div class="q-pa-md">

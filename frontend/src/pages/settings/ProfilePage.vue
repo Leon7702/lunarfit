@@ -2,7 +2,7 @@
   <div class="welcome-container">
     <div class="header">
       <q-btn flat dense round icon="arrow_back" @click="goBack" />
-      <div class="title">Profil</div>
+      <div class="title">{{ $t('profile.title') }}</div>
     </div>
     <div class="linie"></div>
 
@@ -10,33 +10,33 @@
       <!-- TODO: change prefix (v-slot: prepend?) -->
       <q-input filled v-model="first" type="text" input-class="text-right" class="q-pt-xl q-mb-sm">
         <template v-slot:prepend>
-          <div class="text-color">Vorname</div>
+          <div class="text-color">{{ $t('profile.firstName') }}</div>
         </template>
       </q-input>
       <q-input filled v-model="last" type="text" input-class="text-right" class="q-mb-sm">
         <template v-slot:prepend>
-          <div class="text-color">Nachname</div>
+          <div class="text-color">{{ $t('profile.lastName') }}</div>
         </template>
       </q-input>
       <q-input filled v-model="date" type="text" input-class="text-right" class="q-mb-sm">
         <template v-slot:prepend>
-          <div class="text-color">Geburtsdatum</div>
+          <div class="text-color">{{ $t('profile.birthdate') }}</div>
         </template>
       </q-input>
       <q-input filled v-model="height" type="number" input-class="text-right" class="q-mb-sm">
         <template v-slot:prepend>
-          <div class="text-color">Größe in cm</div>
+          <div class="text-color">{{ $t('profile.height') }}</div>
         </template>
       </q-input>
-      <q-input filled v-model="weigth" type="number" input-class="text-right" class="q-mb-sm">
+      <q-input filled v-model="weight" type="number" input-class="text-right" class="q-mb-sm">
         <template v-slot:prepend>
-          <div class="text-color">Gewicht in kg</div>
+          <div class="text-color">{{ $t('profile.weight') }}</div>
         </template>
       </q-input>
-      <q-select filled v-model="contraceptives" :options="options" input-class="text-right"
+      <q-select filled v-model="hormonalContraception" :options="contraceptionOptions" input-class="text-right"
         class="q-mb-sm">
         <template v-slot:prepend>
-          <div class="text-color">Verhütungsmittel</div>
+          <div class="text-color">{{ $t('profile.contraception') }}</div>
         </template>
       </q-select>
     </q-list>
@@ -47,19 +47,43 @@
 import { ref } from 'vue';
 
 export default {
+  // i18n handling
+  name: 'ProfilePage',
+  // computed: {
+  //   contraceptionOptions() {
+  //     return [
+  //       this.$t('profile.contraceptionOptions[0]'),
+  //       this.$t('profile.contraceptionOptions[1]'),
+  //       this.$t('profile.contraceptionOptions[2]'),
+  //       this.$t('profile.contraceptionOptions[3]'),
+  //       this.$t('profile.contraceptionOptions[4]'),
+  //       this.$t('profile.contraceptionOptions[5]'),
+  //     ];
+  //   },
+  // },
+
+  // refactored:
+  computed: {
+    contraceptionOptions() {
+      return Array.from({ length: 6 }, (_, i) =>
+        this.$t(`profile.contraceptionOptions[${i}]`)
+      );
+    },
+  },
   setup() {
     return {
-      //TODO: get data from backend
+      //TODO: get data from backend --> replace these with dynamic data fetching logic
       first: ref('Ina'),
       last: ref('Müller'),
       date: ref('12.08.1999'),
       height: ref(180),
-      weigth: ref(77),
-      contraceptives: ref(null),
+      weight: ref(77),
+      hormonalContraception: ref(null),
 
-      options: [
-        'Pille', 'Hormonenspirale', 'Kupferspirale', 'Hormonimplantat', 'Dreimonatsspritze', 'Vaginalring', 'Sonstiges',
-      ]
+      // comment out because of i18n
+      // contraceptionOptions: [
+      //   'Pilleee', 'Hormonspirale', 'Kupferspirale', 'Hormonimplantat', 'Dreimonatsspritze', 'Vaginalring', 'Sonstiges',
+      // ]
     }
   },
   components: {
