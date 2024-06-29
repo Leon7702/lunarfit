@@ -41,7 +41,6 @@ export default {
         'Zervixschleim': 'LogCycleCerfix',
         'Gebärmutterhals': 'LogCycleGebaermutter',
         'Geschlechtsverkehr': 'LogCycleSex',
-        'Verhütungsmittel': 'LogCycleContraceptive',
         'Medikamente': 'LogCycleMedicine',
         'Ovulationstest': 'LogCycleOvulationTest',
         'Schwangerschaftstest': 'LogCyclePregnancyTest'
@@ -53,8 +52,6 @@ export default {
     formatLabel(label) {
       if (label === 'Gebärmutterhals' || label === 'Geschlechtsverkehr') {
         return label.slice(0, 11) + '-' + label.slice(11);
-      } else if (label === 'Verhütungsmittel') {
-        return label.slice(0, 10) + '-' + label.slice(10);
       } else if (label === 'Schwangerschaftstest') {
         return label.slice(0, 9) + '-' + label.slice(9);
       } else {
@@ -73,7 +70,6 @@ export default {
         { label: 'Zervixschleim', icon: '/src/assets/log_Zyklus/icon_cerfix.svg', selected: true },
         { label: 'Gebärmutterhals', icon: '/src/assets/log_Zyklus/icon_gebaermutter.svg', selected: true },
         { label: 'Geschlechtsverkehr', icon: '/src/assets/log_Zyklus/icon_heart.svg', selected: true },
-        { label: 'Verhütungsmittel', icon: '/src/assets/log_Zyklus/icon_spirale.svg', selected: true },
         { label: 'Medikamente', icon: '/src/assets/log_Zyklus/icon_medicine.svg', selected: true },
         { label: 'Ovulationstest', icon: '/src/assets/log_Zyklus/icon_ovuTest.svg', selected: true },
         { label: 'Schwangerschaftstest', icon: '/src/assets/log_Zyklus/icon_pregTest.svg', selected: true }
@@ -83,7 +79,6 @@ export default {
   }
 };
 </script>
-
 
 <style scoped>
 .welcome-container {

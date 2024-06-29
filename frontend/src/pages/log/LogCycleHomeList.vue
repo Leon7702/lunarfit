@@ -123,9 +123,9 @@
   font-size: 16px;
 }
 
-.button-container {
+ .button-container {
     position: fixed;
-    bottom: 30px; 
+    bottom: 80px;  
     width: 100%;
     display: flex;
     justify-content: center;

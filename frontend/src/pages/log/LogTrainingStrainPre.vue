@@ -16,7 +16,7 @@
         <div class="form-group spacer" v-if="trainingStatus === 'ja'"></div> <!-- Spacer div hinzugefügt -->
         <div class="form-group" v-if="trainingStatus === 'ja'">
             <p>Wie viele Minuten hast du trainiert?</p>
-            <DropDownSingleSelect :options="trainingDurationOptions" v-model="selectedDuration"/>
+            <FormFieldText id="duration" label="" iconName="" inputType="number" />
         </div>
         <div class="button-container">
             <StandardButton label="Weiter" @click="navigateToNextStep" />
@@ -28,20 +28,63 @@
 import StandardButton from 'components/StandardButton.vue';
 import RadioToggle from 'components/RadioToggle.vue';
 import DropDownSingleSelect from 'components/DropDownSingleSelect.vue';
+import FormFieldText from 'components/FormFieldText.vue';
 
 export default {
     components: {
         StandardButton,
         RadioToggle,
-        DropDownSingleSelect
+        DropDownSingleSelect,
+        FormFieldText
     },
     data() {
         return {
             trainingStatus: null,
-            trainingOptions: ['Krafttraining', 'Ausdauer', 'x', 'y', 'z'],
-            trainingDurationOptions: ['60 Minuten oder weniger', '60 bis 120 Minuten', '120 Minuten oder mehr'],
-            selectedActivity: null,
-            selectedDuration: null
+            trainingOptions: [
+                'Wandern, Bergwandern, Marschieren',
+                'Radfahren, Velofahren (ohne MTB)',
+                'Schwimmen',
+                'Skifahren (ohne Skitouren)',
+                'Jogging, Laufen, Running',
+                'Krafttraining, Gym, Bodybuilding',
+                'Fitnesstraining, Group Fitness',
+                'Yoga, Pilates, Tai Chi, Stretching',
+                'Walking, Nordic Walking',
+                'Mountainbiking (inkl. Gravel)',
+                'Schneeschuhlaufen',
+                'Schlitteln, Rodeln, Bob',
+                'Turnen, Gymnastik, Trampolin',
+                'Tanzen',
+                'Fussball',
+                'Skilanglauf, Ski Nordisch',
+                'Volleyball, Beachvolleyball',
+                'Badminton',
+                'Inline-Skating, Rollschuhlaufen',
+                'Klettern, Bouldern, Bergsteigen',
+                'Snowboarding (ohne Touren)',
+                'Ski- und Snowboardtouren',
+                'Tischtennis',
+                'Tennis',
+                'Schießen',
+                'Tauchen, Schnorcheln',
+                'Eislaufen, Eiskunstlauf',
+                'Aqua-Fitness',
+                'Surfen, Windsurfen, Kitesurfen, SUP',
+                'Reiten, Pferdesport',
+                'Unihockey',
+                'Basketball',
+                'Golf',
+                'Squash',
+                'Kampfsport',
+                'Segeln',
+                'Leichtathletik',
+                'Rudern',
+                'Kanu, Kajak, Riverrafting',
+                'Eishockey',
+                'Handball',
+                'sonstige Sportarten'
+            ],
+            selectedActivity: null
         };
     },
     methods: {
