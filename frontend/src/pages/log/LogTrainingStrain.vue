@@ -43,6 +43,7 @@
     flex-direction: column;
     align-items: center;
     height: 100vh;
+    width: 90%;
     overflow: auto;
     margin: auto;
   }
@@ -81,7 +82,7 @@
   }
   .slider {
     margin-top: 40px;
-    padding-right: 6%;
+    padding-right: 10%;
   }
 
   .button-container {
