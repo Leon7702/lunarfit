@@ -8,60 +8,94 @@
 
     <q-list>
       <!-- TODO: change prefix (v-slot: prepend?) -->
-      <q-input filled v-model="first" type="text" input-class="text-right" class="q-pt-xl q-mb-sm">
+      <q-input filled v-model="profile.first_name" type="text" input-class="text-right" class="q-pt-xl q-mb-sm">
         <template v-slot:prepend>
           <div class="text-color">{{ $t('profile.firstName') }}</div>
         </template>
       </q-input>
-      <q-input filled v-model="last" type="text" input-class="text-right" class="q-mb-sm">
+      <q-input filled v-model="profile.last_name" type="text" input-class="text-right" class="q-mb-sm">
         <template v-slot:prepend>
           <div class="text-color">{{ $t('profile.lastName') }}</div>
         </template>
       </q-input>
-      <q-input filled v-model="date" type="text" input-class="text-right" class="q-mb-sm">
+      <q-input filled v-model="profile.birthdate" type="date" input-class="text-right" class="q-mb-sm">
         <template v-slot:prepend>
           <div class="text-color">{{ $t('profile.birthdate') }}</div>
         </template>
       </q-input>
-      <q-input filled v-model="height" type="number" input-class="text-right" class="q-mb-sm">
+      <q-input filled v-model="profile.body_height" type="number" input-class="text-right" class="q-mb-sm">
         <template v-slot:prepend>
           <div class="text-color">{{ $t('profile.height') }}</div>
         </template>
       </q-input>
-      <q-input filled v-model="weight" type="number" input-class="text-right" class="q-mb-sm">
+      <q-input filled v-model="profile.body_weight" type="number" input-class="text-right" class="q-mb-sm">
         <template v-slot:prepend>
           <div class="text-color">{{ $t('profile.weight') }}</div>
         </template>
       </q-input>
-      <q-select filled v-model="hormonalContraception" :options="contraceptionOptions" input-class="text-right"
+      <q-select filled v-model="profile.contraceptive" :options="contraceptionOptions" input-class="text-right"
         class="q-mb-sm">
         <template v-slot:prepend>
           <div class="text-color">{{ $t('profile.contraception') }}</div>
         </template>
       </q-select>
     </q-list>
+    <div class="button-container">
+        <StandardButton :label="$t('save')" @click="saveProfile"/>
+      </div>
   </div>
 </template>
 
 <script>
-import { ref } from 'vue';
+import { ref, onMounted } from 'vue';
+import axios from 'axios';
+import StandardButton from 'components/StandardButton.vue';
 
 export default {
   // i18n handling
   name: 'ProfilePage',
-  // computed: {
-  //   contraceptionOptions() {
-  //     return [
-  //       this.$t('profile.contraceptionOptions[0]'),
-  //       this.$t('profile.contraceptionOptions[1]'),
-  //       this.$t('profile.contraceptionOptions[2]'),
-  //       this.$t('profile.contraceptionOptions[3]'),
-  //       this.$t('profile.contraceptionOptions[4]'),
-  //       this.$t('profile.contraceptionOptions[5]'),
-  //     ];
-  //   },
-  // },
+  components: {
+    StandardButton
+  },
+  setup() {
+    //TODO: get data from backend --> replace these with dynamic data fetching logic
+    const profile = ref({
+      first_name: '',
+      last_name: '',
+      birthdate: '',
+      body_height: null,
+      body_weight: null,
+      contraceptive: null
+    });
 
+    const fetchProfile = async () => {
+      try {
+        const response = await axios.get('http://localhost:3000/users/');
+        profile.value = response.data;
+      } catch (error) {
+        console.error('Failed to fetch profile:', error);
+      }
+    };
+
+    const saveProfile = async () => {
+      try {
+        await axios.patch('http://localhost:3000/users/', profile.value);
+        alert('Profile updated successfully');
+      } catch (error) {
+        console.error('Failed to update profile:', error);
+      }
+    };
+
+    onMounted(() => {
+      fetchProfile();
+    });
+
+    return {
+      profile,
+      fetchProfile,
+      saveProfile
+    };
+  },
   // refactored:
   computed: {
     contraceptionOptions() {
@@ -69,30 +103,6 @@ export default {
         this.$t(`profile.contraceptionOptions[${i}]`)
       );
     },
-  },
-  setup() {
-    return {
-      //TODO: get data from backend --> replace these with dynamic data fetching logic
-      first: ref('Ina'),
-      last: ref('Müller'),
-      date: ref('12.08.1999'),
-      height: ref(180),
-      weight: ref(77),
-      hormonalContraception: ref(null),
-
-      // comment out because of i18n
-      // contraceptionOptions: [
-      //   'Pilleee', 'Hormonspirale', 'Kupferspirale', 'Hormonimplantat', 'Dreimonatsspritze', 'Vaginalring', 'Sonstiges',
-      // ]
-    }
-  },
-  components: {
-
-  },
-  data() {
-    return {
-
-    }
   },
   methods: {
     goBack() {
@@ -137,4 +147,11 @@ export default {
   color: #50C1BA;
   font-size: 14px;
 }
+
+.button-container {
+  display: flex;
+  justify-content: center;
+  padding: 20px;
+}
 </style>
+

@@ -9,7 +9,25 @@
     "rest": 6,
     "free": 5,
     "acwr": 1.6
+  },
+  "users": {
+    "item": {
+      "finished_onboarding": true,
+      "first_name": "Ina",
+      "last_name": "Müller",
+      "birthdate": "1999-08-12",
+      "body_weight": "77",
+      "body_height": "180",
+      "language": "de",
+      "contraceptive": "Sonstiges"
+    },
+    "finished_onboarding": true,
+    "first_name": "Tina",
+    "last_name": "Müllerin",
+    "birthdate": "2000-08-12",
+    "body_weight": "80",
+    "body_height": "192",
+    "language": "de",
+    "contraceptive": "Hormonspirale"
   }
 }
-
-
