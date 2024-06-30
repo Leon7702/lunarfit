@@ -1,44 +1,37 @@
 <template>
     <div class="q-pa-lg q-gutter-sm">
 
-        <h1>Passwort vergessen?</h1>
+        <h1>Überprüfe deinen Posteingang</h1>
 
-        <p>Kein Problem! Gib einfach deine E-Mail-Adresse ein, und wir senden dir einen Link, mit dem du dein Passwort
-            zurücksetzen kannst.</p>
+        <p>Wir haben dir eine E-Mail mit einem Link zum Zurücksetzen deines Passworts gesendet. Bitte überprüfe deinen
+            Posteingang und folge den Anweisungen in der E-Mail.
 
-        <q-input color="teal" outlined v-model="email" :label="$t('email')">
-            <template v-slot:prepend>
-                <q-icon>
-                    <img src="../assets/Communication.svg" alt="Email Icon" />
-                </q-icon>
-            </template>
-        </q-input>
+            Wenn du die E-Mail nicht findest, schaue auch in deinem Spam-Ordner nach.
+
+            Es kann einige Minuten dauern, bis die E-Mail bei dir ankommt.</p>
+
     </div>
+
     <div class="q-pa-md q-gutter-sm row justify-center">
-        <q-btn no-caps rounded style="background: #50C1BA; color: white" label="Fortfahren" padding="sm lg" size="16px"
-            @click="sendMail" />
+        <q-btn no-caps rounded style="background: #50C1BA; color: white" label="Zum Login" padding="sm lg" size="16px"
+            @click="toLogin" />
     </div>
-    <p style="text-align: center;">
-        <router-link to="/login">Zurück zum Login</router-link>
-    </p>
 </template>
 
 <script>
-import { ref } from 'vue';
 import { useRouter } from 'vue-router';
 
 export default {
     setup() {
         const router = useRouter();
-        const email = ref('');
 
 
-        const sendMail = () => {
-            router.push('/password-inbox');
+        const toLogin = () => {
+            router.push('/login');
         };
 
         return {
-            sendMail, email
+            toLogin
         };
     },
 };
@@ -58,7 +51,6 @@ p {
     font-style: normal;
     font-weight: 400;
     line-height: 24px;
-    /* 150% */
 }
 
 a {

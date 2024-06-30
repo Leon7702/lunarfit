@@ -196,6 +196,21 @@ const routes = [
     component: () => import("pages/PasswordForgot.vue"),
   },
   {
+    path: "/password-inbox",
+    name: "password-inbox",
+    component: () => import("src/pages/PasswordInbox.vue"),
+  },
+  {
+    path: "/password-new",
+    name: "password-new",
+    component: () => import("src/pages/PasswordNew.vue"),
+  },
+  {
+    path: "/password-reset",
+    name: "password-reset",
+    component: () => import("src/pages/PasswordReset.vue"),
+  },
+  {
     path: "/onboarding",
     name: "OnboardingStart",
     component: () => import("pages/onboarding/OnboardingStart.vue"),
