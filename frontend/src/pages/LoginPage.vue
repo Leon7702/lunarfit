@@ -22,10 +22,11 @@
           class="cursor-pointer"> </q-icon>
       </template>
     </q-input>
+    <div class="password-forget"><router-link to="/password-forgot">Passwort vergessen?</router-link></div>
   </div>
-  <div class="q-pa-md q-gutter-sm row justify-center">
-    <q-btn no-caps rounded style="background: #50C1BA; color: white" :label="$t('login.title')" padding="sm lg" size="16px"
-      @click="loginUser" />
+  <div class="q-gutter-sm row justify-center">
+    <q-btn no-caps rounded style="background: #50C1BA; color: white" :label="$t('login.title')" padding="sm lg"
+      size="16px" @click="loginUser" />
   </div>
   <p style="text-align: center;">
     {{ $t('login.no-account') }}
@@ -72,7 +73,7 @@ header {
 
 p {
   font-size: 14px;
-  margin: 20px;
+  margin: 30px;
 }
 
 a {
@@ -85,6 +86,11 @@ a {
 .logo {
   display: block;
   margin: 6rem auto 6rem;
+}
+
+.password-forget {
+  text-align: right;
+  margin-top: 1rem 0;
 }
 
 @media (min-width: 1024px) {
