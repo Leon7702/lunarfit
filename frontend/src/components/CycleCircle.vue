@@ -8,17 +8,17 @@
         <!-- The stroke-dashoffset property controls where the dash pattern starts -->
         <!-- TODO: calculate stroke dasharray based on proportion values -->
         <!-- TODO: determine stroke-dashoffset value -> always staring at 25 for mensPhase -->
-        <circle class="donut-segment" cx="21" cy="21" r="15.91549430918954" fill="transparent" stroke="#50C1BA"
+        <circle class="donut-segment" cx="21" cy="21" :r="radius" fill="transparent" stroke="#50C1BA"
           stroke-width="5" stroke-dasharray="20 80" stroke-dashoffset="25"></circle>
 
-        <circle class="donut-segment" cx="21" cy="21" r="15.91549430918954" fill="transparent" stroke="#9CD3D0"
+        <circle class="donut-segment" cx="21" cy="21" :r="radius" fill="transparent" stroke="#9CD3D0"
           stroke-width="5" stroke-dasharray="30 70" stroke-dashoffset="5"></circle>
 
-        <circle class="donut-segment" cx="21" cy="21" r="15.91549430918954" fill="transparent" stroke="#2D8781"
-          stroke-width="5" stroke-dasharray="30 70" stroke-dashoffset="75"></circle>
+        <circle class="donut-segment" cx="21" cy="21" :r="radius" fill="transparent" stroke="#2D8781"
+          stroke-width="5" stroke-dasharray="30 70" stroke-dashoffset="-25"></circle>
 
-        <circle class="donut-segment" cx="21" cy="21" r="15.91549430918954" fill="transparent" stroke="#93EDE8"
-          stroke-width="5" stroke-dasharray="20 80" stroke-dashoffset="45"></circle>
+        <circle class="donut-segment" cx="21" cy="21" :r="radius" fill="transparent" stroke="#93EDE8"
+          stroke-width="5" stroke-dasharray="20 80" stroke-dashoffset="-55"></circle>
 
         <!-- Paths for the text labels -->
         <path id="myPath1" d="M25 6 A15.91549430918954 15 0 0 1 35 15" fill="transparent"></path>
@@ -89,6 +89,7 @@ export default {
       // FIXME: this data needs to be fetched from the actual database, onboarding or user input
       cycleLength: null,
       currentDay: 1, // needs to be initialized with a number (not null)
+      radius: 50/Math.PI,
     };
   },
   // Fetch the data from the database when the component is created
