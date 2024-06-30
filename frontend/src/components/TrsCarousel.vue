@@ -18,7 +18,7 @@
           <q-carousel-slide name="training" class="column no-wrap flex-center">
             <q-scroll-area class="fit">
               <div class="column no-wrap flex-center">
-                <div class="text-h6">Training</div>
+                <div class="text-h6">{{ $t('training') }}</div>
                 <TrsSunburst />
                 <div class="text-p">
                   <strong>Training Readiness Score: {{ trainingReadinessScore }}%</strong>
@@ -42,7 +42,7 @@
           <q-carousel-slide name="mood" class="column no-wrap flex-center">
             <q-scroll-area class="fit">
               <div class="column no-wrap flex-center">
-                <div class="text-h6">Stimmung</div>
+                <div class="text-h6">{{ $t('mood') }}</div>
                 <div class="q-mt-md text-center">
                   <q-card flat bordered class="my-card">
                     <q-card-section>
@@ -74,7 +74,7 @@
           <q-carousel-slide name="strain" class="column no-wrap flex-center">
             <q-scroll-area class="fit">
               <div class="column no-wrap flex-center">
-                <div class="text-h6">Belastung</div>
+                <div class="text-h6">{{ $t('strain') }}</div>
                 <div class="q-mt-md text-center">
                   <q-card flat bordered class="my-card">
                     <q-card-section>
@@ -105,7 +105,7 @@
           <q-carousel-slide name="free" class="column no-wrap flex-center">
             <q-scroll-area class="fit">
               <div class="column no-wrap flex-center">
-                <div class="text-h6">Beschwerdefreiheit</div>
+                <div class="text-h6">{{ $t('free') }}</div>
                 <div class="q-mt-md text-center">
                   <q-card flat bordered class="my-card">
                     <q-card-section>
@@ -135,7 +135,7 @@
           <q-carousel-slide name="rest" class="column no-wrap flex-center">
             <q-scroll-area class="fit">
               <div class="column no-wrap flex-center">
-                <div class="text-h6">Erholung</div>
+                <div class="text-h6">{{ $t('rest') }}</div>
                 <div class="q-mt-md text-center">
                   <q-card flat bordered class="my-card">
                     <q-card-section>

@@ -9,7 +9,7 @@
             </q-avatar>
           </q-item-section>
           <q-item-section>
-            Ernährung
+            {{ $t('nutrition') }}
           </q-item-section>
         </template>
         <q-card>
@@ -31,7 +31,7 @@
             </q-avatar>
           </q-item-section>
           <q-item-section>
-            Training
+            {{ $t('training') }}
           </q-item-section>
         </template>
         <q-card>
@@ -51,7 +51,7 @@
             </q-avatar>
           </q-item-section>
           <q-item-section>
-            Gesundheit/ Fruchtbarkeit
+            {{ $t('healthFertility') }}
           </q-item-section>
         </template>
         <q-card>

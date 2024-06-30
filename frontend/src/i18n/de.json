@@ -26,6 +26,9 @@
 
   "cycleDay": "Zyklustag",
 
+  "nutrition": "Ernährung",
+  "healthFertility": "Gesundheit/ Fruchtbarkeit",
+  "training": "Training",
   "mood": "Stimmung",
   "strain": "Belastung",
   "rest": "Erholung",
