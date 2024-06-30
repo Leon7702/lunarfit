@@ -31,25 +31,25 @@
         <!-- The textPath element allows the text to follow the path defined above -->
         <text fill="#fff" font-size="2">
           <textPath href="#myPath1">
-            Menstruation
+            {{ $t('menstruationInfo.title') }}
           </textPath>
         </text>
 
         <text fill="#000" font-size="2" transform="rotate(130 21 21)">
           <textPath href="#myPath2">
-            Follikelphase
+            {{ $t('follicularInfo.title') }}
           </textPath>
         </text>
 
         <text fill="#fff" font-size="2" transform="rotate(245 21 21)">
           <textPath href="#myPath4">
-            frühe Lutealphase
+            {{ $t('lutealInfoEarly.title') }}
           </textPath>
         </text>
 
         <text fill="#000" font-size="2" transform="rotate(288 21 21)">
           <textPath href="#myPath3">
-            späte Lutealphase
+            {{ $t('lutealInfoLate.title') }}
           </textPath>
         </text>
         <!-- <text x="20" y="5.5" text-anchor="middle" fill="#fff" dy=".3em" font-size="2"
@@ -64,11 +64,11 @@
         <!-- displays the current day of the cycle -->
         <foreignObject x="-7" y="-7" width="42" height="42">
           <div style="box-shadow: none;">
-            <q-knob :step="1" :min="1" :max="cycleLength" v-model="currentDay" show-value size="24px" :thickness="0.05"
+            <q-knob readonly :step="1" :min="1" :max="cycleLength" v-model="currentDay" show-value size="24px" :thickness="0.05"
               color="teal" track-color="grey-3" class="q-ma-md" font-size="4px">
               <div style="display: flex; flex-direction: column; align-items: center; justify-content: center;">
                 <p style="font-size: 3px; margin: 1px;"></p>
-                <p style="font-size: 2.5px; margin: 0;">Zyklustag</p>
+                <p style="font-size: 2.5px; margin: 0;">{{ $t('cycleDay') }}</p>
                 <p style="font-size: 3px; margin: 0;">{{ currentDay }}</p>
               </div>
             </q-knob>
