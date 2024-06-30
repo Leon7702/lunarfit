@@ -1,12 +1,10 @@
 <template>
   <div class="container">
     <q-layout view="hHh lpR fFf">
-      <!-- Main Content Area -->
       <q-page-container>
         <router-view />
       </q-page-container>
 
-      <!-- Flat Footer with Toolbar and Divider Line -->
       <q-footer class="footer-toolbar">
         <div class="footer-divider"></div>
         <q-toolbar class="footer-toolbar-content">
@@ -39,10 +37,9 @@
 
 <script>
 export default {
-  name: 'MainLayout',
   data() {
     return {
-      activeTab: 'home' // Default active tab
+      activeTab: 'home',
     };
   },
   methods: {
@@ -53,25 +50,41 @@ export default {
     },
     goToHome() {
       this.activeTab = 'home';
+      localStorage.setItem('activeTab', 'home');
       this.$router.push('/home');
     },
     goToCalendar() {
       this.activeTab = 'calendar';
+      localStorage.setItem('activeTab', 'calendar');
       this.$router.push('/calendar');
     },
     goToLogEntry() {
+      this.activeTab = 'log'; // Ensure this matches your route name or path
+      localStorage.setItem('activeTab', 'log');
       this.$router.push('/log');
     },
     goToChat() {
       this.activeTab = 'chat';
+      localStorage.setItem('activeTab', 'chat');
       this.$router.push('/chat');
     },
     goToSettings() {
       this.activeTab = 'settings';
+      localStorage.setItem('activeTab', 'settings');
       this.$router.push('/settings');
     }
+  },
+  mounted() {
+    const savedTab = localStorage.getItem('activeTab');
+    if (savedTab) {
+      this.activeTab = savedTab;
+    } else {
+      const currentRoute = this.$route.path.substring(1);
+      this.activeTab = currentRoute || 'home';
+      localStorage.setItem('activeTab', this.activeTab);
+    }
   }
-}
+};
 </script>
 
 <style scoped>
