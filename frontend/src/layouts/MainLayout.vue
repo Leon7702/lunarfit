@@ -14,7 +14,8 @@
           </div>
           <div class="toolbar-item" @click="goToCalendar" :class="{ 'active-tab': activeTab === 'calendar' }">
             <img :src="getIconSrc('Calendar')" class="toolbar-icon" alt="Calendar" />
-            <div class="toolbar-label" :class="{ 'active-label': activeTab === 'calendar' }">{{ $t('toolbar.calendar') }}</div>
+            <div class="toolbar-label" :class="{ 'active-label': activeTab === 'calendar' }">{{ $t('toolbar.calendar')
+              }}</div>
           </div>
           <div class="toolbar-item log-entry-btn-container" @click="goToLogEntry">
             <q-btn class="log-entry-btn">
@@ -27,7 +28,8 @@
           </div>
           <div class="toolbar-item" @click="goToSettings" :class="{ 'active-tab': activeTab === 'settings' }">
             <img :src="getIconSrc('Settings')" class="toolbar-icon" alt="Settings" />
-            <div class="toolbar-label" :class="{ 'active-label': activeTab === 'settings' }">{{ $t('toolbar.settings') }}</div>
+            <div class="toolbar-label" :class="{ 'active-label': activeTab === 'settings' }">{{ $t('toolbar.settings')
+              }}</div>
           </div>
         </q-toolbar>
       </q-footer>
@@ -158,13 +160,13 @@ export default {
   .footer-divider {
     height: 1px;
     background-color: #e0e0e0;
-    max-width: 350px;
+    max-width: 360px;
   }
 
   .footer-toolbar {
     background-color: white;
     padding-bottom: 5px;
-    max-width: 350px;
+    max-width: 360px;
     margin-left: auto;
     margin-right: auto;
   }
