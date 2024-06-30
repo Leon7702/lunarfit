@@ -108,7 +108,8 @@
       "recommendations": [
         "Avoid intense training sessions and focus on regenerative measures instead.",
         "Ensure sufficient sleep and a balanced diet to support your recovery.",
-        "Monitor your symptoms and adjust your training accordingly."
+        "Monitor your symptoms and adjust your training accordingly.",
+        ""
       ]
     },
     "2": {
@@ -125,7 +126,8 @@
       "recommendations": [
         "Continue your training as usual, but gradually increase your training volume.",
         "Regularly carry out regenerative measures to support your recovery.",
-        "Continue to ensure a balanced diet and sufficient sleep to optimize your recovery."
+        "Continue to ensure a balanced diet and sufficient sleep to optimize your recovery.",
+        ""
       ]
     },
     "4": {
@@ -174,7 +176,8 @@
       "recommendations": [
         ">> Gradually increase your training volume to challenge your body and see improvements.",
         ">> Include challenging workouts to boost your motivation and avoid performance plateaus.",
-        ">> Set specific goals and track your progress to stay continuously motivated."
+        ">> Set specific goals and track your progress to stay continuously motivated.",
+        ""
       ]
     },
     "2": {
@@ -222,7 +225,9 @@
       "recommendations": [
         ">> Significantly reduce your training volume and focus on recovery measures like light yoga or stretching.",
         ">> Avoid strenuous exercises and instead choose gentle movements that do not cause pain.",
-        ">> Heat treatments and light massages can be helpful to relieve tension and pain."
+        ">> Heat treatments and light massages can be helpful to relieve tension and pain.",
+        "",
+        ""
       ]
     },
     "3": {
@@ -230,7 +235,9 @@
       "recommendations": [
         ">> Reduce the intensity of your training and avoid exercises that could worsen the discomfort.",
         ">> Regularly perform stretching and relaxation exercises to relieve your body.",
-        ">> Make sure to take regular breaks and give your body enough time to recover."
+        ">> Make sure to take regular breaks and give your body enough time to recover.",
+        "",
+        ""
       ]
     },
     "4": {
@@ -239,14 +246,18 @@
         ">> Slightly reduce training intensity and avoid exercises that could worsen the discomfort.",
         ">> Regularly perform stretching exercises and light strengthening exercises to relieve the affected areas.",
         ">> Heat or cold applications can help alleviate mild discomfort.",
-        ">> Maintain good posture and ergonomic movements in daily life to avoid additional strain."
+        ">> Maintain good posture and ergonomic movements in daily life to avoid additional strain.",
+        ""
       ]
     },
     "5": {
       "description": "You have very minor discomfort. Your training should not be affected by this.",
       "recommendations": [
         ">> Still pay attention to your body's signals and adjust your training as needed.",
-        ">> Heat or relaxation techniques can help prevent minor discomfort."
+        ">> Heat or relaxation techniques can help prevent minor discomfort.",
+        "",
+        "",
+        ""
       ]
     },
     "6": {
@@ -255,7 +266,8 @@
         ">> Continue your regular training program and gradually increase the intensity to achieve further progress.",
         ">> Ensure a good warm-up phase to prevent injuries.",
         ">> Regularly incorporate exercises to improve flexibility and stability.",
-        ">> Listen to your body and ensure sufficient recovery phases."
+        ">> Listen to your body and ensure sufficient recovery phases.",
+        ""
       ]
     }
   },
