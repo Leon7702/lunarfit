@@ -10,11 +10,11 @@
         <q-toolbar class="footer-toolbar-content">
           <div class="toolbar-item" @click="goToHome" :class="{ 'active-tab': activeTab === 'home' }">
             <img :src="getIconSrc('Home')" class="toolbar-icon" alt="Home" />
-            <div class="toolbar-label" :class="{ 'active-label': activeTab === 'home' }">Start</div>
+            <div class="toolbar-label" :class="{ 'active-label': activeTab === 'home' }">{{ $t('toolbar.start') }}</div>
           </div>
           <div class="toolbar-item" @click="goToCalendar" :class="{ 'active-tab': activeTab === 'calendar' }">
             <img :src="getIconSrc('Calendar')" class="toolbar-icon" alt="Calendar" />
-            <div class="toolbar-label" :class="{ 'active-label': activeTab === 'calendar' }">Kalender</div>
+            <div class="toolbar-label" :class="{ 'active-label': activeTab === 'calendar' }">{{ $t('toolbar.calendar') }}</div>
           </div>
           <div class="toolbar-item log-entry-btn-container" @click="goToLogEntry">
             <q-btn class="log-entry-btn">
@@ -23,11 +23,11 @@
           </div>
           <div class="toolbar-item" @click="goToChat" :class="{ 'active-tab': activeTab === 'chat' }">
             <img :src="getIconSrc('Chat')" class="toolbar-icon" alt="Chat" />
-            <div class="toolbar-label" :class="{ 'active-label': activeTab === 'chat' }">Chat</div>
+            <div class="toolbar-label" :class="{ 'active-label': activeTab === 'chat' }">{{ $t('toolbar.chat') }}</div>
           </div>
           <div class="toolbar-item" @click="goToSettings" :class="{ 'active-tab': activeTab === 'settings' }">
             <img :src="getIconSrc('Settings')" class="toolbar-icon" alt="Settings" />
-            <div class="toolbar-label" :class="{ 'active-label': activeTab === 'settings' }">Einstellungen</div>
+            <div class="toolbar-label" :class="{ 'active-label': activeTab === 'settings' }">{{ $t('toolbar.settings') }}</div>
           </div>
         </q-toolbar>
       </q-footer>

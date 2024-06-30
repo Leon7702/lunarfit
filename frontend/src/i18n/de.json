@@ -1,4 +1,628 @@
 {
-    "greeting": "Hallo", 
-    "farewell": "Auf Wiedersehen"
+  "greeting": "Hallo",
+  "farewell": "Auf Wiedersehen",
+
+  "weekdays": {
+    "1": "Montag",
+    "2": "Dienstag",
+    "3": "Mittwoch",
+    "4": "Donnerstag",
+    "5": "Freitag",
+    "6": "Samstag",
+    "0": "Sonntag"
+  },
+  "weekdays_short": {
+    "1": "M",
+    "2": "D",
+    "3": "M",
+    "4": "D",
+    "5": "F",
+    "6": "S",
+    "0": "S"
+  },
+
+  "cycleTitle": "ZYKLUS",
+  "trainingTitle": "TRAINING",
+
+  "cycleDay": "Zyklustag",
+
+  "mood": "Stimmung",
+  "strain": "Belastung",
+  "rest": "Erholung",
+  "free": "Beschwerdefreiheit",
+
+  "moreCycleInfo": "Erfahre jetzt mehr über deinen Zyklus",
+  "moreTrainingInfo": "Erfahre jetzt mehr über dein Training",
+
+  "menstruationInfo": {
+    "title": "Menstruation",
+    "description": "Der Zyklus beginnt mit dem ersten Tag der Blutung, die durch den Abfall von Progesteron und Östrogen ausgelöst wird. Das steigende Östrogen hebt die Laune, macht selbstbewusst und kreativ.",
+    "nutrition": [
+      "Entzündungshemmende und antioxidative Nahrungsmittel, um Symptome zu lindern: Curcumin, Vitamin D, Calcium, Magnesium and Zink (Brown et al., 2023) --> Kurkuma, Milchprodukte (Milch, Joghurt, Käse), Spinat, Vollkorn, Kerne und Samen, Präparate",
+      "Achte auf eine genügende Eisenzufuhr, insbesondere wenn deine Blutung stark ausfällt (Pedlar et al., 2017; Gaxiola & Regil, 2019) --> Rotes Fleisch, Bohnen, Leafy Greens z.B Spinat, Linsen, Brokkoli",
+      "Verbesserte Resorption durch parallele Aufnahme von Vitamin C (z.B. Sanddorn, Acerolakirsche, schwarze Johannisbeere, Petersilie, Wising, Rosenkohl, Paprika); Hemmung der Aufnahme u.a. durch Gerbstoffe (schwarzer Tee, Kaffee), Phytin (Vollkorn, Soja, Hülsenfrüchten), Phospohate (in Milch, Cola, Wurstwaren)",
+      "Trinke genug Wasser, mind. 1.5 - 2 Liter + bei Training Kompensation des Schweissverlustes"
+    ],
+    "training": "Durch die potenziellen Symptome der Menstruation kann es sein, dass deine Stimmung, deine Motivation und deine Energie tiefer sind als sonst. Höre auf deinen Körper und plane deshalb vermehrt kurze, regenerative Einheiten mit niedriger Intensität in Phase 1 ein. Diese Einheiten können auch dazu beitragen, deine Symptome zu verringern.",
+    "health": [
+      "Achte besonders in Phase 1 auf ausreichend (7-9h) und qualitativ hochwertigen Schlaf, um allfällige negative Symptome dieser Phase auszugleichen. Dabei können helfen:",
+      "Konstanter Schlafrhythmus",
+      "Das Zimmer dunkel und kühl halten",
+      "Koffein und Alkohol limitieren",
+      "1h vor dem Schlafengehen keine Bildschirm-Zeit",
+      "2h vor dem Schlafengehen nicht essen",
+      "In dieser Phase ist deine Fruchtbarkeit sehr gering."
+    ]
+  },
+
+  "follicularInfo": {
+    "title": "Follikelphase",
+    "description": "Phase nach der Menstruation, in der die Eibläschchen zu einem sprungbereiten Follikel reifen. Das steigende Östrogen hebt die Laune, macht selbstbewusst und kreativ.",
+    "nutrition": [
+      "Durch die Erhöhung der Intensität oder des Volumens deines Trainings erhöht sich auch dein Energiebedarf! Achte auf eine genügende Kohlenhydratzufuhr vor und nach dem Training. Vorzugsweise nimmst du dazu komplexe Kohlenhydrate wie Vollkornprodukte, Hafer, Quinoa, brauner Reis",
+      "Ebenso bei längeren Trainingseinheiten --> 1h bewusst KH zuführen",
+      "Bei vermehrtem Training solltest du auch deine Proteinzufuhr erhöhen: Achte auf eine tägliche Proteinzufuhr von ca. 1,6g pro kg Körpergewicht. Proteindrinks können dabei helfen, den Bedarf zu decken. Nimm dazu Drinks, die wenig zugesetzten Zucker beinhalten.",
+      "Trinke genug Wasser, mind. 1.5 - 2 Liter + bei Training Kompensation des Schweissverlustes",
+      "Decke deinen Fettbedarf mit gesunden Fetten, bspw. Fisch, Nüsse und Samen, pflanzliche Öle."
+    ],
+    "training": "Der steigende Östrogenspiegel hilft dir dabei, dich selbstbewusst und stark zu fühlen. Zeit also für die härteren Einheiten! Plane in Phase 2 vermehrt lange oder intensive Einheiten ein. Steigere dabei die die Intensität oder das Volumen kontinuerlich vom Ende der Mens bis zum Eisprung. Des weiteren ist Phase 2 optimal, um Kraft oder Schnelligkeit zu trainieren.",
+    "health": "Am Anfang der Phase 2 ist die Chance schwanger zu werden eher gering. Im Verlauf der Phase 2 steigt die Fruchtbarkeit an und erreicht ihren Höhepunkt am Ende der Phase 2 (das fruchtbare Zeitfenster umfasst dabei ca. 5 Tage vor dem Eisprung bis 1 Tag nach dem Eisprung)."
+  },
+
+  "lutealInfoEarly": {
+    "title": "frühe Lutealphase",
+    "description": "Die Phase nach dem Eisprung bis zum Beginn der nächsten Menstruation. Der Gelbkörper produziert Progesteron, das die Gebärmutterschleimhaut auf die Einnistung einer befruchteten Eizelle vorbereitet. Das Progesteron kann die Laune verschlechtern.",
+    "nutrition": [
+      "Während der Lutealphase braucht dein Körper mehr Energie (+ ca. 200 kcal / Tag). Es kann also gut sein, dass du hungriger bist als sonst.",
+      "Weiterhin erhöht sich dein Energiebedarf auch durch die Erhöhung der Intensität oder des Volumens deines Trainings!  Achte auf eine genügende Kohlenhydratzufuhr vor und nach dem Training. Vorzugsweise nimmst du dazu komplexe Kohlenhydrate wie Vollkornprodukte, Hafer, Quinoa, brauner Reis",
+      "Ebenso bei längeren Trainingseinheiten --> 1h bewusst KH zuführen",
+      "Bei vermehrtem Training solltest du auch deine Proteinzufuhr erhöhen: Achte auf eine tägliche Proteinzufuhr von ca. 1,6g pro kg Körpergewicht. Proteindrinks können dabei helfen, den Bedarf zu decken. Nimm dazu Drinks, die wenig zugesetzten Zucker beinhalten.",
+      "Trinke genug Wasser, mind. 1.5 - 2 Liter + bei Training Kompensation des Schweissverlustes",
+      "Decke deinen Fettbedarf mit gesunden Fetten, bspw. Fisch, Nüsse und Samen, pflanzliche Öle"
+    ],
+    "training": "Nutze die Woche nach dem Eisprung weiterhin für Einheiten mit hoher Intensität oder hohem Volumen. Diese Woche eignet sich auch hervorragend für Kraft- und Schnellkrafttraining. Im zweiten Teil der Phase 3 kannst du die Intensität drosseln, und den Fokus auf eher lange und weniger intensive Einheiten legen.",
+    "health":  "Kurz nach dem Eisprung ist die Chance schwanger zu werden erhöht. Die Chance nimmt ab, je weiter dein Eisprung zurück liegt."
+  },
+
+  "lutealInfoLate": {
+    "title": "späte Lutealphase",
+    "description": "Die Phase nach dem Eisprung bis zum Beginn der nächsten Menstruation. Der Gelbkörper produziert Progesteron, das die Gebärmutterschleimhaut auf die Einnistung einer befruchteten Eizelle vorbereitet. Das Progesteron kann die Laune verschlechtern.",
+    "nutrition": [
+      "Während der Lutealphase braucht dein Körper mehr Energie (+ ca. 200 kcal / Tag). Es kann also gut sein, dass du hungriger bist als sonst.",
+      "Achte in dieser Phase besonders auf die Zufuhr von gesunden Fetten und Proteinen, um länger satt zu bleiben und Heisshungerattacken zu vermeiden. Wenn du Kohlenhydrate isst, achte auf hochwertige Kohlenhydrate mit viel Ballaststoffen (Hafer, Vollkorn, brauner Reis, etc.). Diese hälten deinen Blutzuckerspiegel konstant und helfen somit Stimmungsschwankungen zu vermeiden (Benton, 2002)",
+      "Kalziumsupplementation kann die negativen Symptome vermindern (Bendich, 2000)",
+      "Weitere Lebensmittel, die die negativen Symptome potenziell vermindern sind Magnesium, Vitamin D (Bendich, 2000), Soya (Isoflavone; Bryant et al., 2005), Mönchspfeffer (Swiss Olympic)",
+      "Entzündungsfördernde Lebensmittel (bspw. Koffein, Alkohol, Zucker, Weissmehlprodukte) meiden (Femnetic Slides, 2024)"
+    ],
+    "training": "Die ca. 5 Tage vor der nächsten Mens können von unangenehmen körperlichen und mentalen Symptomen begleitet sein. Höre auch hier wieder auf deinen Körper und plane kurze und leichte Regenerationseinheiten ein (bspw. leichtes Jogging oder Fahrradfahren, Yoga, Spaziergang). Diese können dir auch dabei helfen, die unangenehmen Symptome zu mindern.",
+    "health": [
+      "Achte besonders in Phase 4 auf ausreichend (7-9h) und qualitativ hochwertigen Schlaf, um allfällige negative Symptome dieser Phase auszugleichen. Dabei können helfen:",
+      "Konstanter Schlafrhythmus",
+      "Das Zimmer dunkel und kühl halten",
+      "Koffein und Alkohol limitieren",
+      "1h vor dem Schlafengehen keine Bildschirm-Zeit",
+      "2h vor dem Schlafengehen nicht essen",
+      "In dieser Phase bist du nicht fruchtbar."
+    ]
+  },
+
+  "menstruationPhaseText": "Da du dich in der Menstruationsphase befindest, kann es sein, dass deine Stimmung, Motivation und Energie niedriger sind als sonst. Höre daher gut auf deinen Körper und plane gegebenenfalls eher kurze, regenerative Einheiten mit niedriger Intensität ein. Diese Einheiten können auch dazu beitragen, mögliche Symptome zu verringern.",
+  "follicularPhaseText": "Du befindest dich in der Follikelphase. Der steigende Östrogenspiegel hilft dir, dich selbstbewusst und stark zu fühlen. Wenn du dich gut fühlst, ist dies die optimale Zeit für intensivere Einheiten! Plane also verstärkt lange oder intensive Trainingseinheiten ein.  Auch Kraft- und Schnelligkeit lässt sich jetzt gut trainieren.",
+  "earlyLutealPhaseText": "Du befindest dich in der frühen Luthealphase. Die erste Woche dieser Phase eignet sich grundsätzlich gut für Einheiten mit hoher Intensität oder hohem Volumen sowie für Kraft- und Schnellkrafttraining. Wenn du dich schon im zweiten Teil der frühen Lutealphase befindest  kannst du die Intensität etwas drosseln, und den Fokus auf eher lange und weniger intensive Einheiten legen.",
+  "lateLutealPhaseText": "Du befindest dich in der späten Lutealphase. Wenn dich unangenehme körperliche und mentale Symptome plagen, plane kurze und leichte Regenerationseinheiten ein (z. B. leichtes Joggen, Fahrradfahren, Yoga oder Spaziergänge). Diese können dir auch dabei helfen, mögliche unangenehme Symptome zu mindern.",
+
+  "trsInfo": "Dein Training Readiness Score liegt bei...",
+  "scores": {
+    "1": {
+      "description": "Dein Körper ist momentan nicht optimal auf intensives Training vorbereitet. Hier sind einige Empfehlungen, um deine Erholung zu unterstützen und deine Belastung zu reduzieren:",
+      "recommendations": [
+        "Vermeide intensive Trainingseinheiten und setze stattdessen auf regenerative Maßnahmen.",
+        "Achte besonders auf ausreichend Schlaf und eine ausgewogene Ernährung, um deine Regeneration zu fördern.",
+        "Beobachte deine Beschwerden und passe dein Training entsprechend an.",
+        ""
+      ]
+    },
+    "2": {
+      "description": "Deine Trainingsbereitschaft ist moderat. Dein Körper braucht etwas mehr Erholung, bevor du wieder voll durchstarten kannst. Hier sind einige Tipps:",
+      "recommendations": [
+        "Reduziere die Intensität und das Volumen deiner Trainingseinheiten, um Überlastung zu vermeiden.",
+        "Integriere mehr regenerative Maßnahmen wie Dehnen, leichtes Cardio und Entspannungstechniken in deinen Trainingsplan.",
+        "Achte auf deine Stimmung und versuche, positive Aktivitäten in deinen Alltag zu integrieren, die dich motivieren und entspannen.",
+        "Achte weiterhin auf eine gute Ernährung und ausreichend Schlaf, um deine Erholung zu unterstützen."
+      ]
+    },
+    "3": {
+      "description": "Deine Trainingsbereitschaft ist gut, und du kannst dein Training wie gewohnt fortsetzen. Hier sind einige Empfehlungen, um deine Trainingsbereitschaft zu optimieren:",
+      "recommendations": [
+        "Setze dein Training wie gewohnt fort, aber achte darauf, dein Trainingsvolumen schrittweise zu steigern.",
+        "Führe regelmäßig regenerative Maßnahmen durch, um deine Erholung zu unterstützen.",
+        "Achte weiterhin auf eine ausgewogene Ernährung und ausreichend Schlaf, um deine Regeneration zu optimieren.",
+        ""
+      ]
+    },
+    "4": {
+      "description": "Herzlichen Glückwunsch! Du bist optimal auf dein Training vorbereitet. Dein Körper ist gut erholt und deine Belastung ist ausgeglichen. Hier sind einige Tipps, um dein Training optimal zu nutzen:",
+      "recommendations": [
+        "Nutze die Gelegenheit, um intensive und anspruchsvolle Trainingseinheiten durchzuführen und deine Leistung zu steigern.",
+        "Achte weiterhin auf eine gute Aufwärmphase, um Verletzungen vorzubeugen.",
+        "Halte an deinen regenerativen Maßnahmen fest, um dein hohes Leistungsniveau aufrechtzuerhalten.",
+        "Bleibe positiv und motiviert, und sorge für eine ausgewogene Ernährung und ausreichend Schlaf, um deine Regeneration und Leistung zu unterstützen."
+      ]
+    }
+  },
+
+  "moodInfo": {
+    "1": {
+      "description": "Sehr schlecht:",
+      "advice": "Es scheint, als ob du einen sehr schwierigen Tag hast. Versuche, dich zu bewegen, auch wenn es nur ein kurzer Spaziergang ist. Bewegung kann helfen, den Kopf frei zu bekommen und die Stimmung zu heben."
+    },
+    "2": {
+      "description": "Schlecht:",
+      "advice": "Deine Stimmung ist momentan nicht die beste. Probiere eine kurze, leichte Übung wie Dehnen oder Yoga. Diese Aktivitäten können helfen, Spannungen abzubauen und deine Laune zu verbessern."
+    },
+    "3": {
+      "description": "Mittelmäßig:",
+      "advice": "Du fühlst dich wohl, aber es gibt Raum für Verbesserung. Mach eine moderate Sporteinheit, wie einen zügigen Spaziergang, leichtes Joggen oder Radfahren. Körperliche Aktivität, vorallem an der frischen Luft, kann helfen, Endorphine freizusetzen und deine Stimmung zu heben."
+    },
+    "4": {
+      "description": "Gut:",
+      "advice": "Deine Stimmung ist gut, das ist schön zu hören! Nutze diese positive Energie für ein intensiveres Training. So kannst du deine Stimmung weiter verbessern und deine Fitness steigern."
+    },
+    "5": {
+      "description": "Sehr gut:",
+      "advice": "Du scheinst dich wirklich gut zu fühlen! Teile deine gute Laune mit anderen, indem du eine sportliche Aktivität in der Gruppe machst. Zusammen zu trainieren kann viel Spaß machen und die Stimmung weiter heben."
+    },
+    "6": {
+      "description": "Hervorragend:",
+      "advice": "Du strahlst vor positiver Energie! Genieße diesen Moment voll und ganz mit einer sportlichen Aktivität, die dir besonders viel Freude bereitet. Ob es ein längerer Lauf, eine intensive Radtour oder ein herausfordernder Fitnesskurs ist – nutze diese Hochstimmung für ein großartiges Training."
+    }
+  },
+
+  "acwrInfo": "Dein ACWR-Wert liegt bei ",
+
+  "strainInfo": {
+    "1": {
+      "description": "< 0,8 → Dein Trainingsvolumen ist momentan relativ niedrig. Um weiterhin Fortschritte zu machen und deine Trainingsziele zu erreichen, empfehlen wir dir:",
+      "recommendations": [
+        ">> Erhöhe dein Trainingsvolumen schrittweise, um deinen Körper zu fordern und Verbesserungen zu erzielen.",
+        ">> Integriere auch herausfordernde Trainingseinheiten, um deine Motivation zu steigern und Leistungsplateaus zu vermeiden.",
+        ">> Setze dir konkrete Ziele und verfolge deine Fortschritte, um kontinuierlich motiviert zu bleiben.",
+        ""
+      ]
+    },
+    "2": {
+      "description": "0,8 ≤ ACWR < 1,5 → Dein Trainingsvolumen liegt im optimalen Bereich. Du bist auf einem guten Weg, um Fortschritte zu machen und Verletzungen zu vermeiden. Unsere Empfehlungen:",
+      "recommendations": [
+        ">> Setze dein aktuelles Training fort und erhöhe das Volumen allmählich und kontrolliert.",
+        ">> Integriere abwechslungsreiche Trainingseinheiten, um verschiedene Muskelgruppen anzusprechen und die Motivation hochzuhalten.",
+        ">> Plane regelmäßig Ruhetage ein, um deinem Körper die notwendige Erholung zu bieten.",
+        ">> Bleibe aufmerksam gegenüber den Signalen deines Körpers und passe dein Training bei Bedarf an."
+      ]
+    },
+    "3": {
+      "description": "1,5 ≤ ACWR < 1,8 → Du bist voll motiviert und dein Trainingsvolumen ist hoch! Es ist jedoch wichtig, eine Balance zu finden, um Überlastungen und Verletzungen zu vermeiden. Wir empfehlen dir:",
+      "recommendations": [
+        ">> Reduziere das Trainingsvolumen für die nächsten Tage leicht, um deinem Körper Zeit zur Erholung zu geben.",
+        ">> Integriere regelmäßig regenerative Maßnahmen wie Stretching, Yoga oder Massagen, um deine Erholung zu unterstützen.",
+        ">> Höre auf die Signale deines Körpers und plane regelmäßige Ruhetage ein, um Übertraining zu vermeiden.",
+        ">> Achte auf eine ausgewogene Ernährung und ausreichend Schlaf, um deine Regeneration zu fördern."
+      ]
+    },
+    "4": {
+      "description": "≥ 1,8 → Achtung! Dein Trainingsvolumen ist momentan sehr hoch und das Risiko für eine Überlastung und Verletzungen steigt. Um dich vor Verletzungen zu schützen, empfehlen wir dir:",
+      "recommendations": [
+        ">> Reduziere das Trainingsvolumen und plane mehrere Ruhetage ein.",
+        ">> Setze verstärkt auf aktive Erholung wie lockeres Joggen, leichtes Schwimmen oder entspannende Aktivitäten.",
+        ">> Setze den Schwerpunkt auf Regenerationsmassnahmen, einschließlich Massagen, Physiotherapie oder Faszientraining.",
+        ">> Achte auf Warnsignale deines Körpers."
+      ]
+    }
+  },
+
+  "freeInfo": {
+    "1": {
+      "description": "Du hast derzeit starke Beschwerden. Es ist wichtig, auf deinen Körper zu hören und ihn zu schonen:",
+      "recommendations": [
+        ">> Vermeide intensive körperliche Aktivitäten und gönne dir ausreichend Ruhe.",
+        ">> Setze auf sanfte Bewegungen wie leichtes Dehnen und Spaziergänge, um die Durchblutung zu fördern, ohne die Beschwerden zu verschlimmern.",
+        ">> Wärmebehandlungen wie ein warmes Bad oder eine Wärmflasche können helfen, Krämpfe zu lindern.",
+        ">> Konsultiere gegebenenfalls einen Arzt, um geeignete Maßnahmen zur Linderung deiner Beschwerden zu besprechen.",
+        ">> Achte besonders auf eine ausgewogene Ernährung und trinke ausreichend Wasser."
+      ]
+    },
+    "2": {
+      "description": "Du hast erhebliche Beschwerden. Hier sind einige Empfehlungen, um deine Beschwerden zu lindern:",
+      "recommendations": [
+        ">> Reduziere dein Trainingsvolumen deutlich und fokussiere dich auf regenerative Maßnahmen wie leichtes Yoga oder Stretching.",
+        ">> Verzichte auf belastende Übungen und setze stattdessen auf sanfte Bewegungen, die keine Schmerzen verursachen.",
+        ">> Wärmebehandlungen und leichte Massagen können hilfreich sein, um Verspannungen zu lösen und Schmerzen zu lindern.",
+        "",
+        ""
+      ]
+    },
+    "3": {
+      "description": "Du hast mäßige Beschwerden. Hier sind einige Tipps, um deine Beschwerden zu managen:",
+      "recommendations": [
+        ">> Reduziere die Intensität deines Trainings und vermeide Übungen, die die Beschwerden verschlimmern könnten.",
+        ">> Führe regelmäßig Dehn- und Entspannungsübungen durch, um deinen Körper zu entlasten.",
+        ">> Achte darauf, regelmäßig Pausen einzulegen und deinem Körper genügend Zeit zur Erholung zu geben.",
+        "",
+        ""
+      ]
+    },
+    "4": {
+      "description": "Du hast leichte  Beschwerden. Es ist wichtig, darauf zu achten und präventiv zu handeln:",
+      "recommendations": [
+        ">> Reduziere die Trainingsintensität geringfügig und achte darauf, keine Übungen zu machen, die die Beschwerden verschlimmern.",
+        ">> Führe regelmäßig Dehnübungen und leichte Kräftigungsübungen durch, um die betroffenen Bereiche zu entlasten.",
+        ">> Wärme- oder Kälteanwendungen können helfen, leichte Beschwerden zu lindern.",
+        ">> Achte auf eine gute Körperhaltung und ergonomische Bewegungen im Alltag, um zusätzliche Belastungen zu vermeiden.",
+        ""
+      ]
+    },
+    "5": {
+      "description": "Du hast sehr geringe  Beschwerden. Dein Training sollte hierdurch nicht beeinflusst werden.",
+      "recommendations": [
+        ">> Achte dennoch auf die Signale deines Körpers und passe dein Training bei Bedarf an.",
+        ">> Wärme- oder Entspannungstechniken können helfen, leichte Beschwerden zu vermeiden.",
+        "",
+        "",
+        ""
+      ]
+    },
+    "6": {
+      "description": "Du hast keine Beschwerden. Perfekt! So kannst du dein Training optimal fortsetzen:",
+      "recommendations": [
+        ">> Setze dein gewohntes Trainingsprogramm fort und steigere die Intensität allmählich, um weitere Fortschritte zu erzielen.",
+        ">> Achte weiterhin auf eine gute Aufwärmphase, um Verletzungen vorzubeugen.",
+        ">> Integriere regelmäßig Übungen zur Verbesserung der Flexibilität und Stabilität.",
+        ">> Höre auf deinen Körper und sorge für genügend Erholungsphasen.",
+        ""
+      ]
+    }
+  },
+
+  "restInfo": {
+    "1": "Du scheinst körperlich sehr erschöpft zu sein. Du solltest eine Trainingspause einlegen. Weitere regenerative Maßnahmen wie Sauna, warme Bäder, Massagen und Faszientraining können den Regenerationsprozess unterstützen.",
+    "2": "Dein Erholungszustand ist gering. Du solltest ein Regenerations- und Kompensationstraining in Betracht ziehen. Das bedeutet bewusst lockere Einheiten mit einer sehr geringen Intensität. Um einseitige Belastungen zu vermeiden, kannst du auch eine andere Sportart wählen.",
+    "3": "Dein Erholungszustand ist eingeschränkt. Du solltest dein Trainingsvolumen oder die Trainingsintensität etwas reduzieren.",
+    "4": "Dein Erholungszustand ist nicht optimal. Wenn dieser Zustand länger anhält, solltest du dein Trainingsvolumen und die Trainingsintensität für einige Zeit etwas reduzieren, um langfristig ein Übertraining zu vermeiden.",
+    "5": "Du scheinst gut erholt zu sein. Du kannst dein Trainingspensum so fortsetzen.",
+    "6": "Du scheinst optimal erholt zu sein. Du kannst überlegen, den Trainingsumfang oder die Trainingsintensität zu erhöhen."
+  },
+
+  "onboarding": {
+    "start": {
+      "title": "Willkommen bei LunarFit.",
+      "description": "Um dich und deinen Zyklus besser kennenzulernen, beantworte bitte die folgenden Fragen über deinen Körper, deinen Zyklus und dein Sportverhalten.\n\nDeine Daten werden streng vertraulich behandelt und sicher aufbewahrt."
+    },
+    "onboardingStep1": {
+      "step": "Schritt 1:",
+      "title": "Person",
+      "fields": {
+        "firstName": "Vorname",
+        "lastName": "Nachname",
+        "birthdate": "Geburtsdatum",
+        "height": "Größe in cm",
+        "weight": "Gewicht in kg"
+      }
+    },
+    "onboardingStep2": {
+      "step": "Schritt 2:",
+      "title": "Zyklus",
+      "fields": {
+        "lastMenstruation": "An welchem Tag setzte deine letzte Menstruation ein?",
+        "menstruationDuration": "Wie viele Tage dauert deine Menstruation im Durchschnitt?"
+      }
+    },
+    "onboardingStep3": {
+      "step": "Schritt 3:",
+      "title": "Zyklus",
+      "fields": {
+        "hormonalContraception": "Verhütest du hormonell?",
+        "contraceptionMethod": "Welches Verhütungsmittel nutzt du?",
+        "contraceptionOptions": [
+          "Pille",
+          "Hormonspirale",
+          "Hormonimplantat",
+          "Dreimonatsspritze",
+          "Vaginalring",
+          "Sonstiges"
+        ]
+      }
+    },
+    "onboardingStep4": {
+      "step": "Schritt 4:",
+      "title": "Sportverhalten",
+      "fields": {
+        "trainingSessions": "Wie viele Trainingseinheiten pro Woche hattest du im letzten Monat?",
+        "trainingDuration": "Wie lange dauerte eine Trainingseinheit?"
+      }
+    },
+    "onboardingStep5": {
+      "step": "Schritt 5:",
+      "title": "Sportverhalten",
+      "description": "Wie intensiv waren deine Trainingseinheiten im Durchschnitt im letzten Monat?",
+      "slider": {
+        "topText": "Maximal anstrengend",
+        "bottomText": "Gar nicht anstrengend"
+      }
+    },
+    "onboardingEnd": {
+      "title": "Geschafft!",
+      "description": "Vielen Dank für das Ausfüllen der Fragen. Auf Basis deiner Antworten werden dir bereits anfängliche Empfehlungen abgegeben.\n\nDenk daran: Je genauer du deinen Zyklus und dein Sportverhalten trackst, desto genauer werden deine Empfehlungen."
+    }
+  },
+  "logCycle": {
+    "home": {
+      "title": "Zyklus Log-Eintrag",
+      "labels": {
+        "menstruation": "Menstruation",
+        "temperature": "Temperatur",
+        "cervixMucus": "Zervixschleim",
+        "cervixPosition": "Gebärmutterhals",
+        "sex": "Geschlechtsverkehr",
+        "contraceptive": "Verhütungsmittel",
+        "medicine": "Medikamente",
+        "ovulationTest": "Ovulationstest",
+        "pregnancyTest": "Schwangerschaftstest"
+      }
+    },
+    "homeList": {
+      "title": "Liste anpassen",
+      "labels": {
+        "menstruation": "Menstruation",
+        "temperature": "Temperatur",
+        "cervixMucus": "Zervixschleim",
+        "cervixPosition": "Gebärmutterhals",
+        "sex": "Geschlechtsverkehr",
+        "contraceptive": "Verhütungsmittel",
+        "medicine": "Medikamente",
+        "ovulationTest": "Ovulationstest",
+        "pregnancyTest": "Schwangerschaftstest"
+      }
+    },
+    "cervix": {
+      "title": "Zervixschleim",
+      "description": "Bitte zutreffendes auswählen:"
+    },
+    "contraceptive": {
+      "title": "Verhütungsmittel",
+      "description": "Hormonelle Verhütungsmittel:",
+      "smallDescription": "Bitte beachten Sie, dass die oben genannten Verhütungsmittel Einfluss auf Ihren Zyklus haben können.",
+      "options": [
+        "Pille",
+        "Hormonspirale",
+        "Hormonimplantat",
+        "Dreimonatsspritze",
+        "Vaginalring",
+        "Sonstiges"
+      ]
+    },
+    "cervixPosition": {
+      "title": "Gebärmutterhals",
+      "description": "Bitte zutreffende Position auswählen:"
+    },
+    "medicine": {
+      "title": "Medikamente",
+      "description": "Spezifische Medikamenteneinnahme:",
+      "smallDescription": "Bitte beachten Sie, dass die oben genannten Medikamente Einfluss auf Ihren Zyklus haben können.",
+      "options": [
+        "Notfallkontrazeptiva",
+        "Hormonersatz",
+        "Opiode Schmerzmittel",
+        "Diclofenac/Ibuprofen"
+      ]
+    },
+    "mens": {
+      "title": "Menstruation",
+      "buttonLabel": "+  Menstruation",
+      "descriptionText": "Tippe hier, wenn deine Menstruation heute begonnen hat.",
+      "buttonLabelActive": "Menstruation aktiv",
+      "descriptionTextActive": "Tippe hier, wenn deine Menstruation vorbei ist."
+    },
+    "ovulationTest": {
+      "title": "Ovulationstest",
+      "description": "Bitte zutreffendes auswählen:"
+    },
+    "pregnancyTest": {
+      "title": "Schwangerschaftstest",
+      "description": "Bitte zutreffendes auswählen:"
+    },
+    "sex": {
+      "title": "Geschlechtsverkehr",
+      "description": "Bitte zutreffendes auswählen:",
+      "options": [
+        "Kein Sex",
+        "Geschützter Sex",
+        "Ungeschützter Sex",
+        "Lust auf Sex",
+        "Masturbation"
+      ]
+    },
+    "temperature": {
+      "title": "Temperatur",
+      "description": "Temperatur in °C:",
+      "descriptionTwo": "Störfaktoren*:",
+      "smallDescription": "*Störfaktoren können sein: Fieber, Alkoholkonsum, Schlafmangel, Stress, Medikamente, sonstige gesundheitliche Beschwerden. Bitte beachten Sie, dass die genannten Störfaktoren Einfluss auf Ihren Zyklus haben können."
+    }
+  },
+  "logNotes": {
+    "title": "Notizen",
+    "description": "Füge eine Notiz hinzu:"
+  },
+  "logTrainingComplaints": {
+    "title": "Beschwerden",
+    "description": "Hast du körperliche <br>Beschwerden?",
+    "slider": {
+      "topText": "Sehr starke Beschwerden",
+      "bottomText": "Keine Beschwerden"
+    }
+  },
+  "logTrainingMood": {
+    "backButton": "arrow_back",
+    "title": "Stimmung",
+    "description": "Wie bewertest du deine <br>heutige Stimmung?",
+    "slider": {
+      "topText": "Glücklich",
+      "bottomText": "Traurig"
+    }
+  },
+  "logTrainingRecovery": {
+    "title": "Erholung",
+    "description": "Wie bewertest du deinen <br>allgemeinen Erholungszustand?",
+    "slider": {
+      "topText": "Erholt",
+      "bottomText": "Nicht erholt"
+    }
+  },
+  "logTrainingStrain": {
+    "title": "Trainingsbelastung",
+    "description": "Wie anstrengend war <br>deine Trainingseinheit?",
+    "slider": {
+      "topText": "Maximal anstrengend",
+      "bottomText": "Gar nicht anstrengend"
+    }
+  },
+  "logTrainingStrainPre": {
+    "title": "Trainingsbelastung",
+    "description1": "Hast du heute oder gestern trainiert?",
+    "trainingOptions": {
+      "prompt": "Welche Sportart/Aktivität hast du durchgeführt?"
+    },
+    "durationOptions": {
+      "prompt": "Wie viele Minuten hast du trainiert?"
+    }
+  },
+  "calendarLegend": {
+    "0": "Periode",
+    "1": "Vorausgesagte Periode",
+    "2": "Follikelphase"
+  },
+
+  "training-recommendation": {
+    "title": "Trainingsempfehlung",
+    "description": "Basierend auf deinem Zyklus und deinem aktuellen Zustand empfehlen wir dir folgende Trainingseinheiten:"
+  },
+
+  "symptoms": "Symptome",
+  "trs": "Training Readiness Score",
+  "more-info": "Mehr erfahren",
+  "add": "Hinzufügen",
+
+  "toolbar": {
+    "start": "Start",
+    "calendar": "Kalender",
+    "chat": "Chat",
+    "settings": "Einstellungen"
+  },
+
+ "symptomsList": {
+    "bloating": "Blähungen",
+    "breastPain": "Brustschmerzen",
+    "diarrhea": "Durchfall",
+    "exhaustion": "Erschöpfung",
+    "cold": "Frieren",
+    "cravings": "Gelüste",
+    "irritability": "Gereiztheit",
+    "aches": "Gliederschmerzen",
+    "hotFlashes": "Hitzewallungen",
+    "headaches": "Kopfschmerzen",
+    "cramps": "Krämpfe",
+    "fatigue": "Müdigkeit",
+    "sleepIssues": "Schlafstörungen",
+    "dizziness": "Schwindelgefühl",
+    "moodSwings": "Stimmungsschwankungen",
+    "weakness": "Schwächegefühl",
+    "nausea": "Übelkeit",
+    "acne": "Unreine Haut",
+    "pelvicPain": "Unterleibsschmerzen",
+    "constipation": "Verstopfung"
+  },
+
+  "moods": {
+    "anxious": "Ängstlich",
+    "excited": "Begeistert",
+    "relaxed": "Entspannt",
+    "fit": "Fit",
+    "frustrated": "Frustriert",
+    "happy": "Glücklich",
+    "stressed": "Gestresst",
+    "tired": "Müde",
+    "nervous": "Nervös",
+    "weak": "Schwach",
+    "confident": "Selbstsicher",
+    "sad": "Traurig",
+    "unhappy": "Unglücklich",
+    "insecure": "Unsicher",
+    "angry": "Verärgert",
+    "embarrassed": "Verlegen",
+    "confused": "Verwirrt",
+    "furious": "Wütend",
+    "satisfied": "Zufrieden",
+    "optimistic": "Zuversichtlich"
+  },
+
+  "save": "Speichern",
+  "cancel": "Abbrechen",
+  "track": "Tracken",
+
+  "email": "E-Mail",
+  "password": "Passwort",
+  "confirm-password": "Passwort bestätigen",
+  "register": {
+    "title": "Registrieren",
+    "account": "Du hast bereits einen Account?",
+    "login-now": "Jetzt anmelden"
+  },
+
+  "login": {
+    "title": "Anmelden",
+    "no-account": "Noch keinen Account?",
+    "register-now": "Jetzt registrieren"
+  },
+
+  "settings": {
+    "title": "Einstellungen",
+    "profileCaps": "PROFIL",
+    "personal-info": "Persönliche Informationen",
+    "account-settings": "Account Einstellungen",
+    "notificationsCaps": "BENAHRICHTIGUNGEN",
+    "notifications": "Benachrichtigungen",
+    "settingsCaps": "EINSTELLUNGEN",
+    "language": "Sprache",
+    "logout": "Abmelden"
+  },
+
+  "profile": {
+    "title": "Profil",
+    "firstName": "Vorname",
+    "lastName": "Nachname",
+    "birthdate": "Geburtsdatum",
+    "height": "Größe in cm",
+    "weight": "Gewicht in kg",
+    "contraception": "Verhütungsmittel",
+    "contraceptionOptions": [
+          "Pille",
+          "Hormonspirale",
+          "Hormonimplantat",
+          "Dreimonatsspritze",
+          "Vaginalring",
+          "Sonstiges"
+    ]
+  },
+
+  "account": {
+    "title": "Account",
+    "email": "E-Mail",
+    "password": "Passwort",
+    "change-password": "Passwort ändern"
+  },
+
+  "language": {
+    "title": "Sprache",
+    "german": "Deutsch",
+    "english": "Englisch"
+  }
+
 }

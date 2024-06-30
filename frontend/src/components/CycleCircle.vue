@@ -1,7 +1,7 @@
 <template>
   <main>
     <div class="q-px-md flex flex-center">
-      <svg width="250" height="250" viewBox="0 0 42 42" class="donut">
+      <svg width="240" height="240" viewBox="0 0 42 42" class="donut">
 
         <!-- Each circle represents a segment of the donut chart -->
         <!-- The stroke-dasharray property controls the length and spacing of the dashes, creating the donut effect -->

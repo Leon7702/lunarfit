@@ -3,8 +3,11 @@ import { boot } from 'quasar/wrappers';
 import { createI18n } from 'vue-i18n';
 import messages from 'src/i18n';
 
+const savedLocale = localStorage.getItem('locale') || 'de';
+
 const i18n = createI18n({
-  locale: 'de', // default locale
+  legacy: false, 
+  locale: savedLocale, // default locale from localStorage
   fallbackLocale: 'de', // fallback locale
   messages // set locale messages
 });

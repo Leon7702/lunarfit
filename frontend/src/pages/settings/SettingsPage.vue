@@ -2,19 +2,19 @@
   <div class="welcome-container">
     <div class="header">
       <q-btn flat dense round icon="arrow_back" @click="goBack" />
-      <div class="title">Einstellungen</div>
+      <div class="title">{{ $t('settings.title') }}</div>
     </div>
     <div class="linie"></div>
 
     <div class="q-md" style="max-width: 100%">
       <q-list>
-        <q-item-label header class="q-pt-xl q-pb-xs">PROFIL</q-item-label>
+        <q-item-label header class="q-pt-xl q-pb-xs">{{ $t('settings.profileCaps') }}</q-item-label>
         <q-item clickable v-ripple class="q-mb-xs grey-background" @click="navigateToProfile">
           <q-item-section side>
             <img src="/src/assets/ProfileIcon.svg">
           </q-item-section>
           <q-item-section>
-            <q-item-label>Persönliche Informationen</q-item-label>
+            <q-item-label>{{ $t('settings.personal-info') }}</q-item-label>
           </q-item-section>
           <q-item-section side>
             <img src="/src/assets/arrow-right.svg">
@@ -26,7 +26,7 @@
             <img src="/src/assets/SettingsIcon.svg">
           </q-item-section>
           <q-item-section>
-            <q-item-label>Account Einstellungen</q-item-label>
+            <q-item-label>{{ $t('settings.account-settings') }}</q-item-label>
           </q-item-section>
           <q-item-section side>
             <img src="/src/assets/arrow-right.svg">
@@ -35,14 +35,14 @@
       </q-list>
 
       <q-list>
-        <q-item-label header class="q-pt-lg q-pb-xs">MITTEILUNGEN</q-item-label>
+        <q-item-label header class="q-pt-lg q-pb-xs">{{ $t('settings.notificationsCaps') }}</q-item-label>
 
         <q-item tag="label" v-ripple class="grey-background2">
           <q-item-section side>
             <img src="/src/assets/NotificationIcon.svg">
           </q-item-section>
           <q-item-section>
-            <q-item-label>Mitteilungen</q-item-label>
+            <q-item-label>{{ $t('settings.notifications') }}</q-item-label>
           </q-item-section>
           <q-item-section side>
             <q-toggle color="teal" v-model="notif1" />
@@ -51,13 +51,13 @@
       </q-list>
 
       <q-list>
-        <q-item-label header class="q-pt-lg q-pb-xs">EINSTELLUNGEN</q-item-label>
+        <q-item-label header class="q-pt-lg q-pb-xs">{{ $t('settings.settingsCaps') }}</q-item-label>
         <q-item clickable v-ripple class="q-mb-xs grey-background" @click="navigateToLanguage">
           <q-item-section side>
             <img src="/src/assets/GlobeIcon.svg">
           </q-item-section>
           <q-item-section>
-            <q-item-label>Sprache</q-item-label>
+            <q-item-label>{{ $t('settings.language') }}</q-item-label>
           </q-item-section>
           <q-item-section side>
             <img src="/src/assets/arrow-right.svg">
@@ -69,7 +69,7 @@
             <img src="/src/assets/LogoutIcon.svg">
           </q-item-section>
           <q-item-section>
-            <q-item-label>Logout</q-item-label>
+            <q-item-label>{{ $t('settings.logout') }}</q-item-label>
           </q-item-section>
           <q-item-section side>
             <img src="/src/assets/arrow-right.svg">

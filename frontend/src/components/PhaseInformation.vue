@@ -1,7 +1,7 @@
 <template>
   <div class="q-pt-md q-pb-md" style="width: 100%">
     <q-list bordered class="rounded-borders">
-      <q-expansion-item>
+      <q-expansion-item class="hover-effect">
         <template v-slot:header>
           <q-item-section avatar>
             <q-avatar>
@@ -14,14 +14,16 @@
         </template>
         <q-card>
           <q-card-section>
-            {{ textNutrition }}
+            <ul>
+              <li v-for="(item, index) in textNutrition" :key="'nutrition-' + index">{{ item }}</li>
+            </ul>
           </q-card-section>
         </q-card>
       </q-expansion-item>
 
-    <q-separator />
+      <q-separator />
 
-      <q-expansion-item>
+      <q-expansion-item class="hover-effect">
         <template v-slot:header>
           <q-item-section avatar>
             <q-avatar>
@@ -39,9 +41,9 @@
         </q-card>
       </q-expansion-item>
 
-    <q-separator />
+      <q-separator />
 
-      <q-expansion-item>
+      <q-expansion-item class="hover-effect">
         <template v-slot:header>
           <q-item-section avatar>
             <q-avatar>
@@ -54,7 +56,11 @@
         </template>
         <q-card>
           <q-card-section>
-            {{ textHealth }}
+            {{ textHealthString1 }}
+            <ul>
+              <li v-for="(item, index) in textHealthArray" :key="'health-' + index">{{ item }}</li>
+            </ul>
+            {{ textHealthString2 }}
           </q-card-section>
         </q-card>
       </q-expansion-item>
@@ -65,6 +71,27 @@
 
 <script>
 export default {
-  props: ['textNutrition', 'textTraining', 'textHealth'],
+  props: {
+    textNutrition: Array,
+    textTraining: String,
+    textHealthString1: String,
+    textHealthString2: String,
+    textHealthArray: Array,
+  },
 }
 </script>
+
+<style scoped>
+ul {
+  padding-left: 15px;
+  margin: 0;
+}
+
+.hover-effect {
+  transition: background-color 0.3s ease-in-out;
+}
+
+.hover-effect:hover {
+  background-color: rgba(80, 193, 186, 0.2);
+}
+</style>

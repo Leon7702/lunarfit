@@ -1,0 +1,606 @@
+{
+  "greeting": "Hello",
+  "farewell": "Good Bye",
+
+  "weekdays": {
+    "1": "Monday",
+    "2": "Tuesday",
+    "3": "Wednesday",
+    "4": "Thursday",
+    "5": "Friday",
+    "6": "Saturday",
+    "0": "Sunday"
+  },
+  "weekdays_short": {
+    "1": "M",
+    "2": "T",
+    "3": "W",
+    "4": "T",
+    "5": "F",
+    "6": "S",
+    "0": "S"
+  },
+  "cycleTitle": "CYCLE",
+  "trainingTitle": "TRAINING",
+  "cycleDay": "Cycle Day",
+  "mood": "Mood",
+  "strain": "Strain",
+  "rest": "Rest",
+  "free": "Symptom-Free",
+  "moreCycleInfo": "Learn more about your cycle now",
+  "moreTrainingInfo": "Learn more about your training now",
+  "menstruationInfo": {
+    "title": "Menstruation",
+    "description": "The cycle begins with the first day of bleeding, triggered by the drop in progesterone and estrogen. Rising estrogen lifts the mood, boosts confidence, and creativity.",
+    "nutrition": [
+      "Anti-inflammatory and antioxidant foods to relieve symptoms: Curcumin, Vitamin D, Calcium, Magnesium, and Zinc (Brown et al., 2023) --> Turmeric, dairy products (milk, yogurt, cheese), spinach, whole grains, seeds, supplements",
+      "Ensure sufficient iron intake, especially if your bleeding is heavy (Pedlar et al., 2017; Gaxiola & Regil, 2019) --> Red meat, beans, leafy greens e.g., spinach, lentils, broccoli",
+      "Improved absorption through simultaneous intake of Vitamin C (e.g., sea buckthorn, acerola cherry, black currant, parsley, cabbage, Brussels sprouts, bell pepper); Inhibited absorption by tannins (black tea, coffee), phytates (whole grains, soy, legumes), phosphates (in milk, cola, sausages)",
+      "Drink enough water, at least 1.5 - 2 liters + compensate for sweat loss during training"
+    ],
+    "training": "Due to potential menstruation symptoms, your mood, motivation, and energy may be lower than usual. Listen to your body and plan more short, regenerative sessions with low intensity in phase 1. These sessions can also help reduce your symptoms.",
+    "health": [
+      "In phase 1, ensure adequate (7-9h) and high-quality sleep to counteract any negative symptoms. Helpful tips:",
+      "Consistent sleep schedule",
+      "Keep the room dark and cool",
+      "Limit caffeine and alcohol",
+      "No screen time 1 hour before bedtime",
+      "No eating 2 hours before bedtime",
+      "In this phase, your fertility is very low."
+    ]
+  },
+  "follicularInfo": {
+    "title": "Follicular Phase",
+    "description": "Phase after menstruation, during which the follicles mature to a ready-to-ovulate follicle. Rising estrogen lifts the mood, boosts confidence, and creativity.",
+    "nutrition": [
+      "With increased training intensity or volume, your energy needs rise! Ensure sufficient carbohydrate intake before and after training. Prefer complex carbohydrates like whole grains, oats, quinoa, brown rice",
+      "Also for longer training sessions --> Conscious intake of carbohydrates every hour",
+      "With increased training, your protein intake should also increase: Aim for a daily protein intake of about 1.6g per kg body weight. Protein drinks can help meet this need. Choose drinks with little added sugar.",
+      "Drink enough water, at least 1.5 - 2 liters + compensate for sweat loss during training",
+      "Meet your fat needs with healthy fats, e.g., fish, nuts and seeds, plant oils."
+    ],
+    "training": "The rising estrogen levels help you feel confident and strong. It's time for more intense sessions! Plan more long or intensive sessions in phase 2. Continuously increase the intensity or volume from the end of menstruation to ovulation. Phase 2 is also ideal for strength or speed training.",
+    "health": "At the beginning of phase 2, the chance of becoming pregnant is rather low. During phase 2, fertility increases and peaks at the end of phase 2 (the fertile window includes about 5 days before ovulation to 1 day after ovulation)."
+  },
+  "lutealInfoEarly": {
+    "title": "Early Luteal Phase",
+    "description": "The phase after ovulation until the start of the next menstruation. The corpus luteum produces progesterone, which prepares the uterine lining for the implantation of a fertilized egg. Progesterone can worsen the mood.",
+    "nutrition": [
+      "During the luteal phase, your body needs more energy (+ about 200 kcal/day). You may feel hungrier than usual.",
+      "Energy needs also increase with higher training intensity or volume! Ensure sufficient carbohydrate intake before and after training. Prefer complex carbohydrates like whole grains, oats, quinoa, brown rice",
+      "Also for longer training sessions --> Conscious intake of carbohydrates every hour",
+      "With increased training, your protein intake should also increase: Aim for a daily protein intake of about 1.6g per kg body weight. Protein drinks can help meet this need. Choose drinks with little added sugar.",
+      "Drink enough water, at least 1.5 - 2 liters + compensate for sweat loss during training",
+      "Meet your fat needs with healthy fats, e.g., fish, nuts and seeds, plant oils."
+    ],
+    "training": "Use the week after ovulation for high-intensity or high-volume sessions. This week is also great for strength and power training. In the second part of phase 3, you can reduce the intensity and focus on longer and less intense sessions.",
+    "health": "Shortly after ovulation, the chance of becoming pregnant is high. The chance decreases the further you are from ovulation."
+  },
+  "lutealInfoLate": {
+    "title": "Late Luteal Phase",
+    "description": "The phase after ovulation until the start of the next menstruation. The corpus luteum produces progesterone, which prepares the uterine lining for the implantation of a fertilized egg. Progesterone can worsen the mood.",
+    "nutrition": [
+      "During the luteal phase, your body needs more energy (+ about 200 kcal/day). You may feel hungrier than usual.",
+      "In this phase, focus on healthy fats and proteins to stay full longer and avoid cravings. When eating carbohydrates, choose high-quality carbohydrates with lots of fiber (oats, whole grains, brown rice, etc.) to keep your blood sugar levels stable and avoid mood swings (Benton, 2002)",
+      "Calcium supplementation can reduce negative symptoms (Bendich, 2000)",
+      "Other foods that may reduce negative symptoms are magnesium, vitamin D (Bendich, 2000), soy (isoflavones; Bryant et al., 2005), chaste tree (Swiss Olympic)",
+      "Avoid inflammatory foods (e.g., caffeine, alcohol, sugar, white flour products) (Femnetic Slides, 2024)"
+    ],
+    "training": "The 5 days before your next menstruation can be accompanied by unpleasant physical and mental symptoms. Listen to your body and plan short and light regeneration sessions (e.g., light jogging or cycling, yoga, walking). These can also help reduce unpleasant symptoms.",
+    "health": [
+      "In phase 4, ensure adequate (7-9h) and high-quality sleep to counteract any negative symptoms. Helpful tips:",
+      "Consistent sleep schedule",
+      "Keep the room dark and cool",
+      "Limit caffeine and alcohol",
+      "No screen time 1 hour before bedtime",
+      "No eating 2 hours before bedtime",
+      "In this phase, you are not fertile."
+    ]
+  },
+  "menstruationPhaseText": "Since you are in the menstruation phase, your mood, motivation, and energy may be lower than usual. Listen to your body and plan short, regenerative sessions with low intensity if needed. These sessions can also help reduce potential symptoms.",
+  "follicularPhaseText": "You are in the follicular phase. Rising estrogen levels help you feel confident and strong. If you feel good, this is the optimal time for more intense sessions! Plan more long or intensive training sessions. Strength and speed can also be trained well now.",
+  "earlyLutealPhaseText": "You are in the early luteal phase. The first week of this phase is generally good for high-intensity or high-volume sessions, as well as for strength and power training. If you are already in the second part of the early luteal phase, you can reduce the intensity and focus on longer and less intense sessions.",
+  "lateLutealPhaseText": "You are in the late luteal phase. If you experience unpleasant physical and mental symptoms, plan short and light regeneration sessions (e.g., light jogging, cycling, yoga, or walking). These can also help reduce potential unpleasant symptoms.",
+  "trsInfo": "Your Training Readiness Score is...",
+  "scores": {
+    "1": {
+      "description": "Your body is currently not optimally prepared for intense training. Here are some recommendations to support your recovery and reduce your strain:",
+      "recommendations": [
+        "Avoid intense training sessions and focus on regenerative measures instead.",
+        "Ensure sufficient sleep and a balanced diet to support your recovery.",
+        "Monitor your symptoms and adjust your training accordingly.",
+        ""
+      ]
+    },
+    "2": {
+      "description": "Your training readiness is moderate. Your body needs more recovery before you can go full throttle again. Here are some tips:",
+      "recommendations": [
+        "Reduce the intensity and volume of your training sessions to avoid overload.",
+        "Integrate more regenerative measures like stretching, light cardio, and relaxation techniques into your training plan.",
+        "Pay attention to your mood and try to include positive activities in your daily routine that motivate and relax you.",
+        "Continue to ensure a good diet and sufficient sleep to support your recovery."
+      ]
+    },
+    "3": {
+      "description": "Your training readiness is good, and you can continue your training as usual. Here are some recommendations to optimize your training readiness:",
+      "recommendations": [
+        "Continue your training as usual, but gradually increase your training volume.",
+        "Regularly carry out regenerative measures to support your recovery.",
+        "Continue to ensure a balanced diet and sufficient sleep to optimize your recovery.",
+        ""
+      ]
+    },
+    "4": {
+      "description": "Congratulations! You are optimally prepared for your training. Your body is well recovered and your strain is balanced. Here are some tips to make the most of your training:",
+      "recommendations": [
+        "Take the opportunity to perform intense and demanding training sessions and increase your performance.",
+        "Continue to ensure a good warm-up phase to prevent injuries.",
+        "Stick to your regenerative measures to maintain your high performance level.",
+        "Stay positive and motivated, and ensure a balanced diet and sufficient sleep to support your recovery and performance."
+      ]
+    }
+  },
+
+  "moodInfo": {
+    "1": {
+      "description": "Very bad:",
+      "advice": "It seems like you're having a very tough day. Try to move, even if it's just a short walk. Exercise can help clear your mind and lift your mood."
+    },
+    "2": {
+      "description": "Bad:",
+      "advice": "Your mood isn't great right now. Try a short, light exercise like stretching or yoga. These activities can help reduce tension and improve your mood."
+    },
+    "3": {
+      "description": "Average:",
+      "advice": "You feel okay, but there's room for improvement. Do a moderate workout, like a brisk walk, light jogging, or cycling. Physical activity, especially outdoors, can help release endorphins and boost your mood."
+    },
+    "4": {
+      "description": "Good:",
+      "advice": "Your mood is good, that's great to hear! Use this positive energy for a more intense workout. This can further improve your mood and enhance your fitness."
+    },
+    "5": {
+      "description": "Very good:",
+      "advice": "You seem to be feeling really good! Share your good mood with others by doing a group activity. Exercising together can be a lot of fun and further lift your spirits."
+    },
+    "6": {
+      "description": "Excellent:",
+      "advice": "You're radiating positive energy! Enjoy this moment to the fullest with a physical activity you particularly enjoy. Whether it's a long run, an intense bike ride, or a challenging fitness class, use this high mood for a great workout."
+    }
+  },
+
+  "acwrInfo": "Your ACWR value is ",
+
+  "strainInfo": {
+    "1": {
+      "description": "< 0.8 → Your training volume is currently relatively low. To continue making progress and achieving your training goals, we recommend:",
+      "recommendations": [
+        ">> Gradually increase your training volume to challenge your body and see improvements.",
+        ">> Include challenging workouts to boost your motivation and avoid performance plateaus.",
+        ">> Set specific goals and track your progress to stay continuously motivated.",
+        ""
+      ]
+    },
+    "2": {
+      "description": "0.8 ≤ ACWR < 1.5 → Your training volume is in the optimal range. You are on a good path to making progress and avoiding injuries. Our recommendations:",
+      "recommendations": [
+        ">> Continue your current training and gradually increase the volume in a controlled manner.",
+        ">> Incorporate varied workouts to target different muscle groups and keep motivation high.",
+        ">> Schedule regular rest days to give your body the necessary recovery.",
+        ">> Stay attentive to your body's signals and adjust your training as needed."
+      ]
+    },
+    "3": {
+      "description": "1.5 ≤ ACWR < 1.8 → You are highly motivated and your training volume is high! However, it's important to find a balance to avoid overloading and injuries. We recommend:",
+      "recommendations": [
+        ">> Reduce your training volume slightly for the next few days to give your body time to recover.",
+        ">> Regularly integrate recovery measures like stretching, yoga, or massages to support your recovery.",
+        ">> Listen to your body's signals and plan regular rest days to avoid overtraining.",
+        ">> Ensure a balanced diet and sufficient sleep to support your recovery."
+      ]
+    },
+    "4": {
+      "description": "≥ 1.8 → Attention! Your training volume is currently very high, and the risk of overload and injury increases. To protect yourself from injuries, we recommend:",
+      "recommendations": [
+        ">> Reduce the training volume and plan several rest days.",
+        ">> Focus more on active recovery such as light jogging, swimming, or relaxing activities.",
+        ">> Emphasize recovery measures, including massages, physiotherapy, or fascia training.",
+        ">> Pay attention to your body's warning signals."
+      ]
+    }
+  },
+
+  "freeInfo": {
+    "1": {
+      "description": "You are currently experiencing severe discomfort. It's important to listen to your body and take it easy:",
+      "recommendations": [
+        ">> Avoid intense physical activities and give yourself plenty of rest.",
+        ">> Opt for gentle movements like light stretching and walking to promote circulation without worsening the discomfort.",
+        ">> Heat treatments such as a warm bath or a hot water bottle can help alleviate cramps.",
+        ">> Consult a doctor if necessary to discuss appropriate measures to relieve your discomfort.",
+        ">> Pay special attention to a balanced diet and drink plenty of water."
+      ]
+    },
+    "2": {
+      "description": "You have significant discomfort. Here are some recommendations to alleviate your discomfort:",
+      "recommendations": [
+        ">> Significantly reduce your training volume and focus on recovery measures like light yoga or stretching.",
+        ">> Avoid strenuous exercises and instead choose gentle movements that do not cause pain.",
+        ">> Heat treatments and light massages can be helpful to relieve tension and pain.",
+        "",
+        ""
+      ]
+    },
+    "3": {
+      "description": "You have moderate discomfort. Here are some tips to manage your discomfort:",
+      "recommendations": [
+        ">> Reduce the intensity of your training and avoid exercises that could worsen the discomfort.",
+        ">> Regularly perform stretching and relaxation exercises to relieve your body.",
+        ">> Make sure to take regular breaks and give your body enough time to recover.",
+        "",
+        ""
+      ]
+    },
+    "4": {
+      "description": "You have mild discomfort. It's important to be aware and take preventive measures:",
+      "recommendations": [
+        ">> Slightly reduce training intensity and avoid exercises that could worsen the discomfort.",
+        ">> Regularly perform stretching exercises and light strengthening exercises to relieve the affected areas.",
+        ">> Heat or cold applications can help alleviate mild discomfort.",
+        ">> Maintain good posture and ergonomic movements in daily life to avoid additional strain.",
+        ""
+      ]
+    },
+    "5": {
+      "description": "You have very minor discomfort. Your training should not be affected by this.",
+      "recommendations": [
+        ">> Still pay attention to your body's signals and adjust your training as needed.",
+        ">> Heat or relaxation techniques can help prevent minor discomfort.",
+        "",
+        "",
+        ""
+      ]
+    },
+    "6": {
+      "description": "You have no discomfort. Perfect! You can continue your training optimally:",
+      "recommendations": [
+        ">> Continue your regular training program and gradually increase the intensity to achieve further progress.",
+        ">> Ensure a good warm-up phase to prevent injuries.",
+        ">> Regularly incorporate exercises to improve flexibility and stability.",
+        ">> Listen to your body and ensure sufficient recovery phases.",
+        ""
+      ]
+    }
+  },
+
+  "restInfo": {
+    "1": "You seem to be physically very exhausted. You should take a break from training. Additional recovery measures such as sauna, warm baths, massages, and fascia training can support the recovery process.",
+    "2": "Your recovery state is low. You should consider a recovery and compensation training. This means deliberately light sessions with very low intensity. To avoid unilateral stress, you can also choose another sport.",
+    "3": "Your recovery state is limited. You should reduce your training volume or intensity slightly.",
+    "4": "Your recovery state is not optimal. If this condition persists, you should reduce your training volume and intensity somewhat to avoid long-term overtraining.",
+    "5": "You seem to be well recovered. You can continue your training regimen as it is.",
+    "6": "You seem to be optimally recovered. You can consider increasing the training volume or intensity."
+  },
+
+  "onboarding": {
+    "start": {
+      "title": "Welcome to LunarFit.",
+      "description": "To get to know you and your cycle better, please answer the following questions about your body, your cycle, and your sports behavior.\n\nYour data will be treated confidentially and stored securely."
+    },
+    "onboardingStep1": {
+      "step": "Step 1:",
+      "title": "Person",
+      "fields": {
+        "firstName": "First Name",
+        "lastName": "Last Name",
+        "birthdate": "Birthdate",
+        "height": "Height in cm",
+        "weight": "Weight in kg"
+      }
+    },
+    "onboardingStep2": {
+      "step": "Step 2:",
+      "title": "Cycle",
+      "fields": {
+        "lastMenstruation": "On which day did your last menstruation start?",
+        "menstruationDuration": "How many days does your menstruation usually last?"
+      }
+    },
+    "onboardingStep3": {
+      "step": "Step 3:",
+      "title": "Cycle",
+      "fields": {
+        "hormonalContraception": "Do you use hormonal contraception?",
+        "contraceptionMethod": "Which contraceptive method do you use?",
+        "contraceptionOptions": [
+          "Pill",
+          "Hormonal IUD",
+          "Hormonal Implant",
+          "Three-Month Injection",
+          "Vaginal Ring",
+          "Other"
+        ]
+      }
+    },
+    "onboardingStep4": {
+      "step": "Step 4:",
+      "title": "Sports Behavior",
+      "fields": {
+        "trainingSessions": "How many training sessions per week did you have last month?",
+        "trainingDuration": "How long was each training session?"
+      }
+    },
+    "onboardingStep5": {
+      "step": "Step 5:",
+      "title": "Sports Behavior",
+      "description": "How intense were your training sessions on average last month?",
+      "slider": {
+        "topText": "Maximum Effort",
+        "bottomText": "No Effort"
+      }
+    },
+    "onboardingEnd": {
+      "title": "All Done!",
+      "description": "Thank you for answering the questions. Based on your answers, initial recommendations will be given.\n\nRemember: The more accurately you track your cycle and sports behavior, the more precise your recommendations will be."
+    }
+  },
+
+  "logCycle": {
+    "home": {
+      "title": "Cycle Log Entry",
+      "labels": {
+        "menstruation": "Menstruation",
+        "temperature": "Temperature",
+        "cervixMucus": "Cervical Mucus",
+        "cervixPosition": "Cervix Position",
+        "sex": "Sex",
+        "contraceptive": "Contraceptive",
+        "medicine": "Medicine",
+        "ovulationTest": "Ovulation Test",
+        "pregnancyTest": "Pregnancy Test"
+      }
+    },
+    "homeList": {
+      "title": "Customize List",
+      "labels": {
+        "menstruation": "Menstruation",
+        "temperature": "Temperature",
+        "cervixMucus": "Cervical Mucus",
+        "cervixPosition": "Cervix Position",
+        "sex": "Sex",
+        "contraceptive": "Contraceptive",
+        "medicine": "Medicine",
+        "ovulationTest": "Ovulation Test",
+        "pregnancyTest": "Pregnancy Test"
+      }
+    },
+    "cervix": {
+      "title": "Cervical Mucus",
+      "description": "Please select the applicable option:"
+    },
+    "contraceptive": {
+      "title": "Contraceptive",
+      "description": "Hormonal Contraceptives:",
+      "smallDescription": "Please note that the above contraceptives can affect your cycle.",
+      "options": [
+        "Pill",
+        "Hormonal IUD",
+        "Hormonal Implant",
+        "Three-Month Injection",
+        "Vaginal Ring",
+        "Other"
+      ]
+    },
+    "cervixPosition": {
+      "title": "Cervix Position",
+      "description": "Please select the applicable position:"
+    },
+    "medicine": {
+      "title": "Medicine",
+      "description": "Specific Medication Intake:",
+      "smallDescription": "Please note that the above medications can affect your cycle.",
+      "options": [
+        "Emergency Contraceptives",
+        "Hormone Replacement",
+        "Opioid Pain Relievers",
+        "Diclofenac/Ibuprofen"
+      ]
+    },
+    "mens": {
+      "title": "Menstruation",
+      "buttonLabel": "+  Menstruation",
+      "descriptionText": "Tap here if your menstruation started today.",
+      "buttonLabelActive": "Menstruation Active",
+      "descriptionTextActive": "Tap here if your menstruation has ended."
+    },
+    "ovulationTest": {
+      "title": "Ovulation Test",
+      "description": "Please select the applicable option:"
+    },
+    "pregnancyTest": {
+      "title": "Pregnancy Test",
+      "description": "Please select the applicable option:"
+    },
+    "sex": {
+      "title": "Sex",
+      "description": "Please select the applicable option:",
+      "options": [
+        "No Sex",
+        "Protected Sex",
+        "Unprotected Sex",
+        "Desire for Sex",
+        "Masturbation"
+      ]
+    },
+    "temperature": {
+      "title": "Temperature",
+      "description": "Temperature in °C:",
+      "descriptionTwo": "Interfering Factors*:",
+      "smallDescription": "*Interfering factors can include: fever, alcohol consumption, lack of sleep, stress, medications, other health issues. Please note that these factors can affect your cycle."
+    }
+  },
+  "logNotes": {
+    "title": "Notes",
+    "description": "Add a note:"
+  },
+  "logTrainingComplaints": {
+    "title": "Complaints",
+    "description": "Do you have any physical <br>complaints?",
+    "slider": {
+      "topText": "Very severe complaints",
+      "bottomText": "No complaints"
+    }
+  },
+  "logTrainingMood": {
+    "backButton": "arrow_back",
+    "title": "Mood",
+    "description": "How would you rate your <br>mood today?",
+    "slider": {
+      "topText": "Happy",
+      "bottomText": "Sad"
+    }
+  },
+  "logTrainingRecovery": {
+    "title": "Recovery",
+    "description": "How would you rate your <br>overall recovery state?",
+    "slider": {
+      "topText": "Recovered",
+      "bottomText": "Not recovered"
+    }
+  },
+  "logTrainingStrain": {
+    "title": "Training Strain",
+    "description": "How strenuous was your training session?",
+    "slider": {
+      "topText": "Extremely strenuous",
+      "bottomText": "Not strenuous at all"
+    }
+  },
+  "logTrainingStrainPre": {
+    "title": "Training Strain",
+    "description1": "Did you train today or yesterday?",
+    "trainingOptions": {
+      "prompt": "Which sport/activity did you perform?"
+    },
+    "durationOptions": {
+      "prompt": "How many minutes did you train?"
+    }
+  },
+  "calendarLegend": {
+    "0": "Period",
+    "1": "Predicted period",
+    "2": "Follicular phase"
+  },
+  "training-recommendation": {
+    "title": "Training Recommendation",
+    "description": "Based on your cycle and current state, we recommend the following training sessions:"
+  },
+  "symptoms": "Symptoms",
+  "trs": "Training Readiness Score",
+  "more-info": "Learn More",
+  "add": "Add",
+  "toolbar": {
+    "start": "Start",
+    "calendar": "Calendar",
+    "chat": "Chat",
+    "settings": "Settings"
+  },
+  "symptomsList": {
+    "bloating": "Bloating",
+    "breastPain": "Breast Pain",
+    "diarrhea": "Diarrhea",
+    "exhaustion": "Exhaustion",
+    "cold": "Feeling Cold",
+    "cravings": "Cravings",
+    "irritability": "Irritability",
+    "aches": "Body Aches",
+    "hotFlashes": "Hot Flashes",
+    "headaches": "Headaches",
+    "cramps": "Cramps",
+    "fatigue": "Fatigue",
+    "sleepIssues": "Sleep Issues",
+    "dizziness": "Dizziness",
+    "moodSwings": "Mood Swings",
+    "weakness": "Weakness",
+    "nausea": "Nausea",
+    "acne": "Acne",
+    "pelvicPain": "Pelvic Pain",
+    "constipation": "Constipation"
+  },
+  "moods": {
+    "anxious": "Anxious",
+    "excited": "Excited",
+    "relaxed": "Relaxed",
+    "fit": "Fit",
+    "frustrated": "Frustrated",
+    "happy": "Happy",
+    "stressed": "Stressed",
+    "tired": "Tired",
+    "nervous": "Nervous",
+    "weak": "Weak",
+    "confident": "Confident",
+    "sad": "Sad",
+    "unhappy": "Unhappy",
+    "insecure": "Insecure",
+    "angry": "Angry",
+    "embarrassed": "Embarrassed",
+    "confused": "Confused",
+    "furious": "Furious",
+    "satisfied": "Satisfied",
+    "optimistic": "Optimistic"
+  },
+  "save": "Save",
+  "cancel": "Cancel",
+  "track": "Track",
+  "email": "Email",
+  "password": "Password",
+  "confirm-password": "Confirm Password",
+  "register": {
+    "title": "Register",
+    "account": "Already have an account?",
+    "login-now": "Log in now"
+  },
+  "login": {
+    "title": "Log In",
+    "no-account": "Don't have an account?",
+    "register-now": "Register now"
+  },
+  "settings": {
+    "title": "Settings",
+    "profileCaps": "PROFILE",
+    "personal-info": "Personal Information",
+    "account-settings": "Account Settings",
+    "notificationsCaps": "NOTIFICATIONS",
+    "notifications": "Notifications",
+    "settingsCaps": "SETTINGS",
+    "language": "Language",
+    "logout": "Logout"
+  },
+  "profile": {
+    "title": "Profile",
+    "firstName": "First Name",
+    "lastName": "Last Name",
+    "birthdate": "Date of Birth",
+    "height": "Height in cm",
+    "weight": "Weight in kg",
+    "contraception": "Contraception",
+    "contraceptionOptions": [
+      "Pill",
+      "Hormonal IUD",
+      "Hormonal Implant",
+      "Three-month Injection",
+      "Vaginal Ring",
+      "Other"
+    ]
+  },
+  "account": {
+    "title": "Account",
+    "email": "Email",
+    "password": "Password",
+    "change-password": "Change Password"
+  },
+  "language": {
+    "title": "Language",
+    "german": "German",
+    "english": "English"
+  }
+}

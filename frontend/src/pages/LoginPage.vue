@@ -3,14 +3,15 @@
     <img alt="Lunafit logo" class="logo" src="../assets/LunaFit.svg" height="45" />
   </header>
   <div class="q-pa-lg q-gutter-sm">
-    <q-input color="teal" outlined v-model="email" label="E-Mail">
+    <q-input color="teal" outlined v-model="email" :label="$t('email')">
       <template v-slot:prepend>
         <q-icon>
           <img src="../assets/Communication.svg" alt="Email Icon" />
         </q-icon>
       </template>
     </q-input>
-    <q-input :type="showPassword ? 'text' : 'password'" color="teal" outlined v-model="password" label="Password">
+    <q-input :type="showPassword ? 'text' : 'password'" color="teal" outlined v-model="password"
+      :label="$t('password')">
       <template v-slot:prepend>
         <q-icon>
           <img src="../assets/System.svg" alt="Lock Icon" />
@@ -23,12 +24,12 @@
     </q-input>
   </div>
   <div class="q-pa-md q-gutter-sm row justify-center">
-    <q-btn no-caps rounded style="background: #50C1BA; color: white" label="Anmelden" padding="sm lg" size="16px"
+    <q-btn no-caps rounded style="background: #50C1BA; color: white" :label="$t('login.title')" padding="sm lg" size="16px"
       @click="loginUser" />
   </div>
   <p style="text-align: center;">
-    Noch keinen Account?
-    <router-link to="/register">Jetzt registrieren</router-link>
+    {{ $t('login.no-account') }}
+    <router-link to="/register">{{ $t('login.register-now') }}</router-link>
   </p>
 </template>
 

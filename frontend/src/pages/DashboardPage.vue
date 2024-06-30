@@ -6,10 +6,10 @@
       <q-card class="my-card" @click="navigateToCyclePage">
         <q-img class="top-left-png" src="/src/assets/CycleIcon.png" />
         <q-card-section class="card-content q-py-none">
-          <div class="text-h6">ZYKLUS</div>
+          <div class="text-h6">{{ $t('cycleTitle') }}</div>
           <CycleCircle />
-          <div class="text-p">
-            Erfahre jetzt mehr über deinen Zyklus
+          <div class="more-text">
+            {{ $t('moreCycleInfo') }}
             <img class="aligned-svg" src="/src/assets/ForwardArrow.svg" alt="Weiter" />
           </div>
         </q-card-section>
@@ -21,11 +21,12 @@
       <q-card class="my-card" @click="navigateToTrainingPage">
         <q-img class="top-left-png" src="/src/assets/TrainingIcon.png" />
         <q-card-section class="card-content q-py-none">
-          <div class="text-h6">TRAINING</div>
+          <div class="text-h6">{{ $t('trainingTitle') }}</div>
           <div style="position: relative;">
           <TrsSunburst />
+          <div class="browser-svg-container">
           <!-- Add your SVG paths and text labels here -->
-          <svg style="position: absolute; top: -1; left: 10;" width="250" height="250" viewBox="0 0 57 57">
+          <svg width="240" height="240" viewBox="0 0 57 57">
               <!-- Paths for the text labels -->
               <path id="path1" d="M 30,30 m -26,0 a 26,26 0 1,1 52,0 a 26,26 0 1,1 -52,0" fill="transparent" />
               <path id="path2" d="M 30,30 m -26,0 a 26,26 0 1,0 52,0 a 26,26 0 1,0 -52,0" fill="transparent" />
@@ -33,31 +34,32 @@
               <!-- Text labels for the segments -->
               <text fill="#000" font-size="3">
                 <textPath href="#path1" startOffset="35%">
-                  Belastung
+                  {{ $t('strain') }}
                 </textPath>
               </text>
 
               <text fill="#000" font-size="3">
                 <textPath href="#path2" startOffset="10%">
-                  Erholung
+                  {{ $t('rest') }}
                 </textPath>
               </text>
 
               <text fill="#000" font-size="3">
                 <textPath href="#path1" startOffset="8%">
-                  Stimmung
+                  {{ $t('mood') }}
                 </textPath>
               </text>
 
               <text fill="#000" font-size="3">
                 <textPath href="#path2" startOffset="32%">
-                  Beschwerdefreiheit
+                  {{ $t('free') }}
                 </textPath>
               </text>
             </svg>
         </div>
-          <div class="text-p">
-            Erfahre jetzt mehr über dein Training
+      </div>
+          <div class="more-text">
+            {{ $t('moreTrainingInfo') }}
             <img class="aligned-svg" src="/src/assets/ForwardArrow.svg" alt="Weiter" />
           </div>
         </q-card-section>
@@ -108,7 +110,7 @@ export default {
   display: flex;
   flex-direction: column;
   align-items: center;
-  padding-bottom: 16px;
+  padding-bottom: 8px;
   padding-top: 8px;
 }
 
@@ -123,5 +125,16 @@ export default {
   left: 14px;
   max-width: 37px;
   max-height: 37px;
+}
+
+.more-text {
+  padding-left: 1.2rem;
+}
+
+/* Browser-specific styles */
+.browser-svg-container {
+  position: absolute;
+  top: 0;
+  left: 10px;
 }
 </style>
