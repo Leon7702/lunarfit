@@ -155,13 +155,14 @@ export default {
         cycleLength.value = response.data.cycleLength;
         currentDay.value = response.data.currentDay;
 
+        // TODO: Calculate currentPhase depending on phaseProportion (needs to be calculated) --> 0.2, 0.5. 0.8 --> needs to b dynamic
         // FIXME: fix edge cases due to rounding errors --> see calculation
         const currentPhase = currentDay.value / cycleLength.value;
         if (currentPhase <= 0.2) {
           slide.value = 'menstruation';
         } else if (currentPhase <= 0.5) { // Adjusted to 0.5 for clarity in phases
           slide.value = 'follicular';
-        } else if (currentPhase <= 0.6) {
+        } else if (currentPhase <= 0.8) {
           slide.value = 'lutealEarly';
         } else {
           slide.value = 'lutealLate';

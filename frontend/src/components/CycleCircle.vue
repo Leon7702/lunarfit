@@ -6,21 +6,26 @@
         <!-- Each circle represents a segment of the donut chart -->
         <!-- The stroke-dasharray property controls the length and spacing of the dashes, creating the donut effect -->
         <!-- The stroke-dashoffset property controls where the dash pattern starts -->
+        <!-- TODO: calculate stroke dasharray based on proportion values -->
+        <!-- TODO: determine stroke-dashoffset value -> always staring at 25 for mensPhase -->
         <circle class="donut-segment" cx="21" cy="21" r="15.91549430918954" fill="transparent" stroke="#50C1BA"
           stroke-width="5" stroke-dasharray="20 80" stroke-dashoffset="25"></circle>
 
         <circle class="donut-segment" cx="21" cy="21" r="15.91549430918954" fill="transparent" stroke="#9CD3D0"
-          stroke-width="5" stroke-dasharray="30 70" stroke-dashoffset="105"></circle>
+          stroke-width="5" stroke-dasharray="30 70" stroke-dashoffset="5"></circle>
 
         <circle class="donut-segment" cx="21" cy="21" r="15.91549430918954" fill="transparent" stroke="#2D8781"
-          stroke-width="5" stroke-dasharray="10 90" stroke-dashoffset="75"></circle>
+          stroke-width="5" stroke-dasharray="30 70" stroke-dashoffset="75"></circle>
 
         <circle class="donut-segment" cx="21" cy="21" r="15.91549430918954" fill="transparent" stroke="#93EDE8"
-          stroke-width="5" stroke-dasharray="40 60" stroke-dashoffset="65"></circle>
+          stroke-width="5" stroke-dasharray="20 80" stroke-dashoffset="45"></circle>
 
         <!-- Paths for the text labels -->
         <path id="myPath1" d="M25 6 A15.91549430918954 15 0 0 1 35 15" fill="transparent"></path>
-        <path id="myPath2" d="M32.5 33 A15.91549430918954 15 0 0 0 5 10" fill="transparent"></path>
+        <!-- <path id="myPath5" d="M32.5 33 A15.91549430918954 15 0 0 0 5 10" fill="transparent"></path> Follikelphase alt -->
+        <path id="myPath2" d="M25 5 A15.91549430918954 15 0 0 0 9 10" fill="transparent"></path>
+        <path id="myPath3" d="M22 6 A15.91549430918954 15 0 0 1 35 15" fill="transparent"></path>
+        <path id="myPath4" d="M25 5 A15.91549430918954 15 0 0 0 9 10" fill="transparent"></path>
 
         <!-- Text labels for the segments -->
         <!-- The textPath element allows the text to follow the path defined above -->
@@ -30,21 +35,21 @@
           </textPath>
         </text>
 
-        <text fill="#000" font-size="2" transform="rotate(12 21 21)">
+        <text fill="#000" font-size="2" transform="rotate(130 21 21)">
           <textPath href="#myPath2">
             Follikelphase
           </textPath>
         </text>
 
-        <text fill="#fff" font-size="2" transform="rotate(76 21 21)">
-          <textPath href="#myPath2">
-            Ovulation
+        <text fill="#fff" font-size="2" transform="rotate(245 21 21)">
+          <textPath href="#myPath4">
+            frühe Lutealphase
           </textPath>
         </text>
 
-        <text fill="#000" font-size="2" transform="rotate(255 21 21)">
-          <textPath href="#myPath1">
-            Luthealphase
+        <text fill="#000" font-size="2" transform="rotate(288 21 21)">
+          <textPath href="#myPath3">
+            späte Lutealphase
           </textPath>
         </text>
         <!-- <text x="20" y="5.5" text-anchor="middle" fill="#fff" dy=".3em" font-size="2"
