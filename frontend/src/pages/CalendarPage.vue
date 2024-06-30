@@ -20,7 +20,7 @@
     <table>
       <!-- Header row with days of the week -->
       <tr>
-        <th>{{ $t('weekdays_short[1]') }} </th>
+        <th>{{ $t('weekdays_short[1]') }}</th>
         <th>{{ $t('weekdays_short[2]') }}</th>
         <th>{{ $t('weekdays_short[3]') }}</th>
         <th>{{ $t('weekdays_short[4]') }}</th>
@@ -72,7 +72,6 @@
     <div class="training-recommendation-container">
       <div class="training-recommendation-header">
         {{ $t('training-recommendation.title') }}
-        <router-link to="/r">{{ $t('more-info') }}</router-link>
       </div>
       <div class="training-recommendation-text">
         {{ $t('training-recommendation.description') }}
@@ -87,7 +86,7 @@
     <hr class="separator">
     <SectionContainer :title="$t('mood')" link="/mood" :linkText="$t('add')" />
     <hr class="separator">
-    <SectionContainer :title="$t('trs')" link="/" :linkText="$t('more-info')" />
+    <SectionContainer :title="$t('trs')" link="/trs" :linkText="$t('more-info')" />
   </div>
 </template>
 
@@ -229,37 +228,41 @@ export default {
 </script>
 
 <style>
+/* General styles */
+body {
+  margin: 0;
+  padding: 0;
+  font-family: Inter, sans-serif;
+}
+
 table {
   width: 100%;
   table-layout: fixed;
-  margin: 0 auto;
-  margin-top: 20px;
+  margin: 20px 0;
 }
 
 th,
 td {
   text-align: center;
-  padding: 0px;
+  padding: 0;
   padding-bottom: 10px;
   margin: 0;
   box-sizing: border-box;
+  cursor: pointer;
 }
 
 th {
-  width: 350px/7px;
   color: #6C7072;
-  ;
 }
 
 a {
   color: #50c1ba;
   font-weight: bold;
-  font-size: 14px;
   text-decoration: none;
 }
 
 p {
-  font-size: 14px;
+  font-size: 1rem;
   margin: 20px;
   padding-top: 10px;
 }
@@ -269,22 +272,20 @@ p {
   justify-content: space-between;
   align-items: center;
   padding: 10px;
-  margin-top: 46px;
+  margin: 46px auto 0;
   width: 80%;
-  margin: 0 auto;
 }
 
 .month-year {
   color: #000;
   text-align: center;
-  font-size: 20px;
-  font-style: normal;
+  font-size: 1.25rem;
   font-weight: 600;
-  line-height: 31px;
+  line-height: 1.5;
 }
 
 .navButton {
-  font-size: 8px;
+  font-size: 0.5rem;
   cursor: pointer;
 }
 
@@ -292,9 +293,8 @@ p {
   display: flex;
   justify-content: center;
   align-items: center;
-  width: 30px;
-  height: 30px;
-  line-height: 30px;
+  width: 2rem;
+  height: 2rem;
   border-radius: 50%;
   text-align: center;
   margin: auto;
@@ -324,21 +324,17 @@ p {
   display: flex;
   justify-content: center;
   align-items: center;
-  width: 40px;
-  height: 40px;
+  width: 2.5rem;
+  height: 2.5rem;
   cursor: pointer;
 }
 
 .navButtonImage {
-  width: 20px;
-  height: 20px;
+  width: 1.25rem;
+  height: 1.25rem;
 }
 
-
-.previous-month {
-  color: #b0b0b0;
-}
-
+.previous-month,
 .next-month {
   color: #b0b0b0;
 }
@@ -355,15 +351,13 @@ p {
 }
 
 .legend-item .day-circle {
-  width: 15px;
-  height: 15px;
-  line-height: 15px;
-  border-radius: 50%;
+  width: 1rem;
+  height: 1rem;
 }
 
 .legend-label {
-  margin-left: 5px;
-  font-size: 12px;
+  margin-left: 0.25rem;
+  font-size: 0.75rem;
   color: #72777A;
 }
 
@@ -380,14 +374,13 @@ p {
 
 .current-day {
   color: #090A0A;
-  font-size: 18px;
-  font-style: normal;
+  font-size: 1.125rem;
   font-weight: 600;
   margin-top: 5px;
 }
 
 .log-button {
-  font-size: 14px;
+  font-size: 0.875rem;
 }
 
 .separator {
@@ -407,23 +400,21 @@ p {
   justify-content: space-between;
   align-items: center;
   color: #000;
-  font-size: 16px;
-  font-style: normal;
+  font-size: 1rem;
   font-weight: 600;
-  line-height: 21px;
+  line-height: 1.5;
 }
 
 .training-recommendation-text {
-  font-size: 14px;
-  font-style: normal;
+  font-size: 0.875rem;
   font-weight: 400;
-  line-height: 18px;
+  line-height: 1.5;
   padding-top: 18px;
 }
 
 @media only screen and (min-width: 200px) {
   .container {
-    max-width: 350px;
+    max-width: 22rem;
     margin: auto;
     margin-top: 20px;
   }
