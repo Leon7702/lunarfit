@@ -1,7 +1,7 @@
 <template>
   <div class="row">
     <div class="item icon-container">
-      <img :src="icon" alt="Icon" class="icon">
+      <span class="icon">{{ icon }}</span>
     </div>
     <div class="item text-container" v-if="!showSlider">
       <span class="text">{{ text }}</span>
@@ -15,6 +15,7 @@
     </div>
   </div>
 </template>
+
 
 
 
@@ -61,48 +62,44 @@ export default {
     }
   }
 };
+
 </script>
 
-<style scoped>
+<style>
 .row {
   display: flex;
   align-items: center;
   border-bottom: 1px solid #ccc;
-  padding: 10px 0;
-  height: 60px;
-  /* Fixed height for the row */
+  padding: 0.625rem 0;
+  height: 3.75rem;
 }
 
 .item {
   display: flex;
   align-items: center;
   height: 100%;
-  /* Ensure items fill the row height */
 }
 
 .icon-container {
-  flex: 0 0 40px;
-  /* Fixed width for the icon container */
+  flex: 0 0 2.5rem;
   justify-content: center;
 }
 
 .text-container {
   flex: 1;
-  /* Allow text to take the remaining space */
   justify-content: flex-start;
   color: #000;
-  font-size: 16px;
-  font-style: normal;
+  font-size: 1rem;
   font-weight: 400;
-  line-height: 24px;
-  /* 150% */
-  padding-left: 15px;
-  /* Adjust padding to ensure consistent space */
+  line-height: 1.5rem;
+  /* 24px */
+  padding-left: 0.9375rem;
+  /* 15px */
 }
 
 .button-container {
-  flex: 0 0 80px;
-  /* Fixed width for the button container */
+  flex: 0 0 5rem;
+  /* 80px */
   justify-content: center;
 }
 
@@ -110,9 +107,11 @@ export default {
   background-color: #50c1ba;
   color: white;
   border: none;
-  padding: 5px 10px;
+  padding: 0.3125rem 0.625rem;
+  /* 5px 10px */
   cursor: pointer;
-  border-radius: 4px;
+  border-radius: 0.25rem;
+  /* 4px */
 }
 
 .track-button:hover {
@@ -123,37 +122,38 @@ export default {
   display: flex;
   align-items: center;
   flex: 1;
-  /* Allow slider to take the remaining space */
-  padding: 0 15px;
-  /* Add padding for better spacing */
+  padding: 0 0.9375rem;
+  /* 15px */
   height: 100%;
-  /* Ensure slider-container fills the row height */
 }
 
 .icon {
-  width: 30px;
-  height: 30px;
+  font-size: 1.875rem;
+  /* 30px */
 }
 
 .text {
-  font-size: 16px;
+  font-size: 1rem;
+  /* 16px */
 }
 
 .slider {
   flex: 1;
-  margin-right: 15px;
-  /* Space between slider and button */
-  max-height: 40px;
-  /* Ensure slider does not exceed a certain height */
+  margin-right: 0.9375rem;
+  /* 15px */
+  max-height: 2.5rem;
+  /* 40px */
 }
 
 .cancel-button {
   background-color: #f44336;
   color: white;
   border: none;
-  padding: 5px 10px;
+  padding: 0.3125rem 0.625rem;
+  /* 5px 10px */
   cursor: pointer;
-  border-radius: 4px;
+  border-radius: 0.25rem;
+  /* 4px */
 }
 
 .cancel-button:hover {
