@@ -1,6 +1,8 @@
 // src/i18n/index.js
 import de from './de.json';
+import en from './en.json';
 
 export default {
-  de
+  de,
+  en
 };
