@@ -173,13 +173,14 @@ export default {
     },
     // Format the current day for display
     currentDayFormatted() {
+      const locale = this.$i18n.locale;
       let date;
       if (this.selectedDay !== null) {
         date = new Date(this.date.year, this.date.month, this.selectedDay);
       } else {
         date = new Date(this.date.year, this.date.month, this.date.day);
       }
-      return date.toLocaleDateString('de-DE', {
+      return date.toLocaleDateString(locale, {
         weekday: 'long',
         day: '2-digit',
         month: 'long',

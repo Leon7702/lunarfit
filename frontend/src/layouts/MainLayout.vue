@@ -29,7 +29,8 @@
         </div>
         <div class="toolbar-item" @click="goToSettings" :class="{ 'active-tab': activeTab === 'settings' }">
           <img :src="getIconSrc('Settings')" class="toolbar-icon" alt="Settings" />
-          <div class="toolbar-label" :class="{ 'active-label': activeTab === 'settings' }">Einstellungen</div>
+          <div class="toolbar-label" :class="{ 'active-label': activeTab === 'settings' }">{{ $t('toolbar.settings') }}
+          </div>
         </div>
       </q-toolbar>
     </q-footer>
