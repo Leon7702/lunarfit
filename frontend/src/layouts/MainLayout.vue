@@ -39,7 +39,7 @@
 export default {
   data() {
     return {
-      activeTab: 'home',
+      activeTab: '',
     };
   },
   methods: {
@@ -59,7 +59,7 @@ export default {
       this.$router.push('/calendar');
     },
     goToLogEntry() {
-      this.activeTab = 'log'; // Ensure this matches your route name or path
+      this.activeTab = 'log';
       localStorage.setItem('activeTab', 'log');
       this.$router.push('/log');
     },
@@ -75,11 +75,13 @@ export default {
     }
   },
   mounted() {
-    const savedTab = localStorage.getItem('activeTab');
-    if (savedTab) {
-      this.activeTab = savedTab;
-    } else {
-      const currentRoute = this.$route.path.substring(1);
+    const currentRoute = this.$route.path.substring(1);
+    this.activeTab = currentRoute || 'home';
+    localStorage.setItem('activeTab', this.activeTab);
+  },
+  watch: {
+    $route(to) {
+      const currentRoute = to.path.substring(1);
       this.activeTab = currentRoute || 'home';
       localStorage.setItem('activeTab', this.activeTab);
     }
