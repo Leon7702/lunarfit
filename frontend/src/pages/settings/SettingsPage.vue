@@ -9,7 +9,7 @@
     <div class="q-md" style="max-width: 100%">
       <q-list>
         <q-item-label header class="q-pt-xl q-pb-xs">{{ $t('settings.profileCaps') }}</q-item-label>
-        <q-item clickable v-ripple class="q-mb-xs grey-background" @click="navigateToProfile">
+        <q-item clickable v-ripple.early class="q-mb-xs grey-background" @click="navigateToProfile">
           <q-item-section side>
             <img src="/src/assets/ProfileIcon.svg">
           </q-item-section>
@@ -21,7 +21,7 @@
           </q-item-section>
         </q-item>
 
-        <q-item clickable v-ripple class="grey-background" @click="navigateToAccount">
+        <q-item clickable v-ripple.early class="grey-background" @click="navigateToAccount">
           <q-item-section side>
             <img src="/src/assets/SettingsIcon.svg">
           </q-item-section>
@@ -37,7 +37,7 @@
       <q-list>
         <q-item-label header class="q-pt-lg q-pb-xs">{{ $t('settings.notificationsCaps') }}</q-item-label>
 
-        <q-item tag="label" v-ripple class="grey-background2">
+        <q-item tag="label" v-ripple.early class="grey-background2">
           <q-item-section side>
             <img src="/src/assets/NotificationIcon.svg">
           </q-item-section>
@@ -52,7 +52,7 @@
 
       <q-list>
         <q-item-label header class="q-pt-lg q-pb-xs">{{ $t('settings.settingsCaps') }}</q-item-label>
-        <q-item clickable v-ripple class="q-mb-xs grey-background" @click="navigateToLanguage">
+        <q-item clickable v-ripple.early class="q-mb-xs grey-background" @click="navigateToLanguage">
           <q-item-section side>
             <img src="/src/assets/GlobeIcon.svg">
           </q-item-section>
@@ -64,7 +64,7 @@
           </q-item-section>
         </q-item>
 
-        <q-item clickable v-ripple class="grey-background" @click="logout">
+        <q-item clickable v-ripple.early class="grey-background" @click="logout">
           <q-item-section side>
             <img src="/src/assets/LogoutIcon.svg">
           </q-item-section>
