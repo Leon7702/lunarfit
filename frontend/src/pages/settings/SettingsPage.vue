@@ -110,6 +110,7 @@ export default {
     logout() {
       const authStore = useAuthStore();
       authStore.logout();
+      localStorage.removeItem('activeTab');
       this.$router.push('/login');
     }
   }
