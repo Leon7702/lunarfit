@@ -294,7 +294,7 @@
   "onboarding": {
     "start": {
       "title": "Willkommen bei LunarFit.",
-      "description": "Um dich und deinen Zyklus besser kennenzulernen, beantworte bitte die folgenden Fragen über deinen Körper, deinen Zyklus und dein Sportverhalten.\n\nDeine Daten werden streng vertraulich behandelt und sicher aufbewahrt."
+      "description": "Um dich und deinen Zyklus besser kennenzulernen, beantworte bitte die folgenden Fragen über deinen Körper, deinen Zyklus und dein Sportverhalten. Deine Daten werden streng vertraulich behandelt und sicher aufbewahrt."
     },
     "onboardingStep1": {
       "step": "Schritt 1:",
@@ -316,27 +316,27 @@
       }
     },
     "onboardingStep3": {
-      "step": "Schritt 3:",
-      "title": "Zyklus",
-      "fields": {
-        "hormonalContraception": "Verhütest du hormonell?",
-        "contraceptionMethod": "Welches Verhütungsmittel nutzt du?",
-        "contraceptionOptions": [
-          "Pille",
-          "Hormonspirale",
-          "Hormonimplantat",
-          "Dreimonatsspritze",
-          "Vaginalring",
-          "Sonstiges"
-        ]
-      }
-    },
+        "step": "Schritt 3:",
+        "title": "Zyklus",
+        "fields": {
+          "hormonalContraception": "Verhütest du hormonell?",
+          "contraceptionMethod": "Welches Verhütungsmittel nutzt du?",
+          "contraceptionOptions": {
+            "pille": "Pille",
+            "hormonspirale": "Hormonspirale",
+            "hormonimplantat": "Hormonimplantat",
+            "dreimonatsspritze": "Dreimonatsspritze",
+            "vaginalring": "Vaginalring",
+            "sonstiges": "Sonstiges"
+          }
+        }
+      },
     "onboardingStep4": {
       "step": "Schritt 4:",
       "title": "Sportverhalten",
       "fields": {
-        "trainingSessions": "Wie viele Trainingseinheiten pro Woche hattest du im letzten Monat?",
-        "trainingDuration": "Wie lange dauerte eine Trainingseinheit?"
+        "trainingSessions": "Wie viele Trainingseinheiten pro Woche hast du hattest du im letzten Monat?",
+        "trainingDuration": "Wie lange dauerte eine Trainingseinheit im Durchschnitt in Minuten?"
       }
     },
     "onboardingStep5": {
@@ -404,16 +404,16 @@
       "description": "Bitte zutreffende Position auswählen:"
     },
     "medicine": {
-      "title": "Medikamente",
-      "description": "Spezifische Medikamenteneinnahme:",
-      "smallDescription": "Bitte beachten Sie, dass die oben genannten Medikamente Einfluss auf Ihren Zyklus haben können.",
-      "options": [
-        "Notfallkontrazeptiva",
-        "Hormonersatz",
-        "Opiode Schmerzmittel",
-        "Diclofenac/Ibuprofen"
-      ]
-    },
+        "title": "Medikamente",
+        "description": "Spezifische Medikamenteneinnahme:",
+        "smallDescription": "Bitte beachten Sie, dass die oben genannten Medikamente Einfluss auf Ihren Zyklus haben können.",
+        "options": {
+          "notfallkontrazeptiva": "Notfallkontrazeptiva",
+          "hormonersatz": "Hormonersatz",
+          "opioideSchmerzmittel": "Opiode Schmerzmittel",
+          "diclofenacIbuprofen": "Diclofenac/Ibuprofen"
+        }
+      },
     "mens": {
       "title": "Menstruation",
       "buttonLabel": "+  Menstruation",
@@ -623,6 +623,10 @@
     "title": "Sprache",
     "german": "Deutsch",
     "english": "Englisch"
+  },
+  
+  "buttons": {
+    "next": "Weiter"
   }
 
 }

@@ -3,13 +3,7 @@
       <img src="/src/assets/Image_OnboardingStart.svg" alt="Welcome Image" class="image" />
       <div class="welcome-text">
         <h1 class="title">{{ $t('onboarding.start.title')}}</h1>
-        <p class="description">
-          Um dich und deinen Zyklus besser kennenzulernen, beantworte bitte die
-          folgenden Fragen über deinen Körper, deinen Zyklus und dein Sportverhalten.
-          <br />
-          <br />
-          Deine Daten werden streng vertraulich behandelt und sicher aufbewahrt.
-        </p>
+        <p class="description">{{ $t('onboarding.start.description')}}</p>
       </div>
       <div class="button-container">
         <StandardButton label="Weiter" @click="navigateToOnboardingStep1" />

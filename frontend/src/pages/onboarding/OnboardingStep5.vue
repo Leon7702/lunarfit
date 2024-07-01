@@ -4,28 +4,27 @@
       <BackButtonText />
       <img src="/src/assets/Step4.svg" alt="Person form" class="person-image" />
       <h2 class="form-step">
-        <span class="form-step-highlight">Schritt 4:</span> Sportverhalten
+        <span class="form-step-highlight">{{ $t('onboarding.onboardingStep4.step') }}</span> {{ $t('onboarding.onboardingStep4.title') }}
       </h2>
       <div class="form-group">
-        <p>Wie viele Trainingseinheiten pro Woche hast du hattest du im letzten Monat?</p>
+        <p>{{ $t('onboarding.onboardingStep4.fields.trainingSessions') }}</p>
         <FormFieldText id="count" label="" iconName="" inputType="number" />
       </div>
       <div class="form-group">
-        <p>Wie lange dauerte eine Trainingseinheit im Durchschnitt in Minuten?</p>
+        <p>{{ $t('onboarding.onboardingStep4.fields.trainingDuration') }}</p>
         <FormFieldText id="duration" label="" iconName="" inputType="number" />
       </div>
     </div>
     <div class="button-container">
-      <StandardButton label="Weiter" @click="navigateToNextStep" />
+      <StandardButton :label="$t('buttons.next')" @click="navigateToNextStep" />
     </div>
   </div>
-  
-  </template>
-  
-  <script>
-  import StandardButton from 'components/StandardButton.vue';
+</template>
+
+<script>
+import StandardButton from 'components/StandardButton.vue';
 import BackButtonText from 'components/BackButtonText.vue';
-import FormFieldText from 'src/components/FormFieldText.vue';
+import FormFieldText from 'components/FormFieldText.vue';
 
 export default {
   components: {
@@ -42,8 +41,8 @@ export default {
     }
   }
 };
+</script>
 
-  </script>
   
   <style scoped>
   .welcome-container {

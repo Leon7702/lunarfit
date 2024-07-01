@@ -80,7 +80,15 @@ export default {
   padding-right: 30px;
 }
 
-.description,
+.description {
+  margin-top: 30px;
+  text-align: left;
+  width: 100%;
+  font-size: 16px;
+  font-weight: 500;
+  margin-bottom: 10px;
+}
+
 .description-two {
   text-align: left;
   width: 100%;
