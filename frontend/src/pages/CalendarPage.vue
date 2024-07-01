@@ -1,4 +1,5 @@
 <template>
+  <div class="size-container">
   <div class="container">
     <!-- Header with navigation buttons and current month/year display -->
     <div class="header">
@@ -88,6 +89,7 @@
     <hr class="separator">
     <SectionContainer :title="$t('trs')" link="/trs" :linkText="$t('more-info')" />
   </div>
+</div>
 </template>
 
 <script>
@@ -228,6 +230,7 @@ export default {
 </script>
 
 <style>
+
 /* General styles */
 body {
   margin: 0;
@@ -412,11 +415,5 @@ p {
   padding-top: 18px;
 }
 
-@media only screen and (min-width: 200px) {
-  .container {
-    max-width: 22rem;
-    margin: auto;
-    margin-top: 20px;
-  }
-}
+
 </style>

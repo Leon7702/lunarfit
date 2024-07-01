@@ -4,9 +4,10 @@
       <q-page-container>
         <router-view />
       </q-page-container>
-
       <q-footer class="footer-toolbar">
+        <div class="size-container">
         <div class="footer-divider"></div>
+        
         <q-toolbar class="footer-toolbar-content">
           <div class="toolbar-item" @click="goToHome" :class="{ 'active-tab': activeTab === 'home' }">
             <img :src="getIconSrc('Home')" class="toolbar-icon" alt="Home" />
@@ -32,6 +33,7 @@
               }}</div>
           </div>
         </q-toolbar>
+      </div>
       </q-footer>
     </q-layout>
   </div>
@@ -156,19 +158,5 @@ export default {
   color: #50C1BA;
 }
 
-@media only screen and (min-width: 200px) {
-  .footer-divider {
-    height: 1px;
-    background-color: #e0e0e0;
-    max-width: 360px;
-  }
 
-  .footer-toolbar {
-    background-color: white;
-    padding-bottom: 5px;
-    max-width: 360px;
-    margin-left: auto;
-    margin-right: auto;
-  }
-}
 </style>
