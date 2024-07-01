@@ -1,1 +1,32 @@
 // app global css in SCSS form
+
+/* Mobile screens (default) */
+.size-container {
+    width: 100%;
+    max-width: 360px;
+    margin: auto;
+    margin-top: 5%;
+  }
+
+@media only screen and (min-width: 768px) and (max-width: 1199px) {
+    .size-container {
+      max-width: 450px;
+      margin-top: 5%;
+    }
+  }
+  
+  /* Large desktops */
+  @media only screen and (min-width: 1200px) {
+    .size-container {
+      max-width: 30%;
+      margin-top: 5%;
+    }
+  }
+  
+  /* Extra-large screens */
+  @media only screen and (min-width: 1600px) {
+    .size-container {
+      max-width: 25%;
+      margin-top: 5%;
+    }
+  }
