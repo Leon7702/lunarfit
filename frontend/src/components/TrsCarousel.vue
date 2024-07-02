@@ -1,7 +1,7 @@
 <template>
   <div class="q-px-md">
     <div class="row justify-center">
-      <q-btn-toggle v-model="slide" :options="[
+      <q-btn-toggle class="toggle-border" size="sm" v-model="slide" :options="[
         { label: '1', value: 'training' },
         { label: '2', value: 'mood' },
         { label: '3', value: 'strain' },
@@ -12,8 +12,8 @@
     <div class="carousel-container">
       <div class="q-gutter-md">
         <q-carousel v-model="slide" transition-prev="slide-right" transition-next="slide-left" swipeable animated
-          control-color="black" navigation-icon="radio_button_unchecked" navigation padding
-          :style="{ height: '80vh', width: '45vh' }" class="shadow-1 rounded-borders border-black">
+          control-color="black" padding
+          :style="{ height: '80vh', width: '45vh' }">
 
           <q-carousel-slide name="training" class="column no-wrap flex-center">
             <q-scroll-area class="fit">
@@ -259,6 +259,10 @@ ul {
   width: 100%;
   /* max-width: 250%; */
   max-width: 100vw;
+}
+
+.toggle-border {
+  border: 1px solid #D9D9D9;
 }
 
 .carousel-container {

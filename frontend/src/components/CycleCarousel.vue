@@ -2,7 +2,7 @@
   <div class="q-px-md">
     <div class="row justify-center">
       <!-- Quasar button toggle component to switch between slides -->
-      <q-btn-toggle v-model="slide" :options="[
+      <q-btn-toggle class="toggle-border" size="sm" v-model="slide" :options="[
         { label: '1', value: 'menstruation' },
         { label: '2', value: 'follicular' },
         { label: '3', value: 'lutealEarly' },
@@ -12,8 +12,8 @@
     <div class="q-gutter-md">
       <!-- Quasar carousel component to display in total 4 slides -->
       <q-carousel v-model="slide" transition-prev="slide-right" transition-next="slide-left" swipeable animated
-        control-color="black" navigation-icon="radio_button_unchecked" navigation padding :style="{ height: '80vh' }"
-        class="shadow-1 rounded-borders border-black">
+        control-color="black" padding :style="{ height: '80vh' }"
+        class="">
 
         <!-- Carousel slide for menstruation -->
         <q-carousel-slide name="menstruation" class="column no-wrap flex-center">
@@ -187,9 +187,6 @@ export default {
 
 
 <style scoped>
-.border-black {
-  border: 1px solid black;
-}
 
 .my-card {
   width: 100%;
@@ -199,6 +196,10 @@ export default {
 .cycle-image {
   max-width: 100%;
   padding-top: 16px;
+}
+
+.toggle-border {
+  border: 1px solid #D9D9D9;
 }
 
 li {
