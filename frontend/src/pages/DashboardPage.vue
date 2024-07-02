@@ -1,6 +1,7 @@
 <template>
+  <div class="size-container">
   <!-- TODO: Change size of the cards, because needs to fit with the toolbar in one screen. -->
-  <main class="card-container">
+  <div class="card-container">
     <!-- Card for Cycle information -->
     <div class="q-pa-sm q-pt-lg">
       <q-card class="my-card" @click="navigateToCyclePage">
@@ -65,7 +66,8 @@
         </q-card-section>
       </q-card>
     </div>
-  </main>
+  </div>
+  </div>
 </template>
 
 <script>
