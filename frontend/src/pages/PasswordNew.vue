@@ -1,43 +1,46 @@
 <template>
-    <div class="q-pa-lg q-gutter-sm">
+    <div class="size-container">
+        <div class="q-pa-lg q-gutter-sm">
 
-        <h1>Neues Passwort anlegen</h1>
+            <h1>Neues Passwort anlegen</h1>
 
-        <p>Bitte gib dein neues Passwort ein und bestätige es. Achte darauf, ein sicheres Passwort zu wählen, das du dir
-            gut merken kannst.</p>
+            <p>Bitte gib dein neues Passwort ein und bestätige es. Achte darauf, ein sicheres Passwort zu wählen, das du
+                dir
+                gut merken kannst.</p>
 
-        <q-input :type="showPassword ? 'text' : 'password'" color="teal" outlined v-model="password"
-            :label="$t('password')">
-            <template v-slot:prepend>
-                <q-icon>
-                    <img src="../assets/System.svg" alt="Lock Icon" />
-                </q-icon>
-            </template>
-            <template v-slot:append>
-                <q-icon @click="togglePasswordVisibility" :name="showPassword ? 'visibility_off' : 'visibility'"
-                    class="cursor-pointer"> </q-icon>
-            </template>
-        </q-input>
-        <q-input :type="showPassword ? 'text' : 'password'" color="teal" outlined v-model="passwordConfirm"
-            :label="$t('confirm-password')">
-            <template v-slot:prepend>
-                <q-icon>
-                    <img src="../assets/System.svg" alt="Lock Icon" />
-                </q-icon>
-            </template>
-            <template v-slot:append>
-                <q-icon @click="togglePasswordVisibility" :name="showPassword ? 'visibility_off' : 'visibility'"
-                    class="cursor-pointer"> </q-icon>
-            </template>
-        </q-input>
+            <q-input :type="showPassword ? 'text' : 'password'" color="teal" outlined v-model="password"
+                :label="$t('password')">
+                <template v-slot:prepend>
+                    <q-icon>
+                        <img src="../assets/System.svg" alt="Lock Icon" />
+                    </q-icon>
+                </template>
+                <template v-slot:append>
+                    <q-icon @click="togglePasswordVisibility" :name="showPassword ? 'visibility_off' : 'visibility'"
+                        class="cursor-pointer"> </q-icon>
+                </template>
+            </q-input>
+            <q-input :type="showPassword ? 'text' : 'password'" color="teal" outlined v-model="passwordConfirm"
+                :label="$t('confirm-password')">
+                <template v-slot:prepend>
+                    <q-icon>
+                        <img src="../assets/System.svg" alt="Lock Icon" />
+                    </q-icon>
+                </template>
+                <template v-slot:append>
+                    <q-icon @click="togglePasswordVisibility" :name="showPassword ? 'visibility_off' : 'visibility'"
+                        class="cursor-pointer"> </q-icon>
+                </template>
+            </q-input>
+        </div>
+        <div class="q-pa-md q-gutter-sm row justify-center">
+            <q-btn no-caps rounded style="background: #50C1BA; color: white" label="Passwort ändern" padding="sm lg"
+                size="16px" @click="changePassword" />
+        </div>
+        <p style="text-align: center;">
+            <router-link to="/login">Zurück zum Login</router-link>
+        </p>
     </div>
-    <div class="q-pa-md q-gutter-sm row justify-center">
-        <q-btn no-caps rounded style="background: #50C1BA; color: white" label="Passwort ändern" padding="sm lg"
-            size="16px" @click="changePassword" />
-    </div>
-    <p style="text-align: center;">
-        <router-link to="/login">Zurück zum Login</router-link>
-    </p>
 </template>
 
 <script>

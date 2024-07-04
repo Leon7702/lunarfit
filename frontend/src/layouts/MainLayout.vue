@@ -5,7 +5,7 @@
         <router-view />
       </q-page-container>
       <q-footer class="footer-toolbar">
-        <div class="size-container">
+        <div class="toolbar-container">
         <div class="footer-divider"></div>
         
         <q-toolbar class="footer-toolbar-content">

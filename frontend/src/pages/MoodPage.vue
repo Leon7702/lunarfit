@@ -1,19 +1,21 @@
 <template>
-  <div class="root">
-    <div class="header">
-      <router-link to="/calendar" class="navButton">
-        <img src="/src/assets/arrow-left.svg" alt="Left" class="navButtonImage">
-      </router-link>
-      <div class="head">Stimmung</div>
-    </div>
+  <div class="size-container">
+    <div class="root">
+      <div class="header">
+        <router-link to="/calendar" class="navButton">
+          <img src="/src/assets/arrow-left.svg" alt="Left" class="navButtonImage">
+        </router-link>
+        <div class="head">Stimmung</div>
+      </div>
 
-    <div class="container">
-      <IconSlider v-for="(item, index) in moodItems" :key="index" :icon="item.icon" :text="item.text"
-        :value="item.value" @update:value="updateMoodValue(index, $event)" />
-    </div>
+      <div class="container">
+        <IconSlider v-for="(item, index) in moodItems" :key="index" :icon="item.icon" :text="item.text"
+          :value="item.value" @update:value="updateMoodValue(index, $event)" />
+      </div>
 
-    <div class="button-container">
-      <button class="save-button">Speichern</button>
+      <div class="button-container">
+        <button class="save-button">Speichern</button>
+      </div>
     </div>
   </div>
 </template>
@@ -59,23 +61,20 @@ export default {
 };
 </script>
 
+
 <style scoped>
 .root {
-  width: 90%;
-  margin: 0 auto;
-  /* Centers the content horizontally */
+  width: 100%;
   display: flex;
   flex-direction: column;
-  min-height: 100vh;
-  /* Ensure the root takes full viewport height */
+  padding: 0;
+  margin: 0;
 }
 
 .header {
   display: flex;
   align-items: center;
   position: relative;
-  padding: 10px;
-  padding-top: 46px;
   padding-bottom: 20px;
 }
 
@@ -84,21 +83,15 @@ export default {
   justify-content: center;
   align-items: center;
   width: 40px;
-  /* Increase this value to make the clickable area larger */
   height: 40px;
-  /* Increase this value to make the clickable area larger */
   cursor: pointer;
   position: absolute;
-  /* Position relative to header */
   left: 10px;
-  /* Align to the left side */
 }
 
 .navButtonImage {
   width: 20px;
-  /* Adjust the size of the actual image */
   height: 20px;
-  /* Adjust the size of the actual image */
 }
 
 .head {
@@ -115,19 +108,16 @@ export default {
 .container {
   border-top: 1px solid #ccc;
   flex: 1;
-  /* This will make the container take the available space */
 }
 
 .button-container {
   display: flex;
   justify-content: center;
   padding: 20px 0;
-  /* Add some padding for spacing */
 }
 
 .save-button {
   background-color: #50c1ba;
-  /* Change this to your preferred color */
   color: white;
   border: none;
   padding: 10px 20px;
@@ -138,6 +128,5 @@ export default {
 
 .save-button:hover {
   background-color: #0056b3;
-  /* Change this to your preferred hover color */
 }
 </style>

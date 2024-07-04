@@ -6,6 +6,9 @@
     max-width: 360px;
     margin: auto;
     margin-top: 5%;
+    padding-left: 2%;
+    padding-right: 2%;
+
   }
 
 @media only screen and (min-width: 768px) and (max-width: 1199px) {
@@ -28,5 +31,31 @@
     .size-container {
       max-width: 25%;
       margin-top: 5%;
+    }
+  }
+
+  .toolbar-container {
+    width: 100%;
+    max-width: 360px;
+    margin: auto;
+  }
+
+@media only screen and (min-width: 768px) and (max-width: 1199px) {
+    .toolbar-container {
+        max-width: 450px;
+    }
+  }
+  
+  /* Large desktops */
+  @media only screen and (min-width: 1200px) {
+    .toolbar-container {
+        max-width: 30%;
+    }
+  }
+  
+  /* Extra-large screens */
+  @media only screen and (min-width: 1600px) {
+    .toolbar-container {
+        max-width: 25%;
     }
   }

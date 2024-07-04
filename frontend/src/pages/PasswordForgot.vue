@@ -1,26 +1,29 @@
 <template>
-    <div class="q-pa-lg q-gutter-sm">
+    <div class="size-container">
+        <div class="q-pa-lg q-gutter-sm">
 
-        <h1>Passwort vergessen?</h1>
+            <h1>Passwort vergessen?</h1>
 
-        <p>Kein Problem! Gib einfach deine E-Mail-Adresse ein, und wir senden dir einen Link, mit dem du dein Passwort
-            zurücksetzen kannst.</p>
+            <p>Kein Problem! Gib einfach deine E-Mail-Adresse ein, und wir senden dir einen Link, mit dem du dein
+                Passwort
+                zurücksetzen kannst.</p>
 
-        <q-input color="teal" outlined v-model="email" :label="$t('email')">
-            <template v-slot:prepend>
-                <q-icon>
-                    <img src="../assets/Communication.svg" alt="Email Icon" />
-                </q-icon>
-            </template>
-        </q-input>
+            <q-input color="teal" outlined v-model="email" :label="$t('email')">
+                <template v-slot:prepend>
+                    <q-icon>
+                        <img src="../assets/Communication.svg" alt="Email Icon" />
+                    </q-icon>
+                </template>
+            </q-input>
+        </div>
+        <div class="q-pa-md q-gutter-sm row justify-center">
+            <q-btn no-caps rounded style="background: #50C1BA; color: white" label="Fortfahren" padding="sm lg"
+                size="16px" @click="sendMail" />
+        </div>
+        <p style="text-align: center;">
+            <router-link to="/login">Zurück zum Login</router-link>
+        </p>
     </div>
-    <div class="q-pa-md q-gutter-sm row justify-center">
-        <q-btn no-caps rounded style="background: #50C1BA; color: white" label="Fortfahren" padding="sm lg" size="16px"
-            @click="sendMail" />
-    </div>
-    <p style="text-align: center;">
-        <router-link to="/login">Zurück zum Login</router-link>
-    </p>
 </template>
 
 <script>
@@ -76,23 +79,5 @@ a {
 .password-forget {
     text-align: right;
     margin: 1rem 0;
-}
-
-@media (min-width: 1024px) {
-    header {
-        display: flex;
-        place-items: center;
-        padding-right: calc(var(--section-gap) / 2);
-    }
-
-    .logo {
-        margin: 0 2rem 0 0;
-    }
-
-    header .wrapper {
-        display: flex;
-        place-items: flex-start;
-        flex-wrap: wrap;
-    }
 }
 </style>

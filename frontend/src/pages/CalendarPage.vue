@@ -1,6 +1,5 @@
 <template>
   <div class="size-container">
-  <div class="container">
     <!-- Header with navigation buttons and current month/year display -->
     <div class="header">
       <!-- Button to navigate to the previous month -->
@@ -64,7 +63,6 @@
           padding="xs lg" size="14px" @click="log">
           <template v-slot:default></template>
         </q-btn>
-      </div>
     </div>
 
     <hr class="separator">
@@ -234,21 +232,20 @@ export default {
 /* General styles */
 body {
   margin: 0;
-  padding: 0;
+  padding: 0 10px 0 px;
   font-family: Inter, sans-serif;
 }
 
 table {
   width: 100%;
   table-layout: fixed;
-  margin: 20px 0;
+  padding-bottom: 10px;
 }
 
 th,
 td {
   text-align: center;
-  padding: 0;
-  padding-bottom: 10px;
+  padding-top: 10px;
   margin: 0;
   box-sizing: border-box;
   cursor: pointer;
@@ -345,8 +342,7 @@ p {
 .legend {
   display: flex;
   justify-content: space-evenly;
-  margin: 5px 0;
-}
+  }
 
 .legend-item {
   display: flex;

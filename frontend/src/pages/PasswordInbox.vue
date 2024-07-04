@@ -1,20 +1,23 @@
 <template>
-    <div class="q-pa-lg q-gutter-sm">
+    <div class="size-container">
+        <div class="q-pa-lg q-gutter-sm">
 
-        <h1>Überprüfe deinen Posteingang</h1>
+            <h1>Überprüfe deinen Posteingang</h1>
 
-        <p>Wir haben dir eine E-Mail mit einem Link zum Zurücksetzen deines Passworts gesendet. Bitte überprüfe deinen
-            Posteingang und folge den Anweisungen in der E-Mail.
+            <p>Wir haben dir eine E-Mail mit einem Link zum Zurücksetzen deines Passworts gesendet. Bitte überprüfe
+                deinen
+                Posteingang und folge den Anweisungen in der E-Mail.
 
-            Wenn du die E-Mail nicht findest, schaue auch in deinem Spam-Ordner nach.
+                Wenn du die E-Mail nicht findest, schaue auch in deinem Spam-Ordner nach.
 
-            Es kann einige Minuten dauern, bis die E-Mail bei dir ankommt.</p>
+                Es kann einige Minuten dauern, bis die E-Mail bei dir ankommt.</p>
 
-    </div>
+        </div>
 
-    <div class="q-pa-md q-gutter-sm row justify-center">
-        <q-btn no-caps rounded style="background: #50C1BA; color: white" label="Zum Login" padding="sm lg" size="16px"
-            @click="toLogin" />
+        <div class="q-pa-md q-gutter-sm row justify-center">
+            <q-btn no-caps rounded style="background: #50C1BA; color: white" label="Zum Login" padding="sm lg"
+                size="16px" @click="toLogin" />
+        </div>
     </div>
 </template>
 
@@ -68,23 +71,5 @@ a {
 .password-forget {
     text-align: right;
     margin: 1rem 0;
-}
-
-@media (min-width: 1024px) {
-    header {
-        display: flex;
-        place-items: center;
-        padding-right: calc(var(--section-gap) / 2);
-    }
-
-    .logo {
-        margin: 0 2rem 0 0;
-    }
-
-    header .wrapper {
-        display: flex;
-        place-items: flex-start;
-        flex-wrap: wrap;
-    }
 }
 </style>
