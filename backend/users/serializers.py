@@ -2,7 +2,7 @@ from django.contrib.auth import authenticate
 from rest_framework import exceptions, serializers
 from rest_framework_simplejwt.serializers import TokenObtainPairSerializer
 
-from .models import User, Profile
+from .models import User, Profile, MenstrualCycle, Phase
 
 
 class UserSerializer(serializers.HyperlinkedModelSerializer):
@@ -54,3 +54,15 @@ class CustomTokenObtainPairSerializer(TokenObtainPairSerializer):
             raise exceptions.AuthenticationFailed(
                 "No active account found with the given credentials"
             )
+        
+
+class MenstrualCycleSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = MenstrualCycle
+        fields = "__all__"
+
+
+class PhaseSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = Phase
+        fields = "__all__"

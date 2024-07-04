@@ -77,3 +77,24 @@ def create_user_profile(sender, instance, created, **kwargs):
 @receiver(post_save, sender=User)
 def save_user_profile(sender, instance, **kwargs):
     instance.profile.save
+
+
+class MenstrualCycle(models.Model):
+    cycle_id = models.AutoField(primary_key=True)
+    user = models.ForeignKey(User, on_delete=models.CASCADE)
+    start = models.DateField(null=False)
+    end = models.DateField()
+
+    def __str__(self):
+        return f"{self.cycle_id}, {self.user.email}"
+
+class Phase(models.Model):
+    PHASES = [(0, 'Menstruation'), (1, 'Follicular'), (2, 'Ovulation'), (3, 'Luteal')]
+    phase_id = models.AutoField(primary_key=True)
+    cycle_id = models.ForeignKey(MenstrualCycle, on_delete=models.CASCADE)
+    start = models.DateField(null=False)
+    end = models.DateField()
+    phase_number = models.PositiveIntegerField(choices=PHASES)
+
+    def __str__(self):
+        return f"{self.phase_number}, {self.cycle_id}, {self.user.email}"

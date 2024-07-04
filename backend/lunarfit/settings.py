@@ -48,6 +48,7 @@ INSTALLED_APPS = [
     "corsheaders",
     "drf_spectacular",
     "drf_spectacular_sidecar",
+    "django_filters",
 ]
 
 MIDDLEWARE = [
