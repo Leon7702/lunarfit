@@ -2,7 +2,7 @@
   <div class="welcome-container">
     <!-- Inhalt des ersten Bildschirms hier... -->
     <div class="welcome-text">
-      <h1 class="title">Log-Eintrag</h1>
+      <h1 class="title">{{ $t('logEntry.title') }}</h1>
     </div>
     <DateTodayPicker class="date" />
     <img src="/src/assets/log_zyklus.svg" alt="Zyklus Button" class="image" @click="navigateToCycle" />

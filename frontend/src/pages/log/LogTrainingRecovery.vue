@@ -1,21 +1,21 @@
 <template>
-    <div class="welcome-container">
-      <div class="header">
-        <q-btn flat dense round icon="arrow_back" @click="goBack" />
-        <div class="title">Erholung</div>
-      </div>
-      <div class="linie"></div>
-      <div class="description">
-        Wie bewertest du deinen <br>allgemeinen Erholungszustand? 
-      </div>
-      <div class="slider">
-        <SliderWithLabelVertical topText="Erholt" bottomText="Nicht erholt" />
-      </div>
-      <div class="button-container">
-        <StandardButton label="Weiter" @click="navigateToNextStep" />
-      </div>
+  <div class="welcome-container">
+    <div class="header">
+      <q-btn flat dense round icon="arrow_back" @click="goBack" />
+      <div class="title">{{ $t('logTrainingRecovery.title') }}</div>
     </div>
-  </template>
+    <div class="linie"></div>
+    <div class="description">
+      <span v-html="$t('logTrainingRecovery.description')"></span>
+    </div>
+    <div class="slider">
+      <SliderWithLabelVertical :topText="$t('logTrainingRecovery.slider.topText')" :bottomText="$t('logTrainingRecovery.slider.bottomText')" />
+    </div>
+    <div class="button-container">
+      <StandardButton :label="$t('buttons.next')" @click="navigateToNextStep" />
+    </div>
+  </div>
+</template>
   
   <script>
   import SliderWithLabelVertical from 'components/SliderWithLabelVertical.vue';

@@ -2,23 +2,29 @@
   <div class="welcome-container">
     <div class="header">
       <q-btn flat dense round icon="arrow_back" @click="goBack" />
-      <div class="title">Temperatur</div>
+      <div class="title">{{ $t('logCycle.temperature.title') }}</div>
     </div>
     <div class="linie"></div>
     <div class="description">
-      Temperatur in °C:
+      {{ $t('logCycle.temperature.description') }}
     </div>
     <div class="form-group">
-      <FormFieldText id="temperature" label="" iconName="" inputType="number" />
+      <FormFieldText
+        id="temperature"
+        label=""
+        iconName=""
+        inputType="number"
+        v-model="temperature"
+      />
     </div>
     <div class="description-two">
-      Störfaktoren*:
+      {{ $t('logCycle.temperature.descriptionTwo') }}
     </div>
     <div class="form-group">
       <CheckboxInput v-model="storfaktoren" />
     </div>
     <div class="small-description">
-      *Störfaktoren können sein: Fieber, Alkoholkonsum, Schlafmangel, Stress, Medikamente, sonstige gesundheitliche Beschwerden. Bitte beachten Sie, dass die genannten Störfaktoren Einfluss auf Ihren Zyklus haben können.
+      {{ $t('logCycle.temperature.smallDescription') }}
     </div>
   </div>
 </template>

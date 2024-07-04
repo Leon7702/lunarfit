@@ -1,31 +1,30 @@
 <template>
-    <div class="welcome-container">
-      <div class="header">
-        <q-btn flat dense round icon="arrow_back" @click="goBack" />
-        <div class="title">Schwangerschaftstest</div>
-      </div>
-      <div class="linie"></div>
-      <p class="description">
-        Bitte zutreffendes auswählen:
-      </p>
-      <div class="icon-grid">
-        <div
-          class="icon-item"
-          v-for="(item, index) in iconItems"
-          :key="index"
-          @click="selectItem(index)"
-          :class="{ selected: selectedIndex === index }"
-        >
-          <div class="icon-wrapper">
-            <img :src="item.icon" class="icon" />
-            <div class="icon-circle" :class="{ active: selectedIndex === index }"></div>
-          </div>
-          <div class="icon-label">{{ item.label }}</div>
+  <div class="welcome-container">
+    <div class="header">
+      <q-btn flat dense round icon="arrow_back" @click="goBack" />
+      <div class="title">{{ $t('logCycle.pregnancyTest.title') }}</div>
+    </div>
+    <div class="linie"></div>
+    <p class="description">
+      {{ $t('logCycle.pregnancyTest.description') }}
+    </p>
+    <div class="icon-grid">
+      <div
+        class="icon-item"
+        v-for="(item, index) in iconItems"
+        :key="index"
+        @click="selectItem(index)"
+        :class="{ selected: selectedIndex === index }"
+      >
+        <div class="icon-wrapper">
+          <img :src="item.icon" class="icon" />
+          <div class="icon-circle" :class="{ active: selectedIndex === index }"></div>
         </div>
+        <div class="icon-label">{{ item.label }}</div>
       </div>
     </div>
-  </template>
-  
+  </div>
+</template>
   <script>
   export default {
     data() {

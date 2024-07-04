@@ -2,14 +2,14 @@
   <div class="welcome-container">
     <div class="header">
       <q-btn flat dense round icon="arrow_back" @click="goBack" />
-      <div class="title">Zyklus Log-Eintrag</div>
+      <div class="title">{{ $t('logCycle.home.title') }}</div>
       <q-btn flat dense round icon="edit" @click="navigateToEdit" />
     </div>
     <div class="linie"></div>
     <div class="icon-grid">
       <div class="icon-item" v-for="(item, index) in selectedIconItems" :key="index">
         <img :src="item.icon" class="icon" @click="handleIconClick(item.label)" />
-        <div class="icon-label">{{ formatLabel(item.label) }}</div>
+        <div class="icon-label">{{ item.label }}</div>
       </div>
     </div>
   </div>
@@ -36,26 +36,17 @@ export default {
     },
     handleIconClick(label) {
       const routes = {
-        'Menstruation': 'LogCycleMens',
-        'Temperatur': 'LogCycleTemp',
-        'Zervixschleim': 'LogCycleCerfix',
-        'Gebärmutterhals': 'LogCycleGebaermutter',
-        'Geschlechtsverkehr': 'LogCycleSex',
-        'Medikamente': 'LogCycleMedicine',
-        'Ovulationstest': 'LogCycleOvulationTest',
-        'Schwangerschaftstest': 'LogCyclePregnancyTest'
+        [this.$t('logCycle.home.labels.menstruation')]: 'LogCycleMens',
+        [this.$t('logCycle.home.labels.temperature')]: 'LogCycleTemp',
+        [this.$t('logCycle.home.labels.cervixMucus')]: 'LogCycleCerfix',
+        [this.$t('logCycle.home.labels.cervixPosition')]: 'LogCycleGebaermutter',
+        [this.$t('logCycle.home.labels.sex')]: 'LogCycleSex',
+        [this.$t('logCycle.home.labels.medicine')]: 'LogCycleMedicine',
+        [this.$t('logCycle.home.labels.ovulationTest')]: 'LogCycleOvulationTest',
+        [this.$t('logCycle.home.labels.pregnancyTest')]: 'LogCyclePregnancyTest'
       };
       if (routes[label]) {
         this.$router.push({ name: routes[label] });
-      }
-    },
-    formatLabel(label) {
-      if (label === 'Gebärmutterhals' || label === 'Geschlechtsverkehr') {
-        return label.slice(0, 11) + '-' + label.slice(11);
-      } else if (label === 'Schwangerschaftstest') {
-        return label.slice(0, 9) + '-' + label.slice(9);
-      } else {
-        return label;
       }
     }
   },
@@ -65,20 +56,21 @@ export default {
       this.iconItems = JSON.parse(storedItems);
     } else {
       this.iconItems = [
-        { label: 'Menstruation', icon: '/src/assets/log_Zyklus/icon_mens.svg', selected: true },
-        { label: 'Temperatur', icon: '/src/assets/log_Zyklus/icon_temperature.svg', selected: true },
-        { label: 'Zervixschleim', icon: '/src/assets/log_Zyklus/icon_cerfix.svg', selected: true },
-        { label: 'Gebärmutterhals', icon: '/src/assets/log_Zyklus/icon_gebaermutter.svg', selected: true },
-        { label: 'Geschlechtsverkehr', icon: '/src/assets/log_Zyklus/icon_heart.svg', selected: true },
-        { label: 'Medikamente', icon: '/src/assets/log_Zyklus/icon_medicine.svg', selected: true },
-        { label: 'Ovulationstest', icon: '/src/assets/log_Zyklus/icon_ovuTest.svg', selected: true },
-        { label: 'Schwangerschaftstest', icon: '/src/assets/log_Zyklus/icon_pregTest.svg', selected: true }
+        { label: this.$t('logCycle.home.labels.menstruation'), icon: '/src/assets/log_Zyklus/icon_mens.svg', selected: true },
+        { label: this.$t('logCycle.home.labels.temperature'), icon: '/src/assets/log_Zyklus/icon_temperature.svg', selected: true },
+        { label: this.$t('logCycle.home.labels.cervixMucus'), icon: '/src/assets/log_Zyklus/icon_cerfix.svg', selected: true },
+        { label: this.$t('logCycle.home.labels.cervixPosition'), icon: '/src/assets/log_Zyklus/icon_gebaermutter.svg', selected: true },
+        { label: this.$t('logCycle.home.labels.sex'), icon: '/src/assets/log_Zyklus/icon_heart.svg', selected: true },
+        { label: this.$t('logCycle.home.labels.medicine'), icon: '/src/assets/log_Zyklus/icon_medicine.svg', selected: true },
+        { label: this.$t('logCycle.home.labels.ovulationTest'), icon: '/src/assets/log_Zyklus/icon_ovuTest.svg', selected: true },
+        { label: this.$t('logCycle.home.labels.pregnancyTest'), icon: '/src/assets/log_Zyklus/icon_pregTest.svg', selected: true }
       ];
       localStorage.setItem('iconItems', JSON.stringify(this.iconItems));
     }
   }
 };
 </script>
+
 
 <style scoped>
 .welcome-container {
@@ -119,7 +111,7 @@ export default {
 
 .icon-grid {
   display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(100px, 1fr));
+  grid-template-columns: repeat(2, 1fr);
   gap: 10px;
   width: 100%;
   max-width: 600px;

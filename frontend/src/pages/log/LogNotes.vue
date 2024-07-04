@@ -1,21 +1,27 @@
+
+Hier ist die angepasste Vue.js-Komponente unter Verwendung der i18n-Einträge:
+
+Notizen Screen
+vue
+Code kopieren
 <template>
-    <div class="welcome-container">
-      <div class="header">
-        <q-btn flat dense round icon="arrow_back" @click="goBack" />
-        <div class="title">Notizen</div>
-      </div>
-      <div class="linie"></div>
-      <div class="description">
-        Füge eine Notiz hinzu:
-      </div>
-      <div class="textarea">
-        <InputTextArea v-model="notes" />
-      </div>
-      <div class="button-container">
-        <StandardButton @click="saveChanges" label="Speichern" />
-      </div>
+  <div class="welcome-container">
+    <div class="header">
+      <q-btn flat dense round icon="arrow_back" @click="goBack" />
+      <div class="title">{{ $t('logNotes.title') }}</div>
     </div>
-  </template>
+    <div class="linie"></div>
+    <div class="description">
+      {{ $t('logNotes.description') }}
+    </div>
+    <div class="textarea">
+      <InputTextArea v-model="notes" />
+    </div>
+    <div class="button-container">
+      <StandardButton @click="saveChanges" :label="$t('buttons.save')" />
+    </div>
+  </div>
+</template>
   
   <script>
   import InputTextArea from 'components/InputTextArea.vue';

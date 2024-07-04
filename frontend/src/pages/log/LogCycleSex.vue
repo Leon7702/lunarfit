@@ -1,40 +1,46 @@
 <template>
-    <div class="welcome-container">
-      <div class="header">
-        <q-btn flat dense round icon="arrow_back" @click="goBack" />
-        <div class="title">Geschlechtsverkehr</div>
-      </div>
-      <div class="linie"></div>
-      <div class="description">
-        Bitte zutreffendes auswählen:
-      </div>
-      <div class="form-group">
-        <DropDownSingleSelect :options="contraceptionOptions"/>
-      </div>
+  <div class="welcome-container">
+    <div class="header">
+      <q-btn flat dense round icon="arrow_back" @click="goBack" />
+      <div class="title">{{ $t('logCycle.sex.title') }}</div>
     </div>
-  </template>
-  
-  <script>
-  
-  import DropDownSingleSelect from 'components/DropDownSingleSelect.vue';
-  
-  export default {
-    components: {
-      DropDownSingleSelect
-    },
-    data() {
-      return {
-        hormonalContraception: null,
-        contraceptionOptions: ['Kein Sex', 'Geschützter Sex', 'Ungeschützter Sex', 'Lust auf Sex', 'Masturbation']
-      }
-    },
-    methods: {
-      goBack() {
-        window.history.back();
-      }
+    <div class="linie"></div>
+    <div class="description">
+      {{ $t('logCycle.sex.description') }}
+    </div>
+    <div class="form-group">
+      <DropDownSingleSelect :options="contraceptionOptions" v-model="selectedOption" />
+    </div>
+  </div>
+</template>
+
+<script>
+import DropDownSingleSelect from 'components/DropDownSingleSelect.vue';
+
+export default {
+  components: {
+    DropDownSingleSelect
+  },
+  data() {
+    return {
+      selectedOption: null,
+      contraceptionOptions: [
+        this.$t('logCycle.sex.options.keinSex'),
+        this.$t('logCycle.sex.options.geschuetzterSex'),
+        this.$t('logCycle.sex.options.ungeschuetzterSex'),
+        this.$t('logCycle.sex.options.lustAufSex'),
+        this.$t('logCycle.sex.options.masturbation')
+      ]
+    };
+  },
+  methods: {
+    goBack() {
+      window.history.back();
     }
-  };
-  </script>
+  }
+};
+</script>
+
   
   <style scoped>
   .welcome-container {

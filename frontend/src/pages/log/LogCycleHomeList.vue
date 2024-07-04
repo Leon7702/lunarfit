@@ -1,68 +1,69 @@
 <template>
-    <div class="welcome-container">
-      <div class="header">
-        <q-btn flat dense round icon="arrow_back" @click="goBack" />
-        <div class="title">Liste anpassen</div>
-      </div>
-      <div class="linie"></div>
-      <div v-for="(item, index) in iconItems" :key="index" class="icon-item" @click="toggleSelect(index)">
-        <div class="left-circle">
-          <q-icon :name="item.selected ? 'lens' : 'radio_button_unchecked'" color="primary" size="25px" />
-        </div>
-        <div class="icon-label">{{ item.label }}</div>
-      </div>
-      <div class="button-container">
-      <StandardButton @click="saveChanges" label="Speichern" />
+  <div class="welcome-container">
+    <div class="header">
+      <q-btn flat dense round icon="arrow_back" @click="goBack" />
+      <div class="title">{{ $t('logCycle.homeList.editListTitle') }}</div>
     </div>
+    <div class="linie"></div>
+    <div v-for="(item, index) in iconItems" :key="index" class="icon-item" @click="toggleSelect(index)">
+      <div class="left-circle">
+        <q-icon :name="item.selected ? 'lens' : 'radio_button_unchecked'" color="primary" size="25px" />
+      </div>
+      <div class="icon-label">{{ item.label }}</div>
     </div>
-  </template>
-  
-  <script>
-  import StandardButton from 'components/StandardButton.vue';
-  
-  export default {
-    name: 'LogCycleHomeList',
-    components: {
-      StandardButton
+    <div class="button-container">
+      <StandardButton @click="saveChanges" :label="$t('buttons.save')" />
+    </div>
+  </div>
+</template>
+
+<script>
+import StandardButton from 'components/StandardButton.vue';
+
+export default {
+  name: 'LogCycleHomeList',
+  components: {
+    StandardButton
+  },
+  data() {
+    return {
+      iconItems: []
+    };
+  },
+  methods: {
+    goBack() {
+      window.history.back();
     },
-    data() {
-      return {
-        iconItems: []
-      };
+    toggleSelect(index) {
+      this.iconItems[index].selected = !this.iconItems[index].selected;
     },
-    methods: {
-      goBack() {
-        window.history.back();
-      },
-      toggleSelect(index) {
-        this.iconItems[index].selected = !this.iconItems[index].selected;
-      },
-      saveChanges() {
-        localStorage.setItem('iconItems', JSON.stringify(this.iconItems));
-        this.$router.push({ name: 'LogCycleHome' });
-      }
-    },
-    created() {
-      const storedItems = localStorage.getItem('iconItems');
-      if (storedItems) {
-        this.iconItems = JSON.parse(storedItems);
-      } else {
-        this.iconItems = [
-          { label: 'Menstruation', selected: true },
-          { label: 'Temperatur', selected: true },
-          { label: 'Zervixschleim', selected: true },
-          { label: 'Gebärmutterhals', selected: true },
-          { label: 'Geschlechtsverkehr', selected: true },
-          { label: 'Verhütungsmittel', selected: true },
-          { label: 'Medikamente', selected: true },
-          { label: 'Ovulationstest', selected: true },
-          { label: 'Schwangerschaftstest', selected: true }
-        ];
-        localStorage.setItem('iconItems', JSON.stringify(this.iconItems));
-      }
+    saveChanges() {
+      localStorage.setItem('iconItems', JSON.stringify(this.iconItems));
+      this.$router.push({ name: 'LogCycleHome' });
     }
-  };
-  </script>
+  },
+  created() {
+    const storedItems = localStorage.getItem('iconItems');
+    if (storedItems) {
+      this.iconItems = JSON.parse(storedItems);
+    } else {
+      this.iconItems = [
+        { label: this.$t('logCycle.homeList.labels.menstruation'), selected: true },
+        { label: this.$t('logCycle.homeList.labels.temperature'), selected: true },
+        { label: this.$t('logCycle.homeList.labels.cervixMucus'), selected: true },
+        { label: this.$t('logCycle.homeList.labels.cervixPosition'), selected: true },
+        { label: this.$t('logCycle.homeList.labels.sex'), selected: true },
+        { label: this.$t('logCycle.homeList.labels.contraceptive'), selected: true },
+        { label: this.$t('logCycle.homeList.labels.medicine'), selected: true },
+        { label: this.$t('logCycle.homeList.labels.ovulationTest'), selected: true },
+        { label: this.$t('logCycle.homeList.labels.pregnancyTest'), selected: true }
+      ];
+      localStorage.setItem('iconItems', JSON.stringify(this.iconItems));
+    }
+  }
+};
+</script>
+
   
 
 

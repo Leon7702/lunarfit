@@ -1,49 +1,58 @@
 <template>
-    <div class="welcome-container">
-      <div class="header">
-        <q-btn flat dense round icon="arrow_back" @click="goBack" />
-        <div class="title">Menstruation</div>
-      </div>
-      <div class="linie"></div>
-      <div class="button-container">
-        <StandardButton :label="buttonLabel" @click="toggleMenstruationStatus" />
-      </div>
-      <div class="welcome-text">
-        <p class="description">{{ descriptionText }}</p>
-      </div>
+  <div class="welcome-container">
+    <div class="header">
+      <q-btn flat dense round icon="arrow_back" @click="goBack" />
+      <div class="title">{{ $t('logCycle.mens.title') }}</div>
     </div>
-  </template>
-  
-  <script>
-  import StandardButton from 'components/StandardButton.vue';
-  
-  export default {
-    components: {
-      StandardButton
+    <div class="linie"></div>
+    <div class="button-container">
+      <StandardButton :label="buttonLabel" @click="toggleMenstruationStatus" />
+    </div>
+    <div class="welcome-text">
+      <p class="description">{{ descriptionText }}</p>
+    </div>
+  </div>
+</template>
+
+<script>
+import StandardButton from 'components/StandardButton.vue';
+
+export default {
+  components: {
+    StandardButton
+  },
+  data() {
+    return {
+      buttonLabel: this.$t('logCycle.mens.buttonLabel'),
+      descriptionText: this.$t('logCycle.mens.descriptionText')
+    };
+  },
+  methods: {
+    goBack() {
+      window.history.back();
     },
-    data() {
-      return {
-        buttonLabel: "+  Menstruation",
-        descriptionText: "Tippe hier, wenn deine Menstruation heute begonnen hat."
-      };
-    },
-    methods: {
-      goBack() {
-        window.history.back();
-      },
-      toggleMenstruationStatus() {
-        if (this.buttonLabel === "+  Menstruation") {
-          this.buttonLabel = "Menstruation aktiv";
-          this.descriptionText = "Tippe hier, wenn deine Menstruation vorbei ist.";
-        } else {
-          this.buttonLabel = "+  Menstruation";
-          this.descriptionText = "Tippe hier, wenn deine Menstruation heute begonnen hat.";
-        }
+    toggleMenstruationStatus() {
+      if (this.buttonLabel === this.$t('logCycle.mens.buttonLabel')) {
+        this.buttonLabel = this.$t('logCycle.mens.buttonLabelActive');
+        this.descriptionText = this.$t('logCycle.mens.descriptionTextActive');
+      } else {
+        this.buttonLabel = this.$t('logCycle.mens.buttonLabel');
+        this.descriptionText = this.$t('logCycle.mens.descriptionText');
       }
     }
-  };
-  </script>
-  
+  },
+  watch: {
+    '$i18n.locale': {
+      handler() {
+        this.buttonLabel = this.$t('logCycle.mens.buttonLabel');
+        this.descriptionText = this.$t('logCycle.mens.descriptionText');
+      },
+      immediate: true
+    }
+  }
+};
+</script>
+
   <style scoped>
   .welcome-container {
     display: flex;
