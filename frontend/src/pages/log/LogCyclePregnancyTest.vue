@@ -25,28 +25,47 @@
     </div>
   </div>
 </template>
-  <script>
-  export default {
-    data() {
+
+
+<script>
+export default {
+  data() {
+    return {
+      iconItems: []
+    };
+  },
+  computed: {
+    localizedIcons() {
       return {
-        iconItems: [
-          { icon: '/src/assets/log_Zyklus/test_positiv.svg' },
-          { icon: '/src/assets/log_Zyklus/test_negativ.svg' },
-          { icon: '/src/assets/log_Zyklus/test_ungueltig.svg' }
-        ],
-        selectedIndex: null
+        positive: this.$t('logCycle.ovulationTest.icons.positive'),
+        negative: this.$t('logCycle.ovulationTest.icons.negative'),
+        invalid: this.$t('logCycle.ovulationTest.icons.invalid')
       };
-    },
-    methods: {
-      goBack() {
-        window.history.back();
-      },
-      selectItem(index) {
-        this.selectedIndex = index;
-      }
     }
-  };
-  </script>
+  },
+  watch: {
+    '$i18n.locale': 'updateIconItems'
+  },
+  methods: {
+    goBack() {
+      window.history.back();
+    },
+    selectItem(index) {
+      this.selectedIndex = index;
+    },
+    updateIconItems() {
+      this.iconItems = [
+        { icon: this.localizedIcons.positive },
+        { icon: this.localizedIcons.negative },
+        { icon: this.localizedIcons.invalid }
+      ];
+    }
+  },
+  created() {
+    this.updateIconItems();
+  }
+};
+</script>
   
   <style scoped>
   .welcome-container {

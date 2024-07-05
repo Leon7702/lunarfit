@@ -30,15 +30,31 @@
 export default {
   data() {
     return {
-      iconItems: [
-        { icon: '/src/assets/log_Zyklus/cerfix_keinen.svg' },
-        { icon: '/src/assets/log_Zyklus/cerfix_trocken.svg'},
-        { icon: '/src/assets/log_Zyklus/cerfix_cremig.svg' },
-        { icon: '/src/assets/log_Zyklus/cerfix_klebrig.svg'},
-        { icon: '/src/assets/log_Zyklus/cerfix_eiweissartig.svg'}
-      ],
-      selectedIndex: null
+      iconItems: []
     };
+  },
+  computed: {
+    localizedIcons() {
+      return {
+        none: this.$t('logCycle.cervix.icons.none'),
+        dry: this.$t('logCycle.cervix.icons.dry'),
+        creamy: this.$t('logCycle.cervix.icons.creamy'),
+        sticky: this.$t('logCycle.cervix.icons.sticky'),
+        protein: this.$t('logCycle.cervix.icons.protein')
+      };
+    },
+    localizedLabels() {
+      return {
+        none: this.$t('logCycle.cervix.labels.none'),
+        dry: this.$t('logCycle.cervix.labels.dry'),
+        creamy: this.$t('logCycle.cervix.labels.creamy'),
+        sticky: this.$t('logCycle.cervix.labels.sticky'),
+        protein: this.$t('logCycle.cervix.labels.protein')
+      };
+    }
+  },
+  watch: {
+    '$i18n.locale': 'updateIconItems'
   },
   methods: {
     goBack() {
@@ -46,10 +62,23 @@ export default {
     },
     selectItem(index) {
       this.selectedIndex = index;
+    },
+    updateIconItems() {
+      this.iconItems = [
+        { icon: this.localizedIcons.none},
+        { icon: this.localizedIcons.dry },
+        { icon: this.localizedIcons.creamy },
+        { icon: this.localizedIcons.sticky},
+        { icon: this.localizedIcons.protein }
+      ];
     }
+  },
+  created() {
+    this.updateIconItems();
   }
 };
 </script>
+
 
 <style scoped>
 .welcome-container {

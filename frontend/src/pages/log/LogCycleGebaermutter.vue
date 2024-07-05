@@ -20,34 +20,51 @@
           <img :src="item.icon" class="icon" />
           <div class="icon-circle" :class="{ active: selectedIndex === index }"></div>
         </div>
-        <div class="icon-label">{{ item.label }}</div>
       </div>
     </div>
   </div>
 </template>
-  
-  <script>
-  export default {
-    data() {
+
+<script>
+export default {
+  data() {
+    return {
+      iconItems: []
+    };
+  },
+  computed: {
+    localizedIcons() {
       return {
-        iconItems: [
-          {  icon: '/src/assets/log_Zyklus/gmh_geschlossen.svg' },
-          {  icon: '/src/assets/log_Zyklus/gmh_tw_geoeffnet.svg' },
-          {  icon: '/src/assets/log_Zyklus/gmh_voll_geoeffnet.svg' }
-        ],
-        selectedIndex: null
+        closed: this.$t('logCycle.cervixPosition.icons.closed'),
+        partiallyOpen: this.$t('logCycle.cervixPosition.icons.partiallyOpen'),
+        fullyOpen: this.$t('logCycle.cervixPosition.icons.fullyOpen')
       };
-    },
-    methods: {
-      goBack() {
-        window.history.back();
-      },
-      selectItem(index) {
-        this.selectedIndex = index;
-      }
     }
-  };
-  </script>
+  },
+  watch: {
+    '$i18n.locale': 'updateIconItems'
+  },
+  methods: {
+    goBack() {
+      window.history.back();
+    },
+    selectItem(index) {
+      this.selectedIndex = index;
+    },
+    updateIconItems() {
+      this.iconItems = [
+        { icon: this.localizedIcons.closed },
+        { icon: this.localizedIcons.partiallyOpen },
+        { icon: this.localizedIcons.fullyOpen }
+      ];
+    }
+  },
+  created() {
+    this.updateIconItems();
+  }
+};
+</script>
+
   
   <style scoped>
   .welcome-container {

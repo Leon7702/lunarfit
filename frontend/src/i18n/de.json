@@ -354,7 +354,11 @@
     }
   },
   "logEntry": {
-    "title": "Log-Eintrag"
+    "title": "Log-Eintrag",
+    "images": {
+        "cycle": "/src/assets/log_zyklus.svg",
+        "notes": "/src/assets/log_notes.svg"
+      }
   },
   "logCycle": {
     "home": {
@@ -389,7 +393,14 @@
       },
     "cervix": {
       "title": "Zervixschleim",
-      "description": "Bitte zutreffendes auswählen:"
+      "description": "Bitte zutreffendes auswählen:",
+      "icons": {
+        "none": "/src/assets/log_Zyklus/cerfix_keinen.svg",
+        "dry": "/src/assets/log_Zyklus/cerfix_trocken.svg",
+        "creamy": "/src/assets/log_Zyklus/cerfix_cremig.svg",
+        "sticky": "/src/assets/log_Zyklus/cerfix_klebrig.svg",
+        "protein": "/src/assets/log_Zyklus/cerfix_eiweissartig.svg"
+      }
     },
     "contraceptive": {
       "title": "Verhütungsmittel",
@@ -406,7 +417,12 @@
     },
     "cervixPosition": {
       "title": "Gebärmutterhals",
-      "description": "Bitte zutreffende Position auswählen:"
+      "description": "Bitte zutreffende Position auswählen:",
+      "icons": {
+        "closed": "/src/assets/log_Zyklus/gmh_geschlossen.svg",
+        "partiallyOpen": "/src/assets/log_Zyklus/gmh_tw_geoeffnet.svg",
+        "fullyOpen": "/src/assets/log_Zyklus/gmh_voll_geoeffnet.svg"
+      }
     },
     "medicine": {
         "title": "Medikamente",
@@ -428,11 +444,21 @@
     },
     "ovulationTest": {
       "title": "Ovulationstest",
-      "description": "Bitte zutreffendes auswählen:"
+      "description": "Bitte zutreffendes auswählen:",
+      "icons": {
+        "positive": "/src/assets/log_Zyklus/test_positiv.svg",
+        "negative": "/src/assets/log_Zyklus/test_negativ.svg",
+        "invalid": "/src/assets/log_Zyklus/test_ungueltig.svg"
+      }
     },
     "pregnancyTest": {
       "title": "Schwangerschaftstest",
-      "description": "Bitte zutreffendes auswählen:"
+      "description": "Bitte zutreffendes auswählen:",
+      "icons": {
+        "positive": "/src/assets/log_Zyklus/test_positiv.svg",
+        "negative": "/src/assets/log_Zyklus/test_negativ.svg",
+        "invalid": "/src/assets/log_Zyklus/test_ungueltig.svg"
+      }
     },
     "sex": {
       "title": "Geschlechtsverkehr",
