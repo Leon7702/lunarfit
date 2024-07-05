@@ -1,53 +1,70 @@
 <template>
-    <div class="welcome-container">
-      <div class="header">
-        <q-btn flat dense round icon="arrow_back" @click="goBack" />
-        <div class="title">Gebärmutterhals</div>
-      </div>
-      <div class="linie"></div>
-      <p class="description">
-        Bitte zutreffende Position auswählen:
-      </p>
-      <div class="icon-grid">
-        <div
-          class="icon-item"
-          v-for="(item, index) in iconItems"
-          :key="index"
-          @click="selectItem(index)"
-          :class="{ selected: selectedIndex === index }"
-        >
-          <div class="icon-wrapper">
-            <img :src="item.icon" class="icon" />
-            <div class="icon-circle" :class="{ active: selectedIndex === index }"></div>
-          </div>
-          <div class="icon-label">{{ item.label }}</div>
+  <div class="welcome-container">
+    <div class="header">
+      <q-btn flat dense round icon="arrow_back" @click="goBack" />
+      <div class="title">{{ $t('logCycle.cervixPosition.title') }}</div>
+    </div>
+    <div class="linie"></div>
+    <p class="description">
+      {{ $t('logCycle.cervixPosition.description') }}
+    </p>
+    <div class="icon-grid">
+      <div
+        class="icon-item"
+        v-for="(item, index) in iconItems"
+        :key="index"
+        @click="selectItem(index)"
+        :class="{ selected: selectedIndex === index }"
+      >
+        <div class="icon-wrapper">
+          <img :src="item.icon" class="icon" />
+          <div class="icon-circle" :class="{ active: selectedIndex === index }"></div>
         </div>
       </div>
     </div>
-  </template>
-  
-  <script>
-  export default {
-    data() {
+  </div>
+</template>
+
+<script>
+export default {
+  data() {
+    return {
+      iconItems: []
+    };
+  },
+  computed: {
+    localizedIcons() {
       return {
-        iconItems: [
-          {  icon: '/src/assets/log_Zyklus/gmh_geschlossen.svg' },
-          {  icon: '/src/assets/log_Zyklus/gmh_tw_geoeffnet.svg' },
-          {  icon: '/src/assets/log_Zyklus/gmh_voll_geoeffnet.svg' }
-        ],
-        selectedIndex: null
+        closed: this.$t('logCycle.cervixPosition.icons.closed'),
+        partiallyOpen: this.$t('logCycle.cervixPosition.icons.partiallyOpen'),
+        fullyOpen: this.$t('logCycle.cervixPosition.icons.fullyOpen')
       };
-    },
-    methods: {
-      goBack() {
-        window.history.back();
-      },
-      selectItem(index) {
-        this.selectedIndex = index;
-      }
     }
-  };
-  </script>
+  },
+  watch: {
+    '$i18n.locale': 'updateIconItems'
+  },
+  methods: {
+    goBack() {
+      window.history.back();
+    },
+    selectItem(index) {
+      this.selectedIndex = index;
+    },
+    updateIconItems() {
+      this.iconItems = [
+        { icon: this.localizedIcons.closed },
+        { icon: this.localizedIcons.partiallyOpen },
+        { icon: this.localizedIcons.fullyOpen }
+      ];
+    }
+  },
+  created() {
+    this.updateIconItems();
+  }
+};
+</script>
+
   
   <style scoped>
   .welcome-container {
@@ -73,7 +90,7 @@
     align-items: center;
     width: 100%;
     padding: 10px 0;
-    margin-top: 60px;
+    margin-top: 20px;
   }
   
   .title {
@@ -132,6 +149,13 @@
   
   .icon-circle.active {
     background-color: var(--q-primary);
+  }
+
+  @media only screen and (min-width: 200px) {
+    .welcome-container {
+      max-width: 350px;
+      margin: auto;
+    }
   }
   
   </style>

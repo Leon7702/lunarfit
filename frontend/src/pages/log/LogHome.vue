@@ -2,12 +2,12 @@
   <div class="welcome-container">
     <!-- Inhalt des ersten Bildschirms hier... -->
     <div class="welcome-text">
-      <h1 class="title">Log-Eintrag</h1>
+      <h1 class="title">{{ $t('logEntry.title') }}</h1>
     </div>
     <DateTodayPicker class="date" />
-    <img src="/src/assets/log_zyklus.svg" alt="Zyklus Button" class="image" @click="navigateToCycle" />
+    <img :src="$t('logEntry.images.cycle')" alt="Zyklus Button" class="image" @click="navigateToCycle" />
     <img src="/src/assets/log_training.svg" alt="Training Button" class="image" @click="navigateToTraining" />
-    <img src="/src/assets/log_notes.svg" alt="Notizen Button" class="image" @click="navigateToNotes" />
+    <img :src="$t('logEntry.images.notes')" alt="Notizen Button" class="image" @click="navigateToNotes" />
   </div>
 </template>
 
@@ -53,7 +53,7 @@ export default {
 }
 
 .welcome-text {
-  margin-top: 60px;
+  margin-top: 20px;
 }
 
 .title {

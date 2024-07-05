@@ -4,15 +4,15 @@
       <BackButtonText />
       <img src="/src/assets/Step1.svg" alt="Person form" class="person-image" />
       <h2 class="form-step">
-        <span class="form-step-highlight">Schritt 1:</span> Person
+        <span class="form-step-highlight">{{ $t('onboarding.onboardingStep1.step')}}</span> {{ $t('onboarding.onboardingStep1.title') }}
       </h2>
-      <FormFieldText id="firstName" label="Vorname" iconName="" inputType="text" />
-      <FormFieldText id="lastName" label="Nachname" iconName="" inputType="text" pattern="" />
-      <FormFieldText id="birthdate" label="Geburtsdatum" iconName="" inputType="date" />
-      <FormFieldText id="height" label="Größe in cm" iconName="" inputType="number" />
-      <FormFieldText id="weight" label="Gewicht in kg" iconName="" inputType="number" />
+      <FormFieldText id="firstName" :label="$t('onboarding.onboardingStep1.fields.firstName')" iconName="" inputType="text" />
+      <FormFieldText id="lastName" :label="$t('onboarding.onboardingStep1.fields.lastName')" iconName="" inputType="text" pattern="" />
+      <FormFieldText id="birthdate" :label="$t('onboarding.onboardingStep1.fields.birthdate')" iconName="" inputType="date" />
+      <FormFieldText id="height" :label="$t('onboarding.onboardingStep1.fields.height')" iconName="" inputType="number" />
+      <FormFieldText id="weight" :label="$t('onboarding.onboardingStep1.fields.weight')" iconName="" inputType="number" />
       <div class="button-container">
-        <StandardButton label="Weiter" @click="navigateToNextStep" />
+        <StandardButton :label="$t('buttons.next')" @click="navigateToNextStep" />
       </div>
     </div>
   </div>
@@ -45,7 +45,7 @@ export default {
   display: flex;
   flex-direction: column;
   align-items: center;
-  margin-top: 60px;
+  margin-top: 20px;
   position: relative;
   height: 100vh; 
 }
@@ -81,9 +81,9 @@ export default {
   left: 0;
 }
 
-@media only screen and (min-width: 500px) {
+@media only screen and (min-width: 200px) {
   .welcome-container {
-    max-width: 500px;
+    max-width: 350px;
     margin: auto;
     margin-top: 5%;
   }

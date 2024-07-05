@@ -1,20 +1,17 @@
 <template>
-    <div class="welcome-container">
-      <img src="/src/assets/Image_OnboardingEnd.svg" alt="Welcome Image" class="image" />
-      <div class="welcome-text">
-        <h1 class="title">Geschafft!</h1>
-        <p class="description">
-          Vielen Dank für das Ausfüllen der Fragen. Auf Basis deiner Antworten werden dir bereits anfängliche Empfehlungen abgegeben.
-          <br />
-          <br />
-          Denk daran: Je genauer du deinen Zyklus und dein Sportverhalten trackst, desto genauer werden deine Empfehlungen.
-        </p>
-      </div>
-      <div class="button-container">
-        <StandardButton label="Weiter" @click="navigateToDashboard" />
-      </div>
+  <div class="welcome-container">
+    <img src="/src/assets/Image_OnboardingEnd.svg" alt="Welcome Image" class="image" />
+    <div class="welcome-text">
+      <h1 class="title">{{ $t('onboarding.onboardingEnd.title') }}</h1>
+      <p class="description">
+        {{ $t('onboarding.onboardingEnd.description') }}
+      </p>
     </div>
-  </template>
+    <div class="button-container">
+      <StandardButton :label="$t('buttons.next')" @click="navigateToDashboard" />
+    </div>
+  </div>
+</template>
   
   <script>
   import StandardButton from 'components/StandardButton.vue';
@@ -47,7 +44,7 @@
     aspect-ratio: 1.64;
     object-fit: auto;
     object-position: center;
-    margin-top: 60px;
+    margin-top: 20px;
     width: 100%;
   }
   
@@ -74,9 +71,9 @@
     left: 0;
   }
   
-  @media only screen and (min-width: 500px) {
+  @media only screen and (min-width: 200px) {
     .welcome-container {
-      max-width: 500px;
+      max-width: 350px;
       margin: auto;
       margin-top: 5%;
     }

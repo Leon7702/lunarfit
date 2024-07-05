@@ -1,41 +1,48 @@
 <template>
-    <div class="welcome-container">
-      <div class="header">
-        <q-btn flat dense round icon="arrow_back" @click="goBack" />
-        <div class="title">Medikamente</div>
-      </div>
-      <div class="linie"></div>
-      <div class="description">
-        Spezifische Medikamenteneinnahme:
-      </div>
-      <div class="form-group">
-        <DropDownSingleSelect :options="contraceptionOptions"/>
-      </div>
-      <div class="small-description">Bitte beachten Sie, dass die oben genannten Medikamente Einfluss auf Ihren Zyklus haben können.</div>
+  <div class="welcome-container">
+    <div class="header">
+      <q-btn flat dense round icon="arrow_back" @click="goBack" />
+      <div class="title">{{ $t('logCycle.medicine.title') }}</div>
     </div>
-  </template>
-  
-  <script>
-  
-  import DropDownSingleSelect from 'components/DropDownSingleSelect.vue';
-  
-  export default {
-    components: {
-      DropDownSingleSelect
-    },
-    data() {
-      return {
-        hormonalContraception: null,
-        contraceptionOptions: ['Notfallkontrazeptiva', 'Hormonersatz', 'Opiode Schmerzmittel', 'Diclofenac/Ibuprofen']
-      }
-    },
-    methods: {
-      goBack() {
-        window.history.back();
-      }
+    <div class="linie"></div>
+    <div class="description">
+      {{ $t('logCycle.medicine.description') }}
+    </div>
+    <div class="form-group">
+      <DropDownSingleSelect :options="medicineOptions" v-model="selectedMedicine" placeholder="Auswählen" />
+    </div>
+    <div class="small-description">
+      {{ $t('logCycle.medicine.smallDescription') }}
+    </div>
+  </div>
+</template>
+
+<script>
+import DropDownSingleSelect from 'components/DropDownSingleSelect.vue';
+
+export default {
+  components: {
+    DropDownSingleSelect
+  },
+  data() {
+    return {
+      selectedMedicine: null,
+      medicineOptions: [
+        { label: this.$t('logCycle.medicine.options.notfallkontrazeptiva'), value: 'Notfallkontrazeptiva' },
+        { label: this.$t('logCycle.medicine.options.hormonersatz'), value: 'Hormonersatz' },
+        { label: this.$t('logCycle.medicine.options.opioideSchmerzmittel'), value: 'Opiode Schmerzmittel' },
+        { label: this.$t('logCycle.medicine.options.diclofenacIbuprofen'), value: 'Diclofenac/Ibuprofen' }
+      ]
+    };
+  },
+  methods: {
+    goBack() {
+      window.history.back();
     }
-  };
-  </script>
+  }
+};
+</script>
+
   
   <style scoped>
   .welcome-container {
@@ -61,7 +68,7 @@
     align-items: center;
     width: 100%;
     padding: 10px 0;
-    margin-top: 60px;
+    margin-top: 20px;
   }
   
   .title {
@@ -94,6 +101,13 @@
   .small-description {
     font: 12px/16px 'Inter', sans-serif;
     margin-top: 15px;
+  }
+
+  @media only screen and (min-width: 200px) {
+    .welcome-container {
+      max-width: 350px;
+      margin: auto;
+    }
   }
   
   </style>

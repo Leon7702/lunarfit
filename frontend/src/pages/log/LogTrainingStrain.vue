@@ -1,21 +1,21 @@
 <template>
-    <div class="welcome-container">
-      <div class="header">
-        <q-btn flat dense round icon="arrow_back" @click="goBack" />
-        <div class="title">Trainingsbelastung</div>
-      </div>
-      <div class="linie"></div>
-      <div class="description">
-        Wie anstrengend war <br>deine Trainingseinheit?
-      </div>
-      <div class="slider">
-        <SliderWithLabelVertical10 topText="Maximal anstrengend" bottomText="Gar nicht anstrengend" />
-      </div>
-      <div class="button-container">
-        <StandardButton label="Weiter" @click="navigateToNextStep" />
-      </div>
+  <div class="welcome-container">
+    <div class="header">
+      <q-btn flat dense round icon="arrow_back" @click="goBack" />
+      <div class="title">{{ $t('logTrainingStrain.title') }}</div>
     </div>
-  </template>
+    <div class="linie"></div>
+    <div class="description">
+      <span v-html="$t('logTrainingStrain.description')"></span>
+    </div>
+    <div class="slider">
+      <SliderWithLabelVertical10 :topText="$t('logTrainingStrain.slider.topText')" :bottomText="$t('logTrainingStrain.slider.bottomText')" />
+    </div>
+    <div class="button-container">
+      <StandardButton :label="$t('buttons.next')" @click="navigateToNextStep" />
+    </div>
+  </div>
+</template>
   
   <script>
   import SliderWithLabelVertical10 from 'components/SliderWithLabelVertical10.vue';
@@ -43,6 +43,7 @@
     flex-direction: column;
     align-items: center;
     height: 100vh;
+    width: 90%;
     overflow: auto;
     margin: auto;
   }
@@ -60,7 +61,7 @@
     align-items: center;
     width: 100%;
     padding: 10px 0;
-    margin-top: 60px;
+    margin-top: 20px;
   }
   
   .title {
@@ -81,15 +82,22 @@
   }
   .slider {
     margin-top: 40px;
+    padding-right: 10%;
   }
 
   .button-container {
     position: fixed;
-    bottom: 40px; 
+    bottom: 80px; 
     width: 100%;
     display: flex;
     justify-content: center;
     left: 0;
+  }
+  @media only screen and (min-width: 200px) {
+    .welcome-container {
+      max-width: 350px;
+      margin: auto;
+    }
   }
   </style>
   

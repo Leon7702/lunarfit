@@ -1,25 +1,36 @@
+
+Hier ist die angepasste Vue.js-Komponente unter Verwendung der i18n-Einträge:
+
+Notizen Screen
+vue
+Code kopieren
 <template>
-    <div class="welcome-container">
-      <div class="header">
-        <q-btn flat dense round icon="arrow_back" @click="goBack" />
-        <div class="title">Notizen</div>
-      </div>
-      <div class="linie"></div>
-      <div class="description">
-        Füge eine Notiz hinzu:
-      </div>
-      <div class="textarea">
-        <InputTextArea v-model="notes" />
-      </div>
+  <div class="welcome-container">
+    <div class="header">
+      <q-btn flat dense round icon="arrow_back" @click="goBack" />
+      <div class="title">{{ $t('logNotes.title') }}</div>
     </div>
-  </template>
+    <div class="linie"></div>
+    <div class="description">
+      {{ $t('logNotes.description') }}
+    </div>
+    <div class="textarea">
+      <InputTextArea v-model="notes" />
+    </div>
+    <div class="button-container">
+      <StandardButton @click="saveChanges" :label="$t('buttons.save')" />
+    </div>
+  </div>
+</template>
   
   <script>
   import InputTextArea from 'components/InputTextArea.vue';
+  import StandardButton from 'components/StandardButton.vue';
   
   export default {
     components: {
-      InputTextArea
+      InputTextArea,
+      StandardButton
     },
     data() {
       return {
@@ -58,7 +69,7 @@
     align-items: center;
     width: 100%;
     padding: 10px 0;
-    margin-top: 60px;
+    margin-top: 20px;
   }
   
   .title {
@@ -79,6 +90,21 @@
   }
    .textarea {
     width:100%;
+  }
+  .button-container {
+    position: fixed;
+    bottom: 80px; 
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    left: 0;
+  }
+
+  @media only screen and (min-width: 200px) {
+    .welcome-container {
+      max-width: 350px;
+      margin: auto;
+    }
   }
   </style>
   

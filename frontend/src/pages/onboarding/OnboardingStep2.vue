@@ -1,54 +1,54 @@
 <template>
-    <div class="welcome-container">
-      <div class="content">
-        <BackButtonText />
-        <img src="/src/assets/Step2.svg" alt="Person form" class="person-image" />
-        <h2 class="form-step">
-          <span class="form-step-highlight">Schritt 2:</span> Zyklus
-        </h2>
-        <div class="form-group">
-          <p>An welchem Tag setzte deine letzte Menstruation ein?</p>
-          <FormFieldText id="birthdate" label="" iconName="" inputType="date" />
-        </div>
-        <div class="form-group">
-          <p>Wie viele Tage dauert deine Menstruation im Durchschnitt?</p>
-          <FormFieldText id="height" label="" iconName="" inputType="number" />
-        </div>
+  <div class="welcome-container">
+    <div class="content">
+      <BackButtonText />
+      <img src="/src/assets/Step2.svg" alt="Person form" class="person-image" />
+      <h2 class="form-step">
+        <span class="form-step-highlight">{{ $t('onboarding.onboardingStep2.step') }}</span> {{ $t('onboarding.onboardingStep2.title') }}
+      </h2>
+      <div class="form-group">
+        <p>{{ $t('onboarding.onboardingStep2.fields.lastMenstruation') }}</p>
+        <FormFieldText id="lastMenstruation" label="" iconName="" inputType="date" />
       </div>
-      <div class="button-container">
-        <StandardButton label="Weiter" @click="navigateToNextStep" />
+      <div class="form-group">
+        <p>{{ $t('onboarding.onboardingStep2.fields.menstruationDuration') }}</p>
+        <FormFieldText id="menstruationDuration" label="" iconName="" inputType="number" />
       </div>
     </div>
-  </template>
-  
-  <script>
-  import StandardButton from 'components/StandardButton.vue';
-  import FormFieldText from 'components/FormFieldText.vue';
-  import BackButtonText from 'components/BackButtonText.vue';
-  
-  export default {
-    components: {
-      StandardButton,
-      FormFieldText,
-      BackButtonText
+    <div class="button-container">
+      <StandardButton :label="$t('buttons.next')" @click="navigateToNextStep" />
+    </div>
+  </div>
+</template>
+
+<script>
+import StandardButton from 'components/StandardButton.vue';
+import FormFieldText from 'components/FormFieldText.vue';
+import BackButtonText from 'components/BackButtonText.vue';
+
+export default {
+  components: {
+    StandardButton,
+    FormFieldText,
+    BackButtonText
+  },
+  methods: {
+    goBack() {
+      window.history.back();
     },
-    methods: {
-      goBack() {
-        window.history.back();
-      },
-      navigateToNextStep() {
-        this.$router.push({ name: 'OnboardingStep4' });
-      }
+    navigateToNextStep() {
+      this.$router.push({ name: 'OnboardingStep4' });
     }
-  };
-  </script>
+  }
+};
+</script>
   
   <style scoped>
   .welcome-container {
     display: flex;
     flex-direction: column;
     align-items: center;
-    margin-top: 60px;
+    margin-top: 20px;
     position: relative;
     height: 100vh; 
   }
@@ -95,9 +95,9 @@
     left: 0;
   }
 
-  @media only screen and (min-width: 500px) {
+  @media only screen and (min-width: 200px) {
     .welcome-container {
-      max-width: 500px;
+      max-width: 350px;
       margin: auto;
       margin-top: 5%;
     }

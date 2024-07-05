@@ -1,53 +1,70 @@
 <template>
-    <div class="welcome-container">
-      <div class="header">
-        <q-btn flat dense round icon="arrow_back" @click="goBack" />
-        <div class="title">Ovulationstest</div>
-      </div>
-      <div class="linie"></div>
-      <p class="description">
-        Bitte zutreffendes auswählen:
-      </p>
-      <div class="icon-grid">
-        <div
-          class="icon-item"
-          v-for="(item, index) in iconItems"
-          :key="index"
-          @click="selectItem(index)"
-          :class="{ selected: selectedIndex === index }"
-        >
-          <div class="icon-wrapper">
-            <img :src="item.icon" class="icon" />
-            <div class="icon-circle" :class="{ active: selectedIndex === index }"></div>
-          </div>
-          <div class="icon-label">{{ item.label }}</div>
+  <div class="welcome-container">
+    <div class="header">
+      <q-btn flat dense round icon="arrow_back" @click="goBack" />
+      <div class="title">{{ $t('logCycle.ovulationTest.title') }}</div>
+    </div>
+    <div class="linie"></div>
+    <p class="description">
+      {{ $t('logCycle.ovulationTest.description') }}
+    </p>
+    <div class="icon-grid">
+      <div
+        class="icon-item"
+        v-for="(item, index) in iconItems"
+        :key="index"
+        @click="selectItem(index)"
+        :class="{ selected: selectedIndex === index }"
+      >
+        <div class="icon-wrapper">
+          <img :src="item.icon" class="icon" />
+          <div class="icon-circle" :class="{ active: selectedIndex === index }"></div>
         </div>
       </div>
     </div>
-  </template>
-  
-  <script>
-  export default {
-    data() {
+  </div>
+</template>
+
+<script>
+export default {
+  data() {
+    return {
+      iconItems: []
+    };
+  },
+  computed: {
+    localizedIcons() {
       return {
-        iconItems: [
-          { icon: '/src/assets/log_Zyklus/test_positiv.svg' },
-          { icon: '/src/assets/log_Zyklus/test_negativ.svg' },
-          { icon: '/src/assets/log_Zyklus/test_ungueltig.svg' }
-        ],
-        selectedIndex: null
+        positive: this.$t('logCycle.ovulationTest.icons.positive'),
+        negative: this.$t('logCycle.ovulationTest.icons.negative'),
+        invalid: this.$t('logCycle.ovulationTest.icons.invalid')
       };
-    },
-    methods: {
-      goBack() {
-        window.history.back();
-      },
-      selectItem(index) {
-        this.selectedIndex = index;
-      }
     }
-  };
-  </script>
+  },
+  watch: {
+    '$i18n.locale': 'updateIconItems'
+  },
+  methods: {
+    goBack() {
+      window.history.back();
+    },
+    selectItem(index) {
+      this.selectedIndex = index;
+    },
+    updateIconItems() {
+      this.iconItems = [
+        { icon: this.localizedIcons.positive },
+        { icon: this.localizedIcons.negative },
+        { icon: this.localizedIcons.invalid }
+      ];
+    }
+  },
+  created() {
+    this.updateIconItems();
+  }
+};
+</script>
+
   
   <style scoped>
   .welcome-container {
@@ -73,7 +90,7 @@
     align-items: center;
     width: 100%;
     padding: 10px 0;
-    margin-top: 60px;
+    margin-top: 20px;
   }
   
   .title {
@@ -134,6 +151,13 @@
   
   .icon-circle.active {
     background-color: var(--q-primary);
+  }
+
+  @media only screen and (min-width: 200px) {
+    .welcome-container {
+      max-width: 350px;
+      margin: auto;
+    }
   }
   </style>
   

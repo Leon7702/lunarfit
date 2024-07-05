@@ -297,7 +297,7 @@
   "onboarding": {
     "start": {
       "title": "Willkommen bei LunarFit.",
-      "description": "Um dich und deinen Zyklus besser kennenzulernen, beantworte bitte die folgenden Fragen über deinen Körper, deinen Zyklus und dein Sportverhalten.\n\nDeine Daten werden streng vertraulich behandelt und sicher aufbewahrt."
+      "description": "Um dich und deinen Zyklus besser kennenzulernen, beantworte bitte die folgenden Fragen über deinen Körper, deinen Zyklus und dein Sportverhalten. Deine Daten werden streng vertraulich behandelt und sicher aufbewahrt."
     },
     "onboardingStep1": {
       "step": "Schritt 1:",
@@ -319,27 +319,27 @@
       }
     },
     "onboardingStep3": {
-      "step": "Schritt 3:",
-      "title": "Zyklus",
-      "fields": {
-        "hormonalContraception": "Verhütest du hormonell?",
-        "contraceptionMethod": "Welches Verhütungsmittel nutzt du?",
-        "contraceptionOptions": [
-          "Pille",
-          "Hormonspirale",
-          "Hormonimplantat",
-          "Dreimonatsspritze",
-          "Vaginalring",
-          "Sonstiges"
-        ]
-      }
-    },
+        "step": "Schritt 3:",
+        "title": "Zyklus",
+        "fields": {
+          "hormonalContraception": "Verhütest du hormonell?",
+          "contraceptionMethod": "Welches Verhütungsmittel nutzt du?",
+          "contraceptionOptions": {
+            "pille": "Pille",
+            "hormonspirale": "Hormonspirale",
+            "hormonimplantat": "Hormonimplantat",
+            "dreimonatsspritze": "Dreimonatsspritze",
+            "vaginalring": "Vaginalring",
+            "sonstiges": "Sonstiges"
+          }
+        }
+      },
     "onboardingStep4": {
       "step": "Schritt 4:",
       "title": "Sportverhalten",
       "fields": {
-        "trainingSessions": "Wie viele Trainingseinheiten pro Woche hattest du im letzten Monat?",
-        "trainingDuration": "Wie lange dauerte eine Trainingseinheit?"
+        "trainingSessions": "Wie viele Trainingseinheiten pro Woche hast du hattest du im letzten Monat?",
+        "trainingDuration": "Wie lange dauerte eine Trainingseinheit im Durchschnitt in Minuten?"
       }
     },
     "onboardingStep5": {
@@ -355,6 +355,13 @@
       "title": "Geschafft!",
       "description": "Vielen Dank für das Ausfüllen der Fragen. Auf Basis deiner Antworten werden dir bereits anfängliche Empfehlungen abgegeben.\n\nDenk daran: Je genauer du deinen Zyklus und dein Sportverhalten trackst, desto genauer werden deine Empfehlungen."
     }
+  },
+  "logEntry": {
+    "title": "Log-Eintrag",
+    "images": {
+        "cycle": "/src/assets/log_zyklus.svg",
+        "notes": "/src/assets/log_notes.svg"
+      }
   },
   "logCycle": {
     "home": {
@@ -372,22 +379,31 @@
       }
     },
     "homeList": {
-      "title": "Liste anpassen",
-      "labels": {
-        "menstruation": "Menstruation",
-        "temperature": "Temperatur",
-        "cervixMucus": "Zervixschleim",
-        "cervixPosition": "Gebärmutterhals",
-        "sex": "Geschlechtsverkehr",
-        "contraceptive": "Verhütungsmittel",
-        "medicine": "Medikamente",
-        "ovulationTest": "Ovulationstest",
-        "pregnancyTest": "Schwangerschaftstest"
-      }
-    },
+        "title": "Zyklus Log-Eintrag",
+        "editListTitle": "Liste anpassen",
+        "saveButton": "Speichern",
+        "labels": {
+          "menstruation": "Menstruation",
+          "temperature": "Temperatur",
+          "cervixMucus": "Zervixschleim",
+          "cervixPosition": "Gebärmutterhals",
+          "sex": "Geschlechtsverkehr",
+          "contraceptive": "Verhütungsmittel",
+          "medicine": "Medikamente",
+          "ovulationTest": "Ovulationstest",
+          "pregnancyTest": "Schwangerschaftstest"
+        }
+      },
     "cervix": {
       "title": "Zervixschleim",
-      "description": "Bitte zutreffendes auswählen:"
+      "description": "Bitte zutreffendes auswählen:",
+      "icons": {
+        "none": "/src/assets/log_Zyklus/cerfix_keinen.svg",
+        "dry": "/src/assets/log_Zyklus/cerfix_trocken.svg",
+        "creamy": "/src/assets/log_Zyklus/cerfix_cremig.svg",
+        "sticky": "/src/assets/log_Zyklus/cerfix_klebrig.svg",
+        "protein": "/src/assets/log_Zyklus/cerfix_eiweissartig.svg"
+      }
     },
     "contraceptive": {
       "title": "Verhütungsmittel",
@@ -404,19 +420,24 @@
     },
     "cervixPosition": {
       "title": "Gebärmutterhals",
-      "description": "Bitte zutreffende Position auswählen:"
+      "description": "Bitte zutreffende Position auswählen:",
+      "icons": {
+        "closed": "/src/assets/log_Zyklus/gmh_geschlossen.svg",
+        "partiallyOpen": "/src/assets/log_Zyklus/gmh_tw_geoeffnet.svg",
+        "fullyOpen": "/src/assets/log_Zyklus/gmh_voll_geoeffnet.svg"
+      }
     },
     "medicine": {
-      "title": "Medikamente",
-      "description": "Spezifische Medikamenteneinnahme:",
-      "smallDescription": "Bitte beachten Sie, dass die oben genannten Medikamente Einfluss auf Ihren Zyklus haben können.",
-      "options": [
-        "Notfallkontrazeptiva",
-        "Hormonersatz",
-        "Opiode Schmerzmittel",
-        "Diclofenac/Ibuprofen"
-      ]
-    },
+        "title": "Medikamente",
+        "description": "Spezifische Medikamenteneinnahme:",
+        "smallDescription": "Bitte beachten Sie, dass die oben genannten Medikamente Einfluss auf Ihren Zyklus haben können.",
+        "options": {
+          "notfallkontrazeptiva": "Notfallkontrazeptiva",
+          "hormonersatz": "Hormonersatz",
+          "opioideSchmerzmittel": "Opiode Schmerzmittel",
+          "diclofenacIbuprofen": "Diclofenac/Ibuprofen"
+        }
+      },
     "mens": {
       "title": "Menstruation",
       "buttonLabel": "+  Menstruation",
@@ -426,22 +447,32 @@
     },
     "ovulationTest": {
       "title": "Ovulationstest",
-      "description": "Bitte zutreffendes auswählen:"
+      "description": "Bitte zutreffendes auswählen:",
+      "icons": {
+        "positive": "/src/assets/log_Zyklus/test_positiv.svg",
+        "negative": "/src/assets/log_Zyklus/test_negativ.svg",
+        "invalid": "/src/assets/log_Zyklus/test_ungueltig.svg"
+      }
     },
     "pregnancyTest": {
       "title": "Schwangerschaftstest",
-      "description": "Bitte zutreffendes auswählen:"
+      "description": "Bitte zutreffendes auswählen:",
+      "icons": {
+        "positive": "/src/assets/log_Zyklus/test_positiv.svg",
+        "negative": "/src/assets/log_Zyklus/test_negativ.svg",
+        "invalid": "/src/assets/log_Zyklus/test_ungueltig.svg"
+      }
     },
     "sex": {
       "title": "Geschlechtsverkehr",
       "description": "Bitte zutreffendes auswählen:",
-      "options": [
-        "Kein Sex",
-        "Geschützter Sex",
-        "Ungeschützter Sex",
-        "Lust auf Sex",
-        "Masturbation"
-      ]
+      "options": {
+        "keinSex": "Kein Sex",
+        "geschuetzterSex": "Geschützter Sex",
+        "ungeschuetzterSex": "Ungeschützter Sex",
+        "lustAufSex": "Lust auf Sex",
+        "masturbation": "Masturbation"
+      }
     },
     "temperature": {
       "title": "Temperatur",
@@ -456,7 +487,8 @@
   },
   "logTrainingComplaints": {
     "title": "Beschwerden",
-    "description": "Hast du körperliche <br>Beschwerden?",
+    "descriptionPart1": "Hast du körperliche",
+    "descriptionPart2": "Beschwerden?",
     "slider": {
       "topText": "Sehr starke Beschwerden",
       "bottomText": "Keine Beschwerden"
@@ -473,7 +505,7 @@
   },
   "logTrainingRecovery": {
     "title": "Erholung",
-    "description": "Wie bewertest du deinen <br>allgemeinen Erholungszustand?",
+    "description": "Wie bewertest du deinen allgemeinen Erholungszustand?",
     "slider": {
       "topText": "Erholt",
       "bottomText": "Nicht erholt"
@@ -481,22 +513,67 @@
   },
   "logTrainingStrain": {
     "title": "Trainingsbelastung",
-    "description": "Wie anstrengend war <br>deine Trainingseinheit?",
+    "description": "Wie anstrengend war <br> deine Trainingseinheit?",
     "slider": {
       "topText": "Maximal anstrengend",
       "bottomText": "Gar nicht anstrengend"
     }
   },
   "logTrainingStrainPre": {
-    "title": "Trainingsbelastung",
-    "description1": "Hast du heute oder gestern trainiert?",
-    "trainingOptions": {
-      "prompt": "Welche Sportart/Aktivität hast du durchgeführt?"
-    },
-    "durationOptions": {
-      "prompt": "Wie viele Minuten hast du trainiert?"
+  "title": "Trainingsbelastung",
+  "description1": "Hast du in den letzten 24 Stunden trainiert?",
+  "trainingOptions": {
+    "prompt": "Welche Sportart/Aktivität hast du durchgeführt?",
+    "options": {
+      "hiking": "Wandern, Bergwandern, Marschieren",
+      "cycling": "Radfahren, Velofahren (ohne MTB)",
+      "swimming": "Schwimmen",
+      "skiing": "Skifahren (ohne Skitouren)",
+      "running": "Jogging, Laufen, Running",
+      "strength_training": "Krafttraining, Gym, Bodybuilding",
+      "fitness_training": "Fitnesstraining, Group Fitness",
+      "yoga": "Yoga, Pilates, Tai Chi, Stretching",
+      "walking": "Walking, Nordic Walking",
+      "mountain_biking": "Mountainbiking (inkl. Gravel)",
+      "snowshoeing": "Schneeschuhlaufen",
+      "sledding": "Schlitteln, Rodeln, Bob",
+      "gymnastics": "Turnen, Gymnastik, Trampolin",
+      "dancing": "Tanzen",
+      "football": "Fussball",
+      "cross_country_skiing": "Skilanglauf, Ski Nordisch",
+      "volleyball": "Volleyball, Beachvolleyball",
+      "badminton": "Badminton",
+      "inline_skating": "Inline-Skating, Rollschuhlaufen",
+      "climbing": "Klettern, Bouldern, Bergsteigen",
+      "snowboarding": "Snowboarding (ohne Touren)",
+      "ski_snowboard_tours": "Ski- und Snowboardtouren",
+      "table_tennis": "Tischtennis",
+      "tennis": "Tennis",
+      "shooting": "Schießen",
+      "diving": "Tauchen, Schnorcheln",
+      "ice_skating": "Eislaufen, Eiskunstlauf",
+      "aqua_fitness": "Aqua-Fitness",
+      "surfing": "Surfen, Windsurfen, Kitesurfen, SUP",
+      "horse_riding": "Reiten, Pferdesport",
+      "floorball": "Unihockey",
+      "basketball": "Basketball",
+      "golf": "Golf",
+      "squash": "Squash",
+      "martial_arts": "Kampfsport",
+      "sailing": "Segeln",
+      "athletics": "Leichtathletik",
+      "rowing": "Rudern",
+      "canoeing": "Kanu, Kajak, Riverrafting",
+      "ice_hockey": "Eishockey",
+      "handball": "Handball",
+      "other_sports": "sonstige Sportarten"
     }
   },
+  "durationOptions": {
+    "prompt": "Wie viele Minuten hast du trainiert?"
+  }
+},
+
   "calendarLegend": {
     "0": "Periode",
     "1": "Vorausgesagte Periode",
@@ -626,6 +703,11 @@
     "title": "Sprache",
     "german": "Deutsch",
     "english": "Englisch"
+  },
+  
+  "buttons": {
+    "next": "Weiter",
+    "save": "Speichern"
   }
 
 }

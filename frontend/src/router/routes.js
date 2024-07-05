@@ -95,12 +95,6 @@ const routes = [
         meta: { requiresAuth: true },
       },
       {
-        path: "log-cycle-contraceptive",
-        name: "LogCycleContraceptive",
-        component: () => import("pages/log/LogCycleContraceptive.vue"),
-        meta: { requiresAuth: true },
-      },
-      {
         path: "log-cycle-medicine",
         name: "LogCycleMedicine",
         component: () => import("pages/log/LogCycleMedicine.vue"),

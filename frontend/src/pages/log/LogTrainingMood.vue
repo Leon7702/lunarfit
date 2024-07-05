@@ -1,21 +1,21 @@
 <template>
-    <div class="welcome-container">
-      <div class="header">
-        <q-btn flat dense round icon="arrow_back" @click="goBack" />
-        <div class="title">Stimmung</div>
-      </div>
-      <div class="linie"></div>
-      <div class="description">
-        Wie bewertest du deine <br>heutige Stimmung?
-      </div>
-      <div class="slider">
-        <SliderWithLabelVertical topText="Glücklich" bottomText="Traurig" />
-      </div>
-      <div class="button-container">
-        <StandardButton label="Weiter" @click="navigateToNextStep" />
-      </div>
+  <div class="welcome-container">
+    <div class="header">
+      <q-btn flat dense round icon="arrow_back" @click="goBack" />
+      <div class="title">{{ $t('logTrainingMood.title') }}</div>
     </div>
-  </template>
+    <div class="linie"></div>
+    <div class="description">
+      <span v-html="$t('logTrainingMood.description')"></span>
+    </div>
+    <div class="slider">
+      <SliderWithLabelVertical :topText="$t('logTrainingMood.slider.topText')" :bottomText="$t('logTrainingMood.slider.bottomText')" />
+    </div>
+    <div class="button-container">
+      <StandardButton :label="$t('buttons.next')" @click="navigateToNextStep" />
+    </div>
+  </div>
+</template>
   
   <script>
   import SliderWithLabelVertical from 'components/SliderWithLabelVertical.vue';
@@ -61,7 +61,7 @@
     align-items: center;
     width: 100%;
     padding: 10px 0;
-    margin-top: 60px;
+    margin-top: 20px;
   }
   
   .title {
@@ -87,11 +87,18 @@
 
   .button-container {
     position: fixed;
-    bottom: 40px; 
+    bottom: 80px;  
     width: 100%;
     display: flex;
     justify-content: center;
     left: 0;
+  }
+
+  @media only screen and (min-width: 200px) {
+    .welcome-container {
+      max-width: 350px;
+      margin: auto;
+    }
   }
   </style>
   
