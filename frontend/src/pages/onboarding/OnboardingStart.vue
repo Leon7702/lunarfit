@@ -6,7 +6,7 @@
         <p class="description">{{ $t('onboarding.start.description')}}</p>
       </div>
       <div class="button-container">
-        <StandardButton label="Weiter" @click="navigateToOnboardingStep1" />
+        <StandardButton :label="$t('buttons.next')" @click="navigateToOnboardingStep1" />
       </div>
     </div>
   </template>

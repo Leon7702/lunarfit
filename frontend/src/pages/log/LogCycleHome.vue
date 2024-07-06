@@ -27,6 +27,14 @@ export default {
       return this.iconItems.filter(item => item.selected);
     }
   },
+  watch: {
+    '$i18n.locale': {
+      handler() {
+        this.updateIconItems();
+      },
+      immediate: true
+    }
+  },
   methods: {
     goBack() {
       this.$router.push({ name: 'LogHome' });
@@ -48,13 +56,8 @@ export default {
       if (routes[label]) {
         this.$router.push({ name: routes[label] });
       }
-    }
-  },
-  created() {
-    const storedItems = localStorage.getItem('iconItems');
-    if (storedItems) {
-      this.iconItems = JSON.parse(storedItems);
-    } else {
+    },
+    updateIconItems() {
       this.iconItems = [
         { label: this.$t('logCycle.home.labels.menstruation'), icon: '/src/assets/log_Zyklus/icon_mens.svg', selected: true },
         { label: this.$t('logCycle.home.labels.temperature'), icon: '/src/assets/log_Zyklus/icon_temperature.svg', selected: true },
@@ -67,10 +70,17 @@ export default {
       ];
       localStorage.setItem('iconItems', JSON.stringify(this.iconItems));
     }
+  },
+  created() {
+    const storedItems = localStorage.getItem('iconItems');
+    if (storedItems) {
+      this.iconItems = JSON.parse(storedItems);
+    } else {
+      this.updateIconItems();
+    }
   }
 };
 </script>
-
 
 <style scoped>
 .welcome-container {
@@ -129,7 +139,7 @@ export default {
 .icon {
   width: 60px;
   height: 60px;
-  cursor: pointer; 
+  cursor: pointer;
 }
 
 .icon-label {

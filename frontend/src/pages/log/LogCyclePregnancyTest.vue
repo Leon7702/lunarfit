@@ -26,20 +26,20 @@
   </div>
 </template>
 
-
 <script>
 export default {
   data() {
     return {
-      iconItems: []
+      iconItems: [],
+      selectedIndex: null // Hinzufügen der selectedIndex-Eigenschaft
     };
   },
   computed: {
     localizedIcons() {
       return {
-        positive: this.$t('logCycle.ovulationTest.icons.positive'),
-        negative: this.$t('logCycle.ovulationTest.icons.negative'),
-        invalid: this.$t('logCycle.ovulationTest.icons.invalid')
+        positive: this.$t('logCycle.pregnancyTest.icons.positive'),
+        negative: this.$t('logCycle.pregnancyTest.icons.negative'),
+        invalid: this.$t('logCycle.pregnancyTest.icons.invalid')
       };
     }
   },
@@ -51,12 +51,12 @@ export default {
       window.history.back();
     },
     selectItem(index) {
-      this.selectedIndex = index;
+      this.selectedIndex = index; // Setzen des ausgewählten Index
     },
     updateIconItems() {
       this.iconItems = [
         { icon: this.localizedIcons.positive },
-        { icon: this.localizedIcons.negative },
+        { icon: this.localizedIcons.negative},
         { icon: this.localizedIcons.invalid }
       ];
     }
@@ -66,99 +66,97 @@ export default {
   }
 };
 </script>
-  
-  <style scoped>
+
+<style scoped>
+.welcome-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 90%;
+  height: 100vh;
+  overflow: auto;
+  margin: auto;
+}
+
+.linie {
+  height: 1px;
+  background-color: rgba(0, 0, 0, 0.1);
+  width: 120%;
+  margin-top: 10px;
+}
+
+.header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  width: 100%;
+  padding: 10px 0;
+  margin-top: 20px;
+}
+
+.title {
+  font: 600 20px 'Inter', sans-serif;
+  color: #000;
+  text-align: center;
+  flex-grow: 1;
+  padding-right: 30px;
+}
+
+.description {
+  text-align: left;
+  width: 100%;
+  margin-top: 30px;
+  font-size: 16px;
+  font-weight: 500;
+}
+
+.icon-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(100px, 1fr));
+  width: 100%;
+  max-width: 600px;
+  justify-content: center;
+}
+
+.icon-item {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin-bottom: 12px;
+  cursor: pointer;
+}
+
+.icon-wrapper {
+  position: relative;
+  width: 140px;
+  height: 240px;
+}
+
+.icon {
+  width: 100%;
+  height: 100%;
+}
+
+.icon-circle {
+  position: absolute;
+  bottom: 15px;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 25px;
+  height: 25px;
+  border-radius: 50%;
+  background-color: lightgray;
+  transition: background-color 0.3s;
+}
+
+.icon-circle.active {
+  background-color: var(--q-primary);
+}
+
+@media only screen and (min-width: 200px) {
   .welcome-container {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    width: 90%;
-    height: 100vh;
-    overflow: auto;
+    max-width: 350px;
     margin: auto;
   }
-  
-  .linie {
-    height: 1px;
-    background-color: rgba(0, 0, 0, 0.1);
-    width: 120%;
-    margin-top: 10px;
-  }
-  
-  .header {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    width: 100%;
-    padding: 10px 0;
-    margin-top: 20px;
-  }
-  
-  .title {
-    font: 600 20px 'Inter', sans-serif;
-    color: #000;
-    text-align: center;
-    flex-grow: 1;
-    padding-right: 30px;
-  }
-  
-  .description {
-    text-align: left;
-    width: 100%;
-    margin-top: 30px;
-    font-size: 16px;
-    font-weight: 500;
-  }
-  
-  .icon-grid {
-    display: grid;
-    grid-template-columns: repeat(auto-fill, minmax(100px, 1fr));
-    width: 100%;
-    max-width: 600px;
-    justify-content: center;
- 
-  }
-  
-  .icon-item {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    margin-bottom: 12px;
-    cursor: pointer;
-  }
-  
-  .icon-wrapper {
-    position: relative;
-    width: 140px;
-    height: 240px;
-  }
-  
-  .icon {
-    width: 100%;
-    height: 100%;
-  }
-  
-  .icon-circle {
-    position: absolute;
-    bottom: 15px;
-    left: 50%;
-    transform: translateX(-50%);
-    width: 25px;
-    height: 25px;
-    border-radius: 50%;
-    background-color: lightgray;
-    transition: background-color 0.3s;
-  }
-  
-  .icon-circle.active {
-    background-color: var(--q-primary);
-  }
-
-  @media only screen and (min-width: 200px) {
-    .welcome-container {
-      max-width: 350px;
-      margin: auto;
-    }
-  }
-  </style>
-  
+}
+</style>

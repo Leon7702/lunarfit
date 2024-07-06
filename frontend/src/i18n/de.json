@@ -708,6 +708,9 @@
   "buttons": {
     "next": "Weiter",
     "save": "Speichern"
-  }
+  },
 
+    "yes": "Ja",
+    "no": "Nein"
+  
 }

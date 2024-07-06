@@ -16,7 +16,7 @@
       </div>
     </div>
     <div class="button-container">
-      <StandardButton label="Weiter" @click="navigateToNextStep" />
+      <StandardButton :label="$t('buttons.next')" @click="navigateToNextStep" />
     </div>
   </div>
 </template>

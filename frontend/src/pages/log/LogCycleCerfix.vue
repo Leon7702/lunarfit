@@ -20,7 +20,6 @@
           <img :src="item.icon" class="icon" />
           <div class="icon-circle" :class="{ active: selectedIndex === index }"></div>
         </div>
-        <div class="icon-label">{{ item.label }}</div>
       </div>
     </div>
   </div>
@@ -30,7 +29,8 @@
 export default {
   data() {
     return {
-      iconItems: []
+      iconItems: [],
+      selectedIndex: null // Hinzufügen der selectedIndex-Eigenschaft
     };
   },
   computed: {
@@ -42,15 +42,6 @@ export default {
         sticky: this.$t('logCycle.cervix.icons.sticky'),
         protein: this.$t('logCycle.cervix.icons.protein')
       };
-    },
-    localizedLabels() {
-      return {
-        none: this.$t('logCycle.cervix.labels.none'),
-        dry: this.$t('logCycle.cervix.labels.dry'),
-        creamy: this.$t('logCycle.cervix.labels.creamy'),
-        sticky: this.$t('logCycle.cervix.labels.sticky'),
-        protein: this.$t('logCycle.cervix.labels.protein')
-      };
     }
   },
   watch: {
@@ -61,14 +52,14 @@ export default {
       window.history.back();
     },
     selectItem(index) {
-      this.selectedIndex = index;
+      this.selectedIndex = index; // Setzen des ausgewählten Index
     },
     updateIconItems() {
       this.iconItems = [
-        { icon: this.localizedIcons.none},
+        { icon: this.localizedIcons.none },
         { icon: this.localizedIcons.dry },
         { icon: this.localizedIcons.creamy },
-        { icon: this.localizedIcons.sticky},
+        { icon: this.localizedIcons.sticky },
         { icon: this.localizedIcons.protein }
       ];
     }
@@ -78,7 +69,6 @@ export default {
   }
 };
 </script>
-
 
 <style scoped>
 .welcome-container {
@@ -136,6 +126,7 @@ export default {
   flex-direction: column;
   align-items: center;
   margin-bottom: 12px;
+  cursor: pointer;
 }
 
 .icon-wrapper {
