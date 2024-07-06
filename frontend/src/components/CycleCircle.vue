@@ -8,18 +8,22 @@
         <!-- The stroke-dashoffset property controls where the dash pattern starts -->
         <!-- TODO: calculate stroke dasharray based on proportion values -->
         <!-- TODO: determine stroke-dashoffset value -> always staring at 25 for mensPhase -->
-        <circle class="donut-segment" cx="21" cy="21" :r="radius" fill="transparent" stroke="#50C1BA" stroke-width="5"
+        <circle class="donut-segment" cx="21" cy="21" :r="radius" fill="transparent" stroke="#A6EFEB" stroke-width="5"
           :stroke-dasharray="calculatePhasePortion(mensLengthPortion)" :stroke-dashoffset="(mensOffset + 25)"></circle>
 
         <circle class="donut-segment" cx="21" cy="21" :r="radius" fill="transparent" stroke="#9CD3D0" stroke-width="5"
           :stroke-dasharray="calculatePhasePortion(follicularLengthPortion)" :stroke-dashoffset="(follicularOffset + 25)">
         </circle>
 
+        <circle class="donut-segment" cx="21" cy="21" :r="radius" fill="transparent" stroke="#1D706A" stroke-width="5"
+          :stroke-dasharray="calculatePhasePortion(ovulationLengthPortion)" :stroke-dashoffset="(ovulationOffset + 25)">
+        </circle>
+
         <circle class="donut-segment" cx="21" cy="21" :r="radius" fill="transparent" stroke="#2D8781" stroke-width="5"
           :stroke-dasharray="calculatePhasePortion(earlyLutealLengthPortion)" :stroke-dashoffset="(earlyLutealOffset + 25)">
         </circle>
 
-        <circle class="donut-segment" cx="21" cy="21" :r="radius" fill="transparent" stroke="#93EDE8" stroke-width="5"
+        <circle class="donut-segment" cx="21" cy="21" :r="radius" fill="transparent" stroke="#50C1BA" stroke-width="5"
           :stroke-dasharray="calculatePhasePortion(lateLutealLengthPortion)" :stroke-dashoffset="(lateLutealOffset + 25)">
         </circle>
 
@@ -32,7 +36,7 @@
 
         <!-- Text labels for the segments -->
         <!-- The textPath element allows the text to follow the path defined above -->
-        <text fill="#fff" font-size="2">
+        <text fill="#000" font-size="2">
           <textPath href="#myPath1">
             {{ $t('menstruationInfo.title') }}
           </textPath>
@@ -50,11 +54,13 @@
           </textPath>
         </text>
 
-        <text fill="#000" font-size="2" transform="rotate(292 21 21)">
+        <text fill="#fff" font-size="2" transform="rotate(292 21 21)">
           <textPath href="#myPath3">
             {{ $t('lutealInfoLate.title') }}
           </textPath>
         </text>
+
+
         <!-- <text x="20" y="5.5" text-anchor="middle" fill="#fff" dy=".3em" font-size="2"
           transform="rotate(40 21 21)">Menstruation</text> -->
 
@@ -98,13 +104,15 @@ export default {
       // TODO: need to create methods to calculate the portion of each phase
       // we need: cycleLength, mensLength, follicularLength, earlyLutealLength, lateLutealLength
       // mensLengthPortion: 11.8,
-      // follicularLengthPortion: 47.1,
-      // earlyLutealLengthPortion: 27.5,
-      // lateLutealLengthPortion: 13.7,
+      // follicularLengthPortion: 44.1,
+      // ovulationLengthPortion: 2.9,
+      // earlyLutealLengthPortion: 26.5,
+      // lateLutealLengthPortion: 14.7,
 
       // for cycleLength = 28
       mensLengthPortion: 21.4,
-      follicularLengthPortion: 28.6,
+      follicularLengthPortion: 25,
+      ovulationLengthPortion: 3.6,
       earlyLutealLengthPortion: 32.1,
       lateLutealLengthPortion: 17.9,
 
@@ -138,8 +146,11 @@ export default {
     follicularOffset() {
       return this.mensOffset - this.mensLengthPortion;
     },
-    earlyLutealOffset() {
+    ovulationOffset() {
       return this.follicularOffset - this.follicularLengthPortion;
+    },
+    earlyLutealOffset() {
+      return this.ovulationOffset - this.ovulationLengthPortion;
     },
     lateLutealOffset() {
       return this.earlyLutealOffset - this.earlyLutealLengthPortion;
