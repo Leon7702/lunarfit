@@ -6,25 +6,23 @@
         <!-- Each circle represents a segment of the donut chart -->
         <!-- The stroke-dasharray property controls the length and spacing of the dashes, creating the donut effect -->
         <!-- The stroke-dashoffset property controls where the dash pattern starts -->
-        <!-- TODO: calculate stroke dasharray based on proportion values -->
-        <!-- TODO: determine stroke-dashoffset value -> always staring at 25 for mensPhase -->
         <circle class="donut-segment" cx="21" cy="21" :r="radius" fill="transparent" stroke="#A6EFEB" stroke-width="5"
-          :stroke-dasharray="calculatePhasePortion(mensLengthPortion)" :stroke-dashoffset="(mensOffset + 25)"></circle>
+          :stroke-dasharray="getPhasePortion(mensLengthPortion)" :stroke-dashoffset="(mensOffset + 25)"></circle>
 
         <circle class="donut-segment" cx="21" cy="21" :r="radius" fill="transparent" stroke="#9CD3D0" stroke-width="5"
-          :stroke-dasharray="calculatePhasePortion(follicularLengthPortion)" :stroke-dashoffset="(follicularOffset + 25)">
+          :stroke-dasharray="getPhasePortion(follicularLengthPortion)" :stroke-dashoffset="(follicularOffset + 25)">
         </circle>
 
         <circle class="donut-segment" cx="21" cy="21" :r="radius" fill="transparent" stroke="#1D706A" stroke-width="5"
-          :stroke-dasharray="calculatePhasePortion(ovulationLengthPortion)" :stroke-dashoffset="(ovulationOffset + 25)">
+          :stroke-dasharray="getPhasePortion(ovulationLengthPortion)" :stroke-dashoffset="(ovulationOffset + 25)">
         </circle>
 
         <circle class="donut-segment" cx="21" cy="21" :r="radius" fill="transparent" stroke="#2D8781" stroke-width="5"
-          :stroke-dasharray="calculatePhasePortion(earlyLutealLengthPortion)" :stroke-dashoffset="(earlyLutealOffset + 25)">
+          :stroke-dasharray="getPhasePortion(earlyLutealLengthPortion)" :stroke-dashoffset="(earlyLutealOffset + 25)">
         </circle>
 
         <circle class="donut-segment" cx="21" cy="21" :r="radius" fill="transparent" stroke="#50C1BA" stroke-width="5"
-          :stroke-dasharray="calculatePhasePortion(lateLutealLengthPortion)" :stroke-dashoffset="(lateLutealOffset + 25)">
+          :stroke-dasharray="getPhasePortion(lateLutealLengthPortion)" :stroke-dashoffset="(lateLutealOffset + 25)">
         </circle>
 
         <!-- Paths for the text labels -->
@@ -91,30 +89,21 @@
 
 <script>
 import axios from 'axios';
-import { computed } from 'vue';
+import { calculateCycleAndPhases } from 'src/utils/cyclePhaseCalculator.js';
 
 export default {
   data() {
     return {
-      // FIXME: this data needs to be fetched from the actual database, onboarding or user input
-      cycleLength: null,
-      currentDay: 1, // needs to be initialized with a number (not null)
+      // FIXME: cycleLength gets calculated by the cyclePhaseCalculator
+      cycleLength: 34,
+      // TODO: needs to get or calculate the current day of the cycle
+      currentDay: 20,
       radius: 50 / Math.PI,
-
-      // TODO: need to create methods to calculate the portion of each phase
-      // we need: cycleLength, mensLength, follicularLength, earlyLutealLength, lateLutealLength
-      // mensLengthPortion: 11.8,
-      // follicularLengthPortion: 44.1,
-      // ovulationLengthPortion: 2.9,
-      // earlyLutealLengthPortion: 26.5,
-      // lateLutealLengthPortion: 14.7,
-
-      // for cycleLength = 28
-      mensLengthPortion: 21.4,
-      follicularLengthPortion: 25,
-      ovulationLengthPortion: 3.6,
-      earlyLutealLengthPortion: 32.1,
-      lateLutealLengthPortion: 17.9,
+      mensLengthPortion: null,
+      follicularLengthPortion: null,
+      ovulationLengthPortion: null,
+      earlyLutealLengthPortion: null,
+      lateLutealLengthPortion: null,
 
       mensOffset: 0,
     };
@@ -126,17 +115,28 @@ export default {
   methods: {
 
     // mensLengthPortion (100 - mensLengthPortion)
-    calculatePhasePortion(phaseLengthPortion) {
+    getPhasePortion(phaseLengthPortion) {
       return "" + phaseLengthPortion + " " + (100 - phaseLengthPortion).toString();
     },
 
+
+    calculateLengthPortion(calculatedLengths) {
+      this.mensLengthPortion = (calculatedLengths.phaseLengths[0].length / this.cycleLength) * 100;
+      this.follicularLengthPortion = (calculatedLengths.phaseLengths[1].length / this.cycleLength) * 100;
+      this.ovulationLengthPortion = (calculatedLengths.phaseLengths[2].length / this.cycleLength) * 100;
+      this.earlyLutealLengthPortion = (calculatedLengths.phaseLengths[3].length / this.cycleLength) * 100;
+      this.lateLutealLengthPortion = (calculatedLengths.phaseLengths[4].length / this.cycleLength) * 100;
+    },
+
     async fetchData() {
-      // TODO: Fetch the data from the database and assign it to cycleLength and currentDay
-      // FOR NOW: to test the method without having a real database, use json-server
+      // TODO: Fetch the data from the database and assign it to cycleData
       try {
-        const response = await axios.get('http://localhost:3000/usersdata/'); // TODO: change the URL
-        this.cycleLength = response.data.cycleLength;
-        this.currentDay = response.data.currentDay;
+        const response = await axios.get('http://localhost:3000/menstrualcycle/'); // TODO: change the URL
+        const cycleData = response.data;
+        const calculatedLengths = calculateCycleAndPhases(cycleData);
+
+        this.cycleLength = calculatedLengths.cycleLength;
+        this.calculateLengthPortion(calculatedLengths);
       } catch (error) {
         console.error('Failed to fetch data:', error);
       }
