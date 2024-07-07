@@ -483,6 +483,7 @@
         "bottomText": "No complaints"
       }
     },
+     "temperatureInfluence": "There were factors that could affect the temperature.",
     "logTrainingMood": {
       "backButton": "arrow_back",
       "title": "Mood",

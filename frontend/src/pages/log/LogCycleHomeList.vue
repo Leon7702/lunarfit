@@ -9,7 +9,7 @@
       <div class="left-circle">
         <q-icon :name="item.selected ? 'lens' : 'radio_button_unchecked'" color="primary" size="25px" />
       </div>
-      <div class="icon-label">{{ item.label }}</div>
+      <div class="icon-label">{{ $t(`logCycle.homeList.labels.${item.key}`) }}</div>
     </div>
     <div class="button-container">
       <StandardButton @click="saveChanges" :label="$t('buttons.save')" />
@@ -44,27 +44,30 @@ export default {
     }
   },
   created() {
-    const storedItems = localStorage.getItem('iconItems');
+    const defaultIconItems = [
+      { key: 'menstruation', selected: true },
+      { key: 'temperature', selected: true },
+      { key: 'cervixMucus', selected: true },
+      { key: 'cervixPosition', selected: true },
+      { key: 'sex', selected: true },
+      { key: 'medicine', selected: true },
+      { key: 'ovulationTest', selected: true },
+      { key: 'pregnancyTest', selected: true }
+    ];
+    const storedItems = JSON.parse(localStorage.getItem('iconItems'));
     if (storedItems) {
-      this.iconItems = JSON.parse(storedItems);
+      this.iconItems = storedItems.map(item => ({
+        ...item,
+        key: item.key || defaultIconItems.find(i => i.label === item.label)?.key,
+        label: this.$t(`logCycle.homeList.labels.${item.key}`)
+      }));
     } else {
-      this.iconItems = [
-        { label: this.$t('logCycle.homeList.labels.menstruation'), selected: true },
-        { label: this.$t('logCycle.homeList.labels.temperature'), selected: true },
-        { label: this.$t('logCycle.homeList.labels.cervixMucus'), selected: true },
-        { label: this.$t('logCycle.homeList.labels.cervixPosition'), selected: true },
-        { label: this.$t('logCycle.homeList.labels.sex'), selected: true },
-        { label: this.$t('logCycle.homeList.labels.contraceptive'), selected: true },
-        { label: this.$t('logCycle.homeList.labels.medicine'), selected: true },
-        { label: this.$t('logCycle.homeList.labels.ovulationTest'), selected: true },
-        { label: this.$t('logCycle.homeList.labels.pregnancyTest'), selected: true }
-      ];
+      this.iconItems = defaultIconItems;
       localStorage.setItem('iconItems', JSON.stringify(this.iconItems));
     }
   }
 };
 </script>
-
 
 <style scoped>
 .welcome-container {
@@ -123,19 +126,19 @@ export default {
   font-size: 16px;
 }
 
- .button-container {
-    position: fixed;
-    bottom: 80px;  
-    width: 100%;
-    display: flex;
-    justify-content: center;
-    left: 0;
-  }
+.button-container {
+  position: fixed;
+  bottom: 80px;  
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  left: 0;
+}
 
-  @media only screen and (min-width: 200px) {
-    .welcome-container {
-      max-width: 350px;
-      margin: auto;
-    }
+@media only screen and (min-width: 200px) {
+  .welcome-container {
+    max-width: 350px;
+    margin: auto;
   }
+}
 </style>

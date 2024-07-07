@@ -4,7 +4,7 @@
         <q-checkbox
           v-model="customModel"
           color="secondary"
-          label="Es gab Störfaktoren, welche die Temperatur beeinflussen könnten."
+          :label="$t('temperatureInfluence')"
           true-value="yes"
           false-value="no"
           class="custom-checkbox"

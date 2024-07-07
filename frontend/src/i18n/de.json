@@ -481,6 +481,9 @@
       "smallDescription": "*Störfaktoren können sein: Fieber, Alkoholkonsum, Schlafmangel, Stress, Medikamente, sonstige gesundheitliche Beschwerden. Bitte beachten Sie, dass die genannten Störfaktoren Einfluss auf Ihren Zyklus haben können."
     }
   },
+  
+  "temperatureInfluence": "Es gab Störfaktoren, welche die Temperatur beeinflussen könnten.",
+    
   "logNotes": {
     "title": "Notizen",
     "description": "Füge eine Notiz hinzu:"
