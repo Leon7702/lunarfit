@@ -8,8 +8,8 @@
     <div class="linie"></div>
     <div class="icon-grid">
       <div class="icon-item" v-for="(item, index) in selectedIconItems" :key="index">
-        <img :src="item.icon" class="icon" @click="handleIconClick(item.label)" />
-        <div class="icon-label">{{ item.label }}</div>
+        <img :src="item.icon" class="icon" @click="handleIconClick(item.key)" />
+        <div class="icon-label">{{ $t(`logCycle.home.labels.${item.key}`) }}</div>
       </div>
     </div>
   </div>
@@ -27,14 +27,6 @@ export default {
       return this.iconItems.filter(item => item.selected);
     }
   },
-  watch: {
-    '$i18n.locale': {
-      handler() {
-        this.updateIconItems();
-      },
-      immediate: true
-    }
-  },
   methods: {
     goBack() {
       this.$router.push({ name: 'LogHome' });
@@ -42,41 +34,58 @@ export default {
     navigateToEdit() {
       this.$router.push({ name: 'LogCycleHomeList' });
     },
-    handleIconClick(label) {
+    handleIconClick(key) {
       const routes = {
-        [this.$t('logCycle.home.labels.menstruation')]: 'LogCycleMens',
-        [this.$t('logCycle.home.labels.temperature')]: 'LogCycleTemp',
-        [this.$t('logCycle.home.labels.cervixMucus')]: 'LogCycleCerfix',
-        [this.$t('logCycle.home.labels.cervixPosition')]: 'LogCycleGebaermutter',
-        [this.$t('logCycle.home.labels.sex')]: 'LogCycleSex',
-        [this.$t('logCycle.home.labels.medicine')]: 'LogCycleMedicine',
-        [this.$t('logCycle.home.labels.ovulationTest')]: 'LogCycleOvulationTest',
-        [this.$t('logCycle.home.labels.pregnancyTest')]: 'LogCyclePregnancyTest'
+        menstruation: 'LogCycleMens',
+        temperature: 'LogCycleTemp',
+        cervixMucus: 'LogCycleCerfix',
+        cervixPosition: 'LogCycleGebaermutter',
+        sex: 'LogCycleSex',
+        medicine: 'LogCycleMedicine',
+        ovulationTest: 'LogCycleOvulationTest',
+        pregnancyTest: 'LogCyclePregnancyTest'
       };
-      if (routes[label]) {
-        this.$router.push({ name: routes[label] });
+      if (routes[key]) {
+        this.$router.push({ name: routes[key] });
       }
     },
     updateIconItems() {
-      this.iconItems = [
-        { label: this.$t('logCycle.home.labels.menstruation'), icon: '/src/assets/log_Zyklus/icon_mens.svg', selected: true },
-        { label: this.$t('logCycle.home.labels.temperature'), icon: '/src/assets/log_Zyklus/icon_temperature.svg', selected: true },
-        { label: this.$t('logCycle.home.labels.cervixMucus'), icon: '/src/assets/log_Zyklus/icon_cerfix.svg', selected: true },
-        { label: this.$t('logCycle.home.labels.cervixPosition'), icon: '/src/assets/log_Zyklus/icon_gebaermutter.svg', selected: true },
-        { label: this.$t('logCycle.home.labels.sex'), icon: '/src/assets/log_Zyklus/icon_heart.svg', selected: true },
-        { label: this.$t('logCycle.home.labels.medicine'), icon: '/src/assets/log_Zyklus/icon_medicine.svg', selected: true },
-        { label: this.$t('logCycle.home.labels.ovulationTest'), icon: '/src/assets/log_Zyklus/icon_ovuTest.svg', selected: true },
-        { label: this.$t('logCycle.home.labels.pregnancyTest'), icon: '/src/assets/log_Zyklus/icon_pregTest.svg', selected: true }
+      const defaultIconItems = [
+        { key: 'menstruation', icon: '/src/assets/log_Zyklus/icon_mens.svg', selected: true },
+        { key: 'temperature', icon: '/src/assets/log_Zyklus/icon_temperature.svg', selected: true },
+        { key: 'cervixMucus', icon: '/src/assets/log_Zyklus/icon_cerfix.svg', selected: true },
+        { key: 'cervixPosition', icon: '/src/assets/log_Zyklus/icon_gebaermutter.svg', selected: true },
+        { key: 'sex', icon: '/src/assets/log_Zyklus/icon_heart.svg', selected: true },
+        { key: 'medicine', icon: '/src/assets/log_Zyklus/icon_medicine.svg', selected: true },
+        { key: 'ovulationTest', icon: '/src/assets/log_Zyklus/icon_ovuTest.svg', selected: true },
+        { key: 'pregnancyTest', icon: '/src/assets/log_Zyklus/icon_pregTest.svg', selected: true }
       ];
-      localStorage.setItem('iconItems', JSON.stringify(this.iconItems));
+      const storedItems = JSON.parse(localStorage.getItem('iconItems'));
+      if (storedItems) {
+        this.iconItems = storedItems.map(item => ({
+          ...item,
+          key: item.key || defaultIconItems.find(i => i.label === item.label)?.key,
+          label: this.$t(`logCycle.home.labels.${item.key}`)
+        }));
+      } else {
+        this.iconItems = defaultIconItems;
+        localStorage.setItem('iconItems', JSON.stringify(this.iconItems));
+      }
     }
   },
   created() {
-    const storedItems = localStorage.getItem('iconItems');
-    if (storedItems) {
-      this.iconItems = JSON.parse(storedItems);
-    } else {
-      this.updateIconItems();
+    window.addEventListener('storage', this.updateIconItems);
+    this.updateIconItems();
+  },
+  beforeUnmount() {
+    window.removeEventListener('storage', this.updateIconItems);
+  },
+  watch: {
+    '$i18n.locale': {
+      handler() {
+        this.updateIconItems();
+      },
+      immediate: true
     }
   }
 };

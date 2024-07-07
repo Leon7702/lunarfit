@@ -1,4 +1,5 @@
 <template>
+  <div class="size-container">
   <div class="welcome-container">
     <!-- Inhalt des ersten Bildschirms hier... -->
     <div class="welcome-text">
@@ -8,6 +9,7 @@
     <img :src="$t('logEntry.images.cycle')" alt="Zyklus Button" class="image" @click="navigateToCycle" />
     <img src="/src/assets/log_training.svg" alt="Training Button" class="image" @click="navigateToTraining" />
     <img :src="$t('logEntry.images.notes')" alt="Notizen Button" class="image" @click="navigateToNotes" />
+  </div>
   </div>
 </template>
 
@@ -40,7 +42,6 @@ export default {
   display: flex;
   flex-direction: column;
   align-items: center; 
-  width: 90%;
   overflow: auto;
   margin: auto;
 }

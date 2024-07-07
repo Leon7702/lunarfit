@@ -32,13 +32,14 @@ export default {
   },
   methods: {
     goBack() {
-      window.history.back();
+      this.$router.push({ name: 'LogCycleHome' });
     },
     toggleSelect(index) {
       this.iconItems[index].selected = !this.iconItems[index].selected;
     },
     saveChanges() {
       localStorage.setItem('iconItems', JSON.stringify(this.iconItems));
+      window.dispatchEvent(new Event('storage'));
       this.$router.push({ name: 'LogCycleHome' });
     }
   },
@@ -63,8 +64,6 @@ export default {
   }
 };
 </script>
-
-  
 
 
 <style scoped>
