@@ -89,72 +89,76 @@
 
 <script>
 import axios from 'axios';
+import { ref, onMounted, computed } from 'vue';
 import { calculateCycleAndPhases } from 'src/utils/cyclePhaseCalculator.js';
 
 export default {
-  data() {
-    return {
-      // FIXME: cycleLength gets calculated by the cyclePhaseCalculator
-      cycleLength: 34,
-      // TODO: needs to get or calculate the current day of the cycle
-      currentDay: 20,
-      radius: 50 / Math.PI,
-      mensLengthPortion: null,
-      follicularLengthPortion: null,
-      ovulationLengthPortion: null,
-      earlyLutealLengthPortion: null,
-      lateLutealLengthPortion: null,
+  setup() {
+    // FIXME: cycleLength gets calculated by the cyclePhaseCalculator
+    const cycleLength = ref(34);
+    // TODO: needs to get or calculate the current day of the cycle
+    const currentDay = ref(20);
+    const radius = ref(50 / Math.PI);
 
-      mensOffset: 0,
+    const mensLengthPortion = ref(null);
+    const follicularLengthPortion = ref(null);
+    const ovulationLengthPortion = ref(null);
+    const earlyLutealLengthPortion = ref(null);
+    const lateLutealLengthPortion = ref(null);
+
+    const mensOffset = ref(0);
+
+    const getPhasePortion = (phaseLengthPortion) => {
+      // "" + phaseLengthPortion + " " + (100 - phaseLengthPortion).toString()
+      return `${phaseLengthPortion} ${100 - phaseLengthPortion}`;
     };
-  },
-  // Fetch the data from the database when the component is created
-  created() {
-    this.fetchData();
-  },
-  methods: {
 
-    // mensLengthPortion (100 - mensLengthPortion)
-    getPhasePortion(phaseLengthPortion) {
-      return "" + phaseLengthPortion + " " + (100 - phaseLengthPortion).toString();
-    },
+    const calculateLengthPortion = (calculatedLengths) => {
+      mensLengthPortion.value = (calculatedLengths.phaseLengths[0].length / cycleLength.value) * 100;
+      follicularLengthPortion.value = (calculatedLengths.phaseLengths[1].length / cycleLength.value) * 100;
+      ovulationLengthPortion.value = (calculatedLengths.phaseLengths[2].length / cycleLength.value) * 100;
+      earlyLutealLengthPortion.value = (calculatedLengths.phaseLengths[3].length / cycleLength.value) * 100;
+      lateLutealLengthPortion.value = (calculatedLengths.phaseLengths[4].length / cycleLength.value) * 100;
+    };
 
-
-    calculateLengthPortion(calculatedLengths) {
-      this.mensLengthPortion = (calculatedLengths.phaseLengths[0].length / this.cycleLength) * 100;
-      this.follicularLengthPortion = (calculatedLengths.phaseLengths[1].length / this.cycleLength) * 100;
-      this.ovulationLengthPortion = (calculatedLengths.phaseLengths[2].length / this.cycleLength) * 100;
-      this.earlyLutealLengthPortion = (calculatedLengths.phaseLengths[3].length / this.cycleLength) * 100;
-      this.lateLutealLengthPortion = (calculatedLengths.phaseLengths[4].length / this.cycleLength) * 100;
-    },
-
-    async fetchData() {
-      // TODO: Fetch the data from the database and assign it to cycleData
+    const fetchData = async () => {
       try {
-        const response = await axios.get('http://localhost:3000/menstrualcycle/'); // TODO: change the URL
+        const response = await axios.get('http://localhost:3000/menstrualcycle/');
         const cycleData = response.data;
         const calculatedLengths = calculateCycleAndPhases(cycleData);
 
-        this.cycleLength = calculatedLengths.cycleLength;
-        this.calculateLengthPortion(calculatedLengths);
+        cycleLength.value = calculatedLengths.cycleLength;
+        calculateLengthPortion(calculatedLengths);
       } catch (error) {
         console.error('Failed to fetch data:', error);
       }
-    },
-  },
-  computed: {
-    follicularOffset() {
-      return this.mensOffset - this.mensLengthPortion;
-    },
-    ovulationOffset() {
-      return this.follicularOffset - this.follicularLengthPortion;
-    },
-    earlyLutealOffset() {
-      return this.ovulationOffset - this.ovulationLengthPortion;
-    },
-    lateLutealOffset() {
-      return this.earlyLutealOffset - this.earlyLutealLengthPortion;
-    }
+    };
+
+    onMounted(() => {
+      fetchData();
+    });
+
+    const follicularOffset = computed(() => mensOffset.value - mensLengthPortion.value);
+    const ovulationOffset = computed(() => follicularOffset.value - follicularLengthPortion.value);
+    const earlyLutealOffset = computed(() => ovulationOffset.value - ovulationLengthPortion.value);
+    const lateLutealOffset = computed(() => earlyLutealOffset.value - earlyLutealLengthPortion.value);
+
+    return {
+      cycleLength,
+      currentDay,
+      radius,
+      mensLengthPortion,
+      follicularLengthPortion,
+      ovulationLengthPortion,
+      earlyLutealLengthPortion,
+      lateLutealLengthPortion,
+      mensOffset,
+      getPhasePortion,
+      follicularOffset,
+      ovulationOffset,
+      earlyLutealOffset,
+      lateLutealOffset,
+    };
   }
 };
 </script>
