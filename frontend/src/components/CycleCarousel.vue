@@ -155,7 +155,7 @@ import { calculateCycleAndPhases } from 'src/utils/cyclePhaseCalculator.js';
 export default {
   setup() {
     const slide = ref('');
-    const cycleLength = ref(34);
+    const cycleLength = ref(null);
     const currentDay = ref(20);
 
     const mensLengthPortion = ref(null);

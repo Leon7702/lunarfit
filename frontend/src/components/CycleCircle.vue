@@ -71,8 +71,8 @@
         <!-- displays the current day of the cycle -->
         <foreignObject x="-7" y="-7" width="42" height="42">
           <div style="box-shadow: none;">
-            <q-knob readonly :step="1" :min="1" :max="cycleLength" v-model="currentDay" show-value size="24px"
-              :thickness="0.05" color="teal" track-color="grey-3" class="q-ma-md" font-size="4px">
+            <q-knob v-if="dataLoaded" readonly :step="1" :min="1" :max="cycleLength" v-model="currentDay" show-value size="24px" :thickness="0.05"
+              color="teal" track-color="grey-3" class="q-ma-md" font-size="4px">
               <div style="display: flex; flex-direction: column; align-items: center; justify-content: center;">
                 <p style="font-size: 3px; margin: 1px;"></p>
                 <p style="font-size: 2.5px; margin: 0;">{{ $t('cycleDay') }}</p>
@@ -89,15 +89,16 @@
 
 <script>
 import axios from 'axios';
-import { ref, onMounted, computed } from 'vue';
+import { ref, onMounted, computed, watch } from 'vue';
 import { calculateCycleAndPhases } from 'src/utils/cyclePhaseCalculator.js';
 
 export default {
   setup() {
     // FIXME: cycleLength gets calculated by the cyclePhaseCalculator
-    const cycleLength = ref(34);
+    const cycleLength = ref(null);
     // TODO: needs to get or calculate the current day of the cycle
     const currentDay = ref(20);
+    const dataLoaded = ref(false);  // Add a flag to indicate data loading status
     const radius = ref(50 / Math.PI);
 
     const mensLengthPortion = ref(null);
@@ -125,18 +126,29 @@ export default {
       try {
         const response = await axios.get('http://localhost:3000/menstrualcycle/');
         const cycleData = response.data;
+        console.log('Fetched cycle data:', cycleData);
         const calculatedLengths = calculateCycleAndPhases(cycleData);
 
         cycleLength.value = calculatedLengths.cycleLength;
+        console.log('Calculated cycle length:', cycleLength.value);
         calculateLengthPortion(calculatedLengths);
+        dataLoaded.value = true;  // Set the flag to true when data is loaded
       } catch (error) {
         console.error('Failed to fetch data:', error);
       }
     };
 
+    console.log('Initial currentDay:', currentDay.value);
+
     onMounted(() => {
+      console.log('Mounted currentDay:', currentDay.value);
       fetchData();
     });
+
+    watch(currentDay, (newValue) => {
+    console.log('currentDay updated to:', newValue);
+    });
+
 
     const follicularOffset = computed(() => mensOffset.value - mensLengthPortion.value);
     const ovulationOffset = computed(() => follicularOffset.value - follicularLengthPortion.value);
@@ -146,6 +158,7 @@ export default {
     return {
       cycleLength,
       currentDay,
+      dataLoaded,
       radius,
       mensLengthPortion,
       follicularLengthPortion,
