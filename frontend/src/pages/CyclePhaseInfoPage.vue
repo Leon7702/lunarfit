@@ -1,6 +1,8 @@
 <template>
-  <BackButtonText />
-  <CycleCarousel />
+  <div class="size-container">
+    <BackButtonText />
+    <CycleCarousel />
+  </div>
 </template>
 
 <script>

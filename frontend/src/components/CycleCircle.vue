@@ -6,69 +6,61 @@
         <!-- Each circle represents a segment of the donut chart -->
         <!-- The stroke-dasharray property controls the length and spacing of the dashes, creating the donut effect -->
         <!-- The stroke-dashoffset property controls where the dash pattern starts -->
-        <!-- TODO: calculate stroke dasharray based on proportion values -->
-        <!-- TODO: determine stroke-dashoffset value -> always staring at 25 for mensPhase -->
-        <circle class="donut-segment" cx="21" cy="21" :r="radius" fill="transparent" stroke="#50C1BA" stroke-width="5"
-          :stroke-dasharray="calculatePhasePortion(mensLengthPortion)" :stroke-dashoffset="(mensOffset + 25)"></circle>
+        <circle class="donut-segment" cx="21" cy="21" :r="radius" fill="transparent" stroke="#A6EFEB" stroke-width="5"
+          :stroke-dasharray="getPhasePortion(mensLengthPortion)" :stroke-dashoffset="(mensOffset + 25)"></circle>
 
         <circle class="donut-segment" cx="21" cy="21" :r="radius" fill="transparent" stroke="#9CD3D0" stroke-width="5"
-          :stroke-dasharray="calculatePhasePortion(follicularLengthPortion)" :stroke-dashoffset="(follicularOffset + 25)">
+          :stroke-dasharray="getPhasePortion(follicularLengthPortion)" :stroke-dashoffset="(follicularOffset + 25)">
+        </circle>
+
+        <circle class="donut-segment" cx="21" cy="21" :r="radius" fill="transparent" stroke="#1D706A" stroke-width="5"
+          :stroke-dasharray="getPhasePortion(ovulationLengthPortion)" :stroke-dashoffset="(ovulationOffset + 25)">
         </circle>
 
         <circle class="donut-segment" cx="21" cy="21" :r="radius" fill="transparent" stroke="#2D8781" stroke-width="5"
-          :stroke-dasharray="calculatePhasePortion(earlyLutealLengthPortion)" :stroke-dashoffset="(earlyLutealOffset + 25)">
+          :stroke-dasharray="getPhasePortion(earlyLutealLengthPortion)" :stroke-dashoffset="(earlyLutealOffset + 25)">
         </circle>
 
-        <circle class="donut-segment" cx="21" cy="21" :r="radius" fill="transparent" stroke="#93EDE8" stroke-width="5"
-          :stroke-dasharray="calculatePhasePortion(lateLutealLengthPortion)" :stroke-dashoffset="(lateLutealOffset + 25)">
+        <circle class="donut-segment" cx="21" cy="21" :r="radius" fill="transparent" stroke="#50C1BA" stroke-width="5"
+          :stroke-dasharray="getPhasePortion(lateLutealLengthPortion)" :stroke-dashoffset="(lateLutealOffset + 25)">
         </circle>
 
         <!-- Paths for the text labels -->
-        <path id="myPath1" d="M25 6 A15.91549430918954 15 0 0 1 35 15" fill="transparent"></path>
-        <!-- <path id="myPath5" d="M32.5 33 A15.91549430918954 15 0 0 0 5 10" fill="transparent"></path> Follikelphase alt -->
-        <path id="myPath2" d="M25 5 A15.91549430918954 15 0 0 0 9 10" fill="transparent"></path>
-        <path id="myPath3" d="M22 6 A15.91549430918954 15 0 0 1 35 15" fill="transparent"></path>
-        <path id="myPath4" d="M25 5 A15.91549430918954 15 0 0 0 9 10" fill="transparent"></path>
+        <path id="pathMens" d="M21,21 m -15,0 a 15,15 0 1,1 30,0 a 15,15 0 1,1 -30,0" fill="transparent"></path>
+        <path id="pathFollicular" d="M21,21 m -16.5,0 a 16.5,16.5 0 1,0 33,0 a 16.5,16.5 0 1,0 -33,0" fill="transparent"></path>
+        <path id="pathEarlyLuteal" d="M21,21 m -16.5,0 a 16.5,16.5 0 1,0 33,0 a 16.5,16.5 0 1,0 -33,0" fill="transparent"></path>
+        <path id="pathLateLuteal" d="M21,21 m -15,0 a 15,15 0 1,1 30,0 a 15,15 0 1,1 -30,0" fill="transparent"></path>
 
         <!-- Text labels for the segments -->
-        <!-- The textPath element allows the text to follow the path defined above -->
-        <text fill="#fff" font-size="2">
-          <textPath href="#myPath1">
-            {{ $t('menstruationInfo.title') }}
+        <text fill="#000" font-size="2">
+          <textPath :href="'#pathMens'" startOffset="25%">
+            Menstruation
           </textPath>
         </text>
 
-        <text fill="#000" font-size="2" transform="rotate(130 21 21)">
-          <textPath href="#myPath2">
+        <text fill="#000" font-size="2">
+          <textPath :href="'#pathFollicular'" startOffset="35%">
             {{ $t('follicularInfo.title') }}
           </textPath>
         </text>
 
-        <text fill="#fff" font-size="2" transform="rotate(245 21 21)">
-          <textPath href="#myPath4">
-            {{ $t('lutealInfoEarly.title') }}
+        <text fill="#fff" font-size="2">
+          <textPath :href="'#pathEarlyLuteal'" startOffset="0%">
+            frühe Lutealphase
           </textPath>
         </text>
 
-        <text fill="#000" font-size="2" transform="rotate(292 21 21)">
-          <textPath href="#myPath3">
-            {{ $t('lutealInfoLate.title') }}
+        <text fill="#fff" font-size="2">
+          <textPath :href="'#pathLateLuteal'" startOffset="12%">
+            späte Luteal
           </textPath>
         </text>
-        <!-- <text x="20" y="5.5" text-anchor="middle" fill="#fff" dy=".3em" font-size="2"
-          transform="rotate(40 21 21)">Menstruation</text> -->
-
-        <!-- <text x="20" y="37" text-anchor="middle" fill="#fff" dy=".3em" font-size="2"
-          transform="rotate(15 21 21)">Ovulation</text> -->
-
-        <!-- <text x="21" y="5.5" text-anchor="middle" fill="#fff" dy=".3em" font-size="2"
-          transform="rotate(-62 21 21)">Luthealphase</text> -->
 
         <!-- displays the current day of the cycle -->
         <foreignObject x="-7" y="-7" width="42" height="42">
           <div style="box-shadow: none;">
-            <q-knob readonly :step="1" :min="1" :max="cycleLength" v-model="currentDay" show-value size="24px"
-              :thickness="0.05" color="teal" track-color="grey-3" class="q-ma-md" font-size="4px">
+            <q-knob v-if="dataLoaded" readonly :step="1" :min="0.5" :max="cycleLength" v-model="currentDay" show-value
+              size="24px" :thickness="0.05" color="teal" track-color="grey-3" class="q-ma-md" font-size="4px">
               <div style="display: flex; flex-direction: column; align-items: center; justify-content: center;">
                 <p style="font-size: 3px; margin: 1px;"></p>
                 <p style="font-size: 2.5px; margin: 0;">{{ $t('cycleDay') }}</p>
@@ -85,65 +77,94 @@
 
 <script>
 import axios from 'axios';
-import { computed } from 'vue';
+import { ref, onMounted, computed, watch } from 'vue';
+import { calculateCycleAndPhases, calculateCurrentDay } from 'src/utils/cyclePhaseCalculator.js';
 
 export default {
-  data() {
-    return {
-      // FIXME: this data needs to be fetched from the actual database, onboarding or user input
-      cycleLength: null,
-      currentDay: 1, // needs to be initialized with a number (not null)
-      radius: 50 / Math.PI,
+  setup() {
+    // FIXME: cycleLength gets calculated by the cyclePhaseCalculator
+    const cycleLength = ref(null);
+    // TODO: needs to get or calculate the current day of the cycle
+    const currentDay = ref(1);
+    const dataLoaded = ref(false);  // Add a flag to indicate data loading status
+    const radius = ref(50 / Math.PI);
 
-      // TODO: need to create methods to calculate the portion of each phase
-      // we need: cycleLength, mensLength, follicularLength, earlyLutealLength, lateLutealLength
-      // mensLengthPortion: 11.8,
-      // follicularLengthPortion: 47.1,
-      // earlyLutealLengthPortion: 27.5,
-      // lateLutealLengthPortion: 13.7,
+    const mensLengthPortion = ref(null);
+    const follicularLengthPortion = ref(null);
+    const ovulationLengthPortion = ref(null);
+    const earlyLutealLengthPortion = ref(null);
+    const lateLutealLengthPortion = ref(null);
 
-      // for cycleLength = 28
-      mensLengthPortion: 21.4,
-      follicularLengthPortion: 28.6,
-      earlyLutealLengthPortion: 32.1,
-      lateLutealLengthPortion: 17.9,
+    const mensOffset = ref(0);
 
-      mensOffset: 0,
+    const getPhasePortion = (phaseLengthPortion) => {
+      // "" + phaseLengthPortion + " " + (100 - phaseLengthPortion).toString()
+      return `${phaseLengthPortion} ${100 - phaseLengthPortion}`;
     };
-  },
-  // Fetch the data from the database when the component is created
-  created() {
-    this.fetchData();
-  },
-  methods: {
 
-    // mensLengthPortion (100 - mensLengthPortion)
-    calculatePhasePortion(phaseLengthPortion) {
-      return "" + phaseLengthPortion + " " + (100 - phaseLengthPortion).toString();
-    },
+    const calculateLengthPortion = (calculatedLengths) => {
+      mensLengthPortion.value = (calculatedLengths.phaseLengths[0].length / cycleLength.value) * 100;
+      follicularLengthPortion.value = (calculatedLengths.phaseLengths[1].length / cycleLength.value) * 100;
+      ovulationLengthPortion.value = (calculatedLengths.phaseLengths[2].length / cycleLength.value) * 100;
+      earlyLutealLengthPortion.value = (calculatedLengths.phaseLengths[3].length / cycleLength.value) * 100;
+      lateLutealLengthPortion.value = (calculatedLengths.phaseLengths[4].length / cycleLength.value) * 100;
+    };
 
-    async fetchData() {
-      // TODO: Fetch the data from the database and assign it to cycleLength and currentDay
-      // FOR NOW: to test the method without having a real database, use json-server
+    const fetchData = async () => {
       try {
-        const response = await axios.get('http://localhost:3000/usersdata/'); // TODO: change the URL
-        this.cycleLength = response.data.cycleLength;
-        this.currentDay = response.data.currentDay;
+        const response = await axios.get('http://localhost:3000/menstrualcycle/');
+        const cycleData = response.data;
+        console.log('Fetched cycle data:', cycleData);
+        const calculatedLengths = calculateCycleAndPhases(cycleData);
+
+        cycleLength.value = calculatedLengths.cycleLength;
+        console.log('Calculated cycle length:', cycleLength.value);
+        calculateLengthPortion(calculatedLengths);
+
+        // const today = "2024-07-10";  // for testing with a specific date
+        const today = new Date().toISOString().split('T')[0];
+        currentDay.value = calculateCurrentDay(cycleData.start, today);
+
+        dataLoaded.value = true;  // Set the flag to true when data is loaded
       } catch (error) {
         console.error('Failed to fetch data:', error);
       }
-    },
-  },
-  computed: {
-    follicularOffset() {
-      return this.mensOffset - this.mensLengthPortion;
-    },
-    earlyLutealOffset() {
-      return this.follicularOffset - this.follicularLengthPortion;
-    },
-    lateLutealOffset() {
-      return this.earlyLutealOffset - this.earlyLutealLengthPortion;
-    }
+    };
+
+    console.log('Initial currentDay:', currentDay.value);
+
+    onMounted(() => {
+      console.log('Mounted currentDay:', currentDay.value);
+      fetchData();
+    });
+
+    watch(currentDay, (newValue) => {
+      console.log('currentDay updated to:', newValue);
+    });
+
+
+    const follicularOffset = computed(() => mensOffset.value - mensLengthPortion.value);
+    const ovulationOffset = computed(() => follicularOffset.value - follicularLengthPortion.value);
+    const earlyLutealOffset = computed(() => ovulationOffset.value - ovulationLengthPortion.value);
+    const lateLutealOffset = computed(() => earlyLutealOffset.value - earlyLutealLengthPortion.value);
+
+    return {
+      cycleLength,
+      currentDay,
+      dataLoaded,
+      radius,
+      mensLengthPortion,
+      follicularLengthPortion,
+      ovulationLengthPortion,
+      earlyLutealLengthPortion,
+      lateLutealLengthPortion,
+      mensOffset,
+      getPhasePortion,
+      follicularOffset,
+      ovulationOffset,
+      earlyLutealOffset,
+      lateLutealOffset,
+    };
   }
 };
 </script>

@@ -2,18 +2,19 @@
   <div class="q-px-md">
     <div class="row justify-center">
       <!-- Quasar button toggle component to switch between slides -->
-      <q-btn-toggle v-model="slide" :options="[
+      <q-btn-toggle class="toggle-border" size="sm" v-model="slide" :options="[
         { label: '1', value: 'menstruation' },
         { label: '2', value: 'follicular' },
-        { label: '3', value: 'lutealEarly' },
-        { label: '4', value: 'lutealLate' }
+        { label: '3', value: 'ovulation' },
+        { label: '4', value: 'lutealEarly' },
+        { label: '5', value: 'lutealLate' }
       ]" />
     </div>
     <div class="q-gutter-md">
       <!-- Quasar carousel component to display in total 4 slides -->
       <q-carousel v-model="slide" transition-prev="slide-right" transition-next="slide-left" swipeable animated
-        control-color="black" navigation-icon="radio_button_unchecked" navigation padding :style="{ height: '80vh' }"
-        class="shadow-1 rounded-borders border-black">
+        control-color="black" padding :style="{ height: '80vh' }"
+        class="">
 
         <!-- Carousel slide for menstruation -->
         <q-carousel-slide name="menstruation" class="column no-wrap flex-center">
@@ -61,6 +62,25 @@
                 $t('follicularInfo.nutrition[3]'),
                 $t('follicularInfo.nutrition[4]')
               ]" :textTraining="$t('follicularInfo.training')" :textHealthString1="$t('follicularInfo.health')" />
+            </div>
+          </q-scroll-area>
+        </q-carousel-slide>
+
+        <!-- Carousel slide for ovulation day -->
+        <q-carousel-slide name="ovulation" class="column no-wrap flex-center">
+          <q-scroll-area class="fit">
+            <div class="column no-wrap flex-center">
+              <div class="text-h6">{{ $t('ovulationInfo.title') }}</div>
+              <q-card flat bordered class="my-card">
+                <q-card-section>
+                  {{ $t('ovulationInfo.description') }}
+                </q-card-section>
+              </q-card>
+              <img class="cycle-image" src="../assets/cyclePhase/Follicular.png" alt="Graph" />
+              <PhaseInformation :textNutrition="[
+                $t('ovulationInfo.nutrition[0]'),
+                $t('ovulationInfo.nutrition[1]')
+              ]" :textTraining="$t('ovulationInfo.training')" :textHealthString1="$t('ovulationInfo.health')" />
             </div>
           </q-scroll-area>
         </q-carousel-slide>
@@ -130,43 +150,66 @@
 import axios from 'axios';
 import { ref } from 'vue';
 import PhaseInformation from 'src/components/PhaseInformation.vue';
-import data from '../assets/cycleData.json'; // path to the JSON-file
+import { calculateCycleAndPhases, calculateCurrentDay } from 'src/utils/cyclePhaseCalculator.js';
 
 export default {
-  // TODO: Initial slide need to change depending on the current phase of the user
-  // 1. Get the user's cycle length and current day from the database
-
-  // 2. Calculate the current phase of the user depending on the current day and cycle length
-  // cycleLength = 28; // replace this with the actual cycle length of the user --> get data from database
-  // if 2/10 of cyclelength & state1 (in menstruation) then in phase1
-  // if 3/10 (so 0.5) of cyclelength then in phase2
-  // if 1/10 (so 0.6) of cyclelength then in phase3
-  // if 4/10 of cyclelength then in phase4
-
-  // 3. Set the initial slide depending on the current phase of the user
   setup() {
     const slide = ref('');
     const cycleLength = ref(null);
-    const currentDay = ref(null);
+    const currentDay = ref(16);
+
+    const mensLengthPortion = ref(null);
+    const follicularLengthPortion = ref(null);
+    const ovulationLengthPortion = ref(null);
+    const earlyLutealLengthPortion = ref(null);
+    const lateLutealLengthPortion = ref(null);
+
+    const roundToTwoDecimals = (num) => {
+      return parseFloat(num.toFixed(2));
+    };
+
+    const calculateLengthPortion = (calculatedLengths) => {
+      mensLengthPortion.value = (calculatedLengths.phaseLengths[0].length / cycleLength.value) * 100;
+      follicularLengthPortion.value = (calculatedLengths.phaseLengths[1].length / cycleLength.value) * 100;
+      ovulationLengthPortion.value = (calculatedLengths.phaseLengths[2].length / cycleLength.value) * 100;
+      earlyLutealLengthPortion.value = (calculatedLengths.phaseLengths[3].length / cycleLength.value) * 100;
+      lateLutealLengthPortion.value = (calculatedLengths.phaseLengths[4].length / cycleLength.value) * 100;
+    };
 
     const fetchData = async () => {
       try {
-        const response = await axios.get('http://localhost:3000/usersdata/');
-        cycleLength.value = response.data.cycleLength;
-        currentDay.value = response.data.currentDay;
+        const response = await axios.get('http://localhost:3000/menstrualcycle/');
+        const cycleData = response.data;
+        const calculatedLengths = calculateCycleAndPhases(cycleData);
 
-        // TODO: Calculate currentPhase depending on phaseProportion (needs to be calculated) --> 0.2, 0.5. 0.8 --> needs to b dynamic
-        // FIXME: fix edge cases due to rounding errors --> see calculation
-        const currentPhase = currentDay.value / cycleLength.value;
-        if (currentPhase <= 0.2) {
+        cycleLength.value = calculatedLengths.cycleLength;
+        calculateLengthPortion(calculatedLengths);
+
+        const today = new Date().toISOString().split('T')[0]; // Use the current date in production
+        // const today = "2024-07-13"; // For testing, set a specific date instead of the current date
+        currentDay.value = calculateCurrentDay(cycleData.start, today);
+
+        console.log('Menstruation:', roundToTwoDecimals(mensLengthPortion.value));
+        console.log('Follicular:', roundToTwoDecimals(mensLengthPortion.value + follicularLengthPortion.value));
+        console.log('Ovulation:', roundToTwoDecimals(mensLengthPortion.value + follicularLengthPortion.value + ovulationLengthPortion.value));
+        console.log('Early Luteal:', roundToTwoDecimals(mensLengthPortion.value + follicularLengthPortion.value + ovulationLengthPortion.value + earlyLutealLengthPortion.value));
+        console.log('Late Luteal:', roundToTwoDecimals(mensLengthPortion.value + follicularLengthPortion.value + ovulationLengthPortion.value + earlyLutealLengthPortion.value + lateLutealLengthPortion.value));
+
+        // Calculate currentPhase depending on phaseProportion
+        const currentPhase = roundToTwoDecimals((currentDay.value / cycleLength.value) * 100);
+        console.log('Current Phase:', currentPhase);
+        if (currentPhase <= roundToTwoDecimals(mensLengthPortion.value)) {
           slide.value = 'menstruation';
-        } else if (currentPhase <= 0.5) { // Adjusted to 0.5 for clarity in phases
+        } else if (currentPhase <= roundToTwoDecimals(mensLengthPortion.value + follicularLengthPortion.value)) {
           slide.value = 'follicular';
-        } else if (currentPhase <= 0.8) {
+        } else if (currentPhase <= roundToTwoDecimals(mensLengthPortion.value + follicularLengthPortion.value + ovulationLengthPortion.value)) {
+          slide.value = 'ovulation';
+        } else if (currentPhase <= roundToTwoDecimals(mensLengthPortion.value + follicularLengthPortion.value + ovulationLengthPortion.value + earlyLutealLengthPortion.value)) {
           slide.value = 'lutealEarly';
         } else {
           slide.value = 'lutealLate';
         }
+        console.log('Selected Slide:', slide.value);
       } catch (error) {
         console.error('Failed to fetch data:', error);
       }
@@ -176,7 +219,11 @@ export default {
 
     return {
       slide,
-      data
+      mensLengthPortion,
+      follicularLengthPortion,
+      ovulationLengthPortion,
+      earlyLutealLengthPortion,
+      lateLutealLengthPortion
     };
   },
   components: {
@@ -187,9 +234,6 @@ export default {
 
 
 <style scoped>
-.border-black {
-  border: 1px solid black;
-}
 
 .my-card {
   width: 100%;
@@ -199,6 +243,10 @@ export default {
 .cycle-image {
   max-width: 100%;
   padding-top: 16px;
+}
+
+.toggle-border {
+  border: 1px solid #D9D9D9;
 }
 
 li {

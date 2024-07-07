@@ -29,5 +29,37 @@
     "body_height": "192",
     "language": "de",
     "contraceptive": "Hormonspirale"
+  },
+  "menstrualcycle": {
+    "cycle_id": 0,
+    "start": "2024-06-24",
+    "end": "2024-07-27",
+    "phases": [
+      {
+        "start": "2024-06-24",
+        "end": "2024-06-27",
+        "phase_number": 0
+      },
+      {
+        "start": "2024-06-28",
+        "end": "2024-07-12",
+        "phase_number": 1
+      },
+      {
+        "start": "2024-07-13",
+        "end": "2024-07-13",
+        "phase_number": 2
+      },
+      {
+        "start": "2024-07-14",
+        "end": "2024-07-22",
+        "phase_number": 3
+      },
+      {
+        "start": "2024-07-23",
+        "end": "2024-07-27",
+        "phase_number": 4
+      }
+    ]
   }
 }

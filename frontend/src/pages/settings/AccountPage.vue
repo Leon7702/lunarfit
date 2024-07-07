@@ -1,4 +1,5 @@
 <template>
+  <div class="size-container">
   <div class="welcome-container">
     <div class="header">
       <q-btn flat dense round icon="arrow_back" @click="goBack" />
@@ -25,6 +26,7 @@
       </q-item>
     </q-list>
   </div>
+</div>
 </template>
 
 <script>
@@ -56,7 +58,6 @@
   .linie {
     height: 1px;
     background-color: rgba(0, 0, 0, 0.1);
-    width: 120%;
     margin-top: 10px;
   }
 
