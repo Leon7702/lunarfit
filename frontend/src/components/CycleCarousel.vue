@@ -5,8 +5,9 @@
       <q-btn-toggle class="toggle-border" size="sm" v-model="slide" :options="[
         { label: '1', value: 'menstruation' },
         { label: '2', value: 'follicular' },
-        { label: '3', value: 'lutealEarly' },
-        { label: '4', value: 'lutealLate' }
+        { label: '3', value: 'ovulation' },
+        { label: '4', value: 'lutealEarly' },
+        { label: '5', value: 'lutealLate' }
       ]" />
     </div>
     <div class="q-gutter-md">
@@ -61,6 +62,25 @@
                 $t('follicularInfo.nutrition[3]'),
                 $t('follicularInfo.nutrition[4]')
               ]" :textTraining="$t('follicularInfo.training')" :textHealthString1="$t('follicularInfo.health')" />
+            </div>
+          </q-scroll-area>
+        </q-carousel-slide>
+
+        <!-- Carousel slide for ovulation day -->
+        <q-carousel-slide name="ovulation" class="column no-wrap flex-center">
+          <q-scroll-area class="fit">
+            <div class="column no-wrap flex-center">
+              <div class="text-h6">{{ $t('ovulationInfo.title') }}</div>
+              <q-card flat bordered class="my-card">
+                <q-card-section>
+                  {{ $t('ovulationInfo.description') }}
+                </q-card-section>
+              </q-card>
+              <img class="cycle-image" src="../assets/cyclePhase/Follicular.png" alt="Graph" />
+              <PhaseInformation :textNutrition="[
+                $t('ovulationInfo.nutrition[0]'),
+                $t('ovulationInfo.nutrition[1]')
+              ]" :textTraining="$t('ovulationInfo.training')" :textHealthString1="$t('ovulationInfo.health')" />
             </div>
           </q-scroll-area>
         </q-carousel-slide>
@@ -130,39 +150,46 @@
 import axios from 'axios';
 import { ref } from 'vue';
 import PhaseInformation from 'src/components/PhaseInformation.vue';
-import data from '../assets/cycleData.json'; // path to the JSON-file
+import { calculateCycleAndPhases } from 'src/utils/cyclePhaseCalculator.js';
 
 export default {
-  // TODO: Initial slide need to change depending on the current phase of the user
-  // 1. Get the user's cycle length and current day from the database
-
-  // 2. Calculate the current phase of the user depending on the current day and cycle length
-  // cycleLength = 28; // replace this with the actual cycle length of the user --> get data from database
-  // if 2/10 of cyclelength & state1 (in menstruation) then in phase1
-  // if 3/10 (so 0.5) of cyclelength then in phase2
-  // if 1/10 (so 0.6) of cyclelength then in phase3
-  // if 4/10 of cyclelength then in phase4
-
-  // 3. Set the initial slide depending on the current phase of the user
   setup() {
     const slide = ref('');
-    const cycleLength = ref(null);
-    const currentDay = ref(null);
+    const cycleLength = ref(34);
+    const currentDay = ref(20);
+
+    const mensLengthPortion = ref(null);
+    const follicularLengthPortion = ref(null);
+    const ovulationLengthPortion = ref(null);
+    const earlyLutealLengthPortion = ref(null);
+    const lateLutealLengthPortion = ref(null);
+
+    const calculateLengthPortion = (calculatedLengths) => {
+      mensLengthPortion.value = (calculatedLengths.phaseLengths[0].length / cycleLength.value) * 100;
+      follicularLengthPortion.value = (calculatedLengths.phaseLengths[1].length / cycleLength.value) * 100;
+      ovulationLengthPortion.value = (calculatedLengths.phaseLengths[2].length / cycleLength.value) * 100;
+      earlyLutealLengthPortion.value = (calculatedLengths.phaseLengths[3].length / cycleLength.value) * 100;
+      lateLutealLengthPortion.value = (calculatedLengths.phaseLengths[4].length / cycleLength.value) * 100;
+    };
 
     const fetchData = async () => {
       try {
-        const response = await axios.get('http://localhost:3000/usersdata/');
-        cycleLength.value = response.data.cycleLength;
-        currentDay.value = response.data.currentDay;
+        const response = await axios.get('http://localhost:3000/menstrualcycle/');
+        const cycleData = response.data;
+        const calculatedLengths = calculateCycleAndPhases(cycleData);
 
-        // TODO: Calculate currentPhase depending on phaseProportion (needs to be calculated) --> 0.2, 0.5. 0.8 --> needs to b dynamic
-        // FIXME: fix edge cases due to rounding errors --> see calculation
+        cycleLength.value = calculatedLengths.cycleLength;
+        calculateLengthPortion(calculatedLengths);
+
+        // Calculate currentPhase depending on phaseProportion
         const currentPhase = currentDay.value / cycleLength.value;
-        if (currentPhase <= 0.2) {
+        if (currentPhase <= mensLengthPortion.value / 100) {
           slide.value = 'menstruation';
-        } else if (currentPhase <= 0.5) { // Adjusted to 0.5 for clarity in phases
+        } else if (currentPhase <= (mensLengthPortion.value + follicularLengthPortion.value) / 100) {
           slide.value = 'follicular';
-        } else if (currentPhase <= 0.8) {
+        } else if (currentPhase <= (mensLengthPortion.value + follicularLengthPortion.value + ovulationLengthPortion.value) / 100) {
+          slide.value = 'ovulation';
+        } else if (currentPhase <= (mensLengthPortion.value + follicularLengthPortion.value + ovulationLengthPortion.value + earlyLutealLengthPortion.value) / 100) {
           slide.value = 'lutealEarly';
         } else {
           slide.value = 'lutealLate';
@@ -176,7 +203,11 @@ export default {
 
     return {
       slide,
-      data
+      mensLengthPortion,
+      follicularLengthPortion,
+      ovulationLengthPortion,
+      earlyLutealLengthPortion,
+      lateLutealLengthPortion
     };
   },
   components: {

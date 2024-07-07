@@ -72,6 +72,17 @@
     "health": "Am Anfang der Phase 2 ist die Chance schwanger zu werden eher gering. Im Verlauf der Phase 2 steigt die Fruchtbarkeit an und erreicht ihren Höhepunkt am Ende der Phase 2 (das fruchtbare Zeitfenster umfasst dabei ca. 5 Tage vor dem Eisprung bis 1 Tag nach dem Eisprung)."
   },
 
+  "ovulationInfo": {
+    "title": "Ovulation",
+    "description": "Nach dem Eisprung wird die Eizelle aus dem Follikel im Eierstock in den Eileiter ausgetoßen. Die Hülle der Eizelle bleibt als Gelbkörper zurück. Zum Eisprung macht das Östrogen häufig gute Laune. Danach gibt es mal schlechte Laune.",
+    "nutrition": [
+      "Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est",
+      "Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua."
+    ],
+    "training": "Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est",
+    "health": "Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est"
+  },
+
   "lutealInfoEarly": {
     "title": "frühe Lutealphase",
     "description": "Die Phase nach dem Eisprung bis zum Beginn der nächsten Menstruation. Der Gelbkörper produziert Progesteron, das die Gebärmutterschleimhaut auf die Einnistung einer befruchteten Eizelle vorbereitet. Das Progesteron kann die Laune verschlechtern.",

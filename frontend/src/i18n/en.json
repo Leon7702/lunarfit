@@ -65,6 +65,16 @@
     "training": "The rising estrogen levels help you feel confident and strong. It's time for more intense sessions! Plan more long or intensive sessions in phase 2. Continuously increase the intensity or volume from the end of menstruation to ovulation. Phase 2 is also ideal for strength or speed training.",
     "health": "At the beginning of phase 2, the chance of becoming pregnant is rather low. During phase 2, fertility increases and peaks at the end of phase 2 (the fertile window includes about 5 days before ovulation to 1 day after ovulation)."
   },
+  "ovulationInfo": {
+    "title": "Ovulation",
+    "description": "After ovulation, the egg is expelled from the follicle in the ovary into the fallopian tube. The shell of the egg cell remains behind as the corpus luteum. At ovulation, the oestrogen often puts you in a good mood. Afterwards, it sometimes puts you in a bad mood.",
+    "nutrition": [
+      "Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est",
+      "Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua."
+    ],
+    "training": "Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est",
+    "health": "Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est"
+  },
   "lutealInfoEarly": {
     "title": "Early Luteal Phase",
     "description": "The phase after ovulation until the start of the next menstruation. The corpus luteum produces progesterone, which prepares the uterine lining for the implantation of a fertilized egg. Progesterone can worsen the mood.",
