@@ -56,7 +56,7 @@
                   </q-card-section>
                 </q-card>
                 <div class="q-pa-md">
-                  <p>Stimmung Score heute:</p>
+                  <p>Deine heutige Stimmung:</p>
                   <div class="q-gutter-y-md column justify-center items-center">
                     <q-rating v-model="moodScore" size="2em" :max="6" color="grey" :color-selected="ratingColors"
                       icon="rectangle" readonly />
@@ -85,14 +85,6 @@
                     </div>
                   </q-card-section>
                 </q-card>
-                <div class="q-pa-md">
-                  <p>Belastung Score heute:</p>
-                  <q-linear-progress size="25px" :value="acwrProgress" color="primary">
-                    <div class="absolute-full flex flex-center">
-                      <q-badge color="white" text-color="primary" :label="acwrProgressLabel" />
-                    </div>
-                  </q-linear-progress>
-                </div>
               </div>
             </div>
           </q-scroll-area>
@@ -117,7 +109,7 @@
                   </q-card-section>
                 </q-card>
                 <div class="q-pa-md">
-                  <p>Beschwerdefreiheit Score heute:</p>
+                  <p>Deine heutige Beschwerdefreiheit:</p>
                   <div class="q-gutter-y-md column justify-center items-center">
                     <q-rating v-model="freeScore" size="2em" :max="6" color="grey" :color-selected="ratingColors"
                       icon="rectangle" readonly />
@@ -139,7 +131,7 @@
                   </q-card-section>
                 </q-card>
                 <div class="q-pa-md">
-                  <p>Erholung Score heute:</p>
+                  <p>Deine heutige Erholung:</p>
                   <div class="q-gutter-y-md column justify-center items-center">
                     <q-rating v-model="restScore" size="2em" :max="6" color="grey" :color-selected="ratingColors"
                       icon="rectangle" readonly />
@@ -238,9 +230,6 @@ export default {
 
     fetchData();
 
-    const acwrProgress = computed(() => Math.min(acwr.value / 2, 1));
-    const acwrProgressLabel = computed(() => (acwr.value).toFixed(2));
-
     const acwrScore = computed(() => {
       if (acwr.value < 0.8) return 1;
       if (acwr.value < 1.5) return 2;
@@ -264,8 +253,6 @@ export default {
       restScore,
       acwr,
       acwrScore,
-      acwrProgress,
-      acwrProgressLabel,
       trainingReadinessScore,
       trainingTextKey,
       phaseTextKey,
