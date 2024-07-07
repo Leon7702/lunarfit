@@ -32,6 +32,11 @@
                     <li>{{ $t(`${trainingTextKey}.recommendations[3]`) }}</li>
                   </ul>
                 </q-card-section>
+                <q-card flat bordered class="my-card">
+                  <q-card-section>
+                    {{ $t(phaseTextKey) }}
+                  </q-card-section>
+                </q-card>
               </q-card>
             </div>
           </q-scroll-area>
@@ -57,13 +62,6 @@
                       icon="rectangle" readonly />
                   </div>
                 </div>
-
-                <!-- <p>Verlauf</p>
-                  <q-card class="my-card border-black">
-                    <q-card-section>
-                      <p>Diagram</p>
-                    </q-card-section>
-                  </q-card> -->
               </div>
             </div>
           </q-scroll-area>
@@ -156,12 +154,12 @@
   </div>
 </template>
 
-
 <script>
 import { ref, computed } from 'vue';
 import axios from 'axios';
 import TrsSunburst from 'components/TrsSunburst.vue';
 import { calculateScore } from 'src/utils/scoreCalculator';
+import { calculateCycleAndPhases, calculateCurrentDay } from 'src/utils/cyclePhaseCalculator.js';
 
 export default {
   setup() {
@@ -173,10 +171,60 @@ export default {
     const acwr = ref(1.2);
     const trainingReadinessScore = ref(0);
 
+    const cycleLength = ref(null);
+    const currentDay = ref(16);
+
+    const phaseTextKey = ref('');
+
+    const mensLengthPortion = ref(null);
+    const follicularLengthPortion = ref(null);
+    const ovulationLengthPortion = ref(null);
+    const earlyLutealLengthPortion = ref(null);
+    const lateLutealLengthPortion = ref(null);
+
+    const roundToTwoDecimals = (num) => parseFloat(num.toFixed(2));
+
+    const calculateLengthPortion = (calculatedLengths) => {
+      mensLengthPortion.value = (calculatedLengths.phaseLengths[0].length / cycleLength.value) * 100;
+      follicularLengthPortion.value = (calculatedLengths.phaseLengths[1].length / cycleLength.value) * 100;
+      ovulationLengthPortion.value = (calculatedLengths.phaseLengths[2].length / cycleLength.value) * 100;
+      earlyLutealLengthPortion.value = (calculatedLengths.phaseLengths[3].length / cycleLength.value) * 100;
+      lateLutealLengthPortion.value = (calculatedLengths.phaseLengths[4].length / cycleLength.value) * 100;
+    };
+
     const fetchData = async () => {
       try {
-        const response = await axios.get('http://localhost:3000/trsdata');
-        const trsdata = response.data;
+        const [cycleResponse, trsResponse] = await Promise.all([
+          axios.get('http://localhost:3000/menstrualcycle/'),
+          axios.get('http://localhost:3000/trsdata')
+        ]);
+
+        // Handle cycle data
+        const cycleData = cycleResponse.data;
+        const calculatedLengths = calculateCycleAndPhases(cycleData);
+
+        cycleLength.value = calculatedLengths.cycleLength;
+        calculateLengthPortion(calculatedLengths);
+
+        const today = new Date().toISOString().split('T')[0]; // Use the current date in production
+        // const today = "2024-07-26"; // For testing, set a specific date instead of the current date
+        currentDay.value = calculateCurrentDay(cycleData.start, today);
+
+        const currentPhase = roundToTwoDecimals((currentDay.value / cycleLength.value) * 100);
+        if (currentPhase <= roundToTwoDecimals(mensLengthPortion.value)) {
+          phaseTextKey.value = 'menstruationPhaseText';
+        } else if (currentPhase <= roundToTwoDecimals(mensLengthPortion.value + follicularLengthPortion.value)) {
+          phaseTextKey.value = 'follicularPhaseText';
+        } else if (currentPhase <= roundToTwoDecimals(mensLengthPortion.value + follicularLengthPortion.value + ovulationLengthPortion.value)) {
+          phaseTextKey.value = 'ovulationPhaseText';
+        } else if (currentPhase <= roundToTwoDecimals(mensLengthPortion.value + follicularLengthPortion.value + ovulationLengthPortion.value + earlyLutealLengthPortion.value)) {
+          phaseTextKey.value = 'earlyLutealPhaseText';
+        } else {
+          phaseTextKey.value = 'lateLutealPhaseText';
+        }
+
+        // Handle TRS data
+        const trsdata = trsResponse.data;
         moodScore.value = trsdata.mood;
         strainScore.value = trsdata.strain;
         freeScore.value = trsdata.free;
@@ -209,13 +257,6 @@ export default {
     });
 
     return {
-      // TODO: change names to be consistent to TrsSunburst and database
-      lorem: 'Lorem ipsum dolor, sit amet consectetur adipisicing elit. Itaque voluptatem totam, architecto cupiditate officia rerum, error dignissimos praesentium libero ab nemo.',
-      trainingtext: 'Trainingsempfehlung basierend auf Zyklusphase und TRS. Lorem ipsum dolor sit amet, consectetur adipiscing elit',
-      moodtext: 'Deine Stimmung ist... Durch das...Kann sich deine Stimmung...',
-      burdentext: 'Dein ACWR liegt bei... Im Verlauf der letzen Tage is er...Da du dich in der... befindest, solltest du darauf achten das Trainingspensum...',
-      resttext: 'Dein Erholungszustand ist... Durch solltest das Training gerade im Hinblick auf die hormonellen Veränderungen in den nächsten Tagen...',
-
       slide,
       moodScore,
       strainScore,
@@ -227,19 +268,14 @@ export default {
       acwrProgressLabel,
       trainingReadinessScore,
       trainingTextKey,
+      phaseTextKey,
       ratingColors: ['teal-2', 'teal-3', 'teal-4', 'teal-5', 'teal-6', 'teal-7']
-    }
+    };
   },
   components: {
-    // TODO: respective TrsSunburst components for each slide should be changed accordingly
-    // Training gets original TrsSunburst component, the others get a modified version:
-    // Mood: TrsSunburstMood
-    // Strain: TrsSunburstStrain
-    // Rest: TrsSunburstRest
-    // Free: TrsSunburstFree
     TrsSunburst,
   },
-}
+};
 </script>
 
 <style scoped>
@@ -254,7 +290,6 @@ ul {
 
 .my-card {
   width: 100%;
-  /* max-width: 250%; */
   max-width: 100vw;
 }
 
