@@ -26,53 +26,41 @@
         </circle>
 
         <!-- Paths for the text labels -->
-        <path id="myPath1" d="M25 6 A15.91549430918954 15 0 0 1 35 15" fill="transparent"></path>
-        <!-- <path id="myPath5" d="M32.5 33 A15.91549430918954 15 0 0 0 5 10" fill="transparent"></path> Follikelphase alt -->
-        <path id="myPath2" d="M25 5 A15.91549430918954 15 0 0 0 9 10" fill="transparent"></path>
-        <path id="myPath3" d="M22 6 A15.91549430918954 15 0 0 1 35 15" fill="transparent"></path>
-        <path id="myPath4" d="M25 5 A15.91549430918954 15 0 0 0 9 10" fill="transparent"></path>
+        <path id="pathMens" d="M21,21 m -15,0 a 15,15 0 1,1 30,0 a 15,15 0 1,1 -30,0" fill="transparent"></path>
+        <path id="pathFollicular" d="M21,21 m -16.5,0 a 16.5,16.5 0 1,0 33,0 a 16.5,16.5 0 1,0 -33,0" fill="transparent"></path>
+        <path id="pathEarlyLuteal" d="M21,21 m -16.5,0 a 16.5,16.5 0 1,0 33,0 a 16.5,16.5 0 1,0 -33,0" fill="transparent"></path>
+        <path id="pathLateLuteal" d="M21,21 m -15,0 a 15,15 0 1,1 30,0 a 15,15 0 1,1 -30,0" fill="transparent"></path>
 
         <!-- Text labels for the segments -->
-        <!-- The textPath element allows the text to follow the path defined above -->
         <text fill="#000" font-size="2">
-          <textPath href="#myPath1">
-            {{ $t('menstruationInfo.title') }}
+          <textPath :href="'#pathMens'" startOffset="25%">
+            Menstruation
           </textPath>
         </text>
 
-        <text fill="#000" font-size="2" transform="rotate(130 21 21)">
-          <textPath href="#myPath2">
+        <text fill="#000" font-size="2">
+          <textPath :href="'#pathFollicular'" startOffset="35%">
             {{ $t('follicularInfo.title') }}
           </textPath>
         </text>
 
-        <text fill="#fff" font-size="2" transform="rotate(245 21 21)">
-          <textPath href="#myPath4">
-            {{ $t('lutealInfoEarly.title') }}
+        <text fill="#fff" font-size="2">
+          <textPath :href="'#pathEarlyLuteal'" startOffset="0%">
+            frühe Lutealphase
           </textPath>
         </text>
 
-        <text fill="#fff" font-size="2" transform="rotate(292 21 21)">
-          <textPath href="#myPath3">
-            {{ $t('lutealInfoLate.title') }}
+        <text fill="#fff" font-size="2">
+          <textPath :href="'#pathLateLuteal'" startOffset="12%">
+            späte Luteal
           </textPath>
         </text>
-
-
-        <!-- <text x="20" y="5.5" text-anchor="middle" fill="#fff" dy=".3em" font-size="2"
-          transform="rotate(40 21 21)">Menstruation</text> -->
-
-        <!-- <text x="20" y="37" text-anchor="middle" fill="#fff" dy=".3em" font-size="2"
-          transform="rotate(15 21 21)">Ovulation</text> -->
-
-        <!-- <text x="21" y="5.5" text-anchor="middle" fill="#fff" dy=".3em" font-size="2"
-          transform="rotate(-62 21 21)">Luthealphase</text> -->
 
         <!-- displays the current day of the cycle -->
         <foreignObject x="-7" y="-7" width="42" height="42">
           <div style="box-shadow: none;">
-            <q-knob v-if="dataLoaded" readonly :step="1" :min="0.5" :max="cycleLength" v-model="currentDay" show-value size="24px" :thickness="0.05"
-              color="teal" track-color="grey-3" class="q-ma-md" font-size="4px">
+            <q-knob v-if="dataLoaded" readonly :step="1" :min="0.5" :max="cycleLength" v-model="currentDay" show-value
+              size="24px" :thickness="0.05" color="teal" track-color="grey-3" class="q-ma-md" font-size="4px">
               <div style="display: flex; flex-direction: column; align-items: center; justify-content: center;">
                 <p style="font-size: 3px; margin: 1px;"></p>
                 <p style="font-size: 2.5px; margin: 0;">{{ $t('cycleDay') }}</p>
@@ -151,7 +139,7 @@ export default {
     });
 
     watch(currentDay, (newValue) => {
-    console.log('currentDay updated to:', newValue);
+      console.log('currentDay updated to:', newValue);
     });
 
 
