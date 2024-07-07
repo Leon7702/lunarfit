@@ -7,6 +7,15 @@ export function calculateDaysBetween(start, end) {
   return Math.floor(differenceInMilliseconds / millisecondsInOneDay) + 1;
 }
 
+// Function to calculate the current day in the cycle
+export function calculateCurrentDay(cycleStartDate, currentDate) {
+  const startDate = new Date(cycleStartDate);
+  const current = new Date(currentDate);
+  const differenceInMilliseconds = current - startDate;
+  const millisecondsInOneDay = 24 * 60 * 60 * 1000;
+  return Math.floor(differenceInMilliseconds / millisecondsInOneDay) + 1;
+}
+
 // Function to calculate the cycle length and the length of each phase
 // calculates the mensLength, follicularLength, ovulationLength, earlyLutealLength, lateLutealLength
 export function calculateCycleAndPhases(cycle) {

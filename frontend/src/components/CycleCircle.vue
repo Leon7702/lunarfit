@@ -71,7 +71,7 @@
         <!-- displays the current day of the cycle -->
         <foreignObject x="-7" y="-7" width="42" height="42">
           <div style="box-shadow: none;">
-            <q-knob v-if="dataLoaded" readonly :step="1" :min="1" :max="cycleLength" v-model="currentDay" show-value size="24px" :thickness="0.05"
+            <q-knob v-if="dataLoaded" readonly :step="1" :min="0.5" :max="cycleLength" v-model="currentDay" show-value size="24px" :thickness="0.05"
               color="teal" track-color="grey-3" class="q-ma-md" font-size="4px">
               <div style="display: flex; flex-direction: column; align-items: center; justify-content: center;">
                 <p style="font-size: 3px; margin: 1px;"></p>
@@ -90,14 +90,14 @@
 <script>
 import axios from 'axios';
 import { ref, onMounted, computed, watch } from 'vue';
-import { calculateCycleAndPhases } from 'src/utils/cyclePhaseCalculator.js';
+import { calculateCycleAndPhases, calculateCurrentDay } from 'src/utils/cyclePhaseCalculator.js';
 
 export default {
   setup() {
     // FIXME: cycleLength gets calculated by the cyclePhaseCalculator
     const cycleLength = ref(null);
     // TODO: needs to get or calculate the current day of the cycle
-    const currentDay = ref(20);
+    const currentDay = ref(1);
     const dataLoaded = ref(false);  // Add a flag to indicate data loading status
     const radius = ref(50 / Math.PI);
 
@@ -132,6 +132,11 @@ export default {
         cycleLength.value = calculatedLengths.cycleLength;
         console.log('Calculated cycle length:', cycleLength.value);
         calculateLengthPortion(calculatedLengths);
+
+        // const today = "2024-07-10";  // for testing with a specific date
+        const today = new Date().toISOString().split('T')[0];
+        currentDay.value = calculateCurrentDay(cycleData.start, today);
+
         dataLoaded.value = true;  // Set the flag to true when data is loaded
       } catch (error) {
         console.error('Failed to fetch data:', error);
