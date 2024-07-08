@@ -6,8 +6,11 @@
     </div>
     <div class="section-list">
       <div class="q-pa-md">
-        <div class="text-blue q-gutter-md">
-          <q-icon v-for="size in ['md', 'md', 'md', 'md', 'md']" :key="size" :size="size" name="font_download" />
+        <div class="text-blue q-gutter-l">
+          <q-spinner v-if="loading" color="primary" size="2em" />
+          <span v-else v-for="emoji in emojis" :key="emoji" class="emoji">
+            {{ emoji }}
+          </span>
         </div>
       </div>
     </div>
@@ -15,7 +18,12 @@
 </template>
 
 <script>
+import { QSpinner } from 'quasar';
+
 export default {
+  components: {
+    QSpinner,
+  },
   props: {
     title: {
       type: String,
@@ -28,6 +36,14 @@ export default {
     linkText: {
       type: String,
       required: true
+    },
+    emojis: {
+      type: Array,
+      required: true
+    },
+    loading: {
+      type: Boolean,
+      default: false
     }
   }
 };
@@ -53,7 +69,7 @@ export default {
 
 .section-list {
   display: flex;
-  justify-content: space-evenly;
+  justify-content: center;
   align-items: center;
   color: #000;
   font-size: 16px;
@@ -61,5 +77,11 @@ export default {
   font-weight: 600;
   line-height: 21px;
   /* 150% */
+}
+
+.emoji {
+  font-size: 28px;
+  /* Adjust size as needed */
+  margin: 0 4px;
 }
 </style>

@@ -17,7 +17,10 @@
     </div>
 
     <!-- Calendar table with days of the week and dates -->
-    <table>
+    <div v-if="loadingCalendar" class="loading-container">
+      <q-spinner color="primary" size="2em" />
+    </div>
+    <table v-else>
       <!-- Header row with days of the week -->
       <tr>
         <th>{{ $t('weekdays_short[1]') }}</th>
@@ -63,39 +66,47 @@
           padding="xs lg" size="14px" @click="log">
           <template v-slot:default></template>
         </q-btn>
-    </div>
-
-    <hr class="separator">
-
-    <!-- Display training recommendation -->
-    <div class="training-recommendation-container">
-      <div class="training-recommendation-header">
-        {{ $t('training-recommendation.title') }}
       </div>
-      <div class="training-recommendation-text">
-        {{ $t('training-recommendation.description') }}
+
+      <hr class="separator">
+
+      <!-- Display training recommendation -->
+      <div class="training-recommendation-container">
+        <div class="training-recommendation-header">
+          {{ $t('training-recommendation.title') }}
+        </div>
+        <div class="training-recommendation-text">
+          <div v-if="loadingTraining" class="loading-container">
+            <q-spinner color="primary" size="2em" />
+          </div>
+          <div v-else>
+            {{ trainingRecommendation }}
+          </div>
+        </div>
       </div>
-      <div class="training-recommendation"></div>
+
+      <hr class="separator">
+
+      <!-- Display Symptoms and Mood using the new reusable component -->
+      <SectionContainer :title="$t('symptoms')" link="/symptoms" :linkText="$t('add')" :emojis="symptomsEmojis"
+        :loading="loadingSymptoms" />
+      <hr class="separator">
+      <SectionContainer :title="$t('mood')" link="/mood" :linkText="$t('add')" :emojis="moodEmojis"
+        :loading="loadingMood" />
+      <hr class="separator">
+      <SectionContainer :title="$t('trs')" link="/trs" :linkText="$t('more-info')" :emojis="[]" :loading="false" />
     </div>
-
-    <hr class="separator">
-
-    <!-- Display Symptoms and Mood using the new reusable component -->
-    <SectionContainer :title="$t('symptoms')" link="/symptoms" :linkText="$t('add')" />
-    <hr class="separator">
-    <SectionContainer :title="$t('mood')" link="/mood" :linkText="$t('add')" />
-    <hr class="separator">
-    <SectionContainer :title="$t('trs')" link="/trs" :linkText="$t('more-info')" />
   </div>
-</div>
 </template>
 
 <script>
 import SectionContainer from 'components/SectionContainer.vue';
+import { QSpinner } from 'quasar';
 
 export default {
   components: {
     SectionContainer,
+    QSpinner,
   },
   data() {
     let date = new Date();
@@ -105,12 +116,15 @@ export default {
         month: date.getMonth(),
         day: date.getDate(),
       },
-      dayColors: {
-        1: 'period',
-        2: 'follicle',
-        3: 'prediction'
-      },
+      dayColors: {},
       selectedDay: date.getDate(),
+      trainingRecommendation: '',
+      loadingCalendar: true,
+      loadingTraining: true,
+      moodEmojis: [],
+      symptomsEmojis: [],
+      loadingMood: true,
+      loadingSymptoms: true,
     };
   },
   computed: {
@@ -118,7 +132,6 @@ export default {
       return this.date.year;
     },
     currentMonth() {
-      // Use the current i18n locale for formatting
       const locale = this.$i18n.locale;
       return new Date(this.date.year, this.date.month, 1).toLocaleString(locale, {
         month: 'long',
@@ -177,6 +190,66 @@ export default {
     },
   },
   methods: {
+    async fetchData() {
+      try {
+        // Check if data exists in local storage
+        const storedData = localStorage.getItem('calendarData');
+        if (false) {
+          const data = JSON.parse(storedData);
+          this.dayColors = data.dayColors;
+          this.trainingRecommendation = data.trainingRecommendation;
+          this.loadingCalendar = false;
+          this.loadingTraining = false;
+        } else {
+          // Simulate an API call with mock data
+          const response = await this.mockApiCall();
+          this.dayColors = response.dayColors;
+          this.trainingRecommendation = response.trainingRecommendation;
+          // Store data in local storage
+          localStorage.setItem('calendarData', JSON.stringify(response));
+          this.loadingCalendar = false;
+          this.loadingTraining = false;
+        }
+
+        // Fetch emojis for mood and symptoms
+        const emojisResponse = await this.fetchEmojis();
+        this.moodEmojis = emojisResponse.mood;
+        this.symptomsEmojis = emojisResponse.symptoms;
+        this.loadingMood = false;
+        this.loadingSymptoms = false;
+      } catch (error) {
+        console.error('Error fetching data:', error);
+      }
+    },
+    mockApiCall() {
+      return new Promise((resolve) => {
+        setTimeout(() => {
+          resolve({
+            dayColors: {
+              1: 'period',
+              2: 'follicle',
+              3: 'prediction',
+              4: 'period',
+              5: 'follicle',
+              12: 'period',
+              16: 'prediction',
+              // Add more mock data as needed
+            },
+            trainingRecommendation: 'Recommended training: Cardio exercises'
+          });
+        }, 1000);
+      });
+    },
+    fetchEmojis() {
+      return new Promise((resolve) => {
+        setTimeout(() => {
+          resolve({
+            mood: ['😊', '😢', '😠', '😴', '😍'],
+            symptoms: ['🤒', '🤕', '🤧', '🤮', '😷']
+          });
+        }, 1000);
+      });
+    },
     nextMonth() {
       if (this.date.month === 11) {
         this.date.year++;
@@ -224,11 +297,13 @@ export default {
       this.$router.push('/log');
     }
   },
+  mounted() {
+    this.fetchData();
+  }
 };
 </script>
 
 <style>
-
 /* General styles */
 body {
   margin: 0;
@@ -342,7 +417,7 @@ p {
 .legend {
   display: flex;
   justify-content: space-evenly;
-  }
+}
 
 .legend-item {
   display: flex;
@@ -411,5 +486,10 @@ p {
   padding-top: 18px;
 }
 
-
+.loading-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100%;
+}
 </style>
