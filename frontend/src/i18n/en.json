@@ -300,12 +300,13 @@
         }
       },
       "onboardingStep2": {
-        "step": "Step 2:",
-        "title": "Cycle",
-        "fields": {
-          "lastMenstruation": "On which day did your last menstruation start?",
-          "menstruationDuration": "How many days does your menstruation usually last?"
-        }
+      "step": "Step 2:",
+      "title": "Cycle",
+      "fields": {
+        "lastMenstruation": "On which day did your last menstruation start?",
+        "menstruationDuration": "How many days does your menstruation usually last?",
+        "cycleLength": "How many days are there usually between the first day of your period and the first day of your next period?"
+      }
       },
       "onboardingStep3": {
         "step": "Step 3:",

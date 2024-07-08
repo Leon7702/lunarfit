@@ -315,7 +315,8 @@
       "title": "Zyklus",
       "fields": {
         "lastMenstruation": "An welchem Tag setzte deine letzte Menstruation ein?",
-        "menstruationDuration": "Wie viele Tage dauert deine Menstruation im Durchschnitt?"
+        "menstruationDuration": "Wie viele Tage dauert deine Menstruation im Durchschnitt?",
+        "cycleLength": "Wie viele Tage liegen normalerweise zwischen dem ersten Tag deiner Periode und dem ersten Tag deiner nächsten Periode?"
       }
     },
     "onboardingStep3": {
