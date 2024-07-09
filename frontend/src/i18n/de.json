@@ -441,10 +441,13 @@
       },
     "mens": {
       "title": "Menstruation",
-      "buttonLabel": "+  Menstruation",
-      "descriptionText": "Tippe hier, wenn deine Menstruation heute begonnen hat.",
-      "buttonLabelActive": "Menstruation aktiv",
-      "descriptionTextActive": "Tippe hier, wenn deine Menstruation vorbei ist."
+      "description": "Hast du heute eine Blutung? Wenn ja bitte zutreffendes auswählen:",
+      "icons": {
+        "none": "/src/assets/log_Zyklus/blutung_schwach.svg",
+        "dry": "/src/assets/log_Zyklus/blutung_mittel.svg",
+        "creamy": "/src/assets/log_Zyklus/blutung_stark.svg",
+        "sticky": "/src/assets/log_Zyklus/zwischenblutung.svg"
+      }
     },
     "ovulationTest": {
       "title": "Ovulationstest",
