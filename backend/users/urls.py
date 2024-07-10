@@ -8,13 +8,15 @@ from .views import (
     UserListView,
     UserView,
     ProfileViewSet,
-    MenstrualCycleViewSet
+    MenstrualCycleViewSet,
+    SymptomViewSet
 )
 
 
 router = routers.DefaultRouter()
 router.register(r"profile", ProfileViewSet, "profile")
 router.register(r"cycle", MenstrualCycleViewSet, "cycle")
+router.register(r"symptoms", SymptomViewSet, "symptoms")
 
 urlpatterns = [
     path("", UserListView.as_view(), name="user-list"),
