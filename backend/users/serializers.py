@@ -2,7 +2,17 @@ from django.contrib.auth import authenticate
 from rest_framework import exceptions, serializers
 from rest_framework_simplejwt.serializers import TokenObtainPairSerializer
 
-from .models import User, Profile, MenstrualCycle, Phase
+from .models import (
+    Medication,
+    MedicationCategory,
+    MenstrualCycle,
+    Note,
+    Phase,
+    Profile,
+    SymptomCategory,
+    Symptom,
+    User,
+)
 
 
 class UserSerializer(serializers.HyperlinkedModelSerializer):
@@ -54,15 +64,47 @@ class CustomTokenObtainPairSerializer(TokenObtainPairSerializer):
             raise exceptions.AuthenticationFailed(
                 "No active account found with the given credentials"
             )
-        
-
-class MenstrualCycleSerializer(serializers.ModelSerializer):
-    class Meta:
-        model = MenstrualCycle
-        fields = "__all__"
 
 
 class PhaseSerializer(serializers.ModelSerializer):
     class Meta:
         model = Phase
+        fields = "__all__"
+
+
+class MenstrualCycleSerializer(serializers.ModelSerializer):
+    phases = PhaseSerializer(many=True, read_only=True)
+
+    class Meta:
+        model = MenstrualCycle
+        fields = "__all__"
+
+
+class SymptomSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = Symptom
+        fields = "__all__"
+
+
+class SymptomCategorySerializer(serializers.ModelSerializer):
+    class Meta:
+        model = SymptomCategory
+        fields = "__all__"
+
+
+class MedicationCategorySerializer(serializers.ModelSerializer):
+    class Meta:
+        model = MedicationCategory
+        fields = "__all__"
+
+
+class MedicationSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = Medication
+        fields = "__all__"
+
+
+class NoteSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = Note
         fields = "__all__"

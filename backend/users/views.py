@@ -6,11 +6,30 @@ from rest_framework.mixins import DestroyModelMixin, UpdateModelMixin
 from rest_framework.permissions import AllowAny, IsAdminUser, IsAuthenticated
 from rest_framework_simplejwt.views import TokenObtainPairView
 
-from .models import MenstrualCycle, Phase, Profile, User
+from .models import (
+    Medication,
+    MedicationCategory,
+    MenstrualCycle,
+    Note,
+    Phase,
+    Profile,
+    SymptomCategory,
+    Symptom,
+    User,
+)
 from .permissions import UserPermission
-from .serializers import (CustomTokenObtainPairSerializer,
-                          MenstrualCycleSerializer, PhaseSerializer,
-                          ProfileSerializer, UserSerializer)
+from .serializers import (
+    CustomTokenObtainPairSerializer,
+    MedicationCategorySerializer,
+    MedicationSerializer,
+    MenstrualCycleSerializer,
+    NoteSerializer,
+    PhaseSerializer,
+    ProfileSerializer,
+    SymptomSerializer,
+    SymptomCategorySerializer,
+    UserSerializer,
+)
 
 
 class UserCreateView(CreateAPIView):
@@ -51,18 +70,19 @@ class ProfileViewSet(viewsets.ModelViewSet):
 
 
 class CycleFilterSet(FilterSet):
-    
+
     start = DateFromToRangeFilter()
     end = DateFromToRangeFilter()
 
     class Meta:
         model = MenstrualCycle
-        fields = ['start', 'end']
+        fields = ["start", "end"]
 
 
 class MenstrualCycleViewSet(viewsets.ModelViewSet):
     """Endpoint to list users' menstrual cycle(s) in the specified date range.
     For receiving only cycle of current day 'start_after' is current date."""
+
     serializer_class = MenstrualCycleSerializer
     queryset = MenstrualCycle.objects.all()
     permission_classes = [IsAuthenticated]
@@ -71,11 +91,42 @@ class MenstrualCycleViewSet(viewsets.ModelViewSet):
     filterset_class = CycleFilterSet
 
 
-
-
-
-
 class PhaseViewSet(viewsets.ModelViewSet):
     serializer_class = PhaseSerializer
     queryset = Phase.objects.all()
+    permission_classes = [IsAuthenticated]
+
+
+class SymptomViewSet(viewsets.ModelViewSet):
+    serializer_class = SymptomSerializer
+    # queryset = Symptom.objects.all()
+    permission_classes = [IsAuthenticated]
+    http_method_names = ["get", "post"]
+
+    def get_queryset(self):
+        return Symptom.objects.all().filter(user=self.request.user)
+    
+
+
+class SymptomCategoryViewSet(viewsets.ModelViewSet):
+    serializer_class = SymptomCategorySerializer
+    queryset = SymptomCategory.objects.all()
+    permission_classes = [IsAuthenticated]
+
+
+class MedicationCategoryViewSet(viewsets.ModelViewSet):
+    serializer_class = MedicationCategorySerializer
+    queryset = MedicationCategory.objects.all()
+    permission_classes = [IsAuthenticated]
+
+
+class MedicationViewSet(viewsets.ModelViewSet):
+    serializer_class = MedicationSerializer
+    queryset = Medication.objects.all()
+    permission_classes = [IsAuthenticated]
+
+
+class NoteViewSet(viewsets.ModelViewSet):
+    serializer_class = NoteSerializer
+    queryset = Note.objects.all()
     permission_classes = [IsAuthenticated]

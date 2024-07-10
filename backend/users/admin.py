@@ -5,7 +5,17 @@ from django.contrib.auth.forms import ReadOnlyPasswordHashField
 from django.contrib.auth.models import Group
 from django.core.exceptions import ValidationError
 
-from .models import User, Profile, Contraceptive, MenstrualCycle
+from .models import (
+    Contraceptive,
+    Medication,
+    MedicationCategory,
+    MenstrualCycle,
+    Note,
+    Profile,
+    SymptomCategory,
+    Symptom,
+    User,
+)
 
 
 class UserCreationForm(forms.ModelForm):
@@ -103,3 +113,8 @@ admin.site.register(User, UserAdmin)
 admin.site.unregister(Group)
 admin.site.register(Contraceptive)
 admin.site.register(MenstrualCycle)
+admin.site.register(Symptom)
+admin.site.register(SymptomCategory)
+admin.site.register(MedicationCategory)
+admin.site.register(Medication)
+admin.site.register(Note)
