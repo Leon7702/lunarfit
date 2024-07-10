@@ -172,6 +172,12 @@ const routes = [
         component: () => import("pages/settings/LanguagePage.vue"),
         meta: { requiresAuth: true },
       },
+      {
+        path: "chat",
+        name: "Chat",
+        component: () => import("pages/ChatPage.vue"),
+        meta: { requiresAuth: true },
+      },
     ],
   },
   {
