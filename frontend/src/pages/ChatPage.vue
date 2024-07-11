@@ -2,14 +2,16 @@
   <div class="size-container">
     <div class="q-pa-md">
 
-      <h6>Chat Funktion - Demnächst verfügbar</h6>
+      <div class="title">
+        {{ $t('chat.title') }}
+        {{ $t('chat.subtitle') }}
+      </div>
 
-      <p>Bald wird unsere neue Chat Funktion verfügbar sein! Damit wirst du die Möglichkeit haben, direkt mit anderen
-        Benutzerinnen und Trainer zu chatten.</p>
-      <p>Unser LunarFit Team arbeitet intensiv daran, diese Funktion für dich bereitzustellen.
-
-        Vielen Dank für deine Geduld!</p>
-
+      <div class="description">
+        <div>{{ $t('chat.description1') }}</div>
+        <p></p>
+        <div>{{ $t('chat.description2') }} {{ $t('chat.thanks') }}</div>
+      </div>
     </div>
 
     <div class="q-pa-md q-gutter-sm row justify-center">
@@ -39,13 +41,14 @@ export default {
 </script>
 
 <style scoped>
-h6 {
-  padding-top: 10vh;
+.title {
+  padding-top: 15vh;
   font-size: 24px;
   font-weight: 600;
 }
 
-p {
-  font-size: 14px;
+.description {
+  padding-top: 5vh;
+  padding-bottom: 3vh;
 }
 </style>

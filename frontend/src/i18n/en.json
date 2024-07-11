@@ -572,7 +572,7 @@
     "durationOptions": {
       "prompt": "How many minutes did you train?"
     }
-    },  
+    },
   "calendarLegend": {
     "0": "Period",
     "1": "Predicted period",
@@ -679,6 +679,13 @@
       "Vaginal Ring",
       "Other"
     ]
+  },
+  "chat": {
+    "title": "Chat Feature -",
+    "subtitle": "Coming soon",
+    "description1": "Our new chat function will soon be available! This will give you the opportunity to chat directly with other users and trainers.",
+    "description2": "Our LunarFit team is working hard to provide this function for you.",
+    "thanks": "Thank you for your patience!"
   },
   "account": {
     "title": "Account",

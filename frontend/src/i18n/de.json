@@ -493,9 +493,9 @@
       "smallDescription": "*Störfaktoren können sein: Fieber, Alkoholkonsum, Schlafmangel, Stress, Medikamente, sonstige gesundheitliche Beschwerden. Bitte beachten Sie, dass die genannten Störfaktoren Einfluss auf Ihren Zyklus haben können."
     }
   },
-  
+
   "temperatureInfluence": "Es gab Störfaktoren, welche die Temperatur beeinflussen könnten.",
-    
+
   "logNotes": {
     "title": "Notizen",
     "description": "Füge eine Notiz hinzu:"
@@ -707,6 +707,14 @@
     ]
   },
 
+  "chat": {
+    "title": "Chat Funktion -",
+    "subtitle": "Demnächst verfügbar",
+    "description1": "Bald wird unsere neue Chat Funktion verfügbar sein! Damit wirst du die Möglichkeit haben, direkt mit anderen Benutzerinnen und Trainer zu chatten.",
+    "description2": "Unser LunarFit Team arbeitet intensiv daran, diese Funktion für dich bereitzustellen.",
+    "thanks": "Vielen Dank für deine Geduld!"
+  },
+
   "account": {
     "title": "Account",
     "email": "E-Mail",
@@ -719,7 +727,7 @@
     "german": "Deutsch",
     "english": "Englisch"
   },
-  
+
   "buttons": {
     "next": "Weiter",
     "save": "Speichern"
@@ -727,5 +735,5 @@
 
     "yes": "Ja",
     "no": "Nein"
-  
+
 }
