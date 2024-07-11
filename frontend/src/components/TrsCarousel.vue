@@ -34,7 +34,7 @@
                 </q-card-section>
                 <q-card flat bordered class="my-card">
                   <q-card-section>
-                    {{ $t(phaseTextKey) }}
+                    <div v-if="phaseTextKey">{{ $t(phaseTextKey) }}</div>
                   </q-card-section>
                 </q-card>
               </q-card>
@@ -214,6 +214,9 @@ export default {
         } else {
           phaseTextKey.value = 'lateLutealPhaseText';
         }
+
+        // Log the phaseTextKey to ensure it's being set correctly
+        console.log('phaseTextKey:', phaseTextKey.value);
 
         // Handle TRS data
         const trsdata = trsResponse.data;
