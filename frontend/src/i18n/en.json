@@ -685,7 +685,8 @@
     "subtitle": "Coming soon",
     "description1": "Our new chat function will soon be available! This will give you the opportunity to chat directly with other users and trainers.",
     "description2": "Our LunarFit team is working hard to provide this function for you.",
-    "thanks": "Thank you for your patience!"
+    "thanks": "Thank you for your patience!",
+    "button": "Go Home"
   },
   "account": {
     "title": "Account",

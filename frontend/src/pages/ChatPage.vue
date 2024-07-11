@@ -15,7 +15,7 @@
     </div>
 
     <div class="q-pa-md q-gutter-sm row justify-center">
-      <q-btn no-caps rounded style="background: #50C1BA; color: white" label="Zum Dashboard" padding="sm lg" size="16px"
+      <q-btn no-caps rounded style="background: #50C1BA; color: white" :label="$t('chat.button')" padding="sm lg" size="16px"
         @click="toHome" />
     </div>
   </div>
