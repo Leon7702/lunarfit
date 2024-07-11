@@ -315,12 +315,13 @@
         }
       },
       "onboardingStep2": {
-        "step": "Step 2:",
-        "title": "Cycle",
-        "fields": {
-          "lastMenstruation": "On which day did your last menstruation start?",
-          "menstruationDuration": "How many days does your menstruation usually last?"
-        }
+      "step": "Step 2:",
+      "title": "Cycle",
+      "fields": {
+        "lastMenstruation": "On which day did your last menstruation start?",
+        "menstruationDuration": "How many days does your menstruation usually last?",
+        "cycleLength": "How many days are there usually between the first day of your period and the first day of your next period?"
+      }
       },
       "onboardingStep3": {
         "step": "Step 3:",
@@ -444,10 +445,13 @@
       },
       "mens": {
         "title": "Menstruation",
-        "buttonLabel": "+  Menstruation",
-        "descriptionText": "Tap here if your menstruation started today.",
-        "buttonLabelActive": "Menstruation active",
-        "descriptionTextActive": "Tap here if your menstruation is over."
+        "description": "Are you bleeding today? If yes, please select applicable:",
+        "icons": {
+        "none": "/src/assets/log_Zyklus/blutung_weak_en.svg",
+        "dry": "/src/assets/log_Zyklus/blutung_medium_en.svg",
+        "creamy": "/src/assets/log_Zyklus/blutung_strong_en.svg",
+        "sticky": "/src/assets/log_Zyklus/interim_bleeding.svg"
+      }
       },
       "ovulationTest": {
         "title": "Ovulation Test",
