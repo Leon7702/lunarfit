@@ -56,7 +56,7 @@
                   </q-card-section>
                 </q-card>
                 <div class="q-pa-md">
-                  <p>Deine heutige Stimmung:</p>
+                  <p>{{ $t('moodInfo.today') }}</p>
                   <div class="q-gutter-y-md column justify-center items-center">
                     <q-rating v-model="moodScore" size="2em" :max="6" color="grey" :color-selected="ratingColors"
                       icon="rectangle" readonly />
@@ -109,7 +109,7 @@
                   </q-card-section>
                 </q-card>
                 <div class="q-pa-md">
-                  <p>Deine heutige Beschwerdefreiheit:</p>
+                  <p>{{ $t('strainInfo.today') }}</p>
                   <div class="q-gutter-y-md column justify-center items-center">
                     <q-rating v-model="freeScore" size="2em" :max="6" color="grey" :color-selected="ratingColors"
                       icon="rectangle" readonly />
@@ -131,7 +131,7 @@
                   </q-card-section>
                 </q-card>
                 <div class="q-pa-md">
-                  <p>Deine heutige Erholung:</p>
+                  <p>{{ $t('restInfo.today') }}</p>
                   <div class="q-gutter-y-md column justify-center items-center">
                     <q-rating v-model="restScore" size="2em" :max="6" color="grey" :color-selected="ratingColors"
                       icon="rectangle" readonly />

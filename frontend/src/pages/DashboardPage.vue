@@ -19,29 +19,29 @@
             <q-dialog v-model="legend">
               <q-card style="width: 240px">
                 <q-card-section>
-                  <div class="text-h6">Zyklusphasen</div>
+                  <div class="text-h6">{{ $t('cyclePhases') }}</div>
                 </q-card-section>
 
                 <q-card-section class="q-pt-none">
                   <div style="display: flex; align-items: center;">
                     <q-avatar size="xs" style="background-color: #A6EFEB;"></q-avatar>
-                    <p style="margin: 10px;">I. Menstruation</p>
+                    <p style="margin: 10px;">I. {{ $t('menstruationInfo.title') }}</p>
                   </div>
                   <div style="display: flex; align-items: center;">
                     <q-avatar size="xs" style="background-color: #9CD3D0;"></q-avatar>
-                    <p style="margin: 10px;">II. Follikelphase</p>
+                    <p style="margin: 10px;">II. {{ $t('follicularInfo.title') }}</p>
                   </div>
                   <div style="display: flex; align-items: center;">
                     <q-avatar size="xs" style="background-color: #1D706A;"></q-avatar>
-                    <p style="margin: 10px;">III. Ovulation</p>
+                    <p style="margin: 10px;">III. {{ $t('ovulationInfo.title') }}</p>
                   </div>
                   <div style="display: flex; align-items: center;">
                     <q-avatar size="xs" style="background-color: #2D8781;"></q-avatar>
-                    <p style="margin: 10px;">IV. frühe Lutealphase</p>
+                    <p style="margin: 10px;">IV. {{ $t('lutealInfoEarly.title') }}</p>
                   </div>
                   <div style="display: flex; align-items: center;">
                     <q-avatar size="xs" style="background-color: #50C1BA;"></q-avatar>
-                    <p style="margin: 10px;">V. späte Lutealphase</p>
+                    <p style="margin: 10px;">V. {{ $t('lutealInfoLate.title') }}</p>
                   </div>
                 </q-card-section>
 

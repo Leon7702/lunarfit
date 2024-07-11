@@ -25,6 +25,7 @@
   "trainingTitle": "TRAINING",
 
   "cycleDay": "Zyklustag",
+  "cyclePhases": "Zyklusphasen",
 
   "nutrition": "Ernährung",
   "healthFertility": "Gesundheit/ Fruchtbarkeit",
@@ -134,7 +135,7 @@
         "Vermeide intensive Trainingseinheiten und setze stattdessen auf regenerative Maßnahmen.",
         "Achte besonders auf ausreichend Schlaf und eine ausgewogene Ernährung, um deine Regeneration zu fördern.",
         "Beobachte deine Beschwerden und passe dein Training entsprechend an.",
-        ""
+        "Plane regelmäßige Ruhetage ein, um deinem Körper die notwendige Erholung zu geben."
       ]
     },
     "2": {
@@ -152,7 +153,7 @@
         "Setze dein Training wie gewohnt fort, aber achte darauf, dein Trainingsvolumen schrittweise zu steigern.",
         "Führe regelmäßig regenerative Maßnahmen durch, um deine Erholung zu unterstützen.",
         "Achte weiterhin auf eine ausgewogene Ernährung und ausreichend Schlaf, um deine Regeneration zu optimieren.",
-        ""
+        "Höre auf die Signale deines Körpers und passe dein Training bei Bedarf an."
       ]
     },
     "4": {
@@ -190,7 +191,8 @@
     "6": {
       "description": "Hervorragend:",
       "advice": "Du strahlst vor positiver Energie! Genieße diesen Moment voll und ganz mit einer sportlichen Aktivität, die dir besonders viel Freude bereitet. Ob es ein längerer Lauf, eine intensive Radtour oder ein herausfordernder Fitnesskurs ist – nutze diese Hochstimmung für ein großartiges Training."
-    }
+    },
+    "today": "Deine heutige Stimmung:"
   },
 
   "acwrInfo": "Dein ACWR-Wert liegt bei ",
@@ -231,7 +233,8 @@
         ">> Setze den Schwerpunkt auf Regenerationsmassnahmen, einschließlich Massagen, Physiotherapie oder Faszientraining.",
         ">> Achte auf Warnsignale deines Körpers."
       ]
-    }
+    },
+    "today": "Deine heutige Beschwerdefreiheit:"
   },
 
   "freeInfo": {
@@ -303,7 +306,8 @@
     "3": "Dein Erholungszustand ist eingeschränkt. Du solltest dein Trainingsvolumen oder die Trainingsintensität etwas reduzieren.",
     "4": "Dein Erholungszustand ist nicht optimal. Wenn dieser Zustand länger anhält, solltest du dein Trainingsvolumen und die Trainingsintensität für einige Zeit etwas reduzieren, um langfristig ein Übertraining zu vermeiden.",
     "5": "Du scheinst gut erholt zu sein. Du kannst dein Trainingspensum so fortsetzen.",
-    "6": "Du scheinst optimal erholt zu sein. Du kannst überlegen, den Trainingsumfang oder die Trainingsintensität zu erhöhen."
+    "6": "Du scheinst optimal erholt zu sein. Du kannst überlegen, den Trainingsumfang oder die Trainingsintensität zu erhöhen.",
+    "today": "Dein heutiger Erholungszustand:"
   },
 
   "onboarding": {

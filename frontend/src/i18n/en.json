@@ -23,6 +23,7 @@
   "cycleTitle": "CYCLE",
   "trainingTitle": "TRAINING",
   "cycleDay": "Cycle Day",
+  "cyclePhases": "Cycle Phases",
   "nutrition": "Nutrition",
   "healthFertility": "Health/ Fertility",
   "training": "Training",
@@ -123,7 +124,7 @@
         "Avoid intense training sessions and focus on regenerative measures instead.",
         "Ensure sufficient sleep and a balanced diet to support your recovery.",
         "Monitor your symptoms and adjust your training accordingly.",
-        ""
+        "Plan regular rest days to give your body the rest it needs."
       ]
     },
     "2": {
@@ -141,7 +142,7 @@
         "Continue your training as usual, but gradually increase your training volume.",
         "Regularly carry out regenerative measures to support your recovery.",
         "Continue to ensure a balanced diet and sufficient sleep to optimize your recovery.",
-        ""
+        "Listen to your body's signals and adapt your training if necessary."
       ]
     },
     "4": {
@@ -179,7 +180,8 @@
     "6": {
       "description": "Excellent:",
       "advice": "You're radiating positive energy! Enjoy this moment to the fullest with a physical activity you particularly enjoy. Whether it's a long run, an intense bike ride, or a challenging fitness class, use this high mood for a great workout."
-    }
+    },
+    "today": "Your mood today:"
   },
 
   "acwrInfo": "Your ACWR value is ",
@@ -220,7 +222,8 @@
         ">> Emphasize recovery measures, including massages, physiotherapy, or fascia training.",
         ">> Pay attention to your body's warning signals."
       ]
-    }
+    },
+    "today": "Your freedom from complaints today:"
   },
 
   "freeInfo": {
@@ -292,7 +295,8 @@
     "3": "Your recovery state is limited. You should reduce your training volume or intensity slightly.",
     "4": "Your recovery state is not optimal. If this condition persists, you should reduce your training volume and intensity somewhat to avoid long-term overtraining.",
     "5": "You seem to be well recovered. You can continue your training regimen as it is.",
-    "6": "You seem to be optimally recovered. You can consider increasing the training volume or intensity."
+    "6": "You seem to be optimally recovered. You can consider increasing the training volume or intensity.",
+    "today": "Your recovery status today:"
   },
     "onboarding": {
       "start": {
