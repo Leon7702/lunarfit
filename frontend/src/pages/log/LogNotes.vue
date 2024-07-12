@@ -1,10 +1,5 @@
-
-Hier ist die angepasste Vue.js-Komponente unter Verwendung der i18n-Einträge:
-
-Notizen Screen
-vue
-Code kopieren
 <template>
+  <div class="size-container">
   <div class="welcome-container">
     <div class="header">
       <q-btn flat dense round icon="arrow_back" @click="goBack" />
@@ -20,6 +15,7 @@ Code kopieren
     <div class="button-container">
       <StandardButton @click="saveChanges" :label="$t('buttons.save')" />
     </div>
+  </div>
   </div>
 </template>
   
@@ -50,8 +46,6 @@ Code kopieren
     display: flex;
     flex-direction: column;
     align-items: flex-start;
-    width: 90%;
-    height: 100vh;
     overflow: auto;
     margin: auto;
   }
@@ -100,11 +94,5 @@ Code kopieren
     left: 0;
   }
 
-  @media only screen and (min-width: 200px) {
-    .welcome-container {
-      max-width: 350px;
-      margin: auto;
-    }
-  }
   </style>
   

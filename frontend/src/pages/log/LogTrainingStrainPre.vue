@@ -1,4 +1,5 @@
 <template>
+  <div class="size-container">
     <div class="welcome-container">
       <div class="header">
         <q-btn flat dense round icon="arrow_back" @click="goBack" />
@@ -13,7 +14,7 @@
         <p>{{ $t('logTrainingStrainPre.trainingOptions.prompt') }}</p>
         <DropDownSingleSelect :options="trainingOptions" v-model="selectedActivity"/>
       </div>
-      <div class="form-group spacer" v-if="trainingStatus === 'ja'"></div> <!-- Spacer div hinzugefügt -->
+      <div class="form-group spacer" v-if="trainingStatus === 'ja'"></div> 
       <div class="form-group" v-if="trainingStatus === 'ja'">
         <p>{{ $t('logTrainingStrainPre.durationOptions.prompt') }}</p>
         <FormFieldText id="duration" label="" iconName="" inputType="number" />
@@ -22,6 +23,7 @@
         <StandardButton :label="$t('buttons.next')" @click="navigateToNextStep" />
       </div>
     </div>
+  </div>
   </template>
   
   <script>
@@ -107,9 +109,7 @@
 .welcome-container {
     display: flex;
     flex-direction: column;
-    align-items: center; /* Ausrichtung links */
-    width: 90%;
-    height: 100vh;
+    align-items: center;
     overflow: auto;
     margin: auto;
 }
@@ -151,7 +151,7 @@
 }
 
 .form-group.spacer {
-    margin-bottom: 20px; /* Abstandsgröße anpassen nach Bedarf */
+    margin-bottom: 20px; 
 }
 
 .button-container {
@@ -163,10 +163,4 @@
     left: 0;
 }
 
-@media only screen and (min-width: 200px) {
-    .welcome-container {
-      max-width: 350px;
-      margin: auto;
-    }
-  }
 </style>

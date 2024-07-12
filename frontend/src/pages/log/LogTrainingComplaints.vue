@@ -1,4 +1,5 @@
 <template>
+  <div class="size-container">
     <div class="welcome-container">
       <div class="header">
         <q-btn flat dense round icon="arrow_back" @click="goBack" />
@@ -18,6 +19,7 @@
     <div class="button-container">
       <StandardButton :label="$t('buttons.next')" @click="navigateToNextStep" />
     </div>
+  </div>
   </div>
 </template>
   
@@ -45,9 +47,7 @@
   .welcome-container {
     display: flex;
     flex-direction: column;
-    align-items: center; /* Ausrichtung links */
-    width: 90%;
-    height: 100vh;
+    align-items: center; 
     overflow: auto;
     margin: auto;
   }
@@ -98,11 +98,5 @@
     left: 0;
   }
 
-  @media only screen and (min-width: 200px) {
-    .welcome-container {
-      max-width: 350px;
-      margin: auto;
-    }
-  }
   </style>
   

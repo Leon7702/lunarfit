@@ -1,7 +1,6 @@
 <template>
   <div class="size-container">
   <div class="welcome-container">
-    <!-- Inhalt des ersten Bildschirms hier... -->
     <div class="welcome-text">
       <h1 class="title">{{ $t('logEntry.title') }}</h1>
     </div>
@@ -65,10 +64,4 @@ export default {
   margin-bottom: 10px;
 }
 
-@media only screen and (min-width: 200px) {
-  .welcome-container {
-    max-width: 350px;
-    margin: auto;
-  }
-}
 </style>

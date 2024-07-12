@@ -1,4 +1,5 @@
 <template>
+  <div class="size-container">
   <div class="welcome-container">
     <div class="content">
       <BackButtonText />
@@ -22,6 +23,7 @@
     <div class="button-container">
       <StandardButton :label="$t('buttons.next')" @click="navigateToNextStep" />
     </div>
+  </div>
   </div>
 </template>
 
@@ -52,13 +54,10 @@ export default {
   display: flex;
   flex-direction: column;
   align-items: center;
-  margin-top: 20px;
   position: relative;
-  height: 100vh;
 }
 
 .content {
-  width: 90%;
   flex: 1;
   overflow-y: auto;
 }
@@ -106,11 +105,4 @@ export default {
   left: 0;
 }
 
-@media only screen and (min-width: 200px) {
-  .welcome-container {
-    max-width: 350px;
-    margin: auto;
-    margin-top: 5%;
-  }
-}
 </style>

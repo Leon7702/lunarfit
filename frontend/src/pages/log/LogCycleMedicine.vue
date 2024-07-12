@@ -1,4 +1,5 @@
 <template>
+  <div class="size-container">
   <div class="welcome-container">
     <div class="header">
       <q-btn flat dense round icon="arrow_back" @click="goBack" />
@@ -14,6 +15,7 @@
     <div class="small-description">
       {{ $t('logCycle.medicine.smallDescription') }}
     </div>
+  </div>
   </div>
 </template>
 
@@ -49,8 +51,6 @@ export default {
     display: flex;
     flex-direction: column;
     align-items: center;
-    width: 90%;
-    height: 100vh;
     overflow: auto;
     margin: auto;
   }
@@ -102,13 +102,5 @@ export default {
     font: 12px/16px 'Inter', sans-serif;
     margin-top: 15px;
   }
-
-  @media only screen and (min-width: 200px) {
-    .welcome-container {
-      max-width: 350px;
-      margin: auto;
-    }
-  }
-  
   </style>
   
