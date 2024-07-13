@@ -1,5 +1,5 @@
 <template>
-  <div class="q-px-md">
+  <div class="q-pa-none">
     <div class="row justify-center">
       <!-- Quasar button toggle component to switch between slides -->
       <q-btn-toggle class="toggle-border" size="sm" v-model="slide" :options="[
@@ -26,7 +26,7 @@
                   {{ $t('menstruationInfo.description') }}
                 </q-card-section>
               </q-card>
-              <img class="cycle-image" src="../assets/cyclePhase/PeriodOvulation.png" alt="Graph" />
+              <img class="cycle-image" :src="$t('cyclePhase.images.menstruation')" alt="Menstruation Phase" />
               <PhaseInformation :textNutrition="[
                 $t('menstruationInfo.nutrition[0]'),
                 $t('menstruationInfo.nutrition[1]'),
@@ -54,7 +54,7 @@
                   {{ $t('follicularInfo.description') }}
                 </q-card-section>
               </q-card>
-              <img class="cycle-image" src="../assets/cyclePhase/Follicular.png" alt="Graph" />
+              <img class="cycle-image" :src="$t('cyclePhase.images.follicular')" alt="Follicular Phase" />
               <PhaseInformation :textNutrition="[
                 $t('follicularInfo.nutrition[0]'),
                 $t('follicularInfo.nutrition[1]'),
@@ -76,7 +76,7 @@
                   {{ $t('ovulationInfo.description') }}
                 </q-card-section>
               </q-card>
-              <img class="cycle-image" src="../assets/cyclePhase/Follicular.png" alt="Graph" />
+              <img class="cycle-image" :src="$t('cyclePhase.images.ovulation')" alt="Ovulation Phase" />
               <PhaseInformation :textNutrition="[
                 $t('ovulationInfo.nutrition[0]'),
                 $t('ovulationInfo.nutrition[1]')
@@ -95,7 +95,7 @@
                   {{ $t('lutealInfoEarly.description') }}
                 </q-card-section>
               </q-card>
-              <img class="cycle-image" src="../assets/cyclePhase/PeriodOvulation.png" alt="Graph" />
+              <img class="cycle-image" :src="$t('cyclePhase.images.earlyLuteal')" alt="Early Luteal Phase" />
               <PhaseInformation
                 :textNutrition="[
                   $t('lutealInfoEarly.nutrition[0]'),
@@ -110,17 +110,17 @@
           </q-scroll-area>
         </q-carousel-slide>
 
-        <!-- Carousel slide for lutheal phase -->
+        <!-- Carousel slide for late lutheal phase -->
         <q-carousel-slide name="lutealLate" class="column no-wrap flex-center">
           <q-scroll-area class="fit">
             <div class="column no-wrap flex-center">
               <div class="text-h6">{{ $t('lutealInfoLate.title') }}</div>
               <q-card flat bordered class="my-card">
                 <q-card-section>
-                  {{ $t('lutealInfoEarly.description') }}
+                  {{ $t('lutealInfoLate.description') }}
                 </q-card-section>
               </q-card>
-              <img class="cycle-image" src="../assets/cyclePhase/Lutheal.png" alt="Graph" />
+              <img class="cycle-image" :src="$t('cyclePhase.images.lateLuteal')" alt="Late Luteal Phase" />
               <PhaseInformation
                 :textNutrition="[
                   $t('lutealInfoLate.nutrition[0]'),

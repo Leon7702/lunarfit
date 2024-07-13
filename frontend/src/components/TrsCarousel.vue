@@ -1,5 +1,5 @@
 <template>
-  <div class="q-px-md">
+  <div class="q-pa-none">
     <div class="row justify-center">
       <q-btn-toggle class="toggle-border" size="sm" v-model="slide" :options="[
         { label: '1', value: 'training' },

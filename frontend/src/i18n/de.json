@@ -26,6 +26,15 @@
 
   "cycleDay": "Zyklustag",
   "cyclePhases": "Zyklusphasen",
+  "cyclePhase": {
+    "images": {
+      "menstruation": "/src/assets/cyclePhase/menstruationPhase_de_1.png",
+      "follicular": "/src/assets/cyclePhase/follicularPhase_de_2.png",
+      "ovulation": "/src/assets/cyclePhase/ovulationPhase_de_3.png",
+      "earlyLuteal": "/src/assets/cyclePhase/earlyLutealPhase_de_4.png",
+      "lateLuteal": "/src/assets/cyclePhase/lateLutealPhase_de_5.png"
+    }
+  },
 
   "nutrition": "Ernährung",
   "healthFertility": "Gesundheit/ Fruchtbarkeit",
