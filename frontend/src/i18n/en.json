@@ -33,6 +33,14 @@
       "lateLuteal": "/src/assets/cyclePhase/lateLutealPhase_en_5.png"
     }
   },
+  "menstruation": "Menstruation",
+  "mens": "Mens",
+  "follicularPhase": "Follicular Phase",
+  "follicular": "Follicular",
+  "earlyLutealPhase": "Early Luteal Phase",
+  "earlyLuteal": "Early Luteal",
+  "lateLutealPhase": "Late Luteal Phase",
+  "lateLuteal": "Late Luteal",
   "nutrition": "Nutrition",
   "healthFertility": "Health/ Fertility",
   "training": "Training",

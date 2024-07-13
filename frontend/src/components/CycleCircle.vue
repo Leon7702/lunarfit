@@ -33,26 +33,26 @@
 
         <!-- Text labels for the segments -->
         <text fill="#000" font-size="2">
-          <textPath :href="'#pathMens'" startOffset="25%">
-            Menstruation
+          <textPath :href="'#pathMens'" startOffset="25">
+            {{ mensLengthPortion <= 12 ? $t('mens') : $t('menstruation') }}
           </textPath>
         </text>
 
         <text fill="#000" font-size="2">
-          <textPath :href="'#pathFollicular'" startOffset="35%">
-            {{ $t('follicularInfo.title') }}
+          <textPath :href="'#pathFollicular'" startOffset="35">
+            {{ follicularLengthPortion <= 15 ? $t('follicular') : $t('follicularPhase') }}
           </textPath>
         </text>
 
         <text fill="#fff" font-size="2">
-          <textPath :href="'#pathEarlyLuteal'" startOffset="0%">
-            frühe Lutealphase
+          <textPath :href="'#pathEarlyLuteal'" startOffset="0">
+            {{ earlyLutealLengthPortion <= 20 ? $t('earlyLuteal') : $t('earlyLutealPhase') }}
           </textPath>
         </text>
 
         <text fill="#fff" font-size="2">
-          <textPath :href="'#pathLateLuteal'" startOffset="12%">
-            späte Luteal
+          <textPath :href="'#pathLateLuteal'" startOffset="10">
+            {{ lateLutealLengthPortion <= 18 ? $t('lateLuteal') : $t('lateLutealPhase') }}
           </textPath>
         </text>
 

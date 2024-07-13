@@ -36,6 +36,15 @@
     }
   },
 
+  "menstruation": "Menstruation",
+  "mens": "Mens",
+  "follicularPhase": "Follikelphase",
+  "follicular": "Follikel",
+  "earlyLutealPhase": "frühe Lutealphase",
+  "earlyLuteal": "frühe Luteal",
+  "lateLutealPhase": "späte Lutealphase",
+  "lateLuteal": "späte Luteal",
+
   "nutrition": "Ernährung",
   "healthFertility": "Gesundheit/ Fruchtbarkeit",
   "training": "Training",
