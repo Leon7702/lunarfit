@@ -1,6 +1,7 @@
 <template>
   <div class="size-container">
     <div class="q-pa-md">
+      <img src="/src/assets/chat_image.svg" alt="Chat Image" class="image" />
 
       <div class="title">
         {{ $t('chat.title') }}
@@ -42,13 +43,21 @@ export default {
 
 <style scoped>
 .title {
-  padding-top: 15vh;
+  padding-top: 4vh;
   font-size: 24px;
   font-weight: 600;
 }
 
 .description {
-  padding-top: 5vh;
-  padding-bottom: 3vh;
+  padding-top: 2vh;
 }
+
+.image {
+    padding-top: 10px;
+    object-fit: cover;
+    object-position: center;
+    margin: 0 auto;
+    width: 70%;
+    display: block;
+  }
 </style>
