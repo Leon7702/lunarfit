@@ -1,5 +1,5 @@
 <template>
-  <div class="q-px-md">
+  <div class="q-pa-none">
     <div class="row justify-center">
       <q-btn-toggle class="toggle-border" size="sm" v-model="slide" :options="[
         { label: '1', value: 'training' },
@@ -34,7 +34,7 @@
                 </q-card-section>
                 <q-card flat bordered class="my-card">
                   <q-card-section>
-                    {{ $t(phaseTextKey) }}
+                    <div v-if="phaseTextKey">{{ $t(phaseTextKey) }}</div>
                   </q-card-section>
                 </q-card>
               </q-card>
@@ -56,7 +56,7 @@
                   </q-card-section>
                 </q-card>
                 <div class="q-pa-md">
-                  <p>Deine heutige Stimmung:</p>
+                  <p>{{ $t('moodInfo.today') }}</p>
                   <div class="q-gutter-y-md column justify-center items-center">
                     <q-rating v-model="moodScore" size="2em" :max="6" color="grey" :color-selected="ratingColors"
                       icon="rectangle" readonly />
@@ -109,7 +109,7 @@
                   </q-card-section>
                 </q-card>
                 <div class="q-pa-md">
-                  <p>Deine heutige Beschwerdefreiheit:</p>
+                  <p>{{ $t('strainInfo.today') }}</p>
                   <div class="q-gutter-y-md column justify-center items-center">
                     <q-rating v-model="freeScore" size="2em" :max="6" color="grey" :color-selected="ratingColors"
                       icon="rectangle" readonly />
@@ -131,7 +131,7 @@
                   </q-card-section>
                 </q-card>
                 <div class="q-pa-md">
-                  <p>Deine heutige Erholung:</p>
+                  <p>{{ $t('restInfo.today') }}</p>
                   <div class="q-gutter-y-md column justify-center items-center">
                     <q-rating v-model="restScore" size="2em" :max="6" color="grey" :color-selected="ratingColors"
                       icon="rectangle" readonly />
@@ -214,6 +214,9 @@ export default {
         } else {
           phaseTextKey.value = 'lateLutealPhaseText';
         }
+
+        // Log the phaseTextKey to ensure it's being set correctly
+        console.log('phaseTextKey:', phaseTextKey.value);
 
         // Handle TRS data
         const trsdata = trsResponse.data;

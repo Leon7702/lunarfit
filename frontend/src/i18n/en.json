@@ -23,6 +23,24 @@
   "cycleTitle": "CYCLE",
   "trainingTitle": "TRAINING",
   "cycleDay": "Cycle Day",
+  "cyclePhases": "Cycle Phases",
+  "cyclePhase": {
+    "images": {
+      "menstruation": "/src/assets/cyclePhase/menstruationPhase_en_1.png",
+      "follicular": "/src/assets/cyclePhase/follicularPhase_en_2.png",
+      "ovulation": "/src/assets/cyclePhase/ovulationPhase_en_3.png",
+      "earlyLuteal": "/src/assets/cyclePhase/earlyLutealPhase_en_4.png",
+      "lateLuteal": "/src/assets/cyclePhase/lateLutealPhase_en_5.png"
+    }
+  },
+  "menstruation": "Menstruation",
+  "mens": "Mens",
+  "follicularPhase": "Follicular Phase",
+  "follicular": "Follicular",
+  "earlyLutealPhase": "Early Luteal Phase",
+  "earlyLuteal": "Early Luteal",
+  "lateLutealPhase": "Late Luteal Phase",
+  "lateLuteal": "Late Luteal",
   "nutrition": "Nutrition",
   "healthFertility": "Health/ Fertility",
   "training": "Training",
@@ -112,6 +130,7 @@
   },
   "menstruationPhaseText": "Since you are in the menstruation phase, your mood, motivation, and energy may be lower than usual. Listen to your body and plan short, regenerative sessions with low intensity if needed. These sessions can also help reduce potential symptoms.",
   "follicularPhaseText": "You are in the follicular phase. Rising estrogen levels help you feel confident and strong. If you feel good, this is the optimal time for more intense sessions! Plan more long or intensive training sessions. Strength and speed can also be trained well now.",
+  "ovulationPhaseText": "Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est",
   "earlyLutealPhaseText": "You are in the early luteal phase. The first week of this phase is generally good for high-intensity or high-volume sessions, as well as for strength and power training. If you are already in the second part of the early luteal phase, you can reduce the intensity and focus on longer and less intense sessions.",
   "lateLutealPhaseText": "You are in the late luteal phase. If you experience unpleasant physical and mental symptoms, plan short and light regeneration sessions (e.g., light jogging, cycling, yoga, or walking). These can also help reduce potential unpleasant symptoms.",
   "trsInfo": "Your Training Readiness Score is...",
@@ -122,7 +141,7 @@
         "Avoid intense training sessions and focus on regenerative measures instead.",
         "Ensure sufficient sleep and a balanced diet to support your recovery.",
         "Monitor your symptoms and adjust your training accordingly.",
-        ""
+        "Plan regular rest days to give your body the rest it needs."
       ]
     },
     "2": {
@@ -140,7 +159,7 @@
         "Continue your training as usual, but gradually increase your training volume.",
         "Regularly carry out regenerative measures to support your recovery.",
         "Continue to ensure a balanced diet and sufficient sleep to optimize your recovery.",
-        ""
+        "Listen to your body's signals and adapt your training if necessary."
       ]
     },
     "4": {
@@ -178,7 +197,8 @@
     "6": {
       "description": "Excellent:",
       "advice": "You're radiating positive energy! Enjoy this moment to the fullest with a physical activity you particularly enjoy. Whether it's a long run, an intense bike ride, or a challenging fitness class, use this high mood for a great workout."
-    }
+    },
+    "today": "Your mood today:"
   },
 
   "acwrInfo": "Your ACWR value is ",
@@ -219,7 +239,8 @@
         ">> Emphasize recovery measures, including massages, physiotherapy, or fascia training.",
         ">> Pay attention to your body's warning signals."
       ]
-    }
+    },
+    "today": "Your freedom from complaints today:"
   },
 
   "freeInfo": {
@@ -291,7 +312,8 @@
     "3": "Your recovery state is limited. You should reduce your training volume or intensity slightly.",
     "4": "Your recovery state is not optimal. If this condition persists, you should reduce your training volume and intensity somewhat to avoid long-term overtraining.",
     "5": "You seem to be well recovered. You can continue your training regimen as it is.",
-    "6": "You seem to be optimally recovered. You can consider increasing the training volume or intensity."
+    "6": "You seem to be optimally recovered. You can consider increasing the training volume or intensity.",
+    "today": "Your recovery status today:"
   },
     "onboarding": {
       "start": {
@@ -310,12 +332,13 @@
         }
       },
       "onboardingStep2": {
-        "step": "Step 2:",
-        "title": "Cycle",
-        "fields": {
-          "lastMenstruation": "On which day did your last menstruation start?",
-          "menstruationDuration": "How many days does your menstruation usually last?"
-        }
+      "step": "Step 2:",
+      "title": "Cycle",
+      "fields": {
+        "lastMenstruation": "On which day did your last menstruation start?",
+        "menstruationDuration": "How many days does your menstruation usually last?",
+        "cycleLength": "How many days are there usually between the first day of your period and the first day of your next period?"
+      }
       },
       "onboardingStep3": {
         "step": "Step 3:",
@@ -439,10 +462,13 @@
       },
       "mens": {
         "title": "Menstruation",
-        "buttonLabel": "+  Menstruation",
-        "descriptionText": "Tap here if your menstruation started today.",
-        "buttonLabelActive": "Menstruation active",
-        "descriptionTextActive": "Tap here if your menstruation is over."
+        "description": "Are you bleeding today? If yes, please select applicable:",
+        "icons": {
+        "none": "/src/assets/log_Zyklus/blutung_weak_en.svg",
+        "dry": "/src/assets/log_Zyklus/blutung_medium_en.svg",
+        "creamy": "/src/assets/log_Zyklus/blutung_strong_en.svg",
+        "sticky": "/src/assets/log_Zyklus/interim_bleeding.svg"
+      }
       },
       "ovulationTest": {
         "title": "Ovulation Test",
@@ -572,7 +598,7 @@
     "durationOptions": {
       "prompt": "How many minutes did you train?"
     }
-    },  
+    },
   "calendarLegend": {
     "0": "Period",
     "1": "Predicted period",
@@ -679,6 +705,14 @@
       "Vaginal Ring",
       "Other"
     ]
+  },
+  "chat": {
+    "title": "Chat Feature -",
+    "subtitle": "Coming soon",
+    "description1": "Our new chat function will soon be available! This will give you the opportunity to chat directly with other users and trainers.",
+    "description2": "Our LunarFit team is working hard to provide this function for you.",
+    "thanks": "Thank you for your patience!",
+    "button": "Go Home"
   },
   "account": {
     "title": "Account",
