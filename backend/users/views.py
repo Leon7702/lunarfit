@@ -5,6 +5,7 @@ from rest_framework.generics import CreateAPIView, ListAPIView, RetrieveAPIView
 from rest_framework.mixins import DestroyModelMixin, UpdateModelMixin
 from rest_framework.permissions import AllowAny, IsAdminUser, IsAuthenticated
 from rest_framework_simplejwt.views import TokenObtainPairView
+from drf_spectacular.utils import extend_schema, OpenApiParameter
 
 from .models import (
     Medication,
@@ -108,6 +109,9 @@ class SymptomFilterSet(FilterSet):
         fields = ["start", "end"]
 
 
+@extend_schema(
+    parameters=[OpenApiParameter(name="id", type=int, location=OpenApiParameter.PATH)]
+)
 class SymptomViewSet(viewsets.ModelViewSet):
     serializer_class = SymptomSerializer
     # queryset = Symptom.objects.all()
@@ -118,7 +122,6 @@ class SymptomViewSet(viewsets.ModelViewSet):
 
     def get_queryset(self):
         return Symptom.objects.all().filter(user=self.request.user)
-    
 
 class SymptomCategoryViewSet(viewsets.ModelViewSet):
     serializer_class = SymptomCategorySerializer
