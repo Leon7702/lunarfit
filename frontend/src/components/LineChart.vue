@@ -5,12 +5,12 @@
 </template>
 
 <script>
-import { Line as TrsLine } from 'vue-chartjs';
-import { Chart, registerables } from 'chart.js';
+import { Line as TrsLine } from "vue-chartjs";
+import { Chart, registerables } from "chart.js";
 Chart.register(...registerables);
 
 export default {
-  name: 'LineChart',
+  name: "LineChart",
   components: {
     TrsLine,
   },
@@ -59,9 +59,9 @@ export default {
               stepSize: 1, // Definiert die Schrittgröße zwischen den Werten auf der Y-Achse
             },
           },
-          x: {
-            max: 7,
-          }
+          // x: {
+          //   max: 6,
+          // }
         },
       };
     },
