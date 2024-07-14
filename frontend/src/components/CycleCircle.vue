@@ -33,26 +33,30 @@
 
         <!-- Text labels for the segments -->
         <text fill="#000" font-size="2">
-          <textPath :href="'#pathMens'" startOffset="25">
-            {{ mensLengthPortion <= 12 ? $t('mens') : $t('menstruation') }}
+          <!-- <textPath :href="'#pathMens'" startOffset="24"> -->
+          <textPath :href="'#pathMens'" :startOffset="`${mensLengthPortion <= 15 ? 24 + Math.round(mensLengthPortion / 5) : 19 + Math.round(mensLengthPortion / 2.5)}`">
+            {{ mensLengthPortion < 5 ? '' : mensLengthPortion <= 15 ? $t('mens') : $t('menstruation') }}
           </textPath>
         </text>
 
         <text fill="#000" font-size="2">
-          <textPath :href="'#pathFollicular'" startOffset="35">
-            {{ follicularLengthPortion <= 15 ? $t('follicular') : $t('follicularPhase') }}
+          <!-- <textPath :href="'#pathFollicular'" startOffset="40"> -->
+          <textPath :href="'#pathFollicular'" :startOffset="`${30 + Math.round(follicularLengthPortion / 5)}`">
+            {{ follicularLengthPortion < 5 ? '' : follicularLengthPortion <= 15 ? $t('follicular') : $t('follicularPhase') }}
+          </textPath>
+        </text>
+
+        <text fill="#fff" font-size="2" >
+          <!-- <textPath :href="'#pathEarlyLuteal'" startOffset="0"> -->
+          <textPath :href="'#pathEarlyLuteal'" :startOffset="`${earlyLutealLengthPortion <= 30 ? 0 : -4 + Math.round(earlyLutealLengthPortion / 5)}`">
+            {{ earlyLutealLengthPortion < 5 ? '' : earlyLutealLengthPortion <= 30 ? $t('earlyLuteal') : $t('earlyLutealPhase') }}
           </textPath>
         </text>
 
         <text fill="#fff" font-size="2">
-          <textPath :href="'#pathEarlyLuteal'" startOffset="0">
-            {{ earlyLutealLengthPortion <= 20 ? $t('earlyLuteal') : $t('earlyLutealPhase') }}
-          </textPath>
-        </text>
-
-        <text fill="#fff" font-size="2">
-          <textPath :href="'#pathLateLuteal'" startOffset="10">
-            {{ lateLutealLengthPortion <= 18 ? $t('lateLuteal') : $t('lateLutealPhase') }}
+          <!-- <textPath :href="'#pathLateLuteal'" startOffset="12"> -->
+          <textPath :href="'#pathLateLuteal'" :startOffset="`${lateLutealLengthPortion <= 20 ? 14 - Math.round(lateLutealLengthPortion / 5) : 18 - Math.round(lateLutealLengthPortion / 2.5)}`">
+            {{ lateLutealLengthPortion < 5 ? '' : lateLutealLengthPortion <= 20 ? $t('lateLuteal') : $t('lateLutealPhase') }}
           </textPath>
         </text>
 
