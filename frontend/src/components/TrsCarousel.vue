@@ -86,10 +86,14 @@
                     />
                   </div>
                 </div>
-                <p></p>
-                <div class="q-pa-md">
-                  <div class="q-pb-sm">DateInput: {{ date }}</div>
-                  <q-date v-model="date" range />
+                <div class="q-pa-sm">
+                  <!-- <div class="q-pb-sm">DateInput: {{ date }}</div> -->
+                  <q-btn flat dense @click="openPicker" class="date-display">
+                    Select Date <q-icon name="arrow_drop_down" />
+                    <q-popup-proxy ref="qDateProxy">
+                      <q-date v-model="date" range />
+                    </q-popup-proxy>
+                  </q-btn>
                 </div>
                 <LineChart
                   :data="filteredData.moodData"
@@ -175,7 +179,14 @@
                     />
                   </div>
                 </div>
-                <p></p>
+                <div class="q-pa-sm">
+                  <q-btn flat dense @click="openPicker" class="date-display">
+                    Select Date <q-icon name="arrow_drop_down" />
+                    <q-popup-proxy ref="qDateProxy">
+                      <q-date v-model="date" range />
+                    </q-popup-proxy>
+                  </q-btn>
+                </div>
                 <LineChart
                   :data="filteredData.complaintsData"
                   :labels="filteredData.dateLabels"
@@ -211,12 +222,19 @@
                     />
                   </div>
                 </div>
-                <p></p>
+                <div class="q-pa-sm">
+                  <q-btn flat dense @click="openPicker" class="date-display">
+                    Select Date <q-icon name="arrow_drop_down" />
+                    <q-popup-proxy ref="qDateProxy">
+                      <q-date v-model="date" range />
+                    </q-popup-proxy>
+                  </q-btn>
+                </div>
                 <LineChart
                   :data="filteredData.recoveryData"
                   :labels="filteredData.dateLabels"
                   label="Recovery Score"
-                  color="#9CD3D0"
+                  color="#1D706A"
                 />
               </div>
             </div>
@@ -269,6 +287,14 @@ export default {
       from: date7DaysPrior.split("-").join("/"),
       to: new Date().toISOString().split("T")[0].split("-").join("/"),
     });
+
+    const qDateProxyRef = ref(null);
+
+    const openPicker = () => {
+      if (qDateProxyRef.value) {
+        qDateProxyRef.value.show();
+      }
+    };
 
     const roundToTwoDecimals = (num) => parseFloat(num.toFixed(2));
 
@@ -425,6 +451,8 @@ export default {
         "teal-7",
       ],
       date,
+      qDateProxyRef,
+      openPicker,
     };
   },
   components: {
@@ -455,5 +483,13 @@ ul {
 
 .info-text {
   text-align: left;
+}
+
+.date-display {
+  font-weight: 400;
+}
+
+.q-icon {
+  margin-left: 5px;
 }
 </style>
