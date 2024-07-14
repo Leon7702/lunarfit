@@ -62,6 +62,8 @@
                       icon="rectangle" readonly />
                   </div>
                 </div>
+                <p></p>
+                <LineChart :data="moodData" :labels="dateLabels" label="Mood Score" color="#93EDE8" />
               </div>
             </div>
           </q-scroll-area>
@@ -115,6 +117,8 @@
                       icon="rectangle" readonly />
                   </div>
                 </div>
+                <p></p>
+                <LineChart :data="complaintsData" :labels="dateLabels" label="Complaints Score" color="#9CD3D0" />
               </div>
             </div>
           </q-scroll-area>
@@ -137,6 +141,8 @@
                       icon="rectangle" readonly />
                   </div>
                 </div>
+                <p></p>
+                <LineChart :data="recoveryData" :labels="dateLabels" label="Recovery Score" color="#9CD3D0" />
               </div>
             </div>
           </q-scroll-area>
@@ -150,6 +156,7 @@
 import { ref, computed } from 'vue';
 import axios from 'axios';
 import TrsSunburst from 'components/TrsSunburst.vue';
+import LineChart from 'components/LineChart.vue';
 import { calculateScore } from 'src/utils/scoreCalculator';
 import { calculateCycleAndPhases, calculateCurrentDay } from 'src/utils/cyclePhaseCalculator.js';
 
@@ -174,6 +181,11 @@ export default {
     const earlyLutealLengthPortion = ref(null);
     const lateLutealLengthPortion = ref(null);
 
+    const moodData = ref(null);
+    const complaintsData = ref(null);
+    const recoveryData = ref(null);
+    const dateLabels = ref(null)
+
     const roundToTwoDecimals = (num) => parseFloat(num.toFixed(2));
 
     const calculateLengthPortion = (calculatedLengths) => {
@@ -186,10 +198,12 @@ export default {
 
     const fetchData = async () => {
       try {
-        const [cycleResponse, trsResponse] = await Promise.all([
+        const [cycleResponse, trsResponse, scoresResponse] = await Promise.all([
           axios.get('http://localhost:3000/menstrualcycle/'),
-          axios.get('http://localhost:3000/trsdata')
+          axios.get('http://localhost:3000/trsdata'),
+          axios.get('http://localhost:3000/trs?user_id=1')
         ]);
+
 
         // Handle cycle data
         const cycleData = cycleResponse.data;
@@ -226,6 +240,13 @@ export default {
         restScore.value = trsdata.rest;
         acwr.value = trsdata.acwr;
         trainingReadinessScore.value = calculateScore(trsdata); // calculate the trs
+
+        // Handle trs score data
+        const trsScores = scoresResponse.data;
+        moodData.value = trsScores.map(score => score.mood);;
+        complaintsData.value = trsScores.map(score => score.complaints);
+        recoveryData.value = trsScores.map(score => score.recovery);
+        dateLabels.value = trsScores.map(score => score.day);
       } catch (error) {
         console.error('Failed to fetch data:', error);
       }
@@ -259,11 +280,16 @@ export default {
       trainingReadinessScore,
       trainingTextKey,
       phaseTextKey,
+      moodData,
+      complaintsData,
+      recoveryData,
+      dateLabels,
       ratingColors: ['teal-2', 'teal-3', 'teal-4', 'teal-5', 'teal-6', 'teal-7']
     };
   },
   components: {
     TrsSunburst,
+    LineChart,
   },
 };
 </script>
