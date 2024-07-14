@@ -38,6 +38,7 @@ CORS_ALLOWED_ORIGINS = [
 INSTALLED_APPS = [
     "django.contrib.admin",
     "users",
+    "cycles",
     "django.contrib.auth",
     "django.contrib.contenttypes",
     "django.contrib.sessions",
@@ -70,6 +71,7 @@ REST_FRAMEWORK = {
     ),
     "PAGE_SIZE": 10,
     "DEFAULT_SCHEMA_CLASS": "drf_spectacular.openapi.AutoSchema",
+    'DEFAULT_FILTER_BACKENDS': ['django_filters.rest_framework.DjangoFilterBackend'],
 }
 
 ROOT_URLCONF = "lunarfit.urls"

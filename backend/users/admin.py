@@ -9,7 +9,6 @@ from .models import (
     Contraceptive,
     Medication,
     MedicationCategory,
-    MenstrualCycle,
     Note,
     Profile,
     SymptomCategory,
@@ -112,7 +111,6 @@ admin.site.register(User, UserAdmin)
 # unregister the Group model from admin.
 admin.site.unregister(Group)
 admin.site.register(Contraceptive)
-admin.site.register(MenstrualCycle)
 admin.site.register(Symptom)
 admin.site.register(SymptomCategory)
 admin.site.register(MedicationCategory)

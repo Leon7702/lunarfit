@@ -6,9 +6,7 @@ from .models import (
     Contraceptive,
     Medication,
     MedicationCategory,
-    MenstrualCycle,
     Note,
-    Phase,
     Profile,
     Symptom,
     SymptomCategory,
@@ -65,20 +63,6 @@ class CustomTokenObtainPairSerializer(TokenObtainPairSerializer):
             raise exceptions.AuthenticationFailed(
                 "No active account found with the given credentials"
             )
-
-
-class PhaseSerializer(serializers.ModelSerializer):
-    class Meta:
-        model = Phase
-        fields = "__all__"
-
-
-class MenstrualCycleSerializer(serializers.ModelSerializer):
-    phases = PhaseSerializer(many=True, read_only=True)
-
-    class Meta:
-        model = MenstrualCycle
-        fields = "__all__"
 
 
 class SymptomSerializer(serializers.ModelSerializer):

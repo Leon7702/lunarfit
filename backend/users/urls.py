@@ -8,24 +8,19 @@ from .views import (
     UserListView,
     UserView,
     ProfileViewSet,
-    MenstrualCycleViewSet,
     SymptomViewSet,
-    SymptomCategoryViewSet,
-    NoteViewSet,
-    MedicationViewSet,
-    MedicationCategoryViewSet,
-    ContraceptiveViewSet
 )
 
 
 router = routers.DefaultRouter()
 router.register(r"profile", ProfileViewSet, "profile")
-router.register(r"cycle", MenstrualCycleViewSet, "cycle")
 router.register(r"symptoms", SymptomViewSet, "symptoms")
 router.register(r"symptoms/categories", SymptomCategoryViewSet, "symptom-categories")
 router.register(r"notes", NoteViewSet, "notes")
 router.register(r"medication", MedicationViewSet, "medication")
-router.register(r"medication/categories", MedicationCategoryViewSet, "medication-categories")
+router.register(
+    r"medication/categories", MedicationCategoryViewSet, "medication-categories"
+)
 router.register(r"contraceptives", ContraceptiveViewSet, "contraceptives")
 
 

@@ -1,18 +1,14 @@
-from django_filters import DateFromToRangeFilter, FilterSet, DateFilter
-from django_filters.rest_framework import DjangoFilterBackend
+from drf_spectacular.utils import extend_schema, OpenApiParameter
 from rest_framework import viewsets
 from rest_framework.generics import CreateAPIView, ListAPIView, RetrieveAPIView
 from rest_framework.mixins import DestroyModelMixin, UpdateModelMixin
 from rest_framework.permissions import AllowAny, IsAdminUser, IsAuthenticated
 from rest_framework_simplejwt.views import TokenObtainPairView
-from drf_spectacular.utils import extend_schema, OpenApiParameter
 
 from .models import (
     Medication,
     MedicationCategory,
-    MenstrualCycle,
     Note,
-    Phase,
     Profile,
     SymptomCategory,
     Symptom,
@@ -24,9 +20,7 @@ from .serializers import (
     CustomTokenObtainPairSerializer,
     MedicationCategorySerializer,
     MedicationSerializer,
-    MenstrualCycleSerializer,
     NoteSerializer,
-    PhaseSerializer,
     ProfileSerializer,
     SymptomSerializer,
     SymptomCategorySerializer,
@@ -72,43 +66,6 @@ class ProfileViewSet(viewsets.ModelViewSet):
     http_method_names = ["get", "patch"]
 
 
-class CycleFilterSet(FilterSet):
-
-    start = DateFromToRangeFilter()
-    end = DateFromToRangeFilter()
-
-    class Meta:
-        model = MenstrualCycle
-        fields = ["start", "end"]
-
-
-class MenstrualCycleViewSet(viewsets.ModelViewSet):
-    """Endpoint to list users' menstrual cycle(s) in the specified date range.
-    For receiving only cycle of current day 'start_after' is current date."""
-
-    serializer_class = MenstrualCycleSerializer
-    queryset = MenstrualCycle.objects.all()
-    permission_classes = [IsAuthenticated]
-    http_method_names = ["get"]
-    filter_backends = [DjangoFilterBackend]
-    filterset_class = CycleFilterSet
-
-
-class PhaseViewSet(viewsets.ModelViewSet):
-    serializer_class = PhaseSerializer
-    queryset = Phase.objects.all()
-    permission_classes = [IsAuthenticated]
-
-class SymptomFilterSet(FilterSet):
-
-    start = DateFromToRangeFilter()
-    end = DateFromToRangeFilter()
-
-    class Meta:
-        model = Symptom
-        fields = ["start", "end"]
-
-
 @extend_schema(
     parameters=[OpenApiParameter(name="id", type=int, location=OpenApiParameter.PATH)]
 )
@@ -121,7 +78,12 @@ class SymptomViewSet(viewsets.ModelViewSet):
     filterset_class = SymptomFilterSet
 
     def get_queryset(self):
+        # schema generation see https://drf-spectacular.readthedocs.io/en/latest/faq.html#my-get-queryset-depends-on-some-attributes-not-available-at-schema-generation-time
+        if getattr(self, "swagger_fake_view", False):  # drf-yasg comp
+            return Symptom.objects.none()
+
         return Symptom.objects.all().filter(user=self.request.user)
+
 
 class SymptomCategoryViewSet(viewsets.ModelViewSet):
     serializer_class = SymptomCategorySerializer
@@ -142,7 +104,7 @@ class MedicationFilterSet(FilterSet):
 
 class MedicationViewSet(viewsets.ModelViewSet):
     serializer_class = MedicationSerializer
-    #queryset = Medication.objects.all()
+    # queryset = Medication.objects.all()
     permission_classes = [IsAuthenticated]
     http_method_names = ["get", "post", "delete"]
     filter_backends = [DjangoFilterBackend]
@@ -178,7 +140,7 @@ class NoteViewSet(viewsets.ModelViewSet):
     filterset_class = NoteFilterSet
 
 
-class ContraceptiveViewSet(viewsets.ModelViewSet):   
+class ContraceptiveViewSet(viewsets.ModelViewSet):
     serializer_class = ContraceptiveSerializer
     queryset = Contraceptive.objects.all()
     permission_classes = [IsAuthenticated]
