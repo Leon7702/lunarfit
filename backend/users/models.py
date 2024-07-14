@@ -111,7 +111,7 @@ class SymptomCategory(models.Model):
 class Symptom(models.Model):
     user = models.ForeignKey(User, on_delete=models.CASCADE)
     symptom_category = models.ForeignKey(SymptomCategory, on_delete=models.CASCADE) 
-    day = models.DateField()
+    date = models.DateField()
     value  = models.PositiveSmallIntegerField(validators=[MinValueValidator(1), MaxValueValidator(6)])
 
     def __str__(self):
@@ -127,8 +127,8 @@ class MedicationCategory(models.Model):
 
 class Medication(models.Model):
      user = models.ForeignKey(User, on_delete=models.CASCADE)
-     start_date = models.DateField()
-     end_date = models.DateField()
+     start = models.DateField()
+     end = models.DateField()
      medication_id = models.ForeignKey(MedicationCategory, on_delete=models.CASCADE)
 
 

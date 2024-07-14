@@ -3,14 +3,15 @@ from rest_framework import exceptions, serializers
 from rest_framework_simplejwt.serializers import TokenObtainPairSerializer
 
 from .models import (
+    Contraceptive,
     Medication,
     MedicationCategory,
     MenstrualCycle,
     Note,
     Phase,
     Profile,
-    SymptomCategory,
     Symptom,
+    SymptomCategory,
     User,
 )
 
@@ -107,4 +108,10 @@ class MedicationSerializer(serializers.ModelSerializer):
 class NoteSerializer(serializers.ModelSerializer):
     class Meta:
         model = Note
+        fields = "__all__"
+
+
+class ContraceptiveSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = Contraceptive
         fields = "__all__"

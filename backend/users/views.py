@@ -1,4 +1,4 @@
-from django_filters import DateFromToRangeFilter, FilterSet
+from django_filters import DateFromToRangeFilter, FilterSet, DateFilter
 from django_filters.rest_framework import DjangoFilterBackend
 from rest_framework import viewsets
 from rest_framework.generics import CreateAPIView, ListAPIView, RetrieveAPIView
@@ -16,6 +16,7 @@ from .models import (
     SymptomCategory,
     Symptom,
     User,
+    Contraceptive,
 )
 from .permissions import UserPermission
 from .serializers import (
@@ -29,6 +30,7 @@ from .serializers import (
     SymptomSerializer,
     SymptomCategorySerializer,
     UserSerializer,
+    ContraceptiveSerializer,
 )
 
 
@@ -96,37 +98,85 @@ class PhaseViewSet(viewsets.ModelViewSet):
     queryset = Phase.objects.all()
     permission_classes = [IsAuthenticated]
 
+class SymptomFilterSet(FilterSet):
+
+    start = DateFromToRangeFilter()
+    end = DateFromToRangeFilter()
+
+    class Meta:
+        model = Symptom
+        fields = ["start", "end"]
+
 
 class SymptomViewSet(viewsets.ModelViewSet):
     serializer_class = SymptomSerializer
     # queryset = Symptom.objects.all()
     permission_classes = [IsAuthenticated]
-    http_method_names = ["get", "post"]
+    http_method_names = ["get", "post", "delete"]
+    filter_backends = [DjangoFilterBackend]
+    filterset_class = SymptomFilterSet
 
     def get_queryset(self):
         return Symptom.objects.all().filter(user=self.request.user)
     
 
-
 class SymptomCategoryViewSet(viewsets.ModelViewSet):
     serializer_class = SymptomCategorySerializer
     queryset = SymptomCategory.objects.all()
     permission_classes = [IsAuthenticated]
+    http_method_names = ["get", "post"]
+
+
+class MedicationFilterSet(FilterSet):
+
+    start = DateFromToRangeFilter()
+    end = DateFromToRangeFilter()
+
+    class Meta:
+        model = Medication
+        fields = ["start", "end"]
+
+
+class MedicationViewSet(viewsets.ModelViewSet):
+    serializer_class = MedicationSerializer
+    #queryset = Medication.objects.all()
+    permission_classes = [IsAuthenticated]
+    http_method_names = ["get", "post", "delete"]
+    filter_backends = [DjangoFilterBackend]
+    filterset_class = MedicationFilterSet
+
+    def get_queryset(self):
+        return Medication.objects.all().filter(user=self.request.user)
 
 
 class MedicationCategoryViewSet(viewsets.ModelViewSet):
     serializer_class = MedicationCategorySerializer
     queryset = MedicationCategory.objects.all()
     permission_classes = [IsAuthenticated]
+    http_method_names = ["get", "post"]
 
 
-class MedicationViewSet(viewsets.ModelViewSet):
-    serializer_class = MedicationSerializer
-    queryset = Medication.objects.all()
-    permission_classes = [IsAuthenticated]
+class NoteFilterSet(FilterSet):
+
+    start = DateFromToRangeFilter()
+    end = DateFromToRangeFilter()
+
+    class Meta:
+        model = Note
+        fields = ["start", "end"]
 
 
 class NoteViewSet(viewsets.ModelViewSet):
     serializer_class = NoteSerializer
     queryset = Note.objects.all()
     permission_classes = [IsAuthenticated]
+    http_method_names = ["get", "post"]
+    filter_backends = [DjangoFilterBackend]
+    filterset_class = NoteFilterSet
+
+
+class ContraceptiveViewSet(viewsets.ModelViewSet):   
+    serializer_class = ContraceptiveSerializer
+    queryset = Contraceptive.objects.all()
+    permission_classes = [IsAuthenticated]
+    http_method_names = ["get"]
