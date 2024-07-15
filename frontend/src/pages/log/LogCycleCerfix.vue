@@ -1,4 +1,5 @@
 <template>
+  <div class="size-container">
   <div class="welcome-container">
     <div class="header">
       <q-btn flat dense round icon="arrow_back" @click="goBack" />
@@ -23,6 +24,7 @@
       </div>
     </div>
   </div>
+</div>
 </template>
 
 <script>
@@ -71,16 +73,6 @@ export default {
 </script>
 
 <style scoped>
-.welcome-container {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  width: 90%;
-  height: 100vh;
-  overflow: auto;
-  margin: auto;
-}
-
 .linie {
   height: 1px;
   background-color: rgba(0, 0, 0, 0.1);
@@ -156,10 +148,5 @@ export default {
   background-color: var(--q-primary);
 }
 
-@media only screen and (min-width: 200px) {
-  .welcome-container {
-    max-width: 350px;
-    margin: auto;
-  }
-}
+
 </style>
