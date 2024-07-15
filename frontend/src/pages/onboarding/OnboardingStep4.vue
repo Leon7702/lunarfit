@@ -80,12 +80,6 @@ export default {
 
   
   <style scoped>
-  .welcome-container {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    position: relative;
-  }
   
   .content {
     flex: 1;

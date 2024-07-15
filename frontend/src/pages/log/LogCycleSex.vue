@@ -45,14 +45,6 @@ export default {
 
   
   <style scoped>
-  .welcome-container {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    overflow: auto;
-    margin: auto;
-  }
-  
   .linie {
     height: 1px;
     background-color: rgba(0, 0, 0, 0.1);

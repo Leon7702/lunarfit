@@ -54,13 +54,6 @@ export default {
 </script>
 
 <style scoped>
-.welcome-container {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  overflow: auto;
-  margin: auto;
-}
 
 .linie {
   height: 1px;

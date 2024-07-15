@@ -32,13 +32,6 @@
   </script>
   
   <style scoped>
-  .welcome-container {
-    display: flex;
-    flex-direction: column;
-    align-items: center; 
-    overflow: auto;
-    margin: auto;
-  }
   
   .image {
     aspect-ratio: 1.64;
