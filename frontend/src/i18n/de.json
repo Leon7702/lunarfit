@@ -52,6 +52,9 @@
   "strain": "Belastung",
   "rest": "Erholung",
   "free": "Beschwerdefreiheit",
+  "moodTrend": "Stimmung Verlauf",
+  "complaintsTrend": "Beschwerdefreiheit Verlauf",
+  "recoveryTrend": "Erholung Verlauf",
 
   "moreCycleInfo": "Erfahre jetzt mehr über deinen Zyklus",
   "moreTrainingInfo": "Erfahre jetzt mehr über dein Training",
@@ -741,6 +744,8 @@
     "thanks": "Vielen Dank für deine Geduld!",
     "button": "Zum Dashboard"
   },
+
+  "selectDate": "Datum auswählen",
 
   "account": {
     "title": "Account",

@@ -89,7 +89,7 @@
                 <div class="q-pa-sm">
                   <!-- <div class="q-pb-sm">DateInput: {{ date }}</div> -->
                   <q-btn flat dense @click="openPicker" class="date-display">
-                    Select Date <q-icon name="arrow_drop_down" />
+                    {{ $t("selectDate") }} <q-icon name="arrow_drop_down" />
                     <q-popup-proxy ref="qDateProxy">
                       <q-date v-model="date" range />
                     </q-popup-proxy>
@@ -98,7 +98,7 @@
                 <LineChart
                   :data="filteredData.moodData"
                   :labels="filteredData.dateLabels"
-                  label="Mood Score"
+                  :label="$t('moodTrend')"
                   color="#93EDE8"
                 />
               </div>
@@ -181,7 +181,7 @@
                 </div>
                 <div class="q-pa-sm">
                   <q-btn flat dense @click="openPicker" class="date-display">
-                    Select Date <q-icon name="arrow_drop_down" />
+                    {{ $t("selectDate") }} <q-icon name="arrow_drop_down" />
                     <q-popup-proxy ref="qDateProxy">
                       <q-date v-model="date" range />
                     </q-popup-proxy>
@@ -190,7 +190,7 @@
                 <LineChart
                   :data="filteredData.complaintsData"
                   :labels="filteredData.dateLabels"
-                  label="Complaints Score"
+                  :label="$t('complaintsTrend')"
                   color="#9CD3D0"
                 />
               </div>
@@ -224,7 +224,7 @@
                 </div>
                 <div class="q-pa-sm">
                   <q-btn flat dense @click="openPicker" class="date-display">
-                    Select Date <q-icon name="arrow_drop_down" />
+                    {{ $t("selectDate") }} <q-icon name="arrow_drop_down" />
                     <q-popup-proxy ref="qDateProxy">
                       <q-date v-model="date" range />
                     </q-popup-proxy>
@@ -233,8 +233,8 @@
                 <LineChart
                   :data="filteredData.recoveryData"
                   :labels="filteredData.dateLabels"
-                  label="Recovery Score"
-                  color="#1D706A"
+                  :label="$t('recoveryTrend')"
+                  color="#2D8781"
                 />
               </div>
             </div>

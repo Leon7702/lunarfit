@@ -48,6 +48,9 @@
   "strain": "Strain",
   "rest": "Rest",
   "free": "Symptom-Free",
+  "moodTrend": "Mood trend",
+  "complaintsTrend": "Complaints trend",
+  "recoveryTrend": "Recovery trend",
   "moreCycleInfo": "Learn more about your cycle now",
   "moreTrainingInfo": "Learn more about your training now",
   "menstruationInfo": {
@@ -714,6 +717,7 @@
     "thanks": "Thank you for your patience!",
     "button": "Go Home"
   },
+  "selectDate": "Select date",
   "account": {
     "title": "Account",
     "email": "Email",
