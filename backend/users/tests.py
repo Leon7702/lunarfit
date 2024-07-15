@@ -51,9 +51,9 @@ class UserPermissionTest(APITestCase):
         id = self.user2.id
         self.client.force_authenticate(user=self.superuser)
         assert User.objects.count() == 3
-        self.client.delete(f"/api/users/{id}")
+        self.client.delete(f"/api/users/{id}/")
         assert User.objects.count() == 2
-        response = self.client.get(f"/api/users/{id}")
+        response = self.client.get(f"/api/users/{id}/")
         assert response.status_code == status.HTTP_404_NOT_FOUND
 
     def test_user_cannot_list_users(self):
@@ -63,7 +63,7 @@ class UserPermissionTest(APITestCase):
 
     def test_user_can_read_own_data(self):
         self.client.force_authenticate(user=self.user2)
-        response = self.client.get(f"/api/users/{self.user2.id}")
+        response = self.client.get(f"/api/users/{self.user2.id}/")
         assert response.status_code == status.HTTP_200_OK
 
     def test_user_can_change_own_email(self):
@@ -76,7 +76,7 @@ class UserPermissionTest(APITestCase):
         self.client.force_authenticate(user=self.user2)
 
         response = self.client.patch(
-            f"/api/users/{self.user2.id}", {"email": new_email}
+            f"/api/users/{self.user2.id}/", {"email": new_email}
         )
 
         user = User.objects.get(pk=id)
@@ -93,7 +93,7 @@ class UserPermissionTest(APITestCase):
         self.client.force_authenticate(user=self.user2)
 
         response = self.client.patch(
-            f"/api/users/{self.user2.id}", {"email": new_email}
+            f"/api/users/{self.user2.id}/", {"email": new_email}
         )
 
         user = User.objects.get(pk=id)
@@ -110,7 +110,7 @@ class UserPermissionTest(APITestCase):
         self.client.force_authenticate(user=self.user2)
 
         response = self.client.patch(
-            f"/api/users/{self.user2.id}", {"email": new_email}
+            f"/api/users/{self.user2.id}/", {"email": new_email}
         )
 
         user = User.objects.get(pk=id)
@@ -127,7 +127,7 @@ class UserPermissionTest(APITestCase):
         self.client.force_authenticate(user=self.user2)
 
         response = self.client.patch(
-            f"/api/users/{self.user2.id}", {"password": new_password}
+            f"/api/users/{self.user2.id}/", {"password": new_password}
         )
         assert response.status_code == status.HTTP_200_OK
 
@@ -139,24 +139,24 @@ class UserPermissionTest(APITestCase):
     def test_user_can_delete_own_data(self):
         id = self.user2.id
         self.client.force_authenticate(user=self.user2)
-        response = self.client.delete(f"/api/users/{id}")
+        response = self.client.delete(f"/api/users/{id}/")
         assert response.status_code == status.HTTP_204_NO_CONTENT
         with pytest.raises(User.DoesNotExist):
             assert User.objects.get(pk=id)
 
     def test_user_cannot_read_other_user_data(self):
         self.client.force_authenticate(user=self.user1)
-        response = self.client.get(f"/api/users/{self.user2.id}")
+        response = self.client.get(f"/api/users/{self.user2.id}/")
         assert response.status_code == status.HTTP_403_FORBIDDEN
 
     def test_user_cannot_change_other_user_data(self):
         self.client.force_authenticate(user=self.user1)
         response = self.client.patch(
-            f"/api/users/{self.user2.id}", {"email": "new_email@example.com"}
+            f"/api/users/{self.user2.id}/", {"email": "new_email@example.com"}
         )
         assert response.status_code == status.HTTP_403_FORBIDDEN
 
     def test_user_cannot_delete_other_user_data(self):
         self.client.force_authenticate(user=self.user1)
-        response = self.client.delete(f"/api/users/{self.user2.id}")
+        response = self.client.delete(f"/api/users/{self.user2.id}/")
         assert response.status_code == status.HTTP_403_FORBIDDEN

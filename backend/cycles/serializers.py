@@ -1,6 +1,6 @@
 from rest_framework import serializers
 
-from .models import MenstrualCycle, Phase
+from .models import MenstrualCycle, Phase, Medication, MedicationCategory
 
 
 class PhaseSerializer(serializers.ModelSerializer):
@@ -14,4 +14,16 @@ class MenstrualCycleSerializer(serializers.ModelSerializer):
 
     class Meta:
         model = MenstrualCycle
+        fields = "__all__"
+
+
+class MedicationCategorySerializer(serializers.ModelSerializer):
+    class Meta:
+        model = MedicationCategory
+        fields = "__all__"
+
+
+class MedicationSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = Medication
         fields = "__all__"

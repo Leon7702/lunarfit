@@ -1,21 +1,19 @@
-from django_filters import DateFromToRangeFilter, FilterSet
-from rest_framework import viewsets
+from django_filters.filterset import filterset_factory
 from rest_framework.permissions import IsAuthenticated
+from rest_framework.viewsets import ModelViewSet
 
-from .models import MenstrualCycle, Phase
-from .serializers import MenstrualCycleSerializer, PhaseSerializer
+from .models import MenstrualCycle, Phase, MedicationCategory
+from .serializers import (
+    MenstrualCycleSerializer,
+    PhaseSerializer,
+    MedicationSerializer,
+    MedicationCategorySerializer,
+)
+from lunarfit.filters import DateFromToRangeFilterSet
+from users.views import UserModelViewSet
 
 
-class CycleFilterSet(FilterSet):
-    start = DateFromToRangeFilter()
-    end = DateFromToRangeFilter()
-
-    class Meta:
-        model = MenstrualCycle
-        fields = ["start", "end"]
-
-
-class MenstrualCycleViewSet(viewsets.ModelViewSet):
+class MenstrualCycleViewSet(ModelViewSet):
     """Endpoint to list users' menstrual cycle(s) in the specified date range.
     For receiving only cycle of current day 'start_after' is current date."""
 
@@ -23,10 +21,25 @@ class MenstrualCycleViewSet(viewsets.ModelViewSet):
     queryset = MenstrualCycle.objects.all()
     permission_classes = [IsAuthenticated]
     http_method_names = ["get"]
-    filterset_class = CycleFilterSet
+    filterset_class = filterset_factory(
+        MenstrualCycle, DateFromToRangeFilterSet, ["user", "start", "end"]
+    )
+    # filterset_fields = ["start", "end"]
 
 
-class PhaseViewSet(viewsets.ModelViewSet):
+class PhaseViewSet(ModelViewSet):
     serializer_class = PhaseSerializer
     queryset = Phase.objects.all()
     permission_classes = [IsAuthenticated]
+
+
+class MedicationViewSet(UserModelViewSet):
+    serializer_class = MedicationSerializer
+    http_method_names = ["get", "post", "patch", "delete"]
+
+
+class MedicationCategoryViewSet(ModelViewSet):
+    serializer_class = MedicationCategorySerializer
+    queryset = MedicationCategory.objects.all()
+    permission_classes = [IsAuthenticated]
+    http_method_names = ["get"]

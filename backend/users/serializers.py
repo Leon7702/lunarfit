@@ -2,16 +2,7 @@ from django.contrib.auth import authenticate
 from rest_framework import exceptions, serializers
 from rest_framework_simplejwt.serializers import TokenObtainPairSerializer
 
-from .models import (
-    Contraceptive,
-    Medication,
-    MedicationCategory,
-    Note,
-    Profile,
-    Symptom,
-    SymptomCategory,
-    User,
-)
+from .models import Profile, User, Contraceptive
 
 
 class UserSerializer(serializers.HyperlinkedModelSerializer):
@@ -63,36 +54,6 @@ class CustomTokenObtainPairSerializer(TokenObtainPairSerializer):
             raise exceptions.AuthenticationFailed(
                 "No active account found with the given credentials"
             )
-
-
-class SymptomSerializer(serializers.ModelSerializer):
-    class Meta:
-        model = Symptom
-        fields = "__all__"
-
-
-class SymptomCategorySerializer(serializers.ModelSerializer):
-    class Meta:
-        model = SymptomCategory
-        fields = "__all__"
-
-
-class MedicationCategorySerializer(serializers.ModelSerializer):
-    class Meta:
-        model = MedicationCategory
-        fields = "__all__"
-
-
-class MedicationSerializer(serializers.ModelSerializer):
-    class Meta:
-        model = Medication
-        fields = "__all__"
-
-
-class NoteSerializer(serializers.ModelSerializer):
-    class Meta:
-        model = Note
-        fields = "__all__"
 
 
 class ContraceptiveSerializer(serializers.ModelSerializer):

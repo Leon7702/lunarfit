@@ -5,16 +5,7 @@ from django.contrib.auth.forms import ReadOnlyPasswordHashField
 from django.contrib.auth.models import Group
 from django.core.exceptions import ValidationError
 
-from .models import (
-    Contraceptive,
-    Medication,
-    MedicationCategory,
-    Note,
-    Profile,
-    SymptomCategory,
-    Symptom,
-    User,
-)
+from .models import Contraceptive, Profile, User
 
 
 class UserCreationForm(forms.ModelForm):
@@ -111,8 +102,3 @@ admin.site.register(User, UserAdmin)
 # unregister the Group model from admin.
 admin.site.unregister(Group)
 admin.site.register(Contraceptive)
-admin.site.register(Symptom)
-admin.site.register(SymptomCategory)
-admin.site.register(MedicationCategory)
-admin.site.register(Medication)
-admin.site.register(Note)

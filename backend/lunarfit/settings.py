@@ -39,6 +39,7 @@ INSTALLED_APPS = [
     "django.contrib.admin",
     "users",
     "cycles",
+    "notes",
     "django.contrib.auth",
     "django.contrib.contenttypes",
     "django.contrib.sessions",
