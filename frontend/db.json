@@ -130,6 +130,26 @@
       "recovery": 5,
       "trs_acwr": 1,
       "acwr": 1.2
+    },
+    {
+      "entry_id": 14,
+      "user_id": 1,
+      "day": "2024-07-22",
+      "mood": 2,
+      "complaints": 2,
+      "recovery": 3,
+      "trs_acwr": 4,
+      "acwr": 1.5
+    },
+    {
+      "entry_id": 15,
+      "user_id": 1,
+      "day": "2024-07-25",
+      "mood": 3,
+      "complaints": 3,
+      "recovery": 2,
+      "trs_acwr": 2,
+      "acwr": 0.9
     }
   ],
   "usersdata": {

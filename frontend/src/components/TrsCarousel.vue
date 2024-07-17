@@ -402,8 +402,8 @@ export default {
     });
 
     const filteredData = computed(() => {
-
-      if(data.value === null || date.value?.to === undefined|| date.value?.from === undefined) {
+      // Check if trsScores or date range is null/undefined
+      if (trsScores.value === null || date.value?.to === undefined || date.value?.from === undefined) {
         return {
           moodData: [],
           complaintsData: [],
@@ -412,20 +412,46 @@ export default {
         };
       }
 
+      // Convert date range strings to Date objects
       let [toYear, toMonth, toDay] = date.value?.to.split("/");
       let [fromYear, fromMonth, fromDay] = date.value?.from.split("/");
       let toDate = new Date(`${toYear}-${toMonth}-${toDay}`);
       let fromDate = new Date(`${fromYear}-${fromMonth}-${fromDay}`);
 
+      // Filter data within the date range
       let filtered = trsScores.value
         .filter((d) => new Date(d.day) >= fromDate)
         .filter((d) => new Date(d.day) <= toDate);
 
+      // Create an array of all dates within the range
+      let allDates = [];
+      let currentDate = new Date(fromDate);
+      while (currentDate <= toDate) {
+        allDates.push(new Date(currentDate));
+        currentDate.setDate(currentDate.getDate() + 1);
+      }
+
+      // Initialize arrays for data and labels
+      let moodData = [];
+      let complaintsData = [];
+      let recoveryData = [];
+      let dateLabels = [];
+
+      // Fill data arrays with values or null if no data for a date
+      allDates.forEach(date => {
+        let entry = filtered.find(e => new Date(e.day).getTime() === date.getTime());
+        dateLabels.push(date.toISOString().split('T')[0]);
+        moodData.push(entry ? entry.mood : null);
+        complaintsData.push(entry ? entry.complaints : null);
+        recoveryData.push(entry ? entry.recovery : null);
+      });
+
+      // Return the data for the charts
       return {
-        moodData: filtered.map((score) => score.mood),
-        complaintsData: filtered.map((score) => score.complaints),
-        recoveryData: filtered.map((score) => score.recovery),
-        dateLabels: filtered.map((score) => score.day),
+        moodData,
+        complaintsData,
+        recoveryData,
+        dateLabels,
       };
     });
 

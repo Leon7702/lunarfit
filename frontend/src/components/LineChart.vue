@@ -44,6 +44,7 @@ export default {
             borderColor: this.color,
             data: this.data,
             fill: true,
+            spanGaps: true, // This option will interpolate over gaps
           },
         ],
       };
@@ -58,10 +59,6 @@ export default {
             time: {
               unit: 'day',
               tooltipFormat: 'yyyy-MM-dd',
-            },
-            title: {
-              display: true,
-              text: 'Date',
             },
           },
           y: {
