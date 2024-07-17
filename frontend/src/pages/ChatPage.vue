@@ -16,7 +16,7 @@
     </div>
 
     <div class="q-pa-md q-gutter-sm row justify-center">
-      <q-btn no-caps rounded style="background: #50C1BA; color: white" :label="$t('chat.button')" padding="sm lg" size="16px"
+      <q-btn no-caps rounded style="background: #50C1BA; color: white" :label="$t('buttons.home')" padding="sm lg" size="16px"
         @click="toHome" />
     </div>
   </div>
@@ -59,5 +59,5 @@ export default {
     margin: 0 auto;
     width: 70%;
     display: block;
-  }
+}
 </style>

@@ -741,8 +741,7 @@
     "subtitle": "Demnächst verfügbar",
     "description1": "Bald wird unsere neue Chat Funktion verfügbar sein! Damit wirst du die Möglichkeit haben, direkt mit anderen Benutzerinnen und Trainer zu chatten.",
     "description2": "Unser LunarFit Team arbeitet intensiv daran, diese Funktion für dich bereitzustellen.",
-    "thanks": "Vielen Dank für deine Geduld!",
-    "button": "Zum Dashboard"
+    "thanks": "Vielen Dank für deine Geduld!"
   },
 
   "selectDate": "Datum auswählen",
@@ -760,9 +759,15 @@
     "english": "Englisch"
   },
 
+  "error": {
+    "notFound": "Seite nicht gefunden",
+    "description": "Oops, diese Seite existiert leider nicht (mehr)."
+  },
+
   "buttons": {
     "next": "Weiter",
-    "save": "Speichern"
+    "save": "Speichern",
+    "home": "Zum Dashboard"
   },
 
     "yes": "Ja",

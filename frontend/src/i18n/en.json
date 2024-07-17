@@ -714,8 +714,7 @@
     "subtitle": "Coming soon",
     "description1": "Our new chat function will soon be available! This will give you the opportunity to chat directly with other users and trainers.",
     "description2": "Our LunarFit team is working hard to provide this function for you.",
-    "thanks": "Thank you for your patience!",
-    "button": "Go Home"
+    "thanks": "Thank you for your patience!"
   },
   "selectDate": "Select date",
   "account": {
@@ -729,9 +728,14 @@
     "german": "German",
     "english": "English"
   },
+  "error": {
+    "notFound": "Page Not Found",
+    "description": "Oops, unfortunately this page does not exist (anymore)."
+  },
   "buttons": {
     "next": "Next",
-    "save": "Save"
+    "save": "Save",
+    "home": "Go Home"
   },
 
   "yes": "Yes",
