@@ -7,6 +7,7 @@
 <script>
 import { Line as TrsLine } from "vue-chartjs";
 import { Chart, registerables } from "chart.js";
+import 'chartjs-adapter-date-fns';
 Chart.register(...registerables);
 
 export default {
@@ -52,16 +53,24 @@ export default {
         responsive: true,
         maintainAspectRatio: false,
         scales: {
+          x: {
+            type: 'time',
+            time: {
+              unit: 'day',
+              tooltipFormat: 'yyyy-MM-dd',
+            },
+            title: {
+              display: true,
+              text: 'Date',
+            },
+          },
           y: {
             beginAtZero: true,
             max: 6,
             ticks: {
-              stepSize: 1, // Definiert die Schrittgröße zwischen den Werten auf der Y-Achse
+              stepSize: 1,
             },
           },
-          // x: {
-          //   max: 6,
-          // }
         },
       };
     },
