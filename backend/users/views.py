@@ -1,3 +1,4 @@
+from drf_spectacular.utils import extend_schema_view, extend_schema
 from rest_framework import viewsets
 from rest_framework.generics import CreateAPIView, ListAPIView, RetrieveAPIView
 from rest_framework.mixins import DestroyModelMixin, UpdateModelMixin
@@ -56,7 +57,17 @@ class CustomTokenObtainPairView(TokenObtainPairView):
     serializer_class = CustomTokenObtainPairSerializer
 
 
+@extend_schema_view(
+    retrieve=extend_schema(summary="Retrieve profile by user-id"),
+    partial_update=extend_schema(summary="Update profile by user-id"),
+)
 class ProfileViewSet(viewsets.ModelViewSet):
+    """
+    The user profile contains most of the user information, apart from the login credentials.
+    {user} is the id of the corresponding user.
+
+    To delete a Profile, delete the corresponding [user](https://www.youtube.com/watch?v=dQw4w9WgXcQ).
+    """
     queryset = Profile.objects.all()
     serializer_class = ProfileSerializer
     http_method_names = ["get", "patch"]
