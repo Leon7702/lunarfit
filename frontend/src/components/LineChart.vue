@@ -32,6 +32,10 @@ export default {
       type: Array,
       required: true,
     },
+    yStepSize: {
+      type: Number,
+      default: 1,
+    },
   },
   computed: {
     chartData() {
@@ -63,9 +67,9 @@ export default {
           },
           y: {
             beginAtZero: true,
-            max: 6,
+            // max: 6,
             ticks: {
-              stepSize: 1,
+              stepSize: this.yStepSize,
             },
           },
         },

@@ -100,6 +100,7 @@
                   :labels="filteredData.dateLabels"
                   :label="$t('moodTrend')"
                   color="#93EDE8"
+                  :yStepSize="1"
                 />
               </div>
             </div>
@@ -145,6 +146,7 @@
                   :labels="filteredData.dateLabels"
                   :label="$t('acwrTrend')"
                   color="#50C1BA"
+                  :yStepSize="0.5"
                 />
               </div>
             </div>
@@ -206,6 +208,7 @@
                   :labels="filteredData.dateLabels"
                   :label="$t('complaintsTrend')"
                   color="#9CD3D0"
+                  :yStepSize="1"
                 />
               </div>
             </div>
@@ -248,7 +251,8 @@
                   :data="filteredData.recoveryData"
                   :labels="filteredData.dateLabels"
                   :label="$t('recoveryTrend')"
-                  color="#2D8781"
+                  color="#38A8A1"
+                  :yStepSize="1"
                 />
               </div>
             </div>
