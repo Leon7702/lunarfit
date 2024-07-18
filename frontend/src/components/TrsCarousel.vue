@@ -62,16 +62,21 @@
             <div class="column no-wrap flex-center">
               <div class="text-h6">{{ $t("mood") }}</div>
               <div class="q-mt-md text-center">
-                <q-card flat bordered class="my-card">
-                  <q-card-section>
-                    <div class="info-text">
-                      <strong>{{
-                        $t(`moodInfo.${moodScore}.description`)
-                      }}</strong>
-                      <div>{{ $t(`moodInfo.${moodScore}.advice`) }}</div>
-                    </div>
-                  </q-card-section>
-                </q-card>
+                <div v-if="currentDayData">
+                  <q-card flat bordered class="my-card">
+                    <q-card-section>
+                      <div class="info-text">
+                        <strong>{{
+                          $t(`moodInfo.${moodScore}.description`)
+                        }}</strong>
+                        <div>{{ $t(`moodInfo.${moodScore}.advice`) }}</div>
+                      </div>
+                    </q-card-section>
+                  </q-card>
+                </div>
+                <div v-else>
+                  Mach das Accessment!
+                </div>
                 <div class="q-pa-md">
                   <p>{{ $t("moodInfo.today") }}</p>
                   <div class="q-gutter-y-md column justify-center items-center">
@@ -112,27 +117,32 @@
             <div class="column no-wrap flex-center">
               <div class="text-h6">{{ $t("strain") }}</div>
               <div class="q-mt-md text-center">
-                <q-card flat bordered class="my-card">
-                  <q-card-section>
-                    <div class="info-text">
-                      <strong>{{ $t(`acwrInfo`) }} {{ acwr }}</strong>
-                      <div>{{ $t(`strainInfo.${acwrScore}.description`) }}</div>
-                      <p></p>
-                      <div>
-                        {{ $t(`strainInfo.${acwrScore}.recommendations[0]`) }}
+                <div v-if="currentDayData">
+                  <q-card flat bordered class="my-card">
+                    <q-card-section>
+                      <div class="info-text">
+                        <strong>{{ $t(`acwrInfo`) }} {{ acwr }}</strong>
+                        <div>{{ $t(`strainInfo.${acwrScore}.description`) }}</div>
+                        <p></p>
+                        <div>
+                          {{ $t(`strainInfo.${acwrScore}.recommendations[0]`) }}
+                        </div>
+                        <div>
+                          {{ $t(`strainInfo.${acwrScore}.recommendations[1]`) }}
+                        </div>
+                        <div>
+                          {{ $t(`strainInfo.${acwrScore}.recommendations[2]`) }}
+                        </div>
+                        <div>
+                          {{ $t(`strainInfo.${acwrScore}.recommendations[3]`) }}
+                        </div>
                       </div>
-                      <div>
-                        {{ $t(`strainInfo.${acwrScore}.recommendations[1]`) }}
-                      </div>
-                      <div>
-                        {{ $t(`strainInfo.${acwrScore}.recommendations[2]`) }}
-                      </div>
-                      <div>
-                        {{ $t(`strainInfo.${acwrScore}.recommendations[3]`) }}
-                      </div>
-                    </div>
-                  </q-card-section>
-                </q-card>
+                    </q-card-section>
+                  </q-card>
+                </div>
+                <div v-else>
+                  Mach das Accessment!
+                </div>
                 <div class="q-pa-sm">
                   <q-btn flat dense @click="openPicker" class="date-display">
                     {{ $t("selectDate") }} <q-icon name="arrow_drop_down" />
@@ -158,29 +168,34 @@
             <div class="column no-wrap flex-center">
               <div class="text-h6">{{ $t("free") }}</div>
               <div class="q-mt-md text-center">
-                <q-card flat bordered class="my-card">
-                  <q-card-section>
-                    <div class="info-text">
-                      <div>{{ $t(`freeInfo.${freeScore}.description`) }}</div>
-                      <p></p>
-                      <div>
-                        {{ $t(`freeInfo.${freeScore}.recommendations[0]`) }}
+                <div v-if="currentDayData">
+                  <q-card flat bordered class="my-card">
+                    <q-card-section>
+                      <div class="info-text">
+                        <div>{{ $t(`freeInfo.${freeScore}.description`) }}</div>
+                        <p></p>
+                        <div>
+                          {{ $t(`freeInfo.${freeScore}.recommendations[0]`) }}
+                        </div>
+                        <div>
+                          {{ $t(`freeInfo.${freeScore}.recommendations[1]`) }}
+                        </div>
+                        <div>
+                          {{ $t(`freeInfo.${freeScore}.recommendations[2]`) }}
+                        </div>
+                        <div>
+                          {{ $t(`freeInfo.${freeScore}.recommendations[3]`) }}
+                        </div>
+                        <div>
+                          {{ $t(`freeInfo.${freeScore}.recommendations[4]`) }}
+                        </div>
                       </div>
-                      <div>
-                        {{ $t(`freeInfo.${freeScore}.recommendations[1]`) }}
-                      </div>
-                      <div>
-                        {{ $t(`freeInfo.${freeScore}.recommendations[2]`) }}
-                      </div>
-                      <div>
-                        {{ $t(`freeInfo.${freeScore}.recommendations[3]`) }}
-                      </div>
-                      <div>
-                        {{ $t(`freeInfo.${freeScore}.recommendations[4]`) }}
-                      </div>
-                    </div>
-                  </q-card-section>
-                </q-card>
+                    </q-card-section>
+                  </q-card>
+                </div>
+                <div v-else>
+                  Mach das Accessment!
+                </div>
                 <div class="q-pa-md">
                   <p>{{ $t("strainInfo.today") }}</p>
                   <div class="q-gutter-y-md column justify-center items-center">
@@ -220,11 +235,16 @@
             <div class="column no-wrap flex-center">
               <div class="text-h6">{{ $t("rest") }}</div>
               <div class="q-mt-md text-center">
-                <q-card flat bordered class="my-card">
-                  <q-card-section>
-                    {{ $t(`restInfo.${restScore}`) }}
-                  </q-card-section>
-                </q-card>
+                <div v-if="currentDayData">
+                  <q-card flat bordered class="my-card">
+                    <q-card-section>
+                      {{ $t(`restInfo.${restScore}`) }}
+                    </q-card-section>
+                  </q-card>
+                </div>
+                <div v-else>
+                  Mach das Accessment!
+                </div>
                 <div class="q-pa-md">
                   <p>{{ $t("restInfo.today") }}</p>
                   <div class="q-gutter-y-md column justify-center items-center">
@@ -289,6 +309,7 @@ export default {
     const currentDay = ref(16);
 
     const phaseTextKey = ref("");
+    const currentDayData = ref(null);
 
     const mensLengthPortion = ref(null);
     const follicularLengthPortion = ref(null);
@@ -331,9 +352,8 @@ export default {
 
     const fetchData = async () => {
       try {
-        const [cycleResponse, trsResponse, scoresResponse] = await Promise.all([
+        const [cycleResponse, trsResponse] = await Promise.all([
           axios.get("http://localhost:3000/menstrualcycle/"),
-          axios.get("http://localhost:3000/trsdata"),
           axios.get("http://localhost:3000/trs?user_id=1"),
         ]);
 
@@ -345,7 +365,7 @@ export default {
         calculateLengthPortion(calculatedLengths);
 
         const today = new Date().toISOString().split("T")[0]; // Use the current date in production
-        // const today = "2024-07-26"; // For testing, set a specific date instead of the current date
+        // const today = "2024-07-15"; // For testing, set a specific date instead of the current date
         currentDay.value = calculateCurrentDay(cycleData.start, today);
 
         const currentPhase = roundToTwoDecimals(
@@ -388,15 +408,21 @@ export default {
 
         // Handle TRS data
         const trsdata = trsResponse.data;
-        moodScore.value = trsdata.mood;
-        strainScore.value = trsdata.strain;
-        freeScore.value = trsdata.free;
-        restScore.value = trsdata.rest;
-        acwr.value = trsdata.acwr;
-        trainingReadinessScore.value = calculateScore(trsdata); // calculate the trs
+        const todayData = trsdata.find((entry) => entry.day === today);
+        if (todayData) {
+          currentDayData.value = todayData;
+          moodScore.value = todayData.mood;
+          strainScore.value = todayData.trs_acwr;
+          freeScore.value = todayData.complaints;
+          restScore.value = todayData.recovery;
+          acwr.value = todayData.acwr;
+          trainingReadinessScore.value = calculateScore(todayData); // calculate the trs
+        } else {
+          currentDayData.value = null;
+        }
 
         // Handle trs score data
-        trsScores.value = scoresResponse.data;
+        trsScores.value = trsdata;
       } catch (error) {
         console.error("Failed to fetch data:", error);
       }
@@ -489,6 +515,7 @@ export default {
       trainingTextKey,
       phaseTextKey,
       trsScores,
+      currentDayData,
       filteredData,
       ratingColors: [
         "teal-2",
