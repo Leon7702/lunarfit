@@ -132,6 +132,20 @@
                     </div>
                   </q-card-section>
                 </q-card>
+                <div class="q-pa-sm">
+                  <q-btn flat dense @click="openPicker" class="date-display">
+                    {{ $t("selectDate") }} <q-icon name="arrow_drop_down" />
+                    <q-popup-proxy ref="qDateProxy">
+                      <q-date v-model="date" range />
+                    </q-popup-proxy>
+                  </q-btn>
+                </div>
+                <LineChart
+                  :data="filteredData.acwrData"
+                  :labels="filteredData.dateLabels"
+                  :label="$t('acwrTrend')"
+                  color="#50C1BA"
+                />
               </div>
             </div>
           </q-scroll-area>
@@ -406,6 +420,7 @@ export default {
       if (trsScores.value === null || date.value?.to === undefined || date.value?.from === undefined) {
         return {
           moodData: [],
+          acwrData: [],
           complaintsData: [],
           recoveryData: [],
           dateLabels: [],
@@ -433,6 +448,7 @@ export default {
 
       // Initialize arrays for data and labels
       let moodData = [];
+      let acwrData = [];
       let complaintsData = [];
       let recoveryData = [];
       let dateLabels = [];
@@ -442,6 +458,7 @@ export default {
         let entry = filtered.find(e => new Date(e.day).getTime() === date.getTime());
         dateLabels.push(date.toISOString().split('T')[0]);
         moodData.push(entry ? entry.mood : null);
+        acwrData.push(entry ? entry.acwr : null);
         complaintsData.push(entry ? entry.complaints : null);
         recoveryData.push(entry ? entry.recovery : null);
       });
@@ -449,6 +466,7 @@ export default {
       // Return the data for the charts
       return {
         moodData,
+        acwrData,
         complaintsData,
         recoveryData,
         dateLabels,
