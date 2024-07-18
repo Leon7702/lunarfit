@@ -72,7 +72,7 @@ REST_FRAMEWORK = {
     ),
     "PAGE_SIZE": 10,
     "DEFAULT_SCHEMA_CLASS": "drf_spectacular.openapi.AutoSchema",
-    'DEFAULT_FILTER_BACKENDS': ['django_filters.rest_framework.DjangoFilterBackend'],
+    "DEFAULT_FILTER_BACKENDS": ["django_filters.rest_framework.DjangoFilterBackend"],
 }
 
 ROOT_URLCONF = "lunarfit.urls"
@@ -146,6 +146,28 @@ SPECTACULAR_SETTINGS = {
     "SWAGGER_UI_DIST": "SIDECAR",  # shorthand to use the sidecar instead
     "SWAGGER_UI_FAVICON_HREF": "SIDECAR",
     "REDOC_DIST": "SIDECAR",
+    "TAGS": [
+        {
+            "name": "users",
+            "description": "User accounts and profiles, registration etc.",
+        },
+        {
+            "name": "cycles",
+            "description": "Tracking for and predicition of menstrual cycles and phases using various methods",
+        },
+        {
+            "name": "training",
+            "description": "TRS daily assessment and workout-session tracking",
+        },
+        {
+            "name": "symptoms",
+            "description": "Daily symptom tracking",
+        },
+        {
+            "name": "notes",
+            "description": "Daily personal notes",
+        },
+    ],
 }
 
 # Internationalization
