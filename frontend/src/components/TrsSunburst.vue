@@ -9,8 +9,8 @@
           :stroke-width="segment.strokeWidth" :stroke-dasharray="segment.dasharray"
           :stroke-dashoffset="segment.dashoffset" :style="{ opacity: segment.opacity }"></circle>
         <!-- Text element for displaying the score in the middle of the donut chart -->
-        <text x="21" y="21" text-anchor="middle" dominant-baseline="middle" font-size="2.2"
-          font-weight="bold" transform="rotate(90, 21, 21)">
+        <text x="21" y="21" text-anchor="middle" dominant-baseline="middle" font-size="2.2" font-weight="bold"
+          transform="rotate(90, 21, 21)">
           {{ Math.round(score) }}%
         </text>
       </svg>
@@ -24,21 +24,18 @@ import axios from 'axios';
 import { calculateScore } from 'src/utils/scoreCalculator';
 
 export default {
-  // TODO: 1. Fetch data from the API (for now using mock database data)
-  //       2. Populate 'trsdata' with the fetched data
-  //       3. Recalculate the segments
+  // TODO: 1. Fetch data from the API (for now use test database data)
   //       2. Calculate the score based on the fetched data
   data() {
     return {
-      // TODO: Score should be calculated based on the fetched data!!
       score: 0,
       segments: [],
 
       // FIXME: this data needs to be fetched from the actual database, should get this from assessment
-      strain: null,
+      trs_acwr: null,
       mood: null,
-      rest: null,
-      free: null,
+      recovery: null,
+      complaints: null,
     };
   },
   async created() {
@@ -46,19 +43,29 @@ export default {
   },
   methods: {
     async fetchData() {
-      // TODO: Fetch the data from the database and assign it to strain, mood, rest, and free
+      // TODO: Fetch the data from the database and assign it to trs_acwr, mood, recovery, and complaints
       // FOR NOW: to test the method without having a real database, use json-server
       try {
-        const response = await axios.get('http://localhost:3000/trsdata');
-        const trsdata = {
-          strain: response.data.strain,
-          mood: response.data.mood,
-          rest: response.data.rest,
-          free: response.data.free
-        };
+        const response = await axios.get('http://localhost:3000/trs?user_id=1');
+        const today = new Date().toISOString().split("T")[0];
+        // const today = "2024-07-20"; // For testing, set a specific date instead of the current date
+        const todayData = response.data.find((entry) => entry.day === today);
 
-        this.updateSegments(trsdata);
-        this.score = calculateScore(trsdata);
+        if (todayData) {
+          const trsdata = {
+            trs_acwr: todayData.trs_acwr,
+            mood: todayData.mood,
+            recovery: todayData.recovery,
+            complaints: todayData.complaints
+          };
+
+          this.updateSegments(trsdata);
+          this.score = calculateScore(trsdata);
+        } else {
+          console.warn('No data available for today');
+          this.score = 0;
+          this.segments = [];
+        }
       } catch (error) {
         console.error('Failed to fetch data:', error);
       }
@@ -66,10 +73,10 @@ export default {
     updateSegments(trsdata) {
       // Colors for the different segments of the donut chart
       const colors = {
-        strain: "#50C1BA", // 1. Quadrant
+        trs_acwr: "#50C1BA", // 1. Quadrant
         mood: "#93EDE8", // 2. Quadrant
-        rest: "#2D8781", // 3. Quadrant
-        free: "#9CD3D0" // 4. Quadrant
+        recovery: "#2D8781", // 3. Quadrant
+        complaints: "#9CD3D0" // 4. Quadrant
       };
 
       // Array of radius levels for the segments of the donut chart
