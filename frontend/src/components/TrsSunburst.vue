@@ -48,24 +48,30 @@ export default {
       try {
         const response = await axios.get('http://localhost:3000/trs?user_id=1');
         const today = new Date().toISOString().split("T")[0];
-        // const today = "2024-07-20"; // For testing, set a specific date instead of the current date
+        // const today = "2024-07-23"; // For testing, set a specific date instead of the current date
         const todayData = response.data.find((entry) => entry.day === today);
 
+        let trsdata;
         if (todayData) {
-          const trsdata = {
+          trsdata = {
             trs_acwr: todayData.trs_acwr,
             mood: todayData.mood,
             recovery: todayData.recovery,
             complaints: todayData.complaints
           };
-
-          this.updateSegments(trsdata);
           this.score = calculateScore(trsdata);
         } else {
-          console.warn('No data available for today');
+          console.log('No data available for today');
+          trsdata = {
+            trs_acwr: 0,
+            mood: 0,
+            recovery: 0,
+            complaints: 0
+          };
           this.score = 0;
-          this.segments = [];
         }
+
+        this.updateSegments(trsdata);
       } catch (error) {
         console.error('Failed to fetch data:', error);
       }

@@ -116,7 +116,7 @@
       "day": "2024-07-19",
       "mood": 3,
       "complaints": 4,
-      "recovery": 3,
+      "recovery": 5,
       "trs_acwr": 6,
       "acwr": 2
     },
@@ -125,10 +125,10 @@
       "entry_id": 13,
       "user_id": 1,
       "day": "2024-07-21",
-      "mood": 2,
-      "complaints": 4,
-      "recovery": 5,
-      "trs_acwr": 1,
+      "mood": 3,
+      "complaints": 1,
+      "recovery": 4,
+      "trs_acwr": 3,
       "acwr": 1.2
     },
     {
