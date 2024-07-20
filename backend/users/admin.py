@@ -5,17 +5,7 @@ from django.contrib.auth.forms import ReadOnlyPasswordHashField
 from django.contrib.auth.models import Group
 from django.core.exceptions import ValidationError
 
-from .models import (
-    Contraceptive,
-    Medication,
-    MedicationCategory,
-    MenstrualCycle,
-    Note,
-    Profile,
-    SymptomCategory,
-    Symptom,
-    User,
-)
+from .models import Contraceptive, Profile, User, Onboarding
 
 
 class UserCreationForm(forms.ModelForm):
@@ -61,11 +51,13 @@ class UserChangeForm(forms.ModelForm):
         fields = ["email", "password", "is_active", "is_staff"]
 
 
-class ProfileInline(admin.StackedInline):
-    model = Profile
-
-
 class UserAdmin(BaseUserAdmin):
+
+    class ProfileInline(admin.StackedInline):
+        model = Profile
+
+    class OnboardingInline(admin.StackedInline):
+        model = Onboarding
 
     @admin.display(description="Firstname Lastname", ordering="profile")
     def full_name(obj: User) -> str:
@@ -78,7 +70,7 @@ class UserAdmin(BaseUserAdmin):
     # The forms to add and change user instances
     form = UserChangeForm
     add_form = UserCreationForm
-    inlines = [ProfileInline]
+    inlines = [ProfileInline, OnboardingInline]
 
     # The fields to be used in displaying the User model.
     # These override the definitions on the base UserAdmin
@@ -112,9 +104,4 @@ admin.site.register(User, UserAdmin)
 # unregister the Group model from admin.
 admin.site.unregister(Group)
 admin.site.register(Contraceptive)
-admin.site.register(MenstrualCycle)
-admin.site.register(Symptom)
-admin.site.register(SymptomCategory)
-admin.site.register(MedicationCategory)
-admin.site.register(Medication)
-admin.site.register(Note)
+admin.site.register(Onboarding)
