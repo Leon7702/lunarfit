@@ -5,12 +5,13 @@ from rest_framework.mixins import DestroyModelMixin, UpdateModelMixin
 from rest_framework.permissions import AllowAny, IsAdminUser, IsAuthenticated
 from rest_framework_simplejwt.views import TokenObtainPairView
 
-from .models import Profile, User
+from .models import Profile, User, Onboarding
 from .permissions import UserPermission
 from .serializers import (
     CustomTokenObtainPairSerializer,
     ProfileSerializer,
     UserSerializer,
+    OnboardingSerializer,
 )
 
 
@@ -68,6 +69,18 @@ class ProfileViewSet(viewsets.ModelViewSet):
 
     To delete a Profile, delete the corresponding [user](https://www.youtube.com/watch?v=dQw4w9WgXcQ).
     """
+
     queryset = Profile.objects.all()
     serializer_class = ProfileSerializer
     http_method_names = ["get", "patch"]
+
+
+class OnboardingViewSet(viewsets.ModelViewSet):
+    """
+    Onboarding data that is separate from the user profile, as it is only used during the initial months.
+    As more data becomes available, rolling averages should be used instead of the initial estimates.
+    """
+
+    queryset = Onboarding.objects.all()
+    serializer_class = OnboardingSerializer
+    http_method_names = ["get", "post", "patch"]

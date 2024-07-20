@@ -8,11 +8,13 @@ from .views import (
     UserListView,
     UserView,
     ProfileViewSet,
+    OnboardingViewSet,
 )
 
 
 router = routers.DefaultRouter()
 router.register(r"profile", ProfileViewSet, "profile")
+router.register(r"onboarding", OnboardingViewSet, "onboarding")
 
 urlpatterns = [
     path("", UserListView.as_view(), name="user-list"),

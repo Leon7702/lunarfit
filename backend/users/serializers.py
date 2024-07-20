@@ -2,7 +2,7 @@ from django.contrib.auth import authenticate
 from rest_framework import exceptions, serializers
 from rest_framework_simplejwt.serializers import TokenObtainPairSerializer
 
-from .models import Profile, User, Contraceptive
+from .models import Profile, User, Contraceptive, Onboarding
 
 
 class UserSerializer(serializers.HyperlinkedModelSerializer):
@@ -59,4 +59,10 @@ class CustomTokenObtainPairSerializer(TokenObtainPairSerializer):
 class ContraceptiveSerializer(serializers.ModelSerializer):
     class Meta:
         model = Contraceptive
+        fields = "__all__"
+
+
+class OnboardingSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = Onboarding
         fields = "__all__"

@@ -50,7 +50,7 @@ class User(AbstractBaseUser, PermissionsMixin):
 
 class Profile(models.Model):
     user = models.OneToOneField(User, on_delete=models.CASCADE, primary_key=True)
-    finished_onboarding = models.BooleanField(default=False)
+    onboarding_finished = models.BooleanField(default=False)
     first_name = models.CharField(max_length=50, blank=True)
     last_name = models.CharField(max_length=50, blank=True)
     birthdate = models.DateField(null=True, blank=True)
@@ -76,4 +76,24 @@ def create_user_profile(sender, instance, created, **kwargs):
 
 @receiver(post_save, sender=User)
 def save_user_profile(sender, instance, **kwargs):
-    instance.profile.save
+    instance.profile.save()
+
+
+class Onboarding(models.Model):
+    """
+    This model separates onboarding data from the user profile, as it is only used during the initial months.
+    As more data becomes available, rolling averages should be used instead of the initial estimates.
+    """
+
+    user = models.OneToOneField(User, on_delete=models.CASCADE, primary_key=True)
+    workout_frequency = models.PositiveSmallIntegerField()
+    workout_duration = models.PositiveSmallIntegerField()
+    workout_intensity = models.PositiveSmallIntegerField()
+    cycle_duration = models.PositiveSmallIntegerField()
+    menstruation_duration = models.PositiveSmallIntegerField()
+
+
+@receiver(post_save, sender=Onboarding)
+def finish_onboarding(sender, instance, created, **kwargs):
+    instance.user.profile.onboarding_finished = True
+    instance.user.profile.save()

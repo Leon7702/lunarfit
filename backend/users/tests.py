@@ -160,3 +160,22 @@ class UserPermissionTest(APITestCase):
         self.client.force_authenticate(user=self.user1)
         response = self.client.delete(f"/api/users/{self.user2.id}/")
         assert response.status_code == status.HTTP_403_FORBIDDEN
+
+    def test_user_profile_onboarding_status_updated(self):
+        """After a user completed the onboarding, profile.onboarding_finished should be true."""
+
+        assert self.user1.profile.onboarding_finished == False
+
+        data = {
+            "user": self.user1.id,
+            "workout_frequency": 3,
+            "workout_duration": 30,
+            "workout_intensity": 5,
+            "cycle_duration": 29,
+            "menstruation_duration": 4,
+        }
+        self.client.force_authenticate(user=self.user1)
+        response = self.client.post(f"/api/users/onboarding/", data)
+        self.user1.refresh_from_db()
+        assert response.status_code == status.HTTP_201_CREATED
+        assert self.user1.profile.onboarding_finished == True
