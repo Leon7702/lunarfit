@@ -149,6 +149,9 @@
   "earlyLutealPhaseText": "Du befindest dich in der frühen Luthealphase. Die erste Woche dieser Phase eignet sich grundsätzlich gut für Einheiten mit hoher Intensität oder hohem Volumen sowie für Kraft- und Schnellkrafttraining. Wenn du dich schon im zweiten Teil der frühen Lutealphase befindest  kannst du die Intensität etwas drosseln, und den Fokus auf eher lange und weniger intensive Einheiten legen.",
   "lateLutealPhaseText": "Du befindest dich in der späten Lutealphase. Wenn dich unangenehme körperliche und mentale Symptome plagen, plane kurze und leichte Regenerationseinheiten ein (z. B. leichtes Joggen, Fahrradfahren, Yoga oder Spaziergänge). Diese können dir auch dabei helfen, mögliche unangenehme Symptome zu mindern.",
 
+  "assessmentRequired": "Du hast für heute noch kein Assessment gemacht. Bitte hole es nach, um Empfehlungen und genauere Statistiken zu erhalten.",
+  "toAssessment": "Zum Assessment",
+
   "trsInfo": "Dein Training Readiness Score liegt bei...",
   "scores": {
     "1": {

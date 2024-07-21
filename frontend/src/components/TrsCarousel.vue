@@ -37,21 +37,29 @@
                 >
               </div>
               <p></p>
-              <q-card flat bordered class="my-card">
-                <q-card-section>
-                  {{ $t(`${trainingTextKey}.description`) }}
-                  <ul>
-                    <li>{{ $t(`${trainingTextKey}.recommendations[0]`) }}</li>
-                    <li>{{ $t(`${trainingTextKey}.recommendations[1]`) }}</li>
-                    <li>{{ $t(`${trainingTextKey}.recommendations[2]`) }}</li>
-                    <li>{{ $t(`${trainingTextKey}.recommendations[3]`) }}</li>
-                  </ul>
-                </q-card-section>
+              <div v-if="currentDayData">
                 <q-card flat bordered class="my-card">
                   <q-card-section>
-                    <div v-if="phaseTextKey">{{ $t(phaseTextKey) }}</div>
+                    {{ $t(`${trainingTextKey}.description`) }}
+                    <ul>
+                      <li>{{ $t(`${trainingTextKey}.recommendations[0]`) }}</li>
+                      <li>{{ $t(`${trainingTextKey}.recommendations[1]`) }}</li>
+                      <li>{{ $t(`${trainingTextKey}.recommendations[2]`) }}</li>
+                      <li>{{ $t(`${trainingTextKey}.recommendations[3]`) }}</li>
+                    </ul>
                   </q-card-section>
                 </q-card>
+              </div>
+              <div v-else>
+                <div class="q-mt-md text-center">
+                  <AssessmentRequiredCard />
+                </div>
+              </div>
+              <p></p>
+              <q-card flat bordered class="my-card">
+                <q-card-section>
+                  <div v-if="phaseTextKey">{{ $t(phaseTextKey) }}</div>
+                </q-card-section>
               </q-card>
             </div>
           </q-scroll-area>
@@ -75,7 +83,7 @@
                   </q-card>
                 </div>
                 <div v-else>
-                  Mach das Accessment!
+                  <AssessmentRequiredCard />
                 </div>
                 <div class="q-pa-md">
                   <p>{{ $t("moodInfo.today") }}</p>
@@ -141,7 +149,7 @@
                   </q-card>
                 </div>
                 <div v-else>
-                  Mach das Accessment!
+                  <AssessmentRequiredCard />
                 </div>
                 <div class="q-pa-sm">
                   <q-btn flat dense @click="openPicker" class="date-display">
@@ -194,7 +202,7 @@
                   </q-card>
                 </div>
                 <div v-else>
-                  Mach das Accessment!
+                  <AssessmentRequiredCard />
                 </div>
                 <div class="q-pa-md">
                   <p>{{ $t("strainInfo.today") }}</p>
@@ -243,7 +251,7 @@
                   </q-card>
                 </div>
                 <div v-else>
-                  Mach das Accessment!
+                  <AssessmentRequiredCard />
                 </div>
                 <div class="q-pa-md">
                   <p>{{ $t("restInfo.today") }}</p>
@@ -288,6 +296,7 @@ import { ref, computed } from "vue";
 import axios from "axios";
 import TrsSunburst from "components/TrsSunburst.vue";
 import LineChart from "components/LineChart.vue";
+import AssessmentRequiredCard from "components/AssessmentRequiredCard.vue";
 import { calculateScore } from "src/utils/scoreCalculator";
 import {
   calculateCycleAndPhases,
@@ -533,6 +542,7 @@ export default {
   components: {
     TrsSunburst,
     LineChart,
+    AssessmentRequiredCard
   },
 };
 </script>
