@@ -129,6 +129,6 @@ export default {
 }
 
 .save-button:hover {
-  background-color: #0056b3;
+  background-color: #3b9991;
 }
-</style>>
+</style>
