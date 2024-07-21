@@ -2,7 +2,7 @@
   <div class="size-container">
   <div class="welcome-container">
     <div class="header">
-      <q-btn flat dense round icon="arrow_back" @click="goBack" />
+      <q-btn flat dense round icon="arrow_back" to="/settings" />
       <div class="title">{{ $t('language.title') }}</div>
     </div>
     <div class="linie"></div>
@@ -41,11 +41,6 @@ export default {
         { label: 'Englisch', value: 'en', color: 'primary' },
       ],
     };
-  },
-  methods: {
-    goBack() {
-      window.history.back();
-    },
   },
 };
 

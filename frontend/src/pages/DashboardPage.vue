@@ -3,7 +3,7 @@
     <!-- TODO: Change size of the cards, because needs to fit with the toolbar in one screen. -->
     <div class="card-container">
       <!-- Card for Cycle information -->
-      <div class="q-pa-sm q-pt-lg">
+      <div class="q-pa-sm q-pt-sm">
         <q-card class="my-card" @click="navigateToCyclePage">
           <q-img class="top-left-png" src="/src/assets/CycleIcon.png" />
           <q-card-section class="card-content q-py-none">

@@ -2,7 +2,7 @@
   <div class="size-container">
   <div class="welcome-container">
     <div class="header">
-      <q-btn flat dense round icon="arrow_back" @click="goBack" />
+      <q-btn flat dense round icon="arrow_back" to="/" />
       <div class="title">{{ $t('settings.title') }}</div>
     </div>
     <div class="linie"></div>
@@ -97,9 +97,6 @@ export default {
     }
   },
   methods: {
-    goBack() {
-      window.history.back();
-    },
     navigateToProfile() {
       this.$router.push({ name: 'Profile' });
     },
