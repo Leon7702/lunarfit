@@ -1,17 +1,15 @@
 <template>
   <div class="size-container">
-    <BackButtonText />
+    <q-btn flat dense round icon="arrow_back" to="/" />
     <TrsCarousel />
   </div>
 </template>
 
 <script>
-import BackButtonText from 'components/BackButtonText.vue';
 import TrsCarousel from 'components/TrsCarousel.vue';
 
 export default {
   components: {
-    BackButtonText,
     TrsCarousel,
 
   },
