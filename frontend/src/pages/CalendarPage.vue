@@ -108,20 +108,6 @@ export default {
       trainingRecommendation: '',
       loadingCalendar: true,
       loadingTraining: true,
-      moodEmojis: [
-        { emoji: '😊', label: 'Happy' },
-        { emoji: '😢', label: 'Sad' },
-        { emoji: '😠', label: 'Angry' },
-        { emoji: '😴', label: 'Tired' },
-        { emoji: '😍', label: 'In Love' }
-      ],
-      symptomsEmojis: [
-        { emoji: '🤒', label: 'Sick' },
-        { emoji: '🤕', label: 'Headache' },
-        { emoji: '🤧', label: 'Sneezing' },
-        { emoji: '🤮', label: 'Nauseous' },
-        { emoji: '😷', label: 'Cough' }
-      ],
       loadingMood: true,
       loadingSymptoms: true,
       columns: [
@@ -187,21 +173,11 @@ export default {
   methods: {
     async fetchData() {
       try {
-        const storedData = localStorage.getItem('calendarData');
-        if (storedData) {
-          const data = JSON.parse(storedData);
-          this.dayColors = data.dayColors;
-          this.trainingRecommendation = data.trainingRecommendation;
-          this.loadingCalendar = false;
-          this.loadingTraining = false;
-        } else {
-          const response = await this.mockApiCall();
-          this.dayColors = response.dayColors;
-          this.trainingRecommendation = response.trainingRecommendation;
-          localStorage.setItem('calendarData', JSON.stringify(response));
-          this.loadingCalendar = false;
-          this.loadingTraining = false;
-        }
+        const response = await this.mockApiCall();
+        this.dayColors = response.dayColors;
+        this.trainingRecommendation = response.trainingRecommendation;
+        this.loadingCalendar = false;
+        this.loadingTraining = false;
 
         const emojisResponse = await this.fetchEmojis();
         this.moodEmojis = emojisResponse.mood;
@@ -217,13 +193,17 @@ export default {
         setTimeout(() => {
           resolve({
             dayColors: {
-              1: 'period',
-              2: 'follicle',
-              3: 'prediction',
+              3: 'period',
               4: 'period',
-              5: 'follicle',
-              12: 'period',
-              16: 'prediction',
+              5: 'period',
+              6: 'period',
+              7: 'period',
+              8: 'follicle',
+              9: 'follicle',
+              10: 'follicle',
+              11: 'follicle',
+              30: 'prediction',
+              31: 'prediction',
             },
             trainingRecommendation: 'Recommended training: Cardio exercises',
           });
@@ -257,6 +237,7 @@ export default {
       } else {
         this.date.month++;
       }
+      this.fetchData(); // Fetch data when changing month
     },
     prevMonth() {
       if (this.date.month === 0) {
@@ -265,6 +246,7 @@ export default {
       } else {
         this.date.month--;
       }
+      this.fetchData(); // Fetch data when changing month
     },
     dayColorClass(day) {
       if (this.selectedDay === day) {
@@ -302,6 +284,7 @@ export default {
   }
 };
 </script>
+
 
 <style scoped>
 @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;600&display=swap');
