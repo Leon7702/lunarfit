@@ -12,7 +12,7 @@ from .serializers import (
     ProfileSerializer,
     UserSerializer,
     OnboardingSerializer,
-    ContraceptiveSerializer
+    ContraceptiveSerializer,
 )
 
 
@@ -89,7 +89,14 @@ class OnboardingViewSet(viewsets.ModelViewSet):
     http_method_names = ["get", "post", "patch"]
 
 
+@extend_schema_view(
+    list=extend_schema(summary="List known contraceptive keywords"),
+)
 class ContraceptiveViewSet(viewsets.ModelViewSet):
+    """
+    Contraceptive keywords that are saved in the profile.
+    """
+
     queryset = Contraceptive.objects.all()
     serializer_class = ContraceptiveSerializer
     http_method_names = ["get"]

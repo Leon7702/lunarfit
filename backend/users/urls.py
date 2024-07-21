@@ -9,11 +9,13 @@ from .views import (
     UserView,
     ProfileViewSet,
     OnboardingViewSet,
+    ContraceptiveViewSet,
 )
 
 
 router = routers.DefaultRouter()
 router.register(r"profile", ProfileViewSet, "profile")
+router.register(r"profile/contraceptive", ContraceptiveViewSet, "contraceptive")
 router.register(r"onboarding", OnboardingViewSet, "onboarding")
 
 urlpatterns = [
