@@ -57,6 +57,7 @@ class UserView(RetrieveAPIView, UpdateModelMixin, DestroyModelMixin):
 
 class CustomTokenObtainPairView(TokenObtainPairView):
     serializer_class = CustomTokenObtainPairSerializer
+    permission_classes = [AllowAny]
 
 
 @extend_schema_view(
@@ -74,6 +75,7 @@ class ProfileViewSet(viewsets.ModelViewSet):
     queryset = Profile.objects.all()
     serializer_class = ProfileSerializer
     http_method_names = ["get", "patch"]
+    permission_classes = [IsAuthenticated, UserPermission]
 
 
 class OnboardingViewSet(viewsets.ModelViewSet):
@@ -91,3 +93,4 @@ class ContraceptiveViewSet(viewsets.ModelViewSet):
     queryset = Contraceptive.objects.all()
     serializer_class = ContraceptiveSerializer
     http_method_names = ["get"]
+    permission_classes = [IsAuthenticated]

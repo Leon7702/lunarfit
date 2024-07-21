@@ -179,3 +179,9 @@ class UserPermissionTest(APITestCase):
         self.user1.refresh_from_db()
         assert response.status_code == status.HTTP_201_CREATED
         assert self.user1.profile.onboarding_finished == True
+
+    def test_user_cannot_read_other_profile_data(self):
+        self.client.force_authenticate(user=self.user1)
+        print(self.user2.profile)
+        response = self.client.get(f"/api/users/profile/{self.user2.id}/")
+        assert response.status_code == status.HTTP_403_FORBIDDEN
