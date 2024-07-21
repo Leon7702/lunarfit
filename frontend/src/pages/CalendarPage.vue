@@ -394,7 +394,7 @@ export default {
 }
 
 .currentDate {
-  border: 2px solid #ff2d55;
+  border: 2px solid #50c1ba;
   color: #000;
 }
 
