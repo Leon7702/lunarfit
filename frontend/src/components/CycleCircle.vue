@@ -120,10 +120,10 @@ export default {
         const response = await axios.get('http://localhost:3000/cycles/');
         const cycleData = response.data;
         console.log('Fetched cycle data:', cycleData);
+        const today = new Date().toISOString().split('T')[0];
         // const today = "2024-05-05";  // for testing with a specific date - cycle 0
         // const today = "2024-06-09";  // for testing with a specific date - cycle 1
         // const today = "2024-11-11";  // for testing with a specific date - no cycle found
-        const today = new Date().toISOString().split('T')[0];
 
         const currentCycle = getCurrentCycle(cycleData, today);
 
