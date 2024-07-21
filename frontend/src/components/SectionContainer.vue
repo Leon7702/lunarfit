@@ -50,6 +50,19 @@ export default {
 </script>
 
 <style>
+a {
+  color: #50c1ba;
+  text-decoration: none;
+}
+
+a:visited {
+  color: #50c1ba;
+}
+
+a:hover {
+  text-decoration: none;
+}
+
 .section-container {
   margin: 20px auto;
   /* Center container with top margin */

@@ -63,14 +63,6 @@ export default {
 
 
 <style scoped>
-.root {
-  width: 100%;
-  display: flex;
-  flex-direction: column;
-  padding: 0;
-  margin: 0;
-}
-
 .header {
   display: flex;
   align-items: center;
@@ -106,14 +98,24 @@ export default {
 }
 
 .container {
-  border-top: 1px solid #ccc;
   flex: 1;
+  padding-bottom: 0px;
+  /* Adjust this if necessary to avoid overlap with the sticky button */
 }
 
 .button-container {
+  position: fixed;
+  bottom: 20px;
+  /* Adjust this value if necessary to ensure it's above the toolbar */
+  left: 0;
+  width: 100%;
   display: flex;
   justify-content: center;
-  padding: 20px 0;
+  padding-bottom: 60px;
+  padding-top: 16px;
+
+  background-color: white;
+  z-index: 1000;
 }
 
 .save-button {
@@ -129,4 +131,4 @@ export default {
 .save-button:hover {
   background-color: #0056b3;
 }
-</style>
+</style>>

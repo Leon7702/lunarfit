@@ -1,20 +1,18 @@
 <template>
   <div class="size-container">
-    <div class="root">
-      <div class="header">
-        <router-link to="/calendar" class="navButton">
-          <img src="/src/assets/arrow-left.svg" alt="Left" class="navButtonImage">
-        </router-link>
-        <div class="head">{{ $t('symptoms') }}</div>
-      </div>
+    <div class="header">
+      <router-link to="/calendar" class="navButton">
+        <img src="/src/assets/arrow-left.svg" alt="Left" class="navButtonImage">
+      </router-link>
+      <div class="head">{{ $t('symptoms') }}</div>
+    </div>
 
-      <div class="container">
-        <IconSlider v-for="(item, index) in symptomItems" :key="index" :icon="item.icon" :text="item.text" />
-      </div>
+    <div class="container">
+      <IconSlider v-for="(item, index) in symptomItems" :key="index" :icon="item.icon" :text="item.text" />
+    </div>
 
-      <div class="button-container">
-        <button class="save-button" @click="redirectToCalendarPage">{{ $t('save') }}</button>
-      </div>
+    <div class="button-container">
+      <button class="save-button" @click="redirectToCalendarPage">{{ $t('save') }}</button>
     </div>
   </div>
 </template>
@@ -63,14 +61,6 @@ export default {
 </script>
 
 <style scoped>
-.root {
-  width: 100%;
-  display: flex;
-  flex-direction: column;
-  padding: 0;
-  margin: 0;
-}
-
 .header {
   display: flex;
   align-items: center;
@@ -106,14 +96,24 @@ export default {
 }
 
 .container {
-  border-top: 1px solid #ccc;
   flex: 1;
+  padding-bottom: 0px;
+  /* Adjust this if necessary to avoid overlap with the sticky button */
 }
 
 .button-container {
+  position: fixed;
+  bottom: 20px;
+  /* Adjust this value if necessary to ensure it's above the toolbar */
+  left: 0;
+  width: 100%;
   display: flex;
   justify-content: center;
-  padding: 20px 0;
+  padding-bottom: 60px;
+  padding-top: 16px;
+
+  background-color: white;
+  z-index: 1000;
 }
 
 .save-button {
