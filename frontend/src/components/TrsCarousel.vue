@@ -114,6 +114,7 @@
                   :label="$t('moodTrend')"
                   color="#93EDE8"
                   :yStepSize="1"
+                  chartType="mood"
                 />
               </div>
             </div>
@@ -165,6 +166,7 @@
                   :label="$t('acwrTrend')"
                   color="#50C1BA"
                   :yStepSize="0.5"
+                  chartType="acwr"
                 />
               </div>
             </div>
@@ -232,6 +234,7 @@
                   :label="$t('complaintsTrend')"
                   color="#9CD3D0"
                   :yStepSize="1"
+                  chartType="complaints"
                 />
               </div>
             </div>
@@ -281,6 +284,7 @@
                   :label="$t('recoveryTrend')"
                   color="#38A8A1"
                   :yStepSize="1"
+                  chartType="recovery"
                 />
               </div>
             </div>
