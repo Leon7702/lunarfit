@@ -49,6 +49,7 @@
   "rest": "Rest",
   "free": "Symptom-Free",
   "moodTrend": "Mood trend",
+  "acwrTrend": "ACWR trend",
   "complaintsTrend": "Complaints trend",
   "recoveryTrend": "Recovery trend",
   "moreCycleInfo": "Learn more about your cycle now",
@@ -136,6 +137,8 @@
   "ovulationPhaseText": "Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est",
   "earlyLutealPhaseText": "You are in the early luteal phase. The first week of this phase is generally good for high-intensity or high-volume sessions, as well as for strength and power training. If you are already in the second part of the early luteal phase, you can reduce the intensity and focus on longer and less intense sessions.",
   "lateLutealPhaseText": "You are in the late luteal phase. If you experience unpleasant physical and mental symptoms, plan short and light regeneration sessions (e.g., light jogging, cycling, yoga, or walking). These can also help reduce potential unpleasant symptoms.",
+  "assessmentRequired": "You haven't completed today's assessment yet. Please do it to receive your recommendations and more accurate statistics.",
+  "toAssessment": "To the assessment",
   "trsInfo": "Your Training Readiness Score is...",
   "scores": {
     "1": {
