@@ -305,8 +305,8 @@ import { calculateScore } from "src/utils/scoreCalculator";
 import {
   calculateCycleAndPhases,
   calculateCurrentDay,
+  getCurrentCycle,
 } from "src/utils/cyclePhaseCalculator.js";
-import { data } from "autoprefixer";
 
 export default {
   setup() {
@@ -366,22 +366,29 @@ export default {
     const fetchData = async () => {
       try {
         const [cycleResponse, trsResponse] = await Promise.all([
-          axios.get("http://localhost:3000/menstrualcycle/"),
+          axios.get("http://localhost:3000/cycles/"),
           axios.get("http://localhost:3000/trs?user_id=1"),
         ]);
 
         // Handle cycle data
         const cycleData = cycleResponse.data;
-        const calculatedLengths = calculateCycleAndPhases(cycleData);
-
-        cycleLength.value = calculatedLengths.cycleLength;
-        calculateLengthPortion(calculatedLengths);
-
         const today = new Date().toISOString().split("T")[0]; // Use the current date in production
         // const today = "2024-07-15"; // For testing, set a specific date instead of the current date
-        currentDay.value = calculateCurrentDay(cycleData.start, today);
+        // const today = "2024-05-05";  // for testing with a specific date - cycle 0
+        // const today = "2024-06-09";  // for testing with a specific date - cycle 1
+        // const today = "2024-11-11";  // for testing with a specific date - no cycle found
 
-        const currentPhase = roundToTwoDecimals(
+        const currentCycle = getCurrentCycle(cycleData, today);
+
+        if (currentCycle) {
+          const calculatedLengths = calculateCycleAndPhases(currentCycle);
+
+          cycleLength.value = calculatedLengths.cycleLength;
+          calculateLengthPortion(calculatedLengths);
+
+          currentDay.value = calculateCurrentDay(currentCycle.start, today);
+
+          const currentPhase = roundToTwoDecimals(
           (currentDay.value / cycleLength.value) * 100
         );
         if (currentPhase <= roundToTwoDecimals(mensLengthPortion.value)) {
@@ -418,6 +425,9 @@ export default {
 
         // Log the phaseTextKey to ensure it's being set correctly
         console.log("phaseTextKey:", phaseTextKey.value);
+        } else {
+          console.error('No cycle found for today\'s date');
+        }
 
         // Handle TRS data
         const trsdata = trsResponse.data;

@@ -33,3 +33,13 @@ export function calculateCycleAndPhases(cycle) {
     phaseLengths
   };
 }
+
+// Function to get the current cycle based on today's date
+export function getCurrentCycle(cycles, today) {
+  return cycles.find(cycle => {
+    const startDate = new Date(cycle.start);
+    const endDate = new Date(cycle.end);
+    const currentDate = new Date(today);
+    return startDate <= currentDate && currentDate <= endDate;
+  });
+}

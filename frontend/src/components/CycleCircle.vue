@@ -82,7 +82,7 @@
 <script>
 import axios from 'axios';
 import { ref, onMounted, computed, watch } from 'vue';
-import { calculateCycleAndPhases, calculateCurrentDay } from 'src/utils/cyclePhaseCalculator.js';
+import { calculateCycleAndPhases, calculateCurrentDay, getCurrentCycle } from 'src/utils/cyclePhaseCalculator.js';
 
 export default {
   setup() {
@@ -114,20 +114,30 @@ export default {
       lateLutealLengthPortion.value = (calculatedLengths.phaseLengths[4].length / cycleLength.value) * 100;
     };
 
+    // Fetches the cycle data and determines the current cycle
     const fetchData = async () => {
       try {
-        const response = await axios.get('http://localhost:3000/menstrualcycle/');
+        const response = await axios.get('http://localhost:3000/cycles/');
         const cycleData = response.data;
         console.log('Fetched cycle data:', cycleData);
-        const calculatedLengths = calculateCycleAndPhases(cycleData);
-
-        cycleLength.value = calculatedLengths.cycleLength;
-        console.log('Calculated cycle length:', cycleLength.value);
-        calculateLengthPortion(calculatedLengths);
-
-        // const today = "2024-07-10";  // for testing with a specific date
         const today = new Date().toISOString().split('T')[0];
-        currentDay.value = calculateCurrentDay(cycleData.start, today);
+        // const today = "2024-05-05";  // for testing with a specific date - cycle 0
+        // const today = "2024-06-09";  // for testing with a specific date - cycle 1
+        // const today = "2024-11-11";  // for testing with a specific date - no cycle found
+
+        const currentCycle = getCurrentCycle(cycleData, today);
+
+        if(currentCycle) {
+          const calculatedLengths = calculateCycleAndPhases(currentCycle);
+
+          cycleLength.value = calculatedLengths.cycleLength;
+          console.log('Calculated cycle length:', cycleLength.value);
+          calculateLengthPortion(calculatedLengths);
+
+          currentDay.value = calculateCurrentDay(currentCycle.start, today);
+        } else {
+          console.error('No cycle found for today\'s date');
+        }
 
         dataLoaded.value = true;  // Set the flag to true when data is loaded
       } catch (error) {
