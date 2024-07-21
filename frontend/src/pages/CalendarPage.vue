@@ -2,9 +2,9 @@
   <div class="size-container">
     <q-page class="q-pa-md">
       <div class="header q-mb-md q-gutter-sm flex justify-between items-center">
-        <q-btn flat round @click="prevMonth" icon="arrow_left" />
+        <q-btn flat dense round icon="arrow_back" @click="prevMonth" />
         <div class="month-year text-h5">{{ currentMonth }} {{ currentYear }}</div>
-        <q-btn flat round @click="nextMonth" icon="arrow_right" />
+        <q-btn flat dense round icon="arrow_forward" @click="nextMonth" />
       </div>
 
       <div v-if="loadingCalendar" class="q-mt-md flex flex-center">
@@ -54,30 +54,32 @@
           <q-btn class="log-button" no-caps rounded color="primary" label="+ Log" @click="log" />
         </div>
         <q-separator spaced />
-        <div class="training-recommendation-container q-mt-md">
+      </div>
+
+      <q-card class="training-recommendation-container subtle-card q-mt-md">
+        <q-card-section>
           <div class="training-recommendation-header">{{ $t('training-recommendation.title') }}</div>
           <div v-if="loadingTraining" class="q-mt-md flex flex-center">
             <q-spinner color="primary" size="2em" />
           </div>
           <div v-else class="training-recommendation-text">{{ trainingRecommendation }}</div>
-        </div>
-        <q-separator spaced />
-        <SectionContainer :title="$t('symptoms')" link="/symptoms" :linkText="$t('add')" :emojis="symptomsEmojis"
-          :loading="loadingSymptoms" />
-        <q-separator spaced />
-        <SectionContainer :title="$t('mood')" link="/mood" :linkText="$t('add')" :emojis="moodEmojis"
-          :loading="loadingMood" />
-        <q-separator spaced />
-        <SectionContainer :title="$t('trs')" link="/trs" :linkText="$t('more-info')" :emojis="[]" :loading="false" />
-      </div>
+        </q-card-section>
+      </q-card>
+
+      <q-separator spaced />
+      <SectionContainer :title="$t('symptoms')" link="/symptoms" :linkText="$t('add')" :emojis="symptomsEmojis"
+        :loading="loadingSymptoms" />
+      <q-separator spaced />
+      <SectionContainer :title="$t('mood')" link="/mood" :linkText="$t('add')" :emojis="moodEmojis"
+        :loading="loadingMood" />
+      <q-separator spaced />
+      <SectionContainer :title="$t('trs')" link="/trs" :linkText="$t('more-info')" :emojis="[]" :loading="false" />
     </q-page>
   </div>
 </template>
 
-
-
 <script>
-import { QSpinner, QBtn, QSeparator, QPage, QTable, QTr, QTd } from 'quasar';
+import { QSpinner, QBtn, QSeparator, QPage, QTable, QTr, QTd, QCard, QCardSection } from 'quasar';
 import SectionContainer from 'components/SectionContainer.vue';
 
 export default {
@@ -90,6 +92,8 @@ export default {
     QTable,
     QTr,
     QTd,
+    QCard,
+    QCardSection,
   },
   data() {
     const date = new Date();
@@ -104,8 +108,20 @@ export default {
       trainingRecommendation: '',
       loadingCalendar: true,
       loadingTraining: true,
-      moodEmojis: [],
-      symptomsEmojis: [],
+      moodEmojis: [
+        { emoji: '😊', label: 'Happy' },
+        { emoji: '😢', label: 'Sad' },
+        { emoji: '😠', label: 'Angry' },
+        { emoji: '😴', label: 'Tired' },
+        { emoji: '😍', label: 'In Love' }
+      ],
+      symptomsEmojis: [
+        { emoji: '🤒', label: 'Sick' },
+        { emoji: '🤕', label: 'Headache' },
+        { emoji: '🤧', label: 'Sneezing' },
+        { emoji: '🤮', label: 'Nauseous' },
+        { emoji: '😷', label: 'Cough' }
+      ],
       loadingMood: true,
       loadingSymptoms: true,
       columns: [
@@ -218,8 +234,18 @@ export default {
       return new Promise(resolve => {
         setTimeout(() => {
           resolve({
-            mood: ['😊', '😢', '😠', '😴', '😍'],
-            symptoms: ['🤒', '🤕', '🤧', '🤮', '😷'],
+            mood: [
+              { emoji: '❓', label: 'Confused' },
+              { emoji: '😶‍🌫️', label: 'Insecure' },
+              { emoji: '🤩', label: 'Excited' },
+              { emoji: '🫨', label: 'Nervous' },
+            ],
+            symptoms: [
+              { emoji: '🍫', label: 'Cravings' },
+              { emoji: '📉', label: 'Mood Swings' },
+              { emoji: '💢', label: 'Cramps' },
+              { emoji: '🥶', label: 'Cold' },
+            ]
           });
         }, 1000);
       });
@@ -307,7 +333,6 @@ export default {
 .custom-header {
   font-weight: 600;
 }
-
 
 .q-tr,
 .q-td {
@@ -437,8 +462,7 @@ a:hover {
 
 .training-recommendation-header {
   display: flex;
-  justify-content: space-between;
-  align-items: center;
+  justify-content: center;
   color: #000;
   font-size: 1rem;
   font-weight: 600;
@@ -449,7 +473,9 @@ a:hover {
   font-size: 0.875rem;
   font-weight: 400;
   line-height: 1.5;
-  padding-top: 18px;
+  padding-top: 10px;
+  text-align: center;
+
 }
 
 .loading-container {
@@ -457,5 +483,14 @@ a:hover {
   justify-content: center;
   align-items: center;
   height: 100%;
+}
+
+.subtle-card {
+  background-color: #bce5e258;
+  border: 2px solid #50c1ba;
+  border-radius: 8px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  padding: 0px;
+  margin-bottom: 20px;
 }
 </style>
