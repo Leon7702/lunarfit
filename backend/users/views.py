@@ -5,13 +5,14 @@ from rest_framework.mixins import DestroyModelMixin, UpdateModelMixin
 from rest_framework.permissions import AllowAny, IsAdminUser, IsAuthenticated
 from rest_framework_simplejwt.views import TokenObtainPairView
 
-from .models import Profile, User, Onboarding
+from .models import Profile, User, Onboarding, Contraceptive
 from .permissions import UserPermission
 from .serializers import (
     CustomTokenObtainPairSerializer,
     ProfileSerializer,
     UserSerializer,
     OnboardingSerializer,
+    ContraceptiveSerializer
 )
 
 
@@ -84,3 +85,9 @@ class OnboardingViewSet(viewsets.ModelViewSet):
     queryset = Onboarding.objects.all()
     serializer_class = OnboardingSerializer
     http_method_names = ["get", "post", "patch"]
+
+
+class ContraceptiveViewSet(viewsets.ModelViewSet):
+    queryset = Contraceptive.objects.all()
+    serializer_class = ContraceptiveSerializer
+    http_method_names = ["get"]
