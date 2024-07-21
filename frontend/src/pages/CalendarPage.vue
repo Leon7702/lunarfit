@@ -1,115 +1,98 @@
 <template>
   <div class="size-container">
-    <!-- Header with navigation buttons and current month/year display -->
-    <div class="header">
-      <!-- Button to navigate to the previous month -->
-      <div class="navButton" @click="prevMonth">
-        <img src="/src/assets/arrow-left.svg" alt="Left" class="navButtonImage">
+    <q-page class="q-pa-md">
+      <div class="header q-mb-md q-gutter-sm flex justify-between items-center">
+        <q-btn flat round @click="prevMonth" icon="arrow_left" />
+        <div class="month-year text-h5">{{ currentMonth }} {{ currentYear }}</div>
+        <q-btn flat round @click="nextMonth" icon="arrow_right" />
       </div>
 
-      <!-- Display current month and year -->
-      <div class="month-year">{{ currentMonth }} {{ currentYear }}</div>
-
-      <!-- Button to navigate to the next month -->
-      <div class="navButton" @click="nextMonth">
-        <img src="/src/assets/arrow-right.svg" alt="Right" class="navButtonImage">
-      </div>
-    </div>
-
-    <!-- Calendar table with days of the week and dates -->
-    <div v-if="loadingCalendar" class="loading-container">
-      <q-spinner color="primary" size="2em" />
-    </div>
-    <table v-else>
-      <!-- Header row with days of the week -->
-      <tr>
-        <th>{{ $t('weekdays_short[1]') }}</th>
-        <th>{{ $t('weekdays_short[2]') }}</th>
-        <th>{{ $t('weekdays_short[3]') }}</th>
-        <th>{{ $t('weekdays_short[4]') }}</th>
-        <th>{{ $t('weekdays_short[5]') }}</th>
-        <th>{{ $t('weekdays_short[6]') }}</th>
-        <th>{{ $t('weekdays_short[0]') }}</th>
-      </tr>
-
-      <!-- Rows for each week in the month -->
-      <tr v-for="(week, weekIndex) in weeksInMonth" :key="weekIndex">
-        <td v-for="(day, dayIndex) in week" :key="`${weekIndex}-${dayIndex}`">
-          <div :class="['day-circle', day.colorClass]" @click="selectDay(day)">
-            {{ day.date }}
-          </div>
-        </td>
-      </tr>
-    </table>
-
-    <!-- Legend to explain color codes for different phases -->
-    <div class="legend">
-      <div class="legend-item">
-        <div class="day-circle period"></div>
-        <span class="legend-label">{{ $t('calendarLegend[0]') }}</span>
-      </div>
-      <div class="legend-item">
-        <div class="day-circle prediction"></div>
-        <span class="legend-label">{{ $t('calendarLegend[1]') }}</span>
-      </div>
-      <div class="legend-item">
-        <div class="day-circle follicle"></div>
-        <span class="legend-label">{{ $t('calendarLegend[2]') }}</span>
-      </div>
-    </div>
-
-    <!-- Container for logging details of the selected day -->
-    <div class="day-log-container">
-      <div class="day-log-header">
-        <div class="current-day">{{ currentDayFormatted }}</div>
-        <q-btn class="log-button" no-caps rounded style="background: #50C1BA; color: white" label="+ Log"
-          padding="xs lg" size="14px" @click="log">
-          <template v-slot:default></template>
-        </q-btn>
+      <div v-if="loadingCalendar" class="q-mt-md flex flex-center">
+        <q-spinner color="primary" size="2em" />
       </div>
 
-      <hr class="separator">
+      <div v-else class="custom-table-container">
+        <q-table :rows="weeksInMonth" :columns="columns" row-key="weekIndex" flat dense :rows-per-page-options="[]"
+          hide-bottom class="custom-table">
+          <template v-slot:header="props">
+            <q-tr :props="props">
+              <q-th v-for="col in props.cols" :key="col.name" :props="props" class="custom-header">
+                {{ col.label }}
+              </q-th>
+            </q-tr>
+          </template>
+          <template v-slot:body="props">
+            <q-tr :props="props" class="custom-row">
+              <q-td v-for="(day, dayIndex) in props.row.days" :key="dayIndex" class="custom-cell">
+                <div :class="['day-circle', day.colorClass]" @click="selectDay(day)">
+                  {{ day.date }}
+                </div>
+              </q-td>
+            </q-tr>
+          </template>
+        </q-table>
+      </div>
 
-      <!-- Display training recommendation -->
-      <div class="training-recommendation-container">
-        <div class="training-recommendation-header">
-          {{ $t('training-recommendation.title') }}
+      <div class="legend q-mt-md">
+        <div class="legend-item q-gutter-sm flex flex-center">
+          <div class="legend-circle period"></div>
+          <span class="legend-label">{{ $t('calendarLegend[0]') }}</span>
         </div>
-        <div class="training-recommendation-text">
-          <div v-if="loadingTraining" class="loading-container">
+        <div class="legend-item q-gutter-sm flex flex-center">
+          <div class="legend-circle prediction"></div>
+          <span class="legend-label">{{ $t('calendarLegend[1]') }}</span>
+        </div>
+        <div class="legend-item q-gutter-sm flex flex-center">
+          <div class="legend-circle follicle"></div>
+          <span class="legend-label">{{ $t('calendarLegend[2]') }}</span>
+        </div>
+      </div>
+
+      <div class="day-log-container q-mt-md">
+        <div class="day-log-header q-gutter-sm flex justify-between items-center">
+          <div class="current-day">{{ currentDayFormatted }}</div>
+          <q-btn class="log-button" no-caps rounded color="primary" label="+ Log" @click="log" />
+        </div>
+        <q-separator spaced />
+        <div class="training-recommendation-container q-mt-md">
+          <div class="training-recommendation-header">{{ $t('training-recommendation.title') }}</div>
+          <div v-if="loadingTraining" class="q-mt-md flex flex-center">
             <q-spinner color="primary" size="2em" />
           </div>
-          <div v-else>
-            {{ trainingRecommendation }}
-          </div>
+          <div v-else class="training-recommendation-text">{{ trainingRecommendation }}</div>
         </div>
+        <q-separator spaced />
+        <SectionContainer :title="$t('symptoms')" link="/symptoms" :linkText="$t('add')" :emojis="symptomsEmojis"
+          :loading="loadingSymptoms" />
+        <q-separator spaced />
+        <SectionContainer :title="$t('mood')" link="/mood" :linkText="$t('add')" :emojis="moodEmojis"
+          :loading="loadingMood" />
+        <q-separator spaced />
+        <SectionContainer :title="$t('trs')" link="/trs" :linkText="$t('more-info')" :emojis="[]" :loading="false" />
       </div>
-
-      <hr class="separator">
-
-      <!-- Display Symptoms and Mood using the new reusable component -->
-      <SectionContainer :title="$t('symptoms')" link="/symptoms" :linkText="$t('add')" :emojis="symptomsEmojis"
-        :loading="loadingSymptoms" />
-      <hr class="separator">
-      <SectionContainer :title="$t('mood')" link="/mood" :linkText="$t('add')" :emojis="moodEmojis"
-        :loading="loadingMood" />
-      <hr class="separator">
-      <SectionContainer :title="$t('trs')" link="/trs" :linkText="$t('more-info')" :emojis="[]" :loading="false" />
-    </div>
+    </q-page>
   </div>
 </template>
 
+
+
 <script>
+import { QSpinner, QBtn, QSeparator, QPage, QTable, QTr, QTd } from 'quasar';
 import SectionContainer from 'components/SectionContainer.vue';
-import { QSpinner } from 'quasar';
 
 export default {
   components: {
     SectionContainer,
     QSpinner,
+    QBtn,
+    QSeparator,
+    QPage,
+    QTable,
+    QTr,
+    QTd,
   },
   data() {
-    let date = new Date();
+    const date = new Date();
     return {
       date: {
         year: date.getFullYear(),
@@ -125,6 +108,15 @@ export default {
       symptomsEmojis: [],
       loadingMood: true,
       loadingSymptoms: true,
+      columns: [
+        { name: 'mon', label: this.$t('weekdays_short[1]'), align: 'center' },
+        { name: 'tue', label: this.$t('weekdays_short[2]'), align: 'center' },
+        { name: 'wed', label: this.$t('weekdays_short[3]'), align: 'center' },
+        { name: 'thu', label: this.$t('weekdays_short[4]'), align: 'center' },
+        { name: 'fri', label: this.$t('weekdays_short[5]'), align: 'center' },
+        { name: 'sat', label: this.$t('weekdays_short[6]'), align: 'center' },
+        { name: 'sun', label: this.$t('weekdays_short[0]'), align: 'center' },
+      ],
     };
   },
   computed: {
@@ -133,85 +125,68 @@ export default {
     },
     currentMonth() {
       const locale = this.$i18n.locale;
-      return new Date(this.date.year, this.date.month, 1).toLocaleString(locale, {
-        month: 'long',
-      });
+      return new Date(this.date.year, this.date.month, 1).toLocaleString(locale, { month: 'long' });
     },
     daysInMonth() {
-      let date = new Date(this.date.year, this.date.month + 1, 0);
-      return [...Array(date.getDate()).keys()].map((i) => i + 1);
+      const date = new Date(this.date.year, this.date.month + 1, 0);
+      return [...Array(date.getDate()).keys()].map(i => i + 1);
     },
     weeksInMonth() {
-      let days = this.daysInMonth;
-      let firstDay = (new Date(this.date.year, this.date.month, 1).getDay() + 6) % 7; // Adjust for Monday start
-      let weeks = [];
+      const days = this.daysInMonth;
+      const firstDay = (new Date(this.date.year, this.date.month, 1).getDay() + 6) % 7; // Adjust for Monday start
+      const weeks = [];
       let week = [];
 
       if (firstDay > 0) {
-        let prevMonthDays = this.getDaysInPreviousMonth().slice(-firstDay);
-        week.push(
-          ...prevMonthDays.map((day) => ({ date: day, colorClass: 'previous-month' }))
-        );
+        const prevMonthDays = this.getDaysInPreviousMonth().slice(-firstDay);
+        week.push(...prevMonthDays.map(day => ({ date: day, colorClass: 'previous-month' })));
       }
 
-      days.forEach((day) => {
+      days.forEach(day => {
         if (week.length === 7) {
-          weeks.push(week);
+          weeks.push({ weekIndex: weeks.length, days: week });
           week = [];
         }
         week.push({ date: day, colorClass: this.dayColorClass(day) });
       });
 
       if (week.length > 0 && week.length < 7) {
-        let nextMonthDays = 7 - week.length;
-        week.push(
-          ...Array(nextMonthDays).fill({ date: '', colorClass: 'next-month' })
-        );
+        const nextMonthDays = 7 - week.length;
+        week.push(...Array(nextMonthDays).fill({ date: '', colorClass: 'next-month' }));
       }
       if (week.length > 0) {
-        weeks.push(week);
+        weeks.push({ weekIndex: weeks.length, days: week });
       }
 
       return weeks;
     },
     currentDayFormatted() {
       const locale = this.$i18n.locale;
-      let date;
-      if (this.selectedDay !== null) {
-        date = new Date(this.date.year, this.date.month, this.selectedDay);
-      } else {
-        date = new Date(this.date.year, this.date.month, this.date.day);
-      }
-      return date.toLocaleDateString(locale, {
-        weekday: 'long',
-        day: '2-digit',
-        month: 'long',
-      });
+      const date = this.selectedDay !== null
+        ? new Date(this.date.year, this.date.month, this.selectedDay)
+        : new Date(this.date.year, this.date.month, this.date.day);
+      return date.toLocaleDateString(locale, { weekday: 'long', day: '2-digit', month: 'long' });
     },
   },
   methods: {
     async fetchData() {
       try {
-        // Check if data exists in local storage
         const storedData = localStorage.getItem('calendarData');
-        if (false) {
+        if (storedData) {
           const data = JSON.parse(storedData);
           this.dayColors = data.dayColors;
           this.trainingRecommendation = data.trainingRecommendation;
           this.loadingCalendar = false;
           this.loadingTraining = false;
         } else {
-          // Simulate an API call with mock data
           const response = await this.mockApiCall();
           this.dayColors = response.dayColors;
           this.trainingRecommendation = response.trainingRecommendation;
-          // Store data in local storage
           localStorage.setItem('calendarData', JSON.stringify(response));
           this.loadingCalendar = false;
           this.loadingTraining = false;
         }
 
-        // Fetch emojis for mood and symptoms
         const emojisResponse = await this.fetchEmojis();
         this.moodEmojis = emojisResponse.mood;
         this.symptomsEmojis = emojisResponse.symptoms;
@@ -222,7 +197,7 @@ export default {
       }
     },
     mockApiCall() {
-      return new Promise((resolve) => {
+      return new Promise(resolve => {
         setTimeout(() => {
           resolve({
             dayColors: {
@@ -233,19 +208,18 @@ export default {
               5: 'follicle',
               12: 'period',
               16: 'prediction',
-              // Add more mock data as needed
             },
-            trainingRecommendation: 'Recommended training: Cardio exercises'
+            trainingRecommendation: 'Recommended training: Cardio exercises',
           });
         }, 1000);
       });
     },
     fetchEmojis() {
-      return new Promise((resolve) => {
+      return new Promise(resolve => {
         setTimeout(() => {
           resolve({
             mood: ['😊', '😢', '😠', '😴', '😍'],
-            symptoms: ['🤒', '🤕', '🤧', '🤮', '😷']
+            symptoms: ['🤒', '🤕', '🤧', '🤮', '😷'],
           });
         }, 1000);
       });
@@ -274,12 +248,12 @@ export default {
     },
     selectDay(day) {
       if (day.colorClass === 'previous-month') {
-        let selectedDate = new Date(this.date.year, this.date.month - 1, day.date);
+        const selectedDate = new Date(this.date.year, this.date.month - 1, day.date);
         this.selectedDay = selectedDate.getDate();
         this.date.year = selectedDate.getFullYear();
         this.date.month = selectedDate.getMonth();
       } else if (day.colorClass === 'next-month') {
-        let selectedDate = new Date(this.date.year, this.date.month + 1, day.date);
+        const selectedDate = new Date(this.date.year, this.date.month + 1, day.date);
         this.selectedDay = selectedDate.getDate();
         this.date.year = selectedDate.getFullYear();
         this.date.month = selectedDate.getMonth();
@@ -290,8 +264,8 @@ export default {
       }
     },
     getDaysInPreviousMonth() {
-      let date = new Date(this.date.year, this.date.month, 0);
-      return [...Array(date.getDate()).keys()].map((i) => i + 1);
+      const date = new Date(this.date.year, this.date.month, 0);
+      return [...Array(date.getDate()).keys()].map(i => i + 1);
     },
     log() {
       this.$router.push('/log');
@@ -303,68 +277,72 @@ export default {
 };
 </script>
 
-<style>
-/* General styles */
-body {
-  margin: 0;
-  padding: 0 10px 0 px;
-  font-family: Inter, sans-serif;
+<style scoped>
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;600&display=swap');
+
+* {
+  font-family: 'Inter', sans-serif;
 }
 
-table {
+.q-page {
+  padding: 16px;
+  padding: 0;
+  margin: 0;
+}
+
+.header .month-year {
+  font-weight: 600;
+}
+
+.custom-table-container {
+  display: flex;
+  justify-content: center;
+}
+
+.custom-table {
   width: 100%;
   table-layout: fixed;
-  padding-bottom: 10px;
 }
 
-th,
-td {
-  text-align: center;
-  padding-top: 10px;
-  margin: 0;
-  box-sizing: border-box;
-  cursor: pointer;
-}
-
-th {
-  color: #6C7072;
-}
-
-a {
-  color: #50c1ba;
-  font-weight: bold;
-  text-decoration: none;
-}
-
-p {
-  font-size: 1rem;
-  margin: 20px;
-  padding-top: 10px;
-}
-
-.header {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  padding: 10px;
-  margin: 46px auto 0;
-  width: 80%;
-}
-
-.month-year {
-  color: #000;
-  text-align: center;
-  font-size: 1.25rem;
+.custom-header {
   font-weight: 600;
-  line-height: 1.5;
 }
 
-.navButton {
-  font-size: 0.5rem;
+
+.q-tr,
+.q-td {
+  text-align: center;
   cursor: pointer;
 }
 
-.day-circle {
+.q-th {
+  font-weight: 600;
+  text-align: center;
+}
+
+.q-td {
+  padding: 0;
+}
+
+.q-td .q-td-inner {
+  padding: 8px;
+}
+
+.q-td:first-child .q-td-inner,
+.q-td:last-child .q-td-inner {
+  padding-left: 8px;
+  padding-right: 8px;
+}
+
+.q-td:not(:last-child) {
+  border-right: 1px solid #e0e0e0;
+}
+
+.q-td:hover .day-circle {
+  background-color: #ebfffc;
+}
+
+.q-td .day-circle {
   display: flex;
   justify-content: center;
   align-items: center;
@@ -376,37 +354,23 @@ p {
 }
 
 .period {
-  background-color: #FFD8DF;
-  color: #FF2D55;
+  background-color: #ffd8df;
+  color: #ff2d55;
 }
 
 .follicle {
-  background-color: #E7E7FF;
+  background-color: #e7e7ff;
   color: black;
 }
 
 .prediction {
-  border: 2px dotted #FF2D55;
+  border: 2px dotted #ff2d55;
   color: #000;
 }
 
 .currentDate {
-  border: 2px solid #FF2D55;
+  border: 2px solid #ff2d55;
   color: #000;
-}
-
-.navButton {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  width: 2.5rem;
-  height: 2.5rem;
-  cursor: pointer;
-}
-
-.navButtonImage {
-  width: 1.25rem;
-  height: 1.25rem;
 }
 
 .previous-month,
@@ -424,15 +388,29 @@ p {
   align-items: center;
 }
 
-.legend-item .day-circle {
+.legend-item .legend-circle {
   width: 1rem;
   height: 1rem;
+  border-radius: 50%;
 }
 
 .legend-label {
   margin-left: 0.25rem;
   font-size: 0.75rem;
-  color: #72777A;
+  color: #72777a;
+}
+
+a {
+  color: #50c1ba;
+  text-decoration: none;
+}
+
+a:visited {
+  color: #50c1ba;
+}
+
+a:hover {
+  text-decoration: none;
 }
 
 .day-log-container {
@@ -447,7 +425,7 @@ p {
 }
 
 .current-day {
-  color: #090A0A;
+  color: #090a0a;
   font-size: 1.125rem;
   font-weight: 600;
   margin-top: 5px;
@@ -455,18 +433,6 @@ p {
 
 .log-button {
   font-size: 0.875rem;
-}
-
-.separator {
-  margin-top: 10px;
-  border: 0;
-  border-top: 1px solid #e0e0e0;
-  width: 100%;
-}
-
-.training-recommendation-container {
-  width: 100%;
-  margin: 20px auto;
 }
 
 .training-recommendation-header {
