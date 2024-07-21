@@ -6,7 +6,7 @@
       </q-avatar>
 
       <q-item-section class="text-container" v-if="!showSlider">
-        <q-item-label class="text">{{ text }}</q-item-label>
+        <q-item-label class="text">{{ truncatedText }}</q-item-label>
       </q-item-section>
 
       <q-item-section class="slider-container" v-if="showSlider">
@@ -47,6 +47,12 @@ export default {
       originalValue: this.value
     };
   },
+  computed: {
+    truncatedText() {
+      const maxLength = 20; // Set your desired max length here
+      return this.text.length > maxLength ? this.text.substring(0, maxLength) + '...' : this.text;
+    }
+  },
   watch: {
     value(newVal) {
       this.localValue = newVal;
@@ -78,6 +84,9 @@ export default {
 .text {
   font-size: 1rem;
   color: #000;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
 }
 
 .button-container {

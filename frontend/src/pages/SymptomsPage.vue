@@ -1,9 +1,7 @@
 <template>
   <div class="size-container">
     <div class="header">
-      <router-link to="/calendar" class="navButton">
-        <img src="/src/assets/arrow-left.svg" alt="Left" class="navButtonImage">
-      </router-link>
+      <q-btn flat dense round icon="arrow_back" @click="goBack" />
       <div class="head">{{ $t('symptoms') }}</div>
     </div>
 
@@ -20,10 +18,12 @@
 <script>
 import { useRouter } from 'vue-router';
 import IconSlider from 'components/IconSlider.vue';
+import { QBtn } from 'quasar';
 
 export default {
   components: {
-    IconSlider
+    IconSlider,
+    QBtn
   },
   data() {
     return {
@@ -52,6 +52,9 @@ export default {
     };
   },
   methods: {
+    goBack() {
+      this.$router.go(-1);
+    },
     redirectToCalendarPage() {
       const router = useRouter();
       router.push('/calendar');
@@ -68,22 +71,6 @@ export default {
   padding-bottom: 20px;
 }
 
-.navButton {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  width: 40px;
-  height: 40px;
-  cursor: pointer;
-  position: absolute;
-  left: 10px;
-}
-
-.navButtonImage {
-  width: 20px;
-  height: 20px;
-}
-
 .head {
   color: #000;
   text-align: center;
@@ -97,8 +84,7 @@ export default {
 
 .container {
   flex: 1;
-  padding-bottom: 0px;
-  /* Adjust this if necessary to avoid overlap with the sticky button */
+  padding-bottom: 65px;
 }
 
 .button-container {
@@ -110,17 +96,17 @@ export default {
   display: flex;
   justify-content: center;
   padding-bottom: 60px;
-  padding-top: 16px;
-
+  padding-top: 10px;
   background-color: white;
   z-index: 1000;
+  height: 110px;
 }
 
 .save-button {
   background-color: #50c1ba;
   color: white;
   border: none;
-  padding: 10px 20px;
+  padding: 10px 10px;
   font-size: 16px;
   cursor: pointer;
   border-radius: 5px;

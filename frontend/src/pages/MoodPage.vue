@@ -2,9 +2,7 @@
   <div class="size-container">
     <div class="root">
       <div class="header">
-        <router-link to="/calendar" class="navButton">
-          <img src="/src/assets/arrow-left.svg" alt="Left" class="navButtonImage">
-        </router-link>
+        <q-btn flat dense round icon="arrow_back" @click="goBack" />
         <div class="head">Stimmung</div>
       </div>
 
@@ -21,11 +19,13 @@
 </template>
 
 <script>
+import { QBtn } from 'quasar';
 import IconSlider from 'components/IconSlider.vue';
 
 export default {
   components: {
-    IconSlider
+    IconSlider,
+    QBtn
   },
   data() {
     return {
@@ -54,6 +54,9 @@ export default {
     };
   },
   methods: {
+    goBack() {
+      this.$router.go(-1);
+    },
     updateMoodValue(index, newValue) {
       this.moodItems[index].value = newValue;
     }
@@ -61,29 +64,12 @@ export default {
 };
 </script>
 
-
 <style scoped>
 .header {
   display: flex;
   align-items: center;
   position: relative;
   padding-bottom: 20px;
-}
-
-.navButton {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  width: 40px;
-  height: 40px;
-  cursor: pointer;
-  position: absolute;
-  left: 10px;
-}
-
-.navButtonImage {
-  width: 20px;
-  height: 20px;
 }
 
 .head {
@@ -99,7 +85,7 @@ export default {
 
 .container {
   flex: 1;
-  padding-bottom: 0px;
+  padding-bottom: 65px;
   /* Adjust this if necessary to avoid overlap with the sticky button */
 }
 
