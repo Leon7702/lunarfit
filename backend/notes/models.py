@@ -17,7 +17,7 @@ class Symptom(models.Model):
     symptom_category = models.ForeignKey(SymptomCategory, on_delete=models.CASCADE)
     day = models.DateField()
     value = models.PositiveSmallIntegerField(
-        validators=[MinValueValidator(1), MaxValueValidator(6)]
+        validators=[MinValueValidator(0), MaxValueValidator(6)]
     )
 
     def __str__(self):
