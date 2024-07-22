@@ -1,78 +1,90 @@
 <template>
   <div class="size-container">
-  <div class="welcome-container">
-    <div class="header">
-      <q-btn flat dense round icon="arrow_back" to="/settings" />
-      <div class="title">{{ $t('profile.title') }}</div>
-    </div>
-    <div class="linie"></div>
-
-    <q-list>
-      <!-- TODO: change prefix (v-slot: prepend?) -->
-      <q-input filled v-model="profile.first_name" type="text" input-class="text-right" class="q-pt-xl q-mb-sm">
-        <template v-slot:prepend>
-          <div class="text-color">{{ $t('profile.firstName') }}</div>
-        </template>
-      </q-input>
-      <q-input filled v-model="profile.last_name" type="text" input-class="text-right" class="q-mb-sm">
-        <template v-slot:prepend>
-          <div class="text-color">{{ $t('profile.lastName') }}</div>
-        </template>
-      </q-input>
-      <q-input filled v-model="profile.birthdate" type="date" input-class="text-right" class="q-mb-sm">
-        <template v-slot:prepend>
-          <div class="text-color">{{ $t('profile.birthdate') }}</div>
-        </template>
-      </q-input>
-      <q-input filled v-model="profile.body_height" type="number" input-class="text-right" class="q-mb-sm">
-        <template v-slot:prepend>
-          <div class="text-color">{{ $t('profile.height') }}</div>
-        </template>
-      </q-input>
-      <q-input filled v-model="profile.body_weight" type="number" input-class="text-right" class="q-mb-sm">
-        <template v-slot:prepend>
-          <div class="text-color">{{ $t('profile.weight') }}</div>
-        </template>
-      </q-input>
-      <q-select filled v-model="profile.contraceptive" :options="contraceptionOptions" input-class="text-right"
-        class="q-mb-sm">
-        <template v-slot:prepend>
-          <div class="text-color">{{ $t('profile.contraception') }}</div>
-        </template>
-      </q-select>
-    </q-list>
-    <div class="button-container">
-        <StandardButton :label="$t('save')" @click="saveProfile"/>
+    <div class="welcome-container">
+      <div class="header">
+        <q-btn flat dense round icon="arrow_back" to="/settings" />
+        <div class="title">{{ $t('profile.title') }}</div>
       </div>
+      <div class="linie"></div>
+
+      <q-list>
+        <q-input filled v-model="profile.first_name" type="text" input-class="text-right" class="q-pt-xl q-mb-sm">
+          <template v-slot:prepend>
+            <div class="text-color">{{ $t('profile.firstName') }}</div>
+          </template>
+        </q-input>
+        <q-input filled v-model="profile.last_name" type="text" input-class="text-right" class="q-mb-sm">
+          <template v-slot:prepend>
+            <div class="text-color">{{ $t('profile.lastName') }}</div>
+          </template>
+        </q-input>
+        <q-input filled v-model="profile.birthdate" type="date" input-class="text-right" class="q-mb-sm">
+          <template v-slot:prepend>
+            <div class="text-color">{{ $t('profile.birthdate') }}</div>
+          </template>
+        </q-input>
+        <q-input filled v-model="profile.body_height" type="number" input-class="text-right" class="q-mb-sm">
+          <template v-slot:prepend>
+            <div class="text-color">{{ $t('profile.height') }}</div>
+          </template>
+        </q-input>
+        <q-input filled v-model="profile.body_weight" type="number" input-class="text-right" class="q-mb-sm">
+          <template v-slot:prepend>
+            <div class="text-color">{{ $t('profile.weight') }}</div>
+          </template>
+        </q-input>
+        <q-select filled v-model="profile.contraceptive" :options="contraceptionOptions" input-class="text-right"
+          class="q-mb-sm" emit-value map-options>
+          <template v-slot:prepend>
+            <div class="text-color">{{ $t('profile.contraception') }}</div>
+          </template>
+        </q-select>
+      </q-list>
+      <div class="button-container">
+        <StandardButton :label="$t('save')" @click="saveProfile" />
+      </div>
+    </div>
   </div>
-</div>
 </template>
 
 <script>
-import { ref, onMounted } from 'vue';
+import { ref, watch, onMounted } from 'vue';
 import axios from 'axios';
+import { useAuthStore } from 'src/stores/auth';
 import StandardButton from 'components/StandardButton.vue';
 
 export default {
-  // i18n handling
   name: 'ProfilePage',
   components: {
     StandardButton
   },
   setup() {
-    //TODO: get data from backend --> replace these with dynamic data fetching logic
+    const authStore = useAuthStore();
+
     const profile = ref({
+      user: null,
+      onboarding_finished: false,
       first_name: '',
       last_name: '',
-      birthdate: '',
+      birthdate: null,
       body_height: null,
       body_weight: null,
+      language: 'de',
       contraceptive: null
     });
 
     const fetchProfile = async () => {
+      if (!authStore.userId) {
+        console.error('User ID is not set');
+        return;
+      }
+
       try {
-        const response = await axios.get('http://localhost:3000/users/');
+        const response = await axios.get(`http://localhost:8000/api/users/profile/${authStore.userId}/`, {
+          headers: {
+            Authorization: `Bearer ${authStore.accessToken}`
+          }
+        });
         profile.value = response.data;
       } catch (error) {
         console.error('Failed to fetch profile:', error);
@@ -80,16 +92,34 @@ export default {
     };
 
     const saveProfile = async () => {
+      if (!authStore.userId) {
+        console.error('User ID is not set');
+        return;
+      }
+
       try {
-        await axios.patch('http://localhost:3000/users/', profile.value);
+        await axios.patch(`http://localhost:8000/api/users/profile/${authStore.userId}/`, profile.value, {
+          headers: {
+            Authorization: `Bearer ${authStore.accessToken}`,
+            'Content-Type': 'application/json'
+          }
+        });
         alert('Profile updated successfully');
       } catch (error) {
         console.error('Failed to update profile:', error);
       }
     };
 
+    watch(() => authStore.userId, (newUserId) => {
+      if (newUserId) {
+        fetchProfile();
+      }
+    });
+
     onMounted(() => {
-      fetchProfile();
+      if (authStore.userId) {
+        fetchProfile();
+      }
     });
 
     return {
@@ -98,12 +128,16 @@ export default {
       saveProfile
     };
   },
-  // refactored:
   computed: {
     contraceptionOptions() {
-      return Array.from({ length: 6 }, (_, i) =>
-        this.$t(`profile.contraceptionOptions[${i}]`)
-      );
+      return [
+        { label: this.$t('profile.contraceptionOptions[0]'), value: 0 },
+        { label: this.$t('profile.contraceptionOptions[1]'), value: 1 },
+        { label: this.$t('profile.contraceptionOptions[2]'), value: 2 },
+        { label: this.$t('profile.contraceptionOptions[3]'), value: 3 },
+        { label: this.$t('profile.contraceptionOptions[4]'), value: 4 },
+        // { label: this.$t('profile.contraceptionOptions[5]'), value: 5 }
+      ];
     },
   },
 };
@@ -150,4 +184,3 @@ export default {
   padding: 20px;
 }
 </style>
-
