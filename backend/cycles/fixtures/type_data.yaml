@@ -1,0 +1,24 @@
+- model: cycles.type
+  pk: 1
+  fields:
+    name: menstruation
+- model: cycles.type
+  pk: 2
+  fields:
+    name: temperature
+- model: cycles.type
+  pk: 3
+  fields:
+    name: cervix
+- model: cycles.type
+  pk: 4
+  fields:
+    name: cervix_mucus
+- model: cycles.type
+  pk: 5
+  fields:
+    name: sexual_intercourse
+- model: cycles.type
+  pk: 6
+  fields:
+    name: ovulation_test

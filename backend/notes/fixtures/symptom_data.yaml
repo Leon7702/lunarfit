@@ -1,0 +1,80 @@
+- model: notes.symptomcategory
+  pk: 1
+  fields:
+    name: abdominal_pains
+- model: notes.symptomcategory
+  pk: 2
+  fields:
+    name: chest_pain
+- model: notes.symptomcategory
+  pk: 3
+  fields:
+    name: constipation
+- model: notes.symptomcategory
+  pk: 4
+  fields:
+    name: cramps
+- model: notes.symptomcategory
+  pk: 5
+  fields:
+    name: cravings
+- model: notes.symptomcategory
+  pk: 6
+  fields:
+    name: diarrhea
+- model: notes.symptomcategory
+  pk: 7
+  fields:
+    name: exhaustion
+- model: notes.symptomcategory
+  pk: 8
+  fields:
+    name: fatigue
+- model: notes.symptomcategory
+  pk: 9
+  fields:
+    name: flatulence
+- model: notes.symptomcategory
+  pk: 10
+  fields:
+    name: freezing
+- model: notes.symptomcategory
+  pk: 11
+  fields:
+    name: headache
+- model: notes.symptomcategory
+  pk: 12
+  fields:
+    name: hot_flashes
+- model: notes.symptomcategory
+  pk: 13
+  fields:
+    name: impure_skin
+- model: notes.symptomcategory
+  pk: 14
+  fields:
+    name: insomnia
+- model: notes.symptomcategory
+  pk: 15
+  fields:
+    name: joint_pain
+- model: notes.symptomcategory
+  pk: 16
+  fields:
+    name: mood_swings
+- model: notes.symptomcategory
+  pk: 17
+  fields:
+    name: nausea
+- model: notes.symptomcategory
+  pk: 18
+  fields:
+    name: petulance
+- model: notes.symptomcategory
+  pk: 19
+  fields:
+    name: vertigo
+- model: notes.symptomcategory
+  pk: 20
+  fields:
+    name: weakness

@@ -1,0 +1,12 @@
+- model: cycles.medicationcategory
+  pk: 1
+  fields:
+    name: dicolofenac
+- model: cycles.medicationcategory
+  pk: 2
+  fields:
+    name: ibuprofen
+- model: cycles.medicationcategory
+  pk: 3
+  fields:
+    name: emergency_contraceptive

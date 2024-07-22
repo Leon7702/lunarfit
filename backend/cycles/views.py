@@ -2,12 +2,14 @@ from django_filters.filterset import filterset_factory
 from rest_framework.permissions import IsAuthenticated
 from rest_framework.viewsets import ModelViewSet
 
-from .models import MenstrualCycle, Phase, MedicationCategory
+from .models import MenstrualCycle, Phase, MedicationCategory, TrackingData, Type
 from .serializers import (
     MenstrualCycleSerializer,
     PhaseSerializer,
     MedicationSerializer,
     MedicationCategorySerializer,
+    TrackingDataSerializer,
+    TypeSerializer,
 )
 from lunarfit.filters import DateFromToRangeFilterSet
 from users.views import UserModelViewSet
@@ -43,3 +45,15 @@ class MedicationCategoryViewSet(ModelViewSet):
     queryset = MedicationCategory.objects.all()
     permission_classes = [IsAuthenticated]
     http_method_names = ["get"]
+
+
+class TrackingDataViewSet(ModelViewSet):
+    serializer_class = TrackingDataSerializer
+    queryset = TrackingData.objects.all()
+    permission_classes = [IsAuthenticated]
+
+
+class TypeViewSet(ModelViewSet):
+    serializer_class = TypeSerializer
+    queryset = Type.objects.all()
+    permission_classes = [IsAuthenticated]

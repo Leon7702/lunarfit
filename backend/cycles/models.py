@@ -30,10 +30,7 @@ class Phase(models.Model):
 
 
 class MedicationCategory(models.Model):
-    name = models.CharField(max_length=24)
-    description = models.CharField(max_length=512)
-    interfered_days = models.IntegerField()
-    contraception = models.BooleanField()
+    name = models.CharField(max_length=50)
 
 
 class Medication(models.Model):
@@ -41,3 +38,14 @@ class Medication(models.Model):
     start_date = models.DateField()
     end_date = models.DateField()
     medication_id = models.ForeignKey(MedicationCategory, on_delete=models.CASCADE)
+
+
+class Type(models.Model):
+    name = models.CharField(max_length=24)
+    
+
+class TrackingData(models.Model):
+    user = models.ForeignKey(User, on_delete=models.CASCADE)
+    type = models.ForeignKey(Type, on_delete=models.CASCADE)
+    date = models.DateField()
+    value = models.DecimalField(max_digits=4, decimal_places=2)

@@ -5,11 +5,7 @@ from users.models import User
 
 
 class SymptomCategory(models.Model):
-    name = models.CharField(max_length=24, null=False)
-    description = models.CharField(max_length=512)
-
-    def __str__(self):
-        return f"{self.name}, {self.description}, {self.symptom_category}"
+    name = models.CharField(max_length=24)
 
 
 class Symptom(models.Model):
