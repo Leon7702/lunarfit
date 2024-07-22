@@ -1,0 +1,20 @@
+- model: users.contraceptive
+  pk: 0
+  fields:
+    name: pill
+- model: users.contraceptive
+  pk: 1
+  fields:
+    name: spiral
+- model: users.contraceptive
+  pk: 2
+  fields:
+    name: implant
+- model: users.contraceptive
+  pk: 3
+  fields:
+    name: shot
+- model: users.contraceptive
+  pk: 4
+  fields:
+    name: ring
