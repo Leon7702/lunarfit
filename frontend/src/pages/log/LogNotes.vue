@@ -25,6 +25,7 @@ import axios from 'axios';
 import InputTextArea from 'components/InputTextArea.vue';
 import StandardButton from 'components/StandardButton.vue';
 import { useRouter } from 'vue-router';
+import { useAuthStore } from 'src/stores/auth'; 
 
 export default {
   components: {
@@ -34,40 +35,44 @@ export default {
   setup() {
     const notes = ref('');
     const router = useRouter();
+    const authStore = useAuthStore();
 
     const goBack = () => {
       window.history.back();
     };
 
     const saveChanges = async () => {
-      console.log('Current notes value:', notes.value);
+  console.log('Aktueller Wert von notes:', notes.value);
 
-      if (!notes.value.trim()) {
-        console.log("Notiz darf nicht leer sein!");
-        alert("Notiz darf nicht leer sein!");
-        return;
+  if (!notes.value.trim()) {
+    console.log("Notiz darf nicht leer sein!");
+    alert("Notiz darf nicht leer sein!");
+    return;
+  }
+
+  const requestBody = {
+    date: new Date().toISOString().split('T')[0], // YYYY-MM-DD format
+    content: notes.value
+  };
+
+  try {
+    await authStore.refreshAccessToken(); // Refresh the token before making the request
+
+    const response = await axios.post('http://localhost:8000/api/notes/', requestBody, {
+      headers: {
+        'Content-Type': 'application/json',
+        'Authorization': `Bearer ${authStore.accessToken}`
       }
+    });
+    console.log('Notiz erfolgreich gespeichert', response.data);
+    alert("Notiz erfolgreich gespeichert!");
+    router.push('/log'); 
+  } catch (error) {
+    console.error('Fehler beim Speichern der Notiz', error);
+    alert("Fehler beim Speichern der Notiz!");
+  }
+};
 
-      const requestBody = {
-        date: new Date().toISOString().split('T')[0], // YYYY-MM-DD format
-        content: notes.value,
-        user: 1
-      };
-
-      try {
-        const response = await axios.post('http://localhost:8000/api/notes/', requestBody, {
-          headers: {
-            'Content-Type': 'application/json'
-          }
-        });
-        console.log('Notiz erfolgreich gespeichert', response.data);
-        alert("Notiz erfolgreich gespeichert!");
-        router.push('/some-page'); 
-      } catch (error) {
-        console.error('Fehler beim Speichern der Notiz', error);
-        alert("Fehler beim Speichern der Notiz!");
-      }
-    };
 
     return {
       notes,
