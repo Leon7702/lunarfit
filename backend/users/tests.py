@@ -27,7 +27,10 @@ class RegisterTest(APITestCase):
         assert response.status_code == status.HTTP_400_BAD_REQUEST
 
 
-class UserPermissionTest(APITestCase):
+class UserProfileTest(APITestCase):
+    # loads the users/fixtures/contraceptives.yaml
+    fixtures = ["contraceptives"]
+   
     def setUp(self):
         self.user1 = User.objects.create_user(
             email="user1@example.com", password="string"
@@ -182,6 +185,22 @@ class UserPermissionTest(APITestCase):
 
     def test_user_cannot_read_other_profile_data(self):
         self.client.force_authenticate(user=self.user1)
-        print(self.user2.profile)
         response = self.client.get(f"/api/users/profile/{self.user2.id}/")
         assert response.status_code == status.HTTP_403_FORBIDDEN
+
+    def test_get_contraceptives_list_404_regression(self):
+        """
+        Regression test for the contraceptive routes.
+        The router shadowed the profile/contraceptive route when it was added after /profile.
+        The endpoint was still shown in the schema, but resulted in a 404 when trying to retrieve the list.
+        Routing profile/contraceptive before profile resolved that.
+        """
+        self.client.force_authenticate(user=self.user1)
+        response = self.client.get(f"/api/users/profile/contraceptive/")
+        assert response.status_code == status.HTTP_200_OK
+
+    def test_get_contraceptives_list_fixture(self):
+        self.client.force_authenticate(user=self.user1)
+        response = self.client.get(f"/api/users/profile/contraceptive/")
+        # 5 is the number of hormonal contraceptives currently provided by the default fixture
+        assert response.data["count"] >= 5

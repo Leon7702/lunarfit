@@ -14,8 +14,10 @@ from .views import (
 
 
 router = routers.DefaultRouter()
-router.register(r"profile", ProfileViewSet, "profile")
+# The order of routing seems to matter here.
+# If profile is registerd before profile/contraceptive the schema picks up the endpoint, but the route returns 404
 router.register(r"profile/contraceptive", ContraceptiveViewSet, "contraceptive")
+router.register(r"profile", ProfileViewSet, "profile")
 router.register(r"onboarding", OnboardingViewSet, "onboarding")
 
 urlpatterns = [

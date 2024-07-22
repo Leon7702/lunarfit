@@ -97,7 +97,7 @@ class ContraceptiveViewSet(viewsets.ModelViewSet):
     Contraceptive keywords that are saved in the profile.
     """
 
-    queryset = Contraceptive.objects.all()
+    queryset = Contraceptive.objects.all().order_by("pk")
     serializer_class = ContraceptiveSerializer
     http_method_names = ["get"]
     permission_classes = [IsAuthenticated]
