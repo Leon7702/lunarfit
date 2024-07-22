@@ -6,7 +6,6 @@ from django.contrib.auth.models import (
 from django.db import models
 from django.db.models.signals import post_save
 from django.dispatch import receiver
-from django.core.validators import MinValueValidator, MaxValueValidator
 
 
 class UserManager(BaseUserManager):
@@ -28,8 +27,6 @@ class UserManager(BaseUserManager):
 
 class Contraceptive(models.Model):
     name = models.CharField(max_length=50)
-    description = models.CharField(max_length=512)
-    show_hint = models.BooleanField(default=False)
 
     def __str__(self):
         return self.name
@@ -51,7 +48,7 @@ class User(AbstractBaseUser, PermissionsMixin):
 
 class Profile(models.Model):
     user = models.OneToOneField(User, on_delete=models.CASCADE, primary_key=True)
-    finished_onboarding = models.BooleanField(default=False)
+    onboarding_finished = models.BooleanField(default=False)
     first_name = models.CharField(max_length=50, blank=True)
     last_name = models.CharField(max_length=50, blank=True)
     birthdate = models.DateField(null=True, blank=True)
@@ -77,62 +74,24 @@ def create_user_profile(sender, instance, created, **kwargs):
 
 @receiver(post_save, sender=User)
 def save_user_profile(sender, instance, **kwargs):
-    instance.profile.save
+    instance.profile.save()
 
 
-class MenstrualCycle(models.Model):
-    user = models.ForeignKey(User, on_delete=models.CASCADE)
-    start = models.DateField()
-    end = models.DateField()
+class Onboarding(models.Model):
+    """
+    This model separates onboarding data from the user profile, as it is only used during the initial months.
+    As more data becomes available, rolling averages should be used instead of the initial estimates.
+    """
 
-    def __str__(self):
-        return f"{self.cycle_id}, {self.user.email}"
-
-
-class Phase(models.Model):
-    PHASES = [(0, 'Menstruation'), (1, 'Follicular'), (2, 'Ovulation'), (3, 'Early Luteal'), (4, 'Late Luteal')]
-    cycle_id = models.ForeignKey(MenstrualCycle, on_delete=models.CASCADE)
-    start = models.DateField()
-    end = models.DateField()
-    phase_number = models.PositiveIntegerField(choices=PHASES)
-
-    def __str__(self):
-        return f"{self.phase_number}, {self.cycle_id}, {self.user.email}"
+    user = models.OneToOneField(User, on_delete=models.CASCADE, primary_key=True)
+    workout_frequency = models.PositiveSmallIntegerField()
+    workout_duration = models.PositiveSmallIntegerField()
+    workout_intensity = models.PositiveSmallIntegerField()
+    cycle_duration = models.PositiveSmallIntegerField()
+    menstruation_duration = models.PositiveSmallIntegerField()
 
 
-class SymptomCategory(models.Model):
-    name = models.CharField(max_length=24, null=False)
-    description = models.CharField(max_length=512)
-
-    def __str__(self):
-        return f"{self.name}, {self.description}, {self.symptom_category}"
-
-
-class Symptom(models.Model):
-    user = models.ForeignKey(User, on_delete=models.CASCADE)
-    symptom_category = models.ForeignKey(SymptomCategory, on_delete=models.CASCADE) 
-    date = models.DateField()
-    value  = models.PositiveSmallIntegerField(validators=[MinValueValidator(1), MaxValueValidator(6)])
-
-    def __str__(self):
-        return f"{self.day}, {self.value}, {self.symptom_category}"
-
-
-class MedicationCategory(models.Model):
-    name = models.CharField(max_length=24)
-    description = models.CharField(max_length=512)
-    interfered_days = models.IntegerField()
-    contraception = models.BooleanField()
-
-
-class Medication(models.Model):
-     user = models.ForeignKey(User, on_delete=models.CASCADE)
-     start = models.DateField()
-     end = models.DateField()
-     medication_id = models.ForeignKey(MedicationCategory, on_delete=models.CASCADE)
-
-
-class  Note(models.Model):
-    user = models.ForeignKey(User, on_delete=models.CASCADE)
-    date = models.DateField()
-    content = models.CharField(max_length=1024)
+@receiver(post_save, sender=Onboarding)
+def finish_onboarding(sender, instance, created, **kwargs):
+    instance.user.profile.onboarding_finished = True
+    instance.user.profile.save()

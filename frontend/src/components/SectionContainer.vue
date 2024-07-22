@@ -6,11 +6,12 @@
     </div>
     <div class="section-list">
       <div class="q-pa-md">
-        <div class="text-blue q-gutter-l">
+        <div class="emoji-wrapper q-gutter-l">
           <q-spinner v-if="loading" color="primary" size="2em" />
-          <span v-else v-for="emoji in emojis" :key="emoji" class="emoji">
-            {{ emoji }}
-          </span>
+          <div v-else v-for="item in emojis" :key="item.emoji" class="emoji-container">
+            <span class="emoji">{{ item.emoji }}</span>
+            <span class="emoji-label">{{ abbreviateLabel(item.label) }}</span>
+          </div>
         </div>
       </div>
     </div>
@@ -39,19 +40,39 @@ export default {
     },
     emojis: {
       type: Array,
-      required: true
+      required: true,
+      validator: value => value.every(item => 'emoji' in item && 'label' in item)
     },
     loading: {
       type: Boolean,
       default: false
     }
+  },
+  methods: {
+    abbreviateLabel(label) {
+      const maxLength = 8;
+      return label.length > maxLength ? label.substring(0, maxLength) + '...' : label;
+    }
   }
 };
 </script>
 
-<style>
+<style scoped>
+a {
+  color: #50c1ba;
+  text-decoration: none;
+}
+
+a:visited {
+  color: #50c1ba;
+}
+
+a:hover {
+  text-decoration: none;
+}
+
 .section-container {
-  margin: 20px auto;
+  margin: 1.25rem auto;
   /* Center container with top margin */
 }
 
@@ -60,10 +81,10 @@ export default {
   justify-content: space-between;
   align-items: center;
   color: #000;
-  font-size: 16px;
+  font-size: 1rem;
   font-style: normal;
   font-weight: 600;
-  line-height: 21px;
+  line-height: 1.3125rem;
   /* 150% */
 }
 
@@ -72,16 +93,44 @@ export default {
   justify-content: center;
   align-items: center;
   color: #000;
-  font-size: 16px;
+  font-size: 1rem;
   font-style: normal;
   font-weight: 600;
-  line-height: 21px;
+  line-height: 1.3125rem;
   /* 150% */
 }
 
+.emoji-wrapper {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  align-items: center;
+}
+
+.emoji-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  width: 4rem;
+  height: 4rem;
+  margin: 0.5rem;
+  padding: 0.5rem;
+  box-shadow: 0 0.125rem 0.25rem rgba(0, 0, 0, 0.08);
+  border-radius: 0.5rem;
+  background-color: #fff;
+}
+
 .emoji {
-  font-size: 28px;
+  font-size: 1.75rem;
   /* Adjust size as needed */
-  margin: 0 4px;
+}
+
+.emoji-label {
+  font-size: 0.775rem;
+  margin-top: 0.15rem;
+  text-align: center;
+  overflow: hidden;
+  text-overflow: ellipsis;
 }
 </style>

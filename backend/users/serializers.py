@@ -2,18 +2,7 @@ from django.contrib.auth import authenticate
 from rest_framework import exceptions, serializers
 from rest_framework_simplejwt.serializers import TokenObtainPairSerializer
 
-from .models import (
-    Contraceptive,
-    Medication,
-    MedicationCategory,
-    MenstrualCycle,
-    Note,
-    Phase,
-    Profile,
-    Symptom,
-    SymptomCategory,
-    User,
-)
+from .models import Profile, User, Contraceptive, Onboarding
 
 
 class UserSerializer(serializers.HyperlinkedModelSerializer):
@@ -67,51 +56,13 @@ class CustomTokenObtainPairSerializer(TokenObtainPairSerializer):
             )
 
 
-class PhaseSerializer(serializers.ModelSerializer):
-    class Meta:
-        model = Phase
-        fields = "__all__"
-
-
-class MenstrualCycleSerializer(serializers.ModelSerializer):
-    phases = PhaseSerializer(many=True, read_only=True)
-
-    class Meta:
-        model = MenstrualCycle
-        fields = "__all__"
-
-
-class SymptomSerializer(serializers.ModelSerializer):
-    class Meta:
-        model = Symptom
-        fields = "__all__"
-
-
-class SymptomCategorySerializer(serializers.ModelSerializer):
-    class Meta:
-        model = SymptomCategory
-        fields = "__all__"
-
-
-class MedicationCategorySerializer(serializers.ModelSerializer):
-    class Meta:
-        model = MedicationCategory
-        fields = "__all__"
-
-
-class MedicationSerializer(serializers.ModelSerializer):
-    class Meta:
-        model = Medication
-        fields = "__all__"
-
-
-class NoteSerializer(serializers.ModelSerializer):
-    class Meta:
-        model = Note
-        fields = "__all__"
-
-
 class ContraceptiveSerializer(serializers.ModelSerializer):
     class Meta:
         model = Contraceptive
+        fields = "__all__"
+
+
+class OnboardingSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = Onboarding
         fields = "__all__"

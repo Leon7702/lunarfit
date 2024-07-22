@@ -148,9 +148,9 @@
 
 <script>
 import axios from 'axios';
-import { ref } from 'vue';
+import { ref, onMounted } from 'vue';
 import PhaseInformation from 'src/components/PhaseInformation.vue';
-import { calculateCycleAndPhases, calculateCurrentDay } from 'src/utils/cyclePhaseCalculator.js';
+import { calculateCycleAndPhases, calculateCurrentDay, getCurrentCycle } from 'src/utils/cyclePhaseCalculator.js';
 
 export default {
   setup() {
@@ -178,44 +178,56 @@ export default {
 
     const fetchData = async () => {
       try {
-        const response = await axios.get('http://localhost:3000/menstrualcycle/');
+        const response = await axios.get('http://localhost:3000/cycles/');
         const cycleData = response.data;
-        const calculatedLengths = calculateCycleAndPhases(cycleData);
-
-        cycleLength.value = calculatedLengths.cycleLength;
-        calculateLengthPortion(calculatedLengths);
-
         const today = new Date().toISOString().split('T')[0]; // Use the current date in production
         // const today = "2024-07-13"; // For testing, set a specific date instead of the current date
-        currentDay.value = calculateCurrentDay(cycleData.start, today);
+        // const today = "2024-05-05";  // for testing with a specific date - cycle 0
+        // const today = "2024-06-09";  // for testing with a specific date - cycle 1
+        // const today = "2024-11-11";  // for testing with a specific date - no cycle found
 
-        console.log('Menstruation:', roundToTwoDecimals(mensLengthPortion.value));
-        console.log('Follicular:', roundToTwoDecimals(mensLengthPortion.value + follicularLengthPortion.value));
-        console.log('Ovulation:', roundToTwoDecimals(mensLengthPortion.value + follicularLengthPortion.value + ovulationLengthPortion.value));
-        console.log('Early Luteal:', roundToTwoDecimals(mensLengthPortion.value + follicularLengthPortion.value + ovulationLengthPortion.value + earlyLutealLengthPortion.value));
-        console.log('Late Luteal:', roundToTwoDecimals(mensLengthPortion.value + follicularLengthPortion.value + ovulationLengthPortion.value + earlyLutealLengthPortion.value + lateLutealLengthPortion.value));
+        const currentCycle = getCurrentCycle(cycleData, today);
 
-        // Calculate currentPhase depending on phaseProportion
-        const currentPhase = roundToTwoDecimals((currentDay.value / cycleLength.value) * 100);
-        console.log('Current Phase:', currentPhase);
-        if (currentPhase <= roundToTwoDecimals(mensLengthPortion.value)) {
-          slide.value = 'menstruation';
-        } else if (currentPhase <= roundToTwoDecimals(mensLengthPortion.value + follicularLengthPortion.value)) {
-          slide.value = 'follicular';
-        } else if (currentPhase <= roundToTwoDecimals(mensLengthPortion.value + follicularLengthPortion.value + ovulationLengthPortion.value)) {
-          slide.value = 'ovulation';
-        } else if (currentPhase <= roundToTwoDecimals(mensLengthPortion.value + follicularLengthPortion.value + ovulationLengthPortion.value + earlyLutealLengthPortion.value)) {
-          slide.value = 'lutealEarly';
+        if (currentCycle) {
+          const calculatedLengths = calculateCycleAndPhases(currentCycle);
+
+          cycleLength.value = calculatedLengths.cycleLength;
+          calculateLengthPortion(calculatedLengths);
+
+          currentDay.value = calculateCurrentDay(currentCycle.start, today);
+
+          console.log('Menstruation:', roundToTwoDecimals(mensLengthPortion.value));
+          console.log('Follicular:', roundToTwoDecimals(mensLengthPortion.value + follicularLengthPortion.value));
+          console.log('Ovulation:', roundToTwoDecimals(mensLengthPortion.value + follicularLengthPortion.value + ovulationLengthPortion.value));
+          console.log('Early Luteal:', roundToTwoDecimals(mensLengthPortion.value + follicularLengthPortion.value + ovulationLengthPortion.value + earlyLutealLengthPortion.value));
+          console.log('Late Luteal:', roundToTwoDecimals(mensLengthPortion.value + follicularLengthPortion.value + ovulationLengthPortion.value + earlyLutealLengthPortion.value + lateLutealLengthPortion.value));
+
+          // Calculate currentPhase depending on phaseProportion
+          const currentPhase = roundToTwoDecimals((currentDay.value / cycleLength.value) * 100);
+          console.log('Current Phase:', currentPhase);
+          if (currentPhase <= roundToTwoDecimals(mensLengthPortion.value)) {
+            slide.value = 'menstruation';
+          } else if (currentPhase <= roundToTwoDecimals(mensLengthPortion.value + follicularLengthPortion.value)) {
+            slide.value = 'follicular';
+          } else if (currentPhase <= roundToTwoDecimals(mensLengthPortion.value + follicularLengthPortion.value + ovulationLengthPortion.value)) {
+            slide.value = 'ovulation';
+          } else if (currentPhase <= roundToTwoDecimals(mensLengthPortion.value + follicularLengthPortion.value + ovulationLengthPortion.value + earlyLutealLengthPortion.value)) {
+            slide.value = 'lutealEarly';
+          } else {
+            slide.value = 'lutealLate';
+          }
+          console.log('Selected Slide:', slide.value);
         } else {
-          slide.value = 'lutealLate';
+          console.error('No cycle found for today\'s date');
         }
-        console.log('Selected Slide:', slide.value);
       } catch (error) {
         console.error('Failed to fetch data:', error);
       }
     };
 
-    fetchData();
+    onMounted(() => {
+      fetchData();
+    });
 
     return {
       slide,

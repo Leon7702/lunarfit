@@ -24,17 +24,17 @@
       "entry_id": 3,
       "user_id": 1,
       "day": "2024-07-10",
-      "mood": 1,
-      "complaints": 4,
+      "mood": 3,
+      "complaints": 2,
       "recovery": 2,
       "trs_acwr": 2,
-      "acwr": 1.1
+      "acwr": 1.3
     },
     {
       "entry_id": 4,
       "user_id": 1,
       "day": "2024-07-11",
-      "mood": 5,
+      "mood": 4,
       "complaints": 1,
       "recovery": 5,
       "trs_acwr": 4,
@@ -64,8 +64,8 @@
       "entry_id": 7,
       "user_id": 1,
       "day": "2024-07-14",
-      "mood": 6,
-      "complaints": 1,
+      "mood": 4,
+      "complaints": 4,
       "recovery": 4,
       "trs_acwr": 6,
       "acwr": 1.6
@@ -74,7 +74,7 @@
       "entry_id": 8,
       "user_id": 1,
       "day": "2024-07-15",
-      "mood": 1,
+      "mood": 3,
       "complaints": 3,
       "recovery": 4,
       "trs_acwr": 5,
@@ -85,7 +85,7 @@
       "user_id": 1,
       "day": "2024-07-16",
       "mood": 2,
-      "complaints": 2,
+      "complaints": 3,
       "recovery": 4,
       "trs_acwr": 3,
       "acwr": 1.8
@@ -95,8 +95,8 @@
       "user_id": 1,
       "day": "2024-07-17",
       "mood": 0,
-      "complaints": 2,
-      "recovery": 5,
+      "complaints": 4,
+      "recovery": 6,
       "trs_acwr": 3,
       "acwr": 1.3
     },
@@ -104,11 +104,11 @@
       "entry_id": 11,
       "user_id": 1,
       "day": "2024-07-18",
-      "mood": 4,
-      "complaints": 3,
+      "mood": 3,
+      "complaints": 4,
       "recovery": 2,
       "trs_acwr": 4,
-      "acwr": 1.7
+      "acwr": 0.6
     },
     {
       "entry_id": 12,
@@ -116,29 +116,40 @@
       "day": "2024-07-19",
       "mood": 3,
       "complaints": 4,
-      "recovery": 3,
+      "recovery": 5,
       "trs_acwr": 6,
-      "acwr": 2
+      "acwr": 2.0
     },
+
     {
       "entry_id": 13,
       "user_id": 1,
-      "day": "2024-07-20",
-      "mood": 1,
-      "complaints": 3,
+      "day": "2024-07-21",
+      "mood": 4,
+      "complaints": 5,
       "recovery": 4,
-      "trs_acwr": 2,
-      "acwr": 1.3
+      "trs_acwr": 3,
+      "acwr": 1.2
     },
     {
       "entry_id": 14,
       "user_id": 1,
-      "day": "2024-07-21",
+      "day": "2024-07-22",
       "mood": 2,
+      "complaints": 5,
+      "recovery": 3,
+      "trs_acwr": 4,
+      "acwr": 1.5
+    },
+    {
+      "entry_id": 15,
+      "user_id": 1,
+      "day": "2024-07-25",
+      "mood": 3,
       "complaints": 4,
-      "recovery": 5,
-      "trs_acwr": 1,
-      "acwr": 1.2
+      "recovery": 2,
+      "trs_acwr": 2,
+      "acwr": 0.9
     }
   ],
   "usersdata": {
@@ -203,5 +214,139 @@
         "phase_number": 4
       }
     ]
-  }
+  },
+  "cycles": [
+    {
+      "id": 0,
+      "phases": [
+        {
+          "start": "2024-04-22",
+          "end": "2024-04-25",
+          "phase_number": 0
+        },
+        {
+          "start": "2024-04-26",
+          "end": "2024-05-07",
+          "phase_number": 1
+        },
+        {
+          "start": "2024-05-08",
+          "end": "2024-05-08",
+          "phase_number": 2
+        },
+        {
+          "start": "2024-05-09",
+          "end": "2024-05-17",
+          "phase_number": 3
+        },
+        {
+          "start": "2024-05-18",
+          "end": "2024-05-22",
+          "phase_number": 4
+        }
+      ],
+      "start": "2024-04-22",
+      "end": "2024-05-22",
+      "user": 1
+    },
+    {
+      "id": 1,
+      "phases": [
+        {
+          "start": "2024-05-23",
+          "end": "2024-05-25",
+          "phase_number": 0
+        },
+        {
+          "start": "2024-05-26",
+          "end": "2024-06-08",
+          "phase_number": 1
+        },
+        {
+          "start": "2024-06-09",
+          "end": "2024-06-09",
+          "phase_number": 2
+        },
+        {
+          "start": "2024-06-10",
+          "end": "2024-06-18",
+          "phase_number": 3
+        },
+        {
+          "start": "2024-06-19",
+          "end": "2024-06-23",
+          "phase_number": 4
+        }
+      ],
+      "start": "2024-05-23",
+      "end": "2024-06-23",
+      "user": 1
+    },
+    {
+      "id": 2,
+      "phases": [
+        {
+          "start": "2024-06-24",
+          "end": "2024-06-27",
+          "phase_number": 0
+        },
+        {
+          "start": "2024-06-28",
+          "end": "2024-07-12",
+          "phase_number": 1
+        },
+        {
+          "start": "2024-07-13",
+          "end": "2024-07-13",
+          "phase_number": 2
+        },
+        {
+          "start": "2024-07-14",
+          "end": "2024-07-22",
+          "phase_number": 3
+        },
+        {
+          "start": "2024-07-23",
+          "end": "2024-07-27",
+          "phase_number": 4
+        }
+      ],
+      "start": "2024-06-24",
+      "end": "2024-07-27",
+      "user": 1
+    },
+    {
+      "id": 3,
+      "phases": [
+        {
+          "start": "2024-07-28",
+          "end": "2024-07-31",
+          "phase_number": 0
+        },
+        {
+          "start": "2024-08-01",
+          "end": "2024-08-15",
+          "phase_number": 1
+        },
+        {
+          "start": "2024-08-16",
+          "end": "2024-08-16",
+          "phase_number": 2
+        },
+        {
+          "start": "2024-08-17",
+          "end": "2024-08-25",
+          "phase_number": 3
+        },
+        {
+          "start": "2024-08-26",
+          "end": "2024-08-30",
+          "phase_number": 4
+        }
+      ],
+      "start": "2024-07-28",
+      "end": "2024-08-30",
+      "user": 1
+    }
+  ]
 }

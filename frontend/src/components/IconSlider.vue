@@ -1,23 +1,27 @@
 <template>
-  <div class="row">
-    <div class="item icon-container">
-      <span class="icon">{{ icon }}</span>
-    </div>
-    <div class="item text-container" v-if="!showSlider">
-      <span class="text">{{ text }}</span>
-    </div>
-    <div class="item button-container" v-if="!showSlider">
-      <button @click="toggleSlider" class="track-button">{{ $t('track') }}</button>
-    </div>
-    <div class="item slider-container" v-if="showSlider">
-      <q-slider v-model="localValue" :min="1" :max="6" markers marker-labels class="slider" />
-      <button @click="cancelTracking" class="cancel-button">{{ $t('cancel') }}</button>
-    </div>
-  </div>
+  <q-card class="q-pa-none q-mb-xs q-mt-xs" style="height: 60px; display: flex; align-items: center;">
+    <q-card-section class="row no-wrap q-gutter-sm q-px-none items-center" style="width: 100%;">
+      <q-avatar size="40px" class="q-mr-sm">
+        <span class="icon">{{ icon }}</span>
+      </q-avatar>
+
+      <q-item-section class="text-container" v-if="!showSlider">
+        <q-item-label class="text">{{ truncatedText }}</q-item-label>
+      </q-item-section>
+
+      <q-item-section class="slider-container" v-if="showSlider">
+        <q-slider v-model="localValue" :min="1" :max="6" markers marker-labels class="slider q-mr-sm" />
+      </q-item-section>
+
+      <q-item-section class="button-container">
+        <q-btn v-if="!showSlider" color="primary" size="sm" :label="$t('track')" @click="toggleSlider"
+          class="track-button" />
+        <q-btn v-if="showSlider" color="negative" size="sm" :label="$t('cancel')" @click="cancelTracking"
+          class="cancel-button" />
+      </q-item-section>
+    </q-card-section>
+  </q-card>
 </template>
-
-
-
 
 <script>
 export default {
@@ -43,6 +47,12 @@ export default {
       originalValue: this.value
     };
   },
+  computed: {
+    truncatedText() {
+      const maxLength = 20; // Set your desired max length here
+      return this.text.length > maxLength ? this.text.substring(0, maxLength) + '...' : this.text;
+    }
+  },
   watch: {
     value(newVal) {
       this.localValue = newVal;
@@ -62,56 +72,33 @@ export default {
     }
   }
 };
-
 </script>
 
-<style>
-.row {
-  display: flex;
-  align-items: center;
-  border-bottom: 1px solid #ccc;
-  padding: 0.625rem 0;
-  height: 3.75rem;
-}
-
-.item {
-  display: flex;
-  align-items: center;
-  height: 100%;
-}
-
-.icon-container {
-  flex: 0 0 2.5rem;
-  justify-content: center;
-}
-
+<style scoped>
 .text-container {
   flex: 1;
-  justify-content: flex-start;
-  color: #000;
-  font-size: 1rem;
-  font-weight: 400;
-  line-height: 1.5rem;
-  /* 24px */
+  font-family: 'Inter', sans-serif;
   padding-left: 0.9375rem;
-  /* 15px */
+}
+
+.text {
+  font-size: 1rem;
+  color: #000;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
 }
 
 .button-container {
-  flex: 0 0 5rem;
-  /* 80px */
+  display: flex;
   justify-content: center;
+  flex: 0 0 5rem;
 }
 
 .track-button {
   background-color: #50c1ba;
   color: white;
-  border: none;
-  padding: 0.3125rem 0.625rem;
-  /* 5px 10px */
-  cursor: pointer;
   border-radius: 0.25rem;
-  /* 4px */
 }
 
 .track-button:hover {
@@ -122,38 +109,24 @@ export default {
   display: flex;
   align-items: center;
   flex: 1;
-  padding: 0 0.9375rem;
-  /* 15px */
+  padding-left: 0.9375rem;
   height: 100%;
 }
 
 .icon {
   font-size: 1.875rem;
-  /* 30px */
-}
-
-.text {
-  font-size: 1rem;
-  /* 16px */
 }
 
 .slider {
   flex: 1;
   margin-right: 0.9375rem;
-  /* 15px */
   max-height: 2.5rem;
-  /* 40px */
 }
 
 .cancel-button {
   background-color: #f44336;
   color: white;
-  border: none;
-  padding: 0.3125rem 0.625rem;
-  /* 5px 10px */
-  cursor: pointer;
   border-radius: 0.25rem;
-  /* 4px */
 }
 
 .cancel-button:hover {

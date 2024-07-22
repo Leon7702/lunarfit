@@ -1,37 +1,31 @@
-from django_filters import DateFromToRangeFilter, FilterSet, DateFilter
-from django_filters.rest_framework import DjangoFilterBackend
+from drf_spectacular.utils import extend_schema_view, extend_schema
 from rest_framework import viewsets
 from rest_framework.generics import CreateAPIView, ListAPIView, RetrieveAPIView
 from rest_framework.mixins import DestroyModelMixin, UpdateModelMixin
 from rest_framework.permissions import AllowAny, IsAdminUser, IsAuthenticated
 from rest_framework_simplejwt.views import TokenObtainPairView
 
-from .models import (
-    Medication,
-    MedicationCategory,
-    MenstrualCycle,
-    Note,
-    Phase,
-    Profile,
-    SymptomCategory,
-    Symptom,
-    User,
-    Contraceptive,
-)
+from .models import Profile, User, Onboarding, Contraceptive
 from .permissions import UserPermission
 from .serializers import (
     CustomTokenObtainPairSerializer,
-    MedicationCategorySerializer,
-    MedicationSerializer,
-    MenstrualCycleSerializer,
-    NoteSerializer,
-    PhaseSerializer,
     ProfileSerializer,
-    SymptomSerializer,
-    SymptomCategorySerializer,
     UserSerializer,
+    OnboardingSerializer,
     ContraceptiveSerializer,
 )
+
+
+class UserModelViewSet(viewsets.ModelViewSet):
+    permission_classes = [IsAuthenticated]
+
+    def get_queryset(self):
+        model = self.serializer_class.Meta.model
+        # schema generation see https://drf-spectacular.readthedocs.io/en/latest/faq.html#my-get-queryset-depends-on-some-attributes-not-available-at-schema-generation-time
+        if getattr(self, "swagger_fake_view", False):  # drf-yasg comp
+            return model.objects.none()
+
+        return model.objects.filter(user=self.request.user).order_by("-pk")
 
 
 class UserCreateView(CreateAPIView):
@@ -63,120 +57,47 @@ class UserView(RetrieveAPIView, UpdateModelMixin, DestroyModelMixin):
 
 class CustomTokenObtainPairView(TokenObtainPairView):
     serializer_class = CustomTokenObtainPairSerializer
+    permission_classes = [AllowAny]
 
 
+@extend_schema_view(
+    retrieve=extend_schema(summary="Retrieve profile by user-id"),
+    partial_update=extend_schema(summary="Update profile by user-id"),
+)
 class ProfileViewSet(viewsets.ModelViewSet):
+    """
+    The user profile contains most of the user information, apart from the login credentials.
+    {user} is the id of the corresponding user.
+
+    To delete a Profile, delete the corresponding [user](https://www.youtube.com/watch?v=dQw4w9WgXcQ).
+    """
+
     queryset = Profile.objects.all()
     serializer_class = ProfileSerializer
     http_method_names = ["get", "patch"]
+    permission_classes = [IsAuthenticated, UserPermission]
 
 
-class CycleFilterSet(FilterSet):
+class OnboardingViewSet(viewsets.ModelViewSet):
+    """
+    Onboarding data that is separate from the user profile, as it is only used during the initial months.
+    As more data becomes available, rolling averages should be used instead of the initial estimates.
+    """
 
-    start = DateFromToRangeFilter()
-    end = DateFromToRangeFilter()
-
-    class Meta:
-        model = MenstrualCycle
-        fields = ["start", "end"]
-
-
-class MenstrualCycleViewSet(viewsets.ModelViewSet):
-    """Endpoint to list users' menstrual cycle(s) in the specified date range.
-    For receiving only cycle of current day 'start_after' is current date."""
-
-    serializer_class = MenstrualCycleSerializer
-    queryset = MenstrualCycle.objects.all()
-    permission_classes = [IsAuthenticated]
-    http_method_names = ["get"]
-    filter_backends = [DjangoFilterBackend]
-    filterset_class = CycleFilterSet
+    queryset = Onboarding.objects.all()
+    serializer_class = OnboardingSerializer
+    http_method_names = ["get", "post", "patch"]
 
 
-class PhaseViewSet(viewsets.ModelViewSet):
-    serializer_class = PhaseSerializer
-    queryset = Phase.objects.all()
-    permission_classes = [IsAuthenticated]
+@extend_schema_view(
+    list=extend_schema(summary="List known contraceptive keywords"),
+)
+class ContraceptiveViewSet(viewsets.ModelViewSet):
+    """
+    Contraceptive keywords that are saved in the profile.
+    """
 
-class SymptomFilterSet(FilterSet):
-
-    start = DateFromToRangeFilter()
-    end = DateFromToRangeFilter()
-
-    class Meta:
-        model = Symptom
-        fields = ["start", "end"]
-
-
-class SymptomViewSet(viewsets.ModelViewSet):
-    serializer_class = SymptomSerializer
-    # queryset = Symptom.objects.all()
-    permission_classes = [IsAuthenticated]
-    http_method_names = ["get", "post", "delete"]
-    filter_backends = [DjangoFilterBackend]
-    filterset_class = SymptomFilterSet
-
-    def get_queryset(self):
-        return Symptom.objects.all().filter(user=self.request.user)
-    
-
-class SymptomCategoryViewSet(viewsets.ModelViewSet):
-    serializer_class = SymptomCategorySerializer
-    queryset = SymptomCategory.objects.all()
-    permission_classes = [IsAuthenticated]
-    http_method_names = ["get", "post"]
-
-
-class MedicationFilterSet(FilterSet):
-
-    start = DateFromToRangeFilter()
-    end = DateFromToRangeFilter()
-
-    class Meta:
-        model = Medication
-        fields = ["start", "end"]
-
-
-class MedicationViewSet(viewsets.ModelViewSet):
-    serializer_class = MedicationSerializer
-    #queryset = Medication.objects.all()
-    permission_classes = [IsAuthenticated]
-    http_method_names = ["get", "post", "delete"]
-    filter_backends = [DjangoFilterBackend]
-    filterset_class = MedicationFilterSet
-
-    def get_queryset(self):
-        return Medication.objects.all().filter(user=self.request.user)
-
-
-class MedicationCategoryViewSet(viewsets.ModelViewSet):
-    serializer_class = MedicationCategorySerializer
-    queryset = MedicationCategory.objects.all()
-    permission_classes = [IsAuthenticated]
-    http_method_names = ["get", "post"]
-
-
-class NoteFilterSet(FilterSet):
-
-    start = DateFromToRangeFilter()
-    end = DateFromToRangeFilter()
-
-    class Meta:
-        model = Note
-        fields = ["start", "end"]
-
-
-class NoteViewSet(viewsets.ModelViewSet):
-    serializer_class = NoteSerializer
-    queryset = Note.objects.all()
-    permission_classes = [IsAuthenticated]
-    http_method_names = ["get", "post"]
-    filter_backends = [DjangoFilterBackend]
-    filterset_class = NoteFilterSet
-
-
-class ContraceptiveViewSet(viewsets.ModelViewSet):   
-    serializer_class = ContraceptiveSerializer
     queryset = Contraceptive.objects.all()
-    permission_classes = [IsAuthenticated]
+    serializer_class = ContraceptiveSerializer
     http_method_names = ["get"]
+    permission_classes = [IsAuthenticated]

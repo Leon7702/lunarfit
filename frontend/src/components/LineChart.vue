@@ -7,7 +7,12 @@
 <script>
 import { Line as TrsLine } from "vue-chartjs";
 import { Chart, registerables } from "chart.js";
+import 'chartjs-adapter-date-fns';
 Chart.register(...registerables);
+
+function roundUpToNextHalf(num) {
+  return Math.ceil(num * 2) / 2 + 0.5;
+}
 
 export default {
   name: "LineChart",
@@ -31,6 +36,14 @@ export default {
       type: Array,
       required: true,
     },
+    yStepSize: {
+      type: Number,
+      default: 1,
+    },
+    chartType: {
+      type: String,
+      required: true,
+    },
   },
   computed: {
     chartData() {
@@ -43,25 +56,45 @@ export default {
             borderColor: this.color,
             data: this.data,
             fill: true,
+            spanGaps: true, // This option will interpolate over gaps
           },
         ],
       };
     },
     chartOptions() {
+      const maxValues = {
+        mood: 6,
+        complaints: 6,
+        recovery: 6,
+      };
+      const maxACWR = roundUpToNextHalf(Math.max(...this.data));
+
       return {
         responsive: true,
         maintainAspectRatio: false,
         scales: {
-          y: {
-            beginAtZero: true,
-            max: 6,
-            ticks: {
-              stepSize: 1, // Definiert die Schrittgröße zwischen den Werten auf der Y-Achse
+          x: {
+            type: 'time',
+            time: {
+              unit: 'day',
+              tooltipFormat: 'yyyy-MM-dd',
             },
           },
-          // x: {
-          //   max: 6,
-          // }
+          y: {
+            beginAtZero: true,
+            max: this.chartType === 'acwr' ? maxACWR : maxValues[this.chartType],
+            ticks: {
+              stepSize: this.yStepSize,
+            },
+          },
+        },
+        plugins: {
+          legend: {
+            onClick: (e, legendItem, legend) => {
+              // This is a no-op function, preventing any action from occurring
+              // when a legend item is clicked.
+            }
+          }
         },
       };
     },
