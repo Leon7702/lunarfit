@@ -6,14 +6,16 @@ from rest_framework.request import Request
 
 class UserPermission(permissions.BasePermission):
     """
-    Custom Permissions for the User Viewset, allowing registration with POST for everyone,
-    limiting listing of all Users to admins and everything else to the object owner / admins.
-    source: https://ctrlzblog.com/user-registration-with-django-rest-framework
-            https://stackoverflow.com/questions/19313314/django-rest-framework-viewset-per-action-permissions
+    Custom Permission for the User Viewset, allowing everthing for admins,
+    but limiting access to objects that belong to the user.
+    In that case the objects model has to have a foreign key `user`.
     """
 
     def has_object_permission(
         self, request: Request, view: GenericAPIView, obj: models.Model
     ) -> bool:
+
+        if hasattr(obj, "user"):
+            return obj.user == request.user
 
         return obj == request.user or request.user.is_staff

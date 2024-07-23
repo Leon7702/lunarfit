@@ -30,7 +30,7 @@ class RegisterTest(APITestCase):
 class UserProfileTest(APITestCase):
     # loads the users/fixtures/contraceptives.yaml
     fixtures = ["contraceptives"]
-   
+
     def setUp(self):
         self.user1 = User.objects.create_user(
             email="user1@example.com", password="string"
@@ -187,6 +187,26 @@ class UserProfileTest(APITestCase):
         self.client.force_authenticate(user=self.user1)
         response = self.client.get(f"/api/users/profile/{self.user2.id}/")
         assert response.status_code == status.HTTP_403_FORBIDDEN
+
+    def test_user_can_read_own_profile_data(self):
+        self.client.force_authenticate(user=self.user1)
+        response = self.client.get(f"/api/users/profile/{self.user1.id}/")
+        assert response.status_code == status.HTTP_200_OK
+
+    def test_admin_can_read_all_profile_data(self):
+        self.client.force_authenticate(user=self.superuser)
+        response = self.client.get(f"/api/users/profile/")
+        assert response.status_code == status.HTTP_200_OK
+
+    def test_user_can_change_own_profile_data(self):
+        self.client.force_authenticate(user=self.user1)
+        new_name = "Jonathan"
+        data = {"first_name": new_name}
+        response = self.client.patch(f"/api/users/profile/{self.user1.id}/", data)
+        self.user1.refresh_from_db()
+
+        assert response.status_code == status.HTTP_200_OK
+        assert self.user1.profile.first_name == new_name
 
     def test_get_contraceptives_list_404_regression(self):
         """
