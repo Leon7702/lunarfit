@@ -144,12 +144,62 @@
     {
       "entry_id": 15,
       "user_id": 1,
+      "day": "2024-07-23",
+      "mood": 5,
+      "complaints": 3,
+      "recovery": 5,
+      "trs_acwr": 3,
+      "acwr": 1.7
+    },
+    {
+      "entry_id": 16,
+      "user_id": 1,
+      "day": "2024-07-24",
+      "mood": 4,
+      "complaints": 1,
+      "recovery": 6,
+      "trs_acwr": 2,
+      "acwr": 1.4
+    },
+    {
+      "entry_id": 17,
+      "user_id": 1,
       "day": "2024-07-25",
       "mood": 3,
       "complaints": 4,
       "recovery": 2,
       "trs_acwr": 2,
       "acwr": 0.9
+    },
+    {
+      "entry_id": 18,
+      "user_id": 1,
+      "day": "2024-07-27",
+      "mood": 5,
+      "complaints": 3,
+      "recovery": 3,
+      "trs_acwr": 1,
+      "acwr": 0.3
+    },
+    {
+      "entry_id": 19,
+      "user_id": 1,
+      "day": "2024-07-28",
+      "mood": 6,
+      "complaints": 4,
+      "recovery": 4,
+      "trs_acwr": 2,
+      "acwr": 0.5
+    },
+    {
+      "entry_id": 20,
+      "user_id": 1,
+      "day": "2024-07-29",
+      "mood": 4,
+      "complaints": 3,
+      "recovery": 3,
+      "trs_acwr": 2,
+      "acwr": 0.3
     }
   ],
   "usersdata": {
