@@ -80,9 +80,16 @@ export default {
       // Colors for the different segments of the donut chart
       const colors = {
         trs_acwr: "#50C1BA", // 1. Quadrant
-        mood: "#93EDE8", // 2. Quadrant
+        mood: "#A6EFEB", // 2. Quadrant
         recovery: "#2D8781", // 3. Quadrant
         complaints: "#9CD3D0" // 4. Quadrant
+      };
+
+      const greyColors = {
+        trs_acwr: "#E0E0E0", // 1. Quadrant unused
+        mood: "#EDEDED", // 2. Quadrant unused
+        recovery: "#E0E0E0", // 3. Quadrant unused
+        complaints: "#EDEDED" // 4. Quadrant unused
       };
 
       // Array of radius levels for the segments of the donut chart
@@ -109,11 +116,6 @@ export default {
       // Array to hold the segment objects
       const segments = [];
 
-      // Calculate the opacity of a segment based on its level
-      const calculateOpacity = (maxLevel, currentLevel) => {
-        return currentLevel <= maxLevel ? 1 : 0.3;
-      };
-
       // Loop over each key in the trsdata object
       Object.keys(trsdata).forEach((key, i) => {
         // Get the level for the current key
@@ -125,11 +127,10 @@ export default {
           segments.push({
             level: j + 1,
             radius: radiusLevels[j],
-            color: colors[key],
+            color: level >= j + 1 ? colors[key] : greyColors[key],
             strokeWidth: strokeWidths[j],
             dasharray: `${d.dash} ${d.gap}`, // Dash array for the segment stroke
             dashoffset: d.dash * i,
-            opacity: calculateOpacity(level, j + 1)
           });
         });
       });
