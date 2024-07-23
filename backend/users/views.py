@@ -3,6 +3,7 @@ from rest_framework import viewsets
 from rest_framework.generics import CreateAPIView, ListAPIView, RetrieveAPIView
 from rest_framework.mixins import DestroyModelMixin, UpdateModelMixin
 from rest_framework.permissions import AllowAny, IsAdminUser, IsAuthenticated
+from rest_framework_simplejwt.serializers import TokenObtainPairSerializer
 from rest_framework_simplejwt.views import TokenObtainPairView
 
 from .models import Profile, User, Onboarding, Contraceptive
@@ -55,6 +56,12 @@ class UserView(RetrieveAPIView, UpdateModelMixin, DestroyModelMixin):
         return self.partial_update(request, *args, **kwargs)
 
 
+@extend_schema_view(
+    post=extend_schema(
+        summary="Authentication endpoint returning a JWT",
+        responses=TokenObtainPairSerializer,
+    )
+)
 class CustomTokenObtainPairView(TokenObtainPairView):
     serializer_class = CustomTokenObtainPairSerializer
     permission_classes = [AllowAny]
@@ -72,7 +79,7 @@ class ProfileViewSet(viewsets.ModelViewSet):
     To delete a Profile, delete the corresponding [user](https://www.youtube.com/watch?v=dQw4w9WgXcQ).
     """
 
-    queryset = Profile.objects.all()
+    queryset = Profile.objects.all().order_by("pk")
     serializer_class = ProfileSerializer
     http_method_names = ["get", "patch"]
     permission_classes = [IsAuthenticated, UserPermission]
