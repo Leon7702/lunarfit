@@ -46,7 +46,7 @@
   "training": "Training",
   "mood": "Mood",
   "strain": "Strain",
-  "rest": "Rest",
+  "rest": "Recovery",
   "free": "Symptom-Free",
   "moodTrend": "Mood trend",
   "acwrTrend": "ACWR trend",
@@ -320,6 +320,12 @@
     "5": "You seem to be well recovered. You can continue your training regimen as it is.",
     "6": "You seem to be optimally recovered. You can consider increasing the training volume or intensity.",
     "today": "Your recovery status today:"
+  },
+  "yLegend": {
+    "mood": "0 = sad   —  6 = happy",
+    "acwr": "1 = very good",
+    "complaints": "0 = severe complaints   —  6 = no complaints",
+    "recovery": "0 = not recovered   —  6 = recovered"
   },
     "onboarding": {
       "start": {

@@ -335,6 +335,13 @@
     "today": "Dein heutiger Erholungszustand:"
   },
 
+  "yLegend": {
+    "mood": "0 = traurig   —  6 = glücklich",
+    "acwr": "1 = sehr gut",
+    "complaints": "0 = starke Beschwerden   —  6 = keine Beschwerden",
+    "recovery": "0 = nicht erholt   —  6 = erholt"
+  },
+
   "onboarding": {
     "start": {
       "title": "Willkommen bei LunarFit.",

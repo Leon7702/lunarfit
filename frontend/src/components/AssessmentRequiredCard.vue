@@ -1,7 +1,7 @@
 <template>
   <q-card flat bordered class="my-card">
     <q-card-section>
-      <p>{{ $t("assessmentRequired") }}</p>
+      <div class="pText">{{ $t("assessmentRequired") }}</div>
       <q-btn
         no-caps
         rounded
@@ -25,5 +25,9 @@ export default {
 .my-card {
   width: 100%;
   max-width: 100vw;
+}
+
+.pText {
+  padding-bottom: 8px;
 }
 </style>

@@ -51,7 +51,7 @@
                 </q-card>
               </div>
               <div v-else>
-                <div class="q-mt-md text-center">
+                <div class="q-mt-none text-center">
                   <AssessmentRequiredCard />
                 </div>
               </div>
@@ -69,7 +69,7 @@
           <q-scroll-area class="fit">
             <div class="column no-wrap flex-center">
               <div class="text-h6">{{ $t("mood") }}</div>
-              <div class="q-mt-md text-center">
+              <div class="q-mt-none text-center">
                 <div v-if="currentDayData">
                   <q-card flat bordered class="my-card">
                     <q-card-section>
@@ -86,7 +86,7 @@
                   <AssessmentRequiredCard />
                 </div>
                 <div class="q-pa-md">
-                  <p>{{ $t("moodInfo.today") }}</p>
+                  <div class="scoreText">{{ $t("moodInfo.today") }}</div>
                   <div class="q-gutter-y-md column justify-center items-center">
                     <q-rating
                       v-model="moodScore"
@@ -99,7 +99,7 @@
                     />
                   </div>
                 </div>
-                <div class="q-pa-sm">
+                <div class="q-px-sm q-pt-sm q-pb-none">
                   <!-- <div class="q-pb-sm">DateInput: {{ date }}</div> -->
                   <q-btn flat dense @click="openPicker" class="date-display">
                     {{ $t("selectDate") }} <q-icon name="arrow_drop_down" />
@@ -116,6 +116,7 @@
                   :yStepSize="1"
                   chartType="mood"
                 />
+                <div class="yText">{{ $t("yLegend.mood") }}</div>
               </div>
             </div>
           </q-scroll-area>
@@ -125,7 +126,7 @@
           <q-scroll-area class="fit">
             <div class="column no-wrap flex-center">
               <div class="text-h6">{{ $t("strain") }}</div>
-              <div class="q-mt-md text-center">
+              <div class="q-mt-none text-center">
                 <div v-if="currentDayData">
                   <q-card flat bordered class="my-card">
                     <q-card-section>
@@ -152,7 +153,7 @@
                 <div v-else>
                   <AssessmentRequiredCard />
                 </div>
-                <div class="q-pa-sm">
+                <div class="q-px-sm q-pt-lg q-pb-none">
                   <q-btn flat dense @click="openPicker" class="date-display">
                     {{ $t("selectDate") }} <q-icon name="arrow_drop_down" />
                     <q-popup-proxy ref="qDateProxy">
@@ -168,6 +169,7 @@
                   :yStepSize="0.5"
                   chartType="acwr"
                 />
+                <div class="yText">{{ $t("yLegend.acwr") }}</div>
               </div>
             </div>
           </q-scroll-area>
@@ -177,7 +179,7 @@
           <q-scroll-area class="fit">
             <div class="column no-wrap flex-center">
               <div class="text-h6">{{ $t("free") }}</div>
-              <div class="q-mt-md text-center">
+              <div class="q-mt-none text-center">
                 <div v-if="currentDayData">
                   <q-card flat bordered class="my-card">
                     <q-card-section>
@@ -207,7 +209,7 @@
                   <AssessmentRequiredCard />
                 </div>
                 <div class="q-pa-md">
-                  <p>{{ $t("strainInfo.today") }}</p>
+                  <div class="scoreText">{{ $t("strainInfo.today") }}</div>
                   <div class="q-gutter-y-md column justify-center items-center">
                     <q-rating
                       v-model="freeScore"
@@ -220,7 +222,7 @@
                     />
                   </div>
                 </div>
-                <div class="q-pa-sm">
+                <div class="q-px-sm q-pt-sm q-pb-none">
                   <q-btn flat dense @click="openPicker" class="date-display">
                     {{ $t("selectDate") }} <q-icon name="arrow_drop_down" />
                     <q-popup-proxy ref="qDateProxy">
@@ -236,6 +238,7 @@
                   :yStepSize="1"
                   chartType="complaints"
                 />
+                <div class="yText">{{ $t("yLegend.complaints") }}</div>
               </div>
             </div>
           </q-scroll-area>
@@ -245,7 +248,7 @@
           <q-scroll-area class="fit">
             <div class="column no-wrap flex-center">
               <div class="text-h6">{{ $t("rest") }}</div>
-              <div class="q-mt-md text-center">
+              <div class="q-mt-none text-center">
                 <div v-if="currentDayData">
                   <q-card flat bordered class="my-card">
                     <q-card-section>
@@ -257,7 +260,7 @@
                   <AssessmentRequiredCard />
                 </div>
                 <div class="q-pa-md">
-                  <p>{{ $t("restInfo.today") }}</p>
+                  <div class="scoreText">{{ $t("restInfo.today") }}</div>
                   <div class="q-gutter-y-md column justify-center items-center">
                     <q-rating
                       v-model="restScore"
@@ -270,7 +273,7 @@
                     />
                   </div>
                 </div>
-                <div class="q-pa-sm">
+                <div class="q-px-sm q-pt-sm q-pb-none">
                   <q-btn flat dense @click="openPicker" class="date-display">
                     {{ $t("selectDate") }} <q-icon name="arrow_drop_down" />
                     <q-popup-proxy ref="qDateProxy">
@@ -286,6 +289,7 @@
                   :yStepSize="1"
                   chartType="recovery"
                 />
+                <div class="yText">{{ $t("yLegend.recovery") }}</div>
               </div>
             </div>
           </q-scroll-area>
@@ -590,5 +594,15 @@ ul {
 
 .q-icon {
   margin-left: 5px;
+}
+
+.yText {
+  font-size: x-small;
+  color: grey;
+  padding-top: 5px;
+}
+
+.scoreText {
+  padding-bottom: 5px;
 }
 </style>

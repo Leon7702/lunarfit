@@ -146,9 +146,9 @@
       "user_id": 1,
       "day": "2024-07-23",
       "mood": 5,
-      "complaints": 3,
-      "recovery": 5,
-      "trs_acwr": 3,
+      "complaints": 5,
+      "recovery": 6,
+      "trs_acwr": 4,
       "acwr": 1.7
     },
     {
