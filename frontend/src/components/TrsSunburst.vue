@@ -8,6 +8,10 @@
           cx="21" cy="21" :r="segment.radius" fill="transparent" :stroke="segment.color"
           :stroke-width="segment.strokeWidth" :stroke-dasharray="segment.dasharray"
           :stroke-dashoffset="segment.dashoffset" :style="{ opacity: segment.opacity }"></circle>
+        <!-- Add horizontal and vertical white lines -->
+        <line x1="0" y1="21" x2="42" y2="21" stroke="#fff" stroke-width="0.25" />
+        <line x1="21" y1="0" x2="21" y2="42" stroke="#fff" stroke-width="0.25" />
+
         <!-- Text element for displaying the score in the middle of the donut chart -->
         <text x="21" y="21" text-anchor="middle" dominant-baseline="middle" font-size="2.2" font-weight="bold"
           transform="rotate(90, 21, 21)">
@@ -77,28 +81,21 @@ export default {
       }
     },
     updateSegments(trsdata) {
-      // Colors for the different segments of the donut chart
+      // Colors for the different segments of the donut chart based on radius levels
       const colors = {
-        trs_acwr: "#50C1BA", // 1. Quadrant
-        mood: "#A6EFEB", // 2. Quadrant
-        recovery: "#2D8781", // 3. Quadrant
-        complaints: "#9CD3D0" // 4. Quadrant
+        1: "#B9E6E3",  // Level 1
+        2: "#8AD6D0",  // Level 2
+        3: "#50C1B9",  // Level 3
+        4: "#43A19A",  // Level 4
+        5: "#2D8781",  // Level 5
+        6: "#007069"   // Level 6
       };
 
-      const greyColors = {
-        trs_acwr: "#E0E0E0", // 1. Quadrant unused
-        mood: "#EDEDED", // 2. Quadrant unused
-        recovery: "#E0E0E0", // 3. Quadrant unused
-        complaints: "#EDEDED" // 4. Quadrant unused
-      };
+      // Default color for unused segments
+      const defaultColor = "#E0E0E0";
 
       // Array of radius levels for the segments of the donut chart
       const radiusLevels = [3.183098862, 4.774648293, 6.843662553, 9.390141642, 12.41408556, 15.91549431];
-      // 14, 19, 25.5, 33.5, 43, 54 divided by pi
-      // new: 10, 15, 21.5, 29.5, 39, 50 divided by pi
-
-      // const multipliedByPi = radiusLevels.map(value => value * Math.PI);
-      // console.log(multipliedByPi);
 
       // Array of stroke widths for the segments of the donut chart
       const strokeWidths = [1, 1.5, 2, 2.5, 3, 3.5];
@@ -123,11 +120,14 @@ export default {
 
         // Loop over each dasharray object
         dasharrays.forEach((d, j) => {
+          // Determine the color based on the level and radius
+          const color = level >= j + 1 ? colors[j + 1] : defaultColor;
+
           // Push a new segment object to the segments array
           segments.push({
             level: j + 1,
             radius: radiusLevels[j],
-            color: level >= j + 1 ? colors[key] : greyColors[key],
+            color: color,
             strokeWidth: strokeWidths[j],
             dasharray: `${d.dash} ${d.gap}`, // Dash array for the segment stroke
             dashoffset: d.dash * i,
@@ -136,6 +136,7 @@ export default {
       });
       this.segments = segments;
     }
+
   },
 }
 </script>
