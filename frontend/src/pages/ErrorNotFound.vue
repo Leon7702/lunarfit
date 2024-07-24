@@ -1,7 +1,7 @@
 <template>
   <div class="size-container">
     <div class="q-pa-md">
-      <img src="/src/assets/404.png" alt="Chat Image" class="image" />
+      <img src="/src/assets/404.svg" alt="Chat Image" class="image" />
 
       <div class="title">
         404 - <br>
