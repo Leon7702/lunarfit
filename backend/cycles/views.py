@@ -11,7 +11,7 @@ from .serializers import (
     TrackingDataSerializer,
     TypeSerializer,
 )
-from lunarfit.filters import DateFromToRangeFilterSet
+from lunarfit.filters import DateFromToRangeFilterSet, DateRangeFilterSet
 from users.views import UserModelViewSet
 
 
@@ -45,12 +45,14 @@ class MedicationCategoryViewSet(ModelViewSet):
     queryset = MedicationCategory.objects.all()
     permission_classes = [IsAuthenticated]
     http_method_names = ["get"]
-
+    
 
 class TrackingDataViewSet(ModelViewSet):
     serializer_class = TrackingDataSerializer
     queryset = TrackingData.objects.all()
     permission_classes = [IsAuthenticated]
+    http_method_names = ["get", "post", "patch", "delete"]
+    filterset_class = filterset_factory(TrackingData, DateRangeFilterSet, ["date", "type"])
 
 
 class TypeViewSet(ModelViewSet):
