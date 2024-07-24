@@ -1,61 +1,68 @@
 // app global css in SCSS form
+/* Import Inter font from Google Fonts */
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;600&display=swap');
+
+/* Global font definition */
+body {
+  font-family: 'Inter', sans-serif;
+}
 
 /* Mobile screens (default) */
 .size-container {
-    width: 100%;
-    max-width: 360px;
-    margin: auto;
+  width: 100%;
+  max-width: 360px;
+  margin: auto;
+  margin-top: 5%;
+  padding-left: 2%;
+  padding-right: 2%;
+
+}
+
+@media only screen and (min-width: 768px) and (max-width: 1199px) {
+  .size-container {
+    max-width: 450px;
     margin-top: 5%;
-    padding-left: 2%;
-    padding-right: 2%;
-
   }
+}
+
+/* Large desktops */
+@media only screen and (min-width: 1200px) {
+  .size-container {
+    max-width: 30%;
+    margin-top: 5%;
+  }
+}
+
+/* Extra-large screens */
+@media only screen and (min-width: 1600px) {
+  .size-container {
+    max-width: 25%;
+    margin-top: 5%;
+  }
+}
+
+.toolbar-container {
+  width: 100%;
+  max-width: 360px;
+  margin: auto;
+}
 
 @media only screen and (min-width: 768px) and (max-width: 1199px) {
-    .size-container {
-      max-width: 450px;
-      margin-top: 5%;
-    }
-  }
-  
-  /* Large desktops */
-  @media only screen and (min-width: 1200px) {
-    .size-container {
-      max-width: 30%;
-      margin-top: 5%;
-    }
-  }
-  
-  /* Extra-large screens */
-  @media only screen and (min-width: 1600px) {
-    .size-container {
-      max-width: 25%;
-      margin-top: 5%;
-    }
-  }
-
   .toolbar-container {
-    width: 100%;
-    max-width: 360px;
-    margin: auto;
+    max-width: 450px;
   }
+}
 
-@media only screen and (min-width: 768px) and (max-width: 1199px) {
-    .toolbar-container {
-        max-width: 450px;
-    }
+/* Large desktops */
+@media only screen and (min-width: 1200px) {
+  .toolbar-container {
+    max-width: 30%;
   }
-  
-  /* Large desktops */
-  @media only screen and (min-width: 1200px) {
-    .toolbar-container {
-        max-width: 30%;
-    }
+}
+
+/* Extra-large screens */
+@media only screen and (min-width: 1600px) {
+  .toolbar-container {
+    max-width: 25%;
   }
-  
-  /* Extra-large screens */
-  @media only screen and (min-width: 1600px) {
-    .toolbar-container {
-        max-width: 25%;
-    }
-  }
+}
