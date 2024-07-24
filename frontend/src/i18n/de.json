@@ -57,8 +57,8 @@
   "complaintsTrend": "Beschwerdefreiheit Verlauf",
   "recoveryTrend": "Erholung Verlauf",
 
-  "moreCycleInfo": "Erfahre jetzt mehr über deinen Zyklus",
-  "moreTrainingInfo": "Erfahre jetzt mehr über dein Training",
+  "moreCycleInfo": "Erfahre mehr über deinen Zyklus",
+  "moreTrainingInfo": "Erfahre mehr über dein Training",
 
   "menstruationInfo": {
     "title": "Menstruation",
@@ -97,18 +97,16 @@
 
   "ovulationInfo": {
     "title": "Ovulation",
-    "description": "Nach dem Eisprung wird die Eizelle aus dem Follikel im Eierstock in den Eileiter ausgetoßen. Die Hülle der Eizelle bleibt als Gelbkörper zurück. Zum Eisprung macht das Östrogen häufig gute Laune. Danach gibt es mal schlechte Laune.",
-    "nutrition": [
-      "Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est",
-      "Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua."
-    ],
-    "training": "Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est",
-    "health": "Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est"
+    "description": [
+      "Vor dem Eisprung erreicht der Östrogenspiegel sein höchstes Level und führt häufig zu guter Laune. Zusätzlich führt dieser hohe Östrogenspiegel zum Eisprung.",
+      "Während des Eisprungs reißt das herangereifte Follikel und stößt die Eizelle in den Eileiter aus. Nicht selten ist dieser Vorgang begleitet von vorübergehenden Schmerzen, dem so genannten 'Mittelschmerz'. Nach dem Eisprung sinkt der Östrogenspiegel und der Progesteronspiegel steigt.",
+      "Die Wahrscheinlichkeit schwanger zu werden ist um den Eisprung am höchsten."
+    ]
   },
 
   "lutealInfoEarly": {
-    "title": "frühe Lutealphase",
-    "description": "Die Phase nach dem Eisprung bis zum Beginn der nächsten Menstruation. Der Gelbkörper produziert Progesteron, das die Gebärmutterschleimhaut auf die Einnistung einer befruchteten Eizelle vorbereitet. Das Progesteron kann die Laune verschlechtern.",
+    "title": "Frühe-mittlere Lutealphase",
+    "description": "Die ersten 8-10 Tage nach dem Eisprung. Der aus dem Eisprung entstandene Gelbkörper produziert Progesteron, das die Gebärmutterschleimhaut auf die Einnistung der befruchteten Eizelle vorbereitet. Das Progesteron kann unter Umständen zu einer etwas schlechteren Laune führen. Zusätzlich steigt dein Östrogenspiegel noch einmal an, allerdings nicht so stark wie in der Follikelphase.",
     "nutrition": [
       "Während der Lutealphase braucht dein Körper mehr Energie (+ ca. 200 kcal / Tag). Es kann also gut sein, dass du hungriger bist als sonst.",
       "Weiterhin erhöht sich dein Energiebedarf auch durch die Erhöhung der Intensität oder des Volumens deines Trainings!  Achte auf eine genügende Kohlenhydratzufuhr vor und nach dem Training. Vorzugsweise nimmst du dazu komplexe Kohlenhydrate wie Vollkornprodukte, Hafer, Quinoa, brauner Reis",
@@ -122,8 +120,8 @@
   },
 
   "lutealInfoLate": {
-    "title": "späte Lutealphase",
-    "description": "Die Phase nach dem Eisprung bis zum Beginn der nächsten Menstruation. Der Gelbkörper produziert Progesteron, das die Gebärmutterschleimhaut auf die Einnistung einer befruchteten Eizelle vorbereitet. Das Progesteron kann die Laune verschlechtern.",
+    "title": "Späte Lutealphase",
+    "description": "Die letzten 4-6 Tage des Zyklus. Der Gelbkörper beginnt zu zerfallen und dein Östrogen- und Progesteronspiegel fallen markant ab. Es kann sein, dass du aufgtrund des rapiden Rückgangs an Hormonen eine Reihe von psychischen und physischen Symptomen erlebst, wie beispielsweise Kopfschmerzen, Gereiztheit oder Stimmungsschwankungen. Die Symptome verschwinden in der Regel mit Beginn der Menstruation.",
     "nutrition": [
       "Während der Lutealphase braucht dein Körper mehr Energie (+ ca. 200 kcal / Tag). Es kann also gut sein, dass du hungriger bist als sonst.",
       "Achte in dieser Phase besonders auf die Zufuhr von gesunden Fetten und Proteinen, um länger satt zu bleiben und Heisshungerattacken zu vermeiden. Wenn du Kohlenhydrate isst, achte auf hochwertige Kohlenhydrate mit viel Ballaststoffen (Hafer, Vollkorn, brauner Reis, etc.). Diese hälten deinen Blutzuckerspiegel konstant und helfen somit Stimmungsschwankungen zu vermeiden (Benton, 2002)",
@@ -145,9 +143,9 @@
 
   "menstruationPhaseText": "Da du dich in der Menstruationsphase befindest, kann es sein, dass deine Stimmung, Motivation und Energie niedriger sind als sonst. Höre daher gut auf deinen Körper und plane gegebenenfalls eher kurze, regenerative Einheiten mit niedriger Intensität ein. Diese Einheiten können auch dazu beitragen, mögliche Symptome zu verringern.",
   "follicularPhaseText": "Du befindest dich in der Follikelphase. Der steigende Östrogenspiegel hilft dir, dich selbstbewusst und stark zu fühlen. Wenn du dich gut fühlst, ist dies die optimale Zeit für intensivere Einheiten! Plane also verstärkt lange oder intensive Trainingseinheiten ein.  Auch Kraft- und Schnelligkeit lässt sich jetzt gut trainieren.",
-  "ovulationPhaseText": "Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est",
+  "ovulationPhaseText": "Du befindest dich in der Ovulation. Vor dem Eisprung erreicht der Östrogenspiegel sein höchstes Level und führt häufig zu guter Laune. Nach dem Eisprung sinkt der Östrogenspiegel und der Progesteronspiegel steigt.",
   "earlyLutealPhaseText": "Du befindest dich in der frühen Luthealphase. Die erste Woche dieser Phase eignet sich grundsätzlich gut für Einheiten mit hoher Intensität oder hohem Volumen sowie für Kraft- und Schnellkrafttraining. Wenn du dich schon im zweiten Teil der frühen Lutealphase befindest  kannst du die Intensität etwas drosseln, und den Fokus auf eher lange und weniger intensive Einheiten legen.",
-  "lateLutealPhaseText": "Du befindest dich in der späten Lutealphase. Wenn dich unangenehme körperliche und mentale Symptome plagen, plane kurze und leichte Regenerationseinheiten ein (z. B. leichtes Joggen, Fahrradfahren, Yoga oder Spaziergänge). Diese können dir auch dabei helfen, mögliche unangenehme Symptome zu mindern.",
+  "lateLutealPhaseText": "Du befindest dich in der späten Lutealphase. Wenn dich unangenehme körperliche und mentale Symptome plagen, plane kurze und leichte Regenerationseinheiten ein (z.B. leichtes Joggen, Fahrradfahren, Yoga oder Spaziergänge). Diese können dir auch dabei helfen, mögliche unangenehme Symptome zu mindern.",
 
   "assessmentRequired": "Du hast für heute noch kein Assessment gemacht. Bitte hole es nach, um Empfehlungen und genauere Statistiken zu erhalten.",
   "toAssessment": "Zum Assessment",
@@ -333,6 +331,13 @@
     "5": "Du scheinst gut erholt zu sein. Du kannst dein Trainingspensum so fortsetzen.",
     "6": "Du scheinst optimal erholt zu sein. Du kannst überlegen, den Trainingsumfang oder die Trainingsintensität zu erhöhen.",
     "today": "Dein heutiger Erholungszustand:"
+  },
+
+  "yLegend": {
+    "mood": "0 = traurig   —  6 = glücklich",
+    "acwr": "1 = sehr gut",
+    "complaints": "0 = starke Beschwerden   —  6 = keine Beschwerden",
+    "recovery": "0 = nicht erholt   —  6 = erholt"
   },
 
   "onboarding": {
@@ -715,7 +720,7 @@
     "profileCaps": "PROFIL",
     "personal-info": "Persönliche Informationen",
     "account-settings": "Account Einstellungen",
-    "notificationsCaps": "BENAHRICHTIGUNGEN",
+    "notificationsCaps": "BENACHRICHTIGUNGEN",
     "notifications": "Benachrichtigungen",
     "settingsCaps": "EINSTELLUNGEN",
     "language": "Sprache",
