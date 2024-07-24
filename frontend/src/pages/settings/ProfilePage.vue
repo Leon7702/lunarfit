@@ -33,7 +33,7 @@
             <div class="text-color">{{ $t('profile.weight') }}</div>
           </template>
         </q-input>
-        <q-select filled v-model="profile.contraceptive" :options="contraceptionOptions" input-class="text-right"
+        <q-select clearable filled v-model="profile.contraceptive" :options="contraceptionOptions" input-class="text-right"
           class="q-mb-sm" emit-value map-options>
           <template v-slot:prepend>
             <div class="text-color">{{ $t('profile.contraception') }}</div>
@@ -63,13 +63,13 @@ export default {
 
     const profile = ref({
       user: null,
-      onboarding_finished: false,
+      // onboarding_finished: false,
       first_name: '',
       last_name: '',
       birthdate: null,
       body_height: null,
       body_weight: null,
-      language: 'de',
+      // language: 'de',
       contraceptive: null
     });
 
