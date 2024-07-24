@@ -52,8 +52,8 @@
   "acwrTrend": "ACWR trend",
   "complaintsTrend": "Complaints trend",
   "recoveryTrend": "Recovery trend",
-  "moreCycleInfo": "Learn more about your cycle now",
-  "moreTrainingInfo": "Learn more about your training now",
+  "moreCycleInfo": "Learn more about your cycle",
+  "moreTrainingInfo": "Learn more about your training",
   "menstruationInfo": {
     "title": "Menstruation",
     "description": "The cycle begins with the first day of bleeding, triggered by the drop in progesterone and estrogen. Rising estrogen lifts the mood, boosts confidence, and creativity.",

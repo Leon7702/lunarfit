@@ -12,6 +12,35 @@
         <line x1="0" y1="21" x2="42" y2="21" stroke="#fff" stroke-width="0.25" />
         <line x1="21" y1="0" x2="21" y2="42" stroke="#fff" stroke-width="0.25" />
 
+        <!-- Text paths for the labels -->
+        <path id="path1" d="M 21,21 m -18.5,0 a 18.5,18.5 0 1,1 37,0 a 18.5,18.5 0 1,1 -37,0" fill="transparent" />
+        <path id="path2" d="M 21,21 m -20,0 a 20,20 0 1,0 40,0 a 20,20 0 1,0 -40,0" fill="transparent" />
+
+        <!-- Text labels for the segments -->
+        <text fill="#000" font-size="2.1">
+          <textPath href="#path1" startOffset="60%">
+            {{ $t('strain') }}
+          </textPath>
+        </text>
+
+        <text fill="#000" font-size="2.1">
+          <textPath href="#path2" startOffset="83%">
+            {{ $t('rest') }}
+          </textPath>
+        </text>
+
+        <text fill="#000" font-size="2.1">
+          <textPath href="#path1" startOffset="34%">
+            {{ $t('mood') }}
+          </textPath>
+        </text>
+
+        <text fill="#000" font-size="2.1">
+          <textPath href="#path2" startOffset="7%">
+            {{ $t('free') }}
+          </textPath>
+        </text>
+
         <!-- Text element for displaying the score in the middle of the donut chart -->
         <text x="21" y="21" text-anchor="middle" dominant-baseline="middle" font-size="2.2" font-weight="bold"
           transform="rotate(90, 21, 21)">
