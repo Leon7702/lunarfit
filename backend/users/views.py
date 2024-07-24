@@ -1,3 +1,5 @@
+from textwrap import dedent
+
 from drf_spectacular.utils import extend_schema_view, extend_schema
 from rest_framework import viewsets
 from rest_framework.generics import CreateAPIView, ListAPIView, RetrieveAPIView
@@ -69,7 +71,30 @@ class CustomTokenObtainPairView(TokenObtainPairView):
 
 @extend_schema_view(
     retrieve=extend_schema(summary="Retrieve profile by user-id"),
-    partial_update=extend_schema(summary="Update profile by user-id"),
+    partial_update=extend_schema(
+        summary="Update profile by user-id",
+        description=dedent(
+            """\
+            Patch allows partial updates, so it is possible to only provide some of the keywords.
+            All profile settings are optional. To unset only the contraceptive
+            for example you can send the following json:
+
+            ```json
+            {"contraceptive": null}
+            ```
+
+            The string fields `first_name`, `last_name` and `language` are not nullable and trying
+            to do so will return 400 Bad Request. If necessary, they can be set to an empty string:
+
+            ```json
+            {
+            "first_name": "",
+            "last_name": ""
+            }
+            ```
+            """
+        ),
+    ),
 )
 class ProfileViewSet(viewsets.ModelViewSet):
     """

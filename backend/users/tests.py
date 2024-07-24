@@ -208,6 +208,45 @@ class UserProfileTest(APITestCase):
         assert response.status_code == status.HTTP_200_OK
         assert self.user1.profile.first_name == new_name
 
+    def test_user_cant_move_profile_to_other_user(self):
+        """
+        The user Foreign key should not be exposed, so users can't change who their profile belongs to.
+        When it is set to read_only a user key can be included in the patch request,
+        but it should be ignored and not change anything.
+        """
+        self.client.force_authenticate(user=self.user1)
+        new_name = "Jonathan"
+        data = {"user": self.user2.id,
+                "first_name": new_name}
+        response = self.client.patch(f"/api/users/profile/{self.user1.id}/", data)
+        self.user1.refresh_from_db()
+        self.user2.refresh_from_db()
+
+        assert response.status_code == status.HTTP_200_OK
+        assert self.user1.profile.first_name == new_name
+        assert self.user2.profile.first_name != new_name
+
+    def test_user_can_unset_profile_contraceptive_with_empty_string(self):
+        self.client.force_authenticate(user=self.user1)
+        data = {"contraceptive": ""}
+        response = self.client.patch(f"/api/users/profile/{self.user1.id}/", data)
+        self.user1.refresh_from_db()
+
+        assert response.status_code == status.HTTP_200_OK
+        assert self.user1.profile.contraceptive == None
+
+    def test_user_can_unset_profile_contraceptive_with_json_null(self):
+        self.client.force_authenticate(user=self.user1)
+        response = self.client.patch(
+            f"/api/users/profile/{self.user1.id}/",
+            b'{"contraceptive": null}',
+            content_type="application/json",
+        )
+        self.user1.refresh_from_db()
+
+        assert response.status_code == status.HTTP_200_OK
+        assert self.user1.profile.contraceptive == None
+
     def test_get_contraceptives_list_404_regression(self):
         """
         Regression test for the contraceptive routes.
