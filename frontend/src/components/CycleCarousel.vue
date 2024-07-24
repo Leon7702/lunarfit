@@ -259,6 +259,10 @@ export default {
   border: 1px solid #D9D9D9;
 }
 
+.text-h6 {
+  font-weight: bold;
+}
+
 li {
   margin: 0;
 }

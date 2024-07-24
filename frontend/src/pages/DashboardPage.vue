@@ -188,6 +188,10 @@ export default {
   padding-left: 1.2rem;
 }
 
+.text-h6 {
+  font-weight: bold;
+}
+
 /* Browser-specific styles */
 .browser-svg-container {
   position: absolute;

@@ -57,8 +57,8 @@
   "complaintsTrend": "Beschwerdefreiheit Verlauf",
   "recoveryTrend": "Erholung Verlauf",
 
-  "moreCycleInfo": "Erfahre jetzt mehr über deinen Zyklus",
-  "moreTrainingInfo": "Erfahre jetzt mehr über dein Training",
+  "moreCycleInfo": "Erfahre mehr über deinen Zyklus",
+  "moreTrainingInfo": "Erfahre mehr über dein Training",
 
   "menstruationInfo": {
     "title": "Menstruation",
@@ -145,7 +145,7 @@
   "follicularPhaseText": "Du befindest dich in der Follikelphase. Der steigende Östrogenspiegel hilft dir, dich selbstbewusst und stark zu fühlen. Wenn du dich gut fühlst, ist dies die optimale Zeit für intensivere Einheiten! Plane also verstärkt lange oder intensive Trainingseinheiten ein.  Auch Kraft- und Schnelligkeit lässt sich jetzt gut trainieren.",
   "ovulationPhaseText": "Du befindest dich in der Ovulation. Vor dem Eisprung erreicht der Östrogenspiegel sein höchstes Level und führt häufig zu guter Laune. Nach dem Eisprung sinkt der Östrogenspiegel und der Progesteronspiegel steigt.",
   "earlyLutealPhaseText": "Du befindest dich in der frühen Luthealphase. Die erste Woche dieser Phase eignet sich grundsätzlich gut für Einheiten mit hoher Intensität oder hohem Volumen sowie für Kraft- und Schnellkrafttraining. Wenn du dich schon im zweiten Teil der frühen Lutealphase befindest  kannst du die Intensität etwas drosseln, und den Fokus auf eher lange und weniger intensive Einheiten legen.",
-  "lateLutealPhaseText": "Du befindest dich in der späten Lutealphase. Wenn dich unangenehme körperliche und mentale Symptome plagen, plane kurze und leichte Regenerationseinheiten ein (z. B. leichtes Joggen, Fahrradfahren, Yoga oder Spaziergänge). Diese können dir auch dabei helfen, mögliche unangenehme Symptome zu mindern.",
+  "lateLutealPhaseText": "Du befindest dich in der späten Lutealphase. Wenn dich unangenehme körperliche und mentale Symptome plagen, plane kurze und leichte Regenerationseinheiten ein (z.B. leichtes Joggen, Fahrradfahren, Yoga oder Spaziergänge). Diese können dir auch dabei helfen, mögliche unangenehme Symptome zu mindern.",
 
   "assessmentRequired": "Du hast für heute noch kein Assessment gemacht. Bitte hole es nach, um Empfehlungen und genauere Statistiken zu erhalten.",
   "toAssessment": "Zum Assessment",
@@ -720,7 +720,7 @@
     "profileCaps": "PROFIL",
     "personal-info": "Persönliche Informationen",
     "account-settings": "Account Einstellungen",
-    "notificationsCaps": "BENAHRICHTIGUNGEN",
+    "notificationsCaps": "BENACHRICHTIGUNGEN",
     "notifications": "Benachrichtigungen",
     "settingsCaps": "EINSTELLUNGEN",
     "language": "Sprache",

@@ -596,6 +596,10 @@ ul {
   margin-left: 5px;
 }
 
+.text-h6 {
+  font-weight: bold;
+}
+
 .yText {
   font-size: x-small;
   color: grey;
