@@ -376,7 +376,8 @@ export default {
 
         // Handle cycle data
         const cycleData = cycleResponse.data;
-        const today = new Date().toISOString().split("T")[0]; // Use the current date in production
+        // const today = new Date().toISOString().split("T")[0]; // Use the current date in production
+        const today = "2024-07-21";  // for testing with a specific date
         // const today = "2024-07-15"; // For testing, set a specific date instead of the current date
         // const today = "2024-05-05";  // for testing with a specific date - cycle 0
         // const today = "2024-06-09";  // for testing with a specific date - cycle 1

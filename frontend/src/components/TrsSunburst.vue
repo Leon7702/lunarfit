@@ -80,7 +80,8 @@ export default {
       // FOR NOW: to test the method without having a real database, use json-server
       try {
         const response = await axios.get('http://localhost:3000/trs?user_id=1');
-        const today = new Date().toISOString().split("T")[0];
+        // const today = new Date().toISOString().split("T")[0];
+        const today = "2024-07-21";  // for testing with a specific date
         // const today = "2024-07-23"; // For testing, set a specific date instead of the current date
         const todayData = response.data.find((entry) => entry.day === today);
 
