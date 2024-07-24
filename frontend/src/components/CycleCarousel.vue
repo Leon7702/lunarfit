@@ -73,14 +73,12 @@
               <div class="text-h6">{{ $t('ovulationInfo.title') }}</div>
               <q-card flat bordered class="my-card">
                 <q-card-section>
-                  {{ $t('ovulationInfo.description') }}
+                  <div>{{ $t('ovulationInfo.description[0]') }}</div>
+                  <div>{{ $t('ovulationInfo.description[1]') }}</div>
+                  <div>{{ $t('ovulationInfo.description[2]') }}</div>
                 </q-card-section>
               </q-card>
               <img class="cycle-image" :src="$t('cyclePhase.images.ovulation')" alt="Ovulation Phase" />
-              <PhaseInformation :textNutrition="[
-                $t('ovulationInfo.nutrition[0]'),
-                $t('ovulationInfo.nutrition[1]')
-              ]" :textTraining="$t('ovulationInfo.training')" :textHealthString1="$t('ovulationInfo.health')" />
             </div>
           </q-scroll-area>
         </q-carousel-slide>

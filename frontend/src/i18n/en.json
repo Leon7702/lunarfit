@@ -89,17 +89,15 @@
   },
   "ovulationInfo": {
     "title": "Ovulation",
-    "description": "After ovulation, the egg is expelled from the follicle in the ovary into the fallopian tube. The shell of the egg cell remains behind as the corpus luteum. At ovulation, the oestrogen often puts you in a good mood. Afterwards, it sometimes puts you in a bad mood.",
-    "nutrition": [
-      "Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est",
-      "Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua."
-    ],
-    "training": "Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est",
-    "health": "Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est"
+    "description": [
+      "Before ovulation, the estrogen level reaches its highest level, often leading to a good mood. Additionally, this high estrogen level leads to ovulation.",
+      "During ovulation, the matured follicle ruptures and releases the egg into the fallopian tube. This process is often accompanied by temporary pain, known as 'middle pain'. After ovulation, the estrogen level decreases and the progesterone level rises.",
+      "The likelihood of becoming pregnant is highest around ovulation."
+    ]
   },
   "lutealInfoEarly": {
-    "title": "Early Luteal Phase",
-    "description": "The phase after ovulation until the start of the next menstruation. The corpus luteum produces progesterone, which prepares the uterine lining for the implantation of a fertilized egg. Progesterone can worsen the mood.",
+    "title": "Early-mid Luteal Phase",
+    "description": "The first 8-10 days after ovulation. The corpus luteum, formed from the ovulation, produces progesterone, which prepares the uterine lining for the implantation of the fertilized egg. Progesterone can sometimes lead to a slightly worse mood. Additionally, your estrogen level rises again, but not as much as in the follicular phase.",
     "nutrition": [
       "During the luteal phase, your body needs more energy (+ about 200 kcal/day). You may feel hungrier than usual.",
       "Energy needs also increase with higher training intensity or volume! Ensure sufficient carbohydrate intake before and after training. Prefer complex carbohydrates like whole grains, oats, quinoa, brown rice",
@@ -113,7 +111,7 @@
   },
   "lutealInfoLate": {
     "title": "Late Luteal Phase",
-    "description": "The phase after ovulation until the start of the next menstruation. The corpus luteum produces progesterone, which prepares the uterine lining for the implantation of a fertilized egg. Progesterone can worsen the mood.",
+    "description": "The last 4-6 days of the cycle. The corpus luteum begins to disintegrate, and your estrogen and progesterone levels drop significantly. Due to the rapid decline in hormones, you may experience a range of psychological and physical symptoms, such as headaches, irritability, or mood swings. These symptoms usually disappear with the onset of menstruation.",
     "nutrition": [
       "During the luteal phase, your body needs more energy (+ about 200 kcal/day). You may feel hungrier than usual.",
       "In this phase, focus on healthy fats and proteins to stay full longer and avoid cravings. When eating carbohydrates, choose high-quality carbohydrates with lots of fiber (oats, whole grains, brown rice, etc.) to keep your blood sugar levels stable and avoid mood swings (Benton, 2002)",
@@ -134,7 +132,7 @@
   },
   "menstruationPhaseText": "Since you are in the menstruation phase, your mood, motivation, and energy may be lower than usual. Listen to your body and plan short, regenerative sessions with low intensity if needed. These sessions can also help reduce potential symptoms.",
   "follicularPhaseText": "You are in the follicular phase. Rising estrogen levels help you feel confident and strong. If you feel good, this is the optimal time for more intense sessions! Plan more long or intensive training sessions. Strength and speed can also be trained well now.",
-  "ovulationPhaseText": "Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est",
+  "ovulationPhaseText": "You are in ovulation. Before ovulation, the estrogen level reaches its highest level, often leading to a good mood. After ovulation, the estrogen level decreases and the progesterone level rises.",
   "earlyLutealPhaseText": "You are in the early luteal phase. The first week of this phase is generally good for high-intensity or high-volume sessions, as well as for strength and power training. If you are already in the second part of the early luteal phase, you can reduce the intensity and focus on longer and less intense sessions.",
   "lateLutealPhaseText": "You are in the late luteal phase. If you experience unpleasant physical and mental symptoms, plan short and light regeneration sessions (e.g., light jogging, cycling, yoga, or walking). These can also help reduce potential unpleasant symptoms.",
   "assessmentRequired": "You haven't completed today's assessment yet. Please do it to receive your recommendations and more accurate statistics.",
