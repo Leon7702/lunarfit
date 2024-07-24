@@ -88,6 +88,8 @@ This page enables you to send HTTP requests to the running server and actually u
 You can log in with an existing user and view the API with the permissions of that user. For example logging in with a normal user account, you can only update or delete that specific user's data.
 If you set up a [superuser](#create-a-superuser) you can browse, update, delete all the available records and create new ones with the privileges of a database admin, through the available endpoints.
 
+It is also possible to view and manipulate records as superuser through the standard django-admin utility, available at <http://localhost:8000/admin>
+
 ### OpenAPI 3 Schema
 
 The backend automatically generates an API schema using [drf-spectacular](https://drf-spectacular.readthedocs.io/en/latest/index.html).
