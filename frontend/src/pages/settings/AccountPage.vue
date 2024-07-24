@@ -12,7 +12,7 @@
       <q-item class="q-mb-xs grey-background">
         <q-item-section>
           <!-- TODO: get email name from database -->
-          <q-item-label>ina.mueller@outlook.de</q-item-label>
+          <q-item-label>{{ email }}</q-item-label>
         </q-item-section>
       </q-item>
       <q-item-label header class="q-pt-md q-pb-xs text-color">{{ $t('account.password') }}</q-item-label>
@@ -30,18 +30,45 @@
 </template>
 
 <script>
+import axios from 'axios';
+import { ref, onMounted } from 'vue';
+import { useAuthStore } from 'src/stores/auth';
 
-  export default {
-    components: {
+export default {
+  name: 'AccountPage',
+  setup() {
+    const authStore = useAuthStore();
+    const email = ref('');
 
-    },
-    data() {
-      return {
-
+    const getEmail = async () => {
+      if (!authStore.userId) {
+        console.error('User ID is not set');
+        return;
       }
-    }
-  };
-  </script>
+
+      try {
+        const response = await axios.get(`http://localhost:8000/api/users/${authStore.userId}/`, {
+          headers: {
+            Authorization: `Bearer ${authStore.accessToken}`
+          }
+        });
+        email.value = response.data.email;
+      } catch (error) {
+        console.error('Failed to fetch email:', error);
+      }
+    };
+
+    onMounted(() => {
+      getEmail();
+    });
+
+    return {
+      email,
+      getEmail
+    };
+  }
+};
+</script>
 
 <style scoped>
   .welcome-container {
