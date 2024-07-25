@@ -1,7 +1,7 @@
 <template>
   <div class="size-container">
     <header>
-      <img alt="Lunafit logo" class="logo" src="../assets/LunaFit.svg" height="45" />
+      <img alt="Lunafit logo" class="logo" src="../assets/LunaFit_logo.png" height="68" />
     </header>
     <div class="q-pa-lg q-gutter-sm">
       <q-input color="teal" outlined v-model="email" :label="$t('email')">
