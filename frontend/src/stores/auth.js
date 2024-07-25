@@ -25,7 +25,7 @@ export const useAuthStore = defineStore('auth', {
         this.setRefreshToken(response.data.refresh);
 
         const decodedToken = parseJwt(response.data.access);
-        const userId = decodedToken.user_id; // Angenommen, die Benutzer-ID ist im Token enthalten
+        const userId = decodedToken.user_id;
         this.setUserId(userId);
       } catch (error) {
         console.error('Failed to login:', error);
@@ -38,15 +38,15 @@ export const useAuthStore = defineStore('auth', {
         const response = await axios.post('http://localhost:8000/api/users/token/refresh/', {
           refresh: this.refreshToken,
         });
-        this.setRefreshToken(response.data.refresh);
         this.setAccessToken(response.data.access);
 
         const decodedToken = parseJwt(response.data.access);
-        const userId = decodedToken.user_id; // Angenommen, die Benutzer-ID ist im Token enthalten
+        const userId = decodedToken.user_id;
         this.setUserId(userId);
         return response.data.access;
       } catch (error) {
         console.error('Failed to refresh access token:', error);
+        this.logout();
         throw error;
       }
     },

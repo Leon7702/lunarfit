@@ -33,8 +33,8 @@
             <div class="text-color">{{ $t('profile.weight') }}</div>
           </template>
         </q-input>
-        <q-select clearable filled v-model="profile.contraceptive" :options="contraceptionOptions" input-class="text-right"
-          class="q-mb-sm" emit-value map-options>
+        <q-select clearable filled v-model="profile.contraceptive" :options="contraceptionOptions"
+          input-class="text-right" class="q-mb-sm" emit-value map-options>
           <template v-slot:prepend>
             <div class="text-color">{{ $t('profile.contraception') }}</div>
           </template>
@@ -52,6 +52,7 @@ import { ref, watch, onMounted } from 'vue';
 import axios from 'axios';
 import { useAuthStore } from 'src/stores/auth';
 import StandardButton from 'components/StandardButton.vue';
+import { useRouter } from 'vue-router';
 
 export default {
   name: 'ProfilePage',
@@ -60,6 +61,7 @@ export default {
   },
   setup() {
     const authStore = useAuthStore();
+    const router = useRouter();
 
     const profile = ref({
       user: null,
@@ -87,7 +89,16 @@ export default {
         });
         profile.value = response.data;
       } catch (error) {
-        console.error('Failed to fetch profile:', error);
+        if (error.response && error.response.status === 401) {
+          try {
+            await authStore.refreshAccessToken();
+            await fetchProfile();
+          } catch (refreshError) {
+            router.push('/login');
+          }
+        } else {
+          console.error('Failed to fetch profile:', error);
+        }
       }
     };
 
@@ -106,7 +117,16 @@ export default {
         });
         alert('Profile updated successfully');
       } catch (error) {
-        console.error('Failed to update profile:', error);
+        if (error.response && error.response.status === 401) {
+          try {
+            await authStore.refreshAccessToken();
+            await saveProfile();
+          } catch (refreshError) {
+            router.push('/login');
+          }
+        } else {
+          console.error('Failed to update profile:', error);
+        }
       }
     };
 
