@@ -49,10 +49,9 @@
 
 <script>
 import { ref, watch, onMounted } from 'vue';
-import axios from 'axios';
+import api from 'src/services/axios';
 import { useAuthStore } from 'src/stores/auth';
 import StandardButton from 'components/StandardButton.vue';
-import { useRouter } from 'vue-router';
 
 export default {
   name: 'ProfilePage',
@@ -61,7 +60,6 @@ export default {
   },
   setup() {
     const authStore = useAuthStore();
-    const router = useRouter();
 
     const profile = ref({
       user: null,
@@ -76,57 +74,20 @@ export default {
     });
 
     const fetchProfile = async () => {
-      if (!authStore.userId) {
-        console.error('User ID is not set');
-        return;
-      }
-
       try {
-        const response = await axios.get(`http://localhost:8000/api/users/profile/${authStore.userId}/`, {
-          headers: {
-            Authorization: `Bearer ${authStore.accessToken}`
-          }
-        });
+        const response = await api.get(`/api/users/profile/${authStore.userId}/`);
         profile.value = response.data;
       } catch (error) {
-        if (error.response && error.response.status === 401) {
-          try {
-            await authStore.refreshAccessToken();
-            await fetchProfile();
-          } catch (refreshError) {
-            router.push('/login');
-          }
-        } else {
-          console.error('Failed to fetch profile:', error);
-        }
+        console.error('Failed to fetch profile:', error);
       }
     };
 
     const saveProfile = async () => {
-      if (!authStore.userId) {
-        console.error('User ID is not set');
-        return;
-      }
-
       try {
-        await axios.patch(`http://localhost:8000/api/users/profile/${authStore.userId}/`, profile.value, {
-          headers: {
-            Authorization: `Bearer ${authStore.accessToken}`,
-            'Content-Type': 'application/json'
-          }
-        });
+        await api.patch(`api/users/profile/${authStore.userId}/`, profile.value);
         alert('Profile updated successfully');
       } catch (error) {
-        if (error.response && error.response.status === 401) {
-          try {
-            await authStore.refreshAccessToken();
-            await saveProfile();
-          } catch (refreshError) {
-            router.push('/login');
-          }
-        } else {
-          console.error('Failed to update profile:', error);
-        }
+        console.error('Failed to update profile:', error);
       }
     };
 
@@ -137,9 +98,7 @@ export default {
     });
 
     onMounted(() => {
-      if (authStore.userId) {
-        fetchProfile();
-      }
+      fetchProfile();
     });
 
     return {

@@ -11,7 +11,6 @@
         <q-item-label header class="q-pt-xl q-pb-xs text-color">{{ $t('account.email') }}</q-item-label>
         <q-item class="q-mb-xs grey-background">
           <q-item-section>
-            <!-- TODO: get email name from database -->
             <q-item-label>{{ email }}</q-item-label>
           </q-item-section>
         </q-item>
@@ -30,44 +29,22 @@
 </template>
 
 <script>
-import axios from 'axios';
 import { ref, onMounted } from 'vue';
+import api from 'src/services/axios';
 import { useAuthStore } from 'src/stores/auth';
-import { useRouter } from 'vue-router';
 
 export default {
   name: 'AccountPage',
   setup() {
-    const authStore = useAuthStore();
-    const router = useRouter();
     const email = ref('');
+    const authStore = useAuthStore();
 
     const getEmail = async () => {
-      if (!authStore.userId) {
-        console.error('User ID is not set');
-        return;
-      }
-
       try {
-        const response = await axios.get(`http://localhost:8000/api/users/${authStore.userId}/`, {
-          headers: {
-            Authorization: `Bearer ${authStore.accessToken}`
-          }
-        });
+        const response = await api.get(`/api/users/${authStore.userId}/`);
         email.value = response.data.email;
       } catch (error) {
-        if (error.response && error.response.status === 401) {
-          console.log('Access token expired. Refreshing token...');
-          try {
-            await authStore.refreshAccessToken();
-            console.log('Token refreshed. Retrying request...');
-            await getEmail();
-          } catch (refreshError) {
-            router.push('/login');
-          }
-        } else {
-          console.error('Failed to fetch email:', error);
-        }
+        console.error('Failed to fetch email:', error);
       }
     };
 
