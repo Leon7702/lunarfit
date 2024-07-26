@@ -1,5 +1,5 @@
 import { defineStore } from 'pinia';
-import axios from 'axios';
+import api from 'src/services/axios';
 
 function parseJwt(token) {
   const base64Url = token.split('.')[1];
@@ -20,12 +20,12 @@ export const useAuthStore = defineStore('auth', {
   actions: {
     async login(credentials) {
       try {
-        const response = await axios.post('http://localhost:8000/api/users/token/', credentials);
+        const response = await api.post('/api/users/token/', credentials);
         this.setAccessToken(response.data.access);
         this.setRefreshToken(response.data.refresh);
 
         const decodedToken = parseJwt(response.data.access);
-        const userId = decodedToken.user_id; // Angenommen, die Benutzer-ID ist im Token enthalten
+        const userId = decodedToken.user_id;
         this.setUserId(userId);
       } catch (error) {
         console.error('Failed to login:', error);
@@ -35,18 +35,18 @@ export const useAuthStore = defineStore('auth', {
 
     async refreshAccessToken() {
       try {
-        const response = await axios.post('http://localhost:8000/api/users/token/refresh/', {
+        const response = await api.post('/api/users/token/refresh/', {
           refresh: this.refreshToken,
         });
-        this.setRefreshToken(response.data.refresh);
         this.setAccessToken(response.data.access);
 
         const decodedToken = parseJwt(response.data.access);
-        const userId = decodedToken.user_id; // Angenommen, die Benutzer-ID ist im Token enthalten
+        const userId = decodedToken.user_id;
         this.setUserId(userId);
         return response.data.access;
       } catch (error) {
         console.error('Failed to refresh access token:', error);
+        this.logout();
         throw error;
       }
     },

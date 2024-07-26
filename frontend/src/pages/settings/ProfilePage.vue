@@ -33,8 +33,8 @@
             <div class="text-color">{{ $t('profile.weight') }}</div>
           </template>
         </q-input>
-        <q-select filled v-model="profile.contraceptive" :options="contraceptionOptions" input-class="text-right"
-          class="q-mb-sm" emit-value map-options>
+        <q-select clearable filled v-model="profile.contraceptive" :options="contraceptionOptions"
+          input-class="text-right" class="q-mb-sm" emit-value map-options>
           <template v-slot:prepend>
             <div class="text-color">{{ $t('profile.contraception') }}</div>
           </template>
@@ -49,7 +49,7 @@
 
 <script>
 import { ref, watch, onMounted } from 'vue';
-import axios from 'axios';
+import api from 'src/services/axios';
 import { useAuthStore } from 'src/stores/auth';
 import StandardButton from 'components/StandardButton.vue';
 
@@ -63,28 +63,19 @@ export default {
 
     const profile = ref({
       user: null,
-      onboarding_finished: false,
+      // onboarding_finished: false,
       first_name: '',
       last_name: '',
       birthdate: null,
       body_height: null,
       body_weight: null,
-      language: 'de',
+      // language: 'de',
       contraceptive: null
     });
 
     const fetchProfile = async () => {
-      if (!authStore.userId) {
-        console.error('User ID is not set');
-        return;
-      }
-
       try {
-        const response = await axios.get(`http://localhost:8000/api/users/profile/${authStore.userId}/`, {
-          headers: {
-            Authorization: `Bearer ${authStore.accessToken}`
-          }
-        });
+        const response = await api.get(`/api/users/profile/${authStore.userId}/`);
         profile.value = response.data;
       } catch (error) {
         console.error('Failed to fetch profile:', error);
@@ -92,18 +83,8 @@ export default {
     };
 
     const saveProfile = async () => {
-      if (!authStore.userId) {
-        console.error('User ID is not set');
-        return;
-      }
-
       try {
-        await axios.patch(`http://localhost:8000/api/users/profile/${authStore.userId}/`, profile.value, {
-          headers: {
-            Authorization: `Bearer ${authStore.accessToken}`,
-            'Content-Type': 'application/json'
-          }
-        });
+        await api.patch(`api/users/profile/${authStore.userId}/`, profile.value);
         alert('Profile updated successfully');
       } catch (error) {
         console.error('Failed to update profile:', error);
@@ -117,9 +98,7 @@ export default {
     });
 
     onMounted(() => {
-      if (authStore.userId) {
-        fetchProfile();
-      }
+      fetchProfile();
     });
 
     return {
