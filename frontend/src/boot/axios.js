@@ -10,7 +10,7 @@ import router from '../router';
 // "export default () => {}" function below (which runs individually
 // for each client)
 
-const api = axios.create({ baseURL: 'http://localhost:8000' })
+const api = axios.create({ baseURL: 'http://localhost:8000/api' })
 
 export default boot(({ app }) => {
 
