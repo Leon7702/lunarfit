@@ -29,12 +29,6 @@ const routes = [
         meta: { requiresAuth: true },
       },
       {
-        path: "menstruation",
-        name: "MenstruationInfo",
-        component: () => import("pages/MenstruationInfoPage.vue"),
-        meta: { requiresAuth: true },
-      },
-      {
         path: "cycle",
         name: "CycleInfoPage",
         component: () => import("pages/CyclePhaseInfoPage.vue"),
