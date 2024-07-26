@@ -46,7 +46,7 @@
             <q-item-label>{{ $t('settings.notifications') }}</q-item-label>
           </q-item-section>
           <q-item-section side>
-            <q-toggle color="teal" v-model="notif1" />
+            <q-toggle disable color="teal" v-model="notif1" />
           </q-item-section>
         </q-item>
       </q-list>

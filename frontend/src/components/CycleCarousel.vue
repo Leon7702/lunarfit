@@ -253,6 +253,7 @@ export default {
 .cycle-image {
   max-width: 100%;
   padding-top: 16px;
+  pointer-events: none;
 }
 
 .toggle-border {
