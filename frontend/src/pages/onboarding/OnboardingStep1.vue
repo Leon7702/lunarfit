@@ -8,11 +8,33 @@
           <span class="form-step-highlight">{{ $t('onboarding.onboardingStep1.step') }}</span>
           {{ $t('onboarding.onboardingStep1.title') }}
         </h2>
-        <FormFieldText v-model="profile.first_name" id="firstName" :label="$t('onboarding.onboardingStep1.fields.firstName')" iconName="" inputType="text" />
-        <FormFieldText v-model="profile.last_name" id="lastName" :label="$t('onboarding.onboardingStep1.fields.lastName')" iconName="" inputType="text" pattern="" />
-        <FormFieldText v-model="profile.birthdate" id="birthdate" :label="$t('onboarding.onboardingStep1.fields.birthdate')" iconName="" inputType="date" />
-        <FormFieldText v-model="profile.body_height" id="height" :label="$t('onboarding.onboardingStep1.fields.height')" iconName="" inputType="number" />
-        <FormFieldText v-model="profile.body_weight" id="weight" :label="$t('onboarding.onboardingStep1.fields.weight')" iconName="" inputType="number" />
+        <q-list class="form-list">
+          <q-input filled v-model="profile.first_name" type="text" input-class="text-right" class="q-pt-xl q-mb-sm">
+            <template v-slot:prepend>
+              <div class="text-color">{{ $t('profile.firstName') }}</div>
+            </template>
+          </q-input>
+          <q-input filled v-model="profile.last_name" type="text" input-class="text-right" class="q-mb-sm">
+            <template v-slot:prepend>
+              <div class="text-color">{{ $t('profile.lastName') }}</div>
+            </template>
+          </q-input>
+          <q-input filled v-model="profile.birthdate" type="date" input-class="text-right" class="q-mb-sm">
+            <template v-slot:prepend>
+              <div class="text-color">{{ $t('profile.birthdate') }}</div>
+            </template>
+          </q-input>
+          <q-input filled v-model="profile.body_height" type="number" input-class="text-right" class="q-mb-sm">
+            <template v-slot:prepend>
+              <div class="text-color">{{ $t('profile.height') }}</div>
+            </template>
+          </q-input>
+          <q-input filled v-model="profile.body_weight" type="number" input-class="text-right" class="q-mb-sm">
+            <template v-slot:prepend>
+              <div class="text-color">{{ $t('profile.weight') }}</div>
+            </template>
+          </q-input>
+        </q-list>
         <div class="button-container">
           <StandardButton :label="$t('buttons.next')" @click="navigateToNextStep" />
         </div>
@@ -22,51 +44,66 @@
 </template>
 
 <script>
-import axios from 'axios';
+import { ref, onMounted } from 'vue';
+import { useRouter } from 'vue-router';
+import api from 'src/services/axios';
+import { useAuthStore } from 'src/stores/auth';
 import StandardButton from 'components/StandardButton.vue';
-import FormFieldText from 'components/FormFieldText.vue';
 import BackButtonText from 'components/BackButtonText.vue';
 
 export default {
   components: {
     StandardButton,
-    FormFieldText,
     BackButtonText
   },
-  data() {
-    return {
-      profile: {
-        first_name: '',
-        last_name: '',
-        birthdate: '',
-        body_height: null,
-        body_weight: null,
+  setup() {
+    const authStore = useAuthStore();
+    const router = useRouter();
+
+    const profile = ref({
+      first_name: '',
+      last_name: '',
+      birthdate: '',
+      body_height: null,
+      body_weight: null,
+    });
+
+    const fetchProfile = async () => {
+      try {
+        const response = await api.get(`/api/users/profile/${authStore.userId}/`);
+        profile.value = response.data;
+      } catch (error) {
+        console.error('Failed to fetch profile:', error);
       }
     };
-  },
-  methods: {
-    goBack() {
-      window.history.back();
-    },
-    async navigateToNextStep() {
+
+    const saveProfile = async () => {
       try {
-        const userId = 1; // setzen  tatsächliche Benutzer-ID
-        await axios.patch(`http://localhost:8000/api/users/profile/${userId}/`, this.profile);
-        this.$router.push({ name: 'OnboardingStep2' });
+        await api.patch(`api/users/profile/${authStore.userId}/`, profile.value);
+        alert('Profile updated successfully');
       } catch (error) {
         console.error('Failed to update profile:', error);
-        alert('Failed to update profile');
       }
-    }
-  },
-  async mounted() {
-    try {
-      const userId = 1; // setze tatsächliche Benutzer-ID
-      const response = await axios.get(`http://localhost:8000/api/users/profile/${userId}/`);
-      this.profile = response.data;
-    } catch (error) {
-      console.error('Failed to fetch profile:', error);
-    }
+    };
+
+    const navigateToNextStep = async () => {
+      try {
+        await saveProfile();
+        router.push({ name: 'OnboardingStep2' });
+      } catch (error) {
+        console.error('Failed to navigate to next step:', error);
+        alert('Failed to navigate to next step');
+      }
+    };
+
+    onMounted(() => {
+      fetchProfile();
+    });
+
+    return {
+      profile,
+      navigateToNextStep
+    };
   }
 };
 </script>
@@ -101,4 +138,28 @@ export default {
   justify-content: center;
   left: 0;
 }
+
+.form-list .q-input {
+  display: flex;
+  flex-direction: column;
+}
+
+.text-color {
+  font-size: 12px;
+  color: #50C1BA;
+  margin-bottom: 4px;
+}
+
+.label-text {
+  font-size: 12px;
+  color: #50C1BA;
+}
+
+.q-pa-md {
+  padding-top: 5px;
+  padding-left: 5px;
+  padding-right: 5px;
+}
+
+
 </style>
