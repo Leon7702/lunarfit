@@ -301,7 +301,7 @@
 
 <script>
 import { ref, computed } from "vue";
-import axios from "axios";
+import { api } from 'src/boot/axios';
 import TrsSunburst from "components/TrsSunburst.vue";
 import LineChart from "components/LineChart.vue";
 import AssessmentRequiredCard from "components/AssessmentRequiredCard.vue";
@@ -352,6 +352,13 @@ export default {
       }
     };
 
+    const today = new Date().toISOString().split("T")[0]; // Use the current date in production
+    // const today = "2024-07-26";  // for testing with a specific date
+    // const today = "2024-07-15"; // For testing, set a specific date instead of the current date
+    // const today = "2024-05-05";  // for testing with a specific date - cycle 0
+    // const today = "2024-06-09";  // for testing with a specific date - cycle 1
+    // const today = "2024-11-11";  // for testing with a specific date - no cycle found
+
     const roundToTwoDecimals = (num) => parseFloat(num.toFixed(2));
 
     const calculateLengthPortion = (calculatedLengths) => {
@@ -369,19 +376,45 @@ export default {
 
     const fetchData = async () => {
       try {
-        const [cycleResponse, trsResponse] = await Promise.all([
-          axios.get("http://localhost:3000/cycles/"),
-          axios.get("http://localhost:3000/trs?user_id=1"),
+        const [trsResponse, cycleResponse] = await Promise.all([
+          api.get('/training/trs/'),
+          api.get("/cycles/"),
         ]);
+
+        // Handle TRS data
+        const trsdata = trsResponse.data;
+        console.log("TRS data received:", trsdata);
+        const todayData = trsdata.results.find((entry) => entry.date === today);
+        console.log("Today's data:", todayData);
+        if (todayData) {
+          currentDayData.value = todayData;
+          moodScore.value = todayData.mood;
+          strainScore.value = todayData.trs_acwr;
+          freeScore.value = 6 - todayData.complaints;
+          restScore.value = todayData.recovery;
+          acwr.value = todayData.acwr;
+
+          // Create a new object with the adjusted values
+          const adjustedTodayData = {
+            ...todayData,
+            complaints: 6 - todayData.complaints
+          };
+
+          // calculate the trs Score with the adjusted values
+          trainingReadinessScore.value = calculateScore(adjustedTodayData); // calculate the trs
+        } else {
+          currentDayData.value = null;
+        }
+
+        // Handle trs score data
+        trsScores.value = trsdata.results.map(entry => ({
+          ...entry,
+          complaints: 6 - entry.complaints // Invert complaints value for all entries
+        }));
+        console.log("Processed TRS scores:", trsScores.value);
 
         // Handle cycle data
         const cycleData = cycleResponse.data;
-        const today = new Date().toISOString().split("T")[0]; // Use the current date in production
-        // const today = "2024-07-21";  // for testing with a specific date
-        // const today = "2024-07-15"; // For testing, set a specific date instead of the current date
-        // const today = "2024-05-05";  // for testing with a specific date - cycle 0
-        // const today = "2024-06-09";  // for testing with a specific date - cycle 1
-        // const today = "2024-11-11";  // for testing with a specific date - no cycle found
 
         const currentCycle = getCurrentCycle(cycleData, today);
 
@@ -433,35 +466,6 @@ export default {
         } else {
           console.error('No cycle found for today\'s date');
         }
-
-        // Handle TRS data
-        const trsdata = trsResponse.data;
-        const todayData = trsdata.find((entry) => entry.day === today);
-        if (todayData) {
-          currentDayData.value = todayData;
-          moodScore.value = todayData.mood;
-          strainScore.value = todayData.trs_acwr;
-          freeScore.value = 6 - todayData.complaints;
-          restScore.value = todayData.recovery;
-          acwr.value = todayData.acwr;
-
-          // Create a new object with the adjusted values
-          const adjustedTodayData = {
-            ...todayData,
-            complaints: 6 - todayData.complaints
-          };
-
-          // calculate the trs Score with the adjusted values
-          trainingReadinessScore.value = calculateScore(adjustedTodayData); // calculate the trs
-        } else {
-          currentDayData.value = null;
-        }
-
-        // Handle trs score data
-        trsScores.value = trsdata.map(entry => ({
-          ...entry,
-          complaints: 6 - entry.complaints // Invert complaints value for all entries
-        }));;
       } catch (error) {
         console.error("Failed to fetch data:", error);
       }
@@ -504,8 +508,8 @@ export default {
 
       // Filter data within the date range
       let filtered = trsScores.value
-        .filter((d) => new Date(d.day) >= fromDate)
-        .filter((d) => new Date(d.day) <= toDate);
+        .filter((d) => new Date(d.date) >= fromDate)
+        .filter((d) => new Date(d.date) <= toDate);
 
       // Create an array of all dates within the range
       let allDates = [];
@@ -524,7 +528,7 @@ export default {
 
       // Fill data arrays with values or null if no data for a date
       allDates.forEach(date => {
-        let entry = filtered.find(e => new Date(e.day).getTime() === date.getTime());
+        let entry = filtered.find(e => new Date(e.date).getTime() === date.getTime());
         dateLabels.push(date.toISOString().split('T')[0]);
         moodData.push(entry ? entry.mood : null);
         acwrData.push(entry ? entry.acwr : null);
@@ -541,6 +545,8 @@ export default {
         dateLabels,
       };
     });
+
+    console.log("Filtered Data:", filteredData.value);
 
     return {
       slide,
