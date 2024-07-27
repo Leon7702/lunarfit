@@ -10,28 +10,40 @@ For the full list of settings and their values, see
 https://docs.djangoproject.com/en/5.0/ref/settings/
 """
 
+import os
 from datetime import timedelta
 from pathlib import Path
+
+import dj_database_url
+from dotenv import load_dotenv
 
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
 
-
-# Quick-start development settings - unsuitable for production
-# See https://docs.djangoproject.com/en/5.0/howto/deployment/checklist/
+load_dotenv(BASE_DIR / ".env")
 
 # SECURITY WARNING: keep the secret key used in production secret!
-SECRET_KEY = "django-insecure-o)dn%@tk_wt6(-m$e+(29op9b3e*n#t$8jcm2*m^4!sv7@gko3"
+# If available the key will be loaded from a environment var or .env file in the base dir
+SECRET_KEY = os.environ.get(
+    "DJANGO_SECRET_KEY",
+    "django-insecure-o)dn%@tk_wt6(-m$e+(29op9b3e*n#t$8jcm2*m^4!sv7@gko3",
+)
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = True
+# env variables are strings
+DEBUG = os.environ.get("DJANGO_DEBUG", "").lower() != "false"
 
+# TODO: Configure for Production (DEBUG=FALSE)
 ALLOWED_HOSTS = []
 
+# TODO: Configure for Production
 CORS_ALLOWED_ORIGINS = [
     "http://localhost:9000",
 ]
+
+# TODO: Enable when HTTPS is configured
+# CSRF_COOKIE_SECURE = True
 
 # Application definition
 
@@ -100,16 +112,26 @@ WSGI_APPLICATION = "lunarfit.wsgi.application"
 # Database
 # https://docs.djangoproject.com/en/5.0/ref/settings/#databases
 
-DATABASES = {
-    "default": {
-        "ENGINE": "django.db.backends.postgresql",
-        "NAME": "postgres",
-        "USER": "postgres",
-        "PASSWORD": "lunarfit",
-        "HOST": "db",
-        "PORT": 5432,
+# DATABASE_URL in the form of:
+# postgres://USER:PASSWORD@HOST:PORT/NAME or
+# postgresql://USER:PASSWORD@HOST:PORT/NAME
+if "DATABASE_URL" in os.environ:
+    DATABASES["default"] = dj_database_url.config(
+        conn_max_age=500,
+        conn_health_checks=True,
+    )
+else:
+    # use container in dev environment
+    DATABASES = {
+        "default": {
+            "ENGINE": "django.db.backends.postgresql",
+            "NAME": "postgres",
+            "USER": "postgres",
+            "PASSWORD": "lunarfit",
+            "HOST": "db",
+            "PORT": 5432,
+        }
     }
-}
 
 AUTH_USER_MODEL = "users.User"
 
@@ -186,6 +208,7 @@ USE_TZ = True
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/5.0/howto/static-files/
 
+STATIC_ROOT = BASE_DIR / "dist/"
 STATIC_URL = "static/"
 
 # Default primary key field type
