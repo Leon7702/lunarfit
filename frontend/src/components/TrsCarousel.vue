@@ -441,16 +441,27 @@ export default {
           currentDayData.value = todayData;
           moodScore.value = todayData.mood;
           strainScore.value = todayData.trs_acwr;
-          freeScore.value = todayData.complaints;
+          freeScore.value = 6 - todayData.complaints;
           restScore.value = todayData.recovery;
           acwr.value = todayData.acwr;
-          trainingReadinessScore.value = calculateScore(todayData); // calculate the trs
+
+          // Create a new object with the adjusted values
+          const adjustedTodayData = {
+            ...todayData,
+            complaints: 6 - todayData.complaints
+          };
+
+          // calculate the trs Score with the adjusted values
+          trainingReadinessScore.value = calculateScore(adjustedTodayData); // calculate the trs
         } else {
           currentDayData.value = null;
         }
 
         // Handle trs score data
-        trsScores.value = trsdata;
+        trsScores.value = trsdata.map(entry => ({
+          ...entry,
+          complaints: 6 - entry.complaints // Invert complaints value for all entries
+        }));;
       } catch (error) {
         console.error("Failed to fetch data:", error);
       }

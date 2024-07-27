@@ -91,7 +91,7 @@ export default {
             trs_acwr: todayData.trs_acwr,
             mood: todayData.mood,
             recovery: todayData.recovery,
-            complaints: todayData.complaints
+            complaints: 6 - todayData.complaints
           };
           this.score = calculateScore(trsdata);
         } else {
