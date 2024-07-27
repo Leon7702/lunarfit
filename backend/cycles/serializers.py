@@ -15,6 +15,13 @@ class MenstrualCycleSerializer(serializers.ModelSerializer):
     class Meta:
         model = MenstrualCycle
         fields = "__all__"
+        extra_kwargs = {
+            "user": {"read_only": True},
+        }
+
+    def create(self, validated_data: dict):
+        validated_data["user"] = self.context["request"].user
+        return super().create(validated_data)
 
 
 class MedicationCategorySerializer(serializers.ModelSerializer):
@@ -27,12 +34,26 @@ class MedicationSerializer(serializers.ModelSerializer):
     class Meta:
         model = Medication
         fields = "__all__"
+        extra_kwargs = {
+            "user": {"read_only": True},
+        }
+    
+    def create(self, validated_data: dict):
+        validated_data["user"] = self.context["request"].user
+        return super().create(validated_data)
 
 
 class TrackingDataSerializer(serializers.ModelSerializer):
     class Meta:
         model = TrackingData
         fields = "__all__"
+        extra_kwargs = {
+            "user": {"read_only": True},
+        }
+
+    def create(self, validated_data: dict):
+        validated_data["user"] = self.context["request"].user
+        return super().create(validated_data)
 
 
 class TypeSerializer(serializers.ModelSerializer):
