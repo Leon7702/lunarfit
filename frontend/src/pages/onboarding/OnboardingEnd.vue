@@ -1,36 +1,72 @@
 <template>
   <div class="size-container">
-  <div class="welcome-container">
-    <img src="/src/assets/Image_OnboardingEnd.svg" alt="Welcome Image" class="image" />
-    <div class="welcome-text">
-      <h1 class="title">{{ $t('onboarding.onboardingEnd.title') }}</h1>
-      <p class="description">
-        {{ $t('onboarding.onboardingEnd.description') }}
-      </p>
+    <div class="welcome-container">
+      <img src="/src/assets/Image_OnboardingEnd.svg" alt="Welcome Image" class="image" />
+      <div class="welcome-text">
+        <h1 class="title">{{ $t('onboarding.onboardingEnd.title') }}</h1>
+        <p class="description">
+          {{ $t('onboarding.onboardingEnd.description') }}
+        </p>
+      </div>
+      <div class="button-container">
+        <StandardButton :label="$t('buttons.next')" @click="completeOnboarding" />
+      </div>
     </div>
-    <div class="button-container">
-      <StandardButton :label="$t('buttons.next')" @click="navigateToDashboard" />
-    </div>
-  </div>
   </div>  
 </template>
   
-  <script>
-  import StandardButton from 'components/StandardButton.vue';
-  
-  export default {
-  name: 'OnboardingEnd',
+<script>
+import StandardButton from 'components/StandardButton.vue';
+import { useRouter } from 'vue-router';
+import axios from 'axios';
+import { useAuthStore } from 'src/stores/auth';
+import { useOnboardingStore } from 'src/stores/onboarding';
+
+export default {
   components: {
     StandardButton
   },
-  methods: {
-    navigateToDashboard() {
-      this.$router.push({ path: '/home' });
-    }
+  setup() {
+    const router = useRouter();
+    const authStore = useAuthStore();
+    const onboardingStore = useOnboardingStore();
+
+    const completeOnboarding = async () => {
+      const requestBody = {
+        user: authStore.userId,
+        workout_frequency: onboardingStore.workout_frequency,
+        workout_duration: onboardingStore.workout_duration,
+        workout_intensity: onboardingStore.workout_intensity,
+        cycle_duration: onboardingStore.cycle_duration,
+        menstruation_duration: onboardingStore.menstruation_duration
+      };
+
+      try {
+        await authStore.refreshAccessToken();
+        const response = await axios.post('http://localhost:8000/api/users/onboarding/', requestBody, {
+          headers: {
+            'Content-Type': 'application/json',
+            'Authorization': `Bearer ${authStore.accessToken}`
+          }
+        });
+
+        console.log('Onboarding successfully completed', response.data);
+        alert('Onboarding erfolgreich abgeschlossen');
+        router.push('/home');
+      } catch (error) {
+        console.error('Failed to complete onboarding:', error);
+        alert('Fehler beim Abschließen des Onboardings');
+      }
+    };
+
+    return {
+      completeOnboarding
+    };
   }
 };
-  </script>
-  
+</script>
+
+
   <style scoped>
   
   .image {

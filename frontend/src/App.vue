@@ -6,6 +6,7 @@
 
 import 'src/css/app.scss';
 
+
 defineOptions({
   name: 'App'
 });
