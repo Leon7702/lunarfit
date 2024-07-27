@@ -53,7 +53,7 @@
 
 <script>
 import { ref } from 'vue';
-import axios from 'axios';
+import { api } from 'src/boot/axios';
 import { calculateScore } from 'src/utils/scoreCalculator';
 
 export default {
@@ -79,11 +79,11 @@ export default {
       // TODO: Fetch the data from the database and assign it to trs_acwr, mood, recovery, and complaints
       // FOR NOW: to test the method without having a real database, use json-server
       try {
-        const response = await axios.get('http://localhost:3000/trs?user_id=1');
+        const response = await api.get('/training/trs/?date_keyword=today');
         const today = new Date().toISOString().split("T")[0];
         // const today = "2024-07-21";  // for testing with a specific date
-        // const today = "2024-07-23"; // For testing, set a specific date instead of the current date
-        const todayData = response.data.find((entry) => entry.day === today);
+        // const today = "2024-07-26"; // For testing, set a specific date instead of the current date
+        const todayData = response.data.results.find((entry) => entry.date === today);
 
         let trsdata;
         if (todayData) {
@@ -91,7 +91,7 @@ export default {
             trs_acwr: todayData.trs_acwr,
             mood: todayData.mood,
             recovery: todayData.recovery,
-            complaints: todayData.complaints
+            complaints: 6 - todayData.complaints
           };
           this.score = calculateScore(trsdata);
         } else {
