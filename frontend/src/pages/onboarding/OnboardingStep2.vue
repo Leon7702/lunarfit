@@ -31,9 +31,10 @@
 <script>
 import { ref } from 'vue';
 import { useRouter } from 'vue-router';
-import { useOnboardingStore } from 'src/stores/onboarding';
+import { api } from 'src/boot/axios';
 import StandardButton from 'components/StandardButton.vue';
 import BackButtonText from 'components/BackButtonText.vue';
+import { useOnboardingStore } from 'src/stores/onboarding';
 
 export default {
   components: {
@@ -48,19 +49,39 @@ export default {
     const menstruation_duration = ref(null);
     const cycle_duration = ref(null);
 
-    const navigateToNextStep = () => {
+    const logLastMenstruation = async () => {
+      try {
+        await api.post('/cycles/log/', {
+          date: last_menstruation.value,
+          value: "3", // Beispielwert, je nach Anforderung anpassen
+          type: 1 // Typ 1 für Menstruation
+        });
+      } catch (error) {
+        console.error('Error logging last menstruation:', error);
+        alert('Fehler beim Speichern der letzten Menstruation.');
+      }
+    };
+
+    const navigateToNextStep = async () => {
       if (!last_menstruation.value.trim() || menstruation_duration.value === null || cycle_duration.value === null) {
         alert("Bitte füllen Sie alle Felder aus!");
         return;
       }
 
-      onboardingStore.setMenstruationData({
-        last_menstruation: last_menstruation.value,
-        menstruation_duration: menstruation_duration.value,
-        cycle_duration: cycle_duration.value
-      });
+      try {
+        await logLastMenstruation();
+        
+        onboardingStore.setMenstruationData({
+          cycle_duration: cycle_duration.value,
+          menstruation_duration: menstruation_duration.value,
+          last_menstruation: last_menstruation.value
+        });
 
-      router.push({ name: 'OnboardingStep4' });
+        router.push({ name: 'OnboardingStep4' });
+      } catch (error) {
+        console.error('Failed to navigate to next step:', error);
+        alert('Failed to navigate to next step');
+      }
     };
 
     return {
