@@ -59,3 +59,4 @@ class TypeViewSet(ModelViewSet):
     serializer_class = TypeSerializer
     queryset = Type.objects.all()
     permission_classes = [IsAuthenticated]
+    http_method_names = ["get"]
