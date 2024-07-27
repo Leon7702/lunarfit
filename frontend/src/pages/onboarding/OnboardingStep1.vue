@@ -46,7 +46,7 @@
 <script>
 import { ref, onMounted } from 'vue';
 import { useRouter } from 'vue-router';
-import api from 'src/services/axios';
+import { api } from 'src/boot/axios';
 import { useAuthStore } from 'src/stores/auth';
 import StandardButton from 'components/StandardButton.vue';
 import BackButtonText from 'components/BackButtonText.vue';
@@ -70,7 +70,7 @@ export default {
 
     const fetchProfile = async () => {
       try {
-        const response = await api.get(`/api/users/profile/${authStore.userId}/`);
+        const response = await api.get(`/users/profile/${authStore.userId}/`);
         profile.value = response.data;
       } catch (error) {
         console.error('Failed to fetch profile:', error);
@@ -79,7 +79,7 @@ export default {
 
     const saveProfile = async () => {
       try {
-        await api.patch(`api/users/profile/${authStore.userId}/`, profile.value);
+        await api.patch(`/users/profile/${authStore.userId}/`, profile.value);
         alert('Profile updated successfully');
       } catch (error) {
         console.error('Failed to update profile:', error);

@@ -18,7 +18,7 @@
 <script>
 import StandardButton from 'components/StandardButton.vue';
 import { useRouter } from 'vue-router';
-import axios from 'axios';
+import { api } from 'src/boot/axios';
 import { useAuthStore } from 'src/stores/auth';
 import { useOnboardingStore } from 'src/stores/onboarding';
 
@@ -43,7 +43,7 @@ export default {
 
       try {
         await authStore.refreshAccessToken();
-        const response = await axios.post('http://localhost:8000/api/users/onboarding/', requestBody, {
+        const response = await api.post('/users/onboarding/', requestBody, {
           headers: {
             'Content-Type': 'application/json',
             'Authorization': `Bearer ${authStore.accessToken}`

@@ -21,7 +21,7 @@
 
 <script>
 import { ref } from 'vue';
-import axios from 'axios';
+import { api } from 'src/boot/axios';
 import InputTextArea from 'components/InputTextArea.vue';
 import StandardButton from 'components/StandardButton.vue';
 import { useRouter } from 'vue-router';
@@ -58,7 +58,7 @@ export default {
   try {
     await authStore.refreshAccessToken(); // Refresh the token before making the request
 
-    const response = await axios.post('http://localhost:8000/api/notes/', requestBody, {
+    const response = await api.post('/notes/', requestBody, {
       headers: {
         'Content-Type': 'application/json',
         'Authorization': `Bearer ${authStore.accessToken}`

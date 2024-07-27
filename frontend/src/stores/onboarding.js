@@ -1,5 +1,5 @@
 import { defineStore } from 'pinia';
-import axios from 'axios';
+import { api } from 'src/boot/axios';
 
 export const useOnboardingStore = defineStore('onboarding', {
   state: () => ({
@@ -33,7 +33,7 @@ export const useOnboardingStore = defineStore('onboarding', {
     },
     async refreshAccessToken() {
       try {
-        const response = await axios.post('http://localhost:8000/api/auth/refresh/', {
+        const response = await api.post('/auth/refresh/', {
           // Add necessary data for token refresh if required
         });
         this.setAuthToken(response.data.token);

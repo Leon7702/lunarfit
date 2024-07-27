@@ -1,4 +1,3 @@
-// src/components/OnboardingStep2.vue
 <template>
   <div class="size-container">
     <div class="welcome-container">
