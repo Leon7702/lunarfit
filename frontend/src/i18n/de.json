@@ -191,6 +191,10 @@
   },
 
   "moodInfo": {
+    "0": {
+      "description": "Extrem schlecht:",
+      "advice": "Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua."
+    },
     "1": {
       "description": "Sehr schlecht:",
       "advice": "Es scheint, als ob du einen sehr schwierigen Tag hast. Versuche, dich zu bewegen, auch wenn es nur ein kurzer Spaziergang ist. Bewegung kann helfen, den Kopf frei zu bekommen und die Stimmung zu heben."
@@ -261,6 +265,16 @@
   },
 
   "freeInfo": {
+    "0": {
+      "description": "Du hast extreme Beschwerden. Hier sind einige Empfehlungen, um deine Beschwerden zu lindern:",
+      "recommendations": [
+        ">> Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod.",
+        ">> At vero eos et accusam et justo duo dolores et ea rebum.",
+        ">> Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet.",
+        "",
+        ""
+      ]
+    },
     "1": {
       "description": "Du hast derzeit starke Beschwerden. Es ist wichtig, auf deinen Körper zu hören und ihn zu schonen:",
       "recommendations": [
@@ -324,6 +338,7 @@
   },
 
   "restInfo": {
+    "0": "Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet.",
     "1": "Du scheinst körperlich sehr erschöpft zu sein. Du solltest eine Trainingspause einlegen. Weitere regenerative Maßnahmen wie Sauna, warme Bäder, Massagen und Faszientraining können den Regenerationsprozess unterstützen.",
     "2": "Dein Erholungszustand ist gering. Du solltest ein Regenerations- und Kompensationstraining in Betracht ziehen. Das bedeutet bewusst lockere Einheiten mit einer sehr geringen Intensität. Um einseitige Belastungen zu vermeiden, kannst du auch eine andere Sportart wählen.",
     "3": "Dein Erholungszustand ist eingeschränkt. Du solltest dein Trainingsvolumen oder die Trainingsintensität etwas reduzieren.",
