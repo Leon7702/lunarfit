@@ -50,7 +50,7 @@
 
 <script>
 import { ref } from 'vue';
-import axios from 'axios';
+import { api } from 'src/boot/axios';
 import { useRouter } from 'vue-router';
 
 export default {
@@ -82,7 +82,7 @@ export default {
       }
 
       try {
-        const response = await axios.post('http://localhost:8000/api/users/register/', {
+        const response = await api.post('/users/register/', {
           first_name: email.value,
           last_name: email.value,
           email: email.value,

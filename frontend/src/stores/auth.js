@@ -1,5 +1,5 @@
 import { defineStore } from 'pinia';
-import api from 'src/services/axios';
+import { api } from '../boot/axios';
 
 function parseJwt(token) {
   const base64Url = token.split('.')[1];
@@ -20,7 +20,7 @@ export const useAuthStore = defineStore('auth', {
   actions: {
     async login(credentials) {
       try {
-        const response = await api.post('/api/users/token/', credentials);
+        const response = await api.post('/users/token/', credentials);
         this.setAccessToken(response.data.access);
         this.setRefreshToken(response.data.refresh);
 
@@ -35,7 +35,7 @@ export const useAuthStore = defineStore('auth', {
 
     async refreshAccessToken() {
       try {
-        const response = await api.post('/api/users/token/refresh/', {
+        const response = await api.post('/users/token/refresh/', {
           refresh: this.refreshToken,
         });
         this.setAccessToken(response.data.access);

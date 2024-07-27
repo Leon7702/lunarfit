@@ -12,6 +12,7 @@ urlpatterns = [
     path("api/", include("notes.urls")),
     path("api/users/", include("users.urls")),
     path("api/cycles/", include("cycles.urls")),
+    path("api/training/", include("training.urls")),
     path("api/api-auth/", include("rest_framework.urls", namespace="rest_framework")),
     path("api/schema/", SpectacularAPIView.as_view(), name="schema"),
     # Optional UI:

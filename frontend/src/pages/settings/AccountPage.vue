@@ -30,7 +30,7 @@
 
 <script>
 import { ref, onMounted } from 'vue';
-import api from 'src/services/axios';
+import { api } from 'src/boot/axios';
 import { useAuthStore } from 'src/stores/auth';
 
 export default {
@@ -41,7 +41,7 @@ export default {
 
     const getEmail = async () => {
       try {
-        const response = await api.get(`/api/users/${authStore.userId}/`);
+        const response = await api.get(`/users/${authStore.userId}/`);
         email.value = response.data.email;
       } catch (error) {
         console.error('Failed to fetch email:', error);

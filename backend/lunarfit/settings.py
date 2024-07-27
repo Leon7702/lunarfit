@@ -40,6 +40,7 @@ INSTALLED_APPS = [
     "users",
     "cycles",
     "notes",
+    "training",
     "django.contrib.auth",
     "django.contrib.contenttypes",
     "django.contrib.sessions",

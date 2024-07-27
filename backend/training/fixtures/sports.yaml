@@ -1,0 +1,40 @@
+- model: training.sport
+  pk: 1
+  fields:
+    name: other
+- model: training.sport
+  pk: 2
+  fields:
+    name: cycling
+- model: training.sport
+  pk: 3
+  fields:
+    name: swimming
+- model: training.sport
+  pk: 4
+  fields:
+    name: skiing
+- model: training.sport
+  pk: 5
+  fields:
+    name: jogging
+- model: training.sport
+  pk: 6
+  fields:
+    name: strength_training
+- model: training.sport
+  pk: 7
+  fields:
+    name: fitness
+- model: training.sport
+  pk: 8
+  fields:
+    name: yoga
+- model: training.sport
+  pk: 9
+  fields:
+    name: walking
+- model: training.sport
+  pk: 10
+  fields:
+    name: hiking

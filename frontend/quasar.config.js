@@ -10,7 +10,7 @@
 
 const { configure } = require('quasar/wrappers');
 
-module.exports = configure(function (/* ctx */) {
+module.exports = configure(function (ctx) {
   return {
     // https://v2.quasar.dev/quasar-cli-vite/prefetch-feature
     // preFetch: true,
@@ -58,7 +58,11 @@ module.exports = configure(function (/* ctx */) {
 
       // publicPath: '/',
       // analyze: true,
-      // env: {},
+      env: {
+        API: ctx.dev
+          ? 'http://localhost:8000/api'
+          : 'https://lunarfit.ac0.de/api'
+      },
       // rawDefine: {}
       // ignorePublicFolder: true,
       // minify: false,
