@@ -353,7 +353,7 @@ export default {
     };
 
     const today = new Date().toISOString().split("T")[0]; // Use the current date in production
-    // const today = "2024-07-26";  // for testing with a specific date
+    // const today = "2024-08-02";  // for testing with a specific date
     // const today = "2024-07-15"; // For testing, set a specific date instead of the current date
     // const today = "2024-05-05";  // for testing with a specific date - cycle 0
     // const today = "2024-06-09";  // for testing with a specific date - cycle 1
@@ -378,7 +378,7 @@ export default {
       try {
         const [trsResponse, cycleResponse] = await Promise.all([
           api.get('/training/trs/'),
-          api.get("/cycles/"),
+          api.get('/cycles/'),
         ]);
 
         // Handle TRS data
@@ -415,56 +415,64 @@ export default {
 
         // Handle cycle data
         const cycleData = cycleResponse.data;
+        console.log("Cycle data received:", cycleData);
 
-        const currentCycle = getCurrentCycle(cycleData, today);
+        // Access the results array from the cycleData object
+        const cycles = cycleData.results;
 
-        if (currentCycle) {
-          const calculatedLengths = calculateCycleAndPhases(currentCycle);
+        if (Array.isArray(cycles)) {
+          const currentCycle = getCurrentCycle(cycles, today);
 
-          cycleLength.value = calculatedLengths.cycleLength;
-          calculateLengthPortion(calculatedLengths);
+          if (currentCycle) {
+            const calculatedLengths = calculateCycleAndPhases(currentCycle);
 
-          currentDay.value = calculateCurrentDay(currentCycle.start, today);
+            cycleLength.value = calculatedLengths.cycleLength;
+            calculateLengthPortion(calculatedLengths);
 
-          const currentPhase = roundToTwoDecimals(
-          (currentDay.value / cycleLength.value) * 100
-        );
-        if (currentPhase <= roundToTwoDecimals(mensLengthPortion.value)) {
-          phaseTextKey.value = "menstruationPhaseText";
-        } else if (
-          currentPhase <=
-          roundToTwoDecimals(
-            mensLengthPortion.value + follicularLengthPortion.value
-          )
-        ) {
-          phaseTextKey.value = "follicularPhaseText";
-        } else if (
-          currentPhase <=
-          roundToTwoDecimals(
-            mensLengthPortion.value +
-              follicularLengthPortion.value +
-              ovulationLengthPortion.value
-          )
-        ) {
-          phaseTextKey.value = "ovulationPhaseText";
-        } else if (
-          currentPhase <=
-          roundToTwoDecimals(
-            mensLengthPortion.value +
-              follicularLengthPortion.value +
-              ovulationLengthPortion.value +
-              earlyLutealLengthPortion.value
-          )
-        ) {
-          phaseTextKey.value = "earlyLutealPhaseText";
+            currentDay.value = calculateCurrentDay(currentCycle.start, today);
+
+            const currentPhase = roundToTwoDecimals(
+            (currentDay.value / cycleLength.value) * 100
+          );
+          if (currentPhase <= roundToTwoDecimals(mensLengthPortion.value)) {
+            phaseTextKey.value = "menstruationPhaseText";
+          } else if (
+            currentPhase <=
+            roundToTwoDecimals(
+              mensLengthPortion.value + follicularLengthPortion.value
+            )
+          ) {
+            phaseTextKey.value = "follicularPhaseText";
+          } else if (
+            currentPhase <=
+            roundToTwoDecimals(
+              mensLengthPortion.value +
+                follicularLengthPortion.value +
+                ovulationLengthPortion.value
+            )
+          ) {
+            phaseTextKey.value = "ovulationPhaseText";
+          } else if (
+            currentPhase <=
+            roundToTwoDecimals(
+              mensLengthPortion.value +
+                follicularLengthPortion.value +
+                ovulationLengthPortion.value +
+                earlyLutealLengthPortion.value
+            )
+          ) {
+            phaseTextKey.value = "earlyLutealPhaseText";
+          } else {
+            phaseTextKey.value = "lateLutealPhaseText";
+          }
+
+          // Log the phaseTextKey to ensure it's being set correctly
+          console.log("phaseTextKey:", phaseTextKey.value);
+          } else {
+            console.error('No cycle found for today\'s date');
+          }
         } else {
-          phaseTextKey.value = "lateLutealPhaseText";
-        }
-
-        // Log the phaseTextKey to ensure it's being set correctly
-        console.log("phaseTextKey:", phaseTextKey.value);
-        } else {
-          console.error('No cycle found for today\'s date');
+          console.error('Cycle data is not an array:', cycleData);
         }
       } catch (error) {
         console.error("Failed to fetch data:", error);
