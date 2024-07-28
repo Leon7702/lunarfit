@@ -15,6 +15,8 @@ class TrsSerializer(serializers.ModelSerializer):
         fields = "__all__"
         extra_kwargs = {
             "user": {"read_only": True},
+            "acwr": {"read_only": True},
+            "trs_acwr": {"read_only": True},
         }
 
     def create(self, validated_data: dict):

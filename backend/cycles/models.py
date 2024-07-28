@@ -24,7 +24,7 @@ class Phase(models.Model):
         (3, "Early Luteal"),
         (4, "Late Luteal"),
     ]
-    cycle_id = models.ForeignKey(MenstrualCycle, on_delete=models.CASCADE)
+    cycle_id = models.ForeignKey(MenstrualCycle, related_name="phases", on_delete=models.CASCADE)
     start = models.DateField()
     end = models.DateField()
     phase_number = models.PositiveIntegerField(choices=PHASES)

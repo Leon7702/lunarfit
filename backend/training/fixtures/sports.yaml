@@ -1,40 +1,168 @@
 - model: training.sport
   pk: 1
   fields:
-    name: other
+    name: other_sports
 - model: training.sport
   pk: 2
   fields:
-    name: cycling
+    name: aqua_fitness
 - model: training.sport
   pk: 3
   fields:
-    name: swimming
+    name: athletics
 - model: training.sport
   pk: 4
   fields:
-    name: skiing
+    name: badminton
 - model: training.sport
   pk: 5
   fields:
-    name: jogging
+    name: basketball
 - model: training.sport
   pk: 6
   fields:
-    name: strength_training
+    name: canoeing
 - model: training.sport
   pk: 7
   fields:
-    name: fitness
+    name: climbing
 - model: training.sport
   pk: 8
   fields:
-    name: yoga
+    name: cross_country_skiing
 - model: training.sport
   pk: 9
   fields:
-    name: walking
+    name: cycling
 - model: training.sport
   pk: 10
   fields:
+    name: dancing
+- model: training.sport
+  pk: 11
+  fields:
+    name: diving
+- model: training.sport
+  pk: 12
+  fields:
+    name: fitness_training
+- model: training.sport
+  pk: 13
+  fields:
+    name: floorball
+- model: training.sport
+  pk: 14
+  fields:
+    name: football
+- model: training.sport
+  pk: 15
+  fields:
+    name: golf
+- model: training.sport
+  pk: 16
+  fields:
+    name: gymnastics
+- model: training.sport
+  pk: 17
+  fields:
+    name: handball
+- model: training.sport
+  pk: 18
+  fields:
     name: hiking
+- model: training.sport
+  pk: 19
+  fields:
+    name: horse_riding
+- model: training.sport
+  pk: 20
+  fields:
+    name: ice_hockey
+- model: training.sport
+  pk: 21
+  fields:
+    name: ice_skating
+- model: training.sport
+  pk: 22
+  fields:
+    name: inline_skating
+- model: training.sport
+  pk: 23
+  fields:
+    name: martial_arts
+- model: training.sport
+  pk: 24
+  fields:
+    name: mountain_biking
+- model: training.sport
+  pk: 25
+  fields:
+    name: rowing
+- model: training.sport
+  pk: 26
+  fields:
+    name: running
+- model: training.sport
+  pk: 27
+  fields:
+    name: sailing
+- model: training.sport
+  pk: 28
+  fields:
+    name: shooting
+- model: training.sport
+  pk: 29
+  fields:
+    name: ski_snowboard_tours
+- model: training.sport
+  pk: 30
+  fields:
+    name: skiing
+- model: training.sport
+  pk: 31
+  fields:
+    name: sledding
+- model: training.sport
+  pk: 32
+  fields:
+    name: snowboarding
+- model: training.sport
+  pk: 33
+  fields:
+    name: snowshoeing
+- model: training.sport
+  pk: 34
+  fields:
+    name: squash
+- model: training.sport
+  pk: 35
+  fields:
+    name: strength_training
+- model: training.sport
+  pk: 36
+  fields:
+    name: surfing
+- model: training.sport
+  pk: 37
+  fields:
+    name: swimming
+- model: training.sport
+  pk: 38
+  fields:
+    name: table_tennis
+- model: training.sport
+  pk: 39
+  fields:
+    name: tennis
+- model: training.sport
+  pk: 40
+  fields:
+    name: volleyball
+- model: training.sport
+  pk: 41
+  fields:
+    name: walking
+- model: training.sport
+  pk: 42
+  fields:
+    name: yoga
