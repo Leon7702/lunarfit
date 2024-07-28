@@ -492,7 +492,7 @@
     "medicine": {
         "title": "Medikamente",
         "description": "Spezifische Medikamenteneinnahme:",
-        "smallDescription": "Bitte beachten Sie, dass die oben genannten Medikamente Einfluss auf Ihren Zyklus haben können.",
+        "smallDescription": "Bitte beachte, dass die oben genannten Medikamente Einfluss auf Deinen Zyklus haben können.",
         "options": {
           "notfallkontrazeptiva": "Notfallkontrazeptiva",
           "diclofenac": "Diclofenac",

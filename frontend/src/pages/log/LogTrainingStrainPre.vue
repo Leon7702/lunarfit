@@ -12,97 +12,129 @@
       </div>
       <div class="form-group" v-if="trainingStatus === 'ja'">
         <p>{{ $t('logTrainingStrainPre.trainingOptions.prompt') }}</p>
-        <DropDownSingleSelect :options="trainingOptions" v-model="selectedActivity"/>
+        <q-select
+          filled
+          v-model="selectedActivity"
+          :options="trainingOptions"
+          input-class="text-right"
+          class="q-mb-sm"
+          emit-value
+          map-options
+        >
+          <template v-slot:prepend>
+          
+          </template>
+        </q-select>
       </div>
       <div class="form-group spacer" v-if="trainingStatus === 'ja'"></div> 
       <div class="form-group" v-if="trainingStatus === 'ja'">
         <p>{{ $t('logTrainingStrainPre.durationOptions.prompt') }}</p>
-        <FormFieldText id="duration" label="" iconName="" inputType="number" />
+        <q-input
+          filled
+          v-model="duration"
+          type="number"
+          input-class="text-right"
+          class="q-mb-sm"
+        />
       </div>
       <div class="button-container">
         <StandardButton :label="$t('buttons.next')" @click="navigateToNextStep" />
       </div>
     </div>
   </div>
-  </template>
-  
-  <script>
-  import StandardButton from 'components/StandardButton.vue';
-  import RadioToggle from 'components/RadioToggle.vue';
-  import DropDownSingleSelect from 'components/DropDownSingleSelect.vue';
-  import FormFieldText from 'components/FormFieldText.vue';
-  
-  export default {
-    components: {
-      StandardButton,
-      RadioToggle,
-      DropDownSingleSelect,
-      FormFieldText
-    },
-    data() {
-      return {
-        trainingStatus: null,
-        trainingOptions: [
-          this.$t('logTrainingStrainPre.trainingOptions.options.hiking'),
-          this.$t('logTrainingStrainPre.trainingOptions.options.cycling'),
-          this.$t('logTrainingStrainPre.trainingOptions.options.swimming'),
-          this.$t('logTrainingStrainPre.trainingOptions.options.skiing'),
-          this.$t('logTrainingStrainPre.trainingOptions.options.running'),
-          this.$t('logTrainingStrainPre.trainingOptions.options.strength_training'),
-          this.$t('logTrainingStrainPre.trainingOptions.options.fitness_training'),
-          this.$t('logTrainingStrainPre.trainingOptions.options.yoga'),
-          this.$t('logTrainingStrainPre.trainingOptions.options.walking'),
-          this.$t('logTrainingStrainPre.trainingOptions.options.mountain_biking'),
-          this.$t('logTrainingStrainPre.trainingOptions.options.snowshoeing'),
-          this.$t('logTrainingStrainPre.trainingOptions.options.sledding'),
-          this.$t('logTrainingStrainPre.trainingOptions.options.gymnastics'),
-          this.$t('logTrainingStrainPre.trainingOptions.options.dancing'),
-          this.$t('logTrainingStrainPre.trainingOptions.options.football'),
-          this.$t('logTrainingStrainPre.trainingOptions.options.cross_country_skiing'),
-          this.$t('logTrainingStrainPre.trainingOptions.options.volleyball'),
-          this.$t('logTrainingStrainPre.trainingOptions.options.badminton'),
-          this.$t('logTrainingStrainPre.trainingOptions.options.inline_skating'),
-          this.$t('logTrainingStrainPre.trainingOptions.options.climbing'),
-          this.$t('logTrainingStrainPre.trainingOptions.options.snowboarding'),
-          this.$t('logTrainingStrainPre.trainingOptions.options.ski_snowboard_tours'),
-          this.$t('logTrainingStrainPre.trainingOptions.options.table_tennis'),
-          this.$t('logTrainingStrainPre.trainingOptions.options.tennis'),
-          this.$t('logTrainingStrainPre.trainingOptions.options.shooting'),
-          this.$t('logTrainingStrainPre.trainingOptions.options.diving'),
-          this.$t('logTrainingStrainPre.trainingOptions.options.ice_skating'),
-          this.$t('logTrainingStrainPre.trainingOptions.options.aqua_fitness'),
-          this.$t('logTrainingStrainPre.trainingOptions.options.surfing'),
-          this.$t('logTrainingStrainPre.trainingOptions.options.horse_riding'),
-          this.$t('logTrainingStrainPre.trainingOptions.options.floorball'),
-          this.$t('logTrainingStrainPre.trainingOptions.options.basketball'),
-          this.$t('logTrainingStrainPre.trainingOptions.options.golf'),
-          this.$t('logTrainingStrainPre.trainingOptions.options.squash'),
-          this.$t('logTrainingStrainPre.trainingOptions.options.martial_arts'),
-          this.$t('logTrainingStrainPre.trainingOptions.options.sailing'),
-          this.$t('logTrainingStrainPre.trainingOptions.options.athletics'),
-          this.$t('logTrainingStrainPre.trainingOptions.options.rowing'),
-          this.$t('logTrainingStrainPre.trainingOptions.options.canoeing'),
-          this.$t('logTrainingStrainPre.trainingOptions.options.ice_hockey'),
-          this.$t('logTrainingStrainPre.trainingOptions.options.handball'),
-          this.$t('logTrainingStrainPre.trainingOptions.options.other_sports')
-        ],
-        selectedActivity: null
-      };
-    },
-    methods: {
+</template>
+
+<script>
+import { ref } from 'vue';
+import { useRouter } from 'vue-router';
+import StandardButton from 'components/StandardButton.vue';
+import RadioToggle from 'components/RadioToggle.vue';
+import { useTrainingStore } from 'src/stores/training';
+
+export default {
+  components: {
+    StandardButton,
+    RadioToggle
+  },
+  setup() {
+    const router = useRouter();
+    const trainingStore = useTrainingStore();
+
+    const trainingStatus = ref(null);
+    const selectedActivity = ref(null);
+    const duration = ref(null);
+
+    const trainingOptions = [
+      { label: 'Other Sports', value: 1 },
+      { label: 'Aqua Fitness', value: 2 },
+      { label: 'Athletics', value: 3 },
+      { label: 'Badminton', value: 4 },
+      { label: 'Basketball', value: 5 },
+      { label: 'Canoeing', value: 6 },
+      { label: 'Climbing', value: 7 },
+      { label: 'Cross Country Skiing', value: 8 },
+      { label: 'Cycling', value: 9 },
+      { label: 'Dancing', value: 10 },
+      { label: 'Diving', value: 11 },
+      { label: 'Fitness Training', value: 12 },
+      { label: 'Floorball', value: 13 },
+      { label: 'Football', value: 14 },
+      { label: 'Golf', value: 15 },
+      { label: 'Gymnastics', value: 16 },
+      { label: 'Handball', value: 17 },
+      { label: 'Hiking', value: 18 },
+      { label: 'Horse Riding', value: 19 },
+      { label: 'Ice Hockey', value: 20 },
+      { label: 'Ice Skating', value: 21 },
+      { label: 'Inline Skating', value: 22 },
+      { label: 'Martial Arts', value: 23 },
+      { label: 'Mountain Biking', value: 24 },
+      { label: 'Rowing', value: 25 },
+      { label: 'Running', value: 26 },
+      { label: 'Sailing', value: 27 },
+      { label: 'Shooting', value: 28 },
+      { label: 'Ski Snowboard Tours', value: 29 },
+      { label: 'Skiing', value: 30 },
+      { label: 'Sledding', value: 31 },
+      { label: 'Snowboarding', value: 32 },
+      { label: 'Snowshoeing', value: 33 },
+      { label: 'Squash', value: 34 },
+      { label: 'Strength Training', value: 35 },
+      { label: 'Surfing', value: 36 },
+      { label: 'Swimming', value: 37 },
+      { label: 'Table Tennis', value: 38 },
+      { label: 'Tennis', value: 39 },
+      { label: 'Volleyball', value: 40 },
+      { label: 'Walking', value: 41 },
+      { label: 'Yoga', value: 42 }
+    ];
+
+    const navigateToNextStep = () => {
+      if (trainingStatus.value === 'ja') {
+        trainingStore.setTrainingData({
+          sport: selectedActivity.value,
+          duration: duration.value
+        });
+        router.push({ name: 'LogTrainingStrain' });
+      } else {
+        router.push({ name: 'LogTrainingComplaints' });
+      }
+    };
+
+    return {
+      trainingStatus,
+      selectedActivity,
+      duration,
+      trainingOptions,
+      navigateToNextStep,
       goBack() {
         window.history.back();
-      },
-      navigateToNextStep() {
-        if (this.trainingStatus === 'ja') {
-          this.$router.push({ name: 'LogTrainingStrain' });
-        } else {
-          this.$router.push({ name: 'LogTrainingComplaints' });
-        }
       }
-    }
-  };
-  </script>
+    };
+  }
+};
+</script>
+
   
 
 <style scoped>

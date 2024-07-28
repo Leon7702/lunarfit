@@ -1,43 +1,68 @@
 <template>
   <div class="size-container">
-  <div class="welcome-container">
-    <div class="header">
-      <q-btn flat dense round icon="arrow_back" @click="goBack" />
-      <div class="title">{{ $t('logTrainingStrain.title') }}</div>
+    <div class="welcome-container">
+      <div class="header">
+        <q-btn flat dense round icon="arrow_back" @click="goBack" />
+        <div class="title">{{ $t('logTrainingStrain.title') }}</div>
+      </div>
+      <div class="linie"></div>
+      <div class="description">
+        <span v-html="$t('logTrainingStrain.description')"></span>
+      </div>
+      <div class="slider">
+        <SliderWithLabelVertical10 
+          :topText="$t('logTrainingStrain.slider.topText')" 
+          :bottomText="$t('logTrainingStrain.slider.bottomText')" 
+          v-model="workoutIntensity"
+        />
+      </div>
+      <div class="button-container">
+        <StandardButton :label="$t('buttons.next')" @click="navigateToNextStep" />
+      </div>
     </div>
-    <div class="linie"></div>
-    <div class="description">
-      <span v-html="$t('logTrainingStrain.description')"></span>
-    </div>
-    <div class="slider">
-      <SliderWithLabelVertical10 :topText="$t('logTrainingStrain.slider.topText')" :bottomText="$t('logTrainingStrain.slider.bottomText')" />
-    </div>
-    <div class="button-container">
-      <StandardButton :label="$t('buttons.next')" @click="navigateToNextStep" />
-    </div>
-  </div>
   </div>
 </template>
-  
-  <script>
-  import SliderWithLabelVertical10 from 'components/SliderWithLabelVertical10.vue';
-  import StandardButton from 'components/StandardButton.vue'
-  
-  export default {
-    components: {
-      SliderWithLabelVertical10,
-      StandardButton
-    },
-    methods: {
+
+<script>
+import { ref, computed } from 'vue';
+import { useRouter } from 'vue-router';
+import SliderWithLabelVertical10 from 'components/SliderWithLabelVertical10.vue';
+import StandardButton from 'components/StandardButton.vue';
+import { useTrainingStore } from 'src/stores/training';
+
+export default {
+  components: {
+    SliderWithLabelVertical10,
+    StandardButton
+  },
+  setup() {
+    const router = useRouter();
+    const trainingStore = useTrainingStore();
+
+    // Initialer Wert des Sliders
+    const workoutIntensity = ref(5);
+
+    // Computed Property zur Umrechnung des Wertes
+    const invertedWorkoutIntensity = computed(() => {
+      return 11 - workoutIntensity.value; // Inversion des Wertes
+    });
+
+    const navigateToNextStep = () => {
+      trainingStore.setTrainingIntensity(invertedWorkoutIntensity.value); // Umgerechneten Wert speichern
+      router.push({ name: 'LogTrainingComplaints' }); // Zur nächsten Seite navigieren
+    };
+
+    return {
+      workoutIntensity,
+      navigateToNextStep,
       goBack() {
         window.history.back();
-      },
-    navigateToNextStep() {
-      this.$router.push({ name: 'LogTrainingComplaints' });
-    }
-    }
-  };
-  </script>
+      }
+    };
+  }
+};
+</script>
+
   
   <style scoped>
 
