@@ -1,29 +1,50 @@
 <template>
-    <div class="dropdown-container">
-      <q-select filled v-model="model" :options="selectOptions" />
-    </div>
-  </template>
-  
-  <script>
-  import { ref } from 'vue'
-  
-  export default {
-    name: 'DropDownSingleSelect',
-    props: {
-      options: {
-        type: Array,
-        required: true
-      }
+  <div class="dropdown-container">
+    <q-select 
+      filled 
+      v-model="localModel" 
+      :options="selectOptions" 
+      @update:model-value="updateValue"
+    />
+  </div>
+</template>
+
+<script>
+import { ref, watch } from 'vue'
+
+export default {
+  name: 'DropDownSingleSelect',
+  props: {
+    options: {
+      type: Array,
+      required: true
     },
-    setup(props) {
-      const model = ref(null)
-      return {
-        model,
-        selectOptions: props.options
-      }
+    modelValue: {
+      type: [String, Number, Object],
+      default: null
+    }
+  },
+  setup(props, { emit }) {
+    const localModel = ref(props.modelValue)
+
+    const updateValue = (value) => {
+      localModel.value = value
+      emit('update:modelValue', value)
+    }
+
+    watch(() => props.modelValue, (newValue) => {
+      localModel.value = newValue
+    })
+
+    return {
+      localModel,
+      selectOptions: props.options,
+      updateValue
     }
   }
-  </script>
+}
+</script>
+
   
   <style scoped>
   .dropdown-container {

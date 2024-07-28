@@ -480,9 +480,8 @@
         "smallDescription": "Please note that the above medications can affect your cycle.",
         "options": {
           "notfallkontrazeptiva": "Emergency Contraceptive",
-          "hormonersatz": "Hormone Replacement",
-          "opioideSchmerzmittel": "Opioid Pain Relievers",
-          "diclofenacIbuprofen": "Diclofenac/Ibuprofen"
+           "diclofenac": "Diclofenac",
+          "ibuprofen": "Ibuprofen"
         }
       },
       "mens": {

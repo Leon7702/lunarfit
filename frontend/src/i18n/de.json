@@ -495,9 +495,8 @@
         "smallDescription": "Bitte beachten Sie, dass die oben genannten Medikamente Einfluss auf Ihren Zyklus haben können.",
         "options": {
           "notfallkontrazeptiva": "Notfallkontrazeptiva",
-          "hormonersatz": "Hormonersatz",
-          "opioideSchmerzmittel": "Opiode Schmerzmittel",
-          "diclofenacIbuprofen": "Diclofenac/Ibuprofen"
+          "diclofenac": "Diclofenac",
+          "ibuprofen": "Ibuprofen"
         }
       },
     "mens": {

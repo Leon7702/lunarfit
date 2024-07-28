@@ -1,49 +1,106 @@
 <template>
   <div class="size-container">
-  <div class="welcome-container">
-    <div class="header">
-      <q-btn flat dense round icon="arrow_back" @click="goBack" />
-      <div class="title">{{ $t('logCycle.medicine.title') }}</div>
+    <div class="welcome-container">
+      <div class="header">
+        <q-btn flat dense round icon="arrow_back" @click="goBack" />
+        <div class="title">{{ $t('logCycle.medicine.title') }}</div>
+      </div>
+      <div class="linie"></div>
+      <div class="description">
+        {{ $t('logCycle.medicine.description') }}
+      </div>
+      <div class="form-group">
+        <q-select
+          filled
+          v-model="selectedMedicine"
+          :options="medicineOptions"
+          input-class="text-right"
+          class="q-mb-sm"
+          emit-value
+          map-options
+        >
+          <template v-slot:prepend>
+
+          </template>
+        </q-select>
+      </div>
+      <div class="small-description">
+        {{ $t('logCycle.medicine.smallDescription') }}
+      </div>
+      <div class="button-container">
+        <StandardButton :label="$t('buttons.save')" @click="saveMedication" />
+      </div>
     </div>
-    <div class="linie"></div>
-    <div class="description">
-      {{ $t('logCycle.medicine.description') }}
-    </div>
-    <div class="form-group">
-      <DropDownSingleSelect :options="medicineOptions" v-model="selectedMedicine" placeholder="Auswählen" />
-    </div>
-    <div class="small-description">
-      {{ $t('logCycle.medicine.smallDescription') }}
-    </div>
-  </div>
   </div>
 </template>
 
 <script>
-import DropDownSingleSelect from 'components/DropDownSingleSelect.vue';
+import { ref } from 'vue';
+import { useRouter } from 'vue-router';
+import { api } from 'src/boot/axios';
+import StandardButton from 'components/StandardButton.vue';
+import { useAuthStore } from 'src/stores/auth';
 
 export default {
   components: {
-    DropDownSingleSelect
+    StandardButton
   },
-  data() {
-    return {
-      selectedMedicine: null,
-      medicineOptions: [
-        { label: this.$t('logCycle.medicine.options.notfallkontrazeptiva'), value: 'Notfallkontrazeptiva' },
-        { label: this.$t('logCycle.medicine.options.hormonersatz'), value: 'Hormonersatz' },
-        { label: this.$t('logCycle.medicine.options.opioideSchmerzmittel'), value: 'Opiode Schmerzmittel' },
-        { label: this.$t('logCycle.medicine.options.diclofenacIbuprofen'), value: 'Diclofenac/Ibuprofen' }
-      ]
-    };
-  },
-  methods: {
-    goBack() {
+  setup() {
+    const router = useRouter();
+    const authStore = useAuthStore();
+
+    const selectedMedicine = ref(null);
+
+    const medicineOptions = [
+      { label: 'Notfallkontrazeptiva', value: 3 },
+      { label: 'Diclofenac', value: 1 },
+      { label: 'Ibuprofen', value: 2 }
+    ];
+
+    const goBack = () => {
       window.history.back();
-    }
+    };
+
+    const saveMedication = async () => {
+      if (selectedMedicine.value === null) {
+        alert("Bitte wählen Sie ein Medikament aus!");
+        return;
+      }
+
+      const requestBody = {
+        start_date: new Date().toISOString().split('T')[0], // YYYY-MM-DD format
+        end_date: new Date().toISOString().split('T')[0], // YYYY-MM-DD format
+        medication_id: selectedMedicine.value
+      };
+
+      try {
+        await authStore.refreshAccessToken(); // Refresh the token before making the request
+
+        const response = await api.post('/cycles/medication/', requestBody, {
+          headers: {
+            'Content-Type': 'application/json',
+            'Authorization': `Bearer ${authStore.accessToken}`
+          }
+        });
+
+        alert("Medikament erfolgreich gespeichert!");
+        router.push('/log');
+      } catch (error) {
+        console.error('Fehler beim Speichern des Medikaments', error);
+        alert("Fehler beim Speichern des Medikaments!");
+      }
+    };
+
+    return {
+      selectedMedicine,
+      medicineOptions,
+      goBack,
+      saveMedication
+    };
   }
 };
 </script>
+
 
   
   <style scoped>
@@ -94,6 +151,14 @@ export default {
   .small-description {
     font: 12px/16px 'Inter', sans-serif;
     margin-top: 15px;
+  }
+  .button-container {
+    position: fixed;
+    bottom: 80px;  
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    left: 0;
   }
   </style>
   
