@@ -15,7 +15,7 @@ from lunarfit.filters import DateFromToRangeFilterSet, DateRangeFilterSet
 from users.views import UserModelViewSet
 
 
-class MenstrualCycleViewSet(ModelViewSet):
+class MenstrualCycleViewSet(UserModelViewSet):
     """Endpoint to list users' menstrual cycle(s) in the specified date range.
     For receiving only cycle of current day 'start_after' is current date."""
 
