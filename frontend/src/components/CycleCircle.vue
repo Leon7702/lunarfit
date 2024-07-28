@@ -80,7 +80,7 @@
 </template>
 
 <script>
-import axios from 'axios';
+import { api } from 'src/boot/axios';
 import { ref, onMounted, computed, watch } from 'vue';
 import { calculateCycleAndPhases, calculateCurrentDay, getCurrentCycle } from 'src/utils/cyclePhaseCalculator.js';
 
@@ -117,30 +117,36 @@ export default {
     // Fetches the cycle data and determines the current cycle
     const fetchData = async () => {
       try {
-        const response = await axios.get('http://localhost:3000/cycles/');
+        const response = await api.get('/cycles/');
         const cycleData = response.data;
         console.log('Fetched cycle data:', cycleData);
         const today = new Date().toISOString().split('T')[0];
-        // const today = "2024-07-17";  // for testing with a specific date
+        // const today = "2024-08-20";  // for testing with a specific date
         // const today = "2024-05-05";  // for testing with a specific date - cycle 0
         // const today = "2024-06-09";  // for testing with a specific date - cycle 1
         // const today = "2024-11-11";  // for testing with a specific date - no cycle found
 
-        const currentCycle = getCurrentCycle(cycleData, today);
+        const cycles = cycleData.results;
 
-        if(currentCycle) {
-          const calculatedLengths = calculateCycleAndPhases(currentCycle);
+        if (Array.isArray(cycles)) {
+          const currentCycle = getCurrentCycle(cycles, today);
 
-          cycleLength.value = calculatedLengths.cycleLength;
-          console.log('Calculated cycle length:', cycleLength.value);
-          calculateLengthPortion(calculatedLengths);
+          if(currentCycle) {
+            const calculatedLengths = calculateCycleAndPhases(currentCycle);
 
-          currentDay.value = calculateCurrentDay(currentCycle.start, today);
+            cycleLength.value = calculatedLengths.cycleLength;
+            console.log('Calculated cycle length:', cycleLength.value);
+            calculateLengthPortion(calculatedLengths);
+
+            currentDay.value = calculateCurrentDay(currentCycle.start, today);
+          } else {
+            console.error('No cycle found for today\'s date');
+          }
+
+          dataLoaded.value = true;  // Set the flag to true when data is loaded
         } else {
-          console.error('No cycle found for today\'s date');
+          console.error('Cycle data is not an array:', cycleData);
         }
-
-        dataLoaded.value = true;  // Set the flag to true when data is loaded
       } catch (error) {
         console.error('Failed to fetch data:', error);
       }
