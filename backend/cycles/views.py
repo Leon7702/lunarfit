@@ -33,6 +33,10 @@ class PhaseViewSet(ModelViewSet):
     serializer_class = PhaseSerializer
     queryset = Phase.objects.all()
     permission_classes = [IsAuthenticated]
+    http_method_names = ["get"]
+    filterset_class = filterset_factory(
+        Phase, DateFromToRangeFilterSet, ["start", "end"]
+    )
 
 
 class MedicationViewSet(UserModelViewSet):
