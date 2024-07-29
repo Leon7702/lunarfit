@@ -179,8 +179,8 @@
 
   "moodInfo": {
     "0": {
-      "description": "Extremely bad:",
-      "advice": "Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua."
+      "description": "Very bad:",
+      "advice": "It seems like you're having a very tough day. Try to move, even if it's just a short walk. Exercise can help clear your mind and lift your mood."
     },
     "1": {
       "description": "Very bad:",
@@ -253,13 +253,13 @@
 
   "freeInfo": {
     "0": {
-      "description": "You have extremely discomfort. Here are some recommendations to alleviate your discomfort:",
+      "description": "You are currently experiencing severe discomfort. It's important to listen to your body and take it easy:",
       "recommendations": [
-        ">> Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod.",
-        ">> At vero eos et accusam et justo duo dolores et ea rebum.",
-        ">> Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet.",
-        "",
-        ""
+        ">> Avoid intense physical activities and give yourself plenty of rest.",
+        ">> Opt for gentle movements like light stretching and walking to promote circulation without worsening the discomfort.",
+        ">> Heat treatments such as a warm bath or a hot water bottle can help alleviate cramps.",
+        ">> Consult a doctor if necessary to discuss appropriate measures to relieve your discomfort.",
+        ">> Pay special attention to a balanced diet and drink plenty of water."
       ]
     },
     "1": {
@@ -325,7 +325,7 @@
   },
 
   "restInfo": {
-    "0": "Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet.",
+    "0": "You seem to be physically very exhausted. You should take a break from training. Additional recovery measures such as sauna, warm baths, massages, and fascia training can support the recovery process.",
     "1": "You seem to be physically very exhausted. You should take a break from training. Additional recovery measures such as sauna, warm baths, massages, and fascia training can support the recovery process.",
     "2": "Your recovery state is low. You should consider a recovery and compensation training. This means deliberately light sessions with very low intensity. To avoid unilateral stress, you can also choose another sport.",
     "3": "Your recovery state is limited. You should reduce your training volume or intensity slightly.",
