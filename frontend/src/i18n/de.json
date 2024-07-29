@@ -421,8 +421,8 @@
   "logEntry": {
     "title": "Log-Eintrag",
     "images": {
-        "cycle": "/src/assets/log_zyklus.svg",
-        "notes": "/src/assets/log_notes.svg"
+        "cycle": "/log_Home/log_zyklus.svg",
+        "notes": "/log_Home/log_notes.svg"
       }
   },
   "logCycle": {

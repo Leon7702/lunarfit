@@ -6,7 +6,7 @@
     </div>
     <DateTodayPicker class="date" />
     <img :src="$t('logEntry.images.cycle')" alt="Zyklus Button" class="image" @click="navigateToCycle" />
-    <img src="/src/assets/log_training.svg" alt="Training Button" class="image" @click="navigateToTraining" />
+    <img src="~assets/log_training.svg" alt="Training Button" class="image" @click="navigateToTraining" />
     <img :src="$t('logEntry.images.notes')" alt="Notizen Button" class="image" @click="navigateToNotes" />
   </div>
   </div>
@@ -40,7 +40,7 @@ export default {
 .welcome-container {
   display: flex;
   flex-direction: column;
-  align-items: center; 
+  align-items: center;
   overflow: auto;
   margin: auto;
 }
@@ -57,7 +57,7 @@ export default {
 }
 
 .title {
-  font: 600 24px 'Inter', sans-serif; 
+  font: 600 24px 'Inter', sans-serif;
 }
 
 .date {
