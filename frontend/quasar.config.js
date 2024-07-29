@@ -61,8 +61,7 @@ module.exports = configure(function (ctx) {
       env: {
         API: ctx.dev
           ? 'http://localhost:8000/api'
-          : 'http://localhost:8000/api'
-
+          : 'https://lunarfit.ac0.de/api'
       },
       // rawDefine: {}
       // ignorePublicFolder: true,
