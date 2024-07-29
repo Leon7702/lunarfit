@@ -20,7 +20,7 @@
 </template>
 
 <script>
-import { ref } from 'vue';
+import { ref, computed } from 'vue';
 import { useRouter } from 'vue-router';
 import SliderWithLabelVertical from 'components/SliderWithLabelVertical.vue';
 import StandardButton from 'components/StandardButton.vue';
@@ -36,8 +36,14 @@ export default {
     const trainingStore = useTrainingStore();
     const recovery = ref(trainingStore.recovery);
 
+    // Berechne den invertierten Wert
+    const invertedRecovery = computed(() => {
+      return 6 - recovery.value;
+    });
+
     const navigateToNextStep = async () => {
-      trainingStore.setRecovery(recovery.value);
+      trainingStore.setRecovery(invertedRecovery.value); // Setze den umgerechneten Wert
+      trainingStore.setDate(new Date().toISOString().split('T')[0]); // Setze das Datum auf das heutige Datum
 
       try {
         await trainingStore.saveTRS();
@@ -60,6 +66,7 @@ export default {
   }
 };
 </script>
+
 
   <style scoped>
 

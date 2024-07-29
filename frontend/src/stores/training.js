@@ -52,6 +52,10 @@ export const useTrainingStore = defineStore('training', {
     },
     async saveTRS() {
       try {
+        if (!this.date || this.mood === null || this.complaints === null || this.recovery === null) {
+          throw new Error('Missing required fields');
+        }
+
         await api.post('/training/trs/', {
           date: this.date,
           mood: this.mood,

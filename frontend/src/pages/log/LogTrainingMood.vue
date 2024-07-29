@@ -20,7 +20,7 @@
 </template>
 
 <script>
-import { ref } from 'vue';
+import { ref, computed } from 'vue';
 import { useRouter } from 'vue-router';
 import SliderWithLabelVertical from 'components/SliderWithLabelVertical.vue';
 import StandardButton from 'components/StandardButton.vue';
@@ -36,8 +36,13 @@ export default {
     const trainingStore = useTrainingStore();
     const mood = ref(trainingStore.mood);
 
+    // Berechne den invertierten Wert
+    const invertedMood = computed(() => {
+      return 6 - mood.value;
+    });
+
     const navigateToNextStep = () => {
-      trainingStore.setMood(mood.value);
+      trainingStore.setMood(invertedMood.value); // Setze den umgerechneten Wert
       router.push({ name: 'LogTrainingRecovery' });
     };
 

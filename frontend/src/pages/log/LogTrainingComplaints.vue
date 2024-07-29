@@ -25,7 +25,7 @@
 </template>
 
 <script>
-import { ref } from 'vue';
+import { ref, computed } from 'vue';
 import { useRouter } from 'vue-router';
 import SliderWithLabelVertical from 'components/SliderWithLabelVertical.vue';
 import StandardButton from 'components/StandardButton.vue';
@@ -41,8 +41,13 @@ export default {
     const trainingStore = useTrainingStore();
     const complaints = ref(trainingStore.complaints);
 
+    // Berechne den invertierten Wert
+    const invertedComplaints = computed(() => {
+      return 6 - complaints.value;
+    });
+
     const navigateToNextStep = () => {
-      trainingStore.setComplaints(complaints.value);
+      trainingStore.setComplaints(invertedComplaints.value); // Setze den umgerechneten Wert
       router.push({ name: 'LogTrainingMood' });
     };
 
@@ -58,7 +63,6 @@ export default {
   }
 };
 </script>
-
 
   <style scoped>
 
