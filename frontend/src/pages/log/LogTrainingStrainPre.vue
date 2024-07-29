@@ -15,7 +15,7 @@
         <q-select
           filled
           v-model="selectedActivity"
-          :options="trainingOptions"
+          :options="translatedTrainingOptions"
           input-class="text-right"
           class="q-mb-sm"
           emit-value
@@ -39,10 +39,10 @@
     </div>
   </div>
 </template>
-
 <script>
-import { ref } from 'vue';
+import { ref, computed } from 'vue';
 import { useRouter } from 'vue-router';
+import { useI18n } from 'vue-i18n';
 import StandardButton from 'components/StandardButton.vue';
 import RadioToggle from 'components/RadioToggle.vue';
 import { useTrainingStore } from 'src/stores/training';
@@ -53,6 +53,7 @@ export default {
     RadioToggle
   },
   setup() {
+    const { t } = useI18n();
     const router = useRouter();
     const trainingStore = useTrainingStore();
 
@@ -61,49 +62,56 @@ export default {
     const duration = ref(null);
 
     const trainingOptions = [
-      { label: 'Other Sports', value: 1 },
-      { label: 'Aqua Fitness', value: 2 },
-      { label: 'Athletics', value: 3 },
-      { label: 'Badminton', value: 4 },
-      { label: 'Basketball', value: 5 },
-      { label: 'Canoeing', value: 6 },
-      { label: 'Climbing', value: 7 },
-      { label: 'Cross Country Skiing', value: 8 },
-      { label: 'Cycling', value: 9 },
-      { label: 'Dancing', value: 10 },
-      { label: 'Diving', value: 11 },
-      { label: 'Fitness Training', value: 12 },
-      { label: 'Floorball', value: 13 },
-      { label: 'Football', value: 14 },
-      { label: 'Golf', value: 15 },
-      { label: 'Gymnastics', value: 16 },
-      { label: 'Handball', value: 17 },
-      { label: 'Hiking', value: 18 },
-      { label: 'Horse Riding', value: 19 },
-      { label: 'Ice Hockey', value: 20 },
-      { label: 'Ice Skating', value: 21 },
-      { label: 'Inline Skating', value: 22 },
-      { label: 'Martial Arts', value: 23 },
-      { label: 'Mountain Biking', value: 24 },
-      { label: 'Rowing', value: 25 },
-      { label: 'Running', value: 26 },
-      { label: 'Sailing', value: 27 },
-      { label: 'Shooting', value: 28 },
-      { label: 'Ski Snowboard Tours', value: 29 },
-      { label: 'Skiing', value: 30 },
-      { label: 'Sledding', value: 31 },
-      { label: 'Snowboarding', value: 32 },
-      { label: 'Snowshoeing', value: 33 },
-      { label: 'Squash', value: 34 },
-      { label: 'Strength Training', value: 35 },
-      { label: 'Surfing', value: 36 },
-      { label: 'Swimming', value: 37 },
-      { label: 'Table Tennis', value: 38 },
-      { label: 'Tennis', value: 39 },
-      { label: 'Volleyball', value: 40 },
-      { label: 'Walking', value: 41 },
-      { label: 'Yoga', value: 42 }
+      { key: 'other_sports', value: 1 },
+      { key: 'aqua_fitness', value: 2 },
+      { key: 'athletics', value: 3 },
+      { key: 'badminton', value: 4 },
+      { key: 'basketball', value: 5 },
+      { key: 'canoeing', value: 6 },
+      { key: 'climbing', value: 7 },
+      { key: 'cross_country_skiing', value: 8 },
+      { key: 'cycling', value: 9 },
+      { key: 'dancing', value: 10 },
+      { key: 'diving', value: 11 },
+      { key: 'fitness_training', value: 12 },
+      { key: 'floorball', value: 13 },
+      { key: 'football', value: 14 },
+      { key: 'golf', value: 15 },
+      { key: 'gymnastics', value: 16 },
+      { key: 'handball', value: 17 },
+      { key: 'hiking', value: 18 },
+      { key: 'horse_riding', value: 19 },
+      { key: 'ice_hockey', value: 20 },
+      { key: 'ice_skating', value: 21 },
+      { key: 'inline_skating', value: 22 },
+      { key: 'martial_arts', value: 23 },
+      { key: 'mountain_biking', value: 24 },
+      { key: 'rowing', value: 25 },
+      { key: 'running', value: 26 },
+      { key: 'sailing', value: 27 },
+      { key: 'shooting', value: 28 },
+      { key: 'ski_snowboard_tours', value: 29 },
+      { key: 'skiing', value: 30 },
+      { key: 'sledding', value: 31 },
+      { key: 'snowboarding', value: 32 },
+      { key: 'snowshoeing', value: 33 },
+      { key: 'squash', value: 34 },
+      { key: 'strength_training', value: 35 },
+      { key: 'surfing', value: 36 },
+      { key: 'swimming', value: 37 },
+      { key: 'table_tennis', value: 38 },
+      { key: 'tennis', value: 39 },
+      { key: 'volleyball', value: 40 },
+      { key: 'walking', value: 41 },
+      { key: 'yoga', value: 42 }
     ];
+
+    const translatedTrainingOptions = computed(() => {
+      return trainingOptions.map(option => ({
+        label: t(`logTrainingStrainPre.trainingOptions.options.${option.key}`),
+        value: option.value
+      }));
+    });
 
     const navigateToNextStep = () => {
       if (trainingStatus.value === 'ja') {
@@ -120,7 +128,7 @@ export default {
       trainingStatus,
       selectedActivity,
       duration,
-      trainingOptions,
+      translatedTrainingOptions,
       navigateToNextStep,
       goBack() {
         window.history.back();
@@ -130,7 +138,6 @@ export default {
 };
 </script>
 
-  
 
 <style scoped>
 

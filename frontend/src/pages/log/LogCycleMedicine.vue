@@ -13,15 +13,13 @@
         <q-select
           filled
           v-model="selectedMedicine"
-          :options="medicineOptions"
+          :options="translatedMedicineOptions"
           input-class="text-right"
           class="q-mb-sm"
           emit-value
           map-options
         >
-          <template v-slot:prepend>
-
-          </template>
+          <template v-slot:prepend></template>
         </q-select>
       </div>
       <div class="small-description">
@@ -35,8 +33,9 @@
 </template>
 
 <script>
-import { ref } from 'vue';
+import { ref, computed } from 'vue';
 import { useRouter } from 'vue-router';
+import { useI18n } from 'vue-i18n';
 import { api } from 'src/boot/axios';
 import StandardButton from 'components/StandardButton.vue';
 import { useAuthStore } from 'src/stores/auth';
@@ -46,16 +45,24 @@ export default {
     StandardButton
   },
   setup() {
+    const { t } = useI18n();
     const router = useRouter();
     const authStore = useAuthStore();
 
     const selectedMedicine = ref(null);
 
     const medicineOptions = [
-      { label: 'Notfallkontrazeptiva', value: 3 },
-      { label: 'Diclofenac', value: 1 },
-      { label: 'Ibuprofen', value: 2 }
+      { key: 'notfallkontrazeptiva', value: 3 },
+      { key: 'diclofenac', value: 1 },
+      { key: 'ibuprofen', value: 2 }
     ];
+
+    const translatedMedicineOptions = computed(() => {
+      return medicineOptions.map(option => ({
+        label: t(`logCycle.medicine.options.${option.key}`),
+        value: option.value
+      }));
+    });
 
     const goBack = () => {
       window.history.back();
@@ -76,7 +83,7 @@ export default {
       try {
         await authStore.refreshAccessToken(); // Refresh the token before making the request
 
-        const response = await api.post('/cycles/medication/', requestBody, {
+        await api.post('/cycles/medication/', requestBody, {
           headers: {
             'Content-Type': 'application/json',
             'Authorization': `Bearer ${authStore.accessToken}`
@@ -93,14 +100,13 @@ export default {
 
     return {
       selectedMedicine,
-      medicineOptions,
+      translatedMedicineOptions,
       goBack,
       saveMedication
     };
   }
 };
 </script>
-
 
   
   <style scoped>
