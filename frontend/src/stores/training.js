@@ -3,55 +3,65 @@ import { api } from 'src/boot/axios';
 
 export const useTrainingStore = defineStore('training', {
   state: () => ({
-    userId: null,
-    trainingData: {
-      sport: null,
-      duration: null,
-      intensity: null
-    },
-    authToken: null
+    start: '',
+    duration: 0,
+    intensity: 0,
+    sport: 0,
+    date: '',
+    mood: 0,
+    complaints: 0,
+    recovery: 0,
   }),
   actions: {
-    setUserId(userId) {
-      this.userId = userId;
+    setStart(start) {
+      this.start = start;
     },
-    setTrainingData({ sport, duration }) {
-      this.trainingData.sport = sport;
-      this.trainingData.duration = duration;
+    setDuration(duration) {
+      this.duration = duration;
     },
-    setTrainingIntensity(intensity) {
-      this.trainingData.intensity = intensity;
+    setIntensity(intensity) {
+      this.intensity = intensity;
     },
-    setAuthToken(token) {
-      this.authToken = token;
+    setSport(sport) {
+      this.sport = sport;
     },
-    async saveTrainingData() {
+    setDate(date) {
+      this.date = date;
+    },
+    setMood(mood) {
+      this.mood = mood;
+    },
+    setComplaints(complaints) {
+      this.complaints = complaints;
+    },
+    setRecovery(recovery) {
+      this.recovery = recovery;
+    },
+    async saveWorkout() {
       try {
         await api.post('/training/workouts/', {
-          start: new Date().toISOString(),
-          duration: this.trainingData.duration,
-          intensity: this.trainingData.intensity,
-          sport: this.trainingData.sport
-        }, {
-          headers: {
-            Authorization: `Bearer ${this.authToken}`
-          }
+          start: this.start,
+          duration: this.duration,
+          intensity: this.intensity,
+          sport: this.sport,
         });
-        alert('Training data saved successfully');
       } catch (error) {
-        console.error('Failed to save training data:', error);
-        alert('Failed to save training data');
+        console.error('Error saving workout data:', error);
+        throw error;
       }
     },
-    async refreshAccessToken() {
+    async saveTRS() {
       try {
-        const response = await api.post('/auth/refresh/', {
-          // Add necessary data for token refresh if required
+        await api.post('/training/trs/', {
+          date: this.date,
+          mood: this.mood,
+          complaints: this.complaints,
+          recovery: this.recovery,
         });
-        this.setAuthToken(response.data.token);
       } catch (error) {
-        console.error('Failed to refresh access token:', error);
+        console.error('Error saving TRS data:', error);
+        throw error;
       }
-    }
-  }
+    },
+  },
 });

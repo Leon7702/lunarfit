@@ -1,50 +1,50 @@
 <template>
     <div class="slider-container">
-        <div class="slider-labels">
-            <div v-for="i in 7" :key="i" class="label">
-                <span>{{ 6 - (i - 1) }}</span>
-            </div>
+      <div class="slider-labels">
+        <div v-for="i in 7" :key="i" class="label">
+          <span>{{ 6 - (i - 1) }}</span>
         </div>
-        <q-slider
-            v-model="model"
-            :min="0"
-            :max="6"
-            color="grey-4"
-            track-size="40px"
-            thumb-color="black"
-            thumb-size="0px"
-            markers
-            vertical
-            class="custom-slider"
-        />
-        <div class="slider-labels-right">
-            <div v-for="i in 7" :key="i" class="label">
-                <span v-if="i === 1">{{ textAtTop }}</span>
-                <span v-if="i === 7">{{ textAtBottom }}</span>
-            </div>
+      </div>
+      <q-slider
+        v-model="model"
+        :min="0"
+        :max="6"
+        color="grey-4"
+        track-size="40px"
+        thumb-color="black"
+        thumb-size="0px"
+        markers
+        vertical
+        class="custom-slider"
+      />
+      <div class="slider-labels-right">
+        <div v-for="i in 7" :key="i" class="label">
+          <span v-if="i === 1">{{ textAtTop }}</span>
+          <span v-if="i === 7">{{ textAtBottom }}</span>
         </div>
+      </div>
     </div>
-</template>
-
-<script>
-import { ref } from 'vue';
-
-export default {
+  </template>
+  
+  <script>
+  import { ref } from 'vue';
+  
+  export default {
     props: {
-        topText: String,
-        bottomText: String
+      topText: String,
+      bottomText: String
     },
     setup(props) {
-        const model = ref(6); // Setze den Wert auf den maximalen Wert
-        return {
-            model,
-            textAtTop: props.topText,
-            textAtBottom: props.bottomText
-        };
+      const model = ref(6); // Setze den Wert auf den maximalen Wert
+      return {
+        model,
+        textAtTop: props.topText,
+        textAtBottom: props.bottomText
+      };
     }
-};
-</script>
-
+  };
+  </script>
+  
 <style scoped>
 .slider-container {
     display: flex;

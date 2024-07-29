@@ -20,13 +20,9 @@
           class="q-mb-sm"
           emit-value
           map-options
-        >
-          <template v-slot:prepend>
-          
-          </template>
-        </q-select>
+        />
       </div>
-      <div class="form-group spacer" v-if="trainingStatus === 'ja'"></div> 
+      <div class="form-group spacer" v-if="trainingStatus === 'ja'"></div>
       <div class="form-group" v-if="trainingStatus === 'ja'">
         <p>{{ $t('logTrainingStrainPre.durationOptions.prompt') }}</p>
         <q-input
@@ -111,10 +107,9 @@ export default {
 
     const navigateToNextStep = () => {
       if (trainingStatus.value === 'ja') {
-        trainingStore.setTrainingData({
-          sport: selectedActivity.value,
-          duration: duration.value
-        });
+        trainingStore.setStart(new Date().toISOString()); // Zeit des Trainings
+        trainingStore.setSport(selectedActivity.value);
+        trainingStore.setDuration(duration.value);
         router.push({ name: 'LogTrainingStrain' });
       } else {
         router.push({ name: 'LogTrainingComplaints' });

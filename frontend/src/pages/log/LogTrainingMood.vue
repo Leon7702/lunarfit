@@ -1,43 +1,59 @@
 <template>
   <div class="size-container">
-  <div class="welcome-container">
-    <div class="header">
-      <q-btn flat dense round icon="arrow_back" @click="goBack" />
-      <div class="title">{{ $t('logTrainingMood.title') }}</div>
+    <div class="welcome-container">
+      <div class="header">
+        <q-btn flat dense round icon="arrow_back" @click="goBack" />
+        <div class="title">{{ $t('logTrainingMood.title') }}</div>
+      </div>
+      <div class="linie"></div>
+      <div class="description">
+        <span v-html="$t('logTrainingMood.description')"></span>
+      </div>
+      <div class="slider">
+        <SliderWithLabelVertical :topText="$t('logTrainingMood.slider.topText')" :bottomText="$t('logTrainingMood.slider.bottomText')" v-model="mood" />
+      </div>
+      <div class="button-container">
+        <StandardButton :label="$t('buttons.next')" @click="navigateToNextStep" />
+      </div>
     </div>
-    <div class="linie"></div>
-    <div class="description">
-      <span v-html="$t('logTrainingMood.description')"></span>
-    </div>
-    <div class="slider">
-      <SliderWithLabelVertical :topText="$t('logTrainingMood.slider.topText')" :bottomText="$t('logTrainingMood.slider.bottomText')" />
-    </div>
-    <div class="button-container">
-      <StandardButton :label="$t('buttons.next')" @click="navigateToNextStep" />
-    </div>
-  </div>
   </div>
 </template>
-  
-  <script>
-  import SliderWithLabelVertical from 'components/SliderWithLabelVertical.vue';
-  import StandardButton from 'components/StandardButton.vue'
-  
-  export default {
-    components: {
-      SliderWithLabelVertical,
-      StandardButton
-    },
-    methods: {
-      goBack() {
-        window.history.back();
-      },
-    navigateToNextStep() {
-      this.$router.push({ name: 'LogTrainingRecovery' });
-    }
-    }
-  };
-  </script>
+
+<script>
+import { ref } from 'vue';
+import { useRouter } from 'vue-router';
+import SliderWithLabelVertical from 'components/SliderWithLabelVertical.vue';
+import StandardButton from 'components/StandardButton.vue';
+import { useTrainingStore } from 'src/stores/training';
+
+export default {
+  components: {
+    SliderWithLabelVertical,
+    StandardButton
+  },
+  setup() {
+    const router = useRouter();
+    const trainingStore = useTrainingStore();
+    const mood = ref(trainingStore.mood);
+
+    const navigateToNextStep = () => {
+      trainingStore.setMood(mood.value);
+      router.push({ name: 'LogTrainingRecovery' });
+    };
+
+    const goBack = () => {
+      window.history.back();
+    };
+
+    return {
+      mood,
+      navigateToNextStep,
+      goBack
+    };
+  }
+};
+</script>
+
   
   <style scoped>
 

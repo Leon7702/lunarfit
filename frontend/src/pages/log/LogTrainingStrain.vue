@@ -38,80 +38,83 @@ export default {
   setup() {
     const router = useRouter();
     const trainingStore = useTrainingStore();
+    const workoutIntensity = ref(5); // Setze den anfänglichen Wert
 
-    // Initialer Wert des Sliders
-    const workoutIntensity = ref(5);
-
-    // Computed Property zur Umrechnung des Wertes
+    // Berechne den invertierten Wert
     const invertedWorkoutIntensity = computed(() => {
       return 11 - workoutIntensity.value; // Inversion des Wertes
     });
 
-    const navigateToNextStep = () => {
-      trainingStore.setTrainingIntensity(invertedWorkoutIntensity.value); // Umgerechneten Wert speichern
-      router.push({ name: 'LogTrainingComplaints' }); // Zur nächsten Seite navigieren
+    const navigateToNextStep = async () => {
+      trainingStore.setIntensity(invertedWorkoutIntensity.value); // Setze den umgerechneten Wert
+
+      try {
+        await trainingStore.saveWorkout(); // Speichern der Workout-Daten
+        router.push({ name: 'LogTrainingComplaints' }); // Weiter zur nächsten Seite
+      } catch (error) {
+        console.error('Error saving workout data:', error);
+        alert('Failed to save workout data. Please try again.');
+      }
+    };
+
+    const goBack = () => {
+      window.history.back();
     };
 
     return {
       workoutIntensity,
       navigateToNextStep,
-      goBack() {
-        window.history.back();
-      }
+      goBack
     };
   }
 };
 </script>
 
-  
-  <style scoped>
+<style scoped>
+.linie {
+  height: 1px;
+  background-color: rgba(0, 0, 0, 0.1);
+  width: 120%;
+  margin-top: 10px;
+}
 
-  
-  .linie {
-    height: 1px;
-    background-color: rgba(0, 0, 0, 0.1);
-    width: 120%;
-    margin-top: 10px;
-  }
-  
-  .header {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    width: 100%;
-    padding: 10px 0;
-    margin-top: 20px;
-  }
-  
-  .title {
-    font: 600 20px 'Inter', sans-serif;
-    color: #000;
-    text-align: center;
-    flex-grow: 1;
-    padding-right: 30px;
-  }
+.header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  width: 100%;
+  padding: 10px 0;
+  margin-top: 20px;
+}
 
-  .description {
-    text-align: center;
-    width: 100%;
-    margin-top: 30px;
-    font-size: 16px;
-    font-weight: 500;
-    margin-bottom: 10px;
-  }
-  .slider {
-    margin-top: 40px;
-    padding-right: 10%;
-  }
+.title {
+  font: 600 20px 'Inter', sans-serif;
+  color: #000;
+  text-align: center;
+  flex-grow: 1;
+  padding-right: 30px;
+}
 
-  .button-container {
-    position: fixed;
-    bottom: 80px; 
-    width: 100%;
-    display: flex;
-    justify-content: center;
-    left: 0;
-  }
+.description {
+  text-align: center;
+  width: 100%;
+  margin-top: 30px;
+  font-size: 16px;
+  font-weight: 500;
+  margin-bottom: 10px;
+}
 
-  </style>
-  
+.slider {
+  margin-top: 40px;
+  padding-right: 10%;
+}
+
+.button-container {
+  position: fixed;
+  bottom: 80px; 
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  left: 0;
+}
+</style>

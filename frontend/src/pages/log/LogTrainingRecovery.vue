@@ -1,44 +1,66 @@
 <template>
   <div class="size-container">
-  <div class="welcome-container">
-    <div class="header">
-      <q-btn flat dense round icon="arrow_back" @click="goBack" />
-      <div class="title">{{ $t('logTrainingRecovery.title') }}</div>
+    <div class="welcome-container">
+      <div class="header">
+        <q-btn flat dense round icon="arrow_back" @click="goBack" />
+        <div class="title">{{ $t('logTrainingRecovery.title') }}</div>
+      </div>
+      <div class="linie"></div>
+      <div class="description">
+        <span v-html="$t('logTrainingRecovery.description')"></span>
+      </div>
+      <div class="slider">
+        <SliderWithLabelVertical :topText="$t('logTrainingRecovery.slider.topText')" :bottomText="$t('logTrainingRecovery.slider.bottomText')" v-model="recovery" />
+      </div>
+      <div class="button-container">
+        <StandardButton :label="$t('buttons.next')" @click="navigateToNextStep" />
+      </div>
     </div>
-    <div class="linie"></div>
-    <div class="description">
-      <span v-html="$t('logTrainingRecovery.description')"></span>
-    </div>
-    <div class="slider">
-      <SliderWithLabelVertical :topText="$t('logTrainingRecovery.slider.topText')" :bottomText="$t('logTrainingRecovery.slider.bottomText')" />
-    </div>
-    <div class="button-container">
-      <StandardButton :label="$t('buttons.next')" @click="navigateToNextStep" />
-    </div>
-  </div>
   </div>
 </template>
-  
-  <script>
-  import SliderWithLabelVertical from 'components/SliderWithLabelVertical.vue';
-  import StandardButton from 'components/StandardButton.vue'
-  
-  export default {
-    components: {
-      SliderWithLabelVertical,
-      StandardButton
-    },
-    methods: {
-      goBack() {
-        window.history.back();
-      },
-    navigateToNextStep() {
-      this.$router.push({ name: 'LogHome' });
-    }
-    }
-  };
-  </script>
-  
+
+<script>
+import { ref } from 'vue';
+import { useRouter } from 'vue-router';
+import SliderWithLabelVertical from 'components/SliderWithLabelVertical.vue';
+import StandardButton from 'components/StandardButton.vue';
+import { useTrainingStore } from 'src/stores/training';
+
+export default {
+  components: {
+    SliderWithLabelVertical,
+    StandardButton
+  },
+  setup() {
+    const router = useRouter();
+    const trainingStore = useTrainingStore();
+    const recovery = ref(trainingStore.recovery);
+
+    const navigateToNextStep = async () => {
+      trainingStore.setRecovery(recovery.value);
+
+      try {
+        await trainingStore.saveTRS();
+        router.push({ name: 'LogHome' });
+      } catch (error) {
+        console.error('Error saving TRS data:', error);
+        alert('Failed to save TRS data. Please try again.');
+      }
+    };
+
+    const goBack = () => {
+      window.history.back();
+    };
+
+    return {
+      recovery,
+      navigateToNextStep,
+      goBack
+    };
+  }
+};
+</script>
+
   <style scoped>
 
   .linie {
