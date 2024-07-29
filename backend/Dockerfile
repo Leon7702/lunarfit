@@ -13,8 +13,10 @@ WORKDIR /app
 # Don't copy project, instead use volumes, so hot-reloading works
 # COPY . .
 COPY ./requirements.txt .
+
 RUN pip install --no-cache-dir -r requirements.txt
 EXPOSE 8000
 
-COPY ./entrypoint.sh .
+# optionally use .env file, see: https://stackoverflow.com/a/46801962
+COPY ./entrypoint.sh ./.en[v] ./
 CMD [ "./entrypoint.sh" ]
