@@ -26,11 +26,11 @@
   "cyclePhases": "Cycle Phases",
   "cyclePhase": {
     "images": {
-      "menstruation": "/src/assets/cyclePhase/menstruationPhase_en_1.png",
-      "follicular": "/src/assets/cyclePhase/follicularPhase_en_2.png",
-      "ovulation": "/src/assets/cyclePhase/ovulationPhase_en_3.png",
-      "earlyLuteal": "/src/assets/cyclePhase/earlyLutealPhase_en_4.png",
-      "lateLuteal": "/src/assets/cyclePhase/lateLutealPhase_en_5.png"
+      "menstruation": "/cyclePhase/menstruationPhase_en_1.png",
+      "follicular": "/cyclePhase/follicularPhase_en_2.png",
+      "ovulation": "/cyclePhase/ovulationPhase_en_3.png",
+      "earlyLuteal": "/cyclePhase/earlyLutealPhase_en_4.png",
+      "lateLuteal": "/cyclePhase/lateLutealPhase_en_5.png"
     }
   },
   "menstruation": "Menstruation",
