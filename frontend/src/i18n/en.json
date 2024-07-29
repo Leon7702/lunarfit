@@ -445,11 +445,11 @@
         "title": "Cervical Mucus",
         "description": "Please select the applicable option:",
         "icons": {
-          "none": "/src/assets/log_Zyklus/cerfix_none.svg",
-          "dry": "/src/assets/log_Zyklus/cerfix_dry.svg",
-          "creamy": "/src/assets/log_Zyklus/cerfix_creamy.svg",
-          "sticky": "/src/assets/log_Zyklus/cerfix_sticky.svg",
-          "protein": "/src/assets/log_Zyklus/cerfix_protein.svg"
+          "none": "/log_Zyklus/cerfix_none.svg",
+          "dry": "/log_Zyklus/cerfix_dry.svg",
+          "creamy": "/log_Zyklus/cerfix_creamy.svg",
+          "sticky": "/log_Zyklus/cerfix_sticky.svg",
+          "protein": "/log_Zyklus/cerfix_protein.svg"
         }
       },
       "contraceptive": {

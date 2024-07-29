@@ -460,11 +460,11 @@
       "title": "Zervixschleim",
       "description": "Bitte zutreffendes auswählen:",
       "icons": {
-        "none": "/src/assets/log_Zyklus/cerfix_keinen.svg",
-        "dry": "/src/assets/log_Zyklus/cerfix_trocken.svg",
-        "creamy": "/src/assets/log_Zyklus/cerfix_cremig.svg",
-        "sticky": "/src/assets/log_Zyklus/cerfix_klebrig.svg",
-        "protein": "/src/assets/log_Zyklus/cerfix_eiweissartig.svg"
+        "none": "/log_Zyklus/cerfix_keinen.svg",
+        "dry": "/log_Zyklus/cerfix_trocken.svg",
+        "creamy": "/log_Zyklus/cerfix_cremig.svg",
+        "sticky": "/log_Zyklus/cerfix_klebrig.svg",
+        "protein": "/log_Zyklus/cerfix_eiweissartig.svg"
       }
     },
     "contraceptive": {
