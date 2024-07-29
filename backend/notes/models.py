@@ -17,7 +17,7 @@ class Symptom(models.Model):
     )
 
     def __str__(self):
-        return f"{self.date}, {self.strength}, {self.symptom_category}"
+        return f"{self.date}, {self.strength}, {self.symptom_category}, {self.pk}"
 
 
 class Note(models.Model):

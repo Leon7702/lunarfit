@@ -1,9 +1,9 @@
-import { createRouter, createWebHistory } from 'vue-router';
+import { createRouter, createWebHashHistory } from 'vue-router'; // Changed to createWebHashHistory
 import { useAuthStore } from '../stores/auth';
 import routes from './routes';
 
 const router = createRouter({
-  history: createWebHistory(),
+  history: createWebHashHistory(), // Changed to createWebHashHistory
   routes,
 });
 

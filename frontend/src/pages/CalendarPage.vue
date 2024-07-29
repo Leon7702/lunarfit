@@ -70,22 +70,19 @@
       <SectionContainer :title="$t('symptoms')" link="/symptoms" :linkText="$t('add')" :emojis="symptomsEmojis"
         :loading="loadingSymptoms" />
       <q-separator spaced />
-      <SectionContainer :title="$t('mood')" link="/mood" :linkText="$t('add')" :emojis="moodEmojis"
-        :loading="loadingMood" />
-      <q-separator spaced />
       <SectionContainer :title="$t('trs')" link="/trs" :linkText="$t('more-info')" :emojis="[]" :loading="false" />
     </q-page>
   </div>
 </template>
 
 <script>
-import { QSpinner, QBtn, QSeparator, QPage, QTable, QTr, QTd, QCard, QCardSection } from 'quasar';
+import { QBtn, QSeparator, QPage, QTable, QTr, QTd, QCard, QCardSection } from 'quasar';
 import SectionContainer from 'components/SectionContainer.vue';
+import { api } from 'src/boot/axios';
 
 export default {
   components: {
     SectionContainer,
-    QSpinner,
     QBtn,
     QSeparator,
     QPage,
@@ -106,10 +103,11 @@ export default {
       dayColors: {},
       selectedDay: date.getDate(),
       trainingRecommendation: '',
-      loadingCalendar: true,
+      symptomsEmojis: [],
+      moodEmojis: [],
       loadingTraining: true,
       loadingMood: true,
-      loadingSymptoms: true,
+      loadingSymptoms: false,
       columns: [
         { name: 'mon', label: this.$t('weekdays_short[1]'), align: 'center' },
         { name: 'tue', label: this.$t('weekdays_short[2]'), align: 'center' },
@@ -119,6 +117,28 @@ export default {
         { name: 'sat', label: this.$t('weekdays_short[6]'), align: 'center' },
         { name: 'sun', label: this.$t('weekdays_short[0]'), align: 'center' },
       ],
+      symptomList: [
+        { icon: '💨', text: 'symptomsList.bloating' },
+        { icon: '🍒', text: 'symptomsList.breastPain' },
+        { icon: '🚽', text: 'symptomsList.diarrhea' },
+        { icon: '😓', text: 'symptomsList.exhaustion' },
+        { icon: '🥶', text: 'symptomsList.cold' },
+        { icon: '🍫', text: 'symptomsList.cravings' },
+        { icon: '😡', text: 'symptomsList.irritability' },
+        { icon: '🤕', text: 'symptomsList.aches' },
+        { icon: '🥵', text: 'symptomsList.hotFlashes' },
+        { icon: '🤯', text: 'symptomsList.headaches' },
+        { icon: '💢', text: 'symptomsList.cramps' },
+        { icon: '😴', text: 'symptomsList.fatigue' },
+        { icon: '🛏️', text: 'symptomsList.sleepIssues' },
+        { icon: '😵‍💫', text: 'symptomsList.dizziness' },
+        { icon: '📉', text: 'symptomsList.moodSwings' },
+        { icon: '😵', text: 'symptomsList.weakness' },
+        { icon: '🤢', text: 'symptomsList.nausea' },
+        { icon: '🍪', text: 'symptomsList.acne' },
+        { icon: '🔴', text: 'symptomsList.pelvicPain' },
+        { icon: '🪨', text: 'symptomsList.constipation' },
+      ]
     };
   },
   computed: {
@@ -141,7 +161,7 @@ export default {
 
       if (firstDay > 0) {
         const prevMonthDays = this.getDaysInPreviousMonth().slice(-firstDay);
-        week.push(...prevMonthDays.map(day => ({ date: day, colorClass: 'previous-month' })));
+        week.push(...prevMonthDays.map(day => ({ date: day, colorClass: this.dayColorClass(day, -1) })));
       }
 
       days.forEach(day => {
@@ -154,7 +174,7 @@ export default {
 
       if (week.length > 0 && week.length < 7) {
         const nextMonthDays = 7 - week.length;
-        week.push(...Array(nextMonthDays).fill({ date: '', colorClass: 'next-month' }));
+        week.push(...Array(nextMonthDays).fill({ date: '', colorClass: this.dayColorClass('', 1) }));
       }
       if (week.length > 0) {
         weeks.push({ weekIndex: weeks.length, days: week });
@@ -173,62 +193,80 @@ export default {
   methods: {
     async fetchData() {
       try {
-        const response = await this.mockApiCall();
-        this.dayColors = response.dayColors;
-        this.trainingRecommendation = response.trainingRecommendation;
-        this.loadingCalendar = false;
-        this.loadingTraining = false;
+        const cyclesResponse = await api.get('/cycles');
+        const cycles = cyclesResponse.data.results;
 
-        const emojisResponse = await this.fetchEmojis();
-        this.moodEmojis = emojisResponse.mood;
-        this.symptomsEmojis = emojisResponse.symptoms;
-        this.loadingMood = false;
-        this.loadingSymptoms = false;
+        if (cycles.length === 0) {
+          return;
+        }
+
+        this.dayColors = this.processCycles(cycles);
+        console.log('Day Colors:', this.dayColors);
       } catch (error) {
         console.error('Error fetching data:', error);
       }
     },
-    mockApiCall() {
-      return new Promise(resolve => {
-        setTimeout(() => {
-          resolve({
-            dayColors: {
-              3: 'period',
-              4: 'period',
-              5: 'period',
-              6: 'period',
-              7: 'period',
-              8: 'follicle',
-              9: 'follicle',
-              10: 'follicle',
-              11: 'follicle',
-              30: 'prediction',
-              31: 'prediction',
-            },
-            trainingRecommendation: 'Recommended training: Cardio exercises',
+    async fetchSymptoms() {
+      this.loadingSymptoms = true;
+      const selectedDateString = this.formatSelectedDate();
+      try {
+        const response = await api.get('/symptoms', {
+          params: { date: selectedDateString }
+        });
+        this.symptomsEmojis = response.data.results
+          .filter(symptom => symptom.date === selectedDateString)
+          .sort((a, b) => b.strength - a.strength) // Sort by strength, descending
+          .slice(0, 6)
+          .map(symptom => {
+            const symptomData = this.symptomList[symptom.symptom_category - 1];
+            return {
+              emoji: symptomData.icon,
+              label: this.$t(symptomData.text),
+            };
           });
-        }, 1000);
-      });
+        this.loadingSymptoms = false;
+      } catch (error) {
+        console.error('Error fetching symptoms:', error);
+        this.loadingSymptoms = false;
+      }
     },
-    fetchEmojis() {
-      return new Promise(resolve => {
-        setTimeout(() => {
-          resolve({
-            mood: [
-              { emoji: '❓', label: 'Confused' },
-              { emoji: '😶‍🌫️', label: 'Insecure' },
-              { emoji: '🤩', label: 'Excited' },
-              { emoji: '🫨', label: 'Nervous' },
-            ],
-            symptoms: [
-              { emoji: '🍫', label: 'Cravings' },
-              { emoji: '📉', label: 'Mood Swings' },
-              { emoji: '💢', label: 'Cramps' },
-              { emoji: '🥶', label: 'Cold' },
-            ]
-          });
-        }, 1000);
+    processCycles(cycles) {
+      const dayColors = {};
+
+      cycles.forEach(cycle => {
+        cycle.phases.forEach(phase => {
+          const start = new Date(phase.start);
+          const end = new Date(phase.end);
+          const phaseColorClass = this.getPhaseColorClass(phase.phase_number);
+
+          for (let d = new Date(start); d <= end; d.setDate(d.getDate() + 1)) {
+            const date = new Date(d);
+            const day = date.getDate();
+            const month = date.getMonth();
+            const year = date.getFullYear();
+
+            if (year === this.date.year && month === this.date.month) {
+              dayColors[day] = phaseColorClass;
+            } else if (year === this.date.year && month === this.date.month - 1) {
+              dayColors[`prev_${day}`] = phaseColorClass;
+            } else if (year === this.date.year && month === this.date.month + 1) {
+              dayColors[`next_${day}`] = phaseColorClass;
+            }
+          }
+        });
       });
+
+      return dayColors;
+    },
+    getPhaseColorClass(phaseNumber) {
+      switch (phaseNumber) {
+        case 0:
+          return 'period';
+        case 1:
+          return 'follicle';
+        default:
+          return '';
+      }
     },
     nextMonth() {
       if (this.date.month === 11) {
@@ -248,13 +286,14 @@ export default {
       }
       this.fetchData(); // Fetch data when changing month
     },
-    dayColorClass(day) {
-      if (this.selectedDay === day) {
+    dayColorClass(day, offset = 0) {
+      const monthKey = offset === -1 ? `prev_${day}` : offset === 1 ? `next_${day}` : day;
+      if (this.selectedDay === day && offset === 0) {
         return 'currentDate';
       }
-      return this.dayColors[day] || '';
+      return this.dayColors[monthKey] || (offset !== 0 ? 'previous-month' : '');
     },
-    selectDay(day) {
+    async selectDay(day) {
       if (day.colorClass === 'previous-month') {
         const selectedDate = new Date(this.date.year, this.date.month - 1, day.date);
         this.selectedDay = selectedDate.getDate();
@@ -270,17 +309,28 @@ export default {
       } else {
         this.selectedDay = null;
       }
+      await this.fetchSymptoms();
     },
     getDaysInPreviousMonth() {
       const date = new Date(this.date.year, this.date.month, 0);
       return [...Array(date.getDate()).keys()].map(i => i + 1);
     },
+    formatSelectedDate() {
+      const year = this.date.year;
+      const month = String(this.date.month + 1).padStart(2, '0');
+      const day = String(this.selectedDay).padStart(2, '0');
+      return `${year}-${month}-${day}`;
+    },
     log() {
-      this.$router.push('/log');
+      this.$router.push({
+        path: '/symptoms',
+        query: { selectedDate: this.formatSelectedDate() }
+      });
     }
   },
   mounted() {
     this.fetchData();
+    this.fetchSymptoms();
   }
 };
 </script>
@@ -381,8 +431,7 @@ export default {
   color: #000;
 }
 
-.previous-month,
-.next-month {
+.previous-month {
   color: #b0b0b0;
 }
 

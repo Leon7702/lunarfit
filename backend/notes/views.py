@@ -10,7 +10,7 @@ from users.views import UserModelViewSet
 
 class SymptomViewSet(UserModelViewSet):
     serializer_class = SymptomSerializer
-    http_method_names = ["get", "post"]
+    http_method_names = ["get", "post" ,"delete", "patch"]
     filterset_class = filterset_factory(Symptom, DateRangeFilterSet, ["date"])
 
 
