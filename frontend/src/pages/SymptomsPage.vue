@@ -190,7 +190,7 @@ export default {
   padding-top: 10px;
   background-color: white;
   z-index: 1000;
-  height: 13%;
+  height: 130px;
 }
 
 .save-button {
