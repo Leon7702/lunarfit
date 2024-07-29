@@ -5,18 +5,18 @@
         <span class="icon">{{ icon }}</span>
       </q-avatar>
 
-      <q-item-section class="text-container" v-if="!showSlider">
+      <q-item-section class="text-container" v-if="!localShowSlider">
         <q-item-label class="text">{{ truncatedText }}</q-item-label>
       </q-item-section>
 
-      <q-item-section class="slider-container" v-if="showSlider">
-        <q-slider v-model="localValue" :min="1" :max="6" markers marker-labels class="slider q-mr-sm" />
+      <q-item-section class="slider-container" v-if="localShowSlider">
+        <q-slider v-model="localValue" :min="1" :max="6" markers marker-labels class="slider q-mr-sm"
+          @input="emitValue" />
       </q-item-section>
 
       <q-item-section class="button-container">
-        <q-btn v-if="!showSlider" color="primary" size="sm" :label="$t('track')" @click="toggleSlider"
-          class="track-button" />
-        <q-btn v-if="showSlider" color="negative" size="sm" :label="$t('cancel')" @click="cancelTracking"
+        <q-btn v-if="!localShowSlider" color="primary" size="md" label="➕" @click="toggleSlider" class="track-button" />
+        <q-btn v-if="localShowSlider" color="negative" size="md" label="✘" @click="cancelTracking"
           class="cancel-button" />
       </q-item-section>
     </q-card-section>
@@ -37,15 +37,26 @@ export default {
     },
     value: {
       type: Number,
-      default: 1
+      default: 0
+    },
+    showSlider: {
+      type: Boolean,
+      default: false
     }
   },
   data() {
     return {
-      showSlider: false,
       localValue: this.value,
-      originalValue: this.value
+      localShowSlider: this.showSlider
     };
+  },
+  watch: {
+    value(newVal) {
+      this.localValue = newVal;
+    },
+    showSlider(newVal) {
+      this.localShowSlider = newVal;
+    }
   },
   computed: {
     truncatedText() {
@@ -53,22 +64,23 @@ export default {
       return this.text.length > maxLength ? this.text.substring(0, maxLength) + '...' : this.text;
     }
   },
-  watch: {
-    value(newVal) {
-      this.localValue = newVal;
-      this.originalValue = newVal;
-    },
-    localValue(newVal) {
-      this.$emit('update:value', newVal);
-    }
-  },
   methods: {
+    emitValue() {
+      this.$emit('update:value', this.localValue);
+    },
     toggleSlider() {
-      this.showSlider = !this.showSlider;
+      this.localShowSlider = !this.localShowSlider;
+      this.$emit('update:tracked', this.localShowSlider);
+      if (!this.localShowSlider) {
+        this.localValue = 0;
+        this.emitValue();
+      }
     },
     cancelTracking() {
-      this.showSlider = false;
-      this.localValue = this.originalValue;
+      this.localShowSlider = false;
+      this.localValue = 0;
+      this.emitValue();
+      this.$emit('update:tracked', false);
     }
   }
 };
@@ -92,13 +104,18 @@ export default {
 .button-container {
   display: flex;
   justify-content: center;
-  flex: 0 0 5rem;
+  flex: 0 0 3rem;
+  /* Reduced width */
 }
 
 .track-button {
   background-color: #50c1ba;
   color: white;
   border-radius: 0.25rem;
+  font-size: 1.25rem;
+  /* Increased font size */
+  padding: 0.25rem 0.5rem;
+  /* Adjusted padding */
 }
 
 .track-button:hover {
@@ -127,6 +144,10 @@ export default {
   background-color: #f44336;
   color: white;
   border-radius: 0.25rem;
+  font-size: 1.25rem;
+  /* Increased font size */
+  padding: 0.25rem 0.5rem;
+  /* Adjusted padding */
 }
 
 .cancel-button:hover {
