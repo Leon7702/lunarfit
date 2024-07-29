@@ -7,7 +7,7 @@
       <q-footer class="footer-toolbar">
         <div class="toolbar-container">
         <div class="footer-divider"></div>
-        
+
         <q-toolbar class="footer-toolbar-content">
           <div class="toolbar-item" @click="goToHome" :class="{ 'active-tab': activeTab === 'home' }">
             <img :src="getIconSrc('Home')" class="toolbar-icon" alt="Home" />
@@ -49,8 +49,8 @@ export default {
   methods: {
     getIconSrc(name) {
       return this.activeTab === name.toLowerCase()
-        ? `src/assets/${name}_active.svg`
-        : `src/assets/${name}.svg`;
+        ? `/toolbar/${name}_active.svg`
+        : `/toolbar/${name}.svg`;
     },
     goToHome() {
       this.activeTab = 'home';
