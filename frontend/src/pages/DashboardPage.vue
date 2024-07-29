@@ -5,13 +5,13 @@
       <!-- Card for Cycle information -->
       <div class="q-pa-sm q-pt-sm">
         <q-card class="my-card" @click="navigateToCyclePage">
-          <q-img class="top-left-png" src="/src/assets/CycleIcon.png" />
+          <q-img class="top-left-png" src="~assets/CycleIcon.png" />
           <q-card-section class="card-content q-py-none">
             <div class="text-h6">{{ $t('cycleTitle') }}</div>
             <CycleCircle />
             <div class="more-text">
               {{ $t('moreCycleInfo') }}
-              <img class="aligned-svg" src="/src/assets/ForwardArrow.svg" alt="Weiter" />
+              <img class="aligned-svg" src="~assets/ForwardArrow.svg" alt="Weiter" />
             </div>
           </q-card-section>
           <div>
@@ -57,13 +57,13 @@
       <!-- Card for Training information -->
       <div class="q-pa-sm">
         <q-card class="my-card" @click="navigateToTrainingPage">
-          <q-img class="top-left-png" src="/src/assets/TrainingIcon.png" />
+          <q-img class="top-left-png" src="~assets/TrainingIcon.png" />
           <q-card-section class="card-content q-py-none">
             <div class="text-h6">{{ $t('trainingTitle') }}</div>
               <TrsSunburst />
             <div class="more-text">
               {{ $t('moreTrainingInfo') }}
-              <img class="aligned-svg" src="/src/assets/ForwardArrow.svg" alt="Weiter" />
+              <img class="aligned-svg" src="~/assets/ForwardArrow.svg" alt="Weiter" />
             </div>
           </q-card-section>
         </q-card>

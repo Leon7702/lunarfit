@@ -1,7 +1,7 @@
 <template>
   <div class="size-container">
     <div class="q-pa-md">
-      <img src="/src/assets/chat_image.svg" alt="Chat Image" class="image" />
+      <img src="~assets/chat_image.svg" alt="Chat Image" class="image" />
 
       <div class="title">
         {{ $t('chat.title') }}
