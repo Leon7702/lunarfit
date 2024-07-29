@@ -53,14 +53,14 @@ export default {
     },
     updateIconItems() {
       const defaultIconItems = [
-        { key: 'menstruation', icon: '/src/assets/log_Zyklus/icon_mens.svg', selected: true },
-        { key: 'temperature', icon: '/src/assets/log_Zyklus/icon_temperature.svg', selected: true },
-        { key: 'cervixMucus', icon: '/src/assets/log_Zyklus/icon_cerfix.svg', selected: true },
-        { key: 'cervixPosition', icon: '/src/assets/log_Zyklus/icon_gebaermutter.svg', selected: true },
-        { key: 'sex', icon: '/src/assets/log_Zyklus/icon_heart.svg', selected: true },
-        { key: 'medicine', icon: '/src/assets/log_Zyklus/icon_medicine.svg', selected: true },
-        { key: 'ovulationTest', icon: '/src/assets/log_Zyklus/icon_ovuTest.svg', selected: true },
-        { key: 'pregnancyTest', icon: '/src/assets/log_Zyklus/icon_pregTest.svg', selected: true }
+        { key: 'menstruation', icon: '/log_ZyklusEntry/icon_mens.svg', selected: true },
+        { key: 'temperature', icon: '/log_ZyklusEntry/icon_temperature.svg', selected: true },
+        { key: 'cervixMucus', icon: '/log_ZyklusEntry/icon_cerfix.svg', selected: true },
+        { key: 'cervixPosition', icon: '/log_ZyklusEntry/icon_gebaermutter.svg', selected: true },
+        { key: 'sex', icon: '/log_ZyklusEntry/icon_heart.svg', selected: true },
+        { key: 'medicine', icon: '/log_ZyklusEntry/icon_medicine.svg', selected: true },
+        { key: 'ovulationTest', icon: '/log_ZyklusEntry/icon_ovuTest.svg', selected: true },
+        { key: 'pregnancyTest', icon: '/log_ZyklusEntry/icon_pregTest.svg', selected: true }
       ];
       const storedItems = JSON.parse(localStorage.getItem('iconItems'));
       if (storedItems) {

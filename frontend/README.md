@@ -42,6 +42,15 @@ npm run format
 quasar build
 ```
 
+### Serve the app with the quasar webserver
+```bash
+# needs the quasar cli installed globally
+# npm install --global quasar or something like that
+
+# in the frontend folder, after build:
+quasar serve --port 9000 ./dist/spa/
+```
+
 ### Customize the configuration
 See [Configuring quasar.config.js](https://v2.quasar.dev/quasar-cli-vite/quasar-config-js).
 

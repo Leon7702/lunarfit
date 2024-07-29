@@ -28,11 +28,11 @@
   "cyclePhases": "Zyklusphasen",
   "cyclePhase": {
     "images": {
-      "menstruation": "/src/assets/cyclePhase/menstruationPhase_de_1.png",
-      "follicular": "/src/assets/cyclePhase/follicularPhase_de_2.png",
-      "ovulation": "/src/assets/cyclePhase/ovulationPhase_de_3.png",
-      "earlyLuteal": "/src/assets/cyclePhase/earlyLutealPhase_de_4.png",
-      "lateLuteal": "/src/assets/cyclePhase/lateLutealPhase_de_5.png"
+      "menstruation": "/cyclePhase/menstruationPhase_de_1.png",
+      "follicular": "/cyclePhase/follicularPhase_de_2.png",
+      "ovulation": "/cyclePhase/ovulationPhase_de_3.png",
+      "earlyLuteal": "/cyclePhase/earlyLutealPhase_de_4.png",
+      "lateLuteal": "/cyclePhase/lateLutealPhase_de_5.png"
     }
   },
 
@@ -421,8 +421,8 @@
   "logEntry": {
     "title": "Log-Eintrag",
     "images": {
-        "cycle": "/src/assets/log_zyklus.svg",
-        "notes": "/src/assets/log_notes.svg"
+        "cycle": "/log_Home/log_zyklus.svg",
+        "notes": "/log_Home/log_notes.svg"
       }
   },
   "logCycle": {
@@ -460,11 +460,11 @@
       "title": "Zervixschleim",
       "description": "Bitte zutreffendes auswählen:",
       "icons": {
-        "none": "/src/assets/log_Zyklus/cerfix_keinen.svg",
-        "dry": "/src/assets/log_Zyklus/cerfix_trocken.svg",
-        "creamy": "/src/assets/log_Zyklus/cerfix_cremig.svg",
-        "sticky": "/src/assets/log_Zyklus/cerfix_klebrig.svg",
-        "protein": "/src/assets/log_Zyklus/cerfix_eiweissartig.svg"
+        "none": "/log_Zyklus/cerfix_keinen.svg",
+        "dry": "/log_Zyklus/cerfix_trocken.svg",
+        "creamy": "/log_Zyklus/cerfix_cremig.svg",
+        "sticky": "/log_Zyklus/cerfix_klebrig.svg",
+        "protein": "/log_Zyklus/cerfix_eiweissartig.svg"
       }
     },
     "contraceptive": {
@@ -484,9 +484,9 @@
       "title": "Gebärmutterhals",
       "description": "Bitte zutreffende Position auswählen:",
       "icons": {
-        "closed": "/src/assets/log_Zyklus/gmh_geschlossen.svg",
-        "partiallyOpen": "/src/assets/log_Zyklus/gmh_tw_geoeffnet.svg",
-        "fullyOpen": "/src/assets/log_Zyklus/gmh_voll_geoeffnet.svg"
+        "closed": "log_Zyklus/gmh_geschlossen.svg",
+        "partiallyOpen": "log_Zyklus/gmh_tw_geoeffnet.svg",
+        "fullyOpen": "log_Zyklus/gmh_voll_geoeffnet.svg"
       }
     },
     "medicine": {
@@ -503,28 +503,28 @@
       "title": "Menstruation",
       "description": "Hast du heute eine Blutung? Wenn ja bitte zutreffendes auswählen:",
       "icons": {
-        "none": "/src/assets/log_Zyklus/blutung_schwach.svg",
-        "dry": "/src/assets/log_Zyklus/blutung_mittel.svg",
-        "creamy": "/src/assets/log_Zyklus/blutung_stark.svg",
-        "sticky": "/src/assets/log_Zyklus/zwischenblutung.svg"
+        "none": "/log_Zyklus/blutung_schwach.svg",
+        "dry": "/log_Zyklus/blutung_mittel.svg",
+        "creamy": "/log_Zyklus/blutung_stark.svg",
+        "sticky": "/log_Zyklus/zwischenblutung.svg"
       }
     },
     "ovulationTest": {
       "title": "Ovulationstest",
       "description": "Bitte zutreffendes auswählen:",
       "icons": {
-        "positive": "/src/assets/log_Zyklus/test_positiv.svg",
-        "negative": "/src/assets/log_Zyklus/test_negativ.svg",
-        "invalid": "/src/assets/log_Zyklus/test_ungueltig.svg"
+        "positive": "/log_Zyklus/test_positiv.svg",
+        "negative": "/log_Zyklus/test_negativ.svg",
+        "invalid": "/log_Zyklus/test_ungueltig.svg"
       }
     },
     "pregnancyTest": {
       "title": "Schwangerschaftstest",
       "description": "Bitte zutreffendes auswählen:",
       "icons": {
-        "positive": "/src/assets/log_Zyklus/test_positiv.svg",
-        "negative": "/src/assets/log_Zyklus/test_negativ.svg",
-        "invalid": "/src/assets/log_Zyklus/test_ungueltig.svg"
+        "positive": "/log_Zyklus/test_positiv.svg",
+        "negative": "/log_Zyklus/test_negativ.svg",
+        "invalid": "/log_Zyklus/test_ungueltig.svg"
       }
     },
     "sex": {

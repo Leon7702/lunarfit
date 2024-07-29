@@ -26,11 +26,11 @@
   "cyclePhases": "Cycle Phases",
   "cyclePhase": {
     "images": {
-      "menstruation": "/src/assets/cyclePhase/menstruationPhase_en_1.png",
-      "follicular": "/src/assets/cyclePhase/follicularPhase_en_2.png",
-      "ovulation": "/src/assets/cyclePhase/ovulationPhase_en_3.png",
-      "earlyLuteal": "/src/assets/cyclePhase/earlyLutealPhase_en_4.png",
-      "lateLuteal": "/src/assets/cyclePhase/lateLutealPhase_en_5.png"
+      "menstruation": "/cyclePhase/menstruationPhase_en_1.png",
+      "follicular": "/cyclePhase/follicularPhase_en_2.png",
+      "ovulation": "/cyclePhase/ovulationPhase_en_3.png",
+      "earlyLuteal": "/cyclePhase/earlyLutealPhase_en_4.png",
+      "lateLuteal": "/cyclePhase/lateLutealPhase_en_5.png"
     }
   },
   "menstruation": "Menstruation",
@@ -406,8 +406,8 @@
     "logEntry": {
       "title": "Log Entry",
       "images": {
-        "cycle": "/src/assets/log_cycle_en.svg",
-        "notes": "/src/assets/log_notes_en.svg"
+        "cycle": "/log_Home/log_cycle_en.svg",
+        "notes": "/log_Home/log_notes_en.svg"
       }
     },
     "logCycle": {
@@ -445,11 +445,11 @@
         "title": "Cervical Mucus",
         "description": "Please select the applicable option:",
         "icons": {
-          "none": "/src/assets/log_Zyklus/cerfix_none.svg",
-          "dry": "/src/assets/log_Zyklus/cerfix_dry.svg",
-          "creamy": "/src/assets/log_Zyklus/cerfix_creamy.svg",
-          "sticky": "/src/assets/log_Zyklus/cerfix_sticky.svg",
-          "protein": "/src/assets/log_Zyklus/cerfix_protein.svg"
+          "none": "/log_Zyklus/cerfix_none.svg",
+          "dry": "/log_Zyklus/cerfix_dry.svg",
+          "creamy": "/log_Zyklus/cerfix_creamy.svg",
+          "sticky": "/log_Zyklus/cerfix_sticky.svg",
+          "protein": "/log_Zyklus/cerfix_protein.svg"
         }
       },
       "contraceptive": {
@@ -469,9 +469,9 @@
         "title": "Cervix",
         "description": "Please select the applicable position:",
         "icons": {
-          "closed": "/src/assets/log_Zyklus/gmh_closed.svg",
-          "partiallyOpen": "/src/assets/log_Zyklus/gmh_partially_open.svg",
-          "fullyOpen": "/src/assets/log_Zyklus/gmh_fully_open.svg"
+          "closed": "log_Zyklus/gmh_closed.svg",
+          "partiallyOpen": "log_Zyklus/gmh_partially_open.svg",
+          "fullyOpen": "log_Zyklus/gmh_fully_open.svg"
         }
       },
       "medicine": {
@@ -488,28 +488,28 @@
         "title": "Menstruation",
         "description": "Are you bleeding today? If yes, please select applicable:",
         "icons": {
-        "none": "/src/assets/log_Zyklus/blutung_weak_en.svg",
-        "dry": "/src/assets/log_Zyklus/blutung_medium_en.svg",
-        "creamy": "/src/assets/log_Zyklus/blutung_strong_en.svg",
-        "sticky": "/src/assets/log_Zyklus/interim_bleeding.svg"
+        "none": "/log_Zyklus/blutung_weak_en.svg",
+        "dry": "/log_Zyklus/blutung_medium_en.svg",
+        "creamy": "/log_Zyklus/blutung_strong_en.svg",
+        "sticky": "/log_Zyklus/interim_bleeding.svg"
       }
       },
       "ovulationTest": {
         "title": "Ovulation Test",
         "description": "Please select the applicable option:",
         "icons": {
-          "positive": "/src/assets/log_Zyklus/test_positive.svg",
-          "negative": "/src/assets/log_Zyklus/test_negative.svg",
-          "invalid": "/src/assets/log_Zyklus/test_invalid.svg"
+          "positive": "/log_Zyklus/test_positive.svg",
+          "negative": "/log_Zyklus/test_negative.svg",
+          "invalid": "/log_Zyklus/test_invalid.svg"
         }
       },
       "pregnancyTest": {
         "title": "Pregnancy Test",
         "description": "Please select the applicable option:",
         "icons": {
-          "positive": "/src/assets/log_Zyklus/test_positive.svg",
-          "negative": "/src/assets/log_Zyklus/test_negative.svg",
-          "invalid": "/src/assets/log_Zyklus/test_invalid.svg"
+          "positive": "/log_Zyklus/test_positive.svg",
+          "negative": "/log_Zyklus/test_negative.svg",
+          "invalid": "/log_Zyklus/test_invalid.svg"
         }
       },
       "sex": {

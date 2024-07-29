@@ -12,25 +12,25 @@
         <q-item-label header class="q-pt-xl q-pb-xs">{{ $t('settings.profileCaps') }}</q-item-label>
         <q-item clickable v-ripple.early class="q-mb-xs grey-background" @click="navigateToProfile">
           <q-item-section side>
-            <img src="/src/assets/ProfileIcon.svg">
+            <img src="~assets/ProfileIcon.svg">
           </q-item-section>
           <q-item-section>
             <q-item-label>{{ $t('settings.personal-info') }}</q-item-label>
           </q-item-section>
           <q-item-section side>
-            <img src="/src/assets/arrow-right.svg">
+            <img src="~assets/arrow-right.svg">
           </q-item-section>
         </q-item>
 
         <q-item clickable v-ripple.early class="grey-background" @click="navigateToAccount">
           <q-item-section side>
-            <img src="/src/assets/SettingsIcon.svg">
+            <img src="~assets/SettingsIcon.svg">
           </q-item-section>
           <q-item-section>
             <q-item-label>{{ $t('settings.account-settings') }}</q-item-label>
           </q-item-section>
           <q-item-section side>
-            <img src="/src/assets/arrow-right.svg">
+            <img src="~assets/arrow-right.svg">
           </q-item-section>
         </q-item>
       </q-list>
@@ -40,7 +40,7 @@
 
         <q-item tag="label" v-ripple.early class="grey-background2">
           <q-item-section side>
-            <img src="/src/assets/NotificationIcon.svg">
+            <img src="~assets/NotificationIcon.svg">
           </q-item-section>
           <q-item-section>
             <q-item-label>{{ $t('settings.notifications') }}</q-item-label>
@@ -55,25 +55,25 @@
         <q-item-label header class="q-pt-lg q-pb-xs">{{ $t('settings.settingsCaps') }}</q-item-label>
         <q-item clickable v-ripple.early class="q-mb-xs grey-background" @click="navigateToLanguage">
           <q-item-section side>
-            <img src="/src/assets/GlobeIcon.svg">
+            <img src="~assets/GlobeIcon.svg">
           </q-item-section>
           <q-item-section>
             <q-item-label>{{ $t('settings.language') }}</q-item-label>
           </q-item-section>
           <q-item-section side>
-            <img src="/src/assets/arrow-right.svg">
+            <img src="~assets/arrow-right.svg">
           </q-item-section>
         </q-item>
 
         <q-item clickable v-ripple.early class="grey-background" @click="logout">
           <q-item-section side>
-            <img src="/src/assets/LogoutIcon.svg">
+            <img src="~assets/LogoutIcon.svg">
           </q-item-section>
           <q-item-section>
             <q-item-label>{{ $t('settings.logout') }}</q-item-label>
           </q-item-section>
           <q-item-section side>
-            <img src="/src/assets/arrow-right.svg">
+            <img src="~assets/arrow-right.svg">
           </q-item-section>
         </q-item>
       </q-list>

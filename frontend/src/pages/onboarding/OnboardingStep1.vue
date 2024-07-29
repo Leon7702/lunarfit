@@ -3,7 +3,7 @@
     <div class="welcome-container">
       <div class="content">
         <BackButtonText />
-        <img src="/src/assets/Step1.svg" alt="Person form" class="person-image" />
+        <img src="~assets/Step1.svg" alt="Person form" class="person-image" />
         <h2 class="form-step">
           <span class="form-step-highlight">{{ $t('onboarding.onboardingStep1.step') }}</span>
           {{ $t('onboarding.onboardingStep1.title') }}
@@ -110,8 +110,8 @@ export default {
 
 <style scoped>
 .content {
-  flex: 1; 
-  overflow-y: auto; 
+  flex: 1;
+  overflow-y: auto;
 }
 
 .person-image {
@@ -132,7 +132,7 @@ export default {
 
 .button-container {
   position: fixed;
-  bottom: 30px; 
+  bottom: 30px;
   width: 100%;
   display: flex;
   justify-content: center;

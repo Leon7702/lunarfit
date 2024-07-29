@@ -3,29 +3,29 @@
     <div class="welcome-container">
       <div class="content">
         <BackButtonText />
-        <img src="/src/assets/Step4.svg" alt="Person form" class="person-image" />
+        <img src="~assets/Step4.svg" alt="Person form" class="person-image" />
         <h2 class="form-step">
-          <span class="form-step-highlight">{{ $t('onboarding.onboardingStep4.step') }}</span> 
+          <span class="form-step-highlight">{{ $t('onboarding.onboardingStep4.step') }}</span>
           {{ $t('onboarding.onboardingStep4.title') }}
         </h2>
         <div class="form-group">
           <p>{{ $t('onboarding.onboardingStep4.fields.trainingSessions') }}</p>
-          <q-input 
-            filled 
-            v-model="workout_frequency" 
-            type="number" 
-            input-class="text-right input-text" 
-            class="q-mb-sm" 
+          <q-input
+            filled
+            v-model="workout_frequency"
+            type="number"
+            input-class="text-right input-text"
+            class="q-mb-sm"
           />
         </div>
         <div class="form-group">
           <p>{{ $t('onboarding.onboardingStep4.fields.trainingDuration') }}</p>
-          <q-input 
-            filled 
-            v-model="workout_duration" 
-            type="number" 
-            input-class="text-right input-text" 
-            class="q-mb-sm" 
+          <q-input
+            filled
+            v-model="workout_duration"
+            type="number"
+            input-class="text-right input-text"
+            class="q-mb-sm"
           />
         </div>
       </div>
@@ -81,8 +81,8 @@ export default {
 
 <style scoped>
 .content {
-  flex: 1; 
-  overflow-y: auto; 
+  flex: 1;
+  overflow-y: auto;
 }
 
 .person-image {
@@ -102,7 +102,7 @@ export default {
 }
 
 .form-group {
-  margin-bottom: 10px; 
+  margin-bottom: 10px;
 }
 
 .form-group p {
@@ -114,7 +114,7 @@ export default {
 
 .button-container {
   position: fixed;
-  bottom: 30px; 
+  bottom: 30px;
   width: 100%;
   display: flex;
   justify-content: center;
