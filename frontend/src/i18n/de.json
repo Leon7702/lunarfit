@@ -484,9 +484,9 @@
       "title": "Gebärmutterhals",
       "description": "Bitte zutreffende Position auswählen:",
       "icons": {
-        "closed": "/src/assets/log_Zyklus/gmh_geschlossen.svg",
-        "partiallyOpen": "/src/assets/log_Zyklus/gmh_tw_geoeffnet.svg",
-        "fullyOpen": "/src/assets/log_Zyklus/gmh_voll_geoeffnet.svg"
+        "closed": "log_Zyklus/gmh_geschlossen.svg",
+        "partiallyOpen": "log_Zyklus/gmh_tw_geoeffnet.svg",
+        "fullyOpen": "log_Zyklus/gmh_voll_geoeffnet.svg"
       }
     },
     "medicine": {
@@ -513,18 +513,18 @@
       "title": "Ovulationstest",
       "description": "Bitte zutreffendes auswählen:",
       "icons": {
-        "positive": "/src/assets/log_Zyklus/test_positiv.svg",
-        "negative": "/src/assets/log_Zyklus/test_negativ.svg",
-        "invalid": "/src/assets/log_Zyklus/test_ungueltig.svg"
+        "positive": "/log_Zyklus/test_positiv.svg",
+        "negative": "/log_Zyklus/test_negativ.svg",
+        "invalid": "/log_Zyklus/test_ungueltig.svg"
       }
     },
     "pregnancyTest": {
       "title": "Schwangerschaftstest",
       "description": "Bitte zutreffendes auswählen:",
       "icons": {
-        "positive": "/src/assets/log_Zyklus/test_positiv.svg",
-        "negative": "/src/assets/log_Zyklus/test_negativ.svg",
-        "invalid": "/src/assets/log_Zyklus/test_ungueltig.svg"
+        "positive": "/log_Zyklus/test_positiv.svg",
+        "negative": "/log_Zyklus/test_negativ.svg",
+        "invalid": "/log_Zyklus/test_ungueltig.svg"
       }
     },
     "sex": {

@@ -469,9 +469,9 @@
         "title": "Cervix",
         "description": "Please select the applicable position:",
         "icons": {
-          "closed": "/src/assets/log_Zyklus/gmh_closed.svg",
-          "partiallyOpen": "/src/assets/log_Zyklus/gmh_partially_open.svg",
-          "fullyOpen": "/src/assets/log_Zyklus/gmh_fully_open.svg"
+          "closed": "log_Zyklus/gmh_closed.svg",
+          "partiallyOpen": "log_Zyklus/gmh_partially_open.svg",
+          "fullyOpen": "log_Zyklus/gmh_fully_open.svg"
         }
       },
       "medicine": {
@@ -498,18 +498,18 @@
         "title": "Ovulation Test",
         "description": "Please select the applicable option:",
         "icons": {
-          "positive": "/src/assets/log_Zyklus/test_positive.svg",
-          "negative": "/src/assets/log_Zyklus/test_negative.svg",
-          "invalid": "/src/assets/log_Zyklus/test_invalid.svg"
+          "positive": "/log_Zyklus/test_positive.svg",
+          "negative": "/log_Zyklus/test_negative.svg",
+          "invalid": "/log_Zyklus/test_invalid.svg"
         }
       },
       "pregnancyTest": {
         "title": "Pregnancy Test",
         "description": "Please select the applicable option:",
         "icons": {
-          "positive": "/src/assets/log_Zyklus/test_positive.svg",
-          "negative": "/src/assets/log_Zyklus/test_negative.svg",
-          "invalid": "/src/assets/log_Zyklus/test_invalid.svg"
+          "positive": "/log_Zyklus/test_positive.svg",
+          "negative": "/log_Zyklus/test_negative.svg",
+          "invalid": "/log_Zyklus/test_invalid.svg"
         }
       },
       "sex": {
