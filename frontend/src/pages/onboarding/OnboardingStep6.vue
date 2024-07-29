@@ -3,7 +3,7 @@
     <div class="welcome-container">
       <div class="content">
         <BackButtonText />
-        <img src="/src/assets/Step5.svg" alt="Person form" class="person-image" />
+        <img src="~assets/Step5.svg" alt="Person form" class="person-image" />
         <h2 class="form-step">
           <span class="form-step-highlight">{{ $t('onboarding.onboardingStep5.step') }}</span>
           {{ $t('onboarding.onboardingStep5.title') }}
@@ -43,7 +43,7 @@ export default {
   setup() {
     const router = useRouter();
     const onboardingStore = useOnboardingStore();
-    
+
     // Initialer Wert des Sliders aus dem Store
     const workoutIntensity = ref(onboardingStore.workout_intensity);
 
@@ -90,11 +90,11 @@ export default {
 }
 
 .form-group {
-  margin-bottom: 20px; 
+  margin-bottom: 20px;
 }
 
 .form-group p {
-  margin: 0; 
+  margin: 0;
   font-size: 16px;
   margin-left: 7px;
   margin-right: 7px;
@@ -114,7 +114,7 @@ export default {
 
 .button-container {
   position: fixed;
-  bottom: 30px; 
+  bottom: 30px;
   width: 100%;
   display: flex;
   justify-content: center;

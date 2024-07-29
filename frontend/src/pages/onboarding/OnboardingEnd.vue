@@ -1,7 +1,7 @@
 <template>
   <div class="size-container">
     <div class="welcome-container">
-      <img src="/src/assets/Image_OnboardingEnd.svg" alt="Welcome Image" class="image" />
+      <img src="~assets/Image_OnboardingEnd.svg" alt="Welcome Image" class="image" />
       <div class="welcome-text">
         <h1 class="title">{{ $t('onboarding.onboardingEnd.title') }}</h1>
         <p class="description">
@@ -12,9 +12,9 @@
         <StandardButton :label="$t('buttons.next')" @click="completeOnboarding" />
       </div>
     </div>
-  </div>  
+  </div>
 </template>
-  
+
 <script>
 import StandardButton from 'components/StandardButton.vue';
 import { useRouter } from 'vue-router';
@@ -68,7 +68,7 @@ export default {
 
 
   <style scoped>
-  
+
   .image {
     aspect-ratio: 1.64;
     object-fit: auto;
@@ -76,21 +76,21 @@ export default {
     margin-top: 20px;
     width: 100%;
   }
-  
+
   .welcome-text {
-    text-align: left; 
+    text-align: left;
   }
-  
+
   .title {
-    font: 600 24px/129% 'Inter', sans-serif; 
+    font: 600 24px/129% 'Inter', sans-serif;
     margin-top: 5vh;
   }
-  
+
   .description {
-    font: 16px/22px 'Inter', sans-serif; 
+    font: 16px/22px 'Inter', sans-serif;
     margin-top: 3vh;
   }
-  
+
   .button-container {
     position: fixed;
     bottom: 30px;
@@ -101,4 +101,3 @@ export default {
   }
 
   </style>
-  

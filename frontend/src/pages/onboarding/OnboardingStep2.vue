@@ -3,9 +3,9 @@
     <div class="welcome-container">
       <div class="content">
         <BackButtonText />
-        <img src="/src/assets/Step2.svg" alt="Person form" class="person-image" />
+        <img src="~assets/Step2.svg" alt="Person form" class="person-image" />
         <h2 class="form-step">
-          <span class="form-step-highlight">{{ $t('onboarding.onboardingStep2.step') }}</span> 
+          <span class="form-step-highlight">{{ $t('onboarding.onboardingStep2.step') }}</span>
           {{ $t('onboarding.onboardingStep2.title') }}
         </h2>
         <div class="form-group">
@@ -70,7 +70,7 @@ export default {
 
       try {
         await logLastMenstruation();
-        
+
         onboardingStore.setMenstruationData({
           cycle_duration: cycle_duration.value,
           menstruation_duration: menstruation_duration.value,

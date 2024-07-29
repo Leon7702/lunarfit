@@ -3,7 +3,7 @@
     <div class="welcome-container">
       <div class="content">
         <BackButtonText />
-        <img src="/src/assets/Step3.svg" alt="Person form" class="person-image" />
+        <img src="~assets/Step3.svg" alt="Person form" class="person-image" />
         <h2 class="form-step">
           <span class="form-step-highlight">{{ $t('onboarding.onboardingStep3.step') }}</span>
           {{ $t('onboarding.onboardingStep3.title') }}
