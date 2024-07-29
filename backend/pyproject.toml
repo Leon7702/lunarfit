@@ -8,8 +8,8 @@ readme = "README.md"
 package-mode = false
 
 [tool.poetry.dependencies]
-python = "^3.11"
-Django = "^5.0.4"
+python = "^3.9"
+Django = "^4.2.14"
 djangorestframework = "^3.15.1"
 psycopg = {extras = ["binary"], version = "^3.1.19"}
 djangorestframework-simplejwt = {extras = ["crypto"], version = "^5.3.1"}
@@ -18,7 +18,6 @@ drf-spectacular = {extras = ["sidecar"], version = "^0.27.2"}
 pytest-django = "^4.8.0"
 pytest-sugar = "^1.0.0"
 pytest-xdist = {extras = ["psutil"], version = "^3.6.1"}
-ipython = "^8.25.0"
 django-filter = "^24.2"
 markdown = "^3.6"
 python-dotenv = "^1.0.1"
@@ -31,9 +30,6 @@ python_files = "tests.py test_*.py *_tests.py"
 addopts = "-n logical"
 
 [tool.poetry.group.dev.dependencies]
-django-filter = "^24.2"
-
-[tool.poetry.group.dev_emacs.dependencies]
 python-lsp-server = "^1.11.0"
 pylsp-mypy = "^0.6.8"
 python-lsp-isort = "^0.1"
@@ -41,6 +37,7 @@ python-lsp-black = "^2.0.0"
 pyls-memestra = "^0.0.16"
 pylsp-rope = "^0.1.16"
 python-lsp-ruff = "^2.2.1"
+ipython = ">=8 <8.19"
 
 [build-system]
 requires = ["poetry-core"]
