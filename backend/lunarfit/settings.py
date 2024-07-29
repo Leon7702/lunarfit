@@ -38,9 +38,10 @@ DEBUG = os.environ.get("DJANGO_DEBUG", "").lower() != "false"
 ALLOWED_HOSTS = []
 
 # TODO: Configure for Production
-CORS_ALLOWED_ORIGINS = [
-    "http://localhost:9000",
-]
+CORS_ORIGIN_ALLOW_ALL = True
+# CORS_ALLOWED_ORIGINS = [
+#     "http://localhost:9000",
+# ]
 
 # TODO: Enable when HTTPS is configured
 # CSRF_COOKIE_SECURE = True
