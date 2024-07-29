@@ -105,7 +105,6 @@ export default {
   display: flex;
   justify-content: center;
   flex: 0 0 3rem;
-  /* Reduced width */
 }
 
 .track-button {
@@ -113,9 +112,7 @@ export default {
   color: white;
   border-radius: 0.25rem;
   font-size: 1.25rem;
-  /* Increased font size */
   padding: 0.25rem 0.5rem;
-  /* Adjusted padding */
 }
 
 .track-button:hover {
@@ -127,11 +124,14 @@ export default {
   align-items: center;
   flex: 1;
   padding-left: 0.9375rem;
+  padding-right: 1rem;
   height: 100%;
 }
 
 .icon {
   font-size: 1.875rem;
+  padding-left: 0.8rem;
+
 }
 
 .slider {
