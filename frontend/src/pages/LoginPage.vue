@@ -40,6 +40,7 @@
 import { ref } from 'vue';
 import { useRouter } from 'vue-router';
 import { useAuthStore } from 'src/stores/auth';
+import { api } from 'src/boot/axios';
 
 export default {
   setup() {
@@ -53,7 +54,16 @@ export default {
       try {
         await authStore.login({ email: email.value, password: password.value });
         alert("Login successful!");
-        router.push('/onboarding');
+
+        // Fetch user profile to check onboarding status
+        const response = await api.get('/users/profile');
+        const userProfile = response.data.results[0];
+
+        if (userProfile.onboarding_finished) {
+          router.push('/home'); // Redirect to home if onboarding is finished
+        } else {
+          router.push('/onboarding'); // Redirect to onboarding if not finished
+        }
       } catch (error) {
         alert("There was an error logging in: " + error);
       }
@@ -77,8 +87,6 @@ p {
   font-size: 14px;
   margin: 30px;
 }
-
-
 
 a {
   color: #50c1ba;
