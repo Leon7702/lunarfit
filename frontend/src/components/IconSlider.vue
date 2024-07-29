@@ -11,7 +11,7 @@
 
       <q-item-section class="slider-container" v-if="localShowSlider">
         <q-slider v-model="localValue" :min="1" :max="6" markers marker-labels class="slider q-mr-sm"
-          @input="emitValue" />
+          @change="emitValue" />
       </q-item-section>
 
       <q-item-section class="button-container">

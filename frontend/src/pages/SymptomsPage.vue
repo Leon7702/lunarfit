@@ -7,33 +7,26 @@
 
     <q-input v-model="selectedDate" label="Select Date" type="date" @input="fetchSymptoms" />
 
-    <div class=" container">
+    <div class="container">
       <IconSlider v-for="(item, index) in symptomItems" :key="index" :icon="item.icon" :text="item.text"
         :value="item.strength" :showSlider="item.tracked" @update:value="updateStrength(index, $event)"
         @update:tracked="updateTracked(index, $event)" />
-    </div>
-
-    <div class="button-container">
-      <StandardButton :label="$t('save')" @click="saveSymptoms" />
     </div>
   </div>
 </template>
 
 <script>
-import { ref } from 'vue';
+import { ref, watch } from 'vue';
 import { useRouter } from 'vue-router';
 import IconSlider from 'components/IconSlider.vue';
 import { QBtn, QInput } from 'quasar';
 import { api } from 'src/boot/axios';
-import StandardButton from 'components/StandardButton.vue';
-
 
 export default {
   components: {
     IconSlider,
     QBtn,
-    QInput,
-    StandardButton
+    QInput
   },
   setup() {
     const selectedDate = ref(new Date().toISOString().substr(0, 10));
@@ -43,40 +36,44 @@ export default {
 
     function getInitialSymptomItems() {
       return [
-        { icon: '💨', text: 'Bloating', strength: 1, tracked: false },
-        { icon: '🍒', text: 'Breast Pain', strength: 1, tracked: false },
-        { icon: '🚽', text: 'Diarrhea', strength: 1, tracked: false },
-        { icon: '😓', text: 'Exhaustion', strength: 1, tracked: false },
-        { icon: '🥶', text: 'Cold', strength: 1, tracked: false },
-        { icon: '🍫', text: 'Cravings', strength: 1, tracked: false },
-        { icon: '😡', text: 'Irritability', strength: 1, tracked: false },
-        { icon: '🤕', text: 'Aches', strength: 1, tracked: false },
-        { icon: '🥵', text: 'Hot Flashes', strength: 1, tracked: false },
-        { icon: '🤯', text: 'Headaches', strength: 1, tracked: false },
-        { icon: '💢', text: 'Cramps', strength: 1, tracked: false },
-        { icon: '😴', text: 'Fatigue', strength: 1, tracked: false },
-        { icon: '🛏️', text: 'Sleep Issues', strength: 1, tracked: false },
-        { icon: '😵‍💫', text: 'Dizziness', strength: 1, tracked: false },
-        { icon: '📉', text: 'Mood Swings', strength: 1, tracked: false },
-        { icon: '😵', text: 'Weakness', strength: 1, tracked: false },
-        { icon: '🤢', text: 'Nausea', strength: 1, tracked: false },
-        { icon: '🍪', text: 'Acne', strength: 1, tracked: false },
-        { icon: '🔴', text: 'Pelvic Pain', strength: 1, tracked: false },
-        { icon: '🪨', text: 'Constipation', strength: 1, tracked: false },
+        { icon: '💨', text: 'Bloating', strength: 0, tracked: false, id: null },
+        { icon: '🍒', text: 'Breast Pain', strength: 0, tracked: false, id: null },
+        { icon: '🚽', text: 'Diarrhea', strength: 0, tracked: false, id: null },
+        { icon: '😓', text: 'Exhaustion', strength: 0, tracked: false, id: null },
+        { icon: '🥶', text: 'Cold', strength: 0, tracked: false, id: null },
+        { icon: '🍫', text: 'Cravings', strength: 0, tracked: false, id: null },
+        { icon: '😡', text: 'Irritability', strength: 0, tracked: false, id: null },
+        { icon: '🤕', text: 'Aches', strength: 0, tracked: false, id: null },
+        { icon: '🥵', text: 'Hot Flashes', strength: 0, tracked: false, id: null },
+        { icon: '🤯', text: 'Headaches', strength: 0, tracked: false, id: null },
+        { icon: '💢', text: 'Cramps', strength: 0, tracked: false, id: null },
+        { icon: '😴', text: 'Fatigue', strength: 0, tracked: false, id: null },
+        { icon: '🛏️', text: 'Sleep Issues', strength: 0, tracked: false, id: null },
+        { icon: '😵‍💫', text: 'Dizziness', strength: 0, tracked: false, id: null },
+        { icon: '📉', text: 'Mood Swings', strength: 0, tracked: false, id: null },
+        { icon: '😵', text: 'Weakness', strength: 0, tracked: false, id: null },
+        { icon: '🤢', text: 'Nausea', strength: 0, tracked: false, id: null },
+        { icon: '🍪', text: 'Acne', strength: 0, tracked: false, id: null },
+        { icon: '🔴', text: 'Pelvic Pain', strength: 0, tracked: false, id: null },
+        { icon: '🪨', text: 'Constipation', strength: 0, tracked: false, id: null },
       ];
     }
 
     function updateStrength(index, value) {
+      console.log(`Updating strength of symptom at index ${index} to ${value}`);
       symptomItems.value[index].strength = value;
-      if (value > 0) {
-        symptomItems.value[index].tracked = true;
-      } else {
-        symptomItems.value[index].tracked = false;
-      }
+      symptomItems.value[index].tracked = value > 0;
+      saveSymptom(index);
     }
 
     function updateTracked(index, tracked) {
+      console.log(`Updating tracked status of symptom at index ${index} to ${tracked}`);
       symptomItems.value[index].tracked = tracked;
+      if (!tracked) {
+        deleteSymptom(index);
+      } else {
+        saveSymptom(index);
+      }
     }
 
     async function fetchSymptoms() {
@@ -93,6 +90,7 @@ export default {
           const symptomIndex = symptom.symptom_category - 1;
           symptomItems.value[symptomIndex] = {
             ...symptomItems.value[symptomIndex],
+            id: symptom.id,
             strength: symptom.strength,
             tracked: true
           };
@@ -100,6 +98,7 @@ export default {
 
         // Store the initial state of the symptoms
         initialSymptoms.value = fetchedSymptoms.map(symptom => ({
+          id: symptom.id,
           symptom_category: symptom.symptom_category,
           strength: symptom.strength
         }));
@@ -108,35 +107,66 @@ export default {
       }
     }
 
-    async function saveSymptoms() {
-      const trackedSymptoms = symptomItems.value.filter(item => item.tracked);
-      console.log('Saving tracked symptoms:', trackedSymptoms);
+    async function saveSymptom(index) {
+      const symptom = symptomItems.value[index];
+      const initialSymptom = initialSymptoms.value.find(item => item.symptom_category === index + 1);
+
+      const requestBody = {
+        date: selectedDate.value,
+        strength: symptom.strength,
+        symptom_category: index + 1,
+      };
 
       try {
-        for (const symptom of trackedSymptoms) {
-          const symptomIndex = symptomItems.value.findIndex(item => item.icon === symptom.icon);
-          const initialSymptom = initialSymptoms.value.find(item => item.symptom_category === symptomIndex + 1);
-
-          // Only send the symptom if it is new or has changed
-          if (!initialSymptom || initialSymptom.strength !== symptom.strength) {
-            const requestBody = {
-              date: selectedDate.value,
-              strength: symptom.strength,
-              symptom_category: symptomIndex + 1,
-            };
-            console.log('Sending request body:', requestBody);
-            await api.post('/symptoms/', requestBody);
+        if (!initialSymptom) {
+          if (symptom.tracked) {
+            console.log('Creating new symptom:', requestBody);
+            const response = await api.post('/symptoms/', requestBody);
+            symptomItems.value[index].id = response.data.id;
+            initialSymptoms.value.push({ ...requestBody, id: response.data.id });
           }
+        } else if (symptom.strength > 0 && symptom.strength !== initialSymptom.strength) {
+          console.log('Deleting and re-creating symptom:', initialSymptom);
+          await api.delete(`/symptoms/${initialSymptom.id}/`);
+          const response = await api.post('/symptoms/', requestBody);
+          symptomItems.value[index].id = response.data.id;
+          initialSymptoms.value = initialSymptoms.value.map(item =>
+            item.symptom_category === index + 1 ? { ...item, ...requestBody, id: response.data.id } : item
+          );
+        } else if (symptom.strength === 0) {
+          console.log('Deleting symptom:', initialSymptom);
+          await api.delete(`/symptoms/${initialSymptom.id}/`);
+          symptomItems.value[index].id = null;
+          initialSymptoms.value = initialSymptoms.value.filter(item => item.symptom_category !== index + 1);
         }
-        router.push('/calendar');
       } catch (error) {
-        console.error('Error saving symptoms:', error);
+        console.error('Error saving symptom:', error);
       }
+    }
+
+    async function deleteSymptom(index) {
+      const symptom = symptomItems.value[index];
+      if (symptom.id) {
+        try {
+          await api.delete(`/symptoms/${symptom.id}/`);
+          console.log('Deleted symptom:', symptom);
+        } catch (error) {
+          console.error('Error deleting symptom:', error);
+        }
+      }
+      symptomItems.value[index] = {
+        ...symptomItems.value[index],
+        strength: 0,
+        tracked: false,
+        id: null
+      };
     }
 
     function goBack() {
       router.go(-1);
     }
+
+    watch(selectedDate, fetchSymptoms);
 
     fetchSymptoms();
 
@@ -147,7 +177,7 @@ export default {
       updateStrength,
       updateTracked,
       fetchSymptoms,
-      saveSymptoms,
+      deleteSymptom,
       goBack,
     };
   },
@@ -175,35 +205,6 @@ export default {
 
 .container {
   flex: 1;
-  padding-bottom: 80px;
-}
-
-.button-container {
-  position: fixed;
-  bottom: 20px;
-  /* Adjust this value if necessary to ensure it's above the toolbar */
-  left: 0;
-  width: 100%;
-  display: flex;
-  justify-content: center;
-  padding-bottom: 40px;
-  padding-top: 10px;
-  background-color: white;
-  z-index: 1000;
-  height: 130px;
-}
-
-.save-button {
-  background-color: #50c1ba;
-  color: white;
-  border: none;
-  padding: 10px 10px;
-  font-size: 16px;
-  cursor: pointer;
-  border-radius: 5px;
-}
-
-.save-button:hover {
-  background-color: #3b9991;
+  margin-bottom: 20px;
 }
 </style>
