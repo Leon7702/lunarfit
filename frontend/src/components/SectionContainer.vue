@@ -73,7 +73,6 @@ a:hover {
 
 .section-container {
   margin: 1.25rem auto;
-  /* Center container with top margin */
 }
 
 .section-header {
@@ -85,7 +84,6 @@ a:hover {
   font-style: normal;
   font-weight: 600;
   line-height: 1.3125rem;
-  /* 150% */
 }
 
 .section-list {
@@ -97,7 +95,6 @@ a:hover {
   font-style: normal;
   font-weight: 600;
   line-height: 1.3125rem;
-  /* 150% */
 }
 
 .emoji-wrapper {
@@ -112,10 +109,10 @@ a:hover {
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  width: 4rem;
-  height: 4rem;
+  width: 5rem;
+  height: 5rem;
   margin: 0.5rem;
-  padding: 0.5rem;
+  padding: 0.2rem;
   box-shadow: 0 0.125rem 0.25rem rgba(0, 0, 0, 0.08);
   border-radius: 0.5rem;
   background-color: #fff;
@@ -123,7 +120,6 @@ a:hover {
 
 .emoji {
   font-size: 1.75rem;
-  /* Adjust size as needed */
 }
 
 .emoji-label {
