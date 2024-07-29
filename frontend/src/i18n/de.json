@@ -503,10 +503,10 @@
       "title": "Menstruation",
       "description": "Hast du heute eine Blutung? Wenn ja bitte zutreffendes auswählen:",
       "icons": {
-        "none": "/src/assets/log_Zyklus/blutung_schwach.svg",
-        "dry": "/src/assets/log_Zyklus/blutung_mittel.svg",
-        "creamy": "/src/assets/log_Zyklus/blutung_stark.svg",
-        "sticky": "/src/assets/log_Zyklus/zwischenblutung.svg"
+        "none": "/log_Zyklus/blutung_schwach.svg",
+        "dry": "/log_Zyklus/blutung_mittel.svg",
+        "creamy": "/log_Zyklus/blutung_stark.svg",
+        "sticky": "/log_Zyklus/zwischenblutung.svg"
       }
     },
     "ovulationTest": {

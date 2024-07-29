@@ -488,10 +488,10 @@
         "title": "Menstruation",
         "description": "Are you bleeding today? If yes, please select applicable:",
         "icons": {
-        "none": "/src/assets/log_Zyklus/blutung_weak_en.svg",
-        "dry": "/src/assets/log_Zyklus/blutung_medium_en.svg",
-        "creamy": "/src/assets/log_Zyklus/blutung_strong_en.svg",
-        "sticky": "/src/assets/log_Zyklus/interim_bleeding.svg"
+        "none": "/log_Zyklus/blutung_weak_en.svg",
+        "dry": "/log_Zyklus/blutung_medium_en.svg",
+        "creamy": "/log_Zyklus/blutung_strong_en.svg",
+        "sticky": "/log_Zyklus/interim_bleeding.svg"
       }
       },
       "ovulationTest": {
