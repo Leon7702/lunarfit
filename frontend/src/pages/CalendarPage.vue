@@ -83,11 +83,11 @@
 
       <q-card class="notes-container q-mt-md">
         <q-card-section>
-          <div class="notes-header">{{ $t('Notes') }}</div>
+          <div class="notes-header">{{ $t('logNotes.title') }}</div>
           <div v-if="loadingNotes" class="q-mt-md flex flex-center">
             <q-spinner color="primary" size="2em" />
           </div>
-          <div v-else class="notes-text">{{ noteContent || $t('noNotes') }}</div>
+          <div v-else class="notes-text">{{ noteContent || $t('logNotes.no_entry') }}</div>
         </q-card-section>
       </q-card>
     </q-page>
