@@ -53,8 +53,8 @@ export default {
       try {
         await api.post('/cycles/log/', {
           date: last_menstruation.value,
-          value: "3", // Beispielwert, je nach Anforderung anpassen
-          type: 1 // Typ 1 für Menstruation
+          value: "1", 
+          type: 1 
         });
       } catch (error) {
         console.error('Error logging last menstruation:', error);
