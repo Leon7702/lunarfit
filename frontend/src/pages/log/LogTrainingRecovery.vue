@@ -34,7 +34,7 @@ export default {
   setup() {
     const router = useRouter();
     const trainingStore = useTrainingStore();
-    const recovery = ref(trainingStore.recovery);
+    const recovery = ref(6);
 
     // Berechne den invertierten Wert
     const invertedRecovery = computed(() => {

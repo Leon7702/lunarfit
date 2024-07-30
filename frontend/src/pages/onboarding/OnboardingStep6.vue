@@ -45,7 +45,7 @@ export default {
     const onboardingStore = useOnboardingStore();
 
     // Initialer Wert des Sliders aus dem Store
-    const workoutIntensity = ref(onboardingStore.workout_intensity);
+    const workoutIntensity = ref(10);
 
     // Computed Property zur Umrechnung des Wertes
     const invertedWorkoutIntensity = computed(() => {

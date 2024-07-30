@@ -34,7 +34,7 @@ export default {
   setup() {
     const router = useRouter();
     const trainingStore = useTrainingStore();
-    const mood = ref(trainingStore.mood);
+    const mood = ref(6);
 
     // Berechne den invertierten Wert
     const invertedMood = computed(() => {

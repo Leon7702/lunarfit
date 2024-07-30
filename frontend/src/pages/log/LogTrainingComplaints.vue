@@ -39,7 +39,7 @@ export default {
   setup() {
     const router = useRouter();
     const trainingStore = useTrainingStore();
-    const complaints = ref(trainingStore.complaints);
+    const complaints = ref(6);
 
     // Berechne den invertierten Wert
     const invertedComplaints = computed(() => {

@@ -38,7 +38,7 @@ export default {
   setup() {
     const router = useRouter();
     const trainingStore = useTrainingStore();
-    const workoutIntensity = ref(5); // Setze den anfänglichen Wert
+    const workoutIntensity = ref(10); // Setze den anfänglichen Wert
 
     // Berechne den invertierten Wert
     const invertedWorkoutIntensity = computed(() => {
