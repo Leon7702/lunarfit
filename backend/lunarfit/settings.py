@@ -34,20 +34,22 @@ SECRET_KEY = os.environ.get(
 # env variables are strings
 DEBUG = os.environ.get("DJANGO_DEBUG", "").lower() != "false"
 
-# TODO: Configure for Production (DEBUG=FALSE)
 ALLOWED_HOSTS = [
     "localhost",
     "lunarfit.ac0.de",
 ]
 
-# TODO: Configure for Production
 CORS_ALLOWED_ORIGINS = [
     "http://localhost:9000",
     "https://lunarfit.ac0.de",
 ]
 
-# TODO: Enable when HTTPS is configured
-# CSRF_COOKIE_SECURE = True
+CSRF_TRUSTED_ORIGINS = [
+    "http://localhost:9000",
+    "https://lunarfit.ac0.de",
+]
+
+CSRF_COOKIE_SECURE = True
 
 # Application definition
 
