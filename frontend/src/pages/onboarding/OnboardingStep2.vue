@@ -10,15 +10,15 @@
         </h2>
         <div class="form-group">
           <p>{{ $t('onboarding.onboardingStep2.fields.lastMenstruation') }}</p>
-          <q-input filled v-model="last_menstruation" type="date" input-class="text-right input-text" class="q-mb-sm" />
+          <q-input filled v-model="last_menstruation" type="date" input-class="text-left input-text" class="q-mb-sm" />
         </div>
         <div class="form-group">
           <p>{{ $t('onboarding.onboardingStep2.fields.menstruationDuration') }}</p>
-          <q-input filled v-model="menstruation_duration" type="number" input-class="text-right input-text" class="q-mb-sm" />
+          <q-input filled v-model="menstruation_duration" type="number" input-class="text-left input-text" class="q-mb-sm" />
         </div>
         <div class="form-group">
           <p>{{ $t('onboarding.onboardingStep2.fields.cycleLength') }}</p>
-          <q-input filled v-model="cycle_duration" type="number" input-class="text-right input-text" class="q-mb-sm" />
+          <q-input filled v-model="cycle_duration" type="number" input-class="text-left input-text" class="q-mb-sm" />
         </div>
         <div class="button-container">
           <StandardButton :label="$t('buttons.next')" @click="navigateToNextStep" />
@@ -118,7 +118,7 @@ export default {
 }
 
 .form-group {
-  margin-bottom: 10px;
+  margin-bottom: 20px;
 }
 
 .form-group p {

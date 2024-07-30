@@ -29,7 +29,7 @@
           filled
           v-model="duration"
           type="number"
-          input-class="text-right"
+          input-class="text-left"
           class="q-mb-sm"
         />
       </div>
@@ -166,15 +166,13 @@ export default {
     padding-right: 30px;
 }
 
-.form-group {
-    width: 100%;
-}
+
 
 .form-group p {
-    text-align: left;
-    width: 100%;
-    font-size: 16px;
-    font-weight: 500;
+  margin: 0;
+  font-size: 16px;
+  margin-left: 7px;
+  margin-right: 7px;
 }
 
 .form-group.spacer {

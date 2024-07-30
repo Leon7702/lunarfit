@@ -141,7 +141,7 @@ export default {
 }
 
 .description {
-  margin-top: 60px;
+  margin-top: 30px;
   text-align: left;
   width: 100%;
   font-size: 16px;

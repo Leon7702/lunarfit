@@ -14,7 +14,7 @@
             filled
             v-model="workout_frequency"
             type="number"
-            input-class="text-right input-text"
+            input-class="text-left input-text"
             class="q-mb-sm"
           />
         </div>
@@ -24,7 +24,7 @@
             filled
             v-model="workout_duration"
             type="number"
-            input-class="text-right input-text"
+            input-class="text-left input-text"
             class="q-mb-sm"
           />
         </div>
@@ -102,7 +102,7 @@ export default {
 }
 
 .form-group {
-  margin-bottom: 10px;
+  margin-bottom: 20px;
 }
 
 .form-group p {
