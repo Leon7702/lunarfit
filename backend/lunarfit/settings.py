@@ -116,6 +116,18 @@ WSGI_APPLICATION = "lunarfit.wsgi.application"
 # Database
 # https://docs.djangoproject.com/en/5.0/ref/settings/#databases
 
+# use container in dev environment
+DATABASES = {
+    "default": {
+        "ENGINE": "django.db.backends.postgresql",
+        "NAME": "postgres",
+        "USER": "postgres",
+        "PASSWORD": "lunarfit",
+        "HOST": "db",
+        "PORT": 5432,
+    }
+}
+
 # DATABASE_URL in the form of:
 # postgres://USER:PASSWORD@HOST:PORT/NAME or
 # postgresql://USER:PASSWORD@HOST:PORT/NAME
@@ -124,18 +136,6 @@ if "DATABASE_URL" in os.environ:
         conn_max_age=500,
         conn_health_checks=True,
     )
-else:
-    # use container in dev environment
-    DATABASES = {
-        "default": {
-            "ENGINE": "django.db.backends.postgresql",
-            "NAME": "postgres",
-            "USER": "postgres",
-            "PASSWORD": "lunarfit",
-            "HOST": "db",
-            "PORT": 5432,
-        }
-    }
 
 AUTH_USER_MODEL = "users.User"
 
