@@ -1,38 +1,50 @@
 <template>
   <div class="size-container">
-  <div class="welcome-container">
-    <div class="header">
-      <q-btn flat dense round icon="arrow_back" @click="goBack" />
-      <div class="title">{{ $t('logCycle.cervix.title') }}</div>
-    </div>
-    <div class="linie"></div>
-    <p class="description">
-      {{ $t('logCycle.cervix.description') }}
-    </p>
-    <div class="icon-grid">
-      <div
-        class="icon-item"
-        v-for="(item, index) in iconItems"
-        :key="index"
-        @click="selectItem(index)"
-        :class="{ selected: selectedIndex === index }"
-      >
-        <div class="icon-wrapper">
-          <img :src="item.icon" class="icon" />
-          <div class="icon-circle" :class="{ active: selectedIndex === index }"></div>
+    <div class="welcome-container">
+      <div class="header">
+        <q-btn flat dense round icon="arrow_back" @click="goBack" />
+        <div class="title">{{ $t('logCycle.cervix.title') }}</div>
+      </div>
+      <div class="linie"></div>
+      <p class="description">
+        {{ $t('logCycle.cervix.description') }}
+      </p>
+      <div class="icon-grid">
+        <div
+          class="icon-item"
+          v-for="(item, index) in iconItems"
+          :key="index"
+          @click="selectItem(index)"
+          :class="{ selected: selectedIndex === index }"
+        >
+          <div class="icon-wrapper">
+            <img :src="item.icon" class="icon" />
+            <div class="icon-circle" :class="{ active: selectedIndex === index }"></div>
+          </div>
         </div>
+      </div>
+      <div class="button-container">
+        <StandardButton :label="$t('buttons.save')" @click="saveCycleData" />
       </div>
     </div>
   </div>
-</div>
 </template>
 
 <script>
+import { ref, computed } from 'vue';
+import { useRouter } from 'vue-router';
+import { useAuthStore } from 'src/stores/auth';
+import { api } from 'src/boot/axios';
+import StandardButton from 'components/StandardButton.vue';
+
 export default {
+  components: {
+    StandardButton
+  },
   data() {
     return {
       iconItems: [],
-      selectedIndex: null // Hinzufügen der selectedIndex-Eigenschaft
+      selectedIndex: null
     };
   },
   computed: {
@@ -54,7 +66,7 @@ export default {
       window.history.back();
     },
     selectItem(index) {
-      this.selectedIndex = index; // Setzen des ausgewählten Index
+      this.selectedIndex = index;
     },
     updateIconItems() {
       this.iconItems = [
@@ -64,6 +76,57 @@ export default {
         { icon: this.localizedIcons.sticky },
         { icon: this.localizedIcons.protein }
       ];
+    },
+    async saveCycleData() {
+      if (this.selectedIndex === null) {
+        alert("Bitte wählen Sie ein Feld aus!");
+        return;
+      }
+
+      const valueMapping = {
+        none: 0,
+        dry: 1,
+        creamy: 2,
+        sticky: 3,
+        protein: 4
+      };
+
+      const requestBody = {
+        date: new Date().toISOString().split('T')[0], 
+        type: 4,
+        value: valueMapping[Object.keys(this.localizedIcons)[this.selectedIndex]]
+      };
+
+      const authStore = useAuthStore();
+
+      try {
+        await authStore.refreshAccessToken(); 
+
+        await api.post('/cycles/log/', requestBody, {
+          headers: {
+            'Content-Type': 'application/json',
+            'Authorization': `Bearer ${authStore.accessToken}`
+          }
+        });
+
+        alert("Daten erfolgreich gespeichert!");
+      } catch (error) {
+        console.error('Fehler beim Speichern der Zyklusdaten', error);
+
+        if (error.response) {
+          if (error.response.status === 400) {
+            alert('Fehlerhafte Anfrage. Bitte überprüfen Sie Ihre Eingaben.');
+          } else if (error.response.status === 401) {
+            alert('Nicht autorisiert. Bitte melden Sie sich erneut an.');
+          } else {
+            alert('Fehler beim Speichern der Zyklusdaten.');
+          }
+        } else if (error.request) {
+          alert('Keine Antwort vom Server. Bitte überprüfen Sie Ihre Internetverbindung.');
+        } else {
+          alert('Ein unbekannter Fehler ist aufgetreten.');
+        }
+      }
     }
   },
   created() {
@@ -71,6 +134,7 @@ export default {
   }
 };
 </script>
+
 
 <style scoped>
 .linie {
@@ -148,5 +212,12 @@ export default {
   background-color: var(--q-primary);
 }
 
-
+.button-container {
+  position: fixed;
+  bottom: 80px;  
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  left: 0;
+}
 </style>
