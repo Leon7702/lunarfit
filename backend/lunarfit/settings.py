@@ -37,7 +37,7 @@ DEBUG = os.environ.get("DJANGO_DEBUG", "").lower() != "false"
 # TODO: Configure for Production (DEBUG=FALSE)
 ALLOWED_HOSTS = [
     "localhost",
-    "https://lunarfit.ac0.de",
+    "lunarfit.ac0.de",
 ]
 
 # TODO: Configure for Production
