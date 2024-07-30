@@ -1,5 +1,5 @@
 from django.test import TestCase
-from .models import User, Type, TrackingData, MenstrualCycle
+from .models import User, Type, TrackingData, MenstrualCycle, Phase
 from rest_framework.test import APITestCase
 from datetime import date
 from rest_framework import status
@@ -7,30 +7,24 @@ from rest_framework import status
 class MenstrualCycleTest(APITestCase):
     def setUp(self):
         self.user0 = User.objects.create_user(email='user0@email.com', password='user0')
+        self.client.force_authenticate(user=self.user0) #needed?
 
 
-    def test_no_new_cycle_if_prev_day_entry_type1_and_cycle_shorter_than_14_days(self):
-         # Create a TrackingData entry for the previous day
-        previous_day = date(2024-8-26)
-        TrackingData.objects.create(
-            user=self.user,
-            type=1,
-            date=previous_day,
-            value=2.0
-        )
+    def test_new_cycle_if_entry_type1_and_no_mens_prev_day(self):
+              
+        self.type1 = Type.objects.create(name='Menstruation')
 
-         # Create a TrackingData entry for the current day
         response = self.client.post('/api/cycles/log/', {
-            'user': self.user.id,
-            'type': self.type.id,
-            'date': date(2024-8-27),
-            'value': 1.0
+            'user': self.user0.id,
+            'type': self.type1.id,
+            'date': date(2024, 8, 20),
+            'value': 2.0
         })
 
         # Ensure the TrackingData entry is created successfully
-        self.assertEqual(response.status_code, status.HTTP_201_CREATED)
-        self.assertTrue(TrackingData.objects.filter(user=self.user, date=date(2024-08-27)).exists())
+        assert response.status_code == status.HTTP_201_CREATED
+        assert TrackingData.objects.filter(user=self.user0, date=date(2024, 8, 20)).exists()
 
         # Check that no new MenstrualCycle is created
-        menstrual_cycles = MenstrualCycle.objects.filter(user=self.user)
-        self.assertEqual(menstrual_cycles.count(), 0)
+        menstrual_cycles = MenstrualCycle.objects.filter(user=self.user0)
+        assert menstrual_cycles.count() == 1
