@@ -1,0 +1,44 @@
+- model: users.user
+  pk: 99
+  fields:
+    password: pbkdf2_sha256$600000$nZ245oZ5rQapVw34nBtvej$IxhdEBeAaRkq7Fmdm4S87DPiTrwZf9PYdvyjJ19byC4=
+    last_login: 2024-07-30 18:44:33.320741+00:00
+    is_superuser: true
+    email: showtimeadmin@example.com
+    is_staff: true
+    is_active: true
+    groups: []
+    user_permissions: []
+- model: users.user
+  pk: 100
+  fields:
+    password: pbkdf2_sha256$600000$Mk2sgs0p985QDCqFu40q00$2Rb9a20QE2FZLAppaxrmCPOcYsA/nJoILb+tKh+Qe0k=
+    last_login: null
+    is_superuser: false
+    email: showtime@example.com
+    is_staff: false
+    is_active: true
+    groups: []
+    user_permissions: []
+- model: users.profile
+  pk: 99
+  fields:
+    onboarding_finished: false
+    first_name: ''
+    last_name: ''
+    birthdate: null
+    body_weight: null
+    body_height: null
+    language: de
+    contraceptive: null
+- model: users.profile
+  pk: 100
+  fields:
+    onboarding_finished: false
+    first_name: ''
+    last_name: ''
+    birthdate: null
+    body_weight: null
+    body_height: null
+    language: de
+    contraceptive: null
