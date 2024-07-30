@@ -18,14 +18,13 @@
             filled
             v-model="profile.contraceptive"
             :options="contraceptionOptions"
-            input-class="text-right"
+            input-class="text-left"
             class="q-mb-sm"
             emit-value
             map-options
+            placeholder="Bitte auswählen"
           >
-            <template v-slot:prepend>
-              <div class="text-color">{{ $t('profile.contraception') }}</div>
-            </template>
+            <template v-slot:prepend></template>
           </q-select>
         </div>
       </div>
@@ -37,7 +36,7 @@
 </template>
 
 <script>
-import { ref, onMounted } from 'vue';
+import { ref } from 'vue';
 import { useRouter } from 'vue-router';
 import { api } from 'src/boot/axios';
 import StandardButton from 'components/StandardButton.vue';
@@ -89,10 +88,6 @@ export default {
         alert('Failed to navigate to next step');
       }
     };
-
-    onMounted(() => {
-      // Optionally, you can fetch existing profile data here if needed.
-    });
 
     return {
       profile,
