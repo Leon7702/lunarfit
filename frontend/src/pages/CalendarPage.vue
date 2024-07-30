@@ -24,7 +24,8 @@
           <template v-slot:body="props">
             <q-tr :props="props" class="custom-row">
               <q-td v-for="(day, dayIndex) in props.row.days" :key="dayIndex" class="custom-cell">
-                <div :class="['day-circle', day.colorClass]" @click="selectDay(day)">
+                <div :class="['day-circle', day.colorClass, { 'non-clickable': !day.date }]"
+                  @click="day.date && selectDay(day)">
                   {{ day.date }}
                 </div>
               </q-td>
@@ -56,13 +57,22 @@
         <q-separator spaced />
       </div>
 
-      <q-card class="training-recommendation-container subtle-card q-mt-md">
+      <q-card class="cycle-phase-container subtle-card q-mt-md">
         <q-card-section>
-          <div class="training-recommendation-header">{{ $t('training-recommendation.title') }}</div>
-          <div v-if="loadingTraining" class="q-mt-md flex flex-center">
+          <div class="cycle-phase-header">{{ $t('training-recommendation.title') }}</div>
+          <div v-if="loadingCyclePhase" class="q-mt-md flex flex-center">
             <q-spinner color="primary" size="2em" />
           </div>
-          <div v-else class="training-recommendation-text">{{ trainingRecommendation }}</div>
+          <div v-else>
+            <div class="cycle-phase-text">{{ $t(phaseTextKey) }}</div>
+            <div class="training-recommendation-text">{{ $t(trainingTextKey + '.description') }}</div>
+            <ul class="training-recommendation-list">
+              <li>{{ $t(trainingTextKey + '.recommendations[0]') }}</li>
+              <li>{{ $t(trainingTextKey + '.recommendations[1]') }}</li>
+              <li>{{ $t(trainingTextKey + '.recommendations[2]') }}</li>
+              <li>{{ $t(trainingTextKey + '.recommendations[3]') }}</li>
+            </ul>
+          </div>
         </q-card-section>
       </q-card>
 
@@ -70,15 +80,31 @@
       <SectionContainer :title="$t('symptoms')" link="/symptoms" :linkText="$t('add')" :emojis="symptomsEmojis"
         :loading="loadingSymptoms" />
       <q-separator spaced />
-      <SectionContainer :title="$t('trs')" link="/trs" :linkText="$t('more-info')" :emojis="[]" :loading="false" />
+
+      <q-card class="notes-container q-mt-md">
+        <q-card-section>
+          <div class="notes-header">{{ $t('Notes') }}</div>
+          <div v-if="loadingNotes" class="q-mt-md flex flex-center">
+            <q-spinner color="primary" size="2em" />
+          </div>
+          <div v-else class="notes-text">{{ noteContent || $t('noNotes') }}</div>
+        </q-card-section>
+      </q-card>
     </q-page>
   </div>
 </template>
+
 
 <script>
 import { QBtn, QSeparator, QPage, QTable, QTr, QTd, QCard, QCardSection } from 'quasar';
 import SectionContainer from 'components/SectionContainer.vue';
 import { api } from 'src/boot/axios';
+import { calculateScore } from 'src/utils/scoreCalculator';
+import {
+  calculateCycleAndPhases,
+  calculateCurrentDay,
+  getCurrentCycle,
+} from "src/utils/cyclePhaseCalculator.js";
 
 export default {
   components: {
@@ -103,11 +129,14 @@ export default {
       dayColors: {},
       selectedDay: date.getDate(),
       trainingRecommendation: '',
+      trainingReadinessScore: 0,
+      loadingTraining: true,
       symptomsEmojis: [],
       moodEmojis: [],
-      loadingTraining: true,
       loadingMood: true,
       loadingSymptoms: false,
+      loadingNotes: true,
+      loadingCyclePhase: true,
       columns: [
         { name: 'mon', label: this.$t('weekdays_short[1]'), align: 'center' },
         { name: 'tue', label: this.$t('weekdays_short[2]'), align: 'center' },
@@ -138,7 +167,17 @@ export default {
         { icon: '🍪', text: 'symptomsList.acne' },
         { icon: '🔴', text: 'symptomsList.pelvicPain' },
         { icon: '🪨', text: 'symptomsList.constipation' },
-      ]
+      ],
+      mensLengthPortion: null,
+      follicularLengthPortion: null,
+      ovulationLengthPortion: null,
+      earlyLutealLengthPortion: null,
+      lateLutealLengthPortion: null,
+      phaseTextKey: '',
+      currentDay: 16,
+      cycleLength: null,
+      currentDayData: null,
+      noteContent: '',
     };
   },
   computed: {
@@ -189,6 +228,12 @@ export default {
         : new Date(this.date.year, this.date.month, this.date.day);
       return date.toLocaleDateString(locale, { weekday: 'long', day: '2-digit', month: 'long' });
     },
+    trainingTextKey() {
+      if (this.trainingReadinessScore <= 25) return "scores.1";
+      if (this.trainingReadinessScore <= 50) return "scores.2";
+      if (this.trainingReadinessScore <= 75) return "scores.3";
+      return "scores.4";
+    },
   },
   methods: {
     async fetchData() {
@@ -228,6 +273,85 @@ export default {
       } catch (error) {
         console.error('Error fetching symptoms:', error);
         this.loadingSymptoms = false;
+      }
+    },
+    async fetchTrainingRecommendation() {
+      this.loadingTraining = true;
+      try {
+        const response = await api.get('/training/trs/', {
+          params: { date: this.formatSelectedDate() }
+        });
+        const selectedDateData = response.data.results.find((entry) => entry.date === this.formatSelectedDate());
+
+        if (selectedDateData) {
+          // Adjust complaints value for calculation
+          const adjustedDateData = {
+            ...selectedDateData,
+            complaints: 6 - selectedDateData.complaints
+          };
+          this.trainingReadinessScore = calculateScore(adjustedDateData);
+        } else {
+          this.trainingReadinessScore = 0;
+        }
+        this.loadingTraining = false;
+      } catch (error) {
+        console.error('Error fetching training recommendation:', error);
+        this.loadingTraining = false;
+      }
+    },
+    async fetchNote() {
+      this.loadingNotes = true;
+      try {
+        const response = await api.get('/notes', {
+          params: { date: this.formatSelectedDate() }
+        });
+        const noteData = response.data.results.find((entry) => entry.date === this.formatSelectedDate());
+        this.noteContent = noteData ? noteData.content : '';
+        this.loadingNotes = false;
+      } catch (error) {
+        console.error('Error fetching note:', error);
+        this.loadingNotes = false;
+      }
+    },
+    async fetchDataAndCalculatePhases() {
+      this.loadingCyclePhase = true;
+      try {
+        const cycleResponse = await api.get('/cycles/');
+        const cycleData = cycleResponse.data;
+
+        const cycles = cycleData.results;
+        if (Array.isArray(cycles)) {
+          const currentCycle = getCurrentCycle(cycles, this.formatSelectedDate());
+          if (currentCycle) {
+            const calculatedLengths = calculateCycleAndPhases(currentCycle);
+
+            this.cycleLength = calculatedLengths.cycleLength;
+            this.mensLengthPortion = (calculatedLengths.phaseLengths[0].length / this.cycleLength) * 100;
+            this.follicularLengthPortion = (calculatedLengths.phaseLengths[1].length / this.cycleLength) * 100;
+            this.ovulationLengthPortion = (calculatedLengths.phaseLengths[2].length / this.cycleLength) * 100;
+            this.earlyLutealLengthPortion = (calculatedLengths.phaseLengths[3].length / this.cycleLength) * 100;
+            this.lateLutealLengthPortion = (calculatedLengths.phaseLengths[4].length / this.cycleLength) * 100;
+
+            this.currentDay = calculateCurrentDay(currentCycle.start, this.formatSelectedDate());
+            const currentPhase = (this.currentDay / this.cycleLength) * 100;
+
+            if (currentPhase <= this.mensLengthPortion) {
+              this.phaseTextKey = "menstruationPhaseText";
+            } else if (currentPhase <= this.mensLengthPortion + this.follicularLengthPortion) {
+              this.phaseTextKey = "follicularPhaseText";
+            } else if (currentPhase <= this.mensLengthPortion + this.follicularLengthPortion + this.ovulationLengthPortion) {
+              this.phaseTextKey = "ovulationPhaseText";
+            } else if (currentPhase <= this.mensLengthPortion + this.follicularLengthPortion + this.ovulationLengthPortion + this.earlyLutealLengthPortion) {
+              this.phaseTextKey = "earlyLutealPhaseText";
+            } else {
+              this.phaseTextKey = "lateLutealPhaseText";
+            }
+          }
+        }
+        this.loadingCyclePhase = false;
+      } catch (error) {
+        console.error('Error calculating phases:', error);
+        this.loadingCyclePhase = false;
       }
     },
     processCycles(cycles) {
@@ -310,6 +434,9 @@ export default {
         this.selectedDay = null;
       }
       await this.fetchSymptoms();
+      await this.fetchTrainingRecommendation(); // Fetch training recommendation when a day is selected
+      await this.fetchNote(); // Fetch note when a day is selected
+      await this.fetchDataAndCalculatePhases(); // Fetch and calculate phases when a day is selected
     },
     getDaysInPreviousMonth() {
       const date = new Date(this.date.year, this.date.month, 0);
@@ -328,13 +455,27 @@ export default {
       });
     }
   },
+  watch: {
+    async selectedDay() {
+      await this.fetchTrainingRecommendation();
+      await this.fetchNote(); // Fetch note when the selected day changes
+      await this.fetchDataAndCalculatePhases(); // Fetch and calculate phases when the selected day changes
+    },
+    async date() {
+      await this.fetchTrainingRecommendation();
+      await this.fetchNote(); // Fetch note when the date changes
+      await this.fetchDataAndCalculatePhases(); // Fetch and calculate phases when the date changes
+    }
+  },
   mounted() {
     this.fetchData();
     this.fetchSymptoms();
+    this.fetchTrainingRecommendation();
+    this.fetchNote(); // Fetch note when the component is mounted
+    this.fetchDataAndCalculatePhases(); // Fetch and calculate phases when the component is mounted
   }
 };
 </script>
-
 
 <style scoped>
 @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;600&display=swap');
@@ -409,6 +550,11 @@ export default {
   border-radius: 50%;
   text-align: center;
   margin: auto;
+}
+
+.q-td .day-circle.non-clickable {
+  cursor: default;
+  background-color: transparent;
 }
 
 .period {
@@ -507,7 +653,16 @@ a:hover {
   line-height: 1.5;
   padding-top: 10px;
   text-align: center;
+}
 
+.training-recommendation-list {
+  font-size: 0.875rem;
+  font-weight: 400;
+  line-height: 1.5;
+  padding-top: 10px;
+  text-align: left;
+  list-style-type: disc;
+  padding-left: 20px;
 }
 
 .loading-container {
@@ -524,5 +679,59 @@ a:hover {
   box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
   padding: 0px;
   margin-bottom: 20px;
+}
+
+.notes-container {
+  background-color: #ffffff58;
+  border: 2px solid #ffffff;
+  border-radius: 8px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  padding: 0px;
+  margin-top: 20px;
+  margin-bottom: 20px;
+}
+
+.notes-header {
+  display: flex;
+  justify-content: left;
+  color: #000;
+  font-size: 1rem;
+  font-weight: 600;
+  line-height: 1.5;
+}
+
+.notes-text {
+  font-size: 0.875rem;
+  font-weight: 400;
+  line-height: 1.5;
+  padding-top: 10px;
+  text-align: left;
+}
+
+.cycle-phase-container {
+  background-color: #bce5e258;
+  border: 2px solid #50c1ba;
+  border-radius: 8px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  padding: 0px;
+  margin-top: 20px;
+  margin-bottom: 20px;
+}
+
+.cycle-phase-header {
+  display: flex;
+  justify-content: center;
+  color: #000;
+  font-size: 1rem;
+  font-weight: 600;
+  line-height: 1.5;
+}
+
+.cycle-phase-text {
+  font-size: 0.875rem;
+  font-weight: 400;
+  line-height: 1.5;
+  padding-top: 10px;
+  text-align: center;
 }
 </style>
