@@ -52,12 +52,13 @@ export default {
 
     const loginUser = async () => {
       try {
+
         await authStore.login({ email: email.value, password: password.value });
-        alert("Login successful!");
 
         // Fetch user profile to check onboarding status
-        const response = await api.get('/users/profile');
-        const userProfile = response.data.results[0];
+        const response = await api.get(`/users/profile/${authStore.userId}/`);
+        const userProfile = response.data;
+
 
         if (userProfile.onboarding_finished) {
           router.push('/home'); // Redirect to home if onboarding is finished
@@ -77,6 +78,7 @@ export default {
   },
 };
 </script>
+
 
 <style scoped>
 header {
