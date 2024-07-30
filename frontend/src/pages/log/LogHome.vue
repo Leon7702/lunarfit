@@ -6,7 +6,7 @@
     </div>
     <DateTodayPicker class="date" />
     <img :src="$t('logEntry.images.cycle')" alt="Zyklus Button" class="image" @click="navigateToCycle" />
-    <img src="~assets/log_training.svg" alt="Training Button" class="image" @click="navigateToTraining" />
+    <img src="~assets/log_training_new.png" alt="Training Button" class="image" @click="navigateToTraining" />
     <img :src="$t('logEntry.images.notes')" alt="Notizen Button" class="image" @click="navigateToNotes" />
   </div>
   </div>

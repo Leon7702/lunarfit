@@ -406,8 +406,8 @@
     "logEntry": {
       "title": "Log Entry",
       "images": {
-        "cycle": "/log_Home/log_cycle_en.svg",
-        "notes": "/log_Home/log_notes_en.svg"
+        "cycle": "/log_Home/log_cycle_en_new.png",
+        "notes": "/log_Home/log_notes_en_new.png"
       }
     },
     "logCycle": {
