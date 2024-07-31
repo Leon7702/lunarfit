@@ -26,6 +26,7 @@
       <div class="password-forget">
         <router-link to="/password-forgot">{{ $t('account.password-forgotten') }}</router-link>
       </div>
+      <div v-if="errorMessage" class="error-message">{{ errorMessage }}</div>
     </div>
     <div class="q-gutter-sm row justify-center">
       <q-btn no-caps rounded style="background: #50C1BA; color: white" :label="$t('login.title')" padding="sm lg"
@@ -62,6 +63,7 @@ export default {
   setup() {
     const email = ref('');
     const password = ref('');
+    const errorMessage = ref('');
     const router = useRouter();
     const authStore = useAuthStore();
     const showPassword = ref(false);
@@ -105,7 +107,7 @@ export default {
           router.push('/onboarding'); // Redirect to onboarding if not finished
         }
       } catch (error) {
-        alert("There was an error logging in: " + error);
+        errorMessage.value = i18n.t('account.login-error'); // Set error message
       }
     };
 
@@ -121,6 +123,7 @@ export default {
       togglePasswordVisibility,
       selectedLanguage,
       languageOptions,
+      errorMessage,
     };
   },
 };
@@ -164,5 +167,11 @@ a {
   display: flex;
   justify-content: center;
   gap: 0.625rem;
+}
+
+.error-message {
+  color: red;
+  text-align: center;
+  margin-top: 1rem;
 }
 </style>

@@ -650,7 +650,8 @@
 
   "training-recommendation": {
     "title": "Trainingsempfehlung",
-    "description": "Basierend auf deinem Zyklus und deinem aktuellen Zustand empfehlen wir dir folgende Trainingseinheiten:"
+    "description": "Basierend auf deinem Zyklus und deinem aktuellen Zustand empfehlen wir dir folgende Trainingseinheiten:",
+    "no-data": "Du hast für diesen Tag noch kein Assessment gemacht. Bitte hole es nach, um Empfehlungen erhalten."
   },
 
   "symptoms": "Symptome",
@@ -775,7 +776,8 @@
     "email": "E-Mail",
     "password": "Passwort",
     "change-password": "Passwort ändern",
-    "password-forgotten": "Passwort vergessen?"
+    "password-forgotten": "Passwort vergessen?",
+    "login-error": "Fehler beim Login. Bitte überprüfe deine Daten."
   },
 
   "language": {
