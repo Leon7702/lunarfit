@@ -14,13 +14,14 @@
           class="icon-item"
           v-for="(item, index) in iconItems"
           :key="index"
-          @click="selectItem(index)"
+          @click="handleIconClick(index)"
           :class="{ selected: selectedIndex === index }"
         >
           <div class="icon-wrapper">
             <img :src="item.icon" class="icon" />
             <div class="icon-circle" :class="{ active: selectedIndex === index }"></div>
           </div>
+          <div class="icon-label">{{ item.label }}</div>
         </div>
       </div>
       <div class="button-container">
@@ -31,9 +32,9 @@
 </template>
 
 <script>
-import { ref } from 'vue';
-import { useRouter } from 'vue-router';
+import { ref, watch, computed, onMounted } from 'vue';
 import { useAuthStore } from 'src/stores/auth';
+import { useI18n } from 'vue-i18n'; 
 import { api } from 'src/boot/axios';
 import StandardButton from 'components/StandardButton.vue';
 
@@ -41,75 +42,132 @@ export default {
   components: {
     StandardButton
   },
-  data() {
-    return {
-      iconItems: [],
-      selectedIndex: null
-    };
-  },
-  computed: {
-    localizedIcons() {
-      return {
-        none: this.$t('logCycle.mens.icons.none'),
-        dry: this.$t('logCycle.mens.icons.dry'),
-        creamy: this.$t('logCycle.mens.icons.creamy'),
-        sticky: this.$t('logCycle.mens.icons.sticky')
-      };
-    }
-  },
-  watch: {
-    '$i18n.locale': 'updateIconItems'
-  },
-  methods: {
-    goBack() {
-      window.history.back();
-    },
-    selectItem(index) {
-      this.selectedIndex = index;
-    },
-    updateIconItems() {
-      this.iconItems = [
-        { icon: this.localizedIcons.none },
-        { icon: this.localizedIcons.dry },
-        { icon: this.localizedIcons.creamy },
-        { icon: this.localizedIcons.sticky }
+  setup() {
+    const { t, locale } = useI18n();
+    const authStore = useAuthStore();
+    const iconItems = ref([]);
+    const selectedIndex = ref(null);
+    const currentEntryId = ref(null);
+
+    const localizedIcons = computed(() => ({
+      none: t('logCycle.mens.icons.none'),
+      dry: t('logCycle.mens.icons.dry'),
+      creamy: t('logCycle.mens.icons.creamy'),
+      sticky: t('logCycle.mens.icons.sticky')
+    }));
+
+    const updateIconItems = () => {
+      iconItems.value = [
+        { icon: localizedIcons.value.none },
+        { icon: localizedIcons.value.dry },
+        { icon: localizedIcons.value.creamy },
+        { icon: localizedIcons.value.sticky }
       ];
-    },
-    async saveCycleData() {
-      if (this.selectedIndex === null) {
+    };
+
+    const goBack = () => {
+      window.history.back();
+    };
+
+    const handleIconClick = async (index) => {
+      if (selectedIndex.value === index) {
+        await deleteCurrentEntry();
+        selectedIndex.value = null;
+        currentEntryId.value = null;
+      } else {
+        selectedIndex.value = index;
+      }
+    };
+
+    const deleteCurrentEntry = async () => {
+      if (currentEntryId.value === null) {
         return;
       }
 
-      const valueMapping = {
-        none: 0,
-        dry: 1,
-        creamy: 2,
-        sticky: 3
-      };
-
-      const requestBody = {
-        date: new Date().toISOString().split('T')[0], 
-        type: 1,
-        value: valueMapping[Object.keys(this.localizedIcons)[this.selectedIndex]]
-      };
-
-      const authStore = useAuthStore();
-
       try {
         await authStore.refreshAccessToken();
-
-        await api.post('/cycles/log/', requestBody, {
+        await api.delete(`/cycles/log/${currentEntryId.value}/`, {
           headers: {
             'Content-Type': 'application/json',
             'Authorization': `Bearer ${authStore.accessToken}`
           }
         });
+      } catch (error) {
+        console.error('Fehler beim Löschen des Zyklusdatensatzes', error);
+        alert('Fehler beim Löschen des Zyklusdatensatzes.');
+      }
+    };
 
+    const fetchCurrentEntry = async () => {
+      const today = new Date().toISOString().split('T')[0];
+      try {
+        await authStore.refreshAccessToken();
+        const response = await api.get('/cycles/log/', {
+          headers: {
+            'Content-Type': 'application/json',
+            'Authorization': `Bearer ${authStore.accessToken}`
+          },
+          params: {
+            type: 1,
+            date: today
+          }
+        });
+
+        if (response.data.results.length > 0) {
+          const entry = response.data.results[0];
+          currentEntryId.value = entry.id;
+
+          const entryResponse = await api.get(`/cycles/log/${currentEntryId.value}/`, {
+            headers: {
+              'Content-Type': 'application/json',
+              'Authorization': `Bearer ${authStore.accessToken}`
+            }
+          });
+
+          selectedIndex.value = parseInt(entryResponse.data.value);
+        } else {
+          currentEntryId.value = null;
+          selectedIndex.value = null;
+        }
+      } catch (error) {
+        console.error('Fehler beim Abrufen der Zyklusdaten', error);
+      }
+    };
+
+    const saveCycleData = async () => {
+      if (selectedIndex.value === null) {
+        return;
+      }
+
+      const requestBody = {
+        date: new Date().toISOString().split('T')[0],
+        type: 1,
+        value: selectedIndex.value
+      };
+
+      try {
+        await authStore.refreshAccessToken();
+
+        if (currentEntryId.value) {
+          await api.patch(`/cycles/log/${currentEntryId.value}/`, requestBody, {
+            headers: {
+              'Content-Type': 'application/json',
+              'Authorization': `Bearer ${authStore.accessToken}`
+            }
+          });
+        } else {
+          const response = await api.post('/cycles/log/', requestBody, {
+            headers: {
+              'Content-Type': 'application/json',
+              'Authorization': `Bearer ${authStore.accessToken}`
+            }
+          });
+          currentEntryId.value = response.data.id;
+        }
       } catch (error) {
         console.error('Fehler beim Speichern der Zyklusdaten', error);
 
         if (error.response) {
-          // Server responded with a status code outside 2xx range
           if (error.response.status === 400) {
             alert('Fehlerhafte Anfrage. Bitte überprüfen Sie Ihre Eingaben.');
           } else if (error.response.status === 401) {
@@ -118,21 +176,57 @@ export default {
             alert('Fehler beim Speichern der Zyklusdaten.');
           }
         } else if (error.request) {
-          // No response received from server
           alert('Keine Antwort vom Server. Bitte überprüfen Sie Ihre Internetverbindung.');
         } else {
-          // Other errors
           alert('Ein unbekannter Fehler ist aufgetreten.');
         }
       }
-    }
-  },
-  created() {
-    this.updateIconItems();
+    };
+
+    onMounted(() => {
+      updateIconItems();
+      fetchCurrentEntry();
+    });
+
+    watch(locale, updateIconItems);
+
+    return {
+      iconItems,
+      selectedIndex,
+      goBack,
+      handleIconClick,
+      saveCycleData
+    };
   }
 };
 </script>
 
+<style scoped>
+.icon-item {
+  position: relative;
+  margin: 10px;
+}
+
+.icon-circle {
+  width: 20px;
+  height: 20px;
+  border-radius: 50%;
+  position: absolute;
+  bottom: -5px;
+  left: 50%;
+  transform: translateX(-50%);
+  background-color: white;
+}
+
+.icon-circle.active {
+  background-color: green;
+}
+
+.icon-label {
+  text-align: center;
+  margin-top: 5px;
+}
+</style>
 
 <style scoped>
 
