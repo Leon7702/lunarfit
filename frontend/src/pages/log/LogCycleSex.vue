@@ -69,7 +69,6 @@ export default {
 
     const saveCycleData = async () => {
       if (selectedOption.value === null) {
-        alert("Bitte wählen Sie eine Option aus!");
         return;
       }
 
@@ -89,7 +88,7 @@ export default {
           }
         });
 
-        alert("Daten erfolgreich gespeichert!");
+        router.push('/log-cycle');
       } catch (error) {
         console.error('Fehler beim Speichern der Zyklusdaten', error);
 

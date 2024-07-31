@@ -79,7 +79,6 @@ export default {
     },
     async saveCycleData() {
       if (this.selectedIndex === null) {
-        alert("Bitte wählen Sie ein Feld aus!");
         return;
       }
 
@@ -108,8 +107,8 @@ export default {
             'Authorization': `Bearer ${authStore.accessToken}`
           }
         });
+        
 
-        alert("Daten erfolgreich gespeichert!");
       } catch (error) {
         console.error('Fehler beim Speichern der Zyklusdaten', error);
 

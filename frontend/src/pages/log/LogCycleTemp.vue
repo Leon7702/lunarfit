@@ -62,18 +62,17 @@ export default {
 
     const saveCycleData = async () => {
       if (temperature.value === null) {
-        alert("Bitte geben Sie Ihre Temperatur ein!");
         return;
       }
 
       const requestBody = {
-        date: new Date().toISOString().split('T')[0], // current date in YYYY-MM-DD format
+        date: new Date().toISOString().split('T')[0],
         type: 2,
         value: temperature.value
       };
 
       try {
-        await authStore.refreshAccessToken(); // Ensure the access token is fresh
+        await authStore.refreshAccessToken(); 
 
         await api.post('/cycles/log/', requestBody, {
           headers: {
@@ -82,8 +81,7 @@ export default {
           }
         });
 
-        alert("Daten erfolgreich gespeichert!");
-        router.push('/log');
+        router.push('/log-cycle');
       } catch (error) {
         console.error('Fehler beim Speichern der Zyklusdaten', error);
 

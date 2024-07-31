@@ -77,7 +77,6 @@ export default {
     },
     async saveCycleData() {
       if (this.selectedIndex === null) {
-        alert("Bitte wählen Sie ein Feld aus!");
         return;
       }
 
@@ -89,7 +88,7 @@ export default {
       };
 
       const requestBody = {
-        date: new Date().toISOString().split('T')[0], // current date in YYYY-MM-DD format
+        date: new Date().toISOString().split('T')[0], 
         type: 1,
         value: valueMapping[Object.keys(this.localizedIcons)[this.selectedIndex]]
       };
@@ -97,7 +96,7 @@ export default {
       const authStore = useAuthStore();
 
       try {
-        await authStore.refreshAccessToken(); // Ensure the access token is fresh
+        await authStore.refreshAccessToken();
 
         await api.post('/cycles/log/', requestBody, {
           headers: {
@@ -106,7 +105,6 @@ export default {
           }
         });
 
-        alert("Daten erfolgreich gespeichert!");
       } catch (error) {
         console.error('Fehler beim Speichern der Zyklusdaten', error);
 
