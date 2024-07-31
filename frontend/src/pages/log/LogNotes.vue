@@ -18,9 +18,8 @@
     </div>
   </div>
 </template>
-
 <script>
-import { ref } from 'vue';
+import { ref, onMounted } from 'vue';
 import { api } from 'src/boot/axios';
 import InputTextArea from 'components/InputTextArea.vue';
 import StandardButton from 'components/StandardButton.vue';
@@ -34,6 +33,7 @@ export default {
   },
   setup() {
     const notes = ref('');
+    const currentNoteId = ref(null);
     const router = useRouter();
     const authStore = useAuthStore();
 
@@ -41,38 +41,78 @@ export default {
       window.history.back();
     };
 
-    const saveChanges = async () => {
-  console.log('Aktueller Wert von notes:', notes.value);
+    const fetchCurrentNote = async () => {
+      const today = new Date().toISOString().split('T')[0]; 
 
-  if (!notes.value.trim()) {
-    console.log("Notiz darf nicht leer sein!");
-    alert("Notiz darf nicht leer sein!");
-    return;
-  }
+      try {
+        await authStore.refreshAccessToken();
 
-  const requestBody = {
-    date: new Date().toISOString().split('T')[0], // YYYY-MM-DD format
-    content: notes.value
-  };
+        const response = await api.get('/notes/', {
+          headers: {
+            'Content-Type': 'application/json',
+            'Authorization': `Bearer ${authStore.accessToken}`
+          },
+          params: {
+            date: today
+          }
+        });
 
-  try {
-    await authStore.refreshAccessToken(); // Refresh the token before making the request
-
-    const response = await api.post('/notes/', requestBody, {
-      headers: {
-        'Content-Type': 'application/json',
-        'Authorization': `Bearer ${authStore.accessToken}`
+        if (response.data.results.length > 0) {
+          const note = response.data.results[0];
+          notes.value = note.content;
+          currentNoteId.value = note.id;
+        } else {
+          notes.value = '';
+          currentNoteId.value = null;
+        }
+      } catch (error) {
+        console.error('Fehler beim Abrufen der Notiz', error);
+        alert("Fehler beim Abrufen der Notiz!");
       }
-    });
-    console.log('Notiz erfolgreich gespeichert', response.data);
-    alert("Notiz erfolgreich gespeichert!");
-    router.push('/log'); 
-  } catch (error) {
-    console.error('Fehler beim Speichern der Notiz', error);
-    alert("Fehler beim Speichern der Notiz!");
-  }
-};
+    };
 
+    const saveChanges = async () => {
+      const requestBody = {
+        date: new Date().toISOString().split('T')[0], 
+        content: notes.value
+      };
+
+      try {
+        await authStore.refreshAccessToken();
+
+        if (notes.value === '' && currentNoteId.value) {
+          await api.delete(`/notes/${currentNoteId.value}/`, {
+            headers: {
+              'Content-Type': 'application/json',
+              'Authorization': `Bearer ${authStore.accessToken}`
+            }
+          });
+          currentNoteId.value = null; 
+        } else if (currentNoteId.value) {
+          await api.patch(`/notes/${currentNoteId.value}/`, requestBody, {
+            headers: {
+              'Content-Type': 'application/json',
+              'Authorization': `Bearer ${authStore.accessToken}`
+            }
+          });
+        } else {
+          const response = await api.post('/notes/', requestBody, {
+            headers: {
+              'Content-Type': 'application/json',
+              'Authorization': `Bearer ${authStore.accessToken}`
+            }
+          });
+          currentNoteId.value = response.data.id; 
+        }
+      } catch (error) {
+        console.error('Fehler beim Speichern der Notiz', error);
+        alert("Fehler beim Speichern der Notiz!");
+      }
+    };
+
+    onMounted(() => {
+      fetchCurrentNote();
+    });
 
     return {
       notes,
@@ -82,6 +122,7 @@ export default {
   }
 };
 </script>
+
 
 <style scoped>
 .linie {
