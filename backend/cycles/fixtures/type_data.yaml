@@ -22,3 +22,7 @@
   pk: 6
   fields:
     name: ovulation_test
+- model: cycles.type
+  pk: 7
+  fields:
+    name: pregnancy_test
