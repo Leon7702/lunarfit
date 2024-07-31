@@ -1,20 +1,20 @@
 <template>
   <div class="size-container">
-  <div class="welcome-container">
-    <div class="header">
-      <q-btn flat dense round icon="arrow_back" to="/settings" />
-      <div class="title">{{ $t('language.title') }}</div>
-    </div>
-    <div class="linie"></div>
-    <div class="q-pa-md">
-      <q-option-group :options="options" type="radio" v-model="group" />
+    <div class="welcome-container">
+      <div class="header">
+        <q-btn flat dense round icon="arrow_back" to="/settings" />
+        <div class="title">{{ $t('language.title') }}</div>
+      </div>
+      <div class="linie"></div>
+      <div class="q-pa-md">
+        <q-option-group :options="options" type="radio" v-model="group" />
+      </div>
     </div>
   </div>
-</div>
 </template>
 
 <script>
-import { ref, watch, getCurrentInstance, onMounted } from 'vue';
+import { ref, watch, getCurrentInstance } from 'vue';
 import { useI18n } from 'vue-i18n';
 
 export default {
@@ -28,18 +28,25 @@ export default {
 
     const group = ref(i18n.locale.value);
 
+    const getOptions = () => {
+      return [
+        { label: i18n.t('language.german'), value: 'de', color: 'primary' },
+        { label: i18n.t('language.english'), value: 'en', color: 'primary' },
+      ];
+    };
+
+    const options = ref(getOptions());
+
     watch(group, (newLocale) => {
       i18n.locale.value = newLocale;
       // Save the new locale to localStorage
       localStorage.setItem('locale', newLocale);
+      options.value = getOptions(); // Update options when language changes
     });
 
     return {
       group,
-      options: [
-        { label: 'Deutsch', value: 'de', color: 'primary' },
-        { label: 'Englisch', value: 'en', color: 'primary' },
-      ],
+      options,
     };
   },
 };

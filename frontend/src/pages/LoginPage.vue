@@ -23,7 +23,9 @@
             class="cursor-pointer"> </q-icon>
         </template>
       </q-input>
-      <div class="password-forget"><router-link to="/password-forgot">Passwort vergessen?</router-link></div>
+      <div class="password-forget">
+        <router-link to="/password-forgot">{{ $t('account.password-forgotten') }}</router-link>
+      </div>
     </div>
     <div class="q-gutter-sm row justify-center">
       <q-btn no-caps rounded style="background: #50C1BA; color: white" :label="$t('login.title')" padding="sm lg"
@@ -31,18 +33,32 @@
     </div>
     <p style="text-align: center;">
       {{ $t('login.no-account') }}
-      <router-link to="/register">{{ $t('login.register-now') }}</router-link>
+      <router-link to="/register">
+        {{ $t('login.register-now') }}
+      </router-link>
     </p>
+
+    <div class="language-toggle">
+      <q-option-group :options="languageOptions" type="radio" v-model="selectedLanguage" inline />
+    </div>
   </div>
 </template>
 
 <script>
-import { ref } from 'vue';
+import { ref, watch, getCurrentInstance } from 'vue';
 import { useRouter } from 'vue-router';
 import { useAuthStore } from 'src/stores/auth';
+import { useI18n } from 'vue-i18n';
 import { api } from 'src/boot/axios';
+import { QBtn, QInput, QOptionGroup, QIcon } from 'quasar';
 
 export default {
+  components: {
+    QBtn,
+    QInput,
+    QOptionGroup,
+    QIcon,
+  },
   setup() {
     const email = ref('');
     const password = ref('');
@@ -50,15 +66,38 @@ export default {
     const authStore = useAuthStore();
     const showPassword = ref(false);
 
+    const { proxy } = getCurrentInstance();
+    const i18n = useI18n();
+
+    // Load the locale from localStorage if it exists
+    const savedLocale = localStorage.getItem('locale') || i18n.locale.value;
+    i18n.locale.value = savedLocale;
+
+    const selectedLanguage = ref(i18n.locale.value);
+
+    const getLanguageOptions = () => {
+      return [
+        { label: i18n.t('language.german'), value: 'de', color: 'primary' },
+        { label: i18n.t('language.english'), value: 'en', color: 'primary' },
+      ];
+    };
+
+    const languageOptions = ref(getLanguageOptions());
+
+    watch(selectedLanguage, (newLocale) => {
+      i18n.locale.value = newLocale;
+      // Save the new locale to localStorage
+      localStorage.setItem('locale', newLocale);
+      languageOptions.value = getLanguageOptions(); // Update options when language changes
+    });
+
     const loginUser = async () => {
       try {
-
         await authStore.login({ email: email.value, password: password.value });
 
         // Fetch user profile to check onboarding status
         const response = await api.get(`/users/profile/${authStore.userId}/`);
         const userProfile = response.data;
-
 
         if (userProfile.onboarding_finished) {
           router.push('/home'); // Redirect to home if onboarding is finished
@@ -74,11 +113,18 @@ export default {
       showPassword.value = !showPassword.value;
     };
 
-    return { email, password, loginUser, showPassword, togglePasswordVisibility };
+    return {
+      email,
+      password,
+      loginUser,
+      showPassword,
+      togglePasswordVisibility,
+      selectedLanguage,
+      languageOptions,
+    };
   },
 };
 </script>
-
 
 <style scoped>
 header {
@@ -86,24 +132,37 @@ header {
 }
 
 p {
-  font-size: 14px;
-  margin: 30px;
+  font-size: 0.875rem;
+  margin-top: 1.875rem;
 }
 
 a {
   color: #50c1ba;
   font-weight: bold;
-  font-size: 14px;
+  font-size: 0.875rem;
   text-decoration: none;
 }
 
 .logo {
   display: block;
-  margin: 6rem auto 6rem;
+  margin: 10rem auto 3rem;
+  height: 68px;
+  /* Consistent logo height */
 }
 
 .password-forget {
   text-align: right;
-  margin-top: 1rem 0;
+  margin-top: 1rem;
+}
+
+.language-toggle {
+  margin-top: 1.25rem;
+  text-align: center;
+}
+
+.q-option-group__container--inline {
+  display: flex;
+  justify-content: center;
+  gap: 0.625rem;
 }
 </style>

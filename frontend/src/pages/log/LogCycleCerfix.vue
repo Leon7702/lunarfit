@@ -211,7 +211,6 @@ export default {
 .icon-circle.active {
   background-color: var(--q-primary);
 }
-
 .button-container {
   position: fixed;
   bottom: 80px;  
@@ -220,4 +219,6 @@ export default {
   justify-content: center;
   left: 0;
 }
+
+
 </style>

@@ -116,7 +116,7 @@
       "Decke deinen Fettbedarf mit gesunden Fetten, bspw. Fisch, Nüsse und Samen, pflanzliche Öle"
     ],
     "training": "Nutze die Woche nach dem Eisprung weiterhin für Einheiten mit hoher Intensität oder hohem Volumen. Diese Woche eignet sich auch hervorragend für Kraft- und Schnellkrafttraining. Im zweiten Teil der Phase 3 kannst du die Intensität drosseln, und den Fokus auf eher lange und weniger intensive Einheiten legen.",
-    "health":  "Kurz nach dem Eisprung ist die Chance schwanger zu werden erhöht. Die Chance nimmt ab, je weiter dein Eisprung zurück liegt."
+    "health": "Kurz nach dem Eisprung ist die Chance schwanger zu werden erhöht. Die Chance nimmt ab, je weiter dein Eisprung zurück liegt."
   },
 
   "lutealInfoLate": {
@@ -381,21 +381,21 @@
       }
     },
     "onboardingStep3": {
-        "step": "Schritt 3:",
-        "title": "Zyklus",
-        "fields": {
-          "hormonalContraception": "Verhütest du hormonell?",
-          "contraceptionMethod": "Welches Verhütungsmittel nutzt du?",
-          "contraceptionOptions": {
-            "pille": "Pille",
-            "hormonspirale": "Hormonspirale",
-            "hormonimplantat": "Hormonimplantat",
-            "dreimonatsspritze": "Dreimonatsspritze",
-            "vaginalring": "Vaginalring",
-            "sonstiges": "Sonstiges"
-          }
+      "step": "Schritt 3:",
+      "title": "Zyklus",
+      "fields": {
+        "hormonalContraception": "Verhütest du hormonell?",
+        "contraceptionMethod": "Welches Verhütungsmittel nutzt du?",
+        "contraceptionOptions": {
+          "pille": "Pille",
+          "hormonspirale": "Hormonspirale",
+          "hormonimplantat": "Hormonimplantat",
+          "dreimonatsspritze": "Dreimonatsspritze",
+          "vaginalring": "Vaginalring",
+          "sonstiges": "Sonstiges"
         }
-      },
+      }
+    },
     "onboardingStep4": {
       "step": "Schritt 4:",
       "title": "Sportverhalten",
@@ -421,9 +421,9 @@
   "logEntry": {
     "title": "Log-Eintrag",
     "images": {
-        "cycle": "/log_Home/log_zyklus_new.png",
-        "notes": "/log_Home/log_notes_new.png"
-      }
+      "cycle": "/log_Home/log_zyklus_new.png",
+      "notes": "/log_Home/log_notes_new.png"
+    }
   },
   "logCycle": {
     "home": {
@@ -441,21 +441,21 @@
       }
     },
     "homeList": {
-        "title": "Zyklus Log-Eintrag",
-        "editListTitle": "Liste anpassen",
-        "saveButton": "Speichern",
-        "labels": {
-          "menstruation": "Menstruation",
-          "temperature": "Temperatur",
-          "cervixMucus": "Zervixschleim",
-          "cervixPosition": "Gebärmutterhals",
-          "sex": "Geschlechtsverkehr",
-          "contraceptive": "Verhütungsmittel",
-          "medicine": "Medikamente",
-          "ovulationTest": "Ovulationstest",
-          "pregnancyTest": "Schwangerschaftstest"
-        }
-      },
+      "title": "Zyklus Log-Eintrag",
+      "editListTitle": "Liste anpassen",
+      "saveButton": "Speichern",
+      "labels": {
+        "menstruation": "Menstruation",
+        "temperature": "Temperatur",
+        "cervixMucus": "Zervixschleim",
+        "cervixPosition": "Gebärmutterhals",
+        "sex": "Geschlechtsverkehr",
+        "contraceptive": "Verhütungsmittel",
+        "medicine": "Medikamente",
+        "ovulationTest": "Ovulationstest",
+        "pregnancyTest": "Schwangerschaftstest"
+      }
+    },
     "cervix": {
       "title": "Zervixschleim",
       "description": "Bitte zutreffendes auswählen:",
@@ -490,15 +490,15 @@
       }
     },
     "medicine": {
-        "title": "Medikamente",
-        "description": "Spezifische Medikamenteneinnahme:",
-        "smallDescription": "Bitte beachte, dass die oben genannten Medikamente Einfluss auf Deinen Zyklus haben können.",
-        "options": {
-          "notfallkontrazeptiva": "Notfallkontrazeptiva",
-          "diclofenac": "Diclofenac",
-          "ibuprofen": "Ibuprofen"
-        }
-      },
+      "title": "Medikamente",
+      "description": "Spezifische Medikamenteneinnahme:",
+      "smallDescription": "Bitte beachte, dass die oben genannten Medikamente Einfluss auf Deinen Zyklus haben können.",
+      "options": {
+        "notfallkontrazeptiva": "Notfallkontrazeptiva",
+        "diclofenac": "Diclofenac",
+        "ibuprofen": "Ibuprofen"
+      }
+    },
     "mens": {
       "title": "Menstruation",
       "description": "Hast du heute eine Blutung? Wenn ja bitte zutreffendes auswählen:",
@@ -550,7 +550,8 @@
 
   "logNotes": {
     "title": "Notizen",
-    "description": "Füge eine Notiz hinzu:"
+    "description": "Füge eine Notiz hinzu:",
+    "no_entry": "Keine Notizen vorhanden."
   },
   "logTrainingComplaints": {
     "title": "Beschwerden",
@@ -587,59 +588,59 @@
     }
   },
   "logTrainingStrainPre": {
-  "title": "Trainingsbelastung",
-  "description1": "Hast du in den letzten 24 Stunden trainiert?",
-  "trainingOptions": {
-    "prompt": "Welche Sportart/Aktivität hast du durchgeführt?",
-    "options": {
-      "hiking": "Wandern, Bergwandern, Marschieren",
-      "cycling": "Radfahren, Velofahren (ohne MTB)",
-      "swimming": "Schwimmen",
-      "skiing": "Skifahren (ohne Skitouren)",
-      "running": "Jogging, Laufen, Running",
-      "strength_training": "Krafttraining, Gym, Bodybuilding",
-      "fitness_training": "Fitnesstraining, Group Fitness",
-      "yoga": "Yoga, Pilates, Tai Chi, Stretching",
-      "walking": "Walking, Nordic Walking",
-      "mountain_biking": "Mountainbiking (inkl. Gravel)",
-      "snowshoeing": "Schneeschuhlaufen",
-      "sledding": "Schlitteln, Rodeln, Bob",
-      "gymnastics": "Turnen, Gymnastik, Trampolin",
-      "dancing": "Tanzen",
-      "football": "Fussball",
-      "cross_country_skiing": "Skilanglauf, Ski Nordisch",
-      "volleyball": "Volleyball, Beachvolleyball",
-      "badminton": "Badminton",
-      "inline_skating": "Inline-Skating, Rollschuhlaufen",
-      "climbing": "Klettern, Bouldern, Bergsteigen",
-      "snowboarding": "Snowboarding (ohne Touren)",
-      "ski_snowboard_tours": "Ski- und Snowboardtouren",
-      "table_tennis": "Tischtennis",
-      "tennis": "Tennis",
-      "shooting": "Schießen",
-      "diving": "Tauchen, Schnorcheln",
-      "ice_skating": "Eislaufen, Eiskunstlauf",
-      "aqua_fitness": "Aqua-Fitness",
-      "surfing": "Surfen, Windsurfen, Kitesurfen, SUP",
-      "horse_riding": "Reiten, Pferdesport",
-      "floorball": "Unihockey",
-      "basketball": "Basketball",
-      "golf": "Golf",
-      "squash": "Squash",
-      "martial_arts": "Kampfsport",
-      "sailing": "Segeln",
-      "athletics": "Leichtathletik",
-      "rowing": "Rudern",
-      "canoeing": "Kanu, Kajak, Riverrafting",
-      "ice_hockey": "Eishockey",
-      "handball": "Handball",
-      "other_sports": "sonstige Sportarten"
+    "title": "Trainingsbelastung",
+    "description1": "Hast du in den letzten 24 Stunden trainiert?",
+    "trainingOptions": {
+      "prompt": "Welche Sportart/Aktivität hast du durchgeführt?",
+      "options": {
+        "hiking": "Wandern, Bergwandern, Marschieren",
+        "cycling": "Radfahren, Velofahren (ohne MTB)",
+        "swimming": "Schwimmen",
+        "skiing": "Skifahren (ohne Skitouren)",
+        "running": "Jogging, Laufen, Running",
+        "strength_training": "Krafttraining, Gym, Bodybuilding",
+        "fitness_training": "Fitnesstraining, Group Fitness",
+        "yoga": "Yoga, Pilates, Tai Chi, Stretching",
+        "walking": "Walking, Nordic Walking",
+        "mountain_biking": "Mountainbiking (inkl. Gravel)",
+        "snowshoeing": "Schneeschuhlaufen",
+        "sledding": "Schlitteln, Rodeln, Bob",
+        "gymnastics": "Turnen, Gymnastik, Trampolin",
+        "dancing": "Tanzen",
+        "football": "Fussball",
+        "cross_country_skiing": "Skilanglauf, Ski Nordisch",
+        "volleyball": "Volleyball, Beachvolleyball",
+        "badminton": "Badminton",
+        "inline_skating": "Inline-Skating, Rollschuhlaufen",
+        "climbing": "Klettern, Bouldern, Bergsteigen",
+        "snowboarding": "Snowboarding (ohne Touren)",
+        "ski_snowboard_tours": "Ski- und Snowboardtouren",
+        "table_tennis": "Tischtennis",
+        "tennis": "Tennis",
+        "shooting": "Schießen",
+        "diving": "Tauchen, Schnorcheln",
+        "ice_skating": "Eislaufen, Eiskunstlauf",
+        "aqua_fitness": "Aqua-Fitness",
+        "surfing": "Surfen, Windsurfen, Kitesurfen, SUP",
+        "horse_riding": "Reiten, Pferdesport",
+        "floorball": "Unihockey",
+        "basketball": "Basketball",
+        "golf": "Golf",
+        "squash": "Squash",
+        "martial_arts": "Kampfsport",
+        "sailing": "Segeln",
+        "athletics": "Leichtathletik",
+        "rowing": "Rudern",
+        "canoeing": "Kanu, Kajak, Riverrafting",
+        "ice_hockey": "Eishockey",
+        "handball": "Handball",
+        "other_sports": "sonstige Sportarten"
+      }
+    },
+    "durationOptions": {
+      "prompt": "Wie viele Minuten hast du trainiert?"
     }
   },
-  "durationOptions": {
-    "prompt": "Wie viele Minuten hast du trainiert?"
-  }
-},
 
   "calendarLegend": {
     "0": "Periode",
@@ -664,7 +665,7 @@
     "settings": "Einstellungen"
   },
 
- "symptomsList": {
+  "symptomsList": {
     "bloating": "Blähungen",
     "breastPain": "Brustschmerzen",
     "diarrhea": "Durchfall",
@@ -750,12 +751,12 @@
     "weight": "Gewicht in kg",
     "contraception": "Verhütungsmittel",
     "contraceptionOptions": [
-          "Pille",
-          "Hormonspirale",
-          "Hormonimplantat",
-          "Dreimonatsspritze",
-          "Vaginalring",
-          "Sonstiges"
+      "Pille",
+      "Hormonspirale",
+      "Hormonimplantat",
+      "Dreimonatsspritze",
+      "Vaginalring",
+      "Sonstiges"
     ]
   },
 
@@ -773,7 +774,8 @@
     "title": "Account",
     "email": "E-Mail",
     "password": "Passwort",
-    "change-password": "Passwort ändern"
+    "change-password": "Passwort ändern",
+    "password-forgotten": "Passwort vergessen?"
   },
 
   "language": {
@@ -793,7 +795,6 @@
     "home": "Zum Dashboard"
   },
 
-    "yes": "Ja",
-    "no": "Nein"
-
+  "yes": "Ja",
+  "no": "Nein"
 }

@@ -1,7 +1,7 @@
 <template>
   <div class="size-container">
     <header>
-      <img alt="Lunafit logo" class="logo" src="../assets/LunaFit_logo.png" height="68" />
+      <img alt="Lunafit logo" class="logo" src="../assets/LunaFit_logo.png" />
     </header>
     <div class="q-pa-lg q-gutter-sm">
       <q-input color="teal" outlined v-model="email" :label="$t('email')">
@@ -42,11 +42,12 @@
     </div>
     <p style="text-align: center;">
       {{ $t('register.account') }}
-      <router-link to="/login">{{ $t('register.login-now') }}</router-link>
+      <router-link to="/login">
+        {{ $t('register.login-now') }}
+      </router-link>
     </p>
   </div>
 </template>
-
 
 <script>
 import { ref } from 'vue';
@@ -109,28 +110,28 @@ export default {
   }
 };
 </script>
-<style scoped>
-/* @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap');
-@import url('https://fonts.googleapis.com/css2?family=Assistant:wght@400;700&display=swap'); */
 
+<style scoped>
 header {
   line-height: 1.5;
 }
 
 p {
-  font-size: 14px;
-  margin: 20px;
+  font-size: 0.875rem;
+  margin: 1.25rem 0;
 }
 
 a {
   color: #50c1ba;
   font-weight: bold;
-  font-size: 14px;
+  font-size: 0.875rem;
   text-decoration: none;
 }
 
 .logo {
   display: block;
-  margin: 6rem auto 6rem;
+  margin: 10rem auto 3rem;
+  height: 68px;
+  /* Consistent logo height */
 }
 </style>

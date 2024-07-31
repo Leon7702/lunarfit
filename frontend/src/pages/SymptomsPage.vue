@@ -5,10 +5,10 @@
       <div class="head">{{ $t('symptoms') }}</div>
     </div>
 
-    <q-input v-model="selectedDate" label="Select Date" type="date" @input="fetchSymptoms" />
+    <q-input v-model="selectedDate" :label="$t('selectDate')" type="date" @input="fetchSymptoms" />
 
     <div class="container">
-      <IconSlider v-for="(item, index) in symptomItems" :key="index" :icon="item.icon" :text="item.text"
+      <IconSlider v-for="(item, index) in symptomItems" :key="index" :icon="item.icon" :text="$t(item.text)"
         :value="item.strength" :showSlider="item.tracked" @update:value="updateStrength(index, $event)"
         @update:tracked="updateTracked(index, $event)" />
     </div>
@@ -36,26 +36,26 @@ export default {
 
     function getInitialSymptomItems() {
       return [
-        { icon: '💨', text: 'Bloating', strength: 0, tracked: false, id: null },
-        { icon: '🍒', text: 'Breast Pain', strength: 0, tracked: false, id: null },
-        { icon: '🚽', text: 'Diarrhea', strength: 0, tracked: false, id: null },
-        { icon: '😓', text: 'Exhaustion', strength: 0, tracked: false, id: null },
-        { icon: '🥶', text: 'Cold', strength: 0, tracked: false, id: null },
-        { icon: '🍫', text: 'Cravings', strength: 0, tracked: false, id: null },
-        { icon: '😡', text: 'Irritability', strength: 0, tracked: false, id: null },
-        { icon: '🤕', text: 'Aches', strength: 0, tracked: false, id: null },
-        { icon: '🥵', text: 'Hot Flashes', strength: 0, tracked: false, id: null },
-        { icon: '🤯', text: 'Headaches', strength: 0, tracked: false, id: null },
-        { icon: '💢', text: 'Cramps', strength: 0, tracked: false, id: null },
-        { icon: '😴', text: 'Fatigue', strength: 0, tracked: false, id: null },
-        { icon: '🛏️', text: 'Sleep Issues', strength: 0, tracked: false, id: null },
-        { icon: '😵‍💫', text: 'Dizziness', strength: 0, tracked: false, id: null },
-        { icon: '📉', text: 'Mood Swings', strength: 0, tracked: false, id: null },
-        { icon: '😵', text: 'Weakness', strength: 0, tracked: false, id: null },
-        { icon: '🤢', text: 'Nausea', strength: 0, tracked: false, id: null },
-        { icon: '🍪', text: 'Acne', strength: 0, tracked: false, id: null },
-        { icon: '🔴', text: 'Pelvic Pain', strength: 0, tracked: false, id: null },
-        { icon: '🪨', text: 'Constipation', strength: 0, tracked: false, id: null },
+        { icon: '💨', text: 'symptomsList.bloating', strength: 0, tracked: false, id: null },
+        { icon: '🍒', text: 'symptomsList.breastPain', strength: 0, tracked: false, id: null },
+        { icon: '🚽', text: 'symptomsList.diarrhea', strength: 0, tracked: false, id: null },
+        { icon: '😓', text: 'symptomsList.exhaustion', strength: 0, tracked: false, id: null },
+        { icon: '🥶', text: 'symptomsList.cold', strength: 0, tracked: false, id: null },
+        { icon: '🍫', text: 'symptomsList.cravings', strength: 0, tracked: false, id: null },
+        { icon: '😡', text: 'symptomsList.irritability', strength: 0, tracked: false, id: null },
+        { icon: '🤕', text: 'symptomsList.aches', strength: 0, tracked: false, id: null },
+        { icon: '🥵', text: 'symptomsList.hotFlashes', strength: 0, tracked: false, id: null },
+        { icon: '🤯', text: 'symptomsList.headaches', strength: 0, tracked: false, id: null },
+        { icon: '💢', text: 'symptomsList.cramps', strength: 0, tracked: false, id: null },
+        { icon: '😴', text: 'symptomsList.fatigue', strength: 0, tracked: false, id: null },
+        { icon: '🛏️', text: 'symptomsList.sleepIssues', strength: 0, tracked: false, id: null },
+        { icon: '😵‍💫', text: 'symptomsList.dizziness', strength: 0, tracked: false, id: null },
+        { icon: '📉', text: 'symptomsList.moodSwings', strength: 0, tracked: false, id: null },
+        { icon: '😵', text: 'symptomsList.weakness', strength: 0, tracked: false, id: null },
+        { icon: '🤢', text: 'symptomsList.nausea', strength: 0, tracked: false, id: null },
+        { icon: '🍪', text: 'symptomsList.acne', strength: 0, tracked: false, id: null },
+        { icon: '🔴', text: 'symptomsList.pelvicPain', strength: 0, tracked: false, id: null },
+        { icon: '🪨', text: 'symptomsList.constipation', strength: 0, tracked: false, id: null },
       ];
     }
 

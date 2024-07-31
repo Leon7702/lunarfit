@@ -340,23 +340,23 @@
     "complaints": "0 = severe complaints   —  6 = no complaints",
     "recovery": "0 = not recovered   —  6 = recovered"
   },
-    "onboarding": {
-      "start": {
-        "title": "Welcome to LunarFit.",
-        "description": "To better understand you and your cycle, please answer the following questions about your body, your cycle, and your sports behavior. Your data will be kept strictly confidential and securely stored."
-      },
-      "onboardingStep1": {
-        "step": "Step 1:",
-        "title": "Person",
-        "fields": {
-          "firstName": "First Name",
-          "lastName": "Last Name",
-          "birthdate": "Birthdate",
-          "height": "Height in cm",
-          "weight": "Weight in kg"
-        }
-      },
-      "onboardingStep2": {
+  "onboarding": {
+    "start": {
+      "title": "Welcome to LunarFit.",
+      "description": "To better understand you and your cycle, please answer the following questions about your body, your cycle, and your sports behavior. Your data will be kept strictly confidential and securely stored."
+    },
+    "onboardingStep1": {
+      "step": "Step 1:",
+      "title": "Person",
+      "fields": {
+        "firstName": "First Name",
+        "lastName": "Last Name",
+        "birthdate": "Birthdate",
+        "height": "Height in cm",
+        "weight": "Weight in kg"
+      }
+    },
+    "onboardingStep2": {
       "step": "Step 2:",
       "title": "Cycle",
       "fields": {
@@ -364,265 +364,266 @@
         "menstruationDuration": "How many days does your menstruation usually last?",
         "cycleLength": "How many days are there usually between the first day of your period and the first day of your next period?"
       }
-      },
-      "onboardingStep3": {
-        "step": "Step 3:",
-        "title": "Cycle",
-        "fields": {
-          "hormonalContraception": "Do you use hormonal contraception?",
-          "contraceptionMethod": "Which contraceptive method do you use?",
-          "contraceptionOptions": {
-            "pille": "Pill",
-            "hormonspirale": "Hormonal IUD",
-            "hormonimplantat": "Hormonal Implant",
-            "dreimonatsspritze": "Depo Shot",
-            "vaginalring": "Vaginal Ring",
-            "sonstiges": "Other"
-          }
+    },
+    "onboardingStep3": {
+      "step": "Step 3:",
+      "title": "Cycle",
+      "fields": {
+        "hormonalContraception": "Do you use hormonal contraception?",
+        "contraceptionMethod": "Which contraceptive method do you use?",
+        "contraceptionOptions": {
+          "pille": "Pill",
+          "hormonspirale": "Hormonal IUD",
+          "hormonimplantat": "Hormonal Implant",
+          "dreimonatsspritze": "Depo Shot",
+          "vaginalring": "Vaginal Ring",
+          "sonstiges": "Other"
         }
-      },
-      "onboardingStep4": {
-        "step": "Step 4:",
-        "title": "Sports Behavior",
-        "fields": {
-          "trainingSessions": "How many training sessions per week did you have last month?",
-          "trainingDuration": "How long did each training session last on average in minutes?"
-        }
-      },
-      "onboardingStep5": {
-        "step": "Step 5:",
-        "title": "Sports Behavior",
-        "description": "How intense were your training sessions on average last month?",
-        "slider": {
-          "topText": "Maximally intense",
-          "bottomText": "Not intense at all"
-        }
-      },
-      "onboardingEnd": {
-        "title": "Done!",
-        "description": "Thank you for answering the questions. Based on your answers, you will receive initial recommendations.\n\nRemember: The more accurately you track your cycle and sports behavior, the more accurate your recommendations will be."
       }
     },
-    "logEntry": {
-      "title": "Log Entry",
-      "images": {
-        "cycle": "/log_Home/log_cycle_en_new.png",
-        "notes": "/log_Home/log_notes_en_new.png"
+    "onboardingStep4": {
+      "step": "Step 4:",
+      "title": "Sports Behavior",
+      "fields": {
+        "trainingSessions": "How many training sessions per week did you have last month?",
+        "trainingDuration": "How long did each training session last on average in minutes?"
       }
     },
-    "logCycle": {
-      "home": {
-        "title": "Cycle Log Entry",
-        "labels": {
-          "menstruation": "Menstruation",
-          "temperature": "Temperature",
-          "cervixMucus": "Cervical Mucus",
-          "cervixPosition": "Cervix",
-          "sex": "Sex",
-          "contraceptive": "Contraceptive",
-          "medicine": "Medicine",
-          "ovulationTest": "Ovulation Test",
-          "pregnancyTest": "Pregnancy Test"
-        }
-      },
-      "homeList": {
-        "title": "Cycle Log Entry",
-        "editListTitle": "Edit List",
-        "saveButton": "Save",
-        "labels": {
-          "menstruation": "Menstruation",
-          "temperature": "Temperature",
-          "cervixMucus": "Cervical Mucus",
-          "cervixPosition": "Cervix",
-          "sex": "Sex",
-          "contraceptive": "Contraceptive",
-          "medicine": "Medicine",
-          "ovulationTest": "Ovulation Test",
-          "pregnancyTest": "Pregnancy Test"
-        }
-      },
-      "cervix": {
-        "title": "Cervical Mucus",
-        "description": "Please select the applicable option:",
-        "icons": {
-          "none": "/log_Zyklus/cerfix_none.svg",
-          "dry": "/log_Zyklus/cerfix_dry.svg",
-          "creamy": "/log_Zyklus/cerfix_creamy.svg",
-          "sticky": "/log_Zyklus/cerfix_sticky.svg",
-          "protein": "/log_Zyklus/cerfix_protein.svg"
-        }
-      },
-      "contraceptive": {
-        "title": "Contraceptive",
-        "description": "Hormonal contraceptives:",
-        "smallDescription": "Please note that the above contraceptives can affect your cycle.",
-        "options": [
-          "Pill",
-          "Hormonal IUD",
-          "Hormonal Implant",
-          "Depo Shot",
-          "Vaginal Ring",
-          "Other"
-        ]
-      },
-      "cervixPosition": {
-        "title": "Cervix",
-        "description": "Please select the applicable position:",
-        "icons": {
-          "closed": "log_Zyklus/gmh_closed.svg",
-          "partiallyOpen": "log_Zyklus/gmh_partially_open.svg",
-          "fullyOpen": "log_Zyklus/gmh_fully_open.svg"
-        }
-      },
-      "medicine": {
-        "title": "Medicine",
-        "description": "Specific medication intake:",
-        "smallDescription": "Please note that the above medications can affect your cycle.",
-        "options": {
-          "notfallkontrazeptiva": "Emergency Contraceptive",
-           "diclofenac": "Diclofenac",
-          "ibuprofen": "Ibuprofen"
-        }
-      },
-      "mens": {
-        "title": "Menstruation",
-        "description": "Are you bleeding today? If yes, please select applicable:",
-        "icons": {
+    "onboardingStep5": {
+      "step": "Step 5:",
+      "title": "Sports Behavior",
+      "description": "How intense were your training sessions on average last month?",
+      "slider": {
+        "topText": "Maximally intense",
+        "bottomText": "Not intense at all"
+      }
+    },
+    "onboardingEnd": {
+      "title": "Done!",
+      "description": "Thank you for answering the questions. Based on your answers, you will receive initial recommendations.\n\nRemember: The more accurately you track your cycle and sports behavior, the more accurate your recommendations will be."
+    }
+  },
+  "logEntry": {
+    "title": "Log Entry",
+    "images": {
+      "cycle": "/log_Home/log_cycle_en_new.png",
+      "notes": "/log_Home/log_notes_en_new.png"
+    }
+  },
+  "logCycle": {
+    "home": {
+      "title": "Cycle Log Entry",
+      "labels": {
+        "menstruation": "Menstruation",
+        "temperature": "Temperature",
+        "cervixMucus": "Cervical Mucus",
+        "cervixPosition": "Cervix",
+        "sex": "Sex",
+        "contraceptive": "Contraceptive",
+        "medicine": "Medicine",
+        "ovulationTest": "Ovulation Test",
+        "pregnancyTest": "Pregnancy Test"
+      }
+    },
+    "homeList": {
+      "title": "Cycle Log Entry",
+      "editListTitle": "Edit List",
+      "saveButton": "Save",
+      "labels": {
+        "menstruation": "Menstruation",
+        "temperature": "Temperature",
+        "cervixMucus": "Cervical Mucus",
+        "cervixPosition": "Cervix",
+        "sex": "Sex",
+        "contraceptive": "Contraceptive",
+        "medicine": "Medicine",
+        "ovulationTest": "Ovulation Test",
+        "pregnancyTest": "Pregnancy Test"
+      }
+    },
+    "cervix": {
+      "title": "Cervical Mucus",
+      "description": "Please select the applicable option:",
+      "icons": {
+        "none": "/log_Zyklus/cerfix_none.svg",
+        "dry": "/log_Zyklus/cerfix_dry.svg",
+        "creamy": "/log_Zyklus/cerfix_creamy.svg",
+        "sticky": "/log_Zyklus/cerfix_sticky.svg",
+        "protein": "/log_Zyklus/cerfix_protein.svg"
+      }
+    },
+    "contraceptive": {
+      "title": "Contraceptive",
+      "description": "Hormonal contraceptives:",
+      "smallDescription": "Please note that the above contraceptives can affect your cycle.",
+      "options": [
+        "Pill",
+        "Hormonal IUD",
+        "Hormonal Implant",
+        "Depo Shot",
+        "Vaginal Ring",
+        "Other"
+      ]
+    },
+    "cervixPosition": {
+      "title": "Cervix",
+      "description": "Please select the applicable position:",
+      "icons": {
+        "closed": "log_Zyklus/gmh_closed.svg",
+        "partiallyOpen": "log_Zyklus/gmh_partially_open.svg",
+        "fullyOpen": "log_Zyklus/gmh_fully_open.svg"
+      }
+    },
+    "medicine": {
+      "title": "Medicine",
+      "description": "Specific medication intake:",
+      "smallDescription": "Please note that the above medications can affect your cycle.",
+      "options": {
+        "notfallkontrazeptiva": "Emergency Contraceptive",
+        "diclofenac": "Diclofenac",
+        "ibuprofen": "Ibuprofen"
+      }
+    },
+    "mens": {
+      "title": "Menstruation",
+      "description": "Are you bleeding today? If yes, please select applicable:",
+      "icons": {
         "none": "/log_Zyklus/blutung_weak_en.svg",
         "dry": "/log_Zyklus/blutung_medium_en.svg",
         "creamy": "/log_Zyklus/blutung_strong_en.svg",
         "sticky": "/log_Zyklus/interim_bleeding.svg"
       }
-      },
-      "ovulationTest": {
-        "title": "Ovulation Test",
-        "description": "Please select the applicable option:",
-        "icons": {
-          "positive": "/log_Zyklus/test_positive.svg",
-          "negative": "/log_Zyklus/test_negative.svg",
-          "invalid": "/log_Zyklus/test_invalid.svg"
-        }
-      },
-      "pregnancyTest": {
-        "title": "Pregnancy Test",
-        "description": "Please select the applicable option:",
-        "icons": {
-          "positive": "/log_Zyklus/test_positive.svg",
-          "negative": "/log_Zyklus/test_negative.svg",
-          "invalid": "/log_Zyklus/test_invalid.svg"
-        }
-      },
-      "sex": {
-        "title": "Sex",
-        "description": "Please select the applicable option:",
-        "options": {
-          "keinSex": "No Sex",
-          "geschuetzterSex": "Protected Sex",
-          "ungeschuetzterSex": "Unprotected Sex",
-          "lustAufSex": "Desire for Sex",
-          "masturbation": "Masturbation"
-        }
-      },
-      "temperature": {
-        "title": "Temperature",
-        "description": "Temperature in °C:",
-        "descriptionTwo": "Disturbance Factors*:",
-        "smallDescription": "*Disturbance factors can include: Fever, alcohol consumption, lack of sleep, stress, medication, other health issues. Please note that these disturbance factors can affect your cycle."
+    },
+    "ovulationTest": {
+      "title": "Ovulation Test",
+      "description": "Please select the applicable option:",
+      "icons": {
+        "positive": "/log_Zyklus/test_positive.svg",
+        "negative": "/log_Zyklus/test_negative.svg",
+        "invalid": "/log_Zyklus/test_invalid.svg"
       }
     },
-    "logNotes": {
-      "title": "Notes",
-      "description": "Add a note:"
-    },
-    "logTrainingComplaints": {
-      "title": "Complaints",
-      "descriptionPart1": "Do you have physical",
-      "descriptionPart2": "complaints?",
-      "slider": {
-        "topText": "Very severe complaints",
-        "bottomText": "No complaints"
+    "pregnancyTest": {
+      "title": "Pregnancy Test",
+      "description": "Please select the applicable option:",
+      "icons": {
+        "positive": "/log_Zyklus/test_positive.svg",
+        "negative": "/log_Zyklus/test_negative.svg",
+        "invalid": "/log_Zyklus/test_invalid.svg"
       }
     },
-     "temperatureInfluence": "There were factors that could affect the temperature.",
-    "logTrainingMood": {
-      "backButton": "arrow_back",
-      "title": "Mood",
-      "description": "How would you rate <br> your mood today?",
-      "slider": {
-        "topText": "Happy",
-        "bottomText": "Sad"
+    "sex": {
+      "title": "Sex",
+      "description": "Please select the applicable option:",
+      "options": {
+        "keinSex": "No Sex",
+        "geschuetzterSex": "Protected Sex",
+        "ungeschuetzterSex": "Unprotected Sex",
+        "lustAufSex": "Desire for Sex",
+        "masturbation": "Masturbation"
       }
     },
-    "logTrainingRecovery": {
-      "title": "Recovery",
-      "description": "How would you rate your <br> overall recovery status?",
-      "slider": {
-        "topText": "Recovered",
-        "bottomText": "Not recovered"
+    "temperature": {
+      "title": "Temperature",
+      "description": "Temperature in °C:",
+      "descriptionTwo": "Disturbance Factors*:",
+      "smallDescription": "*Disturbance factors can include: Fever, alcohol consumption, lack of sleep, stress, medication, other health issues. Please note that these disturbance factors can affect your cycle."
+    }
+  },
+  "logNotes": {
+    "title": "Notes",
+    "description": "Add a note:",
+    "no_entry": "No notes have been added yet."
+  },
+  "logTrainingComplaints": {
+    "title": "Complaints",
+    "descriptionPart1": "Do you have physical",
+    "descriptionPart2": "complaints?",
+    "slider": {
+      "topText": "Very severe complaints",
+      "bottomText": "No complaints"
+    }
+  },
+  "temperatureInfluence": "There were factors that could affect the temperature.",
+  "logTrainingMood": {
+    "backButton": "arrow_back",
+    "title": "Mood",
+    "description": "How would you rate <br> your mood today?",
+    "slider": {
+      "topText": "Happy",
+      "bottomText": "Sad"
+    }
+  },
+  "logTrainingRecovery": {
+    "title": "Recovery",
+    "description": "How would you rate your <br> overall recovery status?",
+    "slider": {
+      "topText": "Recovered",
+      "bottomText": "Not recovered"
+    }
+  },
+  "logTrainingStrain": {
+    "title": "Training Strain",
+    "description": "How strenuous was your <br> training session?",
+    "slider": {
+      "topText": "Maximally strenuous",
+      "bottomText": "Not strenuous at all"
+    }
+  },
+  "logTrainingStrainPre": {
+    "title": "Training Strain",
+    "description1": "Did you train in the last 24 hours?",
+    "trainingOptions": {
+      "prompt": "Which sport/activity did you do?",
+      "options": {
+        "hiking": "Hiking, Trekking, Marching",
+        "cycling": "Cycling (non-MTB)",
+        "swimming": "Swimming",
+        "skiing": "Skiing (non-touring)",
+        "running": "Jogging, Running",
+        "strength_training": "Strength Training, Gym, Bodybuilding",
+        "fitness_training": "Fitness Training, Group Fitness",
+        "yoga": "Yoga, Pilates, Tai Chi, Stretching",
+        "walking": "Walking, Nordic Walking",
+        "mountain_biking": "Mountain Biking (incl. Gravel)",
+        "snowshoeing": "Snowshoeing",
+        "sledding": "Sledding, Tobogganing, Bobsledding",
+        "gymnastics": "Gymnastics, Trampoline",
+        "dancing": "Dancing",
+        "football": "Football",
+        "cross_country_skiing": "Cross-Country Skiing",
+        "volleyball": "Volleyball, Beach Volleyball",
+        "badminton": "Badminton",
+        "inline_skating": "Inline Skating, Roller Skating",
+        "climbing": "Climbing, Bouldering, Mountaineering",
+        "snowboarding": "Snowboarding (non-touring)",
+        "ski_snowboard_tours": "Ski and Snowboard Touring",
+        "table_tennis": "Table Tennis",
+        "tennis": "Tennis",
+        "shooting": "Shooting",
+        "diving": "Diving, Snorkeling",
+        "ice_skating": "Ice Skating, Figure Skating",
+        "aqua_fitness": "Aqua Fitness",
+        "surfing": "Surfing, Windsurfing, Kitesurfing, SUP",
+        "horse_riding": "Horse Riding, Equestrian Sports",
+        "floorball": "Floorball",
+        "basketball": "Basketball",
+        "golf": "Golf",
+        "squash": "Squash",
+        "martial_arts": "Martial Arts",
+        "sailing": "Sailing",
+        "athletics": "Athletics",
+        "rowing": "Rowing",
+        "canoeing": "Canoeing, Kayaking, River Rafting",
+        "ice_hockey": "Ice Hockey",
+        "handball": "Handball",
+        "other_sports": "Other Sports"
       }
     },
-    "logTrainingStrain": {
-      "title": "Training Strain",
-      "description": "How strenuous was your <br> training session?",
-      "slider": {
-        "topText": "Maximally strenuous",
-        "bottomText": "Not strenuous at all"
-      }
-    },
-    "logTrainingStrainPre": {
-      "title": "Training Strain",
-      "description1": "Did you train in the last 24 hours?",
-      "trainingOptions": {
-        "prompt": "Which sport/activity did you do?",
-        "options": {
-          "hiking": "Hiking, Trekking, Marching",
-          "cycling": "Cycling (non-MTB)",
-          "swimming": "Swimming",
-          "skiing": "Skiing (non-touring)",
-          "running": "Jogging, Running",
-          "strength_training": "Strength Training, Gym, Bodybuilding",
-          "fitness_training": "Fitness Training, Group Fitness",
-          "yoga": "Yoga, Pilates, Tai Chi, Stretching",
-          "walking": "Walking, Nordic Walking",
-          "mountain_biking": "Mountain Biking (incl. Gravel)",
-          "snowshoeing": "Snowshoeing",
-          "sledding": "Sledding, Tobogganing, Bobsledding",
-          "gymnastics": "Gymnastics, Trampoline",
-          "dancing": "Dancing",
-          "football": "Football",
-          "cross_country_skiing": "Cross-Country Skiing",
-          "volleyball": "Volleyball, Beach Volleyball",
-          "badminton": "Badminton",
-          "inline_skating": "Inline Skating, Roller Skating",
-          "climbing": "Climbing, Bouldering, Mountaineering",
-          "snowboarding": "Snowboarding (non-touring)",
-          "ski_snowboard_tours": "Ski and Snowboard Touring",
-          "table_tennis": "Table Tennis",
-          "tennis": "Tennis",
-          "shooting": "Shooting",
-          "diving": "Diving, Snorkeling",
-          "ice_skating": "Ice Skating, Figure Skating",
-          "aqua_fitness": "Aqua Fitness",
-          "surfing": "Surfing, Windsurfing, Kitesurfing, SUP",
-          "horse_riding": "Horse Riding, Equestrian Sports",
-          "floorball": "Floorball",
-          "basketball": "Basketball",
-          "golf": "Golf",
-          "squash": "Squash",
-          "martial_arts": "Martial Arts",
-          "sailing": "Sailing",
-          "athletics": "Athletics",
-          "rowing": "Rowing",
-          "canoeing": "Canoeing, Kayaking, River Rafting",
-          "ice_hockey": "Ice Hockey",
-          "handball": "Handball",
-          "other_sports": "Other Sports"
-        }
-      },
     "durationOptions": {
       "prompt": "How many minutes did you train?"
     }
-    },
+  },
   "calendarLegend": {
     "0": "Period",
     "1": "Predicted period",
@@ -742,7 +743,8 @@
     "title": "Account",
     "email": "Email",
     "password": "Password",
-    "change-password": "Change Password"
+    "change-password": "Change Password",
+    "password-forgotten": "Forgot your password?"
   },
   "language": {
     "title": "Language",
@@ -761,5 +763,4 @@
 
   "yes": "Yes",
   "no": "No"
-
 }
