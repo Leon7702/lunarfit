@@ -788,7 +788,13 @@
     "realisticHeight": "Height must be between 120 and 250 cm",
     "requiredWeight": "Weight is required",
     "positiveWeight": "Weight must be a positive number",
-    "realisticWeight": "Weight must be between 20 and 200 kg"
+    "realisticWeight": "Weight must be between 20 and 200 kg",
+    "lastMenstruationFuture": "The date cannot be in the future",
+    "lastMenstruationTooOld": "The date cannot be older than 6 months",
+    "positiveValue": "Value must be positive",
+    "realisticMensDuration": "The menstruation duration is unrealistic",
+    "realisticCycleDuration": "The cycle duration is unrealistic",
+    "realisticDay": "Value must be a whole number"
   },
   "registration": {
     "success": "Registration successful!",
@@ -797,5 +803,8 @@
   },
   "navigation": {
     "failure": "Failed to navigate to the next step."
+  },
+  "logging": {
+    "lastMenstruationError": "Error logging last menstruation."
   }
 }
