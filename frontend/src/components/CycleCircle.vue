@@ -61,17 +61,17 @@
         </text>
 
         <!-- displays the current day of the cycle -->
-        <foreignObject x="-7" y="-7" width="42" height="42">
-          <div style="box-shadow: none;">
+        <foreignObject width="42" height="42" class="flex flex-center">
+          <!-- <div style="box-shadow: none;"> -->
             <q-knob v-if="dataLoaded" readonly :step="1" :min="0.5" :max="cycleLength" v-model="currentDay" show-value
-              size="24px" :thickness="0.05" color="teal" track-color="grey-3" class="q-ma-md" font-size="4px">
+              size="24px" :thickness="0.05" color="teal" track-color="grey-3" font-size="4px" style="width: 100%; height: 100%; padding: 0.56rem">
               <div style="display: flex; flex-direction: column; align-items: center; justify-content: center;">
                 <p style="font-size: 3px; margin: 1px;"></p>
                 <p style="font-size: 2.5px; margin: 0;">{{ $t('cycleDay') }}</p>
                 <p style="font-size: 3px; margin: 0;">{{ currentDay }}</p>
               </div>
             </q-knob>
-          </div>
+          <!-- </div> -->
         </foreignObject>
       </svg>
     </div>
