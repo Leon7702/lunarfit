@@ -16,6 +16,8 @@
           type="number"
           input-class="text-left input-text"
           class="q-mb-sm"
+          clearable
+          @clear="deleteCurrentEntry"
         />
       </div>
       <div class="description-two">
@@ -37,7 +39,7 @@
 <script>
 import CheckboxInput from 'components/CheckboxInput.vue';
 import StandardButton from 'components/StandardButton.vue';
-import { ref } from 'vue';
+import { ref, onMounted } from 'vue';
 import { useRouter } from 'vue-router';
 import { useI18n } from 'vue-i18n';
 import { api } from 'src/boot/axios';
@@ -55,35 +57,102 @@ export default {
 
     const temperature = ref(null);
     const storfaktoren = ref(false);
+    const currentEntryId = ref(null);
 
     const goBack = () => {
       window.history.back();
     };
 
-    const saveCycleData = async () => {
-      if (temperature.value === null) {
-        alert("Bitte geben Sie Ihre Temperatur ein!");
+    const fetchCurrentEntry = async () => {
+      const today = new Date().toISOString().split('T')[0];
+      try {
+        await authStore.refreshAccessToken();
+        const response = await api.get('/cycles/log/', {
+          headers: {
+            'Content-Type': 'application/json',
+            'Authorization': `Bearer ${authStore.accessToken}`
+          },
+          params: {
+            type: 2,
+            date: today
+          }
+        });
+
+        if (response.data.results.length > 0) {
+          const entry = response.data.results[0];
+          currentEntryId.value = entry.id;
+
+          const entryResponse = await api.get(`/cycles/log/${currentEntryId.value}/`, {
+            headers: {
+              'Content-Type': 'application/json',
+              'Authorization': `Bearer ${authStore.accessToken}`
+            }
+          });
+
+          temperature.value = parseFloat(entryResponse.data.value);
+        } else {
+          currentEntryId.value = null;
+          temperature.value = null;
+        }
+      } catch (error) {
+        console.error('Fehler beim Abrufen der Zyklusdaten', error);
+      }
+    };
+
+    const deleteCurrentEntry = async () => {
+      if (currentEntryId.value === null) {
         return;
       }
 
-      const requestBody = {
-        date: new Date().toISOString().split('T')[0], // current date in YYYY-MM-DD format
-        type: 2,
-        value: temperature.value
-      };
-
       try {
-        await authStore.refreshAccessToken(); // Ensure the access token is fresh
-
-        await api.post('/cycles/log/', requestBody, {
+        await authStore.refreshAccessToken();
+        await api.delete(`/cycles/log/${currentEntryId.value}/`, {
           headers: {
             'Content-Type': 'application/json',
             'Authorization': `Bearer ${authStore.accessToken}`
           }
         });
 
-        alert("Daten erfolgreich gespeichert!");
-        router.push('/log');
+        currentEntryId.value = null;
+        temperature.value = null;
+      } catch (error) {
+        console.error('Fehler beim Löschen des Zyklusdatensatzes', error);
+        alert('Fehler beim Löschen des Zyklusdatensatzes.');
+      }
+    };
+
+    const saveCycleData = async () => {
+      if (temperature.value === null) {
+        return;
+      }
+
+      const requestBody = {
+        date: new Date().toISOString().split('T')[0],
+        type: 2,
+        value: temperature.value
+      };
+
+      try {
+        await authStore.refreshAccessToken();
+
+        if (currentEntryId.value) {
+          await api.patch(`/cycles/log/${currentEntryId.value}/`, requestBody, {
+            headers: {
+              'Content-Type': 'application/json',
+              'Authorization': `Bearer ${authStore.accessToken}`
+            }
+          });
+        } else {
+          const response = await api.post('/cycles/log/', requestBody, {
+            headers: {
+              'Content-Type': 'application/json',
+              'Authorization': `Bearer ${authStore.accessToken}`
+            }
+          });
+          currentEntryId.value = response.data.id;
+        }
+
+       
       } catch (error) {
         console.error('Fehler beim Speichern der Zyklusdaten', error);
 
@@ -103,15 +172,21 @@ export default {
       }
     };
 
+    onMounted(() => {
+      fetchCurrentEntry();
+    });
+
     return {
       temperature,
       storfaktoren,
       goBack,
-      saveCycleData
+      saveCycleData,
+      deleteCurrentEntry
     };
   }
 };
 </script>
+
 
 
 <style scoped>

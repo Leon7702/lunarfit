@@ -70,18 +70,17 @@ export default {
 
     const saveMedication = async () => {
       if (selectedMedicine.value === null) {
-        alert("Bitte wählen Sie ein Medikament aus!");
         return;
       }
 
       const requestBody = {
-        start_date: new Date().toISOString().split('T')[0], // YYYY-MM-DD format
-        end_date: new Date().toISOString().split('T')[0], // YYYY-MM-DD format
+        start_date: new Date().toISOString().split('T')[0],
+        end_date: new Date().toISOString().split('T')[0], 
         medication_id: selectedMedicine.value
       };
 
       try {
-        await authStore.refreshAccessToken(); // Refresh the token before making the request
+        await authStore.refreshAccessToken(); 
 
         await api.post('/cycles/medication/', requestBody, {
           headers: {
@@ -90,7 +89,7 @@ export default {
           }
         });
 
-        alert("Medikament erfolgreich gespeichert!");
+        router.push('/log-cycle');
         router.push('/log');
       } catch (error) {
         console.error('Fehler beim Speichern des Medikaments', error);

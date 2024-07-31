@@ -14,7 +14,7 @@
           class="icon-item"
           v-for="(item, index) in iconItems"
           :key="index"
-          @click="selectItem(index)"
+          @click="handleIconClick(index)"
           :class="{ selected: selectedIndex === index }"
         >
           <div class="icon-wrapper">
@@ -31,9 +31,9 @@
 </template>
 
 <script>
-import { ref } from 'vue';
-import { useRouter } from 'vue-router';
+import { ref, computed, onMounted, watch } from 'vue';
 import { useAuthStore } from 'src/stores/auth';
+import { useI18n } from 'vue-i18n';
 import { api } from 'src/boot/axios';
 import StandardButton from 'components/StandardButton.vue';
 
@@ -41,69 +41,126 @@ export default {
   components: {
     StandardButton
   },
-  data() {
-    return {
-      iconItems: [],
-      selectedIndex: null
-    };
-  },
-  computed: {
-    localizedIcons() {
-      return {
-        closed: this.$t('logCycle.cervixPosition.icons.closed'),
-        partiallyOpen: this.$t('logCycle.cervixPosition.icons.partiallyOpen'),
-        fullyOpen: this.$t('logCycle.cervixPosition.icons.fullyOpen')
-      };
-    }
-  },
-  watch: {
-    '$i18n.locale': 'updateIconItems'
-  },
-  methods: {
-    goBack() {
-      window.history.back();
-    },
-    selectItem(index) {
-      this.selectedIndex = index;
-    },
-    updateIconItems() {
-      this.iconItems = [
-        { icon: this.localizedIcons.closed },
-        { icon: this.localizedIcons.partiallyOpen },
-        { icon: this.localizedIcons.fullyOpen }
+  setup() {
+    const { t, locale } = useI18n();
+    const authStore = useAuthStore();
+    const iconItems = ref([]);
+    const selectedIndex = ref(null);
+    const currentEntryId = ref(null);
+
+    const localizedIcons = computed(() => ({
+      closed: t('logCycle.cervixPosition.icons.closed'),
+      partiallyOpen: t('logCycle.cervixPosition.icons.partiallyOpen'),
+      fullyOpen: t('logCycle.cervixPosition.icons.fullyOpen')
+    }));
+
+    const updateIconItems = () => {
+      iconItems.value = [
+        { icon: localizedIcons.value.closed },
+        { icon: localizedIcons.value.partiallyOpen },
+        { icon: localizedIcons.value.fullyOpen }
       ];
-    },
-    async saveCycleData() {
-      if (this.selectedIndex === null) {
-        alert("Bitte wählen Sie ein Feld aus!");
+    };
+
+    const goBack = () => {
+      window.history.back();
+    };
+
+    const handleIconClick = async (index) => {
+      if (selectedIndex.value === index) {
+        await deleteCurrentEntry();
+        selectedIndex.value = null;
+        currentEntryId.value = null;
+      } else {
+        selectedIndex.value = index;
+      }
+    };
+
+    const deleteCurrentEntry = async () => {
+      if (currentEntryId.value === null) {
         return;
       }
 
-      const valueMapping = {
-        closed: 0,
-        partiallyOpen: 1,
-        fullyOpen: 2
-      };
-
-      const requestBody = {
-        date: new Date().toISOString().split('T')[0], 
-        type: 3,
-        value: valueMapping[Object.keys(this.localizedIcons)[this.selectedIndex]]
-      };
-
-      const authStore = useAuthStore();
-
       try {
-        await authStore.refreshAccessToken(); 
-
-        await api.post('/cycles/log/', requestBody, {
+        await authStore.refreshAccessToken();
+        await api.delete(`/cycles/log/${currentEntryId.value}/`, {
           headers: {
             'Content-Type': 'application/json',
             'Authorization': `Bearer ${authStore.accessToken}`
           }
         });
+      } catch (error) {
+        console.error('Fehler beim Löschen des Zyklusdatensatzes', error);
+        alert('Fehler beim Löschen des Zyklusdatensatzes.');
+      }
+    };
 
-        alert("Daten erfolgreich gespeichert!");
+    const fetchCurrentEntry = async () => {
+      const today = new Date().toISOString().split('T')[0];
+      try {
+        await authStore.refreshAccessToken();
+        const response = await api.get('/cycles/log/', {
+          headers: {
+            'Content-Type': 'application/json',
+            'Authorization': `Bearer ${authStore.accessToken}`
+          },
+          params: {
+            type: 3,
+            date: today
+          }
+        });
+
+        if (response.data.results.length > 0) {
+          const entry = response.data.results[0];
+          currentEntryId.value = entry.id;
+
+          const entryResponse = await api.get(`/cycles/log/${currentEntryId.value}/`, {
+            headers: {
+              'Content-Type': 'application/json',
+              'Authorization': `Bearer ${authStore.accessToken}`
+            }
+          });
+
+          selectedIndex.value = parseInt(entryResponse.data.value);
+        } else {
+          currentEntryId.value = null;
+          selectedIndex.value = null;
+        }
+      } catch (error) {
+        console.error('Fehler beim Abrufen der Zyklusdaten', error);
+      }
+    };
+
+    const saveCycleData = async () => {
+      if (selectedIndex.value === null) {
+        return;
+      }
+
+      const requestBody = {
+        date: new Date().toISOString().split('T')[0],
+        type: 3,
+        value: selectedIndex.value
+      };
+
+      try {
+        await authStore.refreshAccessToken();
+
+        if (currentEntryId.value) {
+          await api.patch(`/cycles/log/${currentEntryId.value}/`, requestBody, {
+            headers: {
+              'Content-Type': 'application/json',
+              'Authorization': `Bearer ${authStore.accessToken}`
+            }
+          });
+        } else {
+          const response = await api.post('/cycles/log/', requestBody, {
+            headers: {
+              'Content-Type': 'application/json',
+              'Authorization': `Bearer ${authStore.accessToken}`
+            }
+          });
+          currentEntryId.value = response.data.id;
+        }
       } catch (error) {
         console.error('Fehler beim Speichern der Zyklusdaten', error);
 
@@ -121,13 +178,26 @@ export default {
           alert('Ein unbekannter Fehler ist aufgetreten.');
         }
       }
-    }
-  },
-  created() {
-    this.updateIconItems();
+    };
+
+    onMounted(() => {
+      updateIconItems();
+      fetchCurrentEntry();
+    });
+
+    watch(locale, updateIconItems);
+
+    return {
+      iconItems,
+      selectedIndex,
+      goBack,
+      handleIconClick,
+      saveCycleData
+    };
   }
 };
 </script>
+
 
 
 <style scoped>
