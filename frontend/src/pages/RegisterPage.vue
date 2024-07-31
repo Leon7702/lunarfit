@@ -4,41 +4,79 @@
       <img alt="Lunafit logo" class="logo" src="../assets/LunaFit_logo.png" />
     </header>
     <div class="q-pa-lg q-gutter-sm">
-      <q-input color="teal" outlined v-model="email" :label="$t('email')">
+      <q-input
+        ref="emailRef"
+        color="teal"
+        outlined
+        v-model="email"
+        :label="$t('email')"
+        :rules="emailRules"
+      >
         <template v-slot:prepend>
           <q-icon>
             <img src="../assets/Communication.svg" alt="Email Icon" />
           </q-icon>
         </template>
       </q-input>
-      <q-input :type="showPassword ? 'text' : 'password'" color="teal" outlined v-model="password"
-        :label="$t('password')">
+
+      <q-input
+        ref="passwordRef"
+        :type="showPassword ? 'text' : 'password'"
+        color="teal"
+        outlined
+        v-model="password"
+        :label="$t('password')"
+        :rules="passwordRules"
+      >
         <template v-slot:prepend>
           <q-icon>
             <img src="../assets/System.svg" alt="Lock Icon" />
           </q-icon>
         </template>
         <template v-slot:append>
-          <q-icon @click="togglePasswordVisibility" :name="showPassword ? 'visibility_off' : 'visibility'"
-            class="cursor-pointer"> </q-icon>
+          <q-icon
+            @click="togglePasswordVisibility"
+            :name="showPassword ? 'visibility_off' : 'visibility'"
+            class="cursor-pointer"
+          >
+          </q-icon>
         </template>
       </q-input>
-      <q-input :type="showPassword ? 'text' : 'password'" color="teal" outlined v-model="passwordConfirm"
-        :label="$t('confirm-password')">
+
+      <q-input
+        ref="passwordConfirmRef"
+        :type="showPassword ? 'text' : 'password'"
+        color="teal"
+        outlined
+        v-model="passwordConfirm"
+        :label="$t('confirm-password')"
+        :rules="passwordConfirmRules"
+      >
         <template v-slot:prepend>
           <q-icon>
             <img src="../assets/System.svg" alt="Lock Icon" />
           </q-icon>
         </template>
         <template v-slot:append>
-          <q-icon @click="togglePasswordVisibility" :name="showPassword ? 'visibility_off' : 'visibility'"
-            class="cursor-pointer"> </q-icon>
+          <q-icon
+            @click="togglePasswordVisibility"
+            :name="showPassword ? 'visibility_off' : 'visibility'"
+            class="cursor-pointer"
+          >
+          </q-icon>
         </template>
       </q-input>
     </div>
     <div class="q-pa-md q-gutter-sm row justify-center">
-      <q-btn no-caps rounded style="background: #50C1BA; color: white" :label="$t('register.title')" padding="sm lg"
-        size="16px" @click="registerUser" />
+      <q-btn
+        no-caps
+        rounded
+        style="background: #50C1BA; color: white"
+        :label="$t('register.title')"
+        padding="sm lg"
+        size="16px"
+        @click="registerUser"
+      />
     </div>
     <p style="text-align: center;">
       {{ $t('register.account') }}
@@ -51,34 +89,48 @@
 
 <script>
 import { ref } from 'vue';
-import { api } from 'src/boot/axios';
 import { useRouter } from 'vue-router';
+import { useI18n } from 'vue-i18n';
+import { api } from 'src/boot/axios';
 
 export default {
   setup() {
+    const { t } = useI18n();
     const email = ref('');
     const password = ref('');
     const passwordConfirm = ref('');
     const showPassword = ref(false);
     const router = useRouter();
 
+    const emailRef = ref(null);
+    const passwordRef = ref(null);
+    const passwordConfirmRef = ref(null);
+
     const togglePasswordVisibility = () => {
       showPassword.value = !showPassword.value;
     };
 
-    const isValidEmail = (email) => {
-      const re = /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
-      return re.test(String(email).toLowerCase());
-    };
+    const emailRules = [
+      val => !!val || t('validation.emailRequired'),
+      val => /^((?!\.)[\w-_.]*[^.])(@\w+)(\.\w+(\.\w+)?[^.\W])$/gim.test(val) || t('validation.invalidEmail')
+    ];
+
+    const passwordRules = [
+      val => !!val || t('validation.passwordRequired'),
+      val => val.length >= 6 || t('validation.passwordLength')
+    ];
+
+    const passwordConfirmRules = [
+      val => !!val || t('validation.passwordConfirmRequired'),
+      val => val === password.value || t('validation.passwordsDoNotMatch')
+    ];
 
     const registerUser = async () => {
-      if (password.value !== passwordConfirm.value) {
-        alert("Passwords do not match!");
-        return;
-      }
+      emailRef.value.validate();
+      passwordRef.value.validate();
+      passwordConfirmRef.value.validate();
 
-      if (!isValidEmail(email.value)) {
-        alert("Invalid email format!");
+      if (emailRef.value.hasError || passwordRef.value.hasError || passwordConfirmRef.value.hasError) {
         return;
       }
 
@@ -90,12 +142,16 @@ export default {
           password: password.value
         });
         const token = response.data.token;
-        localStorage.setItem('token', token); // Store token in local storage
-        alert("Registration successful!");
+        localStorage.setItem('token', token);
+        alert(t('registration.success'));
         router.push('/login');
       } catch (error) {
-        console.error("There was an error registering:", error);
-        alert("Registration failed!");
+        // console.error("There was an error registering:", error);
+        if (error.response && error.response.data && error.response.data.email) {
+          alert(t('registration.emailExists'));
+        } else {
+          alert(t('registration.failed'));
+        }
       }
     };
 
@@ -104,6 +160,12 @@ export default {
       password,
       passwordConfirm,
       showPassword,
+      emailRef,
+      passwordRef,
+      passwordConfirmRef,
+      emailRules,
+      passwordRules,
+      passwordConfirmRules,
       togglePasswordVisibility,
       registerUser
     };
@@ -130,8 +192,7 @@ a {
 
 .logo {
   display: block;
-  margin: 10rem auto 3rem;
+  margin: 6rem auto 3rem;
   height: 68px;
-  /* Consistent logo height */
 }
 </style>

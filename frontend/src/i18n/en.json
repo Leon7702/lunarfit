@@ -764,5 +764,19 @@
   },
 
   "yes": "Yes",
-  "no": "No"
+  "no": "No",
+
+  "validation": {
+    "emailRequired": "Email is required",
+    "invalidEmail": "Enter a valid email address",
+    "passwordRequired": "Password is required",
+    "passwordLength": "Password must be at least 6 characters",
+    "passwordConfirmRequired": "Confirm password is required",
+    "passwordsDoNotMatch": "Passwords do not match"
+  },
+  "registration": {
+    "success": "Registration successful!",
+    "failed": "Registration failed. Please try again.",
+    "emailExists": "An account with this email already exists."
+  }
 }

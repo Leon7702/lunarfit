@@ -798,5 +798,19 @@
   },
 
   "yes": "Ja",
-  "no": "Nein"
+  "no": "Nein",
+
+  "validation": {
+    "emailRequired": "E-Mail ist erforderlich",
+    "invalidEmail": "Gebe eine gültige E-Mail Adresse ein",
+    "passwordRequired": "Passwort ist erforderlich",
+    "passwordLength": "Passwort muss mind. 6 Zeichen lang sein",
+    "passwordConfirmRequired": "Passwortbestätigung ist erforderlich",
+    "passwordsDoNotMatch": "Die Passwörter stimmen nicht überein"
+  },
+  "registration": {
+      "success": "Anmeldung erfolgreich!",
+      "failed": "Registrierung fehlgeschlagen. Bitte versuche es erneut.",
+      "emailExists": "Es existiert bereits ein Konto mit dieser E-Mail-Adresse."
+    }
 }
