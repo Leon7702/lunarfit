@@ -9,27 +9,67 @@
           {{ $t('onboarding.onboardingStep1.title') }}
         </h2>
         <q-list class="form-list">
-          <q-input filled v-model="profile.first_name" type="text" input-class="text-right" class="q-pt-xl q-mb-sm">
+          <q-input
+            ref="firstNameRef"
+            filled
+            v-model="profile.first_name"
+            type="text"
+            input-class="text-right"
+            class="q-mb-sm"
+            :rules="nameRules"
+          >
             <template v-slot:prepend>
               <div class="text-color">{{ $t('profile.firstName') }}</div>
             </template>
           </q-input>
-          <q-input filled v-model="profile.last_name" type="text" input-class="text-right" class="q-mb-sm">
+          <q-input
+            ref="lastNameRef"
+            filled
+            v-model="profile.last_name"
+            type="text"
+            input-class="text-right"
+            class="q-mb-sm"
+            :rules="nameRules"
+          >
             <template v-slot:prepend>
               <div class="text-color">{{ $t('profile.lastName') }}</div>
             </template>
           </q-input>
-          <q-input filled v-model="profile.birthdate" type="date" input-class="text-right" class="q-mb-sm">
+          <q-input
+            ref="birthdateRef"
+            filled
+            v-model="profile.birthdate"
+            type="date"
+            input-class="text-right"
+            class="q-mb-sm"
+            :rules="birthdateRules"
+          >
             <template v-slot:prepend>
               <div class="text-color">{{ $t('profile.birthdate') }}</div>
             </template>
           </q-input>
-          <q-input filled v-model="profile.body_height" type="number" input-class="text-right" class="q-mb-sm">
+          <q-input
+            ref="heightRef"
+            filled
+            v-model="profile.body_height"
+            type="number"
+            input-class="text-right"
+            class="q-mb-sm"
+            :rules="heightRules"
+          >
             <template v-slot:prepend>
               <div class="text-color">{{ $t('profile.height') }}</div>
             </template>
           </q-input>
-          <q-input filled v-model="profile.body_weight" type="number" input-class="text-right" class="q-mb-sm">
+          <q-input
+            ref="weightRef"
+            filled
+            v-model="profile.body_weight"
+            type="number"
+            input-class="text-right"
+            class="q-mb-sm"
+            :rules="weightRules"
+          >
             <template v-slot:prepend>
               <div class="text-color">{{ $t('profile.weight') }}</div>
             </template>
@@ -47,6 +87,7 @@
 import { ref, onMounted } from 'vue';
 import { useRouter } from 'vue-router';
 import { api } from 'src/boot/axios';
+import { useI18n } from 'vue-i18n';
 import { useAuthStore } from 'src/stores/auth';
 import StandardButton from 'components/StandardButton.vue';
 import BackButtonText from 'components/BackButtonText.vue';
@@ -59,6 +100,7 @@ export default {
   setup() {
     const authStore = useAuthStore();
     const router = useRouter();
+    const { t } = useI18n();
 
     const profile = ref({
       first_name: '',
@@ -67,6 +109,35 @@ export default {
       body_height: null,
       body_weight: null,
     });
+
+    const firstNameRef = ref(null);
+    const lastNameRef = ref(null);
+    const birthdateRef = ref(null);
+    const heightRef = ref(null);
+    const weightRef = ref(null);
+
+    const nameRules = [
+      val => !!val || t('validation.required'),
+      val => /^[\p{L}\p{M}]+(?:[-\s][\p{L}\p{M}]+)*$/u.test(val) || t('validation.onlyLetters')
+    ];
+
+    const birthdateRules = [
+      val => !!val || t('validation.requiredBirthdate'),
+      val => new Date(val) <= new Date() || t('validation.birthdateFuture'),
+      val => new Date(val).getFullYear() > new Date().getFullYear() - 120 || t('validation.birthdateUnrealistic')
+    ];
+
+    const heightRules = [
+      val => !!val || t('validation.requiredHeight'),
+      val => val > 0 || t('validation.positiveHeight'),
+      val => val >= 100 && val <= 250|| t('validation.realisticHeight')
+    ];
+
+    const weightRules = [
+      val => !!val || t('validation.requiredWeight'),
+      val => val > 0 || t('validation.positiveWeight'),
+      val => val >= 20 && val <= 200 || t('validation.realisticWeight')
+    ];
 
     const fetchProfile = async () => {
       try {
@@ -80,19 +151,37 @@ export default {
     const saveProfile = async () => {
       try {
         await api.patch(`/users/profile/${authStore.userId}/`, profile.value);
-        alert('Profile updated successfully');
+        // alert(t('profile.updateSuccess'));
       } catch (error) {
         console.error('Failed to update profile:', error);
+        alert(t('profile.updateFailure'));
       }
     };
 
     const navigateToNextStep = async () => {
+      firstNameRef.value.validate();
+      lastNameRef.value.validate();
+      birthdateRef.value.validate();
+      heightRef.value.validate();
+      weightRef.value.validate();
+
+      if (
+        firstNameRef.value.hasError ||
+        lastNameRef.value.hasError ||
+        birthdateRef.value.hasError ||
+        heightRef.value.hasError ||
+        weightRef.value.hasError
+      ) {
+        alert(t('validation.fixErrors'));
+        return;
+      }
+
       try {
         await saveProfile();
         router.push({ name: 'OnboardingStep2' });
       } catch (error) {
         console.error('Failed to navigate to next step:', error);
-        alert('Failed to navigate to next step');
+        alert(t('navigation.failure'));
       }
     };
 
@@ -102,7 +191,16 @@ export default {
 
     return {
       profile,
-      navigateToNextStep
+      navigateToNextStep,
+      firstNameRef,
+      lastNameRef,
+      birthdateRef,
+      heightRef,
+      weightRef,
+      nameRules,
+      birthdateRules,
+      heightRules,
+      weightRules
     };
   }
 };
@@ -151,15 +249,6 @@ export default {
 }
 
 .label-text {
-  font-size: 12px;
   color: #50C1BA;
 }
-
-.q-pa-md {
-  padding-top: 5px;
-  padding-left: 5px;
-  padding-right: 5px;
-}
-
-
 </style>

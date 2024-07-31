@@ -758,7 +758,9 @@
       "Dreimonatsspritze",
       "Vaginalring",
       "Sonstiges"
-    ]
+    ],
+    "updateSuccess": "Profil erfolgreich aktualisiert.",
+    "updateFailure": "Profil kann nicht aktualisiert werden."
   },
 
   "chat": {
@@ -809,11 +811,25 @@
     "passwordsDoNotMatch": "Die Passwörter stimmen nicht überein",
     "loginError": "Bitte überprüfe deine Anmeldedaten",
     "noActiveAccount": "Es wurde kein aktives Konto mit den angegebenen Anmeldedaten gefunden.",
-    "fixErrors": "Bitte behebe die Fehler im Formular."
+    "fixErrors": "Bitte behebe die Fehler im Formular.",
+    "required": "Dieses Feld ist erforderlich",
+    "onlyLetters": "Dieses Feld darf nur Buchstaben enthalten",
+    "requiredBirthdate": "Das Geburtsdatum ist erforderlich",
+    "birthdateFuture": "Das Geburtsdatum darf nicht in der Zukunft liegen",
+    "birthdateUnrealistic": "Geburtsdatum ist unrealistisch",
+    "requiredHeight": "Höhe ist erforderlich",
+    "positiveHeight": "Die Höhe muss eine positive Zahl sein",
+    "realisticHeight": "Die Körpergröße muss zwischen 120 und 250 cm liegen",
+    "requiredWeight": "Weight is required.",
+    "positiveWeight": "Gewicht ist erforderlich",
+    "realisticWeight": "Das Gewicht muss zwischen 20 und 200 kg liegen"
   },
   "registration": {
       "success": "Anmeldung erfolgreich!",
       "failed": "Registrierung fehlgeschlagen. Bitte versuche es erneut.",
       "emailExists": "Es existiert bereits ein Konto mit dieser E-Mail-Adresse."
-    }
+  },
+  "navigation": {
+    "failure": "Die Navigation zum nächsten Schritt ist fehlgeschlagen"
+  }
 }
