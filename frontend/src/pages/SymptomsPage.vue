@@ -1,7 +1,7 @@
 <template>
   <div class="size-container">
     <div class="header">
-      <q-btn flat dense round icon="arrow_back" @click="goBack" />
+      <q-btn flat dense round icon="arrow_back" @click="goBack" class="back-button" />
       <div class="head">{{ $t('symptoms') }}</div>
     </div>
 
@@ -188,23 +188,27 @@ export default {
 .header {
   display: flex;
   align-items: center;
+  justify-content: center;
   position: relative;
-  padding-bottom: 20px;
+  padding-bottom: 1.25rem;
 }
 
 .head {
   color: #000;
   text-align: center;
-  font-size: 20px;
+  font-size: 1.4rem;
   font-style: normal;
   font-weight: 600;
-  line-height: 31px;
-  margin: 0 auto;
-  flex: 1;
+  line-height: 1.9375rem;
+}
+
+.back-button {
+  position: absolute;
+  left: 0;
 }
 
 .container {
   flex: 1;
-  margin-bottom: 20px;
+  margin-bottom: 1.25rem;
 }
 </style>

@@ -12,7 +12,7 @@
       </div>
 
       <div v-else class="custom-table-container">
-        <q-table :rows="weeksInMonth" :columns="columns" row-key="weekIndex" flat dense :rows-per-page-options="[]"
+        <q-table :rows="weeksInMonth" :columns="columns" row-key="weekIndex" flat dense :rows-per-page-options="[6]"
           hide-bottom class="custom-table">
           <template v-slot:header="props">
             <q-tr :props="props">
@@ -95,7 +95,6 @@
     </q-page>
   </div>
 </template>
-
 
 <script>
 import { QBtn, QSeparator, QPage, QTable, QTr, QTd, QCard, QCardSection } from 'quasar';
@@ -236,6 +235,12 @@ export default {
       if (this.trainingReadinessScore <= 50) return "scores.2";
       if (this.trainingReadinessScore <= 75) return "scores.3";
       return "scores.4";
+    },
+    rowsPerPageOptions() {
+      const firstDay = (new Date(this.date.year, this.date.month, 1).getDay() + 6) % 7;
+      const daysInMonth = this.daysInMonth.length;
+      const rowsNeeded = Math.ceil((firstDay + daysInMonth) / 7);
+      return [rowsNeeded];
     },
   },
   methods: {
