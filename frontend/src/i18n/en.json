@@ -772,7 +772,10 @@
     "passwordRequired": "Password is required",
     "passwordLength": "Password must be at least 6 characters",
     "passwordConfirmRequired": "Confirm password is required",
-    "passwordsDoNotMatch": "Passwords do not match"
+    "passwordsDoNotMatch": "Passwords do not match",
+    "loginError": "Please check your credentials.",
+    "noActiveAccount": "No active account found with the given credentials.",
+    "fixErrors": "Please fix the errors in the form."
   },
   "registration": {
     "success": "Registration successful!",

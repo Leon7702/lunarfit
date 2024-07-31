@@ -806,7 +806,10 @@
     "passwordRequired": "Passwort ist erforderlich",
     "passwordLength": "Passwort muss mind. 6 Zeichen lang sein",
     "passwordConfirmRequired": "Passwortbestätigung ist erforderlich",
-    "passwordsDoNotMatch": "Die Passwörter stimmen nicht überein"
+    "passwordsDoNotMatch": "Die Passwörter stimmen nicht überein",
+    "loginError": "Bitte überprüfe deine Anmeldedaten",
+    "noActiveAccount": "Es wurde kein aktives Konto mit den angegebenen Anmeldedaten gefunden.",
+    "fixErrors": "Bitte behebe die Fehler im Formular."
   },
   "registration": {
       "success": "Anmeldung erfolgreich!",

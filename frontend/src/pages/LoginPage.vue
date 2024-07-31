@@ -4,33 +4,57 @@
       <img alt="Lunafit logo" class="logo" src="../assets/LunaFit_logo.png" height="68" />
     </header>
     <div class="q-pa-lg q-gutter-sm">
-      <q-input color="teal" outlined v-model="email" :label="$t('email')">
+      <q-input
+        ref="emailRef"
+        color="teal"
+        outlined
+        v-model="email"
+        :label="$t('email')"
+        :rules="emailRules"
+      >
         <template v-slot:prepend>
           <q-icon>
             <img src="../assets/Communication.svg" alt="Email Icon" />
           </q-icon>
         </template>
       </q-input>
-      <q-input :type="showPassword ? 'text' : 'password'" color="teal" outlined v-model="password"
-        :label="$t('password')">
+      <q-input
+        ref="passwordRef"
+        :type="showPassword ? 'text' : 'password'"
+        color="teal"
+        outlined
+        v-model="password"
+        :label="$t('password')"
+        :rules="passwordRules"
+      >
         <template v-slot:prepend>
           <q-icon>
             <img src="../assets/System.svg" alt="Lock Icon" />
           </q-icon>
         </template>
         <template v-slot:append>
-          <q-icon @click="togglePasswordVisibility" :name="showPassword ? 'visibility_off' : 'visibility'"
-            class="cursor-pointer"> </q-icon>
+          <q-icon
+            @click="togglePasswordVisibility"
+            :name="showPassword ? 'visibility_off' : 'visibility'"
+            class="cursor-pointer"
+          >
+          </q-icon>
         </template>
       </q-input>
       <div class="password-forget">
         <router-link to="/password-forgot">{{ $t('account.password-forgotten') }}</router-link>
       </div>
-      <div v-if="errorMessage" class="error-message">{{ errorMessage }}</div>
     </div>
     <div class="q-gutter-sm row justify-center">
-      <q-btn no-caps rounded style="background: #50C1BA; color: white" :label="$t('login.title')" padding="sm lg"
-        size="16px" @click="loginUser" />
+      <q-btn
+        no-caps
+        rounded
+        style="background: #50C1BA; color: white"
+        :label="$t('login.title')"
+        padding="sm lg"
+        size="16px"
+        @click="loginUser"
+      />
     </div>
     <p style="text-align: center;">
       {{ $t('login.no-account') }}
@@ -61,12 +85,15 @@ export default {
     QIcon,
   },
   setup() {
+    const { t } = useI18n();
     const email = ref('');
     const password = ref('');
-    const errorMessage = ref('');
     const router = useRouter();
     const authStore = useAuthStore();
     const showPassword = ref(false);
+
+    const emailRef = ref(null);
+    const passwordRef = ref(null);
 
     const { proxy } = getCurrentInstance();
     const i18n = useI18n();
@@ -93,7 +120,25 @@ export default {
       languageOptions.value = getLanguageOptions(); // Update options when language changes
     });
 
+    const emailRules = [
+      val => !!val || t('validation.emailRequired'),
+      val => /^((?!\.)[\w-_.]*[^.])(@\w+)(\.\w+(\.\w+)?[^.\W])$/gim.test(val) || t('validation.invalidEmail')
+    ];
+
+    const passwordRules = [
+      val => !!val || t('validation.passwordRequired'),
+      val => val.length >= 6 || t('validation.passwordLength')
+    ];
+
     const loginUser = async () => {
+      emailRef.value.validate();
+      passwordRef.value.validate();
+
+      if (emailRef.value.hasError || passwordRef.value.hasError) {
+        alert(t('validation.fixErrors'));
+        return;
+      }
+
       try {
         await authStore.login({ email: email.value, password: password.value });
 
@@ -107,7 +152,12 @@ export default {
           router.push('/onboarding'); // Redirect to onboarding if not finished
         }
       } catch (error) {
-        errorMessage.value = i18n.t('account.login-error'); // Set error message
+        // console.error("There was an error logging in:", error);
+        if (error.response && error.response.status === 401) {
+          alert(t('validation.noActiveAccount'));
+        } else {
+          alert(t('validation.loginError'));
+        }
       }
     };
 
@@ -123,7 +173,10 @@ export default {
       togglePasswordVisibility,
       selectedLanguage,
       languageOptions,
-      errorMessage,
+      emailRef,
+      passwordRef,
+      emailRules,
+      passwordRules
     };
   },
 };
@@ -148,14 +201,12 @@ a {
 
 .logo {
   display: block;
-  margin: 10rem auto 3rem;
+  margin: 6rem auto 3rem;
   height: 68px;
-  /* Consistent logo height */
 }
 
 .password-forget {
   text-align: right;
-  margin-top: 1rem;
 }
 
 .language-toggle {
@@ -167,11 +218,5 @@ a {
   display: flex;
   justify-content: center;
   gap: 0.625rem;
-}
-
-.error-message {
-  color: red;
-  text-align: center;
-  margin-top: 1rem;
 }
 </style>
