@@ -18,6 +18,8 @@
           class="q-mb-sm"
           emit-value
           map-options
+          clearable
+          @clear="deleteCurrentEntry"
         >
           <template v-slot:prepend></template>
         </q-select>
@@ -30,7 +32,7 @@
 </template>
 
 <script>
-import { ref, computed } from 'vue';
+import { ref, computed, onMounted } from 'vue';
 import { useRouter } from 'vue-router';
 import { useI18n } from 'vue-i18n';
 import { api } from 'src/boot/axios';
@@ -47,6 +49,7 @@ export default {
     const authStore = useAuthStore();
 
     const selectedOption = ref(null);
+    const currentEntryId = ref(null);
 
     const options = [
       { key: 'keinSex', value: 0 },
@@ -63,8 +66,71 @@ export default {
       }));
     });
 
+    const getOptionByValue = (value) => {
+      const option = options.find(opt => opt.value === value);
+      return option ? t(`logCycle.sex.options.${option.key}`) : '';
+    };
+
     const goBack = () => {
       window.history.back();
+    };
+
+    const fetchCurrentEntry = async () => {
+      const today = new Date().toISOString().split('T')[0];
+      try {
+        await authStore.refreshAccessToken();
+        const response = await api.get('/cycles/log/', {
+          headers: {
+            'Content-Type': 'application/json',
+            'Authorization': `Bearer ${authStore.accessToken}`
+          },
+          params: {
+            type: 5,
+            date: today
+          }
+        });
+
+        if (response.data.results.length > 0) {
+          const entry = response.data.results[0];
+          currentEntryId.value = entry.id;
+
+          const entryResponse = await api.get(`/cycles/log/${currentEntryId.value}/`, {
+            headers: {
+              'Content-Type': 'application/json',
+              'Authorization': `Bearer ${authStore.accessToken}`
+            }
+          });
+
+          selectedOption.value = entryResponse.data.value;
+        } else {
+          currentEntryId.value = null;
+          selectedOption.value = null;
+        }
+      } catch (error) {
+        console.error('Fehler beim Abrufen der Zyklusdaten', error);
+      }
+    };
+
+    const deleteCurrentEntry = async () => {
+      if (currentEntryId.value === null) {
+        return;
+      }
+
+      try {
+        await authStore.refreshAccessToken();
+        await api.delete(`/cycles/log/${currentEntryId.value}/`, {
+          headers: {
+            'Content-Type': 'application/json',
+            'Authorization': `Bearer ${authStore.accessToken}`
+          }
+        });
+
+        currentEntryId.value = null;
+        selectedOption.value = null;
+      } catch (error) {
+        console.error('Fehler beim Löschen des Zyklusdatensatzes', error);
+        alert('Fehler beim Löschen des Zyklusdatensatzes.');
+      }
     };
 
     const saveCycleData = async () => {
@@ -73,20 +139,30 @@ export default {
       }
 
       const requestBody = {
-        date: new Date().toISOString().split('T')[0], 
+        date: new Date().toISOString().split('T')[0],
         type: 5,
         value: selectedOption.value
       };
 
       try {
-        await authStore.refreshAccessToken(); 
+        await authStore.refreshAccessToken();
 
-        await api.post('/cycles/log/', requestBody, {
-          headers: {
-            'Content-Type': 'application/json',
-            'Authorization': `Bearer ${authStore.accessToken}`
-          }
-        });
+        if (currentEntryId.value) {
+          await api.patch(`/cycles/log/${currentEntryId.value}/`, requestBody, {
+            headers: {
+              'Content-Type': 'application/json',
+              'Authorization': `Bearer ${authStore.accessToken}`
+            }
+          });
+        } else {
+          const response = await api.post('/cycles/log/', requestBody, {
+            headers: {
+              'Content-Type': 'application/json',
+              'Authorization': `Bearer ${authStore.accessToken}`
+            }
+          });
+          currentEntryId.value = response.data.id;
+        }
 
         router.push('/log-cycle');
       } catch (error) {
@@ -108,15 +184,23 @@ export default {
       }
     };
 
+    onMounted(() => {
+      fetchCurrentEntry();
+    });
+
     return {
       selectedOption,
       translatedOptions,
       goBack,
-      saveCycleData
+      saveCycleData,
+      deleteCurrentEntry,
+      getOptionByValue
     };
   }
 };
 </script>
+
+
 
   <style scoped>
   .linie {
