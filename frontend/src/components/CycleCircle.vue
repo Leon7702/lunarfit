@@ -4,8 +4,6 @@
       <svg width="240" height="240" viewBox="0 0 42 42" class="donut">
 
         <!-- Each circle represents a segment of the donut chart -->
-        <!-- The stroke-dasharray property controls the length and spacing of the dashes, creating the donut effect -->
-        <!-- The stroke-dashoffset property controls where the dash pattern starts -->
         <circle class="donut-segment" cx="21" cy="21" :r="radius" fill="transparent" stroke="#A6EFEB" stroke-width="5"
           :stroke-dasharray="getPhasePortion(mensLengthPortion)" :stroke-dashoffset="(mensOffset + 25)"></circle>
 
@@ -61,18 +59,19 @@
         </text>
 
         <!-- displays the current day of the cycle -->
-        <foreignObject width="42" height="42" class="flex flex-center">
-          <!-- <div style="box-shadow: none;"> -->
-            <q-knob v-if="dataLoaded" readonly :step="1" :min="0.5" :max="cycleLength" v-model="currentDay" show-value
-              size="24px" :thickness="0.05" color="teal" track-color="grey-3" font-size="4px" style="width: 100%; height: 100%; padding: 0.56rem">
-              <div style="display: flex; flex-direction: column; align-items: center; justify-content: center;">
-                <p style="font-size: 3px; margin: 1px;"></p>
-                <p style="font-size: 2.5px; margin: 0;">{{ $t('cycleDay') }}</p>
-                <p style="font-size: 3px; margin: 0;">{{ currentDay }}</p>
-              </div>
-            </q-knob>
-          <!-- </div> -->
-        </foreignObject>
+        <circle v-if="dataLoaded" class="donut-segment" cx="21" cy="21" :r="radius" fill="transparent" stroke="#E0E0E0" stroke-width="0.8"
+          stroke-dasharray="100" style="transform: scale(0.75); transform-origin: center">
+        </circle>
+
+        <circle v-if="dataLoaded" class="donut-segment" cx="21" cy="21" :r="radius" fill="transparent" stroke="#009688" stroke-width="0.8"
+          :stroke-dasharray="getDayPortion()" :stroke-dashoffset="25" style="transform: scale(0.75); transform-origin: center">
+        </circle>
+
+        <text v-if="dataLoaded" x="21" y="21" text-anchor="middle" dominant-baseline="middle" font-size="2.5" fill="#000">
+          <tspan x="21" dy="-0.4em">{{ $t('cycleDay') }}</tspan>
+          <tspan x="21" dy="1.2em">{{ currentDay }}</tspan>
+        </text>
+
       </svg>
     </div>
 
@@ -104,6 +103,11 @@ export default {
     const getPhasePortion = (phaseLengthPortion) => {
       // "" + phaseLengthPortion + " " + (100 - phaseLengthPortion).toString()
       return `${phaseLengthPortion} ${100 - phaseLengthPortion}`;
+    };
+
+    const getDayPortion = () => {
+      let percentage = (currentDay.value / cycleLength.value) * 100
+      return `${percentage} ${100 - percentage}`;
     };
 
     const calculateLengthPortion = (calculatedLengths) => {
@@ -181,6 +185,7 @@ export default {
       lateLutealLengthPortion,
       mensOffset,
       getPhasePortion,
+      getDayPortion,
       follicularOffset,
       ovulationOffset,
       earlyLutealOffset,
