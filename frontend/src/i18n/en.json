@@ -631,7 +631,8 @@
   },
   "training-recommendation": {
     "title": "Training Recommendation",
-    "description": "Based on your cycle and current state, we recommend the following training sessions:"
+    "description": "Based on your cycle and current state, we recommend the following training sessions:",
+    "no-data": "You have not yet completed an assessment for this day. Please do so in order to receive recommendations."
   },
   "symptoms": "Symptoms",
   "trs": "Training Readiness Score",
@@ -744,7 +745,8 @@
     "email": "Email",
     "password": "Password",
     "change-password": "Change Password",
-    "password-forgotten": "Forgot your password?"
+    "password-forgotten": "Forgot your password?",
+    "login-error": "Login failed. Please check your email and password."
   },
   "language": {
     "title": "Language",

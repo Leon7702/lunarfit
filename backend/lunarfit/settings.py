@@ -34,16 +34,22 @@ SECRET_KEY = os.environ.get(
 # env variables are strings
 DEBUG = os.environ.get("DJANGO_DEBUG", "").lower() != "false"
 
-# TODO: Configure for Production (DEBUG=FALSE)
-ALLOWED_HOSTS = []
-
-# TODO: Configure for Production
-CORS_ALLOWED_ORIGINS = [
-    "http://localhost:9000",
+ALLOWED_HOSTS = [
+    "localhost",
+    "lunarfit.ac0.de",
 ]
 
-# TODO: Enable when HTTPS is configured
-# CSRF_COOKIE_SECURE = True
+CORS_ALLOWED_ORIGINS = [
+    "http://localhost:9000",
+    "https://lunarfit.ac0.de",
+]
+
+CSRF_TRUSTED_ORIGINS = [
+    "http://localhost:9000",
+    "https://lunarfit.ac0.de",
+]
+
+CSRF_COOKIE_SECURE = True
 
 # Application definition
 
@@ -112,6 +118,18 @@ WSGI_APPLICATION = "lunarfit.wsgi.application"
 # Database
 # https://docs.djangoproject.com/en/5.0/ref/settings/#databases
 
+# use container in dev environment
+DATABASES = {
+    "default": {
+        "ENGINE": "django.db.backends.postgresql",
+        "NAME": "postgres",
+        "USER": "postgres",
+        "PASSWORD": "lunarfit",
+        "HOST": "db",
+        "PORT": 5432,
+    }
+}
+
 # DATABASE_URL in the form of:
 # postgres://USER:PASSWORD@HOST:PORT/NAME or
 # postgresql://USER:PASSWORD@HOST:PORT/NAME
@@ -120,18 +138,6 @@ if "DATABASE_URL" in os.environ:
         conn_max_age=500,
         conn_health_checks=True,
     )
-else:
-    # use container in dev environment
-    DATABASES = {
-        "default": {
-            "ENGINE": "django.db.backends.postgresql",
-            "NAME": "postgres",
-            "USER": "postgres",
-            "PASSWORD": "lunarfit",
-            "HOST": "db",
-            "PORT": 5432,
-        }
-    }
 
 AUTH_USER_MODEL = "users.User"
 

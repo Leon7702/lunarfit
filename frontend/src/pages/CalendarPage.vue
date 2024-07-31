@@ -64,9 +64,11 @@
             <q-spinner color="primary" size="2em" />
           </div>
           <div v-else>
-            <div class="cycle-phase-text">{{ $t(phaseTextKey) }}</div>
-            <div class="training-recommendation-text">{{ $t(trainingTextKey + '.description') }}</div>
-            <ul class="training-recommendation-list">
+            <div v-if="showFutureRecommendation" class="cycle-phase-text">{{ $t(phaseTextKey) }}</div>
+            <div v-else-if="trainingReadinessScore > 0" class="training-recommendation-text">{{ $t(trainingTextKey +
+              '.description') }}</div>
+            <div v-else class="training-recommendation-text">{{ $t('training-recommendation.no-data') }}</div>
+            <ul v-if="!showFutureRecommendation && trainingReadinessScore > 0" class="training-recommendation-list">
               <li>{{ $t(trainingTextKey + '.recommendations[0]') }}</li>
               <li>{{ $t(trainingTextKey + '.recommendations[1]') }}</li>
               <li>{{ $t(trainingTextKey + '.recommendations[2]') }}</li>
@@ -178,6 +180,7 @@ export default {
       cycleLength: null,
       currentDayData: null,
       noteContent: '',
+      showFutureRecommendation: false,
     };
   },
   computed: {
@@ -246,7 +249,7 @@ export default {
         }
 
         this.dayColors = this.processCycles(cycles);
-        console.log('Day Colors:', this.dayColors);
+        this.addFutureCycles(cycles);
       } catch (error) {
         console.error('Error fetching data:', error);
       }
@@ -382,7 +385,78 @@ export default {
 
       return dayColors;
     },
-    getPhaseColorClass(phaseNumber) {
+    addFutureCycles(cycles) {
+      const lastCycle = cycles[cycles.length - 1];
+      const avgCycleLength = this.calculateAverageCycleLength(cycles);
+      const futureCycles = this.calculateFutureCycles(lastCycle, avgCycleLength, 3);
+
+      futureCycles.forEach(cycle => {
+        cycle.phases.forEach(phase => {
+          if (phase.phase_number == 0) { // Only add future phases that are not follicular
+            const start = new Date(phase.start);
+            const end = new Date(phase.end);
+            const phaseColorClass = this.getPhaseColorClass(phase.phase_number, true);
+
+            for (let d = new Date(start); d <= end; d.setDate(d.getDate() + 1)) {
+              const date = new Date(d);
+              const day = date.getDate();
+              const month = date.getMonth();
+              const year = date.getFullYear();
+
+              if (year === this.date.year && month === this.date.month) {
+                this.dayColors[day] = phaseColorClass;
+              } else if (year === this.date.year && month === this.date.month - 1) {
+                this.dayColors[`prev_${day}`] = phaseColorClass;
+              } else if (year === this.date.year && month === this.date.month + 1) {
+                this.dayColors[`next_${day}`] = phaseColorClass;
+              }
+            }
+          }
+        });
+      });
+    },
+    calculateAverageCycleLength(cycles) {
+      const totalLength = cycles.reduce((acc, cycle) => {
+        return acc + (new Date(cycle.end) - new Date(cycle.start)) / (1000 * 60 * 60 * 24) + 1;
+      }, 0);
+      return Math.round(totalLength / cycles.length);
+    },
+    calculateFutureCycles(lastCycle, avgCycleLength, months) {
+      const futureCycles = [];
+      let startDate = new Date(lastCycle.end);
+      startDate.setDate(startDate.getDate() + 1);
+
+      for (let i = 0; i < months; i++) {
+        const phases = lastCycle.phases.map(phase => {
+          const start = new Date(startDate);
+          startDate.setDate(startDate.getDate() + phase.avg_duration - 1);
+          const end = new Date(startDate);
+          startDate.setDate(startDate.getDate() + 1);
+          return {
+            ...phase,
+            start: start.toISOString().split('T')[0],
+            end: end.toISOString().split('T')[0],
+          };
+        });
+
+        futureCycles.push({
+          ...lastCycle,
+          phases,
+          start: phases[0].start,
+          end: phases[phases.length - 1].end,
+        });
+
+        startDate = new Date(phases[phases.length - 1].end);
+        startDate.setDate(startDate.getDate() + 1);
+      }
+
+      return futureCycles;
+    },
+    getPhaseColorClass(phaseNumber, isFuture = false) {
+      if (isFuture) {
+        if (phaseNumber === 0) return 'prediction';
+        return '';
+      }
       switch (phaseNumber) {
         case 0:
           return 'period';
@@ -476,6 +550,8 @@ export default {
   }
 };
 </script>
+
+
 
 <style scoped>
 @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;600&display=swap');
