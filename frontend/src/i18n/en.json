@@ -790,14 +790,15 @@
     "positiveWeight": "Weight must be a positive number",
     "realisticWeight": "Weight must be between 20 and 200 kg",
     "lastMenstruationFuture": "The date cannot be in the future",
-    "lastMenstruationTooOld": "The date cannot be older than 6 months",
+    "lastMenstruationTooOld": "The date cannot be older than 3 months",
     "positiveValue": "Value must be positive",
     "realisticMensDuration": "The menstruation duration is unrealistic",
     "realisticCycleDuration": "The cycle duration is unrealistic",
     "realisticDay": "Value must be a whole number",
     "pleaseSelect": "Please select an option",
     "realisticFrequency": "Value must be between 0 and 50 days.",
-    "realisticDuration": "Duration must be a realistic value in minutes."
+    "realisticDuration": "Duration must be a realistic value in minutes.",
+    "realisticTemperature": "Enter a realistic temperature value"
   },
   "registration": {
     "success": "Registration successful!",
