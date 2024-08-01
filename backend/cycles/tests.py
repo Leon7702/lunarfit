@@ -392,14 +392,26 @@ class MenstrualCycleTest(APITestCase):
     def test_cycle_mens_over_for_new_user(self):
         self.client.force_authenticate(user=self.user6)
 
-        Onboarding.objects.create(
-            user=self.user6,
-            workout_frequency=3,
-            workout_duration=90,
-            workout_intensity=5,
-            cycle_duration=26,
-            menstruation_duration=5
-        )
+        # Onboarding.objects.create(
+        #     user=self.user6,
+        #     workout_frequency=3,
+        #     workout_duration=90,
+        #     workout_intensity=5,
+        #     cycle_duration=26,
+        #     menstruation_duration=5
+        # )
+
+        response = self.client.post('/api/users/onboarding/', {
+            'user': self.user6.id,
+            'timestamp': date(2024, 8, 1),
+            'workout_frequency': 4,
+            'workout_duration': 90,
+            'workout_intensity' : 7,
+            'cycle_duration' : 30,
+            'menstruation_duration' : 5
+        })
+
+        assert response.status_code == status.HTTP_201_CREATED       
 
         menstrual_cycle = MenstrualCycle.objects.create(
             user=self.user6,
