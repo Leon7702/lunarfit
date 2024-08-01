@@ -572,7 +572,7 @@
   },
   "logTrainingStrainPre": {
     "title": "Training Strain",
-    "description1": "Did you train in the last 24 hours?",
+    "description1": "Did you train yesterday?",
     "trainingOptions": {
       "prompt": "Which sport/activity did you do?",
       "options": {
