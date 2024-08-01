@@ -40,7 +40,7 @@
 import CheckboxInput from 'components/CheckboxInput.vue';
 import StandardButton from 'components/StandardButton.vue';
 import { ref, onMounted } from 'vue';
-import { useRouter } from 'vue-router';
+import { useRouter } from 'vue-router';  // Importieren Sie useRouter
 import { useI18n } from 'vue-i18n';
 import { api } from 'src/boot/axios';
 import { useAuthStore } from 'src/stores/auth';
@@ -52,7 +52,7 @@ export default {
   },
   setup() {
     const { t } = useI18n();
-    const router = useRouter();
+    const router = useRouter();  // Router-Instanz erstellen
     const authStore = useAuthStore();
 
     const temperature = ref(null);
@@ -151,8 +151,8 @@ export default {
           });
           currentEntryId.value = response.data.id;
         }
+        router.push('/log-cycle');
 
-       
       } catch (error) {
         console.error('Fehler beim Speichern der Zyklusdaten', error);
 
@@ -186,8 +186,6 @@ export default {
   }
 };
 </script>
-
-
 
 <style scoped>
 
