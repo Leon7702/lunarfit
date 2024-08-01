@@ -794,7 +794,8 @@
     "positiveValue": "Value must be positive",
     "realisticMensDuration": "The menstruation duration is unrealistic",
     "realisticCycleDuration": "The cycle duration is unrealistic",
-    "realisticDay": "Value must be a whole number"
+    "realisticDay": "Value must be a whole number",
+    "pleaseSelect": "Please select an option"
   },
   "registration": {
     "success": "Registration successful!",

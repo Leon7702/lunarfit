@@ -828,7 +828,8 @@
     "positiveValue": "Wert muss positiv sein",
     "realisticMensDuration": "Die Menstruationsdauer ist unrealistisch",
     "realisticCycleDuration": "Die Zyklusdauer ist unrealistisch",
-    "realisticDay": "Wert muss eine ganze Zahl sein"
+    "realisticDay": "Wert muss eine ganze Zahl sein",
+    "pleaseSelect": "Bitte wähle eine Option"
   },
   "registration": {
       "success": "Anmeldung erfolgreich!",
