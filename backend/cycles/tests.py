@@ -1,11 +1,17 @@
-from django.test import TestCase
-from .models import User, Type, TrackingData, MenstrualCycle, Phase, Onboarding
-from rest_framework.test import APITestCase
 from datetime import date
+
 from rest_framework import status
+from rest_framework.test import APITestCase
+
+from .models import User, Type, TrackingData, MenstrualCycle, Phase, Onboarding
 
 
 class TrackingDataTest(APITestCase):
+
+    fixtures = ["contraceptives",
+                "medication_data",
+                "type_data"]
+
     def setUp(self):
         self.user0 = User.objects.create_user(email='user0@email.com', password='user0')
         self.user1 = User.objects.create_user(email='user1@email.com', password='user1')
@@ -107,6 +113,11 @@ class TrackingDataTest(APITestCase):
 
 
 class MenstrualCycleTest(APITestCase):
+
+    fixtures = ["contraceptives",
+                "medication_data",
+                "type_data"]
+
     def setUp(self):
         self.user0 = User.objects.create_user(email='user0@email.com', password='user0')
         self.user1 = User.objects.create_user(email='user1@email.com', password='user1')
@@ -115,10 +126,11 @@ class MenstrualCycleTest(APITestCase):
         self.user4 = User.objects.create_user(email='user4@email.com', password='user4')
         self.user5 = User.objects.create_user(email='user5@email.com', password='user5')
 
-        self.type1 = Type.objects.create(name='Menstruation')
-        self.type2 = Type.objects.create(name='temperature')
-        self.type3 = Type.objects.create(name='cervix')
-        self.type6 = Type.objects.create(name='ovulation_test')
+
+        self.type1 = Type.objects.get(name='menstruation')
+        self.type2 = Type.objects.get(name='temperature')
+        self.type3 = Type.objects.get(name='cervix')
+        self.type6 = Type.objects.get(name='ovulation_test')
 
     def test_new_cycle_if_entry_type1_and_no_mens_prev_day(self):
         """Create new cycle if user(s) 
