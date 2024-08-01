@@ -122,7 +122,7 @@ export default {
     ];
 
     const birthdateRules = [
-      val => !!val || t('validation.requiredBirthdate'),
+      // val => !!val || t('validation.requiredBirthdate'),
       val => new Date(val) <= new Date() || t('validation.birthdateFuture'),
       val => new Date(val).getFullYear() > new Date().getFullYear() - 120 || t('validation.birthdateUnrealistic')
     ];

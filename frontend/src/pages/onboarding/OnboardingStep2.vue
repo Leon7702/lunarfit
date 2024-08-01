@@ -82,20 +82,22 @@ export default {
     const lastMenstruationRules = [
       val => !!val || t('validation.required'),
       val => new Date(val) <= new Date() || t('validation.lastMenstruationFuture'),
-      val => new Date(val) >= new Date(new Date().setMonth(new Date().getMonth() - 6)) || t('validation.lastMenstruationTooOld')
+      val => new Date(val) >= new Date(new Date().setMonth(new Date().getMonth() - 3)) || t('validation.lastMenstruationTooOld')
     ];
 
     const menstruationDurationRules = [
       val => !!val || t('validation.required'),
       val => val > 0 || t('validation.positiveValue'),
       val => val >= 0 && val <= 20|| t('validation.realisticMensDuration'),
+      val => Number.isInteger(Number(val)) || t('validation.realisticDay'),
       // val => Number.isInteger(val) || t('validation.realisticDay'),
     ];
 
     const cycleDurationRules = [
       val => !!val || t('validation.required'),
       val => val > 0 || t('validation.positiveValue'),
-      val => val >= 20 && val <= 40 || t('validation.realisticCycleDuration')
+      val => val >= 20 && val <= 40 || t('validation.realisticCycleDuration'),
+      val => Number.isInteger(Number(val)) || t('validation.realisticDay'),
       // val => Number.isInteger(val) || t('validation.realisticDay'),
     ];
 

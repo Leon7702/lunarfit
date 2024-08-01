@@ -66,13 +66,15 @@ export default {
 
     const workoutFrequencyRules = [
       val => !!val || t('validation.required'),
-      val => val >= 0 && val <= 50 || t('validation.realisticFrequency')
+      val => val >= 0 && val <= 50 || t('validation.realisticFrequency'),
+      val => Number.isInteger(Number(val)) || t('validation.realisticDay'),
     ];
 
     const workoutDurationRules = [
       val => !!val || t('validation.required'),
       val => val >= 0 || t('validation.positiveValue'),
-      val => val <= 1440 || t('validation.realisticDuration') // 1440 minutes = 24 hours
+      val => val <= 1440 || t('validation.realisticDuration'), // 1440 minutes = 24 hours
+      val => Number.isInteger(Number(val)) || t('validation.realisticDay')
     ];
 
     const validateInput = () => {
