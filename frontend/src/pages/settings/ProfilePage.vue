@@ -8,40 +8,89 @@
       <div class="linie"></div>
 
       <q-list>
-        <q-input filled v-model="profile.first_name" type="text" input-class="text-right" class="q-pt-xl q-mb-sm">
+        <q-input
+          ref="firstNameRef"
+          filled
+          v-model="profile.first_name"
+          type="text"
+          input-class="text-right"
+          class="q-pt-lg q-mb-sm"
+          :rules="nameRules"
+        >
           <template v-slot:prepend>
             <div class="text-color">{{ $t('profile.firstName') }}</div>
           </template>
         </q-input>
-        <q-input filled v-model="profile.last_name" type="text" input-class="text-right" class="q-mb-sm">
+        <q-input
+          ref="lastNameRef"
+          filled
+          v-model="profile.last_name"
+          type="text"
+          input-class="text-right"
+          class="q-mb-sm"
+          :rules="nameRules"
+        >
           <template v-slot:prepend>
             <div class="text-color">{{ $t('profile.lastName') }}</div>
           </template>
         </q-input>
-        <q-input filled v-model="profile.birthdate" type="date" input-class="text-right" class="q-mb-sm">
+        <q-input
+          ref="birthdateRef"
+          filled
+          v-model="profile.birthdate"
+          type="date"
+          input-class="text-right"
+          class="q-mb-sm"
+          :rules="birthdateRules"
+        >
           <template v-slot:prepend>
             <div class="text-color">{{ $t('profile.birthdate') }}</div>
           </template>
         </q-input>
-        <q-input filled v-model="profile.body_height" type="number" input-class="text-right" class="q-mb-sm">
+        <q-input
+          ref="heightRef"
+          filled
+          v-model="profile.body_height"
+          type="number"
+          input-class="text-right"
+          class="q-mb-sm"
+          :rules="heightRules"
+        >
           <template v-slot:prepend>
             <div class="text-color">{{ $t('profile.height') }}</div>
           </template>
         </q-input>
-        <q-input filled v-model="profile.body_weight" type="number" input-class="text-right" class="q-mb-sm">
+        <q-input
+          ref="weightRef"
+          filled
+          v-model="profile.body_weight"
+          type="number"
+          input-class="text-right"
+          class="q-mb-sm"
+          :rules="weightRules"
+        >
           <template v-slot:prepend>
             <div class="text-color">{{ $t('profile.weight') }}</div>
           </template>
         </q-input>
-        <q-select clearable filled v-model="profile.contraceptive" :options="contraceptionOptions"
-          input-class="text-right" class="q-mb-sm" emit-value map-options>
+        <q-select
+          ref="contraceptiveRef"
+          clearable
+          filled
+          v-model="profile.contraceptive"
+          :options="contraceptionOptions"
+          input-class="text-right"
+          class="q-mb-sm"
+          emit-value
+          map-options
+        >
           <template v-slot:prepend>
             <div class="text-color">{{ $t('profile.contraception') }}</div>
           </template>
         </q-select>
       </q-list>
       <div class="button-container">
-        <StandardButton :label="$t('save')" @click="saveProfile" />
+        <StandardButton :label="$t('save')" @click="saveProfile"/>
       </div>
     </div>
   </div>
@@ -49,6 +98,8 @@
 
 <script>
 import { ref, watch, onMounted } from 'vue';
+import { useRouter } from 'vue-router';
+import { useI18n } from 'vue-i18n';
 import { api } from 'src/boot/axios';
 import { useAuthStore } from 'src/stores/auth';
 import StandardButton from 'components/StandardButton.vue';
@@ -59,19 +110,49 @@ export default {
     StandardButton
   },
   setup() {
+    const { t } = useI18n();
     const authStore = useAuthStore();
+    const router = useRouter();
 
     const profile = ref({
       user: null,
-      // onboarding_finished: false,
       first_name: '',
       last_name: '',
       birthdate: null,
       body_height: null,
       body_weight: null,
-      // language: 'de',
       contraceptive: null
     });
+
+    const firstNameRef = ref(null);
+    const lastNameRef = ref(null);
+    const birthdateRef = ref(null);
+    const heightRef = ref(null);
+    const weightRef = ref(null);
+    const contraceptiveRef = ref(null);
+
+    const nameRules = [
+      val => !!val || t('validation.required'),
+      val => /^[\p{L}\p{M}]+(?:[-\s][\p{L}\p{M}]+)*$/u.test(val) || t('validation.onlyLetters')
+    ];
+
+    const birthdateRules = [
+      val => !!val || t('validation.requiredBirthdate'),
+      val => new Date(val) <= new Date() || t('validation.birthdateFuture'),
+      val => new Date(val).getFullYear() > new Date().getFullYear() - 120 || t('validation.birthdateUnrealistic')
+    ];
+
+    const heightRules = [
+      val => !!val || t('validation.requiredHeight'),
+      val => val > 0 || t('validation.positiveHeight'),
+      val => val >= 100 && val <= 250 || t('validation.realisticHeight')
+    ];
+
+    const weightRules = [
+      val => !!val || t('validation.requiredWeight'),
+      val => val > 0 || t('validation.positiveWeight'),
+      val => val >= 20 && val <= 200 || t('validation.realisticWeight')
+    ];
 
     const fetchProfile = async () => {
       try {
@@ -83,11 +164,32 @@ export default {
     };
 
     const saveProfile = async () => {
+      firstNameRef.value.validate();
+      lastNameRef.value.validate();
+      birthdateRef.value.validate();
+      heightRef.value.validate();
+      weightRef.value.validate();
+      contraceptiveRef.value.validate();
+
+      if (
+        firstNameRef.value.hasError ||
+        lastNameRef.value.hasError ||
+        birthdateRef.value.hasError ||
+        heightRef.value.hasError ||
+        weightRef.value.hasError ||
+        contraceptiveRef.value.hasError
+      ) {
+        alert(t('validation.fixErrors'));
+        return;
+      }
+
       try {
         await api.patch(`/users/profile/${authStore.userId}/`, profile.value);
-        alert('Profile updated successfully');
+        alert(t('profile.updateSuccess'));
+        router.push({ name: 'Settings' });
       } catch (error) {
         console.error('Failed to update profile:', error);
+        alert(t('profile.updateFailure'));
       }
     };
 
@@ -102,8 +204,18 @@ export default {
     });
 
     return {
+      t,
       profile,
-      fetchProfile,
+      firstNameRef,
+      lastNameRef,
+      birthdateRef,
+      heightRef,
+      weightRef,
+      contraceptiveRef,
+      nameRules,
+      birthdateRules,
+      heightRules,
+      weightRules,
       saveProfile
     };
   },
@@ -159,6 +271,5 @@ export default {
 .button-container {
   display: flex;
   justify-content: center;
-  padding: 20px;
 }
 </style>
