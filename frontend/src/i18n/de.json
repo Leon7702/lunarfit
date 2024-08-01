@@ -829,7 +829,9 @@
     "realisticMensDuration": "Die Menstruationsdauer ist unrealistisch",
     "realisticCycleDuration": "Die Zyklusdauer ist unrealistisch",
     "realisticDay": "Wert muss eine ganze Zahl sein",
-    "pleaseSelect": "Bitte wähle eine Option"
+    "pleaseSelect": "Bitte wähle eine Option",
+    "realisticFrequency": "Wert muss zwischen 0 und 50 Tagen liegen",
+    "realisticDuration": "Dauer muss ein realistischer Wert in Minuten sein"
   },
   "registration": {
       "success": "Anmeldung erfolgreich!",
