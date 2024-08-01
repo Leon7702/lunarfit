@@ -1,7 +1,7 @@
 #!/usr/bin/env sh
 
 # check for new python deps
-# python3.9 -m pip install -r requirements.txt
+python3.9 -m pip install -r requirements.txt
 
 # run database migrations
 python3.9 manage.py migrate --no-input
