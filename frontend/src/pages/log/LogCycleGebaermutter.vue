@@ -32,6 +32,7 @@
 
 <script>
 import { ref, computed, onMounted, watch } from 'vue';
+import { useRouter } from 'vue-router';  // Importieren Sie useRouter
 import { useAuthStore } from 'src/stores/auth';
 import { useI18n } from 'vue-i18n';
 import { api } from 'src/boot/axios';
@@ -43,6 +44,7 @@ export default {
   },
   setup() {
     const { t, locale } = useI18n();
+    const router = useRouter();  // Router-Instanz erstellen
     const authStore = useAuthStore();
     const iconItems = ref([]);
     const selectedIndex = ref(null);
@@ -161,6 +163,9 @@ export default {
           });
           currentEntryId.value = response.data.id;
         }
+
+        router.push('/log-cycle');
+
       } catch (error) {
         console.error('Fehler beim Speichern der Zyklusdaten', error);
 
@@ -197,8 +202,6 @@ export default {
   }
 };
 </script>
-
-
 
 <style scoped>
 

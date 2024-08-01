@@ -33,6 +33,7 @@
 
 <script>
 import { ref, watch, computed, onMounted } from 'vue';
+import { useRouter } from 'vue-router'; 
 import { useAuthStore } from 'src/stores/auth';
 import { useI18n } from 'vue-i18n';
 import { api } from 'src/boot/axios';
@@ -44,6 +45,7 @@ export default {
   },
   setup() {
     const { t, locale } = useI18n();
+    const router = useRouter();  
     const authStore = useAuthStore();
     const iconItems = ref([]);
     const selectedIndex = ref(null);
@@ -59,10 +61,10 @@ export default {
 
     const updateIconItems = () => {
       iconItems.value = [
-        { icon: localizedIcons.value.none},
+        { icon: localizedIcons.value.none },
         { icon: localizedIcons.value.dry},
         { icon: localizedIcons.value.creamy },
-        { icon: localizedIcons.value.sticky},
+        { icon: localizedIcons.value.sticky },
         { icon: localizedIcons.value.protein }
       ];
     };
@@ -174,6 +176,9 @@ export default {
           });
           currentEntryId.value = response.data.id;
         }
+
+        router.push('/log-cycle');
+
       } catch (error) {
         console.error('Fehler beim Speichern der Zyklusdaten', error);
 
@@ -210,7 +215,6 @@ export default {
   }
 };
 </script>
-
 
 <style scoped>
 .linie {

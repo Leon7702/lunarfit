@@ -6,9 +6,7 @@
         <div class="title">{{ $t('logCycle.mens.title') }}</div>
       </div>
       <div class="linie"></div>
-      <p class="description">
-        {{ $t('logCycle.mens.description') }}
-      </p>
+      <p class="description">{{ $t('logCycle.mens.description') }}</p>
       <div class="icon-grid">
         <div
           class="icon-item"
@@ -32,18 +30,18 @@
 </template>
 
 <script>
-import { ref, watch, computed, onMounted } from 'vue';
+import { ref, computed, onMounted, watch } from 'vue';
+import { useRouter } from 'vue-router';  // Importieren Sie useRouter
 import { useAuthStore } from 'src/stores/auth';
 import { useI18n } from 'vue-i18n'; 
 import { api } from 'src/boot/axios';
 import StandardButton from 'components/StandardButton.vue';
 
 export default {
-  components: {
-    StandardButton
-  },
+  components: { StandardButton },
   setup() {
     const { t, locale } = useI18n();
+    const router = useRouter();  // Router-Instanz erstellen
     const authStore = useAuthStore();
     const iconItems = ref([]);
     const selectedIndex = ref(null);
@@ -65,9 +63,7 @@ export default {
       ];
     };
 
-    const goBack = () => {
-      window.history.back();
-    };
+    const goBack = () => window.history.back();
 
     const handleIconClick = async (index) => {
       if (selectedIndex.value === index) {
@@ -80,17 +76,12 @@ export default {
     };
 
     const deleteCurrentEntry = async () => {
-      if (currentEntryId.value === null) {
-        return;
-      }
+      if (!currentEntryId.value) return;
 
       try {
         await authStore.refreshAccessToken();
         await api.delete(`/cycles/log/${currentEntryId.value}/`, {
-          headers: {
-            'Content-Type': 'application/json',
-            'Authorization': `Bearer ${authStore.accessToken}`
-          }
+          headers: { 'Content-Type': 'application/json', 'Authorization': `Bearer ${authStore.accessToken}` }
         });
       } catch (error) {
         console.error('Fehler beim Löschen des Zyklusdatensatzes', error);
@@ -103,27 +94,16 @@ export default {
       try {
         await authStore.refreshAccessToken();
         const response = await api.get('/cycles/log/', {
-          headers: {
-            'Content-Type': 'application/json',
-            'Authorization': `Bearer ${authStore.accessToken}`
-          },
-          params: {
-            type: 1,
-            date: today
-          }
+          headers: { 'Content-Type': 'application/json', 'Authorization': `Bearer ${authStore.accessToken}` },
+          params: { type: 1, date: today }
         });
 
         if (response.data.results.length > 0) {
           const entry = response.data.results[0];
           currentEntryId.value = entry.id;
-
           const entryResponse = await api.get(`/cycles/log/${currentEntryId.value}/`, {
-            headers: {
-              'Content-Type': 'application/json',
-              'Authorization': `Bearer ${authStore.accessToken}`
-            }
+            headers: { 'Content-Type': 'application/json', 'Authorization': `Bearer ${authStore.accessToken}` }
           });
-
           selectedIndex.value = parseInt(entryResponse.data.value);
         } else {
           currentEntryId.value = null;
@@ -135,9 +115,7 @@ export default {
     };
 
     const saveCycleData = async () => {
-      if (selectedIndex.value === null) {
-        return;
-      }
+      if (selectedIndex.value === null) return;
 
       const requestBody = {
         date: new Date().toISOString().split('T')[0],
@@ -150,36 +128,20 @@ export default {
 
         if (currentEntryId.value) {
           await api.patch(`/cycles/log/${currentEntryId.value}/`, requestBody, {
-            headers: {
-              'Content-Type': 'application/json',
-              'Authorization': `Bearer ${authStore.accessToken}`
-            }
+            headers: { 'Content-Type': 'application/json', 'Authorization': `Bearer ${authStore.accessToken}` }
           });
         } else {
           const response = await api.post('/cycles/log/', requestBody, {
-            headers: {
-              'Content-Type': 'application/json',
-              'Authorization': `Bearer ${authStore.accessToken}`
-            }
+            headers: { 'Content-Type': 'application/json', 'Authorization': `Bearer ${authStore.accessToken}` }
           });
           currentEntryId.value = response.data.id;
         }
+
+        router.push('/log-cycle');  
+
       } catch (error) {
         console.error('Fehler beim Speichern der Zyklusdaten', error);
-
-        if (error.response) {
-          if (error.response.status === 400) {
-            alert('Fehlerhafte Anfrage. Bitte überprüfen Sie Ihre Eingaben.');
-          } else if (error.response.status === 401) {
-            alert('Nicht autorisiert. Bitte melden Sie sich erneut an.');
-          } else {
-            alert('Fehler beim Speichern der Zyklusdaten.');
-          }
-        } else if (error.request) {
-          alert('Keine Antwort vom Server. Bitte überprüfen Sie Ihre Internetverbindung.');
-        } else {
-          alert('Ein unbekannter Fehler ist aufgetreten.');
-        }
+        alert('Fehler beim Speichern der Zyklusdaten.');
       }
     };
 
@@ -200,6 +162,7 @@ export default {
   }
 };
 </script>
+
 
 <style scoped>
 .icon-item {

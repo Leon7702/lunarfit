@@ -90,7 +90,7 @@ export default {
         });
 
         router.push('/log-cycle');
-        router.push('/log');
+      
       } catch (error) {
         console.error('Fehler beim Speichern des Medikaments', error);
         alert("Fehler beim Speichern des Medikaments!");
