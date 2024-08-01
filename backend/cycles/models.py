@@ -92,7 +92,8 @@ def create_or_update_menstrual_cycle(sender, instance, created, **kwargs):
             previous_days = [start_date - timezone.timedelta(days=i) for i in range(1, 4)]           
             previous_day_entries = TrackingData.objects.filter(user=user, type=1, date__in=previous_days).exists()
 
-            onboarding = Onboarding.objects.get(user=user)
+            if Onboarding.objects.filter(user=user).exists():
+                onboarding = Onboarding.objects.get(user=user)
 
             if latest_cycle is None or (start_date - latest_cycle.start).days >= 14 and not previous_day_entries:
                 latest_cycles = MenstrualCycle.objects.filter(user=user).order_by('-start')[:6]
