@@ -589,7 +589,7 @@
   },
   "logTrainingStrainPre": {
     "title": "Trainingsbelastung",
-    "description1": "Hast du in den letzten 24 Stunden trainiert?",
+    "description1": "Hast du gestern trainiert?",
     "trainingOptions": {
       "prompt": "Welche Sportart/Aktivität hast du durchgeführt?",
       "options": {
