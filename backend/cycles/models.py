@@ -90,9 +90,9 @@ def create_or_update_menstrual_cycle(sender, instance, created, **kwargs):
         if entry_type.id == 1:
             latest_cycle = MenstrualCycle.objects.filter(user=user).order_by('-start').first()        
             previous_days = [start_date - timezone.timedelta(days=i) for i in range(1, 4)]           
-            #previous_day = start_date - timezone.timedelta(days=1)
-            #previous_day_entry = TrackingData.objects.filter(user=user, type=1, date=previous_day).exists()
             previous_day_entries = TrackingData.objects.filter(user=user, type=1, date__in=previous_days).exists()
+
+            onboarding = Onboarding.objects.get(user=user)
 
             if latest_cycle is None or (start_date - latest_cycle.start).days >= 14 and not previous_day_entries:
                 latest_cycles = MenstrualCycle.objects.filter(user=user).order_by('-start')[:6]
@@ -172,7 +172,8 @@ def create_or_update_menstrual_cycle(sender, instance, created, **kwargs):
                     current_start = current_end + timezone.timedelta(days=1)
 
             #If mens extends
-            elif previous_day_entries and (start_date - latest_cycle.start).days <= 14:
+
+            elif (previous_day_entries and (start_date - latest_cycle.start).days <= 14) or (start_date - onboarding.timestamp).days <= 12:
                 phase_0 = Phase.objects.get(cycle_id=latest_cycle, phase_number=0)
 
                 phase_0_end = phase_0.end
@@ -183,11 +184,9 @@ def create_or_update_menstrual_cycle(sender, instance, created, **kwargs):
                 phase_0 = Phase.objects.get(cycle_id=latest_cycle, phase_number=0)
                 
                 if phase_0 and phase_0.end < start_date:
-                   
                     for phase in latest_cycle.phases.all():
                         if not phase.phase_number == 0:
                             phase.start += time_delta
-                            
                         phase.end += time_delta
                         phase.save()
 

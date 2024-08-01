@@ -125,7 +125,7 @@ class MenstrualCycleTest(APITestCase):
         self.user3 = User.objects.create_user(email='user3@email.com', password='user3')
         self.user4 = User.objects.create_user(email='user4@email.com', password='user4')
         self.user5 = User.objects.create_user(email='user5@email.com', password='user5')
-
+        self.user6 = User.objects.create_user(email='user6@email.com', password='user6')
 
         self.type1 = Type.objects.get(name='menstruation')
         self.type2 = Type.objects.get(name='temperature')
@@ -333,13 +333,6 @@ class MenstrualCycleTest(APITestCase):
         Phase.objects.create(cycle_id=menstrual_cycle, phase_number=2, start=date(2024, 8, 9),  end=date(2024, 8, 9),  avg_duration = 1)
         Phase.objects.create(cycle_id=menstrual_cycle, phase_number=3, start=date(2024, 8, 10), end=date(2024, 8, 18), avg_duration = 9)
         Phase.objects.create(cycle_id=menstrual_cycle, phase_number=4, start=date(2024, 8, 19), end=date(2024, 8, 23), avg_duration = 5)
-    
-        # self.client.post('/api/cycles/log/', {
-        #     'user': self.user2.id,
-        #     'type': self.type1.id,
-        #     'date': date(2024, 7, 31),
-        #     'value': 2.0
-        # })
 
         response = self.client.post('/api/cycles/log/', {
             'user': self.user2.id,
@@ -349,16 +342,6 @@ class MenstrualCycleTest(APITestCase):
         })
 
         assert response.status_code == status.HTTP_201_CREATED
-
-        # assert response.status_code == status.HTTP_201_CREATED
-        # assert TrackingData.objects.filter(user=self.user2, date=date(2024, 8, 6), type=self.type6, value=0).exists()
-
-        # TrackingData.objects.create(
-        #     user=self.user2,
-        #     type=self.type6,
-        #     date=date(2024, 8, 6),
-        #     value=0.0
-        #     )
 
         menstrual_cycle = MenstrualCycle.objects.get(user=self.user2)
 
@@ -404,3 +387,40 @@ class MenstrualCycleTest(APITestCase):
         phase_4 = Phase.objects.get(cycle_id=menstrual_cycle.id, phase_number=4)
         assert phase_4.start == date(2024, 5, 19)
         assert phase_4.end == date(2024, 5, 23)
+
+
+    def test_cycle_mens_over_for_new_user(self):
+        self.client.force_authenticate(user=self.user6)
+
+        Onboarding.objects.create(
+            user=self.user6,
+            workout_frequency=3,
+            workout_duration=90,
+            workout_intensity=5,
+            cycle_duration=26,
+            menstruation_duration=5
+        )
+
+        menstrual_cycle = MenstrualCycle.objects.create(
+            user=self.user6,
+            start=date(2024, 7, 27),
+            end=date(2024, 8, 23)
+        )
+
+        Phase.objects.create(cycle_id=menstrual_cycle, phase_number=0, start=date(2024, 7, 27), end=date(2024, 7, 31), avg_duration = 5)
+        Phase.objects.create(cycle_id=menstrual_cycle, phase_number=1, start=date(2024, 8, 1),  end=date(2024, 8, 8),  avg_duration = 8)
+        Phase.objects.create(cycle_id=menstrual_cycle, phase_number=2, start=date(2024, 8, 9),  end=date(2024, 8, 9),  avg_duration = 1)
+        Phase.objects.create(cycle_id=menstrual_cycle, phase_number=3, start=date(2024, 8, 10), end=date(2024, 8, 18), avg_duration = 9)
+        Phase.objects.create(cycle_id=menstrual_cycle, phase_number=4, start=date(2024, 8, 19), end=date(2024, 8, 23), avg_duration = 5)
+
+        response = self.client.post('/api/cycles/log/', {
+            'user': self.user6.id,
+            'type': self.type1.id,
+            'date': date(2024, 8, 1),
+            'value': 2.0
+        })
+
+        assert response.status_code == status.HTTP_201_CREATED       
+
+        phase_0 = Phase.objects.get(cycle_id=menstrual_cycle.id, phase_number=0)
+        assert phase_0.end == date(2024, 8, 1)
