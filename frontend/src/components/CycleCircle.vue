@@ -77,7 +77,7 @@
         <!-- Conditionally display messages -->
         <text v-if="dataLoaded" x="21" y="21" text-anchor="middle" dominant-baseline="middle" font-size="2.5" fill="#000">
           <tspan x="21" dy="-0.4em">{{ currentDayData ? $t('cycleDay') : $t('noCycleData') }}</tspan>
-          <tspan x="21" dy="1.2em">{{ currentDayData ? { currentDay } : $t('available') }}</tspan>
+          <tspan x="21" dy="1.2em">{{ currentDay }}</tspan>
         </text>
 
       </svg>
@@ -95,7 +95,7 @@ export default {
   setup() {
     // Cycle data and current day
     const cycleLength = ref(null);
-    const currentDay = ref(1);
+    const currentDay = ref("available");
     const dataLoaded = ref(false);
     const radius = ref(50 / Math.PI);
 
