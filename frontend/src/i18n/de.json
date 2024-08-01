@@ -821,10 +821,10 @@
     "birthdateUnrealistic": "Geburtsdatum ist unrealistisch",
     "requiredHeight": "Höhe ist erforderlich",
     "positiveHeight": "Die Höhe muss eine positive Zahl sein",
-    "realisticHeight": "Die Körpergröße muss zwischen 120 und 250 cm liegen",
+    "realisticHeight": "Die Körpergröße muss zwischen 50 und 250 cm liegen",
     "requiredWeight": "Weight is required.",
     "positiveWeight": "Gewicht ist erforderlich",
-    "realisticWeight": "Das Gewicht muss zwischen 20 und 200 kg liegen",
+    "realisticWeight": "Das Gewicht muss zwischen 20 und 300 kg liegen",
     "lastMenstruationFuture": "Das Datum darf nicht in der Zukunft liegen",
     "lastMenstruationTooOld": "Das Datum darf nicht älter als 3 Monate sein",
     "positiveValue": "Wert muss positiv sein",
@@ -832,8 +832,8 @@
     "realisticCycleDuration": "Die Zyklusdauer ist unrealistisch",
     "realisticDay": "Wert muss eine ganze Zahl sein",
     "pleaseSelect": "Bitte wähle eine Option",
-    "realisticFrequency": "Wert muss zwischen 0 und 50 Tagen liegen",
-    "realisticDuration": "Dauer muss ein realistischer Wert in Minuten sein",
+    "realisticFrequency": "Wert muss zwischen 0 und 50 liegen",
+    "realisticDuration": "Dauer muss unter 1440 Minuten liegen",
     "realisticTemperature": "Gebe einen realistischen Temperaturwert ein"
   },
   "registration": {

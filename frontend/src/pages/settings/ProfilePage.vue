@@ -145,13 +145,13 @@ export default {
     const heightRules = [
       val => !!val || t('validation.requiredHeight'),
       val => val > 0 || t('validation.positiveHeight'),
-      val => val >= 100 && val <= 250 || t('validation.realisticHeight')
+      val => val >= 50 && val <= 250 || t('validation.realisticHeight')
     ];
 
     const weightRules = [
       val => !!val || t('validation.requiredWeight'),
       val => val > 0 || t('validation.positiveWeight'),
-      val => val >= 20 && val <= 200 || t('validation.realisticWeight')
+      val => val >= 20 && val <= 300 || t('validation.realisticWeight')
     ];
 
     const fetchProfile = async () => {
