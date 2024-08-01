@@ -25,6 +25,8 @@
   "trainingTitle": "TRAINING",
 
   "cycleDay": "Zyklustag",
+  "noCycleData": "Keine Zyklusdaten",
+  "available": "verfügbar",
   "cyclePhases": "Zyklusphasen",
   "cyclePhase": {
     "images": {

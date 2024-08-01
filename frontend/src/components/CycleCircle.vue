@@ -67,9 +67,17 @@
           :stroke-dasharray="getDayPortion()" :stroke-dashoffset="25" style="transform: scale(0.75); transform-origin: center">
         </circle>
 
+        <!-- <div v-if="currentDayData">
+          <text v-if="dataLoaded" x="21" y="21" text-anchor="middle" dominant-baseline="middle" font-size="2.5" fill="#000">
+            <tspan x="21" dy="-0.4em">{{ $t('cycleDay') }}</tspan>
+            <tspan x="21" dy="1.2em">{{ currentDay }}</tspan>
+          </text>
+        </div> -->
+
+        <!-- Conditionally display messages -->
         <text v-if="dataLoaded" x="21" y="21" text-anchor="middle" dominant-baseline="middle" font-size="2.5" fill="#000">
-          <tspan x="21" dy="-0.4em">{{ $t('cycleDay') }}</tspan>
-          <tspan x="21" dy="1.2em">{{ currentDay }}</tspan>
+          <tspan x="21" dy="-0.4em">{{ currentDayData ? $t('cycleDay') : $t('noCycleData') }}</tspan>
+          <tspan x="21" dy="1.2em">{{ currentDayData ? { currentDay } : $t('available') }}</tspan>
         </text>
 
       </svg>
@@ -85,11 +93,10 @@ import { calculateCycleAndPhases, calculateCurrentDay, getCurrentCycle } from 's
 
 export default {
   setup() {
-    // FIXME: cycleLength gets calculated by the cyclePhaseCalculator
+    // Cycle data and current day
     const cycleLength = ref(null);
-    // TODO: needs to get or calculate the current day of the cycle
     const currentDay = ref(1);
-    const dataLoaded = ref(false);  // Add a flag to indicate data loading status
+    const dataLoaded = ref(false);
     const radius = ref(50 / Math.PI);
 
     const mensLengthPortion = ref(null);
@@ -99,14 +106,14 @@ export default {
     const lateLutealLengthPortion = ref(null);
 
     const mensOffset = ref(0);
+    const currentDayData = ref(false); // Added to track current day data availability
 
     const getPhasePortion = (phaseLengthPortion) => {
-      // "" + phaseLengthPortion + " " + (100 - phaseLengthPortion).toString()
       return `${phaseLengthPortion} ${100 - phaseLengthPortion}`;
     };
 
     const getDayPortion = () => {
-      let percentage = (currentDay.value / cycleLength.value) * 100
+      let percentage = (currentDay.value / cycleLength.value) * 100;
       return `${percentage} ${100 - percentage}`;
     };
 
@@ -123,13 +130,7 @@ export default {
       try {
         const response = await api.get('/cycles/');
         const cycleData = response.data;
-        console.log('Fetched cycle data:', cycleData);
         const today = new Date().toISOString().split('T')[0];
-        // const today = "2024-08-20";  // for testing with a specific date
-        // const today = "2024-05-05";  // for testing with a specific date - cycle 0
-        // const today = "2024-06-09";  // for testing with a specific date - cycle 1
-        // const today = "2024-11-11";  // for testing with a specific date - no cycle found
-
         const cycles = cycleData.results;
 
         if (Array.isArray(cycles)) {
@@ -139,15 +140,16 @@ export default {
             const calculatedLengths = calculateCycleAndPhases(currentCycle);
 
             cycleLength.value = calculatedLengths.cycleLength;
-            console.log('Calculated cycle length:', cycleLength.value);
             calculateLengthPortion(calculatedLengths);
 
             currentDay.value = calculateCurrentDay(currentCycle.start, today);
+            currentDayData.value = true;
           } else {
             console.error('No cycle found for today\'s date');
+            currentDayData.value = false;
           }
 
-          dataLoaded.value = true;  // Set the flag to true when data is loaded
+          dataLoaded.value = true;
         } else {
           console.error('Cycle data is not an array:', cycleData);
         }
@@ -156,17 +158,13 @@ export default {
       }
     };
 
-    console.log('Initial currentDay:', currentDay.value);
-
     onMounted(() => {
-      console.log('Mounted currentDay:', currentDay.value);
       fetchData();
     });
 
     watch(currentDay, (newValue) => {
       console.log('currentDay updated to:', newValue);
     });
-
 
     const follicularOffset = computed(() => mensOffset.value - mensLengthPortion.value);
     const ovulationOffset = computed(() => follicularOffset.value - follicularLengthPortion.value);
@@ -190,6 +188,7 @@ export default {
       ovulationOffset,
       earlyLutealOffset,
       lateLutealOffset,
+      currentDayData, // Include currentDayData in the return object
     };
   }
 };

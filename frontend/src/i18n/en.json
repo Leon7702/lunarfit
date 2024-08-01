@@ -23,6 +23,8 @@
   "cycleTitle": "CYCLE",
   "trainingTitle": "TRAINING",
   "cycleDay": "Cycle Day",
+  "noCycleData": "No Cycle Data",
+  "available": "available",
   "cyclePhases": "Cycle Phases",
   "cyclePhase": {
     "images": {
