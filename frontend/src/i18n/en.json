@@ -730,7 +730,9 @@
       "Three-month Injection",
       "Vaginal Ring",
       "Other"
-    ]
+    ],
+    "updateSuccess": "Profile updated successfully.",
+    "updateFailure": "Failed to update profile."
   },
   "chat": {
     "title": "Chat Feature -",
@@ -764,5 +766,49 @@
   },
 
   "yes": "Yes",
-  "no": "No"
+  "no": "No",
+
+  "validation": {
+    "emailRequired": "Email is required",
+    "invalidEmail": "Enter a valid email address",
+    "passwordRequired": "Password is required",
+    "passwordLength": "Password must be at least 6 characters",
+    "passwordConfirmRequired": "Confirm password is required",
+    "passwordsDoNotMatch": "Passwords do not match",
+    "loginError": "Please check your credentials.",
+    "noActiveAccount": "No active account found with the given credentials.",
+    "fixErrors": "Please fix the errors in the form.",
+    "required": "This field is required",
+    "onlyLetters": "This field must contain only letters",
+    "requiredBirthdate": "Birthdate is required",
+    "birthdateFuture": "Birthdate cannot be in the future",
+    "birthdateUnrealistic": "Birthdate is unrealistic",
+    "requiredHeight": "Height is required",
+    "positiveHeight": "Height must be a positive number",
+    "realisticHeight": "Height must be between 120 and 250 cm",
+    "requiredWeight": "Weight is required",
+    "positiveWeight": "Weight must be a positive number",
+    "realisticWeight": "Weight must be between 20 and 200 kg",
+    "lastMenstruationFuture": "The date cannot be in the future",
+    "lastMenstruationTooOld": "The date cannot be older than 3 months",
+    "positiveValue": "Value must be positive",
+    "realisticMensDuration": "The menstruation duration is unrealistic",
+    "realisticCycleDuration": "The cycle duration is unrealistic",
+    "realisticDay": "Value must be a whole number",
+    "pleaseSelect": "Please select an option",
+    "realisticFrequency": "Value must be between 0 and 50 days.",
+    "realisticDuration": "Duration must be a realistic value in minutes.",
+    "realisticTemperature": "Enter a realistic temperature value"
+  },
+  "registration": {
+    "success": "Registration successful!",
+    "failed": "Registration failed. Please try again.",
+    "emailExists": "An account with this email already exists."
+  },
+  "navigation": {
+    "failure": "Failed to navigate to the next step."
+  },
+  "logging": {
+    "lastMenstruationError": "Error logging last menstruation."
+  }
 }

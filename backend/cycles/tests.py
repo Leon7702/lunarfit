@@ -1,11 +1,17 @@
-from django.test import TestCase
-from .models import User, Type, TrackingData, MenstrualCycle, Phase, Onboarding
-from rest_framework.test import APITestCase
 from datetime import date
+
 from rest_framework import status
+from rest_framework.test import APITestCase
+
+from .models import User, Type, TrackingData, MenstrualCycle, Phase, Onboarding
 
 
 class TrackingDataTest(APITestCase):
+
+    fixtures = ["contraceptives",
+                "medication_data",
+                "type_data"]
+
     def setUp(self):
         self.user0 = User.objects.create_user(email='user0@email.com', password='user0')
         self.user1 = User.objects.create_user(email='user1@email.com', password='user1')
@@ -107,6 +113,11 @@ class TrackingDataTest(APITestCase):
 
 
 class MenstrualCycleTest(APITestCase):
+
+    fixtures = ["contraceptives",
+                "medication_data",
+                "type_data"]
+
     def setUp(self):
         self.user0 = User.objects.create_user(email='user0@email.com', password='user0')
         self.user1 = User.objects.create_user(email='user1@email.com', password='user1')
@@ -115,10 +126,11 @@ class MenstrualCycleTest(APITestCase):
         self.user4 = User.objects.create_user(email='user4@email.com', password='user4')
         self.user5 = User.objects.create_user(email='user5@email.com', password='user5')
 
-        self.type1 = Type.objects.create(name='Menstruation')
-        self.type2 = Type.objects.create(name='temperature')
-        self.type3 = Type.objects.create(name='cervix')
-        self.type6 = Type.objects.create(name='ovulation_test')
+
+        self.type1 = Type.objects.get(name='menstruation')
+        self.type2 = Type.objects.get(name='temperature')
+        self.type3 = Type.objects.get(name='cervix')
+        self.type6 = Type.objects.get(name='ovulation_test')
 
     def test_new_cycle_if_entry_type1_and_no_mens_prev_day(self):
         """Create new cycle if user(s) 
@@ -305,3 +317,90 @@ class MenstrualCycleTest(APITestCase):
             
         phase_2 = Phase.objects.get(cycle_id=menstrual_cycle.id, phase_number=2)
         assert phase_2.start == date(2024, 8, 7)
+
+
+    def test_positive_ovulation_test(self):
+        self.client.force_authenticate(user=self.user2)
+
+        menstrual_cycle = MenstrualCycle.objects.create(
+            user=self.user2,
+            start=date(2024, 7, 27),
+            end=date(2024, 8, 23)
+        )
+
+        Phase.objects.create(cycle_id=menstrual_cycle, phase_number=0, start=date(2024, 7, 27), end=date(2024, 7, 31), avg_duration = 5)
+        Phase.objects.create(cycle_id=menstrual_cycle, phase_number=1, start=date(2024, 8, 1),  end=date(2024, 8, 8),  avg_duration = 8)
+        Phase.objects.create(cycle_id=menstrual_cycle, phase_number=2, start=date(2024, 8, 9),  end=date(2024, 8, 9),  avg_duration = 1)
+        Phase.objects.create(cycle_id=menstrual_cycle, phase_number=3, start=date(2024, 8, 10), end=date(2024, 8, 18), avg_duration = 9)
+        Phase.objects.create(cycle_id=menstrual_cycle, phase_number=4, start=date(2024, 8, 19), end=date(2024, 8, 23), avg_duration = 5)
+    
+        # self.client.post('/api/cycles/log/', {
+        #     'user': self.user2.id,
+        #     'type': self.type1.id,
+        #     'date': date(2024, 7, 31),
+        #     'value': 2.0
+        # })
+
+        response = self.client.post('/api/cycles/log/', {
+            'user': self.user2.id,
+            'type': self.type6.id,
+            'date': date(2024, 8, 11),
+            'value': 0.0
+        })
+
+        assert response.status_code == status.HTTP_201_CREATED
+
+        # assert response.status_code == status.HTTP_201_CREATED
+        # assert TrackingData.objects.filter(user=self.user2, date=date(2024, 8, 6), type=self.type6, value=0).exists()
+
+        # TrackingData.objects.create(
+        #     user=self.user2,
+        #     type=self.type6,
+        #     date=date(2024, 8, 6),
+        #     value=0.0
+        #     )
+
+        menstrual_cycle = MenstrualCycle.objects.get(user=self.user2)
+
+        phase_2 = Phase.objects.get(cycle_id=menstrual_cycle.id, phase_number=2)
+        assert phase_2.start == date(2024, 8, 12)
+
+
+    def test_adjust_phases_if_ovulation_detected(self):
+        self.client.force_authenticate(user=self.user5)
+        
+        menstrual_cycle = MenstrualCycle.objects.create(
+            user=self.user5,
+            start=date(2024, 5, 1),
+            end=date(2024, 5, 26)
+        )
+
+        Phase.objects.create(cycle_id=menstrual_cycle, phase_number=0, start=date(2024, 5, 1), end=date(2024, 5, 5), avg_duration = 5)
+        Phase.objects.create(cycle_id=menstrual_cycle, phase_number=1, start=date(2024, 5, 6),  end=date(2024, 5, 11),  avg_duration = 6)
+        Phase.objects.create(cycle_id=menstrual_cycle, phase_number=2, start=date(2024, 5, 12),  end=date(2024, 5, 12),  avg_duration = 1)
+        Phase.objects.create(cycle_id=menstrual_cycle, phase_number=3, start=date(2024, 5, 13), end=date(2024, 5, 21), avg_duration = 9)
+        Phase.objects.create(cycle_id=menstrual_cycle, phase_number=4, start=date(2024, 5, 22), end=date(2024, 5, 26), avg_duration = 5)
+
+        response = self.client.post('/api/cycles/log/', {
+            'user': self.user5.id,
+            'type': self.type6.id,
+            'date': date(2024, 5, 8),
+            'value': 0.0
+        })
+
+        assert response.status_code == status.HTTP_201_CREATED       
+
+        phase_1 = Phase.objects.get(cycle_id=menstrual_cycle.id, phase_number=1)
+        assert phase_1.end == date(2024, 5, 8)
+
+        phase_2 = Phase.objects.get(cycle_id=menstrual_cycle.id, phase_number=2)
+        assert phase_2.start == date(2024, 5, 9)
+        assert phase_2.end == date(2024, 5, 9)
+
+        phase_3 = Phase.objects.get(cycle_id=menstrual_cycle.id, phase_number=3)
+        assert phase_3.start == date(2024, 5, 10)
+        assert phase_3.end == date(2024, 5, 18)
+
+        phase_4 = Phase.objects.get(cycle_id=menstrual_cycle.id, phase_number=4)
+        assert phase_4.start == date(2024, 5, 19)
+        assert phase_4.end == date(2024, 5, 23)

@@ -10,15 +10,39 @@
         </h2>
         <div class="form-group">
           <p>{{ $t('onboarding.onboardingStep2.fields.lastMenstruation') }}</p>
-          <q-input filled v-model="last_menstruation" type="date" input-class="text-left input-text" class="q-mb-sm" />
+          <q-input
+            ref="lastMenstruationRef"
+            filled
+            v-model="last_menstruation"
+            type="date"
+            input-class="text-left input-text"
+            class="q-mb-sm"
+            :rules="lastMenstruationRules"
+          />
         </div>
         <div class="form-group">
           <p>{{ $t('onboarding.onboardingStep2.fields.menstruationDuration') }}</p>
-          <q-input filled v-model="menstruation_duration" type="number" input-class="text-left input-text" class="q-mb-sm" />
+          <q-input
+            ref="menstruationDurationRef"
+            filled
+            v-model="menstruation_duration"
+            type="number"
+            input-class="text-left input-text"
+            class="q-mb-sm"
+            :rules="menstruationDurationRules"
+          />
         </div>
         <div class="form-group">
           <p>{{ $t('onboarding.onboardingStep2.fields.cycleLength') }}</p>
-          <q-input filled v-model="cycle_duration" type="number" input-class="text-left input-text" class="q-mb-sm" />
+          <q-input
+            ref="cycleDurationRef"
+            filled
+            v-model="cycle_duration"
+            type="number"
+            input-class="text-left input-text"
+            class="q-mb-sm"
+            :rules="cycleDurationRules"
+          />
         </div>
         <div class="button-container">
           <StandardButton :label="$t('buttons.next')" @click="navigateToNextStep" />
@@ -32,6 +56,7 @@
 import { ref } from 'vue';
 import { useRouter } from 'vue-router';
 import { api } from 'src/boot/axios';
+import { useI18n } from 'vue-i18n';
 import StandardButton from 'components/StandardButton.vue';
 import BackButtonText from 'components/BackButtonText.vue';
 import { useOnboardingStore } from 'src/stores/onboarding';
@@ -42,6 +67,7 @@ export default {
     BackButtonText
   },
   setup() {
+    const { t } = useI18n();
     const onboardingStore = useOnboardingStore();
     const router = useRouter();
 
@@ -49,22 +75,56 @@ export default {
     const menstruation_duration = ref(null);
     const cycle_duration = ref(null);
 
+    const lastMenstruationRef = ref(null);
+    const menstruationDurationRef = ref(null);
+    const cycleDurationRef = ref(null);
+
+    const lastMenstruationRules = [
+      val => !!val || t('validation.required'),
+      val => new Date(val) <= new Date() || t('validation.lastMenstruationFuture'),
+      val => new Date(val) >= new Date(new Date().setMonth(new Date().getMonth() - 3)) || t('validation.lastMenstruationTooOld')
+    ];
+
+    const menstruationDurationRules = [
+      val => !!val || t('validation.required'),
+      val => val > 0 || t('validation.positiveValue'),
+      val => val >= 0 && val <= 20|| t('validation.realisticMensDuration'),
+      val => Number.isInteger(Number(val)) || t('validation.realisticDay'),
+      // val => Number.isInteger(val) || t('validation.realisticDay'),
+    ];
+
+    const cycleDurationRules = [
+      val => !!val || t('validation.required'),
+      val => val > 0 || t('validation.positiveValue'),
+      val => val >= 20 && val <= 40 || t('validation.realisticCycleDuration'),
+      val => Number.isInteger(Number(val)) || t('validation.realisticDay'),
+      // val => Number.isInteger(val) || t('validation.realisticDay'),
+    ];
+
     const logLastMenstruation = async () => {
       try {
         await api.post('/cycles/log/', {
           date: last_menstruation.value,
-          value: "1", 
-          type: 1 
+          value: "1",
+          type: 1
         });
       } catch (error) {
         console.error('Error logging last menstruation:', error);
-        alert('Fehler beim Speichern der letzten Menstruation.');
+        alert(t('logging.lastMenstruationError'));
       }
     };
 
     const navigateToNextStep = async () => {
-      if (!last_menstruation.value.trim() || menstruation_duration.value === null || cycle_duration.value === null) {
-        alert("Bitte füllen Sie alle Felder aus!");
+      lastMenstruationRef.value.validate();
+      menstruationDurationRef.value.validate();
+      cycleDurationRef.value.validate();
+
+      if (
+        lastMenstruationRef.value.hasError ||
+        menstruationDurationRef.value.hasError ||
+        cycleDurationRef.value.hasError
+      ) {
+        alert(t('validation.fixErrors'));
         return;
       }
 
@@ -80,7 +140,7 @@ export default {
         router.push({ name: 'OnboardingStep4' });
       } catch (error) {
         console.error('Failed to navigate to next step:', error);
-        alert('Failed to navigate to next step');
+        alert(t('navigation.failure'));
       }
     };
 
@@ -88,12 +148,17 @@ export default {
       last_menstruation,
       menstruation_duration,
       cycle_duration,
+      lastMenstruationRef,
+      menstruationDurationRef,
+      cycleDurationRef,
+      lastMenstruationRules,
+      menstruationDurationRules,
+      cycleDurationRules,
       navigateToNextStep
     };
   }
 };
 </script>
-
 
 <style scoped>
 .content {

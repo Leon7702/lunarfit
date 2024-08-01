@@ -11,6 +11,7 @@
       </div>
       <div class="form-group">
         <q-input
+          ref="temperatureRef"
           filled
           v-model="temperature"
           type="number"
@@ -18,6 +19,7 @@
           class="q-mb-sm"
           clearable
           @clear="deleteCurrentEntry"
+          :rules="temperatureRules"
         />
       </div>
       <div class="description-two">
@@ -40,7 +42,7 @@
 import CheckboxInput from 'components/CheckboxInput.vue';
 import StandardButton from 'components/StandardButton.vue';
 import { ref, onMounted } from 'vue';
-import { useRouter } from 'vue-router';  // Importieren Sie useRouter
+import { useRouter } from 'vue-router';
 import { useI18n } from 'vue-i18n';
 import { api } from 'src/boot/axios';
 import { useAuthStore } from 'src/stores/auth';
@@ -52,12 +54,20 @@ export default {
   },
   setup() {
     const { t } = useI18n();
-    const router = useRouter();  // Router-Instanz erstellen
+    const router = useRouter();
     const authStore = useAuthStore();
 
     const temperature = ref(null);
     const storfaktoren = ref(false);
     const currentEntryId = ref(null);
+
+    const temperatureRef = ref(null);
+
+    const temperatureRules = [
+      // val => !!val || t('validation.required'),
+      val => (val >= 30 && val <= 42) || t('validation.realisticTemperature'),
+      // val => Number.isFinite(Number(val)) || t('validation.numericValue')
+    ];
 
     const goBack = () => {
       window.history.back();
@@ -95,7 +105,7 @@ export default {
           temperature.value = null;
         }
       } catch (error) {
-        console.error('Fehler beim Abrufen der Zyklusdaten', error);
+        console.log('Fehler beim Abrufen der Zyklusdaten', error);
       }
     };
 
@@ -116,12 +126,17 @@ export default {
         currentEntryId.value = null;
         temperature.value = null;
       } catch (error) {
-        console.error('Fehler beim Löschen des Zyklusdatensatzes', error);
-        alert('Fehler beim Löschen des Zyklusdatensatzes.');
+        console.log('Fehler beim Löschen des Zyklusdatensatzes', error);
       }
     };
 
     const saveCycleData = async () => {
+      const isValid = await temperatureRef.value.validate();
+
+      if (!isValid) {
+        return;
+      }
+
       if (temperature.value === null) {
         return;
       }
@@ -154,21 +169,7 @@ export default {
         router.push('/log-cycle');
 
       } catch (error) {
-        console.error('Fehler beim Speichern der Zyklusdaten', error);
-
-        if (error.response) {
-          if (error.response.status === 400) {
-            alert('Fehlerhafte Anfrage. Bitte überprüfen Sie Ihre Eingaben.');
-          } else if (error.response.status === 401) {
-            alert('Nicht autorisiert. Bitte melden Sie sich erneut an.');
-          } else {
-            alert('Fehler beim Speichern der Zyklusdaten.');
-          }
-        } else if (error.request) {
-          alert('Keine Antwort vom Server. Bitte überprüfen Sie Ihre Internetverbindung.');
-        } else {
-          alert('Ein unbekannter Fehler ist aufgetreten.');
-        }
+        console.log('Fehler beim Speichern der Zyklusdaten', error);
       }
     };
 
@@ -181,7 +182,8 @@ export default {
       storfaktoren,
       goBack,
       saveCycleData,
-      deleteCurrentEntry
+      deleteCurrentEntry,
+      temperatureRules
     };
   }
 };
@@ -241,7 +243,7 @@ export default {
 }
 .button-container {
   position: fixed;
-  bottom: 80px;  
+  bottom: 80px;
   width: 100%;
   display: flex;
   justify-content: center;

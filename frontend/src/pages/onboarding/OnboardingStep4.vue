@@ -15,6 +15,7 @@
         <div class="form-group" v-if="hormonalContraception === 'ja'">
           <p>{{ $t('onboarding.onboardingStep3.fields.contraceptionMethod') }}</p>
           <q-select
+            clearable
             filled
             v-model="profile.contraceptive"
             :options="contraceptionOptions"
@@ -22,7 +23,6 @@
             class="q-mb-sm"
             emit-value
             map-options
-            placeholder="Bitte auswählen"
           >
             <template v-slot:prepend></template>
           </q-select>
@@ -36,7 +36,7 @@
 </template>
 
 <script>
-import { ref } from 'vue';
+import { ref, watch, onMounted } from 'vue';
 import { useRouter } from 'vue-router';
 import { api } from 'src/boot/axios';
 import StandardButton from 'components/StandardButton.vue';
@@ -60,22 +60,22 @@ export default {
 
     const hormonalContraception = ref(null);
 
-    const contraceptionOptions = [
-      { label: 'Pille', value: 0 },
-      { label: 'Hormonspirale', value: 1 },
-      { label: 'Hormonimplantat', value: 2 },
-      { label: 'Dreimonatsspritze', value: 3 },
-      { label: 'Vaginalring', value: 4 },
-      { label: 'Sonstiges', value: 5 }
-    ];
-
     const saveProfile = async () => {
       try {
         await api.patch(`/users/profile/${authStore.userId}/`, profile.value);
-        alert('Profile updated successfully');
+        // alert('Profile updated successfully');
       } catch (error) {
         console.error('Failed to update profile:', error);
         alert('Failed to update profile');
+      }
+    };
+
+    const fetchContraception = async () => {
+      try {
+        const response = await api.get(`/users/profile/${authStore.userId}/`);
+        profile.value = response.data;
+      } catch (error) {
+        console.error('Failed to fetch contraception:', error);
       }
     };
 
@@ -89,13 +89,36 @@ export default {
       }
     };
 
+    watch(() => authStore.userId, (newUserId) => {
+      if (newUserId) {
+        fetchContraception();
+      }
+    });
+
+    onMounted(() => {
+      fetchContraception();
+    });
+
     return {
       profile,
       hormonalContraception,
-      contraceptionOptions,
-      navigateToNextStep
+      saveProfile,
+      navigateToNextStep,
+      fetchContraception
     };
-  }
+  },
+  computed: {
+    contraceptionOptions() {
+      return [
+        { label: this.$t('profile.contraceptionOptions[0]'), value: 0 },
+        { label: this.$t('profile.contraceptionOptions[1]'), value: 1 },
+        { label: this.$t('profile.contraceptionOptions[2]'), value: 2 },
+        { label: this.$t('profile.contraceptionOptions[3]'), value: 3 },
+        { label: this.$t('profile.contraceptionOptions[4]'), value: 4 },
+        // { label: this.$t('profile.contraceptionOptions[5]'), value: 5 }
+      ];
+    },
+  },
 };
 </script>
 

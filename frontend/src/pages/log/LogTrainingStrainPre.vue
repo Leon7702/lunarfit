@@ -26,11 +26,13 @@
       <div class="form-group" v-if="trainingStatus === 'ja'">
         <p>{{ $t('logTrainingStrainPre.durationOptions.prompt') }}</p>
         <q-input
+          ref="durationRef"
           filled
           v-model="duration"
           type="number"
           input-class="text-left"
           class="q-mb-sm"
+          :rules="durationRules"
         />
       </div>
       <div class="button-container">
@@ -39,6 +41,7 @@
     </div>
   </div>
 </template>
+
 <script>
 import { ref, computed } from 'vue';
 import { useRouter } from 'vue-router';
@@ -60,6 +63,15 @@ export default {
     const trainingStatus = ref(null);
     const selectedActivity = ref(null);
     const duration = ref(null);
+
+    const durationRef = ref(null);
+
+    const durationRules = [
+      val => !!val || t('validation.required'),
+      val => val >= 0 || t('validation.positiveValue'),
+      val => val <= 1440 || t('validation.realisticDuration'), // 1440 minutes = 24 hours
+      val => Number.isInteger(Number(val)) || t('validation.realisticDay')
+    ];
 
     const trainingOptions = [
       { key: 'other_sports', value: 1 },
@@ -113,7 +125,23 @@ export default {
       }));
     });
 
+    const validateInput = () => {
+      if (trainingStatus.value === 'ja') {
+        durationRef.value.validate();
+
+        if (durationRef.value.hasError) {
+          alert(t('validation.fixErrors'));
+          return false;
+        }
+      }
+      return true;
+    };
+
     const navigateToNextStep = () => {
+      if (!validateInput()) {
+        return;
+      }
+
       if (trainingStatus.value === 'ja') {
         trainingStore.setStart(new Date().toISOString()); // Zeit des Trainings
         trainingStore.setSport(selectedActivity.value);
@@ -128,6 +156,8 @@ export default {
       trainingStatus,
       selectedActivity,
       duration,
+      durationRef,
+      durationRules,
       translatedTrainingOptions,
       navigateToNextStep,
       goBack() {
@@ -138,35 +168,31 @@ export default {
 };
 </script>
 
-
 <style scoped>
-
 .linie {
-    height: 1px;
-    background-color: rgba(0, 0, 0, 0.1);
-    width: 120%;
-    margin-top: 10px;
-    margin-bottom: 30px;
+  height: 1px;
+  background-color: rgba(0, 0, 0, 0.1);
+  width: 120%;
+  margin-top: 10px;
+  margin-bottom: 30px;
 }
 
 .header {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    width: 100%;
-    padding: 10px 0;
-    margin-top: 20px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  width: 100%;
+  padding: 10px 0;
+  margin-top: 20px;
 }
 
 .title {
-    font: 600 20px 'Inter', sans-serif;
-    color: #000;
-    text-align: center;
-    flex-grow: 1;
-    padding-right: 30px;
+  font: 600 20px 'Inter', sans-serif;
+  color: #000;
+  text-align: center;
+  flex-grow: 1;
+  padding-right: 30px;
 }
-
-
 
 .form-group p {
   margin: 0;
@@ -176,16 +202,15 @@ export default {
 }
 
 .form-group.spacer {
-    margin-bottom: 20px; 
+  margin-bottom: 20px;
 }
 
 .button-container {
-    position: fixed;
-    bottom: 80px; 
-    width: 100%;
-    display: flex;
-    justify-content: center;
-    left: 0;
+  position: fixed;
+  bottom: 80px;
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  left: 0;
 }
-
 </style>

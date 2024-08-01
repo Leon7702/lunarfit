@@ -758,7 +758,9 @@
       "Dreimonatsspritze",
       "Vaginalring",
       "Sonstiges"
-    ]
+    ],
+    "updateSuccess": "Profil erfolgreich aktualisiert.",
+    "updateFailure": "Profil kann nicht aktualisiert werden."
   },
 
   "chat": {
@@ -798,5 +800,49 @@
   },
 
   "yes": "Ja",
-  "no": "Nein"
+  "no": "Nein",
+
+  "validation": {
+    "emailRequired": "E-Mail ist erforderlich",
+    "invalidEmail": "Gebe eine gültige E-Mail Adresse ein",
+    "passwordRequired": "Passwort ist erforderlich",
+    "passwordLength": "Passwort muss mind. 6 Zeichen lang sein",
+    "passwordConfirmRequired": "Passwortbestätigung ist erforderlich",
+    "passwordsDoNotMatch": "Die Passwörter stimmen nicht überein",
+    "loginError": "Bitte überprüfe deine Anmeldedaten",
+    "noActiveAccount": "Es wurde kein aktives Konto mit den angegebenen Anmeldedaten gefunden.",
+    "fixErrors": "Bitte behebe die Fehler im Formular.",
+    "required": "Dieses Feld ist erforderlich",
+    "onlyLetters": "Dieses Feld darf nur Buchstaben enthalten",
+    "requiredBirthdate": "Das Geburtsdatum ist erforderlich",
+    "birthdateFuture": "Das Geburtsdatum darf nicht in der Zukunft liegen",
+    "birthdateUnrealistic": "Geburtsdatum ist unrealistisch",
+    "requiredHeight": "Höhe ist erforderlich",
+    "positiveHeight": "Die Höhe muss eine positive Zahl sein",
+    "realisticHeight": "Die Körpergröße muss zwischen 120 und 250 cm liegen",
+    "requiredWeight": "Weight is required.",
+    "positiveWeight": "Gewicht ist erforderlich",
+    "realisticWeight": "Das Gewicht muss zwischen 20 und 200 kg liegen",
+    "lastMenstruationFuture": "Das Datum darf nicht in der Zukunft liegen",
+    "lastMenstruationTooOld": "Das Datum darf nicht älter als 3 Monate sein",
+    "positiveValue": "Wert muss positiv sein",
+    "realisticMensDuration": "Die Menstruationsdauer ist unrealistisch",
+    "realisticCycleDuration": "Die Zyklusdauer ist unrealistisch",
+    "realisticDay": "Wert muss eine ganze Zahl sein",
+    "pleaseSelect": "Bitte wähle eine Option",
+    "realisticFrequency": "Wert muss zwischen 0 und 50 Tagen liegen",
+    "realisticDuration": "Dauer muss ein realistischer Wert in Minuten sein",
+    "realisticTemperature": "Gebe einen realistischen Temperaturwert ein"
+  },
+  "registration": {
+      "success": "Anmeldung erfolgreich!",
+      "failed": "Registrierung fehlgeschlagen. Bitte versuche es erneut.",
+      "emailExists": "Es existiert bereits ein Konto mit dieser E-Mail-Adresse."
+  },
+  "navigation": {
+    "failure": "Die Navigation zum nächsten Schritt ist fehlgeschlagen"
+  },
+  "logging": {
+    "lastMenstruationError": "Fehler bei der Aufzeichnung der letzten Menstruation."
+  }
 }
