@@ -1,3 +1,5 @@
+from datetime import date
+
 from django.contrib.auth.models import (
     AbstractBaseUser,
     BaseUserManager,
@@ -84,11 +86,15 @@ class Onboarding(models.Model):
     """
 
     user = models.OneToOneField(User, on_delete=models.CASCADE, primary_key=True)
-    workout_frequency = models.PositiveSmallIntegerField()
-    workout_duration = models.PositiveSmallIntegerField()
-    workout_intensity = models.PositiveSmallIntegerField()
-    cycle_duration = models.PositiveSmallIntegerField()
-    menstruation_duration = models.PositiveSmallIntegerField()
+    timestamp = models.DateField(default=date.today, blank=True)
+    workout_frequency = models.PositiveSmallIntegerField(default=0)
+    workout_duration = models.PositiveSmallIntegerField(default=0)
+    workout_intensity = models.PositiveSmallIntegerField(default=0)
+    cycle_duration = models.PositiveSmallIntegerField(default=29)
+    menstruation_duration = models.PositiveSmallIntegerField(default=4)
+
+    def __str__(self):
+        return f"{self.user.email}, {self.timestamp}"
 
 
 @receiver(post_save, sender=Onboarding)

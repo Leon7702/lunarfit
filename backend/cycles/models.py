@@ -30,12 +30,18 @@ class Phase(models.Model):
     phase_number = models.PositiveIntegerField(choices=PHASES)
     avg_duration = models.PositiveIntegerField()
 
+    def get_phase_name(self):
+        return dict(self.PHASES).get(self.phase_number, "")
+
     def __str__(self):
-        return f"{self.phase_number}, {self.cycle_id}"
+        return f"{self.phase_number}, {self.get_phase_name()}"
 
 
 class MedicationCategory(models.Model):
     name = models.CharField(max_length=50)
+
+    def __str__(self):
+        return f"{self.name}"
 
 
 class Medication(models.Model):
@@ -48,6 +54,9 @@ class Medication(models.Model):
 class Type(models.Model):
     name = models.CharField(max_length=24)
 
+    def __str__(self):
+        return f"{self.pk}, {self.name}"
+
     
 
 class TrackingData(models.Model):
@@ -55,6 +64,9 @@ class TrackingData(models.Model):
     type = models.ForeignKey(Type, on_delete=models.CASCADE)
     date = models.DateField()
     value = models.DecimalField(max_digits=4, decimal_places=2)
+
+    def __str__(self):
+        return f"{self.type.name}, {self.user}, {self.pk}"
 
 
 @receiver(post_save, sender=TrackingData)
@@ -76,15 +88,13 @@ def create_or_update_menstrual_cycle(sender, instance, created, **kwargs):
 
         #Mens tracking defines new cycle
         if entry_type.id == 1:
-            latest_cycle = MenstrualCycle.objects.filter(user=user).order_by('-start').first()
-         
+            latest_cycle = MenstrualCycle.objects.filter(user=user).order_by('-start').first()        
             previous_day = start_date - timezone.timedelta(days=1)
             previous_day_entry = TrackingData.objects.filter(user=user, type=1, date=previous_day).exists()
 
-            if latest_cycle is None or (timezone.now().date() - latest_cycle.start).days >= 14 and not previous_day_entry:
+            if latest_cycle is None or (start_date - latest_cycle.start).days >= 14 and not previous_day_entry:
                 latest_cycles = MenstrualCycle.objects.filter(user=user).order_by('-start')[:6]
                 cycle_count = latest_cycles.count()
-
                 if cycle_count >= 6: #6 or more cycles to determine avg values
                     cycle_duration = sum((cycle.end - cycle.start).days + 1 for cycle in latest_cycles) // cycle_count
                     phase_0_duration = sum((Phase.objects.filter(cycle_id=cycle.id, phase_number=0).first().end - Phase.objects.filter(cycle_id=cycle.id, phase_number=0).first().start).days + 1 for cycle in latest_cycles) // cycle_count
@@ -109,6 +119,16 @@ def create_or_update_menstrual_cycle(sender, instance, created, **kwargs):
                         phase_3_duration = default_phase_lengths[3]
                         phase_4_duration = default_phase_lengths[4]
 
+
+                # Update the end dates of the last phase and cycle to be superseeded
+                if latest_cycle:
+                    last_phase = Phase.objects.filter(cycle_id=latest_cycle).order_by('-end').first()
+                    if last_phase:
+                        last_phase.end = start_date - timezone.timedelta(days=1)
+                        last_phase.save()
+
+                    latest_cycle.end = start_date - timezone.timedelta(days=1)
+                    latest_cycle.save()
 
                 # Phase 2 duration is always 1 day
                 phase_2_duration = 1
@@ -154,86 +174,8 @@ def create_or_update_menstrual_cycle(sender, instance, created, **kwargs):
             if tracking_value in [1, 2]:
                 return
             elif tracking_value == 0:
+                update_phases(user, start_date + timezone.timedelta(days=1), default_phase_lengths)
 
-                phase_2_start = start_date + timezone.timedelta(days=1)
-                phase_2_end = phase_2_start + timezone.timedelta(days=default_phase_lengths[2] - 1)
-
-                current_cycle = MenstrualCycle.objects.filter(user=user).order_by('-start').first()
-
-                if current_cycle:
-                    phase_3 = Phase.objects.filter(cycle_id=current_cycle, phase_number=3).first()
-                    phase_4 = Phase.objects.filter(cycle_id=current_cycle, phase_number=4).first()
-                    phase_3_duration = (phase_3.end - phase_3.start).days + 1 if phase_3 else default_phase_lengths[3]
-                    phase_4_duration = (phase_4.end - phase_4.start).days + 1 if phase_4 else default_phase_lengths[4]
-
-                    phase_1_end = phase_2_start - timezone.timedelta(days=1)
-
-                    phase_3_start = phase_2_end + timezone.timedelta(days=1)
-                    phase_3_end = phase_3_start + timezone.timedelta(days=phase_3_duration - 1)
-                    phase_4_start = phase_3_end + timezone.timedelta(days=1)
-                    phase_4_end = phase_4_start + timezone.timedelta(days=phase_4_duration - 1)
-
-                    # Update phases
-                    Phase.objects.filter(cycle_id=current_cycle, phase_number=1).update(end=phase_1_end)
-                    Phase.objects.filter(cycle_id=current_cycle, phase_number=2).update(start=phase_2_start, end=phase_2_end)
-                    Phase.objects.filter(cycle_id=current_cycle, phase_number=3).update(start=phase_3_start, end=phase_3_end)
-                    Phase.objects.filter(cycle_id=current_cycle, phase_number=4).update(start=phase_4_start, end=phase_4_end)
-
-                    # Update cycle end date
-                    current_cycle.end = phase_4_end
-                    current_cycle.save()
-
-
-        #Combined phase determination via cervix and cervix mucus only in 
-        elif entry_type.id in [3, 4]:
-            
-            yesterday = start_date - timezone.timedelta(days=1)
-            entries_yesterday = TrackingData.objects.filter(user=user, date=yesterday)
-            entries_today = TrackingData.objects.filter(user=user, date=start_date)
-
-            #Determine prior mucus values
-            has_type_3_value_2_yesterday = entries_yesterday.filter(type=3, value=2).exists()
-            has_type_4_value_4_yesterday = entries_yesterday.filter(type=4, value=4).exists()
-            has_type_4_value_4_today = entries_today.filter(type=4, value=4).exists()
-            has_type_3_value_2_today = entries_today.filter(type=3, value=2).exists()
-
-
-            if (entry_type.id == 3 and instance.value == 2 and
-                has_type_4_value_4_yesterday and has_type_4_value_4_today and has_type_3_value_2_yesterday) or \
-            (entry_type.id == 4 and instance.value == 4 and
-                has_type_3_value_2_yesterday and has_type_3_value_2_today and has_type_4_value_4_yesterday):
-
-                #Conditions for Ovulation day the next day met
-                phase_2_start = start_date + timezone.timedelta(days=1)
-                phase_2_end = phase_2_start + timezone.timedelta(days=default_phase_lengths[2] - 1)
-
-                current_cycle = MenstrualCycle.objects.filter(user=user).order_by('-start').first()
-
-                if current_cycle:
-                    phase_3 = Phase.objects.filter(cycle_id=current_cycle, phase_number=3).first()
-                    phase_4 = Phase.objects.filter(cycle_id=current_cycle, phase_number=4).first()
-                    phase_3_duration = (phase_3.end - phase_3.start).days + 1 if phase_3 else default_phase_lengths[3]
-                    phase_4_duration = (phase_4.end - phase_4.start).days + 1 if phase_4 else default_phase_lengths[4]
-
-                    phase_1_end = phase_2_start - timezone.timedelta(days=1)
-
-                    phase_3_start = phase_2_end + timezone.timedelta(days=1)
-                    phase_3_end = phase_3_start + timezone.timedelta(days=phase_3_duration - 1)
-                    phase_4_start = phase_3_end + timezone.timedelta(days=1)
-                    phase_4_end = phase_4_start + timezone.timedelta(days=phase_4_duration - 1)
-
-                    # Update phases
-                    Phase.objects.filter(cycle_id=current_cycle, phase_number=1).update(end=phase_1_end)
-                    Phase.objects.filter(cycle_id=current_cycle, phase_number=2).update(start=phase_2_start, end=phase_2_end)
-                    Phase.objects.filter(cycle_id=current_cycle, phase_number=3).update(start=phase_3_start, end=phase_3_end)
-                    Phase.objects.filter(cycle_id=current_cycle, phase_number=4).update(start=phase_4_start, end=phase_4_end)
-
-                    # Update cycle end date
-                    current_cycle.end = phase_4_end
-                    current_cycle.save()
-
-
-        #Temperature only tracking to determine phases
         elif entry_type.id == 2:
             days_to_check = [start_date - timezone.timedelta(days=i) for i in range(8, -1, -1)]
             entries = TrackingData.objects.filter(user=user, type=2, date__in=days_to_check).order_by('date')
@@ -251,7 +193,7 @@ def create_or_update_menstrual_cycle(sender, instance, created, **kwargs):
 
             # Last three days include the current day and two previous days
             last_three_temps = temperatures[6:]
-            
+           
             increase_threshold = Decimal('0.2')
 
             # Determine if the last three days' temperatures are all higher than average_temp + 0.2°C
@@ -260,52 +202,46 @@ def create_or_update_menstrual_cycle(sender, instance, created, **kwargs):
             if is_increase:
                 # Ovulation is on last low temperature day
                 low_temp_day = days_to_check[5]
+                check_days = [low_temp_day - timezone.timedelta(days=i) for i in range(1, 3)]
 
-                current_cycle = MenstrualCycle.objects.filter(user=user).order_by('-start').first()
+                tracking_data_type_3 = TrackingData.objects.filter(user=user, type=3, date__in=check_days)
+                tracking_data_type_4 = TrackingData.objects.filter(user=user, type=4, date__in=check_days)
 
-                if current_cycle:
-                    phase_3 = Phase.objects.filter(cycle_id=current_cycle, phase_number=3).first()
-                    phase_4 = Phase.objects.filter(cycle_id=current_cycle, phase_number=4).first()
-                    phase_3_duration = (phase_3.end - phase_3.start).days + 1 if phase_3 else default_phase_lengths[3]
-                    phase_4_duration = (phase_4.end - phase_4.start).days + 1 if phase_4 else default_phase_lengths[4]
+                if not tracking_data_type_3.exists() or not tracking_data_type_4.exists():
+                    update_phases(user, low_temp_day, default_phase_lengths)
                 else:
-                    phase_3_duration = default_phase_lengths[3]
-                    phase_4_duration = default_phase_lengths[4]
+                    type_3_values = list(tracking_data_type_3.values_list('value', flat=True))
+                    type_4_values = list(tracking_data_type_4.values_list('value', flat=True))
+
+                    if (type_3_values == [2, 2]) and (type_4_values == [4, 4]):
+                        update_phases(user, low_temp_day, default_phase_lengths)
+                    else:
+                        return
 
 
-                #Update Phases
-                phase_2_start = low_temp_day
-                phase_2_end = phase_2_start + timezone.timedelta(days=default_phase_lengths[2] - 1)
+def update_phases(user, low_temp_day, default_phase_lengths):
+    phase_2_start = low_temp_day
+    phase_2_end = phase_2_start + timezone.timedelta(days=default_phase_lengths[2] - 1)
 
-                phase_1_end = phase_2_start - timezone.timedelta(days=1)
+    current_cycle = MenstrualCycle.objects.filter(user=user).order_by('-start').first()
 
-                # Phase 3: Starts the day after Phase 2 ends, keeps avg duration
-                phase_3_start = phase_2_end + timezone.timedelta(days=1)
-                phase_3_end = phase_3_start + timezone.timedelta(days=phase_3_duration - 1)
+    if current_cycle:
+        phase_3 = Phase.objects.filter(cycle_id=current_cycle, phase_number=3).first()
+        phase_4 = Phase.objects.filter(cycle_id=current_cycle, phase_number=4).first()
+        phase_3_duration = (phase_3.end - phase_3.start).days + 1 if phase_3 else default_phase_lengths[3]
+        phase_4_duration = (phase_4.end - phase_4.start).days + 1 if phase_4 else default_phase_lengths[4]
 
-                # Phase 4: Starts the day after Phase 3 ends, keeps avg duration
-                phase_4_start = phase_3_end + timezone.timedelta(days=1)
-                phase_4_end = phase_4_start + timezone.timedelta(days=phase_4_duration - 1)
+        phase_1_end = phase_2_start - timezone.timedelta(days=1)
 
-                menstrual_cycle = current_cycle
+        phase_3_start = phase_2_end + timezone.timedelta(days=1)
+        phase_3_end = phase_3_start + timezone.timedelta(days=phase_3_duration - 1)
+        phase_4_start = phase_3_end + timezone.timedelta(days=1)
+        phase_4_end = phase_4_start + timezone.timedelta(days=phase_4_duration - 1)
 
-                if menstrual_cycle:
-                    Phase.objects.filter(cycle_id=menstrual_cycle, phase_number=1).update(
-                        end=phase_1_end
-                    )
-                    Phase.objects.filter(cycle_id=menstrual_cycle, phase_number=2).update(
-                        start=phase_2_start,
-                        end=phase_2_end
-                    )
-                    Phase.objects.filter(cycle_id=menstrual_cycle, phase_number=3).update(
-                        start=phase_3_start,
-                        end=phase_3_end
-                    )
-                    Phase.objects.filter(cycle_id=menstrual_cycle, phase_number=4).update(
-                        start=phase_4_start,
-                        end=phase_4_end
-                    )
+        Phase.objects.filter(cycle_id=current_cycle, phase_number=1).update(end=phase_1_end)
+        Phase.objects.filter(cycle_id=current_cycle, phase_number=2).update(start=phase_2_start, end=phase_2_end)
+        Phase.objects.filter(cycle_id=current_cycle, phase_number=3).update(start=phase_3_start, end=phase_3_end)
+        Phase.objects.filter(cycle_id=current_cycle, phase_number=4).update(start=phase_4_start, end=phase_4_end)
 
-                    #Update end of cycle
-                    menstrual_cycle.end = phase_4_end
-                    menstrual_cycle.save()
+        current_cycle.end = phase_4_end
+        current_cycle.save()
