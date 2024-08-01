@@ -131,7 +131,7 @@
                   <q-card flat bordered class="my-card">
                     <q-card-section>
                       <div class="info-text">
-                        <strong>{{ $t(`acwrInfo`) }} {{ acwr }}</strong>
+                        <strong>{{ $t(`acwrInfo`) }} {{ roundedAcwr }}</strong>
                         <div>{{ $t(`strainInfo.${acwrScore}.description`) }}</div>
                         <p></p>
                         <div>
@@ -554,6 +554,10 @@ export default {
       };
     });
 
+    const roundedAcwr = computed(() => {
+      return acwr.value.toFixed(3);
+    });
+
     console.log("Filtered Data:", filteredData.value);
 
     return {
@@ -563,6 +567,7 @@ export default {
       freeScore,
       restScore,
       acwr,
+      roundedAcwr,
       acwrScore,
       trainingReadinessScore,
       trainingTextKey,
