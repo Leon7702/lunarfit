@@ -835,7 +835,7 @@
     "realisticTemperature": "Gebe einen realistischen Temperaturwert ein"
   },
   "registration": {
-      "success": "Anmeldung erfolgreich!",
+      "success": "Registrierung erfolgreich!",
       "failed": "Registrierung fehlgeschlagen. Bitte versuche es erneut.",
       "emailExists": "Es existiert bereits ein Konto mit dieser E-Mail-Adresse."
   },

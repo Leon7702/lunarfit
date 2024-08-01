@@ -127,7 +127,7 @@ export default {
 
     const passwordRules = [
       val => !!val || t('validation.passwordRequired'),
-      val => val.length >= 6 || t('validation.passwordLength')
+      // val => val.length >= 6 || t('validation.passwordLength')
     ];
 
     const loginUser = async () => {
