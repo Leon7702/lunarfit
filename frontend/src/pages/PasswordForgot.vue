@@ -2,11 +2,9 @@
     <div class="size-container">
         <div class="q-pa-lg q-gutter-sm">
 
-            <h1>Passwort vergessen?</h1>
+            <h1>{{ $t('account.password-forgotten') }}</h1>
 
-            <p>Kein Problem! Gib einfach deine E-Mail-Adresse ein, und wir senden dir einen Link, mit dem du dein
-                Passwort
-                zurücksetzen kannst.</p>
+            <p>{{ $t('account.password-forgotten-text') }}</p>
 
             <q-input color="teal" outlined v-model="email" :label="$t('email')">
                 <template v-slot:prepend>
@@ -17,11 +15,11 @@
             </q-input>
         </div>
         <div class="q-pa-md q-gutter-sm row justify-center">
-            <q-btn no-caps rounded style="background: #50C1BA; color: white" label="Fortfahren" padding="sm lg"
+            <q-btn no-caps rounded style="background: #50C1BA; color: white" :label="$t('continue')" padding="sm lg"
                 size="16px" @click="sendMail" />
         </div>
         <p style="text-align: center;">
-            <router-link to="/login">Zurück zum Login</router-link>
+            <router-link to="/login">{{ $t('login.back') }}</router-link>
         </p>
     </div>
 </template>

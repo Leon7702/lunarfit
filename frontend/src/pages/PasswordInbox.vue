@@ -2,20 +2,14 @@
     <div class="size-container">
         <div class="q-pa-lg q-gutter-sm">
 
-            <h1>Überprüfe deinen Posteingang</h1>
+            <h1>{{ $t('inbox') }}</h1>
 
-            <p>Wir haben dir eine E-Mail mit einem Link zum Zurücksetzen deines Passworts gesendet. Bitte überprüfe
-                deinen
-                Posteingang und folge den Anweisungen in der E-Mail.
-
-                Wenn du die E-Mail nicht findest, schaue auch in deinem Spam-Ordner nach.
-
-                Es kann einige Minuten dauern, bis die E-Mail bei dir ankommt.</p>
+            <p>{{ $t('reset-instruction') }}</p>
 
         </div>
 
         <div class="q-pa-md q-gutter-sm row justify-center">
-            <q-btn no-caps rounded style="background: #50C1BA; color: white" label="Zum Login" padding="sm lg"
+            <q-btn no-caps rounded style="background: #50C1BA; color: white" :label="$t('login.back')" padding="sm lg"
                 size="16px" @click="toLogin" />
         </div>
     </div>
