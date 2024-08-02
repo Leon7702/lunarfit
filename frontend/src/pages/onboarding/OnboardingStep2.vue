@@ -21,7 +21,20 @@
           />
         </div>
         <div class="form-group">
-          <p>{{ $t('onboarding.onboardingStep2.fields.menstruationDuration') }}</p>
+          <div class="info-button">
+            <p>{{ $t('onboarding.onboardingStep2.fields.menstruationDuration') }}</p>
+            <q-btn class="q-pa-sm" fab flat round icon="info" color="grey-5" @click="openMenstruationLegendDialog" />
+            <q-dialog v-model="menstruationLegend">
+              <q-card>
+                <q-card-section>
+                  {{ $t('onboarding.onboardingStep2.menstruationLegendText') }}
+                </q-card-section>
+                <q-card-actions align="right">
+                  <q-btn flat label="OK" v-close-popup />
+                </q-card-actions>
+              </q-card>
+            </q-dialog>
+          </div>
           <q-input
             ref="menstruationDurationRef"
             filled
@@ -33,7 +46,20 @@
           />
         </div>
         <div class="form-group">
-          <p>{{ $t('onboarding.onboardingStep2.fields.cycleLength') }}</p>
+          <div class="info-button">
+            <p>{{ $t('onboarding.onboardingStep2.fields.cycleLength') }}</p>
+            <q-btn class="q-pa-sm" fab flat round icon="info" color="grey-5" @click="openCycleLegendDialog" />
+            <q-dialog v-model="cycleLegend">
+              <q-card>
+                <q-card-section>
+                  {{ $t('onboarding.onboardingStep2.cycleLegendText') }}
+                </q-card-section>
+                <q-card-actions align="right">
+                  <q-btn flat label="OK" v-close-popup />
+                </q-card-actions>
+              </q-card>
+            </q-dialog>
+          </div>
           <q-input
             ref="cycleDurationRef"
             filled
@@ -79,6 +105,9 @@ export default {
     const menstruationDurationRef = ref(null);
     const cycleDurationRef = ref(null);
 
+    const menstruationLegend = ref(false);
+    const cycleLegend = ref(false);
+
     const lastMenstruationRules = [
       val => !!val || t('validation.required'),
       val => new Date(val) <= new Date() || t('validation.lastMenstruationFuture'),
@@ -88,9 +117,8 @@ export default {
     const menstruationDurationRules = [
       val => !!val || t('validation.required'),
       val => val > 0 || t('validation.positiveValue'),
-      val => val >= 0 && val <= 20|| t('validation.realisticMensDuration'),
+      val => val >= 0 && val <= 20 || t('validation.realisticMensDuration'),
       val => Number.isInteger(Number(val)) || t('validation.realisticDay'),
-      // val => Number.isInteger(val) || t('validation.realisticDay'),
     ];
 
     const cycleDurationRules = [
@@ -98,7 +126,6 @@ export default {
       val => val > 0 || t('validation.positiveValue'),
       val => val >= 20 && val <= 40 || t('validation.realisticCycleDuration'),
       val => Number.isInteger(Number(val)) || t('validation.realisticDay'),
-      // val => Number.isInteger(val) || t('validation.realisticDay'),
     ];
 
     const logLastMenstruation = async () => {
@@ -144,6 +171,14 @@ export default {
       }
     };
 
+    const openMenstruationLegendDialog = () => {
+      menstruationLegend.value = true;
+    };
+
+    const openCycleLegendDialog = () => {
+      cycleLegend.value = true;
+    };
+
     return {
       last_menstruation,
       menstruation_duration,
@@ -154,7 +189,11 @@ export default {
       lastMenstruationRules,
       menstruationDurationRules,
       cycleDurationRules,
-      navigateToNextStep
+      navigateToNextStep,
+      menstruationLegend,
+      cycleLegend,
+      openMenstruationLegendDialog,
+      openCycleLegendDialog
     };
   }
 };
@@ -201,6 +240,12 @@ export default {
 .input-text {
   text-align: right;
   font-size: 16px;
+}
+
+.info-button {
+  display: flex;
+  /* justify-content: space-between; */
+  align-items: center;
 }
 
 .button-container {
