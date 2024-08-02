@@ -365,7 +365,9 @@
         "lastMenstruation": "On which day did your last menstruation start?",
         "menstruationDuration": "How many days does your menstruation usually last?",
         "cycleLength": "How many days are there usually between the first day of your period and the first day of your next period?"
-      }
+      },
+      "menstruationLegendText": "A period usually lasts three to seven days",
+      "cycleLegendText": "Menstrual cycles normally last between 24 and 38 days"
     },
     "onboardingStep3": {
       "step": "Step 3:",
