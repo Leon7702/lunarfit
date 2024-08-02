@@ -9,8 +9,8 @@
           :stroke-width="segment.strokeWidth" :stroke-dasharray="segment.dasharray"
           :stroke-dashoffset="segment.dashoffset" :style="{ opacity: segment.opacity }"></circle>
         <!-- Add horizontal and vertical white lines -->
-        <line x1="0" y1="21" x2="42" y2="21" stroke="#fff" stroke-width="0.25" />
-        <line x1="21" y1="0" x2="21" y2="42" stroke="#fff" stroke-width="0.25" />
+        <line x1="0" y1="21" x2="42" y2="21" stroke="#fff" stroke-width="0.4" />
+        <line x1="21" y1="0" x2="21" y2="42" stroke="#fff" stroke-width="0.4" />
 
         <!-- Text paths for the labels -->
         <path id="path1" d="M 21,21 m -18.5,0 a 18.5,18.5 0 1,1 37,0 a 18.5,18.5 0 1,1 -37,0" fill="transparent" />
