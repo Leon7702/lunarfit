@@ -23,21 +23,37 @@ class Workout(models.Model):
         validators=[MinValueValidator(1), MaxValueValidator(10)]
     )
 
+    def __str__(self):
+        return f"{self.user}: {self.start} for {self.duration}min sport: {self.sport}"
+
     def save(self, *args, **kwargs):
+        # save first, so the value is available for updates
+        super().save(*args, **kwargs)
+        self.update_next_acwr()
+
+    def delete(self):
+        # delete first, so the value is not used for updates
+        print(f"pre deleting {self}")
+        super().delete()
+        print(f"post deleting {self}")
+        self.update_next_acwr()
+
+    def update_next_acwr(self):
+        """
+        Updates the ACWR values of the nearest future TRS Log, including on the day of the workout.
+        It only updates a single entry, the TRS model takes care of cascading the changes to all future entries,
+        as this is only necessary once.
+        """
         first_trs_entry_from_today = (
             self.user.trs_set.filter(date__gte=self.start.date())
-            .order_by("-date")
+            .order_by("date")
             .first()
         )
+        print(f"TRS to update {first_trs_entry_from_today}")
         # it is possible there is no daily assessment for the workout day, use the nearest future one
         # acwr update will cascade from there
         if first_trs_entry_from_today:
             first_trs_entry_from_today.update_acwr()
-
-        super().save(*args, **kwargs)
-
-    def __str__(self):
-        return f"{self.user}: {self.start} for {self.duration}min sport: {self.sport}"
 
 
 class Trs(models.Model):
@@ -77,9 +93,15 @@ class Trs(models.Model):
         else:
             return 6
 
-        return previous_trs.trs_acwr + penalty
+        trs_acwr = previous_trs.trs_acwr + penalty
+        if trs_acwr < 0:
+            return 0
 
-    def aggregate_workouts(self, start_date: date, end_date: date):
+        return trs_acwr
+
+    def aggregate_workouts(
+        self, start_date: date, end_date: date
+    ) -> models.query.QuerySet:
         """
         Returns a queryset of workouts, aggregated by days, annotated with the rpe__avg of the day.
         It could be an empty queryset. Dates are inclusive.
@@ -102,10 +124,10 @@ class Trs(models.Model):
         """
         start_date = end_date - timedelta(days - 1)
         workouts = self.aggregate_workouts(start_date, end_date)
+        workload = 0
 
-        # WARN: https://docs.djangoproject.com/en/5.0/topics/db/aggregation/#combining-multiple-aggregations
-        # combining aggregations seems to be problematic, but here it is working
-        workload = workouts.aggregate(workload=Sum("rpe__avg"))["workload"]
+        if workouts.exists():
+            workload = workouts.aggregate(workload=Sum("rpe__avg"))["workload"]
 
         if (
             self.user_has_logged_workouts_from(start_date)
@@ -119,7 +141,6 @@ class Trs(models.Model):
         # be factored from the onboarding average.
         # the first daily assessment on the day of the onboarding would ask
         # for the day before the onboarding + the onboarding day itself
-        logged_days = (end_date - onboarding.timestamp + OFFSET).days
 
         onboarding_daily_workload = (
             onboarding.workout_duration
@@ -127,6 +148,12 @@ class Trs(models.Model):
             * onboarding.workout_frequency
             / 7
         )
+
+        logged_days = (end_date - onboarding.timestamp + OFFSET).days
+
+        if logged_days < 1:
+            return onboarding_daily_workload
+
         onboarding_days = days - logged_days
         logged_workload = workload / logged_days
 
