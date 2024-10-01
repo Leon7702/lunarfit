@@ -1,9 +1,9 @@
-# Lunarfit (Working Title?)
+# LunarFit
 
 <!-- markdown-toc start - Don't edit this section. Run M-x markdown-toc-refresh-toc -->
 **Table of Contents**
 
-- [Lunarfit (Working Title?)](#lunarfit-working-title)
+- [LunarFit](#lunarfit)
     - [Local dev servers](#local-dev-servers)
         - [First run - Database setup](#first-run---database-setup)
         - [Create a superuser](#create-a-superuser)
@@ -18,7 +18,7 @@
 You can set up the backend including the database using [Docker](https://docs.docker.com/engine/install/) and the `docker-compose.yml`.
 
 ``` sh
-docker compose up -detach --build
+docker compose up --detach --build
 ```
 
 > ⚠️ The `--build` flag makes sure you stay up-to-date, if there are changes in the backend dependencies, `--detach` hides the containers output.

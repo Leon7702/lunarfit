@@ -44,8 +44,8 @@ quasar build
 
 ### Serve the app with the quasar webserver
 ```bash
-# needs the quasar cli installed globally
-# npm install --global quasar or something like that
+# needs the quasar cli installed globally, example for npm:
+# npm install --global quasar
 
 # in the frontend folder, after build:
 quasar serve --port 9000 ./dist/spa/
