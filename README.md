@@ -1,8 +1,19 @@
-# LunarFit
+## About the Project
 
-> **Group Project**  
-> This project was developed collaboratively as part of a team effort.  
-> [Click here for more information about the project](https://showtime.f4.htw-berlin.de/ss24/bachelor/b3-lunarfit/)  
+**LunarFit** is a group project developed to support female athletes by integrating menstrual cycle tracking with personalized training and nutrition insights. Our goal was to transform a common performance challenge into a strength by aligning workouts with hormonal phases.
+
+> 🧑‍🤝‍🧑 This was a **collaborative group project** developed as part of my Bachelor program.  
+> 📖 Learn more here: [LunarFit](https://showtime.f4.htw-berlin.de/ss24/bachelor/b3-lunarfit/)  
+
+### Key Features
+
+- **Cycle-Aware Calendar** – Visualize menstrual phases, past logs, and predicted periods.
+- **Training Readiness Score (TRS)** – Assess exercise capacity with an interactive sunburst chart.
+- **Symptom Logging** – Log pain, stress, sleep, and recovery to inform training decisions.
+- **Educational Insights** – Evidence-based recommendations for training and nutrition tailored to each hormonal phase.
+- **Daily Check-Ins** – Personalized dashboard for logging and tracking wellbeing and performance.
+
+---
 
 <!-- markdown-toc start - Don't edit this section. Run M-x markdown-toc-refresh-toc -->
 **Table of Contents**
