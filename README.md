@@ -1,5 +1,9 @@
 # LunarFit
 
+> **Group Project**  
+> This project was developed collaboratively as part of a team effort.  
+> [Click here for more information about the project](https://showtime.f4.htw-berlin.de/ss24/bachelor/b3-lunarfit/)  
+
 <!-- markdown-toc start - Don't edit this section. Run M-x markdown-toc-refresh-toc -->
 **Table of Contents**
 
