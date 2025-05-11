@@ -1,3 +1,5 @@
+https://github.com/user-attachments/assets/b15dc3dd-10a6-435b-ae0a-80f2031d1bbc
+
 ## About the Project
 
 **LunarFit** is a group project developed to support female athletes by integrating menstrual cycle tracking with personalized training and nutrition insights. Our goal was to transform a common performance challenge into a strength by aligning workouts with hormonal phases.
@@ -12,6 +14,7 @@
 - **Symptom Logging** – Log pain, stress, sleep, and recovery to inform training decisions.
 - **Educational Insights** – Evidence-based recommendations for training and nutrition tailored to each hormonal phase.
 - **Daily Check-Ins** – Personalized dashboard for logging and tracking wellbeing and performance.
+
 
 ---
 
